@@ -1,13 +1,13 @@
 from django.db import models
 from django.utils import timezone
-from datetime import datetime
+from datetime import timedelta
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField(default=datetime.now)
+    pub_date = models.DateTimeField(default=timezone.now())
     
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        return self.pub_date >= timezone.now() - timedelta(days=1)
         
     def __str__(self):
         return self.question_text
