@@ -8,7 +8,7 @@ from django.views import generic
 from .forms import SignupForm
 from .models import User, Question, Choice
 
-class SignUpView(generic.CreateView):
+class SignupView(generic.FormView):
     model = User
     form_class = SignupForm
     template_name = 'registration/signup.html'
@@ -18,7 +18,7 @@ class SignUpView(generic.CreateView):
         login(self.request, user)
         return HttpResponseRedirect(reverse('polls:index'))
 
-@method_decorator([decorators.login_required], name='dispatch')
+@method_decorator(decorators.login_required, name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -28,17 +28,17 @@ class IndexView(generic.ListView):
             pub_date__lte=timezone.now()
         ).order_by('-pub_date')[:5]
 
-@method_decorator([decorators.login_required], name='dispatch')
+@method_decorator(decorators.login_required, name='dispatch')
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
-@method_decorator([decorators.login_required], name='dispatch')
+@method_decorator(decorators.login_required, name='dispatch')
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
-@decorators.login_required
+@method_decorator(decorators.login_required)
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
