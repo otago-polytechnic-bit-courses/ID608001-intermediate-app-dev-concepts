@@ -1,0 +1,15 @@
+{% extends "polls/base.html" %}
+
+{% block title %}Polls | Login{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %} 
+    {{ form.username|as_crispy_field }} {{ form.password|as_crispy_field }}<br>
+    <input type="submit" value="Login">
+</form>
+<br>
+<a href="{% url 'polls:signup' %}">Signup</a>
+{% endblock %}
