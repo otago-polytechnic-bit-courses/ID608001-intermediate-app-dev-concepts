@@ -100,15 +100,15 @@ Above is a list containing tuples used as choices for a field. The first element
 
 Below \texttt{RANGE\_CHOICE}, declare the following field names with their types \& options: 
 \begin{verbatim}
-breed = models.CharField(max_length=200, unique=True) 
-height = models.IntegerField(default=1) 
-weight = models.IntegerField(default=1) 
-life_span = models.IntegerField(default=1) 
-adaptability = models.CharField(choices=RANGE_CHOICE, max_length=200) 
-friendliness = models.CharField(choices=RANGE_CHOICE, max_length=200) 
-grooming_needs = models.CharField(choices=RANGE_CHOICE, max_length=200) 
-trainability = models.CharField(choices=RANGE_CHOICE, max_length=200) 
-physical_needs = models.CharField(choices=RANGE_CHOICE, max_length=200) 
+  breed = models.CharField(max_length=200, unique=True) 
+  height = models.IntegerField(default=1) 
+  weight = models.IntegerField(default=1) 
+  life_span = models.IntegerField(default=1) 
+  adaptability = models.CharField(choices=RANGE_CHOICE, max_length=200) 
+  friendliness = models.CharField(choices=RANGE_CHOICE, max_length=200) 
+  grooming_needs = models.CharField(choices=RANGE_CHOICE, max_length=200) 
+  trainability = models.CharField(choices=RANGE_CHOICE, max_length=200) 
+  physical_needs = models.CharField(choices=RANGE_CHOICE, max_length=200) 
 \end{verbatim}
 
 For \texttt{Dog}, create a \texttt{\_\_str\_\_} method which returns \texttt{breed}. \\

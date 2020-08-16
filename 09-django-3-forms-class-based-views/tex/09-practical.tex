@@ -46,21 +46,21 @@ In \texttt{index.html}, create an \texttt{HTML} form. The form \texttt{action} s
 
 In \texttt{views.py}, create a class called \texttt{IndexView} which extends \texttt{generic.TemplateView}. In this class, set the \texttt{template\_name} to \texttt{practical09dogsearch/index.html}. Create a function called \texttt{results}. In this function, you will query the \texttt{Dog} model using \texttt{filter} \& return a \texttt{QuerySet} containing objects that match the given lookup arguments. In this instance, the lookup arguments will be the items in \texttt{POST} request. Render the \texttt{details.html} template with a \texttt{context} dictionary containing the \texttt{QuerySet}. In \texttt{details.html}, if the \texttt{QuerySet} in \texttt{context} is not empty, display the length of the \texttt{QuerySet} \& \texttt{context} in a nicely formatted \texttt{HTML} table. If the \texttt{QuerySet} in \texttt{context} is empty, display an appropriate message. \\
 
-In \texttt{urls.py}, set the \texttt{app\_name} to \texttt{practical09dogsearch} \& create two URLs which map to the \texttt{IndexView} class \& \texttt{results} function in \texttt{views.py}.
+Create a file called \texttt{urls.py} in the \texttt{practical09dogsearch} app directory. In \texttt{urls.py}, set the \texttt{app\_name} to \texttt{practical09dogsearch} \& create two URLs which map to the \texttt{IndexView} class \& \texttt{results} function in \texttt{views.py}.
 
 \subsection*{Connecting to MariaDB}
 Thus far, you have used \texttt{SQLite} to persistently store data. Going forward, you will use the \texttt{MySQL Client} Python module \& \texttt{MariaDB}. Install \texttt{MySQL Client} Python module by running the command: \texttt{pipenv install mysqlclient}. In \texttt{dog/settings.py}, change the \texttt{DATABASE} configuration to the following:
 
 \begin{verbatim}
-DATABASES = {
-  'default': {
-      'ENGINE': 'django.db.backends.mysql',
-      'NAME': 'in608shared_<your OP username>', 
-      'USER': 'in608shared', 
-      'PASSWORD': 'P@ssw0rd',
-      'HOST': 'mariadb.ict.op.ac.nz',
+  DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'in608shared_<your OP username>', 
+        'USER': 'in608shared', 
+        'PASSWORD': 'P@ssw0rd',
+        'HOST': 'mariadb.ict.op.ac.nz',
+    }
   }
-}
 \end{verbatim}
 
 Please ensure you run both migration commands, i.e, \texttt{python manage.py makemigrations} \& \texttt{python manage.py migrate}. Go to \href{http://mariadb.ict.op.ac.nz/phpmyadmin/}{http://mariadb.ict.op.ac.nz/phpmyadmin/} \& view your \texttt{in608shared\_<your OP username>} database.
@@ -102,6 +102,8 @@ Create a function called \texttt{details}. In this function, get the \texttt{POS
 Create a dictionary called \texttt{context}. If a \texttt{POST} \texttt{username} value is found, add the response contents from the \texttt{GET} request to the dictionary. In addition, make another make a \texttt{GET} request to \texttt{repos\_url}. The response content will contain a list of repository information for that particular \textbf{GitHub} user. Add the response content to \texttt{context}. Please ensure correct error checking. \\
 
 In \texttt{details.html}, display the \texttt{context} dictionary in the same format as shown in the expected output.\\
+
+In \texttt{urls.py}, set the \texttt{app\_name} to \texttt{practical09github} \& create two URLs which map to the \texttt{IndexView} class \& \texttt{details} function in \texttt{views.py}.
 
 \subsection*{Expected Output} 
 Run the command \texttt{python manage.py runserver} then navigate to \href{http://127.0.0.1:8000/practical09github/}{http://127.0.0.1:8000/practical09github/} \\
