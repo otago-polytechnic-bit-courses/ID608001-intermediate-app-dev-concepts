@@ -4,10 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+selenium = "*"
 
 [packages]
 django = "*"
-selenium = "*"
 
 [requires]
 python_version = "3.7"
