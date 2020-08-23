@@ -1,0 +1,62 @@
+[
+  {
+    "model": "practical08dog.dog",
+    "pk": 1,
+    "fields": {
+      "breed": "Afghand Hound",
+      "height": 25,
+      "weight": 55,
+      "life_span": 11,
+      "adaptability": "H",
+      "friendliness": "H",
+      "grooming_needs": "L",
+      "trainability": "M",
+      "physical_needs": "H"
+    }
+  },
+  {
+    "model": "practical08dog.dog",
+    "pk": 2,
+    "fields": {
+      "breed": "American Pugabull",
+      "height": 16,
+      "weight": 48,
+      "life_span": 13,
+      "adaptability": "M",
+      "friendliness": "H",
+      "grooming_needs": "M",
+      "trainability": "M",
+      "physical_needs": "H"
+    }
+  },
+  {
+    "model": "practical08dog.dog",
+    "pk": 3,
+    "fields": {
+      "breed": "Basset Hound",
+      "height": 14,
+      "weight": 55,
+      "life_span": 11,
+      "adaptability": "M",
+      "friendliness": "H",
+      "grooming_needs": "H",
+      "trainability": "H",
+      "physical_needs": "L"
+    }
+  },
+  {
+    "model": "practical08dog.dog",
+    "pk": 4,
+    "fields": {
+      "breed": "Bichon Frise",
+      "height": 10,
+      "weight": 9,
+      "life_span": 13,
+      "adaptability": "H",
+      "friendliness": "H",
+      "grooming_needs": "L",
+      "trainability": "M",
+      "physical_needs": "H"
+    }
+  }
+]
