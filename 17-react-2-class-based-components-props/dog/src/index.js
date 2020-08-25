@@ -6,7 +6,7 @@ import Owner from './components/Owner'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Owner name='John Doe' />
+    <Owner name='Jane Doe' />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
