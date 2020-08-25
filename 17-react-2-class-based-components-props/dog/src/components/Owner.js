@@ -11,7 +11,7 @@ function Owner(props) {
 // class Owner extends React.Component {
 //   render() {
 //     return (
-//         <div className='Owner'>
+//         <div className='container'>
 //           <h1>My owner is {this.props.name}</h1>
 //         </div>
 //       )    

@@ -9,7 +9,7 @@ const dog = {
 }
 
 function formatDog(dog) {
-  return `${dog.name} & my breed is an ${dog.breed}`
+  return `${dog.name} & my breed is an ${dog.breed}` // Alternative: dog.name + ' & my breed is an ' + dog.breed
 }
 
 function getGreeting(dog) {
