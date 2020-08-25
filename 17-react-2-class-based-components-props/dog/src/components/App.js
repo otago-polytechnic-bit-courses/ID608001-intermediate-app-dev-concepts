@@ -1,5 +1,5 @@
 import React from 'react'
-import afghanHoundImg from './img/afghan-hound.jpg'
+import afghanHoundImg from '../img/afghan-hound.jpg'
 
 const dog = {
   name: 'Bingo',
@@ -18,19 +18,6 @@ function getGreeting(dog) {
   }
   return <h1>Uh...who are you?</h1>
 }
-
-// React.createElement(
-//   'div',
-//   {
-//     className: 'container',
-//   },
-//   getGreeting(),
-//   React.createElement('img', {
-//     src: dog.img,
-//     alt: 'afghan hound',
-//     width: '300',
-//   })
-// )
 
 function App() {
   return (
