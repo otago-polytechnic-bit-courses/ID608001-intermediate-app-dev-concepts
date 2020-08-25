@@ -4,7 +4,6 @@ import afghanHoundImg from './img/afghan-hound.jpg'
 const dog = {
   name: 'Bingo',
   breed: 'Afghan Hound',
-  age: 5,
   img: afghanHoundImg,
 }
 

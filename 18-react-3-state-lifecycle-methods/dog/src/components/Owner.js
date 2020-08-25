@@ -3,7 +3,7 @@ import React from 'react'
 // function Owner(props) {
 //   return (
 //     <div className='container'>
-//       <h1>My owner is {props.name}</h1>
+//         <h1>My owner is {props.name}</h1>
 //     </div>
 //   )
 // }
