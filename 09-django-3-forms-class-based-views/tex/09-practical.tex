@@ -48,23 +48,6 @@ In \texttt{views.py}, create a class called \texttt{IndexView} which extends \te
 
 Create a file called \texttt{urls.py} in the \texttt{practical09dogsearch} app directory. In \texttt{urls.py}, set the \texttt{app\_name} to \texttt{practical09dogsearch} \& create two URLs which map to the \texttt{IndexView} class \& \texttt{results} function in \texttt{views.py}.
 
-\subsection*{Connecting to MariaDB}
-Thus far, you have used \texttt{SQLite} to persistently store data. Going forward, you will use the \texttt{MySQL Client} Python module \& \texttt{MariaDB}. Install \texttt{MySQL Client} Python module by running the command: \texttt{pipenv install mysqlclient}. In \texttt{dog/settings.py}, change the \texttt{DATABASE} configuration to the following:
-
-\begin{verbatim}
-  DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'in608shared_<your OP username>', 
-        'USER': 'in608shared', 
-        'PASSWORD': 'P@ssw0rd',
-        'HOST': 'mariadb.ict.op.ac.nz',
-    }
-  }
-\end{verbatim}
-
-Please ensure you run both migration commands, i.e, \texttt{python manage.py makemigrations} \& \texttt{python manage.py migrate}. Go to \href{http://mariadb.ict.op.ac.nz/phpmyadmin/}{http://mariadb.ict.op.ac.nz/phpmyadmin/} \& view your \texttt{in608shared\_<your OP username>} database.
-
 \subsection*{Expected Output} 
 Run the command \texttt{python manage.py runserver} then navigate to \href{http://127.0.0.1:8000/practical09dogsearch/}{http://127.0.0.1:8000/practical09dogsearch/} \\
 
