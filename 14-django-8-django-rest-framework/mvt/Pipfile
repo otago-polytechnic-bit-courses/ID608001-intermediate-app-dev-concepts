@@ -4,13 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+selenium = "*"
 
 [packages]
 django = "*"
-selenium = "*"
 django-crispy-forms = "*"
 djangorestframework = "*"
-graphene-django = "*"
 
 [requires]
 python_version = "3.7"
