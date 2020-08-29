@@ -1,20 +1,12 @@
 import React from 'react'
 
 // function Owner(props) {
-//   return (
-//     <div className='container'>
-//       <h1>My owner is {props.name}</h1>
-//     </div>
-//   )
+//   return <h1>My owner is {props.name}</h1>
 // }
 
 class Owner extends React.Component {
   render() {
-    return (
-      <div className='container'>
-        <h1>My owner is {this.props.name}</h1>
-      </div>
-    )
+    return <h1>My owner is {this.props.name}</h1>
   }
 }
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import Clock from './Clock'
+import Owner from './Owner'
 import afghanHoundImg from '../img/afghan-hound.jpg'
 
 const dog = {
@@ -8,12 +10,12 @@ const dog = {
 }
 
 function formatDog(dog) {
-  return `${dog.name} & my breed is an ${dog.breed}` // Alternative: dog.name + ' & my breed is an ' + dog.breed
+  return `Woof woof, my name is ${dog.name} & my breed is an ${dog.breed}`
 }
 
 function getGreeting(dog) {
   if (dog) {
-    return <h1>Woof woof, my name is {formatDog(dog)}</h1>
+    return <h1>{formatDog(dog)}</h1>
   }
   return <h1>Uh...who are you?</h1>
 }
@@ -21,8 +23,10 @@ function getGreeting(dog) {
 function App() {
   return (
     <div className='container'>
+      <Owner />
       {getGreeting()}
       <img src={dog.img} alt='afghan hound' width='300' />
+      <Clock />
     </div>
   )
 }

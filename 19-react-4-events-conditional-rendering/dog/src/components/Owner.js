@@ -9,11 +9,8 @@ class Owner extends React.Component {
   }
 
   render() {
-    return (
-      <div className='container'>
-        <h1>My owner is {this.state.name}</h1>
-      </div>
-    )
+    return <h1>My owner is {this.state.name}</h1>
+
   }
 }
 
