@@ -8,7 +8,7 @@ import afghanHoundImg from '../img/afghan-hound.jpg'
 const dog = {
   name: 'Bingo',
   breed: 'Afghan Hound',
-  img: afghanHoundImg,
+  img: afghanHoundImg
 }
 
 function formatDog(dog) {

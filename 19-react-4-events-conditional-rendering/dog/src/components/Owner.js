@@ -3,9 +3,7 @@ import React from 'react'
 class Owner extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      name: 'Jane Doe',
-    }
+    this.state = { name: 'Jane Doe' }
   }
 
   render() {

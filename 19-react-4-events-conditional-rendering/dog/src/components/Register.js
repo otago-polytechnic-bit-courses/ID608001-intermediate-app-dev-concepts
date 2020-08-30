@@ -3,9 +3,7 @@ import React from 'react'
 class Register extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      isRegistered: true,
-    }
+    this.state = { isRegistered: true }
     // this.handleRegisteredChange = this.handleRegisteredChange.bind(this)
   }
 
@@ -16,9 +14,7 @@ class Register extends React.Component {
   // }
 
   handleRegisteredChange() {
-    this.setState((state) => ({
-      isRegistered: !state.isRegistered,
-    }))
+    this.setState((state) => ({ isRegistered: !state.isRegistered }))
   }
 
   render() {

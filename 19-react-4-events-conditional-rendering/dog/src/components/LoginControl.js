@@ -6,21 +6,15 @@ import LogoutButton from './LogoutButton'
 class LoginControl extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      isLoggedIn: false,
-    }
+    this.state = { isLoggedIn: false }
   }
 
   handleLoginClick() {
-    this.setState({
-      isLoggedIn: true,
-    })
+    this.setState({ isLoggedIn: true })
   }
 
   handleLogoutClick() {
-    this.setState({
-      isLoggedIn: false,
-    })
+    this.setState({ isLoggedIn: false })
   }
 
   render() {
