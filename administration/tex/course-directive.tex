@@ -1,0 +1,156 @@
+% Author: Grayson Orr
+% Course: IN608: Intermediate Application Development Concepts
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\begin{figure}
+	\includegraphics[width=50mm]{./img/logo.png}
+\end{figure}
+
+\title{Course Directive\\IN608: Intermediate Application Development Concepts\\Semester Two, 2020}
+\date{}
+\maketitle
+
+\section*{Course Information}
+\begin{tabular}{ll}
+	Credits:            & 15 Credits                                     \\
+	Prerequisite:       & IN610: Programming 3                           \\
+	Stream A Timetable: & Monday 8am-10am D207 \& Thursday 8am-10am D207 \\
+	Stream B Timetable: & Monday 3pm-5pm D105a \& Thursday 3pm-5pm D207  
+\end{tabular} 
+
+\section*{Lecturers}
+\begin{tabular}{ll}
+	Name:   & Tom Clark (Lecturer) \\
+	Office: & D305                 \\
+	Email:  & tom.clark@op.ac.nz   \\
+\end{tabular}
+\begin{tabular}{l}
+	Grayson Orr (Lecturer) \\
+	D311                   \\
+	grayson.orr@op.ac.nz   \\
+\end{tabular}
+
+\section*{Course Dates}
+\begin{tabular}{ll}
+	Term 1:             & 20 July - 25 September (10 weeks)  \\
+	Mid Semester Break: & 28 September - 9 October (2 weeks) \\
+	Term 2:             & 12 October - 20 November (6 weeks) \\
+	Labour Day:         & 26 October                         
+\end{tabular}
+
+\section*{Aims}
+To extend the concepts of application development including algorithms, data structures and design patterns that are required to use a complex, industry-relevant framework or library.
+
+\section*{Learning Outcomes}
+At the successful completion of this course, student will be able to:
+\begin{enumerate}
+	\item Demonstrate sound programming by following design patterns and best practices.  
+	\item Design and implement full-stack applications using industry relevant programming languages.
+\end{enumerate}
+
+\section*{Resources}
+
+\subsection*{Software}
+This paper will be taught using \textbf{Jupyter Notebook} \& \textbf{Microsoft Visual Studio Code}. An installer for \textbf{Jupyter Notebook} \& \textbf{Microsoft Visual Studio Code} is available. See \href{https://jupyter.org/install}{https://jupyter.org/install} \& \href{https://code.visualstudio.com}{https://code.visualstudio.com}. Please refer any problems with downloads or installers to \textbf{Rob Broadley} in \textbf{D205a}.
+
+\subsection*{Readings}
+There is no textbook for the course.
+
+\section*{Provisional Schedule}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Week} & \textbf{Date}     & \textbf{Session 1}                                     & \textbf{Session 2}                                          \\ \hline
+	\small 1      & \small 20-07-2020 & \small Python 1: Abstract Data Types \& OOP Recap      & \small Python 2: More Abstract Data Types                   \\ \hline
+	\small 2      & \small 27-07-2020 & \small Python 3: Functional Programming                & \small Python 4: In-Built Functions \& SOLID                \\ \hline
+	\small 3      & \small 03-08-2020 & \small Python 5: Exceptions \& Automation Testing      & \small Python 6: Concurrency \& Parallelism                 \\ \hline
+	\small 4      & \small 10-08-2020 & \small Django 1: Route, Model \& Admin Site            & \small Django 2: View \& Template                           \\ \hline
+	\small 5      & \small 17-08-2020 & \small Django 3: Forms \& Class-Based Views            & \small Django 4: Template Inheritance, Static Files \& CDNs \\ \hline
+	\small 6      & \small 24-08-2020 & \small Django 5: Automation Testing                    & \small Django 6: Authentication                             \\ \hline
+	\small 7      & \small 31-08-2020 & \small Django 7: Security                              & \small Django 8: Django REST Framework                      \\ \hline
+	\small 8      & \small 07-09-2020 & \small Django 9: Deployment                            & \small React 1: Create-React-App \& JSX                     \\ \hline
+	\small 9      & \small 14-09-2020 & \small React 2: Components \& Props        & \small React 3: State \& Lifecycle Methods                  \\ \hline
+	\small 10     & \small 21-09-2020 & \small React 4: Events \& Conditional Rendering & \small React 5:  Lists \& Keys                              \\ \hline
+	\rowcolor{yellow} \multicolumn{4}{|c|}{\small Mid Term Break}                                                             \\ \hline
+	\small 11     & \small 12-10-2020 & \small React 6: Forms          & \small React 7: Async/Await       \\ \hline                                           
+	\small 12     & \small 19-10-2020 & \small React 8: Parcel                                 & \small React 9: Automation Testing                          \\ \hline
+	\small 13     & \small 27-10-2020 & \cellcolor{yellow} \small Labour Day                   & \small React 10: Deployment                                          \\ \hline
+	\small 14     & \small 02-11-2020 & \small Project Work                                    & \small Project Work                                         \\ \hline
+	\small 15     & \small 09-11-2020 & \small Project Work                                    & \small Project Work                                         \\ \hline
+	\small 16     & \small 16-11-2020 & \small Project Work                                    & \small Project Work                                         \\ \hline
+\end{tabular}
+
+\section*{Assessments}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Assessment}                                & \textbf{Weighting} & \textbf{Due Date} & \textbf{Learning Outcomes} \\ \hline 
+	\small Practicals                                  & \small 20\%        & \small 02-11-2020 & \small 1                   \\ \hline
+	\small Django \& OpenTDB API                       & \small 50\%        & \small 16-10-2020 & \small 1, 2                \\ \hline
+	\small Django REST Framework, React \& OpenTDB API & \small 30\%        & \small 20-11-2020 & \small 1, 2                \\ \hline
+\end{tabular}
+
+\section*{Course Requirements and Expectations}
+
+\subsection*{Learning Hours}
+This course requires 150 hours of learning. This time includes 64 hours of timetabled class time, and 86 hours of self-directed reading, preparation and completion of assessment work.
+
+\subsection*{Criteria for Passing}
+To pass this paper, you must achieve an overall average of 50\%. There must be a genuine attempt at all assessments. There are no resits.
+
+\subsection*{Attendance}
+\begin{itemize}
+	\item Students are expected to attend all classes, both lectures and labs.
+	\item If you miss a class, you will need to get notes from another student.
+	\item If you cannot attend for a few days for any reason, please contact your lecturer.
+	\item You must turn up ready for assessments on the due date and at the correct time. No extra time will be scheduled. If you do not turn up, you have failed the assessment.
+\end{itemize}
+
+\subsection*{Communication}
+Microsoft Outlook and Teams are the official communication channels. It is your responsibility to regularly check Microsoft Outlook/Teams and \href{https://github.com/otago-polytechnic-bit-courses/intermediate-app-dev-concepts}{GitHub} for important course-related material, including changes to class scheduling or assessment details. Not checking will not be accepted as an excuse.
+
+\subsection*{Snow Days/Polytechnic Closure}
+In the event the Polytechnic is closed or has a delayed opening because of snow or bad weather, you should not attempt to attend class if it is unsafe to do so. It is possible that your lecturer will not be able to attend either, so classes will not physically be meeting. However, this does not become a holiday. Rather, the material will be made available on \href{https://github.com/otago-polytechnic-bit-courses/intermediate-app-dev-concepts}{GitHub} for classes affected by the closure. You are responsible for any material presented in this manner. Information about closure will be posted on the Otago Polytechnic Facebook page \href{https://www.facebook.com/OtagoPoly}{https://www.facebook.com/OtagoPoly}.
+
+\subsection*{Group Work and Originality}
+Students in the Bachelor of Information Technology degree are expected to hand in original work. Students are encouraged to discuss assessments with their fellow students, however, all assessments are to be completed as individual work unless group work is explicitly required (i.e. if it doesn’t say it is group work then it is not group work – even if a group consultation was involved). Failure to submit your own original work will be treated as plagiarism.
+
+\subsection*{Referencing}
+Appropriate referencing is required for all work. Referencing standards will be specified by your lecturer.
+
+\subsection*{Plagiarism}
+Plagiarism is submitting someone else’s work as your own. Plagiarism offences are taken seriously and an assessment that has been plagiarised may be awarded a zero mark. A definition of plagiarism is in the Student Handbook, available online or at the school office.
+
+\subsection*{Submission Requirements}
+All assessments are to be submitted by the time, date, and method given when the assessment is issued. Failure to meet all requirements may result in a penalty of up to 10\% per day (including weekends).
+
+\subsection*{Extensions}
+Extensions are only available for unusual circumstances. These must be applied for, and approved, before the submission deadline.
+
+\subsection*{Impairment}
+In case of sickness contact your lecturer or BIT Team Leader (Michael Holtz) as soon as possible, preferably before the assessment or exam is due. The policy regarding the granting of a mark that considers impaired performance requires a medical certificate and a medical practitioner’s signature on a form. You may refer to the guide on impaired performance on the student handbook.
+
+\subsection*{Appeals}
+If you are concerned about any aspect of your assessment, please approach the lecturer in the first instance. We support an open-door policy and aim to resolve issues promptly. Further support is available from the BIT Team Leader (Michael Holtz) and Head of College (Richard Nyhof). Otago Polytechnic has a formal process for academic appeals if necessary.
+
+\subsection*{Other Documents}
+Regulatory documents relating to this course can be found on the Polytechnic website.
+
+\end{document}

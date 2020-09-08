@@ -1,0 +1,148 @@
+% Author: Grayson Orr
+% Course: IN608: Intermediate Application Development Concepts
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
+\lfoot{Django REST Framework, React \& OpenTDB API \\Version 1, 2020}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=50mm]{./img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\IN608: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{Django REST Framework, React \& OpenTDB API}}
+\date{}
+\maketitle
+
+\section*{Assessment Overview} 
+For this assessment, you design, develop \& deploy a quiz tournament API using Django REST Framework, React, OpenTDB API \& Heroku. The main purpose of this assessment is not just to build a full-stack application, rather to demonstrate an ability to decouple the back end from the front end by creating two separate applications which interact with each other. Marks will be allocated for functionality \& best practices such as application robustness, code elegance, documentation \& git usage. \\
+
+With the nation-wide lockdown over, your local pub is now able to run their weekly quiz tournament onsite. The online quiz tournament application proved to be a huge success \& the pub owners ask if you want to create a public API which allows users to create their own quiz tournaments.
+
+\section*{Assessment Table}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|l|l|l|l|}
+	\hline		
+	\vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Activity}}} & \textbf{Weighting} & \vtop{\hbox{\strut \textbf{Learning}}\hbox{\strut \textbf{Outcomes}}} & \vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Grading Scheme}}} & \vtop{\hbox{\strut \textbf{Completion}}\hbox{\strut \textbf{Requirements}}} \\
+					
+	\hline
+						
+	\small Practicals                                                       & \small 20\%        & \small 1                                                              & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+	\small Django \& OpenTDB API                                            & \small 50\%        & \small 1, 2                                                           & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+	\small Django REST Framework, React \& OpenTDB API                      & \small 30\%        & \small 1, 2                                                           & \small CRA                                                                    & \small Cumulative                                                           \\ \hline   
+\end{tabular}
+
+\section*{Conditions of Assessment}
+This assessment will need to be completed by Friday, 20 November 2020 at 5pm.
+
+\section*{Pass Criteria}
+This assessment is criterion-referenced with a cumulative pass mark of 50\%.
+
+\section*{Submission Details}
+You must submit your program files via \textbf{GitHub Classroom}. Here is the link to the repository you will be using for your submission – \href{https://classroom.github.com/a/sSA9csHf}{https://classroom.github.com/a/sSA9csHf}.
+
+\section*{Authenticity}
+All parts of your submitted assessment must be completely your work and any references must be cited appropriately.
+
+\section*{Policy on Submissions, Extensions, Resubmissions \& Resits}
+The school's process concerning \textbf{Submissions, Extensions, Resubmissions and Resits} complies with Otago Polytechnic policies. Students can view policies on the Otago Polytechnic website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
+
+\section*{Extensions}
+Please familiarise yourself with the assessment due dates. If you need an extension, please contact your lecturer before the due date. If you require more than a week's extension, a medical certificate or support letter from your manager may be needed.
+
+\section*{Resubmissions}
+Students may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are completed within a short time frame (usually no more than 5 working days) and usually must be completed within the timing of the course to which the assessment relates. Resubmissions will be available to students who have made a genuine attempt at the first assessment opportunity. The maximum grade awarded for resubmission will be C-.
+
+\section*{Learning Outcomes}
+At the successful completion of this course, students will be able to:
+\begin{enumerate}
+	\item Demonstrate sound programming by following design patterns and best practices.
+	\item Design and implement full-stack applications using industry relevant programming languages.
+\end{enumerate}
+
+\newpage
+
+\section*{Instructions} 
+\subsection*{Functionality \& Robustness - Learning Outcomes 1, 2}
+\begin{itemize}
+	\item Dependencies are correctly managed using \textbf{Pipenv}/\textbf{Pipfile} \& \textbf{npm}/\textbf{package.json}.
+	\item Django REST Framework application:
+	\begin{itemize}
+		\item For each model class:
+		\begin{itemize}
+			\item Create a new quiz tournament. Fields include name, category, difficulty, start date \& end date. 
+			\item Dynamically fetch categories from the following URL \href{https://opentdb.com/api\_category.php}{https://opentdb.com/api\_category.php}. Choices can not be hardcoded.
+			\item Create a serializer class.
+			\item Create a \textbf{APIView} class which handles the \textbf{GET}, \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} HTTP methods.
+			\begin{itemize}
+				\item \textbf{Resource:}
+			\end{itemize}
+		\end{itemize} 
+		\item Data is persistently stored in \textbf{Heroku PostgreSQL}.
+		\begin{itemize}
+			\item \textbf{Resource:} \href{https://www.heroku.com/postgres}{Heroku PostgreSQL}
+		\end{itemize}
+		\item Application deployed to \textbf{Heroku} with \textbf{Gunicorn}.
+		\item Unit \& integration tests cover models, views \& API.
+	\end{itemize}
+	\item React application:
+	\begin{itemize}
+		\item Request quiz tournament data via \textbf{Django REST Framework} end-points using \textbf{Axios}. Data includes name, category, difficulty, start date, end date, question, correct answer \& incorrect answers. 
+		\item Create a new quiz tournament. Display the form in a modal. Fields include name, category, difficulty, start date \& end date. Select drop downs are populated with categories \& difficulties.
+		\item View quiz tournaments in a table. Fields include name, category, difficulty, start date, end date \& creation date.
+		\item Update a quiz tournament. Display the form in a modal. Fields include name, category, difficulty, start date \& end date.
+		\item Delete a quiz tournament. Prompt the user for deletion.
+		\item View quiz tournament questions when the quiz tournament name is clicked.
+		\item Visually attractive user-interface with a coherent graphical theme \& style using \textbf{Reactstrap}.
+		\begin{itemize}
+			\item \textbf{Resource:} \href{https://reactstrap.github.io/}{Reactstrap}
+		\end{itemize}
+		\begin{itemize}
+			\item \textbf{Resources:} 
+			\begin{itemize}
+				\item \href{https://devcenter.heroku.com/articles/deploying-python}{Deploying Python and Django Apps on Heroku}
+				\item \href{https://gunicorn.org/}{Gunicorn}
+			\end{itemize}
+		\end{itemize}
+		\item Application deployed to \textbf{Heroku}.
+		\item Unit \& integration tests cover components.
+	\end{itemize}
+	\item End-to-end tests cover creating, updating & deleting a quiz tournament \& viewing a quiz tournament’s questions.
+\end{itemize}
+
+\subsection*{Documentation \& Git Usage - Learning Outcome 1}
+\begin{itemize}
+    \item Provide the following information in the repository \textbf{README} file:
+    \begin{itemize}
+		\item How do you set up the environment for development, i.e., after the repository is cloned, what do I need to start coding?
+		\item How to run tests.
+		\item How to deploy the application.
+    \end{itemize}
+    \item At least 15 feature branches excluding the \textbf{master} branch.
+    \begin{itemize}
+        \item Your branches must be prefix with feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
+        \item For each branch, merge your own pull request to the \textbf{master} branch.
+    \end{itemize}
+    \item Commit messages must reflect the context of each functional requirement change.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,80 @@
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
+\lfoot{GitHub Practical Submission \\Version 1, 2020}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=50mm]{./img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\IN608: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{GitHub Practical Submission}} 
+\date{}
+\maketitle
+
+By default, \textbf{GitHub Classroom} creates an empty repository. Firstly, you need to create a \textbf{README} \& \textbf{.gitignore} file. GitHub provides an option for creating new files. 
+
+\subsection*{Create a README} 
+
+Click on the \textbf{Add file} button then the \textbf{Create new file} button. Name your file \textbf{README.md} (Markdown) or \textbf{README.rst} (reStructuredText) then click on the green \textbf{Commit new file} button. You should see a new file in your practicals repository called \textbf{README.md/rst} \& the \textbf{master} branch. 
+
+\subsection*{Create a .gitignore} 
+
+Similar to before, click on the \textbf{Add file} button then the \textbf{Create new file} button. Name your file \textbf{.gitignore}. A \textbf{.gitignore} template dropdown will appear on the right-hand side of the screen. Select the Python \textbf{.gitignore} template. You will add to this \textbf{.gitignore} later in the course when we look at React. Click on the green \textbf{Commit new file} button. You should see a new file in your practicals repository called \textbf{.gitignore}. \\ 
+
+Resources: 
+\begin{itemize}
+	\item \href{https://git-scm.com/docs/gitignore}{https://git-scm.com/docs/gitignore}
+	\item \href{https://github.com/github/gitignore}{https://github.com/github/gitignore}
+\end{itemize}
+
+\subsection*{Clone practicals repository} 
+
+Open up \textbf{Git Bash} on your computer. Clone your practicals repository to a location on your computer using the command: \textbf{git clone $<$repository URL$>$} \\
+
+Resource: \href{https://git-scm.com/docs/git-clone}{https://git-scm.com/docs/git-clone}
+
+\subsection*{Create local branch} 
+
+\textbf{cd} into your practicals repository \& create a branch using the command: \textbf{git branch $<$name of the branch$>$}. Checkout from the \textbf{master} branch to the new branch using the command: \textbf{git checkout $<$name of the branch$>$}. Alternatively, you can create \& checkout a branch using the command: \textbf{git checkout -b $<$name of the branch$>$}. \\
+
+For each practical, create a new branch, i.e., branch name \textbf{01-practical} for \textbf{01-practical.ipynb}. When you create a new branch, make sure you are creating it from the \textbf{master} branch. \\
+
+Resources: 
+\begin{itemize}
+	\item \href{https://git-scm.com/docs/git-branch}{https://git-scm.com/docs/git-branch}
+	\item \href{https://git-scm.com/docs/git-checkout}{https://git-scm.com/docs/git-checkout}
+\end{itemize}
+
+\subsection*{Push local branch to remote repository} 
+
+Push your local branch, i.e., \textbf{01-practical} to your remote repository using the command: \textbf{git push -u origin $<$name of branch$>$}. You will continue working on your practical code until you are ready to submit.
+
+\subsection*{Create pull request} 
+
+Once you have completed a practical, create a pull request. Go to your practicals repository on \textbf{GitHub}. Click on the \textbf{Pull requests} tab then click on the green \textbf{New pull request} button. You will see two dropdowns (\textbf{base} \& \textbf{compare}). Click the compare dropdown \& select the \textbf{practicals} branch you want to compare with the \textbf{master} branch then click the green \textbf{Create pull request} button. \\
+
+On the right-side of the screen, you will see \textbf{Reviewers}. Click on the \textbf{Reviewers} section. Add \textbf{tclark} \& \textbf{grayson-orr} as reviewers then click the green \textbf{Create pull request} button. \\
+
+\textbf{Tom} \& \textbf{Grayson} will receive an email. Your practical code will be reviewed \& you will receive feedback. You may be asked to reflect on your feedback \& fix your practical code. You will receive an email when your practical code has been reviewed \&/or approved.
+ 
+\end{document}
