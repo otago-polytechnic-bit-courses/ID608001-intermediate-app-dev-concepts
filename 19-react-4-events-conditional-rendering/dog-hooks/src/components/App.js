@@ -1,6 +1,8 @@
 import React from 'react'
 import Clock from './Clock'
+import LoginControl from './LoginControl'
 import Owner from './Owner'
+import Register from './Register'
 import afghanHoundImg from '../img/afghan-hound.jpg'
 
 const dog = {
@@ -24,9 +26,11 @@ function App() {
   return (
     <div className='container'>
       <Owner />
+      <Register />
       {getGreeting()}
       <img src={dog.img} alt='afghan hound' width='300' />
       <Clock />
+      <LoginControl />
     </div>
   )
 }
