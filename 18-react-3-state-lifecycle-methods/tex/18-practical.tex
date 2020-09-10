@@ -49,36 +49,27 @@ Create a React app called \texttt{practical18state}. \texttt{cd} to \texttt{prac
 
 Optionally, you can install all of them at once, i.e., \texttt{npm i axios bootstrap he react-spinners reactstrap}. \\
 
-Create a directory called \texttt{components}. Move \texttt{App.js} into \texttt{components}. Create a file called \texttt{OpenTDB.js}. In \texttt{OpenTDB.js}, create a class called \texttt{OpenTDB} which extends \texttt{React.Component}. In \texttt{OpenTDB}, declare the following constructor:
+Create a directory called \texttt{components}. Move \texttt{App.js} into \texttt{components}. Create a file called \texttt{OpenTDB.js}. In \texttt{OpenTDB.js}, create a function based component called \texttt{OpenTDB}. In \texttt{OpenTDB}, declare the following constructor:
 \begin{verbatim}
-  constructor(props) {
-    super(props)
-    this.state = {
-      error: null,
-      isLoaded: false,
-      data: [],
-    }
-  }
+  const [error, setError] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [data, setData] = useState([])
 \end{verbatim}
 
-Below the \texttt{constructor}, declare the following lifecycle method:
+Below the \texttt{constructor}, declare the following \texttt{useEffect}:
 \begin{verbatim}
-  componentDidMount() {
+  useEffect(() => {
     axios.get('https://opentdb.com/api.php?amount=5&type=boolean').then(
       (response) => {
-        this.setState({
-          isLoaded: true,
-          data: response.data.results,
-        })
+        setIsLoaded(true)
+        setData(response.data.results)
       },
       (error) => {
-        this.setState({
-          isLoaded: true,
-          error: error,
-        })
+        setIsLoaded(true)
+        setError(error)
       }
     )
-  }
+  }, [])
 \end{verbatim}
 
 \subsection*{What is happening?} 
@@ -97,16 +88,14 @@ In \texttt{App.js}, call the \texttt{OpenTDB} component. Your \texttt{App.js} fi
 \begin{verbatim}
   import React from 'react'
   import OpenTDB from './OpenTDB'
-
-  class App extends React.Component {
-    render() {
-      return (
-        <div className='container'>
-          <OpenTDB />
-        </div>
-      )
-    }
-  }
+  
+  function App() {
+    return (
+      <div className='container'>
+        <OpenTDB />
+      </div>
+    )
+  }  
 
   export default App
 \end{verbatim}

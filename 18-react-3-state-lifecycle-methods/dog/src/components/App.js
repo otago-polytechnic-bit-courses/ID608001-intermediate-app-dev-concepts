@@ -1,6 +1,6 @@
 import React from 'react'
-import Clock from './Clock'
-import Owner from './Owner'
+import Clock from './ClockHooks'
+import Owner from './OwnerHooks'
 import afghanHoundImg from '../img/afghan-hound.jpg'
 
 const dog = {
