@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-function Clock() {
+const Clock = () => {
   const [date, setDate] = useState(new Date())
 
   const tick = () => setDate(new Date())

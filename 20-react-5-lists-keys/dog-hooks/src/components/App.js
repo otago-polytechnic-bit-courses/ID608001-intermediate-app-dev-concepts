@@ -20,18 +20,17 @@ const posts = [
   { id: 2, title: 'Installation', content: 'You can install React from npm.' },
 ]
 
-function formatDog(dog) {
-  return `Woof woof, my name is ${dog.name} & my breed is an ${dog.breed}`
-}
+const formatDog = (dog) => `Woof woof, my name is ${dog.name} & my breed is an ${dog.breed}`
 
-function getGreeting(dog) {
+const getGreeting = (dog) => {
   if (dog) {
     return <h1>{formatDog(dog)}</h1>
   }
   return <h1>Uh...who are you?</h1>
 }
 
-function App() {
+
+const App = () => {
   return (
     <div className='container'>
       <Owner />

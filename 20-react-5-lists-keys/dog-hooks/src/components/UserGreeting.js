@@ -1,7 +1,5 @@
 import React from 'react'
 
-function UserGreeting() {
-  return <h1>Welcome back</h1>
-}
+const UserGreeting = () => <h1>Welcome back</h1>
 
 export default UserGreeting

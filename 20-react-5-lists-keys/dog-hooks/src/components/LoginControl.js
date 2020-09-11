@@ -3,16 +3,16 @@ import Greeting from './Greeting'
 import LoginButton from './LoginButton'
 import LogoutButton from './LogoutButton'
 
-function LoginControl() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+const LoginControl = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
 
-  const handleLoginClick = () => setIsLoggedIn(true)
-  const handleLogoutClick = () => setIsLoggedIn(false)
+  const handleLoginClick = () => setIsLoggedIn(!isLoggedIn) // true
+  const handleLogoutClick = () => setIsLoggedIn(!isLoggedIn) // false
 
   const button = isLoggedIn ? (
-    <LogoutButton onClick={() => handleLogoutClick()} />
+    <LogoutButton onClick={handleLogoutClick} />
   ) : (
-    <LoginButton onClick={() => handleLoginClick()} />
+      <LoginButton onClick={handleLoginClick} />
   )
 
   return (
