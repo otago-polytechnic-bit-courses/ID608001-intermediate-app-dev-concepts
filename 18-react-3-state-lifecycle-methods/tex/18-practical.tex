@@ -43,11 +43,11 @@ Create a React app called \texttt{practical18state}. \texttt{cd} to \texttt{prac
   \item Axios - \texttt{npm i axios}
   \item He - \texttt{npm i he}
   \item Material Design for Bootstrap - \texttt{npm i mdbreact}
+  \item React router - \texttt{npm i react-router-dom}
   \item React spinners - \texttt{npm i react-spinners}
-  \item Reactstrap - \texttt{npm i reactstrap}
 \end{itemize}
 
-Optionally, you can install all of them at once, i.e., \texttt{npm i axios he mdbreact react-spinners}. \\
+Optionally, you can install all of them at once, i.e., \texttt{npm i axios he mdbreact react-router-dom react-spinners}. \\
 
 Create a directory called \texttt{components}. Move \texttt{App.js} into \texttt{components}. Create two files called \texttt{OpenTDB.js} \& \texttt{Error.js}. In \texttt{OpenTDB.js}, create a function based component called \texttt{OpenTDB}. In \texttt{OpenTDB}, declare the following \texttt{state} variables:
 \begin{verbatim}
@@ -76,7 +76,7 @@ Below the \texttt{state} variables, declare the following \texttt{useEffect}:
   }, [url])
 \end{verbatim}
 
-In \texttt{Error.js}, return the message \texttt{404: Not Found.} in an \texttt{h1}.
+In \texttt{Error.js}, create a function component which returns the message \texttt{404: Not Found.} in an \texttt{h1}.
 
 \subsection*{What is happening?} 
 You are using a promise based HTTP package called \texttt{axios} to request data from an API endpoint using the \texttt{GET} HTTP method. \texttt{then()} method is called \& returns a \texttt{Promise}. It takes up to two arguments: callback functions for the success and failure cases of the \texttt{Promise}. In our case, if success, set the state of \texttt{isLoaded} to \texttt{true} \& \texttt{data} to the response contents from the API request. If failure, set the state of \texttt{isLoaded} to \texttt{true} \& \texttt{error} to the error caught. \\
@@ -90,7 +90,7 @@ In \texttt{render()}, if there is an error display the \texttt{error} state's me
 
 This is just a reference to a \texttt{CSS} files in the \texttt{mdbreact} \& \texttt{bootstrap-css-only} packages. You will notice some questions contain HTML entities. Encoding works slightly different in React \& you need to use \texttt{he} to do this. If there is no \texttt{data}, display the message \texttt{No data available.} in an \texttt{h1} element. \\
 
-In \texttt{App.js}, call the \texttt{OpenTDB} \& \texttt{Error} components in the appropriate routes. Your \texttt{App.js} file should look like the following:
+In \texttt{App.js}, call the \texttt{OpenTDB} \& \texttt{Error} components in the appropriate routes using \texttt{react-router-dom}. Your \texttt{App.js} file should look like the following:
 
 \begin{verbatim}
   import React from 'react'
@@ -100,7 +100,7 @@ In \texttt{App.js}, call the \texttt{OpenTDB} \& \texttt{Error} components in th
   
   const App = () => {
     return (
-      <div className='container'>
+      <div className='main-container'>
         <Switch>
           <Route path='/' component={OpenTDB} exact />
           <Route component={Error} />
@@ -111,6 +111,16 @@ In \texttt{App.js}, call the \texttt{OpenTDB} \& \texttt{Error} components in th
   
   export default App  
 \end{verbatim}
+
+In \texttt{index.js} declare the following import:
+
+\begin{verbatim}
+  import { BrowserRouter } from 'react-router-dom'
+\end{verbatim}
+
+In \texttt{ReactDOM.render()}, wrap \texttt{BrowserRouter} around \texttt{App}. \\
+
+\textbf{Note:} \texttt{className='main-container'} refers to the \texttt{index.css} style used in the code examples.
 
 \subsection*{Expected Output} 
 Run the command \texttt{npm start} then navigate to \href{http://localhost:3000/}{http://localhost:3000/} \\
@@ -136,9 +146,11 @@ Run the command \texttt{npm start} then navigate to \href{http://localhost:3000/
   \item \href{https://opentdb.com/}{OpenTDB API}
   \item \href{https://www.npmjs.com/package/axios/}{Axios}
   \item \href{https://www.npmjs.com/package/he/}{He}
-  \item \href{https://www.npmjs.com/package/mdbreact/}{Material Design for Bootstrap}
+  \item \href{https://mdbootstrap.com/}{Material Design for Bootstrap}
+  \item \href{https://www.npmjs.com/package/mdbreact/}{Material Design for Bootstrap - npm}
   \item \href{https://www.npmjs.com/package/react-spinners/}{React spinners}
-  \item \href{https://www.npmjs.com/package/reactstrap/}{Reactstrap}
+  \item \href{https://reactrouter.com}{React router}
+  \item \href{https://www.npmjs.com/package/react-router/}{React router - npm}
 \end{itemize}
  
 \end{document}

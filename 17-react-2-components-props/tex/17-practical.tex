@@ -40,8 +40,67 @@ Before you start, in your practicals repository, create a new branch called \tex
 \section*{Task} 
 Create a React app called \texttt{practical17components}. \texttt{cd} to \texttt{practical17components} \& install the following package:
 \begin{itemize}
-  \item React router - \texttt{npm i react-router}
+  \item Material Design for Bootstrap - \texttt{npm i mdbreact}
+  \item React router - \texttt{npm i react-router-dom}
 \end{itemize}
+
+Optionally, you can install all of them at once, i.e., \texttt{npm i mdbreact react-router-dom}. \\
+
+Create a directory called \texttt{components}. Move \texttt{App.js} into \texttt{components}. Create three files called \texttt{Login.js}, \texttt{Signup.js} \& \texttt{Error.js}. \\
+
+Implement the following:
+\begin{itemize}
+  \item In \texttt{Login.js}, create a function based component called \texttt{Login} which returns a login form using the \texttt{mdbreact} package
+  \item In \texttt{Signup.js}, create a function based component called \texttt{Signup} which returns a signup form using the \texttt{mdbreact} package
+  \item In \texttt{Error.js}, create a function component which returns the message \texttt{404: Not Found.} in an \texttt{h1}
+\end{itemize}
+
+If you are confused, please refer to the \textbf{Material Design for Bootstrap} resource link \& expected output below. \\
+
+In \texttt{App.js}, call the \texttt{Login}, \texttt{Signup} \& \texttt{Error} components in the appropriate routes using \texttt{react-router-dom}. Your \texttt{App.js} file should look like the following:
+
+\begin{verbatim}
+  import React from 'react'
+  import { Route, Switch } from 'react-router-dom'
+  import Error from './Error'
+  import Login from './Login'
+  import Signup from './Signup'
+  
+  const App = () => {
+    return (
+      <div className='main-container'>
+        <Switch>
+          <Route path='/' component={Login} exact />
+          <Route path='/signup' component={Signup} />
+          <Route component={Error} />
+        </Switch>
+      </div>
+    )
+  }
+  
+  export default App   
+\end{verbatim}
+
+In \texttt{index.js} declare the following import:
+
+\begin{verbatim}
+  import { BrowserRouter } from 'react-router-dom'
+\end{verbatim}
+
+In \texttt{ReactDOM.render()}, wrap \texttt{BrowserRouter} around \texttt{App}. Your \texttt{ReactDOM.render()} should look like the following:
+
+\begin{verbatim}
+  ReactDOM.render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
+  )
+\end{verbatim}
+
+\textbf{Note:} \texttt{className='main-container'} refers to the \texttt{index.css} style used in the code examples.
 
 \subsection*{Expected Output} 
 Run the command \texttt{npm start} then navigate to \href{http://localhost:3000/}{http://localhost:3000/} \\
@@ -55,11 +114,14 @@ Run the command \texttt{npm start} then navigate to \href{http://localhost:3000/
   \includegraphics[width=175mm, height=105mm]{./img/17-expected-form-3.png}
 \end{figure}
 
-\textbf{Deployment link:} \href{https://int-app-dev-practical-18.herokuapp.com/}{https://int-app-dev-practical-08.herokuapp.com/} 
+\textbf{Deployment link:} \href{https://int-app-dev-practical-17.herokuapp.com/}{https://int-app-dev-practical-17.herokuapp.com/} 
 
 \subsection*{Resources} 
 \begin{itemize}
-  \item \href{https://www.npmjs.com/package/react-router/}{React router}
+  \item \href{https://mdbootstrap.com/}{Material Design for Bootstrap}
+  \item \href{https://www.npmjs.com/package/mdbreact/}{Material Design for Bootstrap - npm}
+  \item \href{https://reactrouter.com}{React router}
+  \item \href{https://www.npmjs.com/package/react-router/}{React router - npm}
 \end{itemize}
  
 \end{document}
