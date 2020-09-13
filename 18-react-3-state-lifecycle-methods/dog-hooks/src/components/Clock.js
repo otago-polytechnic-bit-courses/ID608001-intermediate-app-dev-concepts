@@ -7,7 +7,7 @@ const Clock = () => {
 
   useEffect(() => {
     const timerID = setInterval(() => tick(), 1000)
-    return () => clearInterval(timerID)
+    return () => clearInterval(timerID) // Cleanup
   }, [])
 
   return <h1>Current time: {date.toLocaleTimeString()}</h1>

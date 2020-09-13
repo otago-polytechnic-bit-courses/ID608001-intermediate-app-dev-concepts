@@ -32,7 +32,7 @@ const getGreeting = (dog) => {
 
 const App = () => {
   return (
-    <div className='container'>
+    <div className='main-container'>
       <Owner />
       <Register />
       {getGreeting()}

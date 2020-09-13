@@ -41,63 +41,75 @@ Before you start, in your practicals repository, create a new branch called \tex
 Create a React app called \texttt{practical18state}. \texttt{cd} to \texttt{practical18state} \& install the following packages:
 \begin{itemize}
   \item Axios - \texttt{npm i axios}
-  \item Bootstrap - \texttt{npm i bootstrap}
   \item He - \texttt{npm i he}
+  \item Material Design for Bootstrap - \texttt{npm i mdbreact}
   \item React spinners - \texttt{npm i react-spinners}
   \item Reactstrap - \texttt{npm i reactstrap}
 \end{itemize}
 
-Optionally, you can install all of them at once, i.e., \texttt{npm i axios bootstrap he react-spinners reactstrap}. \\
+Optionally, you can install all of them at once, i.e., \texttt{npm i axios he mdbreact react-spinners}. \\
 
-Create a directory called \texttt{components}. Move \texttt{App.js} into \texttt{components}. Create a file called \texttt{OpenTDB.js}. In \texttt{OpenTDB.js}, create a function based component called \texttt{OpenTDB}. In \texttt{OpenTDB}, declare the following constructor:
+Create a directory called \texttt{components}. Move \texttt{App.js} into \texttt{components}. Create two files called \texttt{OpenTDB.js} \& \texttt{Error.js}. In \texttt{OpenTDB.js}, create a function based component called \texttt{OpenTDB}. In \texttt{OpenTDB}, declare the following \texttt{state} variables:
 \begin{verbatim}
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [data, setData] = useState([])
+  const [url] = useState('https://opentdb.com/api.php?amount=5&type=boolean')
 \end{verbatim}
 
-Below the \texttt{constructor}, declare the following \texttt{useEffect}:
+Below the \texttt{state} variables, declare the following \texttt{useEffect}:
 \begin{verbatim}
   useEffect(() => {
-    axios.get('https://opentdb.com/api.php?amount=5&type=boolean').then(
-      (response) => {
-        setIsLoaded(true)
-        setData(response.data.results)
-      },
-      (error) => {
-        setIsLoaded(true)
-        setError(error)
-      }
-    )
-  }, [])
+    const fetchData = async () => {
+      await axios
+        .get(url)
+        .then((res) => {
+          setIsLoaded(true)
+          setData(res.data.results)
+        })
+        .catch((err) => {
+          setIsLoaded(true)
+          setError(err)
+        })
+    }
+    fetchData()
+  }, [url])
 \end{verbatim}
+
+In \texttt{Error.js}, return the message \texttt{404: Not Found.} in an \texttt{h1}.
 
 \subsection*{What is happening?} 
-You are using a promise based HTTP package called \texttt{axios} to request data from an API endpoint using the \texttt{GET} HTTP method. \texttt{then()} method is called \& returns a \texttt{Promise}. It takes up to two arguments: callback functions for the success and failure cases of the \texttt{Promise}. In our case, if success, set the state of \texttt{isLoaded} to \texttt{true} \& \texttt{data} to the response contents from the API request. If failure, set the state of \texttt{isLoaded} to \texttt{true} \& \texttt{error} to error message. \\
+You are using a promise based HTTP package called \texttt{axios} to request data from an API endpoint using the \texttt{GET} HTTP method. \texttt{then()} method is called \& returns a \texttt{Promise}. It takes up to two arguments: callback functions for the success and failure cases of the \texttt{Promise}. In our case, if success, set the state of \texttt{isLoaded} to \texttt{true} \& \texttt{data} to the response contents from the API request. If failure, set the state of \texttt{isLoaded} to \texttt{true} \& \texttt{error} to the error caught. \\
 
-In \texttt{render()}, if there is an error display the \texttt{error} state's message. If \texttt{isLoaded} is \texttt{false}, display a loading spinner using \texttt{react-spinners}. If \texttt{isLoaded} is true, return a \texttt{reactstrap} table containing the \texttt{data}. To use \texttt{reactstrap}, you must declare the following in \texttt{index.js}:
+In \texttt{render()}, if there is an error display the \texttt{error} state's message in an \texttt{h1} element. If \texttt{isLoaded} is \texttt{false}, display a loading spinner using \texttt{react-spinners}. If \texttt{isLoaded} is \texttt{true}, return a \texttt{mdbreact} table containing the \texttt{data}. To use \texttt{mdbreact}, you must declare the following in \texttt{index.js}:
 
 \begin{verbatim}
-  import 'bootstrap/dist/css/bootstrap.min.css'
+  import 'bootstrap-css-only/css/bootstrap.min.css'
+  import 'mdbreact/dist/css/mdb.css'
 \end{verbatim}
 
-This is just a reference to a minified \texttt{CSS} file in the \texttt{bootstrap} package. You will notice some questions contain HTML entities. Encoding works slightly different in React \& you need to use \texttt{he} to do this. If there is no \texttt{data}, display the message \texttt{No data available.} in the \texttt{reactstrap} table. This message should span four table columns. \\
+This is just a reference to a \texttt{CSS} files in the \texttt{mdbreact} \& \texttt{bootstrap-css-only} packages. You will notice some questions contain HTML entities. Encoding works slightly different in React \& you need to use \texttt{he} to do this. If there is no \texttt{data}, display the message \texttt{No data available.} in an \texttt{h1} element. \\
 
-In \texttt{App.js}, call the \texttt{OpenTDB} component. Your \texttt{App.js} file should look like the following:
+In \texttt{App.js}, call the \texttt{OpenTDB} \& \texttt{Error} components in the appropriate routes. Your \texttt{App.js} file should look like the following:
 
 \begin{verbatim}
   import React from 'react'
+  import { Route, Switch } from 'react-router-dom'
+  import Error from './Error'
   import OpenTDB from './OpenTDB'
   
-  function App() {
+  const App = () => {
     return (
       <div className='container'>
-        <OpenTDB />
+        <Switch>
+          <Route path='/' component={OpenTDB} exact />
+          <Route component={Error} />
+        </Switch>
       </div>
     )
-  }  
-
-  export default App
+  }
+  
+  export default App  
 \end{verbatim}
 
 \subsection*{Expected Output} 
@@ -113,14 +125,18 @@ Run the command \texttt{npm start} then navigate to \href{http://localhost:3000/
   \includegraphics[width=175mm, height=105mm]{./img/18-expected-opentdb-4.png}
 \end{figure}
 
+\begin{figure}[H]
+  \includegraphics[width=175mm, height=105mm]{./img/18-expected-opentdb-5.png}
+\end{figure}
+
 \textbf{Deployment link:} \href{https://int-app-dev-practical-18.herokuapp.com/}{https://int-app-dev-practical-18.herokuapp.com/} 
 
 \subsection*{Resources} 
 \begin{itemize}
   \item \href{https://opentdb.com/}{OpenTDB API}
   \item \href{https://www.npmjs.com/package/axios/}{Axios}
-  \item \href{https://getbootstrap.com/}{Bootstrap}
   \item \href{https://www.npmjs.com/package/he/}{He}
+  \item \href{https://www.npmjs.com/package/mdbreact/}{Material Design for Bootstrap}
   \item \href{https://www.npmjs.com/package/react-spinners/}{React spinners}
   \item \href{https://www.npmjs.com/package/reactstrap/}{Reactstrap}
 \end{itemize}

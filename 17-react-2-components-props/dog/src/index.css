@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
+.main-container {
   display: flex; /* Creates a flex container */ 
   flex-direction: column; /* Vertical flex direction */ 
   justify-content: center; /* Items centered vertically */ 

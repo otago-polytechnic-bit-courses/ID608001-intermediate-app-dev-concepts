@@ -12,7 +12,7 @@ const LoginControl = () => {
   const button = isLoggedIn ? (
     <LogoutButton onClick={handleLogoutClick} />
   ) : (
-      <LoginButton onClick={handleLoginClick} />
+    <LoginButton onClick={handleLoginClick} />
   )
 
   return (

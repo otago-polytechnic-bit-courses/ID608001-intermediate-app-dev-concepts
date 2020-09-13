@@ -6,11 +6,9 @@ const Register = () => {
   const handleRegisteredChange = () => setIsRegistered(!isRegistered)
 
   return (
-    <React.Fragment>
-      <button onClick={handleRegisteredChange}>
-        {isRegistered ? 'Registered' : 'Unregistered'}
-      </button>
-    </React.Fragment>
+    <button onClick={handleRegisteredChange}>
+      {isRegistered ? 'Registered' : 'Unregistered'}
+    </button>
   )
 }
 
