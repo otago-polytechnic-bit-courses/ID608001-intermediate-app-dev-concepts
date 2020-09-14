@@ -81,11 +81,15 @@ In \texttt{App.js}, call the \texttt{Login}, \texttt{Signup} \& \texttt{Error} c
   export default App   
 \end{verbatim}
 
-In \texttt{index.js} declare the following import:
+In \texttt{index.js} declare the following imports:
 
 \begin{verbatim}
   import { BrowserRouter } from 'react-router-dom'
+  import 'bootstrap-css-only/css/bootstrap.min.css'
+  import 'mdbreact/dist/css/mdb.css'
 \end{verbatim}
+
+This is just a reference to a \texttt{CSS} files in the \texttt{mdbreact} \& \texttt{bootstrap-css-only} packages.
 
 In \texttt{ReactDOM.render()}, wrap \texttt{BrowserRouter} around \texttt{App}. Your \texttt{ReactDOM.render()} should look like the following:
 
