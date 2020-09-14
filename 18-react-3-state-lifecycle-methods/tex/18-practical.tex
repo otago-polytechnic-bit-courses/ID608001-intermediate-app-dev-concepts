@@ -81,14 +81,9 @@ In \texttt{Error.js}, create a function component which returns the message \tex
 \subsection*{What is happening?} 
 You are using a promise based HTTP package called \texttt{axios} to request data from an API endpoint using the \texttt{GET} HTTP method. \texttt{then()} method is called \& returns a \texttt{Promise}. It takes up to two arguments: callback functions for the success and failure cases of the \texttt{Promise}. In our case, if success, set the state of \texttt{isLoaded} to \texttt{true} \& \texttt{data} to the response contents from the API request. If failure, set the state of \texttt{isLoaded} to \texttt{true} \& \texttt{error} to the error caught. \\
 
-In \texttt{render()}, if there is an error display the \texttt{error} state's message in an \texttt{h1} element. If \texttt{isLoaded} is \texttt{false}, display a loading spinner using \texttt{react-spinners}. If \texttt{isLoaded} is \texttt{true}, return a \texttt{mdbreact} table containing the \texttt{data}. To use \texttt{mdbreact}, you must declare the following in \texttt{index.js}:
+In \texttt{render()}, if there is an error display the \texttt{error} state's message in an \texttt{h1} element. If \texttt{isLoaded} is \texttt{false}, display a loading spinner using \texttt{react-spinners}. If \texttt{isLoaded} is \texttt{true}, return a \texttt{mdbreact} table containing the \texttt{data}. To use \texttt{mdbreact}, declare the appropriate \texttt{mdbreact} \& \texttt{bootstrap-css-only} imports. \\
 
-\begin{verbatim}
-  import 'bootstrap-css-only/css/bootstrap.min.css'
-  import 'mdbreact/dist/css/mdb.css'
-\end{verbatim}
-
-This is just a reference to a \texttt{CSS} files in the \texttt{mdbreact} \& \texttt{bootstrap-css-only} packages. You will notice some questions contain HTML entities. Encoding works slightly different in React \& you need to use \texttt{he} to do this. If there is no \texttt{data}, display the message \texttt{No data available.} in an \texttt{h1} element. \\
+You will notice some questions contain HTML entities. Encoding works slightly different in React \& you need to use \texttt{he} to do this. If there is no \texttt{data}, display the message \texttt{No data available.} in an \texttt{h1} element. \\
 
 In \texttt{App.js}, call the \texttt{OpenTDB} \& \texttt{Error} components in the appropriate routes using \texttt{react-router-dom}. Your \texttt{App.js} file should look like the following:
 
