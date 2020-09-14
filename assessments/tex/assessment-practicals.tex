@@ -1,0 +1,118 @@
+% Author: Grayson Orr
+% Course: IN608: Intermediate Application Development Concepts
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate} 
+\usepackage{hyperref} 
+\usepackage{float}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{makecell}
+\usepackage{adjustbox}
+\usepackage{pdflscape}
+\renewcommand\cellgape{\Gape[3.5pt]}
+
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
+\lfoot{Practicals \\Version 1, 2020}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=50mm]{./img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\IN608: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{Practicals}}
+\date{}
+\maketitle
+
+\section*{Assessment Table}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|l|l|l|l|}
+	\hline		
+	\vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Activity}}} & \textbf{Weighting} & \vtop{\hbox{\strut \textbf{Learning}}\hbox{\strut \textbf{Outcomes}}} & \vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Grading Scheme}}} & \vtop{\hbox{\strut \textbf{Completion}}\hbox{\strut \textbf{Requirements}}} \\
+					
+	\hline
+						
+	\small Practicals                                                       & \small 20\%        & \small 1                                                              & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+	\small Django \& OpenTDB API                                            & \small 50\%        & \small 1, 2                                                           & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+	\small Django REST Framework, React \& OpenTDB API                      & \small 30\%        & \small 1, 2                                                           & \small CRA                                                                    & \small Cumulative                                                           \\ \hline   
+\end{tabular}
+
+\section*{Conditions of Assessment}
+This assessment will need to be completed by Monday, 2 November 2020 at 5pm.
+
+\section*{Pass Criteria}
+This assessment is criterion-referenced with a cumulative pass mark of 50\%.
+
+\section*{Submission Details}
+You must submit your program files via \textbf{GitHub Classroom}. Here is the link to the repository you will be using for your submission – \href{https://classroom.github.com/a/2Hnb0QIq}{https://classroom.github.com/a/2Hnb0QIq}.
+
+\section*{Authenticity}
+All parts of your submitted assessment must be completely your work and any references must be cited appropriately.
+
+\section*{Policy on Submissions, Extensions, Resubmissions \& Resits}
+The school's process concerning \textbf{Submissions, Extensions, Resubmissions and Resits} complies with Otago Polytechnic policies. Students can view policies on the Otago Polytechnic website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
+
+\section*{Extensions}
+Please familiarise yourself with the assessment due dates. If you need an extension, please contact your lecturer before the due date. If you require more than a week's extension, a medical certificate or support letter from your manager may be needed.
+
+\section*{Resubmissions}
+Students may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are completed within a short time frame (usually no more than 5 working days) and usually must be completed within the timing of the course to which the assessment relates. Resubmissions will be available to students who have made a genuine attempt at the first assessment opportunity. The maximum grade awarded for resubmission will be C-.
+
+\section*{Learning Outcomes}
+At the successful completion of this course, students will be able to:
+\begin{enumerate}
+	\item Demonstrate sound programming by following design patterns and best practices.
+	\item Design and implement full-stack applications using industry relevant programming languages.
+\end{enumerate}
+
+\newpage
+
+\section*{Assessment Overview - Learning Outcomes 1}
+In this assessment, you will complete a series of programming tasks covering the lecture \& resource material. \\
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|} 
+	\hline
+	\textbf{Topic}                                              & \textbf{Weighting}  & \textbf{Due Date} \\ \hline 
+	\small Python 1: Abstract Data Types \& OOP Recap           & \small 0.5\%        & \small 03-08-2020 at 5pm \\ \hline
+	\small Python 2: More Abstract Data Types                   & \small 0.5\%        & \small 03-08-2020 at 5pm \\ \hline
+	\small Python 3: Functional Programming                     & \small 1\%          & \small 10-08-2020 at 5pm \\ \hline
+	\small Python 4: In-Built Functions \& SOLID                & \small 1\%          & \small 10-08-2020 at 5pm \\ \hline
+	\small Python 5: Exceptions \& Automation Testing           & \small 1\%          & \small 17-08-2020 at 5pm \\ \hline
+	\small Python 6: Concurrency \& Parallelism                 & \small 1\%          & \small 17-08-2020 at 5pm \\ \hline
+	\small Django 1: Route, Model \& Admin Site                 & \small No Weighting &  \\ \hline
+	\small Django 2: View \& Template                           & \small 1\%          & \small 24-08-2020 at 5pm \\ \hline
+	\small Django 3: Forms \& Class-Based Views                 & \small 1\%          & \small 31-08-2020 at 5pm \\ \hline
+	\small Django 4: Template Inheritance, Static Files \& CDNs & \small 1\%          & \small 31-08-2020 at 5pm \\ \hline
+	\small Django 5: Automation Testing                         & \small 1\%          & \small 07-09-2020 at 5pm \\ \hline
+	\small Django 6: Authentication                             & \small 1\%          & \small 07-09-2020 at 5pm \\ \hline
+	\small Django 7: Security                                   & \small No Weighting & \\ \hline
+	\small Django 8: Django REST Framework           & \small 1\%          & \small 14-09-2020 at 5pm \\ \hline
+	\small Django 9: Deployment                                 & \small 1\%          & \small 21-09-2020 at 5pm \\ \hline
+	\small React 1: Create-React-App  \& JSX                          & \small No Weighting &  \\ \hline
+	\small React 2:  Components \& Props                                        & \small 1\%          & \small 28-09-2020 at 5pm \\ \hline
+	\small React 3: State \& Lifecycle Methods                                       & \small 1\%          & \small 28-09-2020 at 5pm \\ \hline
+	\small React 4: Events \& Conditional Rendering                      & \small 1\%          & \small 12-10-2020 at 5pm \\ \hline
+	\small React 5:   Lists \& Keys                                     & \small 1\%          & \small 12-10-2020 at 5pm \\ \hline
+	\small React 6: Forms                          & \small 1\%          & \small 27-10-2020 at 5pm \\ \hline
+	\small React 7: Webpack                           & \small 1\%          & \small 27-10-2020 at 5pm \\ \hline
+	\small React 8: Automation Testing                       & \small 1\%          & \small 02-11-2020 at 5pm \\ \hline
+	\small React 9:  Context API                               & \small 1\%          & \small 02-11-2020 at 5pm \\ \hline
+	\small React 10: Deployment                                 & \small No Weighting         & \small  \\ \hline
+\end{tabular}
+\end{document}
