@@ -13,4 +13,4 @@ const Clock = () => {
   return <h1>Current time: {date.toLocaleTimeString()}</h1>
 }
 
-export default Clock
+export default Clock 

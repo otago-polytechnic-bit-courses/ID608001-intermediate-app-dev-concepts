@@ -12,4 +12,5 @@ body {
   flex-direction: column; /* Vertical flex direction */
   justify-content: center; /* Items centered vertically */
   align-items: center; /* Items centered horizontally */
+  min-height: 100vh;
 }
