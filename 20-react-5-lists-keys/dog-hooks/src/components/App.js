@@ -1,11 +1,11 @@
 import React from 'react'
-// import Blog from './Blog'
+import Book from './Book'
 import Clock from './Clock'
 import LoginControl from './LoginControl'
+import NumberList from './NumberList'
 import Owner from './Owner'
 import Register from './Register'
 import afghanHoundImg from '../img/afghan-hound.jpg'
-import NumberList from './NumberList'
 
 const App = () => {
   const dog = {
@@ -16,10 +16,10 @@ const App = () => {
 
   const numbers = [1, 2, 3, 4, 5]
 
-  // const posts = [
-  //   { id: 1, title: 'Hello World', content: 'Welcome to learning React!' },
-  //   { id: 2, title: 'Installation', content: 'You can install React from npm.' },
-  // ]
+  const books = [
+    { id: 1, title: 'Gone With The Wind', content: 'Gone with the Wind is a novel by American author Margaret Mitchell.' },
+    { id: 2, title: 'The Great Gatsby', content: 'The Great Gatsby is a novel by American author F. Scott Fitzgerald.' },
+  ]
 
   const formatDog = (dog) =>
     `Woof woof, my name is ${dog.name} & my breed is an ${dog.breed}`
@@ -29,7 +29,8 @@ const App = () => {
       return <h1>{formatDog(dog)}</h1>
     }
     return <h1>Uh...who are you?</h1>
-  }
+  } 
+  
   return (
     <div className='main-container'>
       <Owner />
@@ -39,7 +40,7 @@ const App = () => {
       <Clock />
       <LoginControl />
       <NumberList numbers={numbers} />
-      {/* <Blog posts={posts} /> */}
+      <Book books={books} />
     </div>
   )
 }
