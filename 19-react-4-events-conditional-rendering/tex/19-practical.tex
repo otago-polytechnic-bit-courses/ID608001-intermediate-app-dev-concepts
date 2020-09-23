@@ -1,0 +1,152 @@
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
+\lfoot{Practical 19 React 4: Events \& Conditional Rendering \\Version 1, 2020}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=50mm]{./img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\IN608: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{Practical 19 React 4: Events \& Conditional Rendering}} 
+\date{}
+\maketitle
+
+\textbf{Due Date:} 12/10/2020 at 5pm \\
+
+In this practical, you will complete a series of tasks covering today's lecture. This practical is worth 2\% of the final mark for the IN608: Intermediate Application Development Concepts course. \\
+
+Before you start, in your practicals repository, create a new branch called \textbf{19-practical}. \\
+
+Take a look at what you will be building today: \href{https://int-app-dev-practical-19.herokuapp.com/}{https://int-app-dev-practical-19.herokuapp.com/} 
+
+\section*{Task 1} 
+In the \texttt{19-react-4-events-conditional-rendering}, copy \& paste the \texttt{practical19events} directory into your practicals repository. \texttt{cd} to \texttt{practical19events} \& install the following package:
+\begin{itemize}
+  \item React transition group - \texttt{npm i react-transition-group} 
+  \item Node sass - \texttt{npm i node-sass}
+\end{itemize}
+
+Optionally, you can install all of them at once, i.e., npm i react-transition-group node-sass.
+
+In \texttt{components}, create two files called \texttt{Navbar.js} \& \texttt{NavItem.js}. In \texttt{Navbar.js}, declare the following:
+\begin{verbatim}
+  import React from 'react'
+
+  const Navbar = (props) => {
+    return (
+      <nav className='navbar'>
+        <ul className='navbar-nav'>{props.children}</ul>
+      </nav>
+    )
+  }
+
+  export default Navbar
+\end{verbatim}
+
+You are probably wondering what \texttt{props.children} is? \texttt{props.children} is used to pass data from the parent to its children. In this instance, a \texttt{li} element is a child to the parent \texttt{Navbar}.
+
+\begin{verbatim}
+  import React from 'react'
+  import Navbar from './components/Navbar'
+
+  const App = () => {
+    return (
+      <Navbar>
+        <li>Some data...</li>
+        <li>Some data again...</li>
+      </Navbar>
+    )
+  }
+
+  export default App
+\end{verbatim}
+
+In \texttt{NavItem.js}, declare the following:
+\begin{verbatim}
+  import React, { useState } from 'react'
+
+  const NavItem = (props) => {
+    const [open, setOpen] = useState(false)
+    return (
+      <li className='nav-item'>
+        <a href='#' className='icon-button' onClick={() => setOpen(!open)}>
+          {props.icon}
+        </a>
+        {open && props.children}
+      </li>
+    )
+  }
+
+  export default NavItem
+\end{verbatim}
+
+\textbf{What is happening?} \\
+We create a component for each \texttt{NavItem} in our \texttt{Navbar}. We declare some state for opening \& closing a \texttt{NavItem} using \texttt{useState}. We return \texttt{JSX} which contains a \texttt{li} element \& nested \texttt{a} element. You will notice an \texttt{onClick} listener calling a function which toggles the state of \texttt{open}. We declare \texttt{props.icon} in the \texttt{a} element, which will allow us to display an SVG when rendered \texttt{NavItem} in \texttt{App.js}. If \texttt{open} is \texttt{true} then it will display \texttt{props.children}, i.e., dropdown menu items. More on this soon. \textbf{Note:} you will be warned to provide a valid, navigable address as the \texttt{href} value. Ignore this warning in the meantime. \\
+
+In \texttt{DropdownMenu.js}, comments are provided \& explain the code is doing. \\
+
+In \texttt{App.js}, declare the following:
+\begin{verbatim}
+  import React from 'react'
+  import Navbar from './components/Navbar'
+  import NavItem from './components/NavItem'
+  import DropdownMenu from './components/DropdownMenu'
+  import { ReactComponent as BellIcon } from './icons/bell.svg'
+  import { ReactComponent as MessengerIcon } from './icons/messenger.svg'
+  import { ReactComponent as CaretIcon } from './icons/caret.svg'
+  import { ReactComponent as PlusIcon } from './icons/plus.svg'
+
+  const App = () => {
+    return (
+      <Navbar>
+        <NavItem icon={<PlusIcon />} />
+        <NavItem icon={<BellIcon />} />
+        <NavItem icon={<MessengerIcon />} />
+        <NavItem icon={<CaretIcon />}>
+          <DropdownMenu />
+        </NavItem>
+      </Navbar>
+    )
+  }
+
+  export default App
+\end{verbatim}
+
+\textbf{What is happening?} \\
+We import \texttt{Navbar}, \texttt{NavItem} \& \texttt{DropdownMenu} from the \texttt{components} directory. We create an instance of \texttt{Component} for four SVGs using \texttt{ReactComponent} \& an alias, i.e., \texttt{ReactComponent as PlusIcon}. We render a \texttt{NavItem} with an icon, i.e., \texttt{PlusIcon} in \texttt{Navbar}. To render a \texttt{NavItem} with a \texttt{DropdownMenu}, we nest the child \texttt{DropdownMenu} in the parent \texttt{NavItem}.
+
+\section*{Task 2} 
+Rename \texttt{index.css} to \texttt{index.scss}. Convert all the \texttt{CSS} to \texttt{Sass}. In \texttt{App.js}, replace \texttt{import './index.css'} with \texttt{import './index.scss'}.
+
+\subsection*{Expected Output} 
+Run the command \texttt{npm start} then navigate to \href{http://localhost:3000/}{http://localhost:3000/} \\
+
+\subsection*{Resources} 
+\begin{itemize}
+  \item \href{https://reactcommunity.org/react-transition-group/}{React transition group}
+  \item \href{https://www.npmjs.com/package/react-transition-group/}{React transition group - npm}
+  \item \href{https://sass-lang.com/}{Sass}
+  \item \href{https://www.npmjs.com/package/sass/}{Sass - npm}
+\end{itemize}
+ 
+\end{document}
