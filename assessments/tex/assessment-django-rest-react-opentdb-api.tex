@@ -92,7 +92,7 @@ At the successful completion of this course, students will be able to:
 			\item Create a new quiz tournament. Fields include name, category, difficulty, start date \& end date. 
 			\item Dynamically fetch categories from the following URL \href{https://opentdb.com/api\_category.php}{https://opentdb.com/api\_category.php}. Choices can not be hardcoded.
 			\item Create a serializer class.
-			\item Create a \textbf{APIView} class which handles the \textbf{GET}, \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} HTTP methods.
+			\item Create a \textbf{APIView} class or \textbf{api\_view} function which handles the \textbf{GET}, \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} HTTP methods.
 			\begin{itemize}
 				\item \textbf{Resource:}
 			\end{itemize}
@@ -107,26 +107,22 @@ At the successful completion of this course, students will be able to:
 	\item React application:
 	\begin{itemize}
 		\item Request quiz tournament data via \textbf{Django REST Framework} end-points using \textbf{Axios}. Data includes name, category, difficulty, start date, end date, question, correct answer \& incorrect answers. 
-		\item Create a new quiz tournament. Display the form in a modal. Fields include name, category, difficulty, start date \& end date. Select drop downs are populated with categories \& difficulties.
+		\item Create a new quiz tournament. Display the form in a modal. Fields include name, category \& difficulty. Select drop downs are populated with categories \& difficulties.
 		\item View quiz tournaments in a table. Fields include name, category, difficulty, start date, end date \& creation date.
-		\item Update a quiz tournament. Display the form in a modal. Fields include name, category, difficulty, start date \& end date.
+		\item Update a quiz tournament. Display the form in a modal. Fields include name, category \& difficulty.
 		\item Delete a quiz tournament. Prompt the user for deletion.
 		\item View quiz tournament questions when the quiz tournament name is clicked.
 		\item Visually attractive user-interface with a coherent graphical theme \& style using \textbf{Reactstrap}.
 		\begin{itemize}
 			\item \textbf{Resource:} \href{https://reactstrap.github.io/}{Reactstrap}
 		\end{itemize}
+		\item Application deployed to \textbf{Heroku} with \textbf{React Buildpack}.
 		\begin{itemize}
-			\item \textbf{Resources:} 
-			\begin{itemize}
-				\item \href{https://devcenter.heroku.com/articles/deploying-python}{Deploying Python and Django Apps on Heroku}
-				\item \href{https://gunicorn.org/}{Gunicorn}
-			\end{itemize}
+			\item \textbf{Resource:} \href{https://github.com/mars/create-react-app-buildpack}{React Buildpack}
 		\end{itemize}
-		\item Application deployed to \textbf{Heroku}.
 		\item Unit \& integration tests cover components.
+		\item End-to-end tests cover creating, updating \& deleting a quiz tournament \& viewing a quiz tournament’s questions.
 	\end{itemize}
-	\item End-to-end tests cover creating, updating & deleting a quiz tournament \& viewing a quiz tournament’s questions.
 \end{itemize}
 
 \subsection*{Documentation \& Git Usage - Learning Outcome 1}
@@ -137,9 +133,9 @@ At the successful completion of this course, students will be able to:
 		\item How to run tests.
 		\item How to deploy the application.
     \end{itemize}
-    \item At least 15 feature branches excluding the \textbf{master} branch.
+    \item At least 10 feature branches excluding the \textbf{master} branch.
     \begin{itemize}
-        \item Your branches must be prefix with feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
+        \item Your branches must be prefix with \textbf{feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
         \item For each branch, merge your own pull request to the \textbf{master} branch.
     \end{itemize}
     \item Commit messages must reflect the context of each functional requirement change.

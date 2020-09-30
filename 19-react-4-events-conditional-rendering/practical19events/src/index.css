@@ -35,13 +35,21 @@ a {
 }
 
 .navbar {
+<<<<<<< HEAD
   height: var(--nav-size); /* Set the navbar height to 60px */
+=======
+  height: var(--nav-size); /* Setting the navbar height to 60px */
+>>>>>>> 300d4dbb5777771b5ff36f22f51c474259a331d1
   background-color: var(--bg-primary);
   padding: 0 1rem;
   box-shadow: 0 1px 3px var(--shadow); /* Apply a box shadow to the bottom of the navbar */
 }
 
+<<<<<<< HEAD
 /* Unordered list within the navbar is the container for the child element(s) */
+=======
+/* The unordered list within the navbar is the container for the children */
+>>>>>>> 300d4dbb5777771b5ff36f22f51c474259a331d1
 .navbar-nav {
   max-width: 100%; /* Takes up 100% of the width and height of the parent element, i.e., navbar */
   height: 100%;
@@ -61,7 +69,11 @@ a {
 .icon-button {
   --button-size: calc(
     var(--nav-size) * 0.5
+<<<<<<< HEAD
   ); /* Gives us a size which is 50% of the navbar. This is dynamic, so it will adjust as if we change navbar size  */
+=======
+  ); /* Gives us a size which is 50% of the navbar  */
+>>>>>>> 300d4dbb5777771b5ff36f22f51c474259a331d1
   width: var(--button-size);
   height: var(--button-size);
   background-color: var(--bg-icon);
@@ -75,7 +87,11 @@ a {
 }
 
 .icon-button:hover {
+<<<<<<< HEAD
   filter: brightness(1); /* Apply a linear multiplier to the icon button */
+=======
+  filter: brightness(1);
+>>>>>>> 300d4dbb5777771b5ff36f22f51c474259a331d1
 }
 
 .icon-button svg {
@@ -85,7 +101,11 @@ a {
 }
 
 .dropdown {
+<<<<<<< HEAD
   position: absolute; /* Offset an element based on its container */
+=======
+  position: absolute; /* Allows us to offset an element based on its container */
+>>>>>>> 300d4dbb5777771b5ff36f22f51c474259a331d1
   top: 58px; /* Display the menu 2px above the bottom of the navbar */
   width: 300px;
   transform: translateX(-45%); /* Move the menu 45% to the left */
@@ -113,7 +133,11 @@ hr {
   display: flex;
   align-items: center;
   border-radius: var(--border-radius);
+<<<<<<< HEAD
   transition: background var(--speed); /* Create a transition which takes 500ms to change the background */
+=======
+  transition: background var(--speed);
+>>>>>>> 300d4dbb5777771b5ff36f22f51c474259a331d1
   padding: 0.5rem;
 }
 
@@ -129,7 +153,10 @@ hr {
   background-color: var(--bg-body);
 }
 
+<<<<<<< HEAD
 /* Animations for the menus */
+=======
+>>>>>>> 300d4dbb5777771b5ff36f22f51c474259a331d1
 .menu-primary-enter {
   position: absolute;
   transform: translateX(-110%);
