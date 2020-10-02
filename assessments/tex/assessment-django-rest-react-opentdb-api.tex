@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview} 
-For this assessment, you design, develop \& deploy a quiz tournament API using Django REST Framework, React, OpenTDB API \& Heroku. The main purpose of this assessment is not just to build a full-stack application, rather to demonstrate an ability to decouple the back end from the front end by creating two separate applications which interact with each other. Marks will be allocated for functionality \& best practices such as application robustness, code elegance, documentation \& git usage. \\
+For this assessment, you will design, develop \& deploy a quiz tournament API using Django REST Framework, React, OpenTDB API \& Heroku. The main purpose of this assessment is not just to build a full-stack application, rather to demonstrate an ability to decouple the back-end from the front-end by creating two separate applications which interact with each other. Marks will be allocated for functionality \& best practices such as application robustness, code elegance, documentation \& git usage. \\
 
 With the nation-wide lockdown over, your local pub is now able to run their weekly quiz tournament onsite. The online quiz tournament application proved to be a huge success \& the pub owners ask if you want to create a public API which allows users to create their own quiz tournaments.
 
@@ -52,7 +52,7 @@ With the nation-wide lockdown over, your local pub is now able to run their week
 \end{tabular}
 
 \section*{Conditions of Assessment}
-This assessment will need to be completed by Friday, 20 November 2020 at 5pm.
+This assessment will need to be completed outside by Friday, 20 November 2020 at 5pm. There will be availability during the teaching sessions to discuss the requirements \& progress of this assessment. 
 
 \section*{Pass Criteria}
 This assessment is criterion-referenced with a cumulative pass mark of 50\%.
@@ -82,36 +82,39 @@ At the successful completion of this course, students will be able to:
 \newpage
 
 \section*{Instructions} 
+This is a project-based assessment. Within your project you will need to implement the following:
+
 \subsection*{Functionality \& Robustness - Learning Outcomes 1, 2}
 \begin{itemize}
 	\item Dependencies are correctly managed using \textbf{Pipenv}/\textbf{Pipfile} \& \textbf{npm}/\textbf{package.json}.
-	\item Django REST Framework application:
+	\item Django REST Framework application (back-end):
 	\begin{itemize}
+		\item Create model classes which store the following quiz tournament data: creator, name, category, difficulty, question, correct answer \& incorrect answers. 
+		\item Dynamically fetch \textbf{all} categories from the following URL \href{https://opentdb.com/api\_category.php}{https://opentdb.com/api\_category.php} \& store as choices in the appropriate model class.
 		\item For each model class:
 		\begin{itemize}
-			\item Create a new quiz tournament. Fields include name, category, difficulty, start date \& end date. 
-			\item Dynamically fetch categories from the following URL \href{https://opentdb.com/api\_category.php}{https://opentdb.com/api\_category.php}. Choices can not be hardcoded.
-			\item Create a serializer class.
-			\item Create a \textbf{APIView} class or \textbf{api\_view} function which handles the \textbf{GET}, \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} HTTP methods.
+			\item Create a serializer class. 
+			\item Create an \textbf{APIView} class or \textbf{api\_view} function which reads, inserts, updates \& deletes quiz tournament data. \textbf{Hint:} use the \textbf{GET}, \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} HTTP methods.
 			\begin{itemize}
-				\item \textbf{Resource:}
+				\item \textbf{Resource:} \href{https://www.django-rest-framework.org/api-guide/views}{Django REST Framework Views}
 			\end{itemize}
 		\end{itemize} 
-		\item Data is persistently stored in \textbf{Heroku PostgreSQL}.
+		\item Quiz tournament data is persistently stored in \textbf{Heroku PostgreSQL}.
 		\begin{itemize}
 			\item \textbf{Resource:} \href{https://www.heroku.com/postgres}{Heroku PostgreSQL}
 		\end{itemize}
 		\item Application deployed to \textbf{Heroku} with \textbf{Gunicorn}.
-		\item Unit \& integration tests cover models, views \& API.
+		\item Unit tests cover models, views \& OpenTDB API.
 	\end{itemize}
-	\item React application:
+	\item React application (front-end):
 	\begin{itemize}
-		\item Request quiz tournament data via \textbf{Django REST Framework} end-points using \textbf{Axios}. Data includes name, category, difficulty, start date, end date, question, correct answer \& incorrect answers. 
-		\item Create a new quiz tournament. Display the form in a modal. Fields include name, category \& difficulty. Select drop downs are populated with categories \& difficulties.
-		\item View quiz tournaments in a table. Fields include name, category, difficulty, start date, end date \& creation date.
-		\item Update a quiz tournament. Display the form in a modal. Fields include name, category \& difficulty.
+		\item Request quiz tournament data via \textbf{Django REST Framework} end-points using \textbf{Axios}. Data includes creator, name, category, difficulty, question, correct answer \& incorrect answers. 
+		\item Create a new quiz tournament. Display a form in a modal. Form fields include creator, name, category \& difficulty. You \textbf{must} use the \textbf{select} input type for categories \& difficulties.  
+		\item Incorrect formatted form field values handled gracefully using validation error messages, for example, creator form field is blank.
+		\item View quiz tournaments in a table. Table data includes creator, name, category, difficulty. Paginate quiz tournament data across several pages with \textbf{Next/Previous} links.
+		\item Update a quiz tournament. Display a form in a modal. Form fields include creator, name, category \& difficulty.
 		\item Delete a quiz tournament. Prompt the user for deletion.
-		\item View quiz tournament questions when the quiz tournament name is clicked.
+		\item View a quiz tournament's question, correct answer \& incorrect answers when a quiz tournament name is clicked. 
 		\item Visually attractive user-interface with a coherent graphical theme \& style using \textbf{Reactstrap}.
 		\begin{itemize}
 			\item \textbf{Resource:} \href{https://reactstrap.github.io/}{Reactstrap}
@@ -120,7 +123,7 @@ At the successful completion of this course, students will be able to:
 		\begin{itemize}
 			\item \textbf{Resource:} \href{https://github.com/mars/create-react-app-buildpack}{React Buildpack}
 		\end{itemize}
-		\item Unit \& integration tests cover components.
+		\item Unit tests cover components.
 		\item End-to-end tests cover creating, updating \& deleting a quiz tournament \& viewing a quiz tournament’s questions.
 	\end{itemize}
 \end{itemize}
@@ -131,12 +134,12 @@ At the successful completion of this course, students will be able to:
     \begin{itemize}
 		\item How do you set up the environment for development, i.e., after the repository is cloned, what do I need to start coding?
 		\item How to run tests.
-		\item How to deploy the application.
+		\item How to deploy the applications.
     \end{itemize}
-    \item At least 10 feature branches excluding the \textbf{master} branch.
+    \item At least 10 feature branches excluding the \textbf{main} branch.
     \begin{itemize}
         \item Your branches must be prefix with \textbf{feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
-        \item For each branch, merge your own pull request to the \textbf{master} branch.
+        \item For each branch, merge your own pull request to the \textbf{main} branch.
     \end{itemize}
     \item Commit messages must reflect the context of each functional requirement change.
 \end{itemize}
