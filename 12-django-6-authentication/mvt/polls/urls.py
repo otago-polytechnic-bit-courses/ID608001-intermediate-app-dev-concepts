@@ -6,8 +6,8 @@ app_name = 'polls'
 
 urlpatterns = [
     path('accounts/signup/', views.SignupView.as_view(), name='signup'),
-    path('accounts/login', auth_views.LoginView.as_view(), name='login'),
-    path('accounts/logout', auth_views.LogoutView.as_view(), name='logout'),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', views.IndexView.as_view(), name='index'), # /polls/
     path('<int:pk>/', views.DetailView.as_view(), name='detail'), # /polls/2/
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'), # /polls/2/results/

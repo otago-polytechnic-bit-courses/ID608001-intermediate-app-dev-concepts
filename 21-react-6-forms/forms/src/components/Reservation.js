@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 
 const Reservation = () => {
   const [state, setState] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     numOfGuests: 0
   })
 
@@ -13,30 +12,19 @@ const Reservation = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     alert(
-      `${state.firstName} ${state.lastName} + ${state.numOfGuests} has made a reservation`
+      `${state.name} + ${state.numOfGuests} have made a reservation`
     )
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        First Name:
+        Name:
         <input
-          name="firstName"
+          name="name"
           type="text"
           required
-          value={state.firstName}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Last Name:
-        <input
-          name="lastName"
-          type="text"
-          required
-          value={state.lastName}
+          value={state.name}
           onChange={handleInputChange}
         />
       </label>
@@ -44,12 +32,12 @@ const Reservation = () => {
       <label>
         Number of guests:
         <input
-          name="numberOfGuests"
+          name="numOfGuests"
           type="number"
           min="0"
           max="5"
           required
-          value={state.numberOfGuests}
+          value={state.numOfGuests}
           onChange={handleInputChange}
         />
       </label>
