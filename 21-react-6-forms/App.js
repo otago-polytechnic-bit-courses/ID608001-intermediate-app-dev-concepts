@@ -69,12 +69,12 @@ const App = () => {
         </span>
         <span>
           <button
-            onClick={() => editItem(item)}
+            onClick={editItem(item)}
             className="btn btn-secondary mr-2"
           >
             Edit
           </button>
-          <button onClick={() => handleDelete(item)} className="btn btn-danger">
+          <button onClick={handleDelete(item)} className="btn btn-danger">
             Delete
           </button>
         </span>
@@ -82,9 +82,7 @@ const App = () => {
     ))
   }
 
-  const toggle = () => {
-    setActiveItem({ modal: !activeItem.modal })
-  }
+  const toggle = () => setActiveItem({ modal: !activeItem.modal })
 
   // Handles both create and update operations
   const handleSubmit = item => {
@@ -93,11 +91,13 @@ const App = () => {
       axios
         .put(`http://localhost:8000/api/todos/${item.id}/`, item)
         .then(res => refreshList())
+        .catch(err => console.log(err))
       return
     }
     axios
       .post('http://localhost:8000/api/todos/', item)
       .then(res => refreshList())
+      .catch(err => console.log(err))
   }
 
   // Handles delete operation
@@ -105,6 +105,7 @@ const App = () => {
     axios
       .delete(`http://localhost:8000/api/todos/${item.id}`)
       .then(res => refreshList())
+      .catch(err => console.log(err))
   }
 
   const createItem = () => {
