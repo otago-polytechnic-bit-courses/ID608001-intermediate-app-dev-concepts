@@ -75,14 +75,14 @@ Create a model to define how the \texttt{Todo} items should be stored in the dat
 We have created a \texttt{Todo} model, we need to create a migration file \& apply the changes to the database, so let’s run these commands:
 
 \begin{verbatim}
-  $ python manage.py makemigrations
-  $ python manage.py migrate 
+  python manage.py makemigrations
+  python manage.py migrate 
 \end{verbatim}
 
 Install the \texttt{djangorestframework} \& \texttt{django-cors-headers} using \texttt{Pipenv}:
 
 \begin{verbatim}
-  $ pipenv install djangorestframework django-cors-headers
+  pipenv install djangorestframework django-cors-headers
 \end{verbatim}
 
 We need to add \texttt{rest\_framework} \& \texttt{corsheaders} to the list of installed applications, so update the \texttt{INSTALLED\_APPS} \& \texttt{MIDDLEWARE} sections in \texttt{backend/settings.py}:
@@ -174,7 +174,7 @@ This is the final step that completes the building of the \textbf{API}, we can n
 Create a new \textbf{React} application called \texttt{frontend}.
 
 \begin{verbatim}
-  $ create-react-app frontend
+  npx create-react-app frontend
 \end{verbatim}
 
 Install the following packages:
@@ -226,8 +226,8 @@ In package.json, add \texttt{"proxy": "http://localhost:8000"} above the \texttt
 Once you have done this, run both applications:
 
 \begin{verbatim}
-  $ python manage.py runserver
-  $ npm start
+  python manage.py runserver
+  npm start
 \end{verbatim}
 
 \section*{Task 3} 
