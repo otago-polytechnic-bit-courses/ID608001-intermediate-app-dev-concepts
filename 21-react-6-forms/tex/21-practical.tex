@@ -1,0 +1,252 @@
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{color, soul}
+\usepackage{alltt}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
+\lfoot{Practical 21 React 6: Forms \\Version 1, 2020}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=50mm]{img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\IN608: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{Practical 21 React 6: Forms}} 
+\date{}
+\maketitle
+
+\textbf{Due Date:} 27/10/2020 at 5pm \\
+
+In this practical, you will complete a series of tasks covering today's lecture. This practical is worth 1\% of the final mark for the IN608: Intermediate Application Development Concepts course. \\
+
+Before you start, in your practicals repository, create a new branch called \textbf{21-practical}. \\
+
+\section*{Task 1 - Django REST Framework} 
+Create a Django project called \texttt{backend}. \texttt{cd} to \texttt{backend}, create a virtual environment \& install Django. Create an app called \texttt{practical21backend}. Please ensure you configure your app in \texttt{backend/settings.py}.
+
+\begin{alltt}
+  # backend/settings.py
+
+  INSTALLED_APPS = [
+      \hl{\textbf{'practical21backend',}} 
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+  ]
+\end{alltt}
+
+Create a model to define how the \texttt{Todo} items should be stored in the database, open the \texttt{practical21backend/models.py} file \& update it with this snippet:
+
+\begin{verbatim}
+  # practical21backend/models.py
+
+  from django.db import models
+
+  class Todo(models.Model):
+      title = models.CharField(max_length=120)
+      description = models.TextField()
+      completed = models.BooleanField(default=False)
+
+  def __str__(self):
+      return self.title
+\end{verbatim}
+
+We have created a \texttt{Todo} model, we need to create a migration file \& apply the changes to the database, so let’s run these commands:
+
+\begin{verbatim}
+  $ python manage.py makemigrations practical21backend
+  $ python manage.py migrate practical21backend
+  $ python manage.py migrate 
+\end{verbatim}
+
+Install the \texttt{djangorestframework} \& \texttt{django-cors-headers} using \texttt{Pipenv}:
+
+\begin{verbatim}
+  $ pipenv install djangorestframework django-cors-headers
+\end{verbatim}
+
+We need to add \texttt{rest\_framework} \& \texttt{corsheaders} to the list of installed applications, so update the \texttt{INSTALLED\_APPS} \& \texttt{MIDDLEWARE} sections in \texttt{backend/settings.py}:
+
+\begin{alltt}
+  # backend/settings.py
+
+  INSTALLED_APPS = [
+      'backend',
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+      \hl{\textbf{'corsheaders',}}                          
+      \hl{\textbf{'rest_framework',}}          
+  ]
+
+  MIDDLEWARE = [
+      \hl{\textbf{'corsheaders.middleware.CorsMiddleware',}} 
+      'django.middleware.security.SecurityMiddleware',
+      'django.contrib.sessions.middleware.SessionMiddleware',
+      'django.middleware.common.CommonMiddleware',
+      'django.middleware.csrf.CsrfViewMiddleware',
+      'django.contrib.auth.middleware.AuthenticationMiddleware',
+      'django.contrib.messages.middleware.MessageMiddleware',
+      'django.middleware.clickjacking.XFrameOptionsMiddleware',
+  ]
+
+  CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000'
+  ]
+
+\end{alltt}
+
+\texttt{django-cors-headers} is a python library that will help in preventing the errors that we would normally get due to \texttt{CORS}. rules. In the \texttt{CORS\_ORIGIN\_WHITELIST} snippet, we whitelisted \texttt{http://localhost:3000/} because we want the React application to interact with the Djnago REST API. \\
+
+Create a new \texttt{practical21backend/serializers.py} file \& update it with the following code:
+
+\begin{verbatim}
+  from rest_framework import serializers
+  from .models import Todo
+
+  class TodoSerializer(serializers.ModelSerializer):
+      class Meta:
+          model = Todo
+          fields = ['id', 'title', 'description', 'completed']
+\end{verbatim}
+
+In the code snippet above, we specified the model to work with \& the fields we want to be converted to \textbf{JSON}. \\
+
+Open \texttt{practical21backend/views.py} file \& update it with the following code:
+
+\begin{verbatim}
+  from django.shortcuts import render
+  from rest_framework import viewsets          
+  from .serializers import TodoSerializer      
+  from .models import Todo                     
+
+  class TodoView(viewsets.ModelViewSet):       
+      serializer_class = TodoSerializer          
+      queryset = Todo.objects.all()              
+\end{verbatim}
+
+The \texttt{viewsets} base class provides the implementation for \textbf{CRUD} operations by default, what we had to do was specify the serializer class \& the \texttt{queryset}.
+
+Open \texttt{backend/urls.py} file \& update it with the following code:
+
+\begin{verbatim}
+  from django.contrib import admin
+  from django.urls import path, include                
+  from rest_framework import routers                   
+  from practical21backend import views                            
+
+  router = routers.DefaultRouter()                  
+  router.register(r'todos', views.TodoView, 'todo') 
+
+  urlpatterns = [
+      path('admin/', admin.site.urls),         
+      path('api/', include(router.urls))               
+  ]
+\end{verbatim}
+
+This is the final step that completes the building of the \textbf{API}, we can now perform \textbf{CRUD} operations on the \texttt{Todo} model. 
+
+\section*{Task 2 - React} 
+
+Create a new React application called \texttt{frontend}.
+
+\begin{verbatim}
+  $ create-react-app frontend
+\end{verbatim}
+
+Install the following packages:
+
+\begin{verbatim}
+  npm install bootstrap reactstrap axios
+\end{verbatim}
+
+Open the \texttt{src/index.css} file \& replace the styles with the following:
+
+\begin{verbatim}
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .todo-title {
+    cursor: pointer;
+  }
+
+  .completed-todo {
+    text-decoration: line-through;
+  }
+
+  .tab-list > span {
+    padding: 5px 8px;
+    border: 1px solid #000000;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .tab-list > span.active {
+    background-color: #000000;
+    color: #ffffff;
+  }
+\end{verbatim}
+
+Create a new directory called \texttt{components}. In the \texttt{components} directory, copy \texttt{Modal.js} which is given to you in the \texttt{21-react-6-forms} directory. Replace \texttt{App.js} with the \texttt{App.js} file given to you in the same directory. Comments have been provided in these two files. \\
+
+In package.json, add \texttt{"proxy": "http://localhost:8000"} above the \texttt{"dependencies"}. The proxy will help in tunnelling API requests to \texttt{http://localhost:8000} where the \texttt{Django} application will handle them. \\
+
+Once you have done this, run both applications:
+
+\begin{verbatim}
+  $ python manage.py runserver
+  $ npm start
+\end{verbatim}
+
+\section*{Task 3 - Additional Tasks} 
+\begin{itemize}
+  \item Django application
+  \begin{itemize}
+    \item Create five unit tests covering the \texttt{Todo} model, \texttt{TodoSerializer} serializer \& API
+  \end{itemize}
+  \item React application
+  \begin{itemize}
+    \item Convert the \textbf{CSS} in \texttt{src/index.css} to \textbf{Sass}
+    \item Ensure each form field is \textbf{required} excepted the completed checkbox
+    \item If there are no Todo items in the list, display the following message "There a currently no Todo items"
+  \end{itemize}
+\end{itemize} 
+
+
+\subsection*{Resources} 
+\begin{itemize}
+  \item \href{https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS}{CORS}
+\end{itemize}
+ 
+\end{document}
