@@ -102,7 +102,7 @@ At the successful completion of this course, students will be able to:
 		\end{itemize}
 		\item Create a new quiz tournament. Fields include name, category, difficulty, start date \& end date. 
 		\item A quiz tournament consists of 10 questions dynamically fetched from the \textbf{OpenTDB API}. Categories must be dynamically fetched from the following URL \href{https://opentdb.com/api\_category.php}{https://opentdb.com/api\_category.php}. Choices can not be hardcoded. Questions can be multi-choice, true/false or a mixture of both. Handle gracefully if there are no questions in the response.
-		\item Send an email notification to all users when a new quiz tournament has been created.
+		\item Send an email notification to all users when a new quiz tournament has been created. Exclude the admin user who created the quiz tournament.
 		\begin{itemize}
 			\item \textbf{Resource:} \href{https://docs.djangoproject.com/en/3.1/topics/email}{Django Sending Email}
 		\end{itemize}
