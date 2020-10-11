@@ -102,10 +102,6 @@ At the successful completion of this course, students will be able to:
 		\end{itemize}
 		\item Create a new quiz tournament. Fields include name, category, difficulty, start date \& end date. 
 		\item A quiz tournament consists of 10 questions dynamically fetched from the \textbf{OpenTDB API}. Categories must be dynamically fetched from the following URL \href{https://opentdb.com/api\_category.php}{https://opentdb.com/api\_category.php}. Choices can not be hardcoded. Questions can be multi-choice, true/false or a mixture of both. Handle gracefully if there are no questions in the response.
-		\item Receive an email notification when a new quiz tournament has been created.
-		\begin{itemize}
-			\item \textbf{Resource:} \href{https://docs.djangoproject.com/en/3.1/topics/email}{Django Sending Email}
-		\end{itemize}
 		\item View all quiz tournaments in an HTML table.
 		\item Update a quiz tournament. Updatable fields include name, start date \& end date.
 		\item Delete a quiz tournament. Prompt the user for deletion.
@@ -131,6 +127,10 @@ At the successful completion of this course, students will be able to:
 		\item Display appropriate feedback for correct \& incorrect answers. If a question is answered incorrectly, display the correct answer.
 		\begin{itemize}
 			\item \textbf{Resource:} \href{https://docs.djangoproject.com/en/3.1/ref/contrib/messages}{Django Messages}
+		\end{itemize}
+		\item Receive an email notification when a new quiz tournament has been created.
+		\begin{itemize}
+			\item \textbf{Resource:} \href{https://docs.djangoproject.com/en/3.1/topics/email}{Django Sending Email}
 		\end{itemize}
 		\item Player user should be able to leave an ongoing quiz tournament at any time \& return to the last presented question. For example, a player user answers the first five questions then logs out of the application. The player user returns to the quiz tournament three hours later \& is presented with question six.
 		\item When the player user's quiz tournament is completed, display their score out of 10.
