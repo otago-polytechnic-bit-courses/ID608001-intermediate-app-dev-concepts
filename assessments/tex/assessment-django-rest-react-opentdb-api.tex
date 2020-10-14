@@ -114,7 +114,7 @@ This is a project-based assessment. Within your project you will need to impleme
 		\item Request quiz tournament data via \textbf{Django REST Framework} end-points using \textbf{Axios}. Data includes creator, name, category, difficulty, question, correct answer \& incorrect answers. 
 		\item Create a new quiz tournament. Display a form in a modal. Form fields include creator, name, category \& difficulty. You \textbf{must} use the \textbf{select} input type for categories \& difficulties.  
 		\item Incorrect formatted form field values handled gracefully using validation error messages, for example, creator form field is blank.
-		\item View quiz tournaments in a table. Table data includes creator, name, category, difficulty. Paginate quiz tournament data across several pages with \textbf{Next/Previous} links.
+		\item View quiz tournaments in a table. Table data \textbf{must} includes creator, name, category, difficulty. Paginate quiz tournament data across several pages with \textbf{Next/Previous} links.
 		\item Update a quiz tournament. Display a form in a modal. Form fields include creator, name, category \& difficulty.
 		\item Delete a quiz tournament. Prompt the user for deletion.
 		\item View a quiz tournament's question, correct answer \& incorrect answers when a quiz tournament name is clicked. 
@@ -125,8 +125,14 @@ This is a project-based assessment. Within your project you will need to impleme
 		\begin{itemize}
 			\item \textbf{Resource:} \href{https://github.com/mars/create-react-app-buildpack}{React Buildpack}
 		\end{itemize}
-		\item Unit tests cover components.
-		\item End-to-end tests cover creating, updating \& deleting a quiz tournament \& viewing a quiz tournament’s questions.
+		\item Automation testing:
+		\begin{itemize}
+			\item Unit tests cover components, i,e, HTTP endpoints, functions within function components.
+			\item End-to-end tests cover creating, updating \& deleting a quiz tournament \& viewing a quiz tournament’s questions.
+			\begin{itemize}
+				\item \textbf{Resource:} \href{https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell}{Cypress.IO}
+			\end{itemize}
+		\end{itemize}
 	\end{itemize}
 \end{itemize}
 
