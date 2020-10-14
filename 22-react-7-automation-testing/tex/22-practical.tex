@@ -35,25 +35,34 @@
 
 \textbf{Due Date:} 27/10/2020 at 5pm \\
 
-In this self-directed practical, you will complete a series of tasks covering today's lecture. This practical is worth 1\% of the final mark for the IN608: Intermediate Application Development Concepts course. \\
+In this \textbf{self-directed} practical, you will complete a series of tasks covering today's lecture. This practical is worth 1\% of the final mark for the IN608: Intermediate Application Development Concepts course. \\
 
 Before you start, in your practicals repository, create a new branch called \textbf{22-practical}. 
 
 \section*{Task} 
-Please use the completed practical from \texttt{Practical 21 React 6: Forms}. In the \texttt{frontend} directory, create a file called \texttt{App.test.js}. To use \texttt{Cypress.IO}, you must install the following package:
+Please use the completed practical from \texttt{Practical 21 React 6: Forms}. In the \texttt{frontend} directory, create a file called \texttt{App.test.js}. You are going to use \textbf{Cypress.IO} \& the resources to test the following:
+
+\begin{itemize}
+  \item Form interactions
+  \begin{itemize}
+    \item Create a new \texttt{Todo} item
+    \item Delete a \texttt{Todo} item
+    \item Update a \texttt{Todo} item
+    \item Resource: \footnotesize\href{https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/blogs\_\_e2e-api-testing}{https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/blogs\_\_e2e-api-testing}
+  \end{itemize}
+  \item API Testing
+  \begin{itemize}
+    \item \texttt{GET /api/todos/} returns status code 200
+    \item \texttt{GET /api/todos/<ITEM\_ID>/} returns status code 200
+    \item Resource: \footnotesize\href{https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/testing-dom\_\_form-interactions}{https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/testing-dom\_\_form-interactions}
+  \end{itemize}
+\end{itemize}
+
+To use \textbf{Cypress.IO}, you must install the following package:
 
 \begin{verbatim}
   npm i cypress
 \end{verbatim}
-
-Use the resources provided below to test the following:
-\begin{itemize}
-  \item Create a new \texttt{Todo} item
-  \item Delete a \texttt{Todo} item
-  \item Update a \texttt{Todo} item
-  \item \href{http://localhost:8000/api/todos/}{http://localhost:8000/api/todos/} returns status code 200
-  \item \href{http://localhost:8000/api/todos/<ITEM\_ID>/}{http://localhost:8000/api/todos/<ITEM\_ID>/} returns status code 200
-\end{itemize}
 
 \textbf{Note:} Make sure you have your \texttt{backend} \textbf{Django} application running in the background. Remember, this is contains all your endpoints in which \textbf{Cypress.IO} needs to access.
 
