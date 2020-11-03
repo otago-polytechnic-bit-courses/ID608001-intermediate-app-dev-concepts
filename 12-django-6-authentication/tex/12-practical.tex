@@ -77,7 +77,7 @@ Below the two choices, declare the following field names with their types:
   difficulty = models.CharField(max_length=200, choices=DIFFICULTIES, null=False)
 \end{verbatim}
 
-For \texttt{User}, create a \texttt{\_\_str\_\_} method which returns \texttt{name} \\
+For \texttt{Quiz}, create a \texttt{\_\_str\_\_} method which returns \texttt{name} \\
 
 Create a file called \texttt{forms.py}, create two form classes called \texttt{SignupForm} which extends \texttt{auth\_forms.UserCreationForm} \& \texttt{QuizForm} which extends \texttt{forms.ModelForm}. \textbf{Note:} please ensure you declare the following:
 
