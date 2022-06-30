@@ -8,6 +8,10 @@
 
 ---
 
+## Horizontal vs. Vertical Scaling
+
+---
+
 ## Prettier
 
 ### Activity

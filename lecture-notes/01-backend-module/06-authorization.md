@@ -1,4 +1,4 @@
-# 04: Authorization
+# 06: Authorization
 
 ## Overview
 
