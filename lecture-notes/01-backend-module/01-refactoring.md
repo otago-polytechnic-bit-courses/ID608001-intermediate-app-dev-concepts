@@ -34,7 +34,7 @@ app.listen(PORT, () => {
 });
 ```
 
-It is a simple **Express** server setup but feel free to add to this. For example, other dependencies you learned in **ID607001: Introductory Application Development Concepts**.
+It is a simple **Express** server setup but feel free to add other dependencies you learned in **ID607001: Introductory Application Development Concepts**.
 
 ### Environment Variables
 
@@ -44,11 +44,11 @@ In the root directory, create a new file called `.env`. In the `.env` file, add 
 PORT=3000
 ```
 
-You will add to this throughout this module.
+You will add to the `.env` file throughout the **backend module**.
 
 ### Setup
 
-Run the following commands:
+To get started, run the following commands:
 
 ```bash
 npm install @prisma/client
@@ -58,7 +58,7 @@ npx prisma init
 
 ### Schema
 
-In the root directory, you will see a new directory called `prisma`. In the `prisma` directory, you will see a new file called `schema.prisma`. This file tells **Prisma** how to connect to a database, generate a client and map your data from a database to your application.
+You will see a new directory called `prisma` in the root directory. In the `prisma` directory, you will see a new file called `schema.prisma`. This file tells **Prisma** how to connect to a database, generate a client and map your data from a database to your application.
 
 Let us use the example code below. A schema is built up of three blocks - data sources, generators and models. Each block comprises a type, i.e., data source, a name, i.e., db and fields, i.e., provider and url.
 
@@ -174,7 +174,7 @@ const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
 
-    const institution = await prisma.institution.create({
+    await prisma.institution.create({
       data: { name, region, country },
     });
 
@@ -452,11 +452,28 @@ As you can see, there is a lot of code duplication. In the **Formative Assessmen
 
 ### Task One
 
-Create a new repository - <https://classroom.github.com/a/i4G4NwNS>. Remember to add the `README.md` and `.gitignore` **(Node)** files. Clone the repository. Change the directory to the repository and create a new branch called `01-playground`. Checkout to the `01-playground` branch and open the repository in **Visual Studio Code**.
+Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to add the `README.md` and `.gitignore` **(Node)** files. Clone the repository. Change the directory to the repository and create a new branch called `01-playground`. Checkout to the `01-playground` branch and open the repository in **Visual Studio Code**.
 
 ### Task Two
 
 Create a simple **Express** application using the code examples above. In the `controller/institutions.js` and `controller/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controller/institutions.js` and `controller/departments.js` files.
+
+I suggest testing your changes in **Postman** as you go. Here is a `POST` request example for the `Institution` and `Department` models:
+
+```json
+{
+    "name": "Otago Polytechnic",
+    "region": "Otago",
+    "country": "New Zealand"
+}
+```
+
+```json
+{
+    "name": "Information Technology",
+    "institutionId": 1
+}
+```
 
 ### Task Three
 
