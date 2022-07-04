@@ -1,4 +1,4 @@
-# 10: Azure Deployment
+# 10: AWS Deployment
 
 ## Overview
 
