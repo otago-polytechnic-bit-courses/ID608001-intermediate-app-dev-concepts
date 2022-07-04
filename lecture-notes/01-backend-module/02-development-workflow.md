@@ -1,17 +1,88 @@
 # 02: Development Workflow
 
+## Git Commit Message Conventions
+
+You have written many commit messages thus far in your **BIT** degree. However, based on my observations, you could format your messages more concisely, which only takes a little care. We will discuss a message convention (not a standard) heavily adopted in the industry.
+
+A message is broken down into five components - type, scope (optional), subject, extended description (optional) & footer (optional).
+
+List of types:
+* **build:** build-related change, i.e., installing application dependencies.
+* **chore:** change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting & version control.
+* **feat:** a new feature or piece of functionality that an end-user will see, i.e., a register or login page.
+* **fix:** a bug fix, i.e. an issue with the register or login page.
+* **docs:** documentation-related change, i.e., changing **README.md** file.
+* **refactor:** something that is neither a feat nor a fix, i.e., a semantic code change.
+* **style:** style-related change, i.e., formatting a file or piece of code.
+* **test:** an automation test change, i.e., adding a new test file or updating an existing test file.
+
+What is a scope? A noun referring to functionality in your codebase, i.e., authentication. 
+
+Familiarise yourself with this convention, particularly if you are currently enrolled in my courses. However, if you are not, then it is something you should consider adding to your existing **Git** skills & knowledge.
+
+You are probably wondering how I should write a message using this convention. A **Git** commit looks like this:
+
+```bash
+git commit -m "<type> (optional scope): <subject>" -m "<optional extended description>" -m "<optional footer>"
+```
+
+Let us see this in action!
+
+Here is a **Git** commit example:
+
+```bash
+git commit -m "style (login): format jsx"
+```
+
+Here is a **Git** commit example with an extended description & footer:
+
+```bash
+git commit -m "style (login): format jsx" -m "additional information" -m "PR Close #12345"
+```
+
+When should I use an extended description? When a message is greater than 50 characters. **Note:** This convention is recommended by **GitHub**. However, this can vary from company to company.
+
+What happens if I want to view a commit with a specific type? 
+
+```bash
+git log --oneline --grep <type>
+```
+
+- --oneline - Display the output as one commit per line
+
+Here is a **Git**  log example:
+
+```bash
+git log --oneline --grep feat
+```
+
+Here is a **Git**  example with multiple types:
+ 
+```bash
+git log --oneline --grep "^build\|^feat\|^style"
+```
+
+**Resource:** <https://git-scm.com/docs/git-log>
+
+
 ## Prettier
 
 **Prettier** is an opinionated code formatter. You will remember using **Prettier** in **ID607001: Introductory Application Development**.
 
-To get started, run the following commands:
+To get started, run the following command:
 
 ```bash
 npm install prettier --save-dev
-echo {} > .prettierrc.json
 ```
 
-These two commands will install **Prettier** as a development dependency and create a configuration file called `.prettierrc.json`.
+In the root directory, create a new file called `.prettierrc.json`.
+
+In the `package.json` file, add the following scripts in the `scripts` block:
+
+```bash
+"prettier:fix": "npx prettier --write .",
+"prettier:check": "npx prettier --check ."
+```
 
 In the root directory, create a new file called `.prettierignore`. In the `.prettierignore` file, add the following:
 
@@ -19,16 +90,9 @@ In the root directory, create a new file called `.prettierignore`. In the `.pret
 node_modules
 ```
 
-In the `package.json` file, add the following scripts in the `scripts` block:
-
-```bash
-"format": "npx prettier --write .",
-"format-check": "npx prettier --check ."
-```
-
-The second script minimises merge conflicts and other collaboration issues.
-
 **Note:** You will configure the `.prettierrc.json` file in the **Formative Assessment**.
+
+Test these scripts before you move onto the **ESLint** section.
 
 **Resource:** <https://prettier.io>
 
@@ -45,32 +109,71 @@ npm install eslint --save-dev
 npm init @eslint/config
 ```
 
-These two commands will install **ESLint** as a development dependency and create a configuration file called `.eslintrc.json`.
+The first command will install **ESLint** as a development dependency. The second command will prompt you with the following questions:
 
-In the `.eslintrc.json` file, you should see the following configurations:
+- How would you like to use ESLint? **To check syntax, find problems, and enforce code style**.
+- What type of modules does your project use? **JavaScript modules (import/export)**.
+- Which framework does your project use? **None of these**.
+- Does your project use TypeScript? **No**.
+- Where does your code run? **Node**.
+- How would you like to define a style for your project? **Use a popular style guide**.
+- Which style guide do you want to follow? **Airbnb: https://github.com/airbnb/javascript**.
+- What format do you want your config file to be in? **JSON**. It is opinionated, but I recommend **JSON**.
+- You will be prompt to install `eslint-config-airbnb-base` and `eslint-plugin-import` as development dependencies. Select the **Yes** option.
+- Which package manager do you want to use? **npm**.
+
+In the root directory, you should see a file called `.eslintrc.json`. In the `.eslintrc.json` file, you should see the following configurations:
 
 ```json
 {
-  "rules": {
-    "semi": ["error", "always"],
-    "quotes": ["error", "double"]
-  }
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb-base"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {}
 }
 ```
 
-The keys - `"semi"` and `"quotes"` are the names of rules in **ESLint**. The first value is the rule's error level and can be one of the following values:
+In `rules`, add the following:
 
-- `"off"` or `0` - turn the rule off.
-- `"warn"` or `1` - turn the rule on as a warning .
-- `"error"` or `2` - turn the rule on as an error.
+```json
+"import/extensions": [
+  "error",
+  "ignorePackages",
+  {
+    "js": "always"
+  }
+]
+```
+
+`rules` should look like this:
+
+```json
+"rules": {
+  "import/extensions": [
+    "error",
+    "ignorePackages",
+    {
+      "js": "always"
+    }
+  ]
+}
+```
 
 In the `package.json` file, add the following script in the `scripts` block:
 
 ```bash
-"lint": "npx eslint . --ext .js,.json"
+"lint:fix": "npx eslint --ext .js,.json --fix"
 ```
 
-It will lint all files with the extensions - `.js` and `.json`.
+It will lint and fix all files with the extensions - `.js` and `.json`.
+
+Test this script before you move onto the **Formative Assessment**.
 
 **Resource:** <https://eslint.org>
 
@@ -91,6 +194,8 @@ Use the resource below and the following options to the `.prettierrc.json` file:
 - Include parentheses around a single arrow function parameter.
 - Tab width of 2 spaces.
 
+Test these options before you move onto the **Task Three**.
+
 **Resource:** <https://prettier.io/docs/en/options>
 
 ### Task Three
@@ -104,18 +209,23 @@ Use the resource below and add the following rules to the `.eslintrc.json` file:
 - Disallow trailing whitespace at the end of lines.
 - Disallow unused variables.
 
+Test these rules before you move onto the **Task Four**.
+
 **Resource:** <https://eslint.org/docs/latest/rules>
 
 ### Task Four
 
-**Git** hook scripts are useful for identifying issues before you push your code to **GitHub**. In this task, you will look at how to setup a pre-commit hook for **Prettier** and **ESLint**.
+**Git** hook scripts help identify issues before you push your code to **GitHub**. In this task, you will look at setting up a pre-commit hook for **Prettier** and **ESLint**.
 
 To get started, run the following command:
 
 ```bash
-npm install lint-staged --save-dev
-npm install husky --save-dev
+npm install husky lint-staged --save-dev
+npx husky install
+npx husky add .husky/pre-commit "lint-staged"
 ```
+
+The first command will install **Husky** and **Lint Staged** as development dependencies. The second command will install **Husky** and create a directory called `.husky` in the root directory. The three command will create a file called `pre-commit` in the `.husky` directory. This file tells **Husky** to look at the "lint-staged" block in the `package.json` file and run the given commands pre-commit. 
 
 In the `package.json` file, add the following:
 
@@ -127,14 +237,19 @@ In the `package.json` file, add the following:
 },
 "lint-staged": {
   "*.{js, json}": [
-    "npm run format",
-    "npm run lint",
+    "npm run prettier:fix",
+    "npm run lint:fix",
     "git add"
   ]
 }
 ```
 
-### Task Five
+Test this hook script before you move onto the **Task Six**.
+
+**Resources:**
+
+- <https://typicode.github.io/husky>
+- <https://www.npmjs.com/package/lint-staged>
 
 ### Task Six
 

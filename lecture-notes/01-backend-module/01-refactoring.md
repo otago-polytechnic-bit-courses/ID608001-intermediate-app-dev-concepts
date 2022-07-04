@@ -1,10 +1,28 @@
 # 01: Refactoring
 
-## Prisma
+## Express
 
-**Prisma** is an open-source **Object-Relational Mapper (ORM)**. It enables you to interface between your database and application easily. **Prisma** supports database management systems like **SQLite**, **PostgreSQL**, **MySQL** and **Microsoft SQL Server**.   
+Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to add the `README.md` and `.gitignore` **(Node)** files. Clone the repository. Change the directory to the repository and create a new branch called `01-playground`. Checkout to the `01-playground` branch and open the repository in **Visual Studio Code**.
 
-### Setup
+Create a file called `package.json` by running the following command:
+
+```bash
+npm init
+```
+
+Also, **Express** and **DotEnv** by running the commands:
+
+```bash
+npm install express dotenv
+```
+
+In the root directory, create a new file called `.env`. In the `.env` file, add the following variables:
+
+```bash
+PORT=3000
+```
+
+You will add to the `.env` file throughout the **backend module**.
 
 In the root directory, create a new file called `app.js`. In the `app.js` file, add the following code:
 
@@ -36,17 +54,9 @@ app.listen(PORT, () => {
 
 It is a simple **Express** server setup but feel free to add other dependencies you learned in **ID607001: Introductory Application Development Concepts**.
 
-### Environment Variables
+## Prisma
 
-In the root directory, create a new file called `.env`. In the `.env` file, add the following variables:
-
-```bash
-PORT=3000
-```
-
-You will add to the `.env` file throughout the **backend module**.
-
-### Setup
+**Prisma** is an open-source **Object-Relational Mapper (ORM)**. It enables you to interface between your database and application easily. **Prisma** supports database management systems like **SQLite**, **PostgreSQL**, **MySQL** and **Microsoft SQL Server**.   
 
 To get started, run the following commands:
 
@@ -452,11 +462,7 @@ As you can see, there is a lot of code duplication. In the **Formative Assessmen
 
 ### Task One
 
-Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to add the `README.md` and `.gitignore` **(Node)** files. Clone the repository. Change the directory to the repository and create a new branch called `01-playground`. Checkout to the `01-playground` branch and open the repository in **Visual Studio Code**.
-
-### Task Two
-
-Create a simple **Express** application using the code examples above. In the `controller/institutions.js` and `controller/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controller/institutions.js` and `controller/departments.js` files.
+In this task, use the code examples above. In the `controller/institutions.js` and `controller/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controller/institutions.js` and `controller/departments.js` files.
 
 I suggest testing your changes in **Postman** as you go. Here is a `POST` request example for the `Institution` and `Department` models:
 
@@ -475,7 +481,7 @@ I suggest testing your changes in **Postman** as you go. Here is a `POST` reques
 }
 ```
 
-### Task Three
+### Task Two
 
 Create a new model called `Course`. In the `Course` model, add the following fields:
 
@@ -490,6 +496,6 @@ Create a new model called `Course`. In the `Course` model, add the following fie
 
 **Note:** Make sure you add an array of `Course` in the `Department` model.
 
-### Task Four
+### Task Three
 
 Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.
