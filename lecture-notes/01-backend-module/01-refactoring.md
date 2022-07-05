@@ -10,7 +10,7 @@ Create a file called `package.json` by running the following command:
 npm init
 ```
 
-Also, **Express** and **DotEnv** by running the commands:
+Also, **Express** and **Dot Env** by running the commands:
 
 ```bash
 npm install express dotenv
@@ -496,6 +496,6 @@ Create a new model called `Course`. In the `Course` model, add the following fie
 
 **Note:** Make sure you add an array of `Course` in the `Department` model.
 
-### Task Three
+### Code Review
 
 Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.

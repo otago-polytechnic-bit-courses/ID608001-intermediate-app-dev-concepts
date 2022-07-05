@@ -18,15 +18,11 @@ List of types:
 
 What is a scope? A noun referring to functionality in your codebase, i.e., authentication. 
 
-Familiarise yourself with this convention, particularly if you are currently enrolled in my courses. However, if you are not, then it is something you should consider adding to your existing **Git** skills & knowledge.
-
 You are probably wondering how I should write a message using this convention. A **Git** commit looks like this:
 
 ```bash
 git commit -m "<type> (optional scope): <subject>" -m "<optional extended description>" -m "<optional footer>"
 ```
-
-Let us see this in action!
 
 Here is a **Git** commit example:
 
@@ -213,6 +209,8 @@ Test these rules before you move onto the **Task Four**.
 
 **Resource:** <https://eslint.org/docs/latest/rules>
 
+## Additional Task
+
 ### Task Four
 
 **Git** hook scripts help identify issues before you push your code to **GitHub**. In this task, you will look at setting up a pre-commit hook for **Prettier** and **ESLint**.
@@ -244,13 +242,13 @@ In the `package.json` file, add the following:
 }
 ```
 
-Test this hook script before you move onto the **Task Six**.
+Test this hook script before you move onto the **Code Review** section.
 
 **Resources:**
 
 - <https://typicode.github.io/husky>
 - <https://www.npmjs.com/package/lint-staged>
 
-### Task Six
+### Code Review
 
 Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.
