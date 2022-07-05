@@ -2,13 +2,13 @@
 
 ## Git Commit Message Conventions
 
-You have written many commit messages thus far in your **BIT** degree. However, based on my observations, you could format your messages more concisely, which only takes a little care. We will discuss a message convention (not a standard) heavily adopted in the industry.
+You have written many commit messages thus far. However, based on my observations, you could format your messages more concisely. Let us discuss a message convention (not a standard) heavily adopted in the industry.
 
-A message is broken down into five components - type, scope (optional), subject, extended description (optional) & footer (optional).
+A message is broken down into five components - type, scope (optional), subject, extended description (optional) and footer (optional).
 
 List of types:
 * **build:** build-related change, i.e., installing application dependencies.
-* **chore:** change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting & version control.
+* **chore:** change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting and version control.
 * **feat:** a new feature or piece of functionality that an end-user will see, i.e., a register or login page.
 * **fix:** a bug fix, i.e. an issue with the register or login page.
 * **docs:** documentation-related change, i.e., changing **README.md** file.
@@ -16,7 +16,7 @@ List of types:
 * **style:** style-related change, i.e., formatting a file or piece of code.
 * **test:** an automation test change, i.e., adding a new test file or updating an existing test file.
 
-What is a scope? A noun referring to functionality in your codebase, i.e., authentication. 
+**What is a scope?** A noun referring to functionality in your codebase, i.e., authentication. 
 
 You are probably wondering how I should write a message using this convention. A **Git** commit looks like this:
 
@@ -30,15 +30,15 @@ Here is a **Git** commit example:
 git commit -m "style (login): format jsx"
 ```
 
-Here is a **Git** commit example with an extended description & footer:
+Here is a **Git** commit example with an extended description and footer:
 
 ```bash
 git commit -m "style (login): format jsx" -m "additional information" -m "PR Close #12345"
 ```
 
-When should I use an extended description? When a message is greater than 50 characters. **Note:** This convention is recommended by **GitHub**. However, this can vary from company to company.
+**When should I use an extended description?** When a message is greater than 50 characters. **Note:** This convention is recommended by **GitHub**. However, this can vary from company to company.
 
-What happens if I want to view a commit with a specific type? 
+**What happens if I want to view a commit with a specific type?**
 
 ```bash
 git log --oneline --grep <type>
@@ -96,7 +96,7 @@ Test these scripts before you move onto the **ESLint** section.
 
 ## ESLint
 
-**ESLint** is a linter that helps you find and fix issues with your **JavaScript** code.
+**ESLint** is a linter that helps you find and fix issues in your **JavaScript** code.
 
 To get started, run the following commands:
 

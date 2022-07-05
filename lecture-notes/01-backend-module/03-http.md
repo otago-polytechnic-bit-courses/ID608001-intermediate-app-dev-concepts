@@ -34,8 +34,6 @@ There are five different **response** groups:
 4. Client error responses (400–499)
 5. Server error responses (500–599)
 
-Let us discuss a few of them...
-
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
 
 ---
@@ -50,8 +48,6 @@ There are four different **header** groups:
 2. Response headers
 3. Representation headers
 4. Payload headers
-
-Again, let us discuss a few of them...
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
 

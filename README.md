@@ -1,4 +1,4 @@
-# IN608: Intermediate Application Development Concepts
+# ID608001: Intermediate Application Development Concepts
 
 ## Repositories:
 - Playground - https://classroom.github.com/a/SNd5oi2t

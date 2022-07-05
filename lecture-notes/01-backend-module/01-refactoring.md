@@ -10,7 +10,7 @@ Create a file called `package.json` by running the following command:
 npm init
 ```
 
-Also, **Express** and **Dot Env** by running the commands:
+Also, **Express** and **Dotenv** by running the commands:
 
 ```bash
 npm install express dotenv
@@ -297,7 +297,7 @@ router
 export default router;
 ```
 
-### controllers/institutions.js
+### controllers/departments.js
 
 ```js
 import { PrismaClient } from "@prisma/client";
