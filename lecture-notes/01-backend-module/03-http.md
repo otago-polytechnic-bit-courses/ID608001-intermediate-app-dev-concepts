@@ -77,7 +77,7 @@ Then add the following **middleware**:
 app.use(cors()); // Simple usage example
 ```
 
-**Note:** In **Assessment 1: Node.js Restful API - Open Trivia DB**, you will look at how to configure **CORS** asynchronously. 
+**Note:** In **Assessment 1: Node.js Restful API - Open Trivia DB**, you will look at how to whitelist URLs.
 
 **Resources:**
 

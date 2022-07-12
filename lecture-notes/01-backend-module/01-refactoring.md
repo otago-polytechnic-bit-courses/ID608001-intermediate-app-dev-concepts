@@ -58,7 +58,7 @@ It is a simple **Express** server setup but feel free to add other dependencies 
 
 ## Prisma
 
-**Prisma** is an open-source **Object-Relational Mapper (ORM)**. It enables you to interface between your database and application easily. **Prisma** supports database management systems like **SQLite**, **PostgreSQL**, **MySQL** and **Microsoft SQL Server**.   
+**Prisma** is an open-source **Object-Relational Mapper (ORM)**. It enables you to interface between your database and application easily. **Prisma** supports database management systems like **SQLite**, **PostgreSQL**, **MySQL** and **Microsoft SQL Server**.
 
 To get started, run the following commands:
 
@@ -132,7 +132,7 @@ In the root directory, create two new directories called `controllers` and `rout
 
 ### controllers/v1/institutions.js
 
-In `controllers/v1/institutions.js`, add the following code:
+In the `controllers/v1/institutions.js` file, add the following code:
 
 ```js
 import { PrismaClient } from "@prisma/client";
@@ -275,7 +275,7 @@ export {
 
 ### routes/v1/institutions.js
 
-In `routes/v1/institutions.js`, add the following code:
+In the `routes/v1/institutions.js` file, add the following code:
 
 ```js
 import { Router } from "express";
@@ -301,7 +301,7 @@ export default router;
 
 ### controllers/v1/departments.js
 
-In `controllers/v1/departments.js`, add the following code:
+In the `controllers/v1/departments.js` file, add the following code:
 
 ```js
 import { PrismaClient } from "@prisma/client";
@@ -356,8 +356,8 @@ const createDepartment = async (req, res) => {
     const newDepartments = await prisma.department.findMany();
 
     return res.status(201).json({
-      data: newDepartments,
       msg: "Department successfully created",
+      data: newDepartments,
     });
   } catch (err) {
     return res.status(500).json({
@@ -436,7 +436,7 @@ export {
 
 ### routes/v1/departments.js
 
-In `routes/v1/departments.js`, add the following code:
+In the `routes/v1/departments.js` file, add the following code:
 
 ```js
 import { Router } from "express";
@@ -460,7 +460,7 @@ router
 export default router;
 ```
 
-The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. Though, as you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples above. 
+The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. Though, as you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples above.
 
 ---
 
@@ -468,22 +468,22 @@ The code examples above should look familiar from **ID607001: Introductory Appli
 
 ### Task One
 
-In this task, use the code examples above. In the `controller/institutions.js` and `controller/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controller/institutions.js` and `controller/departments.js` files.
+In this task, use the code examples above. In the `controller/v1/institutions.js` and `controller/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controller/v1/institutions.js` and `controller/v1/departments.js` files.
 
 I suggest testing your changes in **Postman** as you go. Here is a `POST` request example for the `Institution` and `Department` models:
 
 ```json
 {
-    "name": "Otago Polytechnic",
-    "region": "Otago",
-    "country": "New Zealand"
+  "name": "Otago Polytechnic",
+  "region": "Otago",
+  "country": "New Zealand"
 }
 ```
 
 ```json
 {
-    "name": "Information Technology",
-    "institutionId": 1
+  "name": "Information Technology",
+  "institutionId": 1
 }
 ```
 

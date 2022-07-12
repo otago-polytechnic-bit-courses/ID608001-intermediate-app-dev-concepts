@@ -25,6 +25,14 @@ JWT_SECRET=P@ssw0rd123
 JWT_LIFETIME=1hr
 ```
 
+Your `.env` file should look like this:
+
+```bash
+PORT=3000
+JWT_SECRET=P@ssw0rd123
+JWT_LIFETIME=1hr
+```
+
 ### Schema
 
 In the `prisma.schema` file, add the following `User` model:
@@ -75,14 +83,14 @@ export default authRoute;
 
 ### controllers/auth.js
 
-In the `controllers` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the `controllers/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
 ```js
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 /**
- *  
+ *  Note: The PrismaClient code should be refactored
  */
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
@@ -104,6 +112,12 @@ const register = async (req, res) => {
       data: { name, email, password: hashedPassword },
     });
 
+    /**
+     * Note: You could query the User table so that you
+     * only select the user's name and email. However
+     * deleting the password and token property from the 
+     * user object is a less expensive operation
+     */ 
     delete user.password;
     delete user.token;
 
@@ -144,8 +158,8 @@ const login = async (req, res) => {
     );
 
     return res.status(201).json({
-      token: token,
       msg: "User successfully logged in",
+      token: token,
     });
   } catch (err) {
     return res.status(500).json({
@@ -157,16 +171,17 @@ const login = async (req, res) => {
 export { register, login };
 ```
 
-### controllers/institutions.js
+### controllers/v1/institutions.js
+
 
 ```js
 const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
-    const { userId } = req.user;
+    const { id } = req.user;
 
     await prisma.institution.create({
-      data: { name, region, country, userId },
+      data: { name, region, country, id },
     });
 
     const newInstitutions = await prisma.institution.findMany({
