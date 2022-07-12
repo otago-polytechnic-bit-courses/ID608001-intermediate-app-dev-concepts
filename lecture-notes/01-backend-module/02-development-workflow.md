@@ -2,19 +2,20 @@
 
 ## Git Commit Message Conventions
 
-You have written many commit messages thus far. However, based on my observations, you could format your messages more concisely. Let us discuss a message convention (not a standard) heavily adopted in the industry.
+Let us discuss a message convention (not a standard) adopted in the industry.
 
 A message is broken down into five components - type, scope (optional), subject, extended description (optional) and footer (optional).
 
-List of types:
-* **build:** build-related change, i.e., installing application dependencies.
-* **chore:** change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting and version control.
-* **feat:** a new feature or piece of functionality that an end-user will see, i.e., a register or login page.
-* **fix:** a bug fix, i.e. an issue with the register or login page.
-* **docs:** documentation-related change, i.e., changing **README.md** file.
-* **refactor:** something that is neither a feat nor a fix, i.e., a semantic code change.
-* **style:** style-related change, i.e., formatting a file or piece of code.
-* **test:** an automation test change, i.e., adding a new test file or updating an existing test file.
+Here is a list of types:
+
+- **build:** a build-related change, i.e., installing application dependencies.
+- **chore:** a change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting and version control.
+- **feat:** a new feature or piece of functionality that an end-user will see, i.e., a register or login page.
+- **fix:** a bug fix, i.e. an issue with the register or login page.
+- **docs:** documentation-related change, i.e., changing the **README.md** file.
+- **refactor:** something that is neither a feat nor a fix, i.e., a semantic code change.
+- **style:** style-related change, i.e., formatting a file or piece of code.
+- **test:** an automation test change, i.e., adding a new test file or updating an existing test file.
 
 **What is a scope?** A noun referring to functionality in your codebase, i.e., authentication. 
 
@@ -33,10 +34,10 @@ git commit -m "style (login): format jsx"
 Here is a **Git** commit example with an extended description and footer:
 
 ```bash
-git commit -m "style (login): format jsx" -m "additional information" -m "PR Close #12345"
+git commit -m "style (login): format jsx" -m "additional information" -m "pr closed #12345"
 ```
 
-**When should I use an extended description?** When a message is greater than 50 characters. **Note:** This convention is recommended by **GitHub**. However, this can vary from company to company.
+**When should I use an extended description?** When a message is greater than 50 characters. 
 
 **What happens if I want to view a commit with a specific type?**
 
@@ -59,7 +60,6 @@ git log --oneline --grep "^build\|^feat\|^style"
 ```
 
 **Resource:** <https://git-scm.com/docs/git-log>
-
 
 ## Prettier
 
@@ -160,6 +160,8 @@ In `rules`, add the following:
   ]
 }
 ```
+
+**Note:** This rule ignores files with the `.js` file extension when imported.
 
 In the `package.json` file, add the following script in the `scripts` block:
 

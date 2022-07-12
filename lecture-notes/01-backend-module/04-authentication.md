@@ -8,6 +8,10 @@ View this video to learn more about how session and token authentication works -
 
 ## JSON Web Tokens (JWT)
 
+### Overview
+
+
+
 To get started, run the following command:
 
 ```bash

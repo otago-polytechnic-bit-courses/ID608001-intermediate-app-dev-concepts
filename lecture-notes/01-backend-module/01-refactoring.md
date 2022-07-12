@@ -27,25 +27,27 @@ You will add to the `.env` file throughout the **backend module**.
 In the root directory, create a new file called `app.js`. In the `app.js` file, add the following code:
 
 ```js
+const CURRENT_VERSION = "v1";
+
 import dotenv from "dotenv";
 import express, { urlencoded, json } from "express";
 
-import institutions from "./routes/institutions.js";
-import departments from "./routes/departments.js";
+import institutions from `./routes/${CURRENT_VERSION}/institutions.js`;
+import departments from `./routes/${CURRENT_VERSION}/departments.js`;
 
 dotenv.config();
 
 const app = express();
 
-const BASE_URL = "/api/v1";
+const BASE_URL = "api";
 
 const PORT = process.env.PORT;
 
 app.use(urlencoded({ extended: false }));
 app.use(json());
 
-app.use(`${BASE_URL}/institutions`, institutions);
-app.use(`${BASE_URL}/departments`, departments);
+app.use(`${BASE_URL}/${CURRENT_VERSON}/institutions`, institutions);
+app.use(`${BASE_URL}/${CURRENT_VERSON}/departments`, departments);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
@@ -126,13 +128,11 @@ You will be prompt to enter a name for the new migration. Do not worry about thi
 
 ## Refactoring
 
-_Perfect code is bad_
+In the root directory, create two new directories called `controllers` and `routes`. In both directories, create a new directory called `v1`. In both `v1` directories, create two new files called `institutions.js` and `departments.js`.
 
-In the root directory, create two new directories called `controllers` and `routes`. In both directories, create two new files called `institutions.js` and `departments.js`.
+### controllers/v1/institutions.js
 
-The following code examples should look familiar from **ID607001: Introductory Application Development Concepts**.
-
-### controllers/institutions.js
+In `controllers/v1/institutions.js`, add the following code:
 
 ```js
 import { PrismaClient } from "@prisma/client";
@@ -273,7 +273,9 @@ export {
 };
 ```
 
-### routes/institutions.js
+### routes/v1/institutions.js
+
+In `routes/v1/institutions.js`, add the following code:
 
 ```js
 import { Router } from "express";
@@ -285,7 +287,7 @@ import {
   createInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../controllers/institutions.js";
+} from "../controllers/v1/institutions.js";
 
 router.route("/").get(getInstitutions).post(createInstitution);
 router
@@ -297,7 +299,9 @@ router
 export default router;
 ```
 
-### controllers/departments.js
+### controllers/v1/departments.js
+
+In `controllers/v1/departments.js`, add the following code:
 
 ```js
 import { PrismaClient } from "@prisma/client";
@@ -430,7 +434,9 @@ export {
 };
 ```
 
-### routes/departments.js
+### routes/v1/departments.js
+
+In `routes/v1/departments.js`, add the following code:
 
 ```js
 import { Router } from "express";
@@ -442,7 +448,7 @@ import {
   createDepartment,
   updateDepartment,
   deleteDepartment,
-} from "../controllers/departments.js";
+} from "../controllers/v1/departments.js";
 
 router.route("/").get(getDepartments).post(createDepartment);
 router
@@ -454,7 +460,7 @@ router
 export default router;
 ```
 
-As you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples above. 
+The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. Though, as you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples above. 
 
 ---
 
@@ -480,21 +486,6 @@ I suggest testing your changes in **Postman** as you go. Here is a `POST` reques
     "institutionId": 1
 }
 ```
-
-### Task Two
-
-Create a new model called `Course`. In the `Course` model, add the following fields:
-
-- `id` of type `Int` and default value of `@id @default(autoincrement()`
-- `title` of type `String`
-- `code` of type `String`
-- `efts` of type `Decimal`
-- `points` of type `Int`
-- `departmentId` of type `Int`
-- `createdAt` of type `DateTime` and default value of `@default(now())`
-- A reference to the `Department` model's `id`. 
-
-**Note:** Make sure you add an array of `Course` in the `Department` model.
 
 ### Code Review
 
