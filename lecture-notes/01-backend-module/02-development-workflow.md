@@ -4,6 +4,8 @@
 
 Use the repository from the previous **Formative Assessment**. Create a new branch called `02-playground`. Checkout to the `02-playground` branch and open the repository in **Visual Studio Code**.
 
+---
+
 ## Git Commit Message Conventions
 
 Let us discuss a message convention (not a standard) adopted in the industry.
@@ -64,6 +66,8 @@ git log --oneline --grep "^build\|^feat\|^style"
 ```
 
 **Resource:** <https://git-scm.com/docs/git-log>
+
+---
 
 ## Prettier
 
@@ -214,6 +218,8 @@ Use the resource below and add the following rules to the `.eslintrc.json` file:
 Test these rules before you move onto the **Task Three**.
 
 **Resource:** <https://eslint.org/docs/latest/rules>
+
+---
 
 ## Additional Task
 

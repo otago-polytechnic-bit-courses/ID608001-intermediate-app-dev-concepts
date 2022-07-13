@@ -4,6 +4,8 @@
 
 Use the repository from the previous **Formative Assessment**. Create a new branch called `03-playground`. Checkout to the `03-playground` branch and open the repository in **Visual Studio Code**.
 
+---
+
 ## Request Methods
 
 An **HTTP request method** indicates an action to be performed for a given resource.
