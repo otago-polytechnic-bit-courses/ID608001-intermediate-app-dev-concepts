@@ -191,7 +191,7 @@ const login = async (req, res) => {
 
     const user = await prisma.user.findUnique({ where: { email } });
 
-    if (!user.email) {
+    if (user === null) {
       return res.status(401).json({ msg: "Invalid email" });
     }
 
@@ -251,7 +251,7 @@ const createInstitution = async (req, res) => {
      * Now you will know which authenticated user created which institution
      */
     await prisma.institution.create({
-      data: { name, region, country, id },
+      data: { name, region, country, userId: id },
     });
 
     const newInstitutions = await prisma.institution.findMany({
@@ -280,7 +280,7 @@ In the `routes/v1` directory, create a new file called `auth.js`. In the `auth.j
 import { Router } from "express";
 const router = Router();
 
-import { register, login } from "../controllers/v1/auth.js";
+import { register, login } from "../../controllers/v1/auth.js";
 
 router.route("/register").post(register);
 router.route("/login").post(login);
@@ -300,14 +300,13 @@ import authRoute from "./middleware/auth.js";
 Add the following route for `auth`:
 
 ```js
-app.use(`${BASE_URL}/${CURRENT_VERSON}/auth`, auth);
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/auth`, auth);
 ```
 
-Update the routes for `institutions` and `departments` so that they are using the `authRoute` **middleware**:
+Update the routes for `institutions` so that it is using the `authRoute` **middleware**:
 
 ```js
-app.use(`${BASE_URL}/${CURRENT_VERSON}/institutions`, authRoute, institutions);
-app.use(`${BASE_URL}/${CURRENT_VERSON}/departments`, authRoute, departments);
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/institutions`, authRoute, institutions);
 ```
 
 **Resources:**
@@ -315,6 +314,32 @@ app.use(`${BASE_URL}/${CURRENT_VERSON}/departments`, authRoute, departments);
 - <https://jwt.io/introduction>
 - <https://www.npmjs.com/package/jsonwebtoken>
 - <https://www.npmjs.com/package/bcryptjs>
+
+---
+
+## Postman
+
+Test your changes in **Postman** before you move onto the **Formative Assessment** section. 
+
+Refer to the screenshots below.
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-1.PNG)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-2.PNG)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-3.PNG)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-4.PNG)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-5.PNG)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-6.PNG)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-7.PNG)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-8.PNG)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-9.PNG)
 
 ---
 

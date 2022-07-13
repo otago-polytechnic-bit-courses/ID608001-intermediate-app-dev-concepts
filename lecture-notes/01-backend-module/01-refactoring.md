@@ -11,7 +11,7 @@ Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to
 Create a file called `package.json` by running the following command:
 
 ```bash
-npm init
+npm init -y
 ```
 
 Also, **Express** and **Dotenv** by running the commands:
@@ -31,19 +31,14 @@ You will add to the `.env` file throughout the **backend module**.
 In the root directory, create a new file called `app.js`. In the `app.js` file, add the following code:
 
 ```js
-/**
- * The current version of this API is 1
- */  
-const CURRENT_VERSION = "v1";
-
 import dotenv from "dotenv";
 import express, { urlencoded, json } from "express";
 
 /**
  * You will create the routes for institutions and departments later
  */ 
-import institutions from `./routes/${CURRENT_VERSION}/institutions.js`;
-import departments from `./routes/${CURRENT_VERSION}/departments.js`;
+import institutions from "./routes/v1/institutions.js";
+import departments from "./routes/v1/departments.js";
 
 dotenv.config();
 
@@ -51,13 +46,18 @@ const app = express();
 
 const BASE_URL = "api";
 
+/**
+ * The current version of this API is 1
+ */  
+const CURRENT_VERSION = "v1";
+
 const PORT = process.env.PORT;
 
 app.use(urlencoded({ extended: false }));
 app.use(json());
 
-app.use(`${BASE_URL}/${CURRENT_VERSON}/institutions`, institutions);
-app.use(`${BASE_URL}/${CURRENT_VERSON}/departments`, departments);
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/institutions`, institutions);
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/departments`, departments);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
@@ -79,6 +79,8 @@ npx prisma init
 ```
 
 Check the `package.json` file to ensure you have installed `@prisma/client` and `prisma`.
+
+In the `.env` file, remove the `DATABASE_URL` environment variable.
 
 ### Schema
 
@@ -136,7 +138,29 @@ You need to create a migration from the `prisma.schema` file and apply them to t
 npx prisma migrate dev
 ```
 
-You will be prompt to enter a name for the new migration. Do not worry about this and press the <kbd>Enter</kbd> key. You will find the new migration in the `migrations` directory. Your database is in sync with your `schema.prisma` file.
+You will be prompt to enter a name for the new migration. Do not worry about this and press the <kbd>Enter</kbd> key. You will find the new migration in the `migrations` directory. Have a look at the `migration.sql` file. You should see the following:
+
+```sql
+-- CreateTable
+CREATE TABLE "Institution" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "region" TEXT NOT NULL,
+    "country" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CreateTable
+CREATE TABLE "Department" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "institutionId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "Department_institutionId_fkey" FOREIGN KEY ("institutionId") REFERENCES "Institution" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+```
+
+**Prisma** has created an `Institution` and ``Department` table in `dev.db`.
 
 ## Refactoring
 
@@ -156,7 +180,7 @@ const getInstitution = async (req, res) => {
 
     /**
      * The findUnique function returns a single record using
-     * an id or unique indentifier
+     * an id or unique identifier
      */ 
     const institution = await prisma.institution.findUnique({
       where: { id: Number(id) },
@@ -245,7 +269,7 @@ const updateInstitution = async (req, res) => {
 
     /**
      * The update function updates a single record using an
-     * id or unique indentifier
+     * id or unique identifier
      */ 
     institution = await prisma.institution.update({
       where: { id: Number(id) },
@@ -279,7 +303,7 @@ const deleteInstitution = async (req, res) => {
 
     /**
      * The delete function deletes a single record using an
-     * id or unique indentifier
+     * id or unique identifier
      */ 
     await prisma.institution.delete({
       where: { id: Number(id) },
@@ -318,7 +342,7 @@ import {
   createInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../controllers/v1/institutions.js";
+} from "../../controllers/v1/institutions.js";
 
 router.route("/").get(getInstitutions).post(createInstitution);
 router
@@ -479,7 +503,7 @@ import {
   createDepartment,
   updateDepartment,
   deleteDepartment,
-} from "../controllers/v1/departments.js";
+} from "../../controllers/v1/departments.js";
 
 router.route("/").get(getDepartments).post(createDepartment);
 router
@@ -492,6 +516,30 @@ export default router;
 ```
 
 The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples.
+
+---
+
+## Postman
+
+Test your changes in **Postman** before you move onto the **Formative Assessment** section. 
+
+Refer to the screenshots below.
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-1.PNG)
+
+The screenshot above is an example of a **GET** request. 
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-2.PNG)
+
+The screenshot above is an example of a **POST** request. 
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-3.PNG)
+
+The screenshot above is an example of a **PUT** request. 
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-4.PNG)
+
+The screenshot above is an example of a **DELETE** request. 
 
 ---
 
