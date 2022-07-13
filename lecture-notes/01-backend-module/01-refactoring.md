@@ -154,6 +154,10 @@ const getInstitution = async (req, res) => {
   try {
     const { id } = req.params;
 
+    /**
+     * The findUnique function returns a single record using
+     * an id or unique indentifier
+     */ 
     const institution = await prisma.institution.findUnique({
       where: { id: Number(id) },
     });
@@ -174,6 +178,9 @@ const getInstitution = async (req, res) => {
 
 const getInstitutions = async (req, res) => {
   try {
+    /**
+     * The findMany function returns all records
+     */ 
     const institutions = await prisma.institution.findMany({
       include: {
         departments: true,
@@ -196,6 +203,10 @@ const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
 
+    /**
+     * The create function creates a new record using the required fields,
+     * i.e., name, region and country
+     */ 
     await prisma.institution.create({
       data: { name, region, country },
     });
@@ -232,6 +243,10 @@ const updateInstitution = async (req, res) => {
         .json({ msg: `No institution with the id: ${id} found` });
     }
 
+    /**
+     * The update function updates a single record using an
+     * id or unique indentifier
+     */ 
     institution = await prisma.institution.update({
       where: { id: Number(id) },
       data: { name, region, country },
@@ -262,6 +277,10 @@ const deleteInstitution = async (req, res) => {
         .json({ msg: `No institution with the id: ${id} found` });
     }
 
+    /**
+     * The delete function deletes a single record using an
+     * id or unique indentifier
+     */ 
     await prisma.institution.delete({
       where: { id: Number(id) },
     });
@@ -473,6 +492,10 @@ export default router;
 ```
 
 The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples.
+
+---
+
+## Prisma Studio
 
 ---
 

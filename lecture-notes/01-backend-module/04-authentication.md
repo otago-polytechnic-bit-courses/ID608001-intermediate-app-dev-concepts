@@ -88,8 +88,8 @@ const authRoute = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     /**
-     * A bearer token will look something like this - Bearer <JWT>. A 
-     * response containing a 403 forbidden status code and message 
+     * A bearer token will look something like this - Bearer <JWT>. A
+     * response containing a 403 forbidden status code and message
      * is returned if a bearer token is not provided
      */
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -104,7 +104,7 @@ const authRoute = async (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     /**
-     * Verify the signed JWT is valid. The first argument is the token, 
+     * Verify the signed JWT is valid. The first argument is the token,
      * i.e., JWT and the second argument is the secret or public/private key
      */
     const payload = jwt.verify(token, process.env.JWT_SECRET);
@@ -153,14 +153,14 @@ const register = async (req, res) => {
     /**
      * A salt is random bits added to a password before it is hashed. Salts
      * create unique passwords even if two users have the same passwords
-     */    
+     */
     const salt = await bcryptjs.genSalt();
 
     /**
-     * Generate a hash for a given string. The first argument 
-     * is a string to be hashed, i.e., Pazzw0rd123 and the second 
+     * Generate a hash for a given string. The first argument
+     * is a string to be hashed, i.e., Pazzw0rd123 and the second
      * argument is a salt, i.e., E1F53135E559C253
-     */ 
+     */
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     user = await prisma.user.create({
@@ -169,9 +169,9 @@ const register = async (req, res) => {
 
     /**
      * Delete the password property from the user object. It
-     * is a less expensive operation than querying the User 
+     * is a less expensive operation than querying the User
      * table to get only user's email and name
-     */ 
+     */
     delete user.password;
 
     return res.status(201).json({
@@ -196,9 +196,9 @@ const login = async (req, res) => {
     }
 
     /**
-     * Compare the given string, i.e., Pazzw0rd123, with the given 
+     * Compare the given string, i.e., Pazzw0rd123, with the given
      * hash, i.e., user's hashed password
-     */ 
+     */
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
@@ -207,9 +207,9 @@ const login = async (req, res) => {
 
     /**
      * Return a JWT. The first argument is the payload, i.e., an object containing
-     * the authenticated user's id and name, the second argument is the secret 
+     * the authenticated user's id and name, the second argument is the secret
      * or public/private key, and the third argument is the lifetime of the JWT
-     */ 
+     */
     const token = jwt.sign(
       {
         id: user.id,
@@ -244,12 +244,12 @@ const createInstitution = async (req, res) => {
 
     /**
      * Get the authenticated user's id from the Request's user property
-     */ 
+     */
     const { id } = req.user;
 
     /**
      * Now you will know which authenticated user created which institution
-     */ 
+     */
     await prisma.institution.create({
       data: { name, region, country, id },
     });
@@ -322,18 +322,19 @@ app.use(`${BASE_URL}/${CURRENT_VERSON}/departments`, authRoute, departments);
 
 ### Task One
 
-In the `schema.prisma` file, add a new field called `username` to the `User` model. Make sure you create a new migration.
+In the `schema.prisma` file, add a new field called `username` of type `String` to the `User` model. Make sure you create a new migration.
 
 ### Task Two
 
 In the `controllers/v1/auth.js` file, refactor the `register` function so that the `username` is included when registering a new user.
 
-Test your changes in **Postman** before you move onto the **Task Three** section. 
+Test your changes in **Postman** before you move onto the **Task Three** section.
 
 ### Task Three
+
 In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their email and password or username and password.
 
-Test your changes in **Postman** before you move onto the **Code Review** section. 
+Test your changes in **Postman** before you move onto the **Code Review** section.
 
 ### Code Review
 

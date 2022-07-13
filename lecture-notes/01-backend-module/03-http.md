@@ -63,8 +63,6 @@ There are four different **header** groups:
 
 In **ID607001: Introductory Application Development Concepts**, you would have encountered a **CORS** error at least once. View this video to learn more about how **CORS** works - <https://www.youtube.com/watch?v=4KHiSt0oLJ0>
 
-### How do you solve this problem?
-
 To get started, run the following command:
 
 ```bash
@@ -73,7 +71,7 @@ npm install cors
 
 Check the `package.json` file to ensure you have installed `cors`.
 
-In your **Express** server, go to the `app.js` file. In the `app.js`, import `cors`. For example:
+In the `app.js` file, import `cors`. For example:
 
 ```js
 import cors from "cors";
