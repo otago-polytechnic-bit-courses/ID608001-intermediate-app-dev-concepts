@@ -71,6 +71,8 @@ To get started, run the following command:
 npm install prettier --save-dev
 ```
 
+Check the `package.json` file to ensure you have installed `prettier`.
+
 In the root directory, create a new file called `.prettierrc.json`.
 
 In the `package.json` file, add the following scripts in the `scripts` block:
@@ -104,6 +106,8 @@ To get started, run the following commands:
 npm install eslint --save-dev
 npm init @eslint/config
 ```
+
+Check the `package.json` file to ensure you have installed `eslint`.
 
 The first command will install **ESLint** as a development dependency. The second command will prompt you with the following questions:
 
@@ -224,6 +228,8 @@ npm install husky lint-staged --save-dev
 npx husky install
 npx husky add .husky/pre-commit "lint-staged"
 ```
+
+Check the `package.json` file to ensure you have installed `husky` and `lint-staged`.
 
 The first command will install **Husky** and **Lint Staged** as development dependencies. The second command will install **Husky** and create a directory called `.husky` in the root directory. The three command will create a file called `pre-commit` in the `.husky` directory. This file tells **Husky** to look at the "lint-staged" block in the `package.json` file and run the given commands pre-commit. 
 

@@ -1,8 +1,12 @@
 # 04: Authentication
 
+## Overview
+
+As a developer, you ideally want to safeguard sensitive data from being accessed by unauthorised users. Only when a user has logged in or authenticated they will be able to access their data. However, authorisation goes beyond authentication. Users can have different roles and permissions, which gives them specific access. For example, an admin user can create, update and delete a resource, but a normal user can only read a resource.
+
 ## Session vs. Token
 
-View this video to learn more about how session and token authentication works - <https://www.youtube.com/watch?v=UBUNrFtufWo>
+There are two common ways to authenticate a user. View this video to learn more about how session and token authentication works - <https://www.youtube.com/watch?v=UBUNrFtufWo>
 
 ---
 
@@ -10,13 +14,15 @@ View this video to learn more about how session and token authentication works -
 
 ### Overview
 
-
+**JSON Web Token (JWT)** is a way to transmit information between parties as a **JSON** object securely. This information is **verified** because it is **signed** using a **secret** or **private/public key**.
 
 To get started, run the following command:
 
 ```bash
-npm install jsonwebtokens bcryptjs
+npm install jsonwebtoken bcryptjs
 ```
+
+Check the `package.json` file to ensure you have installed `jsonwebtoken` and `bcryptjs`.
 
 In the `.env` file, add the following environment variables:
 
@@ -32,6 +38,8 @@ PORT=3000
 JWT_SECRET=P@ssw0rd123
 JWT_LIFETIME=1hr
 ```
+
+You going to use the `JWT_SECRET` environment variable's value, i.e., P@ssw0rd123 to sign the **JWT**. The lifetime of the **JWT** is the `JWT_LIFETIME` environment variable's value, i.e., 1 hour. 
 
 ### Schema
 
@@ -49,7 +57,7 @@ model User {
 }
 ```
 
-**Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id.
+**Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id. 
 
 ### middleware/auth.js
 
@@ -81,7 +89,7 @@ const authRoute = async (req, res, next) => {
 export default authRoute;
 ```
 
-### controllers/auth.js
+### controllers/v1/auth.js
 
 In the `controllers/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
@@ -89,9 +97,6 @@ In the `controllers/v1` directory, create a new file called `auth.js`. In the `a
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-/**
- *  Note: The PrismaClient code should be refactored
- */
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
@@ -112,14 +117,7 @@ const register = async (req, res) => {
       data: { name, email, password: hashedPassword },
     });
 
-    /**
-     * Note: You could query the User table so that you
-     * only select the user's name and email. However
-     * deleting the password and token property from the 
-     * user object is a less expensive operation
-     */ 
     delete user.password;
-    delete user.token;
 
     return res.status(201).json({
       data: user,
@@ -131,7 +129,11 @@ const register = async (req, res) => {
     });
   }
 };
+```
 
+**Note:** Deleting the `password` property from the `user` object is a less expensive operation than querying the `User` table to select only the user's `name` and `email`.
+
+```js
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -173,7 +175,6 @@ export { register, login };
 
 ### controllers/v1/institutions.js
 
-
 ```js
 const createInstitution = async (req, res) => {
   try {
@@ -202,15 +203,15 @@ const createInstitution = async (req, res) => {
 };
 ```
 
-### routes/auth.js
+### routes/v1/auth.js
 
-In the `routes` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the `routes/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
 ```js
 import { Router } from "express";
 const router = Router();
 
-import { register, login } from "../controllers/auth.js";
+import { register, login } from "../controllers/v1/auth.js";
 
 router.route("/register").post(register);
 router.route("/login").post(login);
@@ -223,22 +224,28 @@ export default router;
 In the `app.js` file, add the following imports:
 
 ```js
-import auth from "./routes/auth.js";
+import auth from "./routes/v1/auth.js";
 import authRoute from "./middleware/auth.js";
 ```
 
 Add the following route for `auth`:
 
 ```js
-app.use(`${BASE_URL}/auth`, auth);
+app.use(`${BASE_URL}/${CURRENT_VERSON}/auth`, auth);
+
 ```
 
 Update the routes for `institutions` and `departments` so that they are using the `authRoute` **middleware**:
 
 ```js
-app.use(`${BASE_URL}/institutions`, authRoute, institutions);
-app.use(`${BASE_URL}/departments`, authRoute, departments);
+app.use(`${BASE_URL}/${CURRENT_VERSON}/institutions`, authRoute, institutions);
+app.use(`${BASE_URL}/${CURRENT_VERSON}/departments`, authRoute, departments);
 ```
+
+**Resources:**
+- https://jwt.io/introduction
+- https://www.npmjs.com/package/jsonwebtoken
+- https://www.npmjs.com/package/bcryptjs
 
 ---
 

@@ -65,6 +65,8 @@ To get started, run the following command:
 npm install cors
 ```
 
+Check the `package.json` file to ensure you have installed `cors`.
+
 In your **Express** server, go to the `app.js` file. In the `app.js`, import `cors`. For example:
 
 ```js

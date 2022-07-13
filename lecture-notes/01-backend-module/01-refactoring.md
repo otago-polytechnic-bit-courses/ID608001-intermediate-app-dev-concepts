@@ -68,6 +68,8 @@ npm install prisma --save-dev
 npx prisma init
 ```
 
+Check the `package.json` file to ensure you have installed `@prisma/client` and `prisma`.
+
 ### Schema
 
 You will see a new directory called `prisma` in the root directory. In the `prisma` directory, you will see a new file called `schema.prisma`. This file tells **Prisma** how to connect to a database, generate a client and map your data from a database to your application.
