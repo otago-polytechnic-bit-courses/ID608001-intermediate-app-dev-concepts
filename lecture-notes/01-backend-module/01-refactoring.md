@@ -1,10 +1,12 @@
 # 01: Refactoring
 
+## Preparation
+
+Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to add the `README.md` and `.gitignore` **(Node)** files. Clone the repository. Change the directory to the repository and create a new branch called `01-playground`. Checkout to the `01-playground` branch and open the repository in **Visual Studio Code**.
+
 **Note:** Carefully read the comments in the code examples below.
 
 ## Express
-
-Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to add the `README.md` and `.gitignore` **(Node)** files. Clone the repository. Change the directory to the repository and create a new branch called `01-playground`. Checkout to the `01-playground` branch and open the repository in **Visual Studio Code**.
 
 Create a file called `package.json` by running the following command:
 
@@ -236,7 +238,7 @@ const updateInstitution = async (req, res) => {
     });
 
     return res.json({
-      msg: `Institution with the id: ${id} successfully update`,
+      msg: `Institution with the id: ${id} successfully updated`,
       data: institution,
     });
   } catch (err) {
@@ -397,7 +399,7 @@ const updateDepartment = async (req, res) => {
     });
 
     return res.json({
-      msg: `Department with the id: ${id} successfully update`,
+      msg: `Department with the id: ${id} successfully updated`,
       data: department,
     });
   } catch (err) {
@@ -478,24 +480,9 @@ The code examples above should look familiar from **ID607001: Introductory Appli
 
 ### Task One
 
-In this task, use the code examples above. In the `controller/v1/institutions.js` and `controller/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controller/v1/institutions.js` and `controller/v1/departments.js` files.
+In the `controller/v1/institutions.js` and `controller/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controller/v1/institutions.js` and `controller/v1/departments.js` files.
 
-I suggest testing your changes in **Postman** as you go. Here is a `POST` request example for the `Institution` and `Department` models:
-
-```json
-{
-  "name": "Otago Polytechnic",
-  "region": "Otago",
-  "country": "New Zealand"
-}
-```
-
-```json
-{
-  "name": "Information Technology",
-  "institutionId": 1
-}
-```
+Test your changes in **Postman** before you move onto the **Code Review** section. 
 
 ### Code Review
 

@@ -1,5 +1,9 @@
 # 04: Authentication
 
+## Preparation
+
+Use the repository from the previous **Formative Assessment**. Create a new branch called `04-playground`. Checkout to the `04-playground` branch and open the repository in **Visual Studio Code**.
+
 **Note:** Carefully read the comments in the code examples below.
 
 ## Overview
@@ -58,6 +62,8 @@ model User {
   departments     Department[]
 }
 ```
+
+**Note:** Make sure you create a new migration.
 
 ### middleware/auth.js
 
@@ -160,7 +166,7 @@ const register = async (req, res) => {
     /**
      * Delete the password property from the user object. It
      * is a less expensive operation than querying the User 
-     * table to retrieve the only user's email and name
+     * table to get only user's email and name
      */ 
     delete user.password;
 
@@ -225,7 +231,7 @@ export { register, login };
 
 ### controllers/v1/institutions.js
 
-In the `controllers/v1/institutions.js` file, update the `createInstitution` function:
+In the `controllers/v1/institutions.js` file, refactor the `createInstitution` function:
 
 ```js
 const createInstitution = async (req, res) => {
@@ -302,10 +308,29 @@ app.use(`${BASE_URL}/${CURRENT_VERSON}/departments`, authRoute, departments);
 
 **Resources:**
 
-- https://jwt.io/introduction
-- https://www.npmjs.com/package/jsonwebtoken
-- https://www.npmjs.com/package/bcryptjs
+- <https://jwt.io/introduction>
+- <https://www.npmjs.com/package/jsonwebtoken>
+- <https://www.npmjs.com/package/bcryptjs>
 
 ---
 
 ## Formative Assessment
+
+### Task One
+
+In the `schema.prisma` file, add a new field called `username` to the `User` model. Make sure you create a new migration.
+
+### Task Two
+
+In the `controllers/v1/auth.js` file, refactor the `register` function so that the `username` is included when registering a new user.
+
+Test your changes in **Postman** before you move onto the **Task Three** section. 
+
+### Task Three
+In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their email and password or username and password.
+
+Test your changes in **Postman** before you move onto the **Code Review** section. 
+
+### Code Review
+
+Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.

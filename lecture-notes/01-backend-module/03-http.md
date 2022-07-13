@@ -1,5 +1,9 @@
 # 03: HTTP
 
+## Preparation
+
+Use the repository from the previous **Formative Assessment**. Create a new branch called `03-playground`. Checkout to the `03-playground` branch and open the repository in **Visual Studio Code**.
+
 ## Request Methods
 
 An **HTTP request method** indicates an action to be performed for a given resource.
@@ -85,3 +89,9 @@ app.use(cors());
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>
 - <https://www.npmjs.com/package/cors>
+
+## Formative Assessment
+
+### Code Review
+
+Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.

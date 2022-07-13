@@ -1,5 +1,9 @@
 # 02: Development Workflow
 
+## Preparation
+
+Use the repository from the previous **Formative Assessment**. Create a new branch called `02-playground`. Checkout to the `02-playground` branch and open the repository in **Visual Studio Code**.
+
 ## Git Commit Message Conventions
 
 Let us discuss a message convention (not a standard) adopted in the industry.
@@ -185,10 +189,6 @@ Test this script before you move onto the **Formative Assessment**.
 
 ### Task One
 
-Use the repository from the previous **Formative Assessment**. Create a new branch called `02-playground`. Checkout to the `02-playground` branch and open the repository in **Visual Studio Code**.
-
-### Task Two
-
 Use the resource below and the following options to the `.prettierrc.json` file:
 
 - Print width of 80 characters.
@@ -196,11 +196,11 @@ Use the resource below and the following options to the `.prettierrc.json` file:
 - Include parentheses around a single arrow function parameter.
 - Tab width of 2 spaces.
 
-Test these options before you move onto the **Task Three**.
+Test these options before you move onto the **Task Two**.
 
 **Resource:** <https://prettier.io/docs/en/options>
 
-### Task Three
+### Task Two
 
 Use the resource below and add the following rules to the `.eslintrc.json` file:
 
@@ -211,13 +211,13 @@ Use the resource below and add the following rules to the `.eslintrc.json` file:
 - Disallow trailing whitespace at the end of lines.
 - Disallow unused variables.
 
-Test these rules before you move onto the **Task Four**.
+Test these rules before you move onto the **Task Three**.
 
 **Resource:** <https://eslint.org/docs/latest/rules>
 
 ## Additional Task
 
-### Task Four
+### Task Three
 
 **Git** hook scripts help identify issues before you push your code to **GitHub**. In this task, you will look at setting up a pre-commit hook for **Prettier** and **ESLint**.
 
