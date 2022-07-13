@@ -1,5 +1,7 @@
 # 01: Refactoring
 
+**Note:** Carefully read the comments in the code examples below.
+
 ## Express
 
 Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to add the `README.md` and `.gitignore` **(Node)** files. Clone the repository. Change the directory to the repository and create a new branch called `01-playground`. Checkout to the `01-playground` branch and open the repository in **Visual Studio Code**.
@@ -27,11 +29,17 @@ You will add to the `.env` file throughout the **backend module**.
 In the root directory, create a new file called `app.js`. In the `app.js` file, add the following code:
 
 ```js
+/**
+ * The current version of this API is 1
+ */  
 const CURRENT_VERSION = "v1";
 
 import dotenv from "dotenv";
 import express, { urlencoded, json } from "express";
 
+/**
+ * You will create the routes for institutions and departments later
+ */ 
 import institutions from `./routes/${CURRENT_VERSION}/institutions.js`;
 import departments from `./routes/${CURRENT_VERSION}/departments.js`;
 
@@ -462,7 +470,7 @@ router
 export default router;
 ```
 
-The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. Though, as you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples above.
+The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples.
 
 ---
 

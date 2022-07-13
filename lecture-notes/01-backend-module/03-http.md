@@ -76,10 +76,10 @@ import cors from "cors";
 Then add the following **middleware**:
 
 ```js
-app.use(cors()); // Simple usage example
+app.use(cors());
 ```
 
-**Note:** In **Assessment 1: Node.js Restful API - Open Trivia DB**, you will look at how to whitelist URLs.
+**Note:** In **Assessment 1: Node.js Restful API - Open Trivia DB**, you will look at how to allowlist URLs using asynchronous usage.
 
 **Resources:**
 
