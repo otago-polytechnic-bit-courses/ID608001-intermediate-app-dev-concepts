@@ -6,7 +6,7 @@ Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to
 
 **Note:** Carefully read the comments in the code examples below.
 
-## Express
+## package.json
 
 Create a file called `package.json` by running the following command:
 
@@ -14,7 +14,15 @@ Create a file called `package.json` by running the following command:
 npm init -y
 ```
 
-Also, **Express** and **Dotenv** by running the commands:
+In the `package.json` file, add the following:
+
+```json
+"type": "module",
+```
+
+## Express
+
+Install **Express** and **Dotenv** by running the commands:
 
 ```bash
 npm install express dotenv
@@ -80,7 +88,7 @@ npx prisma init
 
 Check the `package.json` file to ensure you have installed `@prisma/client` and `prisma`.
 
-In the `.env` file, remove the `DATABASE_URL` environment variable.
+In the `.env` file, set the `DATABASE_URL` environment variable to `file:./dev.db`.
 
 ### Schema
 
@@ -97,7 +105,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url      = env("DATABASE_URL")
 }
 
 model Institution {
@@ -160,7 +168,7 @@ CREATE TABLE "Department" (
 );
 ```
 
-**Prisma** has created an `Institution` and ``Department` table in the `dev.db` file.
+**Prisma** has created an `Institution` and `Department` table in the `dev.db` file.
 
 ## Refactoring
 
@@ -529,17 +537,40 @@ Refer to the screenshots below.
 
 The screenshot above is an example of a **GET** request. 
 
+1. Set the **HTTP** method to **GET**
+2. Set the request URL to localhost:3000/api/v1/institutions
+3. Click the **Send** button to send a **GET** to your **Express** server
+4. A **JSON** response is returned containing data
+5. A 200 status code is returned
+
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-2.PNG)
 
 The screenshot above is an example of a **POST** request. 
+
+1. Set the **HTTP** method to **POST**
+2. Click on the **Body** tab
+3. Click on the **raw** radio button
+4. Select the **JSON** option
+5. Add a payload of data and click the **Send** button
+6. A **JSON** response is returned containing data
+7. A 201 status code is returned
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-3.PNG)
 
 The screenshot above is an example of a **PUT** request. 
 
+1. Set the **HTTP** method to **PUT**
+2. Set the request URL to localhost:3000/api/v1/institutions/1. The 1 is the institution's id you wish to update
+3. Add a payload of data and click the **Send** button
+4. A **JSON** response is returned containing data
+
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-4.PNG)
 
 The screenshot above is an example of a **DELETE** request. 
+
+1. Set the **HTTP** method to **DELETE**
+2. Set the request URL to localhost:3000/api/v1/institutions/1 and click the **Send** button. The 1 is the institution's id you wish to delete
+3. A **JSON** response is returned containing data
 
 ---
 
