@@ -28,7 +28,7 @@ Install **Express** and **Dotenv** by running the commands:
 npm install express dotenv
 ```
 
-In the root directory, create a new file called `.env`. In the `.env` file, add the following variables:
+In the root directory, create a new file called `.env`. In the `.env` file, add the following variable:
 
 ```bash
 PORT=3000
@@ -44,7 +44,7 @@ import express, { urlencoded, json } from "express";
 
 /**
  * You will create the routes for institutions and departments later
- */ 
+ */
 import institutions from "./routes/v1/institutions.js";
 import departments from "./routes/v1/departments.js";
 
@@ -56,7 +56,7 @@ const BASE_URL = "api";
 
 /**
  * The current version of this API is 1
- */  
+ */
 const CURRENT_VERSION = "v1";
 
 const PORT = process.env.PORT;
@@ -88,8 +88,6 @@ npx prisma init
 
 Check the `package.json` file to ensure you have installed `@prisma/client` and `prisma`.
 
-In the `.env` file, set the `DATABASE_URL` environment variable to `file:./dev.db`.
-
 ### Schema
 
 You will see a new directory called `prisma` in the root directory. In the `prisma` directory, you will see a new file called `schema.prisma`. This file tells **Prisma** how to connect to a database, generate a client and map your data from a database to your application.
@@ -104,16 +102,17 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Institution {
-  id         Int          @id @default(autoincrement())
-  name       String
-  region     String
-  country    String
-  createdAt  DateTime     @default(now())
+  id          Int          @id @default(autoincrement())
+  name        String
+  region      String
+  country     String
+  createdAt   DateTime     @default(now())
   departments Department[]
 }
 
@@ -128,9 +127,22 @@ model Department {
 
 The schema structure should look familiar from **ID607001: Introductory Application Development Concepts**.
 
-### SQLite
+### PostgreSQL
 
-You are going to use **SQLite** for the data source. To create a new **SQLite** database file, run the following command:
+You are going to use **PostgreSQL** for the data source. To create a **PostgreSQL** database, navigate to **Heroku** and login.
+
+Once, you are logged in, follow the steps below:
+
+- Create a new application and name it **id608-your OP username-dev-db**. 
+- Click the **Resources** tab. 
+- Type **Postgres** into the **Add-ons** search bar
+- Click on the **Heroku Postgres** option. 
+- Click on the **Submit Order Form** button. 
+- Click on the **Settings** tab. 
+- In the **Config Vars** section, click on the **Reveal Config Vars** button.
+- Copy the `DATABASE_URL` environment variable's value. This is your **PostgreSQL** database connection string.
+
+In the `.env` file, set the `DATABASE_URL` environment variable to your **PostgreSQL** database connection string. Also, add another environment variable called `SHADOW_DATABASE_URL`. Again, set this to your **PostgreSQL** database connection string.
 
 ```bash
 npx prisma migrate dev --name init
@@ -189,7 +201,7 @@ const getInstitution = async (req, res) => {
     /**
      * The findUnique function returns a single record using
      * an id or unique identifier
-     */ 
+     */
     const institution = await prisma.institution.findUnique({
       where: { id: Number(id) },
     });
@@ -212,7 +224,7 @@ const getInstitutions = async (req, res) => {
   try {
     /**
      * The findMany function returns all records
-     */ 
+     */
     const institutions = await prisma.institution.findMany({
       include: {
         departments: true,
@@ -238,7 +250,7 @@ const createInstitution = async (req, res) => {
     /**
      * The create function creates a new record using the required fields,
      * i.e., name, region and country
-     */ 
+     */
     await prisma.institution.create({
       data: { name, region, country },
     });
@@ -278,7 +290,7 @@ const updateInstitution = async (req, res) => {
     /**
      * The update function updates a single record using an
      * id or unique identifier
-     */ 
+     */
     institution = await prisma.institution.update({
       where: { id: Number(id) },
       data: { name, region, country },
@@ -312,7 +324,7 @@ const deleteInstitution = async (req, res) => {
     /**
      * The delete function deletes a single record using an
      * id or unique identifier
-     */ 
+     */
     await prisma.institution.delete({
       where: { id: Number(id) },
     });
@@ -529,23 +541,35 @@ The code examples above should look familiar from **ID607001: Introductory Appli
 
 ## Postman
 
-Test your changes in **Postman** before you move on to the **Formative Assessment** section. 
+Test your changes in **Postman** before you move on to the **Formative Assessment** section.
 
-The screenshot below is an example of a **POST** request or creating an institution. 
+The screenshot below is an example of a **POST** request or creating an institution:
 
-The screenshot below is an example of a **GET** request or retrieving all institutions. 
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-1.jpeg)
 
-The screenshot below is an example of a **GET** request or retrieving one institution. 
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-2.jpeg)
 
-The screenshot below is an example of a **PUT** request or updating an institution.  
+The screenshot below is an example of a **GET** request or retrieving all institutions:
 
-The screenshot below is an example of a **DELETE** request or deleting an institution. 
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-3.jpeg)
+
+The screenshot below is an example of a **GET** request or retrieving one institution:
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-4.jpeg)
+
+The screenshot below is an example of a **PUT** request or updating an institution:
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-5.jpeg)
+
+The screenshot below is an example of a **DELETE** request or deleting an institution:
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-6.jpeg)
 
 ---
 
 ## Prisma Studio
 
-If you want to view, create, update and delete your data easily, use **Prisma Studio**. 
+If you want to view, create, update and delete your data easily, use **Prisma Studio**.
 
 To get started, run the command:
 
@@ -565,7 +589,7 @@ Navigate to <http://localhost:5555>.
 
 In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files.
 
-Test your changes in **Postman** before you move on to the **Code Review** section. 
+Test your changes in **Postman** before you move on to the **Code Review** section.
 
 ### Code Review
 
