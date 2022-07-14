@@ -128,11 +128,11 @@ You are going to use **SQLite** for the data source. The easy way to create an *
 .open dev
 ```
 
-This command will create a new database file called `dev.db`. Copy and paste `dev.db` into the `prisma` directory.
+This command will create a new database file called `dev`. Copy and paste `dev` into the `prisma` directory.
 
 ### Migrations
 
-You need to create a migration from the `prisma.schema` file and apply them to the `dev.db` file. To do this, run the following command:
+You need to create a migration from the `prisma.schema` file and apply them to the `dev` file. To do this, run the following command:
 
 ```bash
 npx prisma migrate dev
@@ -160,7 +160,7 @@ CREATE TABLE "Department" (
 );
 ```
 
-**Prisma** has created an `Institution` and ``Department` table in `dev.db`.
+**Prisma** has created an `Institution` and ``Department` table in the `dev.db` file.
 
 ## Refactoring
 
@@ -551,7 +551,7 @@ The screenshot above is an example of a **DELETE** request.
 
 ### Task One
 
-In the `controller/v1/institutions.js` and `controller/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controller/v1/institutions.js` and `controller/v1/departments.js` files.
+In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files.
 
 Test your changes in **Postman** before you move onto the **Code Review** section. 
 

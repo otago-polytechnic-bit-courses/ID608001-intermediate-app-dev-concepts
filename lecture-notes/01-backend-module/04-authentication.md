@@ -69,14 +69,14 @@ model User {
 
 **Note:** Make sure you create a new migration.
 
-### middleware/auth.js
+### middleware/authRoute.js
 
-In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `authRoute.js`. In the `authRoute.js` file, add the following code:
 
 ```js
 import jwt from "jsonwebtoken";
 
-const authRoute = async (req, res, next) => {
+const authRoute = (req, res, next) => {
   try {
     /**
      * The authorization request header provides information that authenticates
@@ -114,7 +114,7 @@ const authRoute = async (req, res, next) => {
      */
     req.user = payload;
 
-    next();
+    return next();
   } catch (error) {
     return res.status(403).json({
       msg: "Not authorized to access this route",
@@ -191,7 +191,7 @@ const login = async (req, res) => {
 
     const user = await prisma.user.findUnique({ where: { email } });
 
-    if (user === null) {
+    if (!user) {
       return res.status(401).json({ msg: "Invalid email" });
     }
 
@@ -294,7 +294,7 @@ In the `app.js` file, add the following imports:
 
 ```js
 import auth from "./routes/v1/auth.js";
-import authRoute from "./middleware/auth.js";
+import authRoute from "./middleware/authRoute.js";
 ```
 
 Add the following route for `auth`:
@@ -306,7 +306,11 @@ app.use(`/${BASE_URL}/${CURRENT_VERSION}/auth`, auth);
 Update the routes for `institutions` so that it is using the `authRoute` **middleware**:
 
 ```js
-app.use(`/${BASE_URL}/${CURRENT_VERSION}/institutions`, authRoute, institutions);
+app.use(
+  `/${BASE_URL}/${CURRENT_VERSION}/institutions`,
+  authRoute,
+  institutions
+);
 ```
 
 **Resources:**
@@ -319,7 +323,7 @@ app.use(`/${BASE_URL}/${CURRENT_VERSION}/institutions`, authRoute, institutions)
 
 ## Postman
 
-Test your changes in **Postman** before you move onto the **Formative Assessment** section. 
+Test your changes in **Postman** before you move onto the **Formative Assessment** section.
 
 Refer to the screenshots below.
 
