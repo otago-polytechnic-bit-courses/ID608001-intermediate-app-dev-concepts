@@ -330,14 +330,14 @@ Refer to the screenshots below.
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-1.PNG)
 
 1. If a user does not provide a bearer token with the request to a protected route, a **JSON** response is returned containing data
-2. A 403 Forbidden status code is returned
+2. A **403 Forbidden** status code is returned
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-2.PNG)
 
-1. Set the request URL to localhost:3000/api/v1/auth/register and **HTTP** method to **POST**
+1. Set the request URL to <localhost:3000/api/v1/auth/register> and **HTTP** method to **POST**
 2. Add a payload of data and click the **Send** button
 3. A **JSON** response is returned containing data
-4. A 201 Created status code is returned
+4. A **201 Created** status code is returned
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-3.PNG)
 
@@ -345,16 +345,16 @@ Refer to the screenshots below.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-4.PNG)
 
-1. Set the request URL to localhost:3000/api/v1/auth/login
+1. Set the request URL to <localhost:3000/api/v1/auth/login>
 2. Change the email's value to something that is invalid
 3. A **JSON** response is returned containing data
-4. A 401 Unauthorized status code is returned
+4. A **401 Unauthorized** status code is returned
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-5.PNG)
 
 1. Change the password's value to something that is invalid
 2. A **JSON** response is returned containing data
-3. A 401 Unauthorized status code is returned
+3. A **401 Unauthorized** status code is returned
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-6.PNG)
 
@@ -362,15 +362,15 @@ Refer to the screenshots below.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-7.PNG)
 
-1. Set the request URL to localhost:3000/api/v1/auth/institutions and **HTTP** method to **GET**
+1. Set the request URL to <localhost:3000/api/v1/auth/institutions> and **HTTP** method to **GET**
 2. Click the **Headers** tab
 3. Set the **Authorization** header's value to Bearer 12345 (invalid bearer token) and click the **Send** button.
 4. A **JSON** response is returned containing data
-5. A 403 Forbidden status code is returned
+5. A **403 Forbidden** status code is returned
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-8.PNG)
 
-1. Set the **Authorization** header's value to Bearer <JWT> (valid bearer token) and click the **Send** button.
+1. Set the **Authorization** header's value to Bearer Your JWT (valid bearer token) and click the **Send** button. **Note:** Your JWT should be replaced with the token you copied earlier
 2. A **JSON** response is returned containing data
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-9.PNG)
