@@ -70,8 +70,6 @@ const cacheRoute = (req, res, next) => {
 export default cacheRoute;
 ```
 
-https://www.youtube.com/watch?v=xZ_Rnh1UHTs&list=PLoMrpxu0i-MecMlPB-I3SjRSzr90J6Qqi&index=41
-
 ---
 
 ## Helmet
