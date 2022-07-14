@@ -541,19 +541,19 @@ The screenshot above is an example of a **GET** request.
 2. Set the request URL to localhost:3000/api/v1/institutions
 3. Click the **Send** button to send a **GET** to your **Express** server
 4. A **JSON** response is returned containing data
-5. A 200 status code is returned
+5. A 200 OK status code is returned
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-2.PNG)
 
 The screenshot above is an example of a **POST** request. 
 
 1. Set the **HTTP** method to **POST**
-2. Click on the **Body** tab
-3. Click on the **raw** radio button
+2. Click the **Body** tab
+3. Click the **raw** radio button
 4. Select the **JSON** option
 5. Add a payload of data and click the **Send** button
 6. A **JSON** response is returned containing data
-7. A 201 status code is returned
+7. A 201 Created status code is returned
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-3.PNG)
 
@@ -575,6 +575,18 @@ The screenshot above is an example of a **DELETE** request.
 ---
 
 ## Prisma Studio
+
+If you want to view, create, update and delete your data easily, use **Prisma Studio**. 
+
+To get started, run the command:
+
+```bash
+npx prisma studio
+```
+
+Navigate to localhost:5555.
+
+**Resource:** <https://www.prisma.io/studio>
 
 ---
 

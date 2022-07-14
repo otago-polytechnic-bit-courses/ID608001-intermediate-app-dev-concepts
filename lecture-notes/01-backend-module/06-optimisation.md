@@ -1,5 +1,13 @@
 # 06: Optimisation
 
+## Preparation
+
+Use the repository from the previous **Formative Assessment**. Create a new branch called `05-playground`. Checkout to the `05-playground` branch and open the repository in **Visual Studio Code**.
+
+**Note:** Carefully read the comments in the code examples below.
+
+---
+
 ## Overview
 
 ---
