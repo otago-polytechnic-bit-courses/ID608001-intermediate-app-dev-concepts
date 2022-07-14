@@ -98,7 +98,7 @@ node_modules
 
 **Note:** You will configure the `.prettierrc.json` file in the **Formative Assessment**.
 
-Test these scripts before you move onto the **ESLint** section.
+Test these scripts before you move on to the **ESLint** section.
 
 **Resource:** <https://prettier.io>
 
@@ -183,7 +183,7 @@ In the `package.json` file, add the following script in the `scripts` block:
 
 It will lint and fix all files with the extensions - `.js` and `.json`.
 
-Test this script before you move onto the **Formative Assessment**.
+Test this script before you move on to the **Formative Assessment**.
 
 **Resource:** <https://eslint.org>
 
@@ -200,7 +200,7 @@ Use the resource below and the following options to the `.prettierrc.json` file:
 - Include parentheses around a single arrow function parameter.
 - Tab width of 2 spaces.
 
-Test these options before you move onto the **Task Two**.
+Test these options before you move on to the **Task Two**.
 
 **Resource:** <https://prettier.io/docs/en/options>
 
@@ -215,7 +215,7 @@ Use the resource below and add the following rules to the `.eslintrc.json` file:
 - Disallow trailing whitespace at the end of lines.
 - Disallow unused variables.
 
-Test these rules before you move onto the **Task Three**.
+Test these rules before you move on to the **Task Three**.
 
 **Resource:** <https://eslint.org/docs/latest/rules>
 
@@ -237,7 +237,7 @@ npx husky add .husky/pre-commit "lint-staged"
 
 Check the `package.json` file to ensure you have installed `husky` and `lint-staged`.
 
-The first command will install **Husky** and **Lint Staged** as development dependencies. The second command will install **Husky** and create a directory called `.husky` in the root directory. The three command will create a file called `pre-commit` in the `.husky` directory. This file tells **Husky** to look at the "lint-staged" block in the `package.json` file and run the given commands pre-commit. 
+The first command will install **Husky**, and **Lint Staged** as development dependencies. The second command will install **Husky** and create a directory called `.husky` in the root directory. The three commands will create a file called `pre-commit` in the `.husky` directory. This file tells **Husky** to look at the "lint-staged" block in the `package.json` file and run the given commands pre-commit. 
 
 In the `package.json` file, add the following:
 
@@ -256,7 +256,7 @@ In the `package.json` file, add the following:
 }
 ```
 
-Test this hook script before you move onto the **Code Review** section.
+Test this hook script before you move on to the **Code Review** section.
 
 **Resources:**
 

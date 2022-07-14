@@ -45,6 +45,7 @@ Your `.env` file should look like this:
 
 ```bash
 PORT=3000
+DATABASE_URL=file:./dev.db
 JWT_SECRET=Pazzw0rd123
 JWT_LIFETIME=1hr
 ```
@@ -323,60 +324,25 @@ app.use(
 
 ## Postman
 
-Test your changes in **Postman** before you move onto the **Formative Assessment** section.
+Test your changes in **Postman** before you move on to the **Formative Assessment** section.
 
-Refer to the screenshots below.
+The screenshot below is an example of a **GET** request without providing a token. 
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-1.PNG)
+The screenshot below is an example of creating or registering a user.
 
-1. If a user does not provide a bearer token with the request to a protected route, a **JSON** response is returned containing data
-2. A **403 Forbidden** status code is returned
+The screenshot below is an example of creating or registering an existing user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-2.PNG)
+The screenshot below is an example of logging in as a user with an invalid email.
 
-1. Set the request URL to <localhost:3000/api/v1/auth/register> and **HTTP** method to **POST**
-2. Add a payload of data and click the **Send** button
-3. A **JSON** response is returned containing data
-4. A **201 Created** status code is returned
+The screenshot below is an example of logging in as a user with an invalid password.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-3.PNG)
+The screenshot below is an example of logging in as a user and being returned a token.
 
-1. A **JSON** response is returned if you register a user that already exists
+The screenshot below is an example of accessing a protecting route using an invalid token.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-4.PNG)
+The screenshot below is an example of accessing a protecting route using a valid token.
 
-1. Set the request URL to <localhost:3000/api/v1/auth/login>
-2. Change the email's value to something that is invalid
-3. A **JSON** response is returned containing data
-4. A **401 Unauthorized** status code is returned
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-5.PNG)
-
-1. Change the password's value to something that is invalid
-2. A **JSON** response is returned containing data
-3. A **401 Unauthorized** status code is returned
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-6.PNG)
-
-1. Once the user is logged in, a **JSON** response is returned containing data. Copy the `token` value
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-7.PNG)
-
-1. Set the request URL to <localhost:3000/api/v1/auth/institutions> and **HTTP** method to **GET**
-2. Click the **Headers** tab
-3. Set the **Authorization** header's value to Bearer 12345 (invalid bearer token) and click the **Send** button.
-4. A **JSON** response is returned containing data
-5. A **403 Forbidden** status code is returned
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-8.PNG)
-
-1. Set the **Authorization** header's value to Bearer Your JWT (valid bearer token) and click the **Send** button. **Note:** Your JWT should be replaced with the token you copied earlier
-2. A **JSON** response is returned containing data
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-9.PNG)
-
-1. Set **HTTP** method to **POST**, , click the **Body** tab, add a payload of data and click the **Send** button
-2. A **JSON** response is returned containing data. **Note:** The `userId` is the authenticated user who created the institution
+The screenshot below is an example of creating an institution using a valid token.
 
 ---
 
@@ -390,13 +356,13 @@ In the `schema.prisma` file, add a new field called `username` of type `String` 
 
 In the `controllers/v1/auth.js` file, refactor the `register` function so that the `username` is included when registering a new user.
 
-Test your changes in **Postman** before you move onto the **Task Three** section.
+Test your changes in **Postman** before you move on to the **Task Three** section.
 
 ### Task Three
 
 In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their email and password or username and password.
 
-Test your changes in **Postman** before you move onto the **Code Review** section.
+Test your changes in **Postman** before you move on to the **Code Review** section.
 
 ### Code Review
 

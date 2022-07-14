@@ -2,7 +2,7 @@
 
 ## Preparation
 
-Use the repository from the previous **Formative Assessment**. Create a new branch called `05-playground`. Checkout to the `05-playground` branch and open the repository in **Visual Studio Code**.
+Use the repository from the previous **Formative Assessment**. Create a new branch called `06-playground`. Checkout to the `06-playground` branch and open the repository in **Visual Studio Code**.
 
 **Note:** Carefully read the comments in the code examples below.
 
@@ -80,6 +80,18 @@ export default cacheRoute;
 
 ---
 
-## Helmet
+## Postman
+
+Test your changes in **Postman** before you move on to the **Formative Assessment** section.
+
+The screenshot below is an example of before compression.
+
+The screenshot below is an example of after compression.
+
+The screenshot below is an example of a cache miss.
+
+The screenshot below is an example of deleting a key from the cache.
+
+The screenshot below is an example of a cache hit.
 
 ## Formative Assessment

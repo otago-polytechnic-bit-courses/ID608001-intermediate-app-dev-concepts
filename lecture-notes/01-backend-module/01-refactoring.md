@@ -94,7 +94,7 @@ In the `.env` file, set the `DATABASE_URL` environment variable to `file:./dev.d
 
 You will see a new directory called `prisma` in the root directory. In the `prisma` directory, you will see a new file called `schema.prisma`. This file tells **Prisma** how to connect to a database, generate a client and map your data from a database to your application.
 
-Let us use the example code below. A schema is built up of three blocks - data sources, generators and models. Each block comprises a type, i.e., data source, a name, i.e., db and fields, i.e., provider and url.
+Let us use the example code below. A schema comprises three blocks - data sources, generators and models. Each block comprises a type, i.e., data source, a name, i.e., db and fields, i.e., provider and url.
 
 In the `schema.prisma` file, add the following code:
 
@@ -130,17 +130,17 @@ The schema structure should look familiar from **ID607001: Introductory Applicat
 
 ### SQLite
 
-You are going to use **SQLite** for the data source. The easy way to create an **SQLite** database is to download the **SQLite** command-line tool - <https://www.sqlite.com/2022/sqlite-tools-win32-x86-3390000.zip>. Run `sqlite3.exe` and run the following command:
+You are going to use **SQLite** for the data source. To create a new **SQLite** database file, run the following command:
 
 ```bash
-.open dev
+npx prisma migrate dev --name init
 ```
 
-This command will create a new database file called `dev`. Copy and paste `dev` into the `prisma` directory.
+Also, it will create a migration.
 
 ### Migrations
 
-You need to create a migration from the `prisma.schema` file and apply them to the `dev` file. To do this, run the following command:
+You must create a new migration if you change the `prisma.schema` file. To create a new migration, run the following command:
 
 ```bash
 npx prisma migrate dev
@@ -523,54 +523,23 @@ router
 export default router;
 ```
 
-The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. In the **Formative Assessment** below, you will refactor the code examples.
+The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. You will refactor the code examples in the **Formative Assessment** below.
 
 ---
 
 ## Postman
 
-Test your changes in **Postman** before you move onto the **Formative Assessment** section. 
+Test your changes in **Postman** before you move on to the **Formative Assessment** section. 
 
-Refer to the screenshots below.
+The screenshot below is an example of a **POST** request or creating an institution. 
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-1.PNG)
+The screenshot below is an example of a **GET** request or retrieving all institutions. 
 
-The screenshot above is an example of a **GET** request. 
+The screenshot below is an example of a **GET** request or retrieving one institution. 
 
-1. Set the **HTTP** method to **GET**
-2. Set the request URL to localhost:3000/api/v1/institutions
-3. Click the **Send** button to send a **GET** to your **Express** server
-4. A **JSON** response is returned containing data
-5. A 200 OK status code is returned
+The screenshot below is an example of a **PUT** request or updating an institution.  
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-2.PNG)
-
-The screenshot above is an example of a **POST** request. 
-
-1. Set the **HTTP** method to **POST**
-2. Click the **Body** tab
-3. Click the **raw** radio button
-4. Select the **JSON** option
-5. Add a payload of data and click the **Send** button
-6. A **JSON** response is returned containing data
-7. A 201 Created status code is returned
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-3.PNG)
-
-The screenshot above is an example of a **PUT** request. 
-
-1. Set the **HTTP** method to **PUT**
-2. Set the request URL to localhost:3000/api/v1/institutions/1. The 1 is the institution's id you wish to update
-3. Add a payload of data and click the **Send** button
-4. A **JSON** response is returned containing data
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-4.PNG)
-
-The screenshot above is an example of a **DELETE** request. 
-
-1. Set the **HTTP** method to **DELETE**
-2. Set the request URL to localhost:3000/api/v1/institutions/1 and click the **Send** button. The 1 is the institution's id you wish to delete
-3. A **JSON** response is returned containing data
+The screenshot below is an example of a **DELETE** request or deleting an institution. 
 
 ---
 
@@ -584,7 +553,7 @@ To get started, run the command:
 npx prisma studio
 ```
 
-Navigate to localhost:5555.
+Navigate to <http://localhost:5555>.
 
 **Resource:** <https://www.prisma.io/studio>
 
@@ -596,7 +565,7 @@ Navigate to localhost:5555.
 
 In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files.
 
-Test your changes in **Postman** before you move onto the **Code Review** section. 
+Test your changes in **Postman** before you move on to the **Code Review** section. 
 
 ### Code Review
 

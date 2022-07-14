@@ -109,20 +109,16 @@ const createInstitution = async (req, res) => {
 
 ## Postman
 
-Test your changes in **Postman** before you move onto the **Formative Assessment** section.
+Test your changes in **Postman** before you move on to the **Formative Assessment** section.
 
-Refer to the screenshots below.
+The screenshot below is an example of registering an admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-1.PNG)
+The screenshot below is an example of logging in as an admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-2.PNG)
+The screenshot below is an example of creating an institution as an admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-3.PNG)
+The screenshot below is an example of logging in as a non-admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-4.PNG)
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-5.PNG)
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-6.PNG)
+The screenshot below is an example of creating an institution as a non-admin user.
 
 ## Formative Assessment
