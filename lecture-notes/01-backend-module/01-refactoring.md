@@ -579,6 +579,14 @@ npx prisma studio
 
 Navigate to <http://localhost:5555>.
 
+The screenshot below is an example of shows all the tables in your **PostgreSQL** database:
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-7.jpeg)
+
+The screenshot below is an example of shows all the data in your `Institutions` table:
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-8.jpeg)
+
 **Resource:** <https://www.prisma.io/studio>
 
 ---
