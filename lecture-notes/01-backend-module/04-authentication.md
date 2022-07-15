@@ -45,7 +45,8 @@ Your `.env` file should look like this:
 
 ```bash
 PORT=3000
-DATABASE_URL=file:./dev.db
+DATABASE_URL=Your PostgreSQL connection string
+SHADOW_DATABASE_URL=Your PostgreSQL connection string
 JWT_SECRET=Pazzw0rd123
 JWT_LIFETIME=1hr
 ```
@@ -326,23 +327,33 @@ app.use(
 
 Test your changes in **Postman** before you move on to the **Formative Assessment** section.
 
-The screenshot below is an example of a **GET** request without providing a token. 
+The screenshot below is an example of registering a user:
 
-The screenshot below is an example of creating or registering a user.
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-1.jpeg)
 
-The screenshot below is an example of creating or registering an existing user.
+The screenshot below is an example of registering an existing user:
 
-The screenshot below is an example of logging in as a user with an invalid email.
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-2.jpeg)
 
-The screenshot below is an example of logging in as a user with an invalid password.
+The screenshot below is an example of logging in as a user with an invalid email:
 
-The screenshot below is an example of logging in as a user and being returned a token.
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-3.jpeg)
 
-The screenshot below is an example of accessing a protecting route using an invalid token.
+The screenshot below is an example of logging in as a user with an invalid password:
 
-The screenshot below is an example of accessing a protecting route using a valid token.
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-4.jpeg)
 
-The screenshot below is an example of creating an institution using a valid token.
+The screenshot below is an example of logging in as a user and being returned a token:
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-5.jpeg)
+
+The screenshot below is an example of a **POST** request without providing a token:
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-6.jpeg)
+
+The screenshot below is an example of accessing a protecting route using a valid token:
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-7.jpeg)
 
 ---
 

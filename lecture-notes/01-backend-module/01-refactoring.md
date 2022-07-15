@@ -583,7 +583,7 @@ The screenshot below is an example of shows all the tables in your **PostgreSQL*
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-7.jpeg)
 
-The screenshot below is an example of shows all the data in your `Institutions` table:
+The screenshot below is an example of shows all the data in the `Institutions` table:
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-8.jpeg)
 
