@@ -17,7 +17,7 @@ npm init -y
 In the `package.json` file, add the following:
 
 ```json
-"type": "module",
+"type": "module"
 ```
 
 ## Express
