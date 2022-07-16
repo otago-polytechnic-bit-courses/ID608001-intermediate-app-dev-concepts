@@ -34,8 +34,6 @@ In the root directory, create a new file called `.env`. In the `.env` file, add 
 PORT=3000
 ```
 
-You will add to the `.env` file throughout the **backend module**.
-
 In the root directory, create a new file called `app.js`. In the `app.js` file, add the following code:
 
 ```js
@@ -601,7 +599,7 @@ Test your changes in **Postman** before you move on to the **Task Two** section.
 
 ### Task Two
 
-In the `package.json` file, add two scripts that creates a new migration and runs **Prisma Studio**.
+In the `package.json` file, add two scripts. The first script creates a new migration and the second script runs **Prisma Studio**.
 
 Test these scripts before you move on to the **Code Review** section.
 
