@@ -200,7 +200,7 @@ Use the resource below and the following options to the `.prettierrc.json` file:
 - Include parentheses around a single arrow function parameter.
 - Tab width of 2 spaces.
 
-Test these options before you move on to the **Task Two**.
+Test these options before you move on to the **Task Two** section.
 
 **Resource:** <https://prettier.io/docs/en/options>
 
@@ -215,7 +215,7 @@ Use the resource below and add the following rules to the `.eslintrc.json` file:
 - Disallow trailing whitespace at the end of lines.
 - Disallow unused variables.
 
-Test these rules before you move on to the **Task Three**.
+Test these rules before you move on to the **Task Three** section.
 
 **Resource:** <https://eslint.org/docs/latest/rules>
 

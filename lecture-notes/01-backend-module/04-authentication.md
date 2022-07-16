@@ -69,7 +69,7 @@ model User {
 }
 ```
 
-**Note:** Make sure you create a new migration.
+**Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id. Make sure you create a new migration.
 
 ### middleware/authRoute.js
 
@@ -128,8 +128,6 @@ export default authRoute;
 ```
 
 **Note:** You will use this middleware in the `app.js` file to protect your `institutions` and `departments` routes.
-
-**Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id.
 
 ### controllers/v1/auth.js
 
@@ -327,31 +325,31 @@ app.use(
 
 Test your changes in **Postman** before you move on to the **Formative Assessment** section.
 
-The screenshot below is an example of registering a user:
+The screenshot below is an example of registering a user.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-1.jpeg)
 
-The screenshot below is an example of registering an existing user:
+The screenshot below is an example of registering an existing user.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-2.jpeg)
 
-The screenshot below is an example of logging in as a user with an invalid email:
+The screenshot below is an example of logging in as a user with an invalid email.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-3.jpeg)
 
-The screenshot below is an example of logging in as a user with an invalid password:
+The screenshot below is an example of logging in as a user with an invalid password.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-4.jpeg)
 
-The screenshot below is an example of logging in as a user and being returned a token:
+The screenshot below is an example of logging in as a user and being returned a token.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-5.jpeg)
 
-The screenshot below is an example of a **POST** request without providing a token:
+The screenshot below is an example of a **POST** request to a protected route without providing a token.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-6.jpeg)
 
-The screenshot below is an example of accessing a protecting route using a valid token:
+The screenshot below is an example of a **POST** request to a protected route using an authenticated user.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/04-authentication/04-authentication-7.jpeg)
 

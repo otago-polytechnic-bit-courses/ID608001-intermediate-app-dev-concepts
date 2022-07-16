@@ -543,25 +543,25 @@ The code examples above should look familiar from **ID607001: Introductory Appli
 
 Test your changes in **Postman** before you move on to the **Formative Assessment** section.
 
-The screenshot below is an example of a **POST** request or creating an institution:
+The screenshot below is an example of a **POST** request or creating an institution.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-1.jpeg)
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-2.jpeg)
 
-The screenshot below is an example of a **GET** request or retrieving all institutions:
+The screenshot below is an example of a **GET** request or retrieving all institutions.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-3.jpeg)
 
-The screenshot below is an example of a **GET** request or retrieving one institution:
+The screenshot below is an example of a **GET** request or retrieving one institution.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-4.jpeg)
 
-The screenshot below is an example of a **PUT** request or updating an institution:
+The screenshot below is an example of a **PUT** request or updating an institution.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-5.jpeg)
 
-The screenshot below is an example of a **DELETE** request or deleting an institution:
+The screenshot below is an example of a **DELETE** request or deleting an institution.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-6.jpeg)
 
@@ -579,11 +579,11 @@ npx prisma studio
 
 Navigate to <http://localhost:5555>.
 
-The screenshot below is an example of shows all the tables in your **PostgreSQL** database:
+The screenshot below is an example of shows all the tables in your **PostgreSQL** database.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-7.jpeg)
 
-The screenshot below is an example of shows all the data in the `Institutions` table:
+The screenshot below is an example of shows all the data in the `Institutions` table.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-8.jpeg)
 
@@ -597,7 +597,13 @@ The screenshot below is an example of shows all the data in the `Institutions` t
 
 In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files.
 
-Test your changes in **Postman** before you move on to the **Code Review** section.
+Test your changes in **Postman** before you move on to the **Task Two** section.
+
+### Task Two
+
+In the `package.json` file, add two scripts that creates a new migration and runs **Prisma Studio**.
+
+Test these scripts before you move on to the **Code Review** section.
 
 ### Code Review
 
