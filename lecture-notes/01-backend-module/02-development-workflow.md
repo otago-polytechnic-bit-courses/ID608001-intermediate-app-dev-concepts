@@ -191,7 +191,11 @@ Test this script before you move on to the **Formative Assessment**.
 
 ## Formative Assessment
 
-### Task One
+### Task Tahi
+
+If you have not already, implement the code examples above before you move on to **Task Rua**. 
+
+### Task Rua
 
 Use the resource below and the following options to the `.prettierrc.json` file:
 
@@ -200,11 +204,11 @@ Use the resource below and the following options to the `.prettierrc.json` file:
 - Include parentheses around a single arrow function parameter.
 - Tab width of 2 spaces.
 
-Test these options before you move on to the **Task Two** section.
+Test these options before you move on to **Task Toru**.
 
 **Resource:** <https://prettier.io/docs/en/options>
 
-### Task Two
+### Task Toru
 
 Use the resource below and add the following rules to the `.eslintrc.json` file:
 
@@ -215,7 +219,7 @@ Use the resource below and add the following rules to the `.eslintrc.json` file:
 - Disallow trailing whitespace at the end of lines.
 - Disallow unused variables.
 
-Test these rules before you move on to the **Task Three** section.
+Test these rules before you move on to **Task Four**.
 
 **Resource:** <https://eslint.org/docs/latest/rules>
 
@@ -223,7 +227,7 @@ Test these rules before you move on to the **Task Three** section.
 
 ## Additional Task
 
-### Task Three
+### Task Whā
 
 **Git** hook scripts help identify issues before you push your code to **GitHub**. In this task, you will look at setting up a pre-commit hook for **Prettier** and **ESLint**.
 
@@ -250,13 +254,12 @@ In the `package.json` file, add the following:
 "lint-staged": {
   "*.{js, json}": [
     "npm run prettier:fix",
-    "npm run lint:fix",
-    "git add"
+    "npm run lint:fix"
   ]
 }
 ```
 
-Test this hook script before you move on to the **Code Review** section.
+Test this hook script before you move on to the **Code Review**.
 
 **Resources:**
 

@@ -20,12 +20,12 @@ In the `package.json` file, add the following:
 "type": "module"
 ```
 
-## Express
+## Dotenv
 
-Install **Express** and **Dotenv** by running the commands:
+Install **Dotenv** by running the commands:
 
 ```bash
-npm install express dotenv
+npm install dotenv
 ```
 
 In the root directory, create a new file called `.env`. In the `.env` file, add the following variable:
@@ -33,6 +33,16 @@ In the root directory, create a new file called `.env`. In the `.env` file, add 
 ```bash
 PORT=3000
 ```
+
+## Express 
+
+Install **Express** by running the command:
+
+```bash
+npm install express
+```
+
+## app.js
 
 In the root directory, create a new file called `app.js`. In the `app.js` file, add the following code:
 
@@ -591,17 +601,17 @@ The screenshot below is an example of shows all the data in the `Institutions` t
 
 ## Formative Assessment
 
-### Task One
+### Task Tahi
 
-In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files.
+If you have not already, implement the code examples above before you move on to **Task Two**. 
 
-Test your changes in **Postman** before you move on to the **Task Two** section.
+### Task Rua
 
-### Task Two
+In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files. Test your changes in **Postman** before you move on to **Task Toru**.
 
-In the `package.json` file, add two scripts. The first script creates a new migration and the second script runs **Prisma Studio**.
+### Task Toru
 
-Test these scripts before you move on to the **Code Review** section.
+In the `package.json` file, add two scripts. The first script creates a new migration and the second script runs **Prisma Studio**. Test these scripts before you move on to the **Code Review**.
 
 ### Code Review
 

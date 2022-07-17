@@ -12,6 +12,8 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 **Open Authorization (OAuth)** is an open standard for authorization. It uses **access tokens** instead of **user credentials**, i.e., username and password to authorize applications. Also, it is known as **secure delegated access**.
 
+**Note:** You will not be implementing **OAuth** in this course but important to know about.
+
 **Resource:** <https://oauth.net>
 
 ---
@@ -148,3 +150,23 @@ The screenshot below is an example of a **POST** request to a protected route us
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-9.jpeg)
 
 ## Formative Assessment
+
+### Task Tahi
+
+If you have not already, implement the code examples above before you move on to **Task Rua**. 
+
+### Task Rua
+
+In the `schema.prisma` file, add a new value called `SUPER_ADMIN_USER` to the `Role` enum. Make sure you create a new migration before you move on to **Task Toru**.
+
+### Task Toru
+
+In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `create` \& `update` functions so that the `ADMIN_USER` and `SUPER_ADMIN_USER` are the only users authorised to create and update a resource, i.e., institution or department. Test your changes in **Postman** before you move on to **Task Whā**.
+
+### Task Whā
+
+In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `delete` function so that the `SUPER_ADMIN_USER` is the only user authorised to delete a resource, i.e., institution or department. Test your changes in **Postman** before you move on to the **Code Review**.
+
+### Code Review
+
+Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull requesting.

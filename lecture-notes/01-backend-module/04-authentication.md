@@ -357,21 +357,21 @@ The screenshot below is an example of a **POST** request to a protected route us
 
 ## Formative Assessment
 
-### Task One
+### Task Tahi
 
-In the `schema.prisma` file, add a new field called `username` of type `String` to the `User` model. Make sure you create a new migration.
+If you have not already, implement the code examples above before you move on to **Task Rua**. 
 
-### Task Two
+### Task Rua
 
-In the `controllers/v1/auth.js` file, refactor the `register` function so that the `username` is included when registering a new user.
+In the `schema.prisma` file, add a new field called `username` of type `String` to the `User` model. Make sure you create a new migration before you move on to **Task Toru**.
 
-Test your changes in **Postman** before you move on to the **Task Three** section.
+### Task Toru
 
-### Task Three
+In the `controllers/v1/auth.js` file, refactor the `register` function so that the `username` is included when registering a new user. Test your changes in **Postman** before you move on to **Task Whā**.
 
-In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their email and password or username and password.
+### Task Whā
 
-Test your changes in **Postman** before you move on to the **Code Review** section.
+In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their email and password or username and password. Test your changes in **Postman** before you move on to the **Code Review**.
 
 ### Code Review
 

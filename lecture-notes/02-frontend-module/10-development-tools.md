@@ -4,11 +4,7 @@
 
 ---
 
-## React Recap
-
----
-
-## Fundamental React Topics
+## Recap
 
 ### Create React App
 
@@ -20,13 +16,13 @@
 
 ### Props
 
-### State
-
-### Conditional Rendering
-
 ### Lists and Keys
 
 ### useState and useEffect
+
+### Axios
+
+### Conditional Rendering
 
 ### React Router
 
