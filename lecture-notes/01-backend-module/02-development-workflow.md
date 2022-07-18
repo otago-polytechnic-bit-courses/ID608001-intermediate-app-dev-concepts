@@ -178,7 +178,7 @@ In `rules`, add the following:
 In the `package.json` file, add the following script in the `scripts` block:
 
 ```bash
-"lint:fix": "npx eslint --ext .js,.json --fix"
+"lint:fix": "npx eslint --fix ."
 ```
 
 It will lint and fix all files with the extensions - `.js` and `.json`.
