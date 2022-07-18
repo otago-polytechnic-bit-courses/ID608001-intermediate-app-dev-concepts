@@ -80,7 +80,7 @@ app.listen(PORT, () => {
 });
 ```
 
-It is a simple **Express** server setup but feel free to add other dependencies you learned in **ID607001: Introductory Application Development Concepts**.
+It is a simple **Express** server setup but feel free to add other dependencies you learned in **ID607001: Introductory Application Development Concepts/Pia o Te Taupānga Tukutuku**.
 
 ## Prisma
 
@@ -543,7 +543,7 @@ router
 export default router;
 ```
 
-The code examples above should look familiar from **ID607001: Introductory Application Development Concepts**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. You will refactor the code examples in the **Formative Assessment** below.
+The code examples above should look familiar from **ID607001: Introductory Application Development Concepts/Pia o Te Taupānga Tukutuku**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. You will refactor the code examples in the **Formative Assessment** below.
 
 ---
 
