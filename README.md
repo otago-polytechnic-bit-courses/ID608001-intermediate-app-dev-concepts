@@ -1,4 +1,4 @@
-# ID608001: Intermediate Application Development Concepts
+# ID608001: Intermediate Application Development Concepts/Tāura o Te Taupānga Tukutuku
 
 ## Repositories:
 - Playground - https://classroom.github.com/a/SNd5oi2t
