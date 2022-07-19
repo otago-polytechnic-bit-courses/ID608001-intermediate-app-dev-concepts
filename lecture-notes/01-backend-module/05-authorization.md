@@ -31,6 +31,9 @@ In the `controllers/v1/auth.js`, refactor the refactor the `createInstitution` f
 ```js
 const register = async (req, res) => {
   try {
+    /**
+     * Get the role from the Request's body property
+     */ 
     const { name, email, password, role } = req.body;
 
     let user = await prisma.user.findUnique({ where: { email } });

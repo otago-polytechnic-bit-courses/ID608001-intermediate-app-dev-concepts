@@ -205,6 +205,8 @@ const login = async (req, res) => {
       return res.status(401).json({ msg: "Invalid password" });
     }
 
+    const { JWT_SECRET, JWT_LIFETIME } = process.env;
+
     /**
      * Return a JWT. The first argument is the payload, i.e., an object containing
      * the authenticated user's id and name, the second argument is the secret
@@ -215,8 +217,8 @@ const login = async (req, res) => {
         id: user.id,
         name: user.name,
       },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_LIFETIME }
+      JWT_SECRET,
+      { JWT_LIFETIME }
     );
 
     return res.status(200).json({

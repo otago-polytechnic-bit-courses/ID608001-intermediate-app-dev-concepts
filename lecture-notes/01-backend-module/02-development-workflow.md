@@ -51,7 +51,7 @@ git commit -m "style (login): format jsx" -m "additional information" -m "pr clo
 git log --oneline --grep <type>
 ```
 
-- --oneline - Display the output as one commit per line
+`--oneline` displays the output as one commit per line.
 
 Here is a **Git**  log example:
 
@@ -180,8 +180,6 @@ In the `package.json` file, add the following script in the `scripts` block:
 ```bash
 "lint:fix": "npx eslint --fix ."
 ```
-
-It will lint and fix all files with the extensions - `.js` and `.json`.
 
 Test this script before you move on to the **Formative Assessment**.
 

@@ -8,21 +8,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## Request Methods
 
-An **HTTP request method** indicates an action to be performed for a given resource.
-
-Here is a list of all **HTTP request methods**:
-
-| Request Method | Description |
-| -------------- | ----------- |
-| GET            |             |
-| HEAD           |             |
-| POST           |             |
-| PUT            |             |
-| DELETE         |             |
-| CONNECT        |             |
-| OPTIONS        |             |
-| TRACE          |             |
-| PATCH          |             |
+An **HTTP request method**, i.e., `GET`, `POST`, `PUT` and `DELETE` indicates an action to be performed for a given resource.
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
 
@@ -61,7 +47,7 @@ There are four different **header** groups:
 
 ## Cross-Origin Resource Sharing (CORS)
 
-In **ID607001: Introductory Application Development Concepts**, you would have encountered a **CORS** error at least once. View this video to learn more about how **CORS** works - <https://www.youtube.com/watch?v=4KHiSt0oLJ0>
+In **ID607001: Introductory Application Development Concepts/Pia o Te Taupānga Tukutuku**, you would have encountered a **CORS** error at least once. View this video to learn more about how **CORS** works - <https://www.youtube.com/watch?v=4KHiSt0oLJ0>.
 
 To get started, run the following command:
 

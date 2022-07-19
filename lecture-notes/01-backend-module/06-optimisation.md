@@ -65,12 +65,14 @@ const cacheRoute = (req, res, next) => {
     console.log("Cache hit");
     return res.json(cachedRes);
   } else {
-    console.log("Cache miss");
-    res.originalSend = res.json;
-    res.json = (body) => {
-      res.originalSend(body);
-      cache.set(key, body);
-    };
+    if (req.status === 200) {
+      console.log("Cache miss");
+      res.originalSend = res.json;
+      res.json = (body) => {
+        res.originalSend(body);
+        cache.set(key, body);
+      };
+    }
     return next();
   }
 };
@@ -79,6 +81,20 @@ export default cacheRoute;
 ```
 
 ---
+
+## app.js
+
+In the `app.js` file, add the following import:
+
+```js
+import cacheRoute from "./middleware/cacheRoute.js";
+```
+
+Then add the following **middleware**:
+
+```js
+app.use(cacheRoute);
+```
 
 ## Postman
 

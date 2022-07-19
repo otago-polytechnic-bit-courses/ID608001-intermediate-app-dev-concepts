@@ -34,7 +34,7 @@ In the root directory, create a new file called `.env`. In the `.env` file, add 
 PORT=3000
 ```
 
-## Express 
+## Express
 
 Install **Express** by running the command:
 
@@ -133,7 +133,7 @@ model Department {
 }
 ```
 
-The schema structure should look familiar from **ID607001: Introductory Application Development Concepts**.
+The schema structure should look familiar from **ID607001: Introductory Application Development Concepts/Pia o Te Taupānga Tukutuku**.
 
 ### PostgreSQL
 
@@ -141,12 +141,12 @@ You are going to use **PostgreSQL** for the data source. To create a **PostgreSQ
 
 Once, you are logged in, follow the steps below:
 
-- Create a new application and name it **id608-your OP username-dev-db**. 
-- Click the **Resources** tab. 
+- Create a new application and name it **id608-your OP username-dev-db**.
+- Click the **Resources** tab.
 - Type **Postgres** into the **Add-ons** search bar
-- Click on the **Heroku Postgres** option. 
-- Click on the **Submit Order Form** button. 
-- Click on the **Settings** tab. 
+- Click on the **Heroku Postgres** option.
+- Click on the **Submit Order Form** button.
+- Click on the **Settings** tab.
 - In the **Config Vars** section, click on the **Reveal Config Vars** button.
 - Copy the `DATABASE_URL` environment variable's value. This is your **PostgreSQL** database connection string.
 
@@ -543,7 +543,7 @@ router
 export default router;
 ```
 
-The code examples above should look familiar from **ID607001: Introductory Application Development Concepts/Pia o Te Taupānga Tukutuku**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. You will refactor the code examples in the **Formative Assessment** below.
+The code examples above should look familiar from **ID607001: Introductory Application Development Concepts/Pia o Te Taupānga Tukutuku/Pia o Te Taupānga Tukutuku**. The syntax is different, but the logic is the same. However, as you can see, there is a lot of code duplication. You will refactor the code examples in the **Formative Assessment** below.
 
 ---
 
@@ -603,7 +603,7 @@ The screenshot below is an example of shows all the data in the `Institutions` t
 
 ### Task Tahi
 
-If you have not already, implement the code examples above before you move on to **Task Two**. 
+If you have not already, implement the code examples above before you move on to **Task Two**.
 
 ### Task Rua
 
