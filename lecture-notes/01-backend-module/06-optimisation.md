@@ -8,11 +8,11 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ---
 
-## Overview
-
----
-
 ## Compression
+
+Compression with **GZIP** helps decrease the downloadable amount of data served to the client. This compression technique can improve your application's performance by significantly reducing the payload size, i.e., **JSON** response.
+
+View this video to learn more about how **GZIP*** works - <https://www.youtube.com/watch?v=NLtt4S9ErIA>
 
 To get started, run the following command:
 
@@ -28,7 +28,8 @@ In the `app.js` file, import `compression`. For example:
 import compression from "compression";
 ```
 
-For testing purposes, add the following `GET` route
+For testing purposes, add the following `GET` route:
+
 ```js
 app.get(`/${BASE_URL}/${CURRENT_VERSION}/optimisation`, (req, res) => {
   const text = "See you later, alligator. Bye bye bye, butterfly"
@@ -61,6 +62,10 @@ As you can see, there is 3.4 kilobytes transferred over the network which is sig
 ---
 
 ## Caching
+
+**Caching** enables your application to store data, i.e., **JSON** response so that future requests for that data can be accessed faster.
+
+View this video to learn more about how **caching*** works - <https://youtu.be/6FyXURRVmR0>
 
 To get started, run the following command:
 
