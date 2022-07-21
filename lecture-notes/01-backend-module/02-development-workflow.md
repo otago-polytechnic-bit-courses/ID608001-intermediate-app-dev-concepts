@@ -23,7 +23,7 @@ Here is a list of types:
 - **style:** style-related change, i.e., formatting a file or piece of code.
 - **test:** an automation test change, i.e., adding a new test file or updating an existing test file.
 
-**What is a scope?** A noun referring to functionality in your codebase, i.e., authentication. 
+**What is a scope?** A noun referring to functionality in the codebase, i.e., authentication. 
 
 You are probably wondering how I should write a message using this convention. A **Git** commit looks like this:
 
@@ -106,7 +106,7 @@ Test these scripts before you move on to the **ESLint** section.
 
 ## ESLint
 
-**ESLint** is a linter that helps you find and fix issues in your **JavaScript** code.
+**ESLint** is a linter that helps you find and fix issues in the **JavaScript** code.
 
 To get started, run the following commands:
 
@@ -201,6 +201,7 @@ Use the resource below and the following options to the `.prettierrc.json` file:
 - Double quotes instead of single quotes.
 - Include parentheses around a single arrow function parameter.
 - Tab width of 2 spaces.
+- Include semicolons when necessary
 
 Test these options before you move on to **Task Toru**.
 
@@ -217,7 +218,7 @@ Use the resource below and add the following rules to the `.eslintrc.json` file:
 - Disallow trailing whitespace at the end of lines.
 - Disallow unused variables.
 
-Test these rules before you move on to **Task Four**.
+Test these rules before you move on to **Task Whā**.
 
 **Resource:** <https://eslint.org/docs/latest/rules>
 
@@ -227,7 +228,7 @@ Test these rules before you move on to **Task Four**.
 
 ### Task Whā
 
-**Git** hook scripts help identify issues before you push your code to **GitHub**. In this task, you will look at setting up a pre-commit hook for **Prettier** and **ESLint**.
+**Git** hook scripts help identify issues before you push the code to **GitHub**. In this task, you will look at setting up a pre-commit hook for **Prettier** and **ESLint**.
 
 To get started, run the following command:
 
@@ -266,4 +267,4 @@ Test this hook script before you move on to the **Code Review**.
 
 ### Code Review
 
-Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.
+Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.

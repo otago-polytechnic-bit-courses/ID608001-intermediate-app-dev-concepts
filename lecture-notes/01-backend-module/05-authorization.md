@@ -114,7 +114,7 @@ const createInstitution = async (req, res) => {
 
 ## Postman
 
-Test your changes in **Postman** before you move on to the **Formative Assessment** section.
+Test the changes in **Postman** before you move on to the **Formative Assessment** section.
 
 The screenshot below is an example of registering an basic user.
 
@@ -164,12 +164,12 @@ In the `schema.prisma` file, add a new value called `SUPER_ADMIN_USER` to the `R
 
 ### Task Toru
 
-In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `create` \& `update` functions so that the `ADMIN_USER` and `SUPER_ADMIN_USER` are the only users authorised to create and update a resource, i.e., institution or department. Test your changes in **Postman** before you move on to **Task Whā**.
+In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `create` \& `update` functions so that the `ADMIN_USER` and `SUPER_ADMIN_USER` are the only users authorised to create and update a resource, i.e., institution or department. Test the changes in **Postman** before you move on to **Task Whā**.
 
 ### Task Whā
 
-In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `delete` function so that the `SUPER_ADMIN_USER` is the only user authorised to delete a resource, i.e., institution or department. Test your changes in **Postman** before you move on to the **Code Review**.
+In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `delete` function so that the `SUPER_ADMIN_USER` is the only user authorised to delete a resource, i.e., institution or department. Test the changes in **Postman** before you move on to the **Code Review**.
 
 ### Code Review
 
-Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull requesting.
+Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull requesting.

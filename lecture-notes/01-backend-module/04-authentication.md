@@ -41,12 +41,12 @@ JWT_SECRET=Pazzw0rd123
 JWT_LIFETIME=1hr
 ```
 
-Your `.env` file should look like this:
+The `.env` file should look like this:
 
 ```bash
 PORT=3000
-DATABASE_URL=Your PostgreSQL connection string
-SHADOW_DATABASE_URL=Your PostgreSQL connection string
+DATABASE_URL=The PostgreSQL connection string
+SHADOW_DATABASE_URL=The PostgreSQL connection string
 JWT_SECRET=Pazzw0rd123
 JWT_LIFETIME=1hr
 ```
@@ -127,7 +127,7 @@ const authRoute = (req, res, next) => {
 export default authRoute;
 ```
 
-**Note:** You will use this middleware in the `app.js` file to protect your `institutions` and `departments` routes.
+**Note:** You will use this middleware in the `app.js` file to protect the `institutions` and `departments` routes.
 
 ### controllers/v1/auth.js
 
@@ -325,7 +325,7 @@ app.use(
 
 ## Postman
 
-Test your changes in **Postman** before you move on to the **Formative Assessment** section.
+Test the changes in **Postman** before you move on to the **Formative Assessment** section.
 
 The screenshot below is an example of registering a user.
 
@@ -369,12 +369,12 @@ In the `schema.prisma` file, add a new field called `username` of type `String` 
 
 ### Task Toru
 
-In the `controllers/v1/auth.js` file, refactor the `register` function so that the `username` is included when registering a new user. Test your changes in **Postman** before you move on to **Task Whā**.
+In the `controllers/v1/auth.js` file, refactor the `register` function so that the `username` is included when registering a new user. Test the changes in **Postman** before you move on to **Task Whā**.
 
 ### Task Whā
 
-In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their `email` and `password` or `username` and `password`. Test your changes in **Postman** before you move on to the **Code Review**.
+In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their `email` and `password` or `username` and `password`. Test the changes in **Postman** before you move on to the **Code Review**.
 
 ### Code Review
 
-Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.
+Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.

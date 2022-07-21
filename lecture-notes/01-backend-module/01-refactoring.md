@@ -84,7 +84,7 @@ It is a simple **Express** server setup but feel free to add other dependencies 
 
 ## Prisma
 
-**Prisma** is an open-source **Object-Relational Mapper (ORM)**. It enables you to interface between your database and application easily. **Prisma** supports database management systems like **SQLite**, **PostgreSQL**, **MySQL** and **Microsoft SQL Server**.
+**Prisma** is an open-source **Object-Relational Mapper (ORM)**. It enables you to interface between the database and application easily. **Prisma** supports database management systems like **SQLite**, **PostgreSQL**, **MySQL** and **Microsoft SQL Server**.
 
 To get started, run the following commands:
 
@@ -98,7 +98,7 @@ Check the `package.json` file to ensure you have installed `@prisma/client` and 
 
 ### Schema
 
-You will see a new directory called `prisma` in the root directory. In the `prisma` directory, you will see a new file called `schema.prisma`. This file tells **Prisma** how to connect to a database, generate a client and map your data from a database to your application.
+You will see a new directory called `prisma` in the root directory. In the `prisma` directory, you will see a new file called `schema.prisma`. This file tells **Prisma** how to connect to a database, generate a client and map the data from a database to the application.
 
 Let us use the example code below. A schema comprises three blocks - data sources, generators and models. Each block comprises a type, i.e., data source, a name, i.e., db and fields, i.e., provider and url.
 
@@ -148,15 +148,23 @@ Once, you are logged in, follow the steps below:
 - Click on the **Submit Order Form** button.
 - Click on the **Settings** tab.
 - In the **Config Vars** section, click on the **Reveal Config Vars** button.
-- Copy the `DATABASE_URL` environment variable's value. This is your **PostgreSQL** database connection string.
+- Copy the `DATABASE_URL` environment variable's value. This is the **PostgreSQL** database connection string.
 
-In the `.env` file, set the `DATABASE_URL` environment variable to your **PostgreSQL** database connection string. Also, add another environment variable called `SHADOW_DATABASE_URL`. Again, set this to your **PostgreSQL** database connection string.
+In the `.env` file, set the `DATABASE_URL` environment variable to the **PostgreSQL** database connection string. Also, add another environment variable called `SHADOW_DATABASE_URL`. Again, set this to the **PostgreSQL** database connection string.
+
+The `.env` file should look like this:
+
+```bash
+PORT=3000
+DATABASE_URL=The PostgreSQL connection string
+SHADOW_DATABASE_URL=The PostgreSQL connection string
+```
+
+Run the following command to connect to the **PostgreSQL** database and create a migration:
 
 ```bash
 npx prisma migrate dev --name init
 ```
-
-Also, it will create a migration.
 
 ### Migrations
 
@@ -550,9 +558,33 @@ The code examples above should look familiar from **ID607001: Introductory Appli
 
 ---
 
+## Prisma Studio
+
+If you want to view, create, update and delete the data easily, use **Prisma Studio**.
+
+To get started, run the command:
+
+```bash
+npx prisma studio
+```
+
+Navigate to <http://localhost:5555>.
+
+The screenshot below is an example of shows all the tables in the **PostgreSQL** database.
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-7.jpeg)
+
+The screenshot below is an example of shows all the data in the `Institutions` table.
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-8.jpeg)
+
+**Resource:** <https://www.prisma.io/studio>
+
+---
+
 ## Postman
 
-Test your changes in **Postman** before you move on to the **Formative Assessment** section.
+Test the changes in **Postman** before you move on to the **Formative Assessment** section.
 
 The screenshot below is an example of a **POST** request or creating an institution.
 
@@ -578,39 +610,15 @@ The screenshot below is an example of a **DELETE** request or deleting an instit
 
 ---
 
-## Prisma Studio
-
-If you want to view, create, update and delete your data easily, use **Prisma Studio**.
-
-To get started, run the command:
-
-```bash
-npx prisma studio
-```
-
-Navigate to <http://localhost:5555>.
-
-The screenshot below is an example of shows all the tables in your **PostgreSQL** database.
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-7.jpeg)
-
-The screenshot below is an example of shows all the data in the `Institutions` table.
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/01-refactoring/01-refactoring-8.jpeg)
-
-**Resource:** <https://www.prisma.io/studio>
-
----
-
 ## Formative Assessment
 
 ### Task Tahi
 
-If you have not already, implement the code examples above before you move on to **Task Two**.
+If you have not already, implement the code examples above before you move on to **Task Rua**.
 
 ### Task Rua
 
-In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files. Test your changes in **Postman** before you move on to **Task Toru**.
+In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the code to improve the application's maintainability and readability. I suggest creating a new file called `base.js`, which contains base functions for reading, creating, updating and deleting resources, then importing those functions and giving them the appropriate arguments. Also, look at how you could refactor lines 1 and 2 in the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files. Test the changes in **Postman** before you move on to **Task Toru**.
 
 ### Task Toru
 
@@ -618,4 +626,4 @@ In the `package.json` file, add two scripts. The first script creates a new migr
 
 ### Code Review
 
-Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.
+Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.

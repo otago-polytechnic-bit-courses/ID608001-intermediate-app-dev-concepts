@@ -80,10 +80,60 @@ app.use(cors());
 
 ## Helmet
 
+**Helmet** is a dependency secures the application by setting various HTTP headers. These are an important part of HTTP and provide metadata about a request or response. HTTP headers can leak sensitive information about the application. This header informs the browser which server vendor and version you are using, i.e., Express. It can make the application a prime target as this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement helmet.
+
+To get started, run the following command:
+
+```bash
+npm install helmet
+```
+
+Check the `package.json` file to ensure you have installed `helmet`.
+
+In the `app.js` file, import `helmet`. For example:
+
+```js
+import helmet from "helmet";
+```
+
+Then add the following **middleware**:
+
+```js
+app.use(helmet());
+```
+
+Test the changes in **Postman** before you move on to the **Formative Assessment** section.
+
+**Resource:** <https://www.npmjs.com/package/helmet>
+
 ---
 
 ## Formative Assessment
 
+### Task Tahi
+
+If you have not already, implement the code examples above before you move on to **Task Rua**.
+
+## Additional Task
+
+### Task Rua
+
+In this task, you will create an **API** containing institution and department data. Navigate to <https://gist.github.com>. In the **Filename including extension...** input, type `institutions.json`. In the window below, add the following:
+
+```json
+{
+    "name": "Otago Polytechnic",
+    "region": "Otago",
+    "country": "New Zealand"
+}
+```
+
+Click the **Add file** button and repeat the same process but for department. Click the **Create secret gist** button. Click the **Raw** button and copy the **URL**.
+
+### Task Toru
+
+In this task, you will fetch institution and department data from the **API** you created in **Task Rua** using **Axios**. Then, you will insert the data into the `Institution` and `Department` tables. Test the changes in **Postman** before you move on to the **Code Review**.
+
 ### Code Review
 
-Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge your pull request.
+Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.

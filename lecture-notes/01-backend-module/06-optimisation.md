@@ -10,7 +10,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## Compression
 
-Compression with **GZIP** helps decrease the downloadable amount of data served to the client. This compression technique can improve your application's performance by significantly reducing the payload size, i.e., **JSON** response.
+Compression with **GZIP** helps decrease the downloadable amount of data served to the client. This compression technique can improve the application's performance by significantly reducing the payload size, i.e., **JSON** response.
 
 View this video to learn more about how **GZIP*** works - <https://www.youtube.com/watch?v=NLtt4S9ErIA>
 
@@ -37,7 +37,7 @@ app.get(`/${BASE_URL}/${CURRENT_VERSION}/optimisation`, (req, res) => {
 });
 ```
 
-In a browser, navigate to <http://localhost:3000/api/v1/optimisation>. Open the **development tools** and keep your eye on the amount of kilobytes transferred over the network. 
+In a browser, navigate to <http://localhost:3000/api/v1/optimisation>. Open the **development tools** and keep an eye on the amount of kilobytes transferred over the network. 
 
 The screenshot below is an example of before compression.
 
@@ -63,7 +63,7 @@ As you can see, there is 3.4 kilobytes transferred over the network which is sig
 
 ## Caching
 
-**Caching** enables your application to store data, i.e., **JSON** response so that future requests for that data can be accessed faster.
+**Caching** enables the application to store data, i.e., **JSON** response so that future requests for that data can be accessed faster.
 
 View this video to learn more about how **caching*** works - <https://youtu.be/6FyXURRVmR0>
 
@@ -125,7 +125,7 @@ app.use(cacheRoute);
 
 ## Postman
 
-Test your changes in **Postman** before you move on to the **Formative Assessment** section.
+Test the changes in **Postman** before you move on to the **Formative Assessment** section.
 
 The screenshot below is an example of a cache miss.
 
