@@ -80,7 +80,7 @@ app.use(cors());
 
 ## Helmet
 
-**Helmet** is a dependency secures the application by setting various HTTP headers. These are an important part of HTTP and provide metadata about a request or response. HTTP headers can leak sensitive information about the application. This header informs the browser which server vendor and version you are using, i.e., Express. It can make the application a prime target as this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement helmet.
+**Helmet** is a dependency secures the application by setting various **HTTP headers**. These are an important part of **HTTP** and provide metadata about a **request** or **response**. **HTTP headers** can leak sensitive information about the application. This header informs the browser which server vendor and version you are using, i.e., **Express**. It can make the application a prime target as this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement **Helmet**.
 
 To get started, run the following command:
 
