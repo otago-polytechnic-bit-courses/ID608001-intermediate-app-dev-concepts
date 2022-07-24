@@ -132,7 +132,7 @@ Click the **Add file** button and repeat the same process but for department. Cl
 
 ### Task Toru
 
-In this task, you will fetch institution and department data from the **API** you created in **Task Rua** using **Axios**. Then, you will insert the data into the `Institution` and `Department` tables. Test the changes in **Postman** before you move on to the **Code Review**.
+In this task, you will create a function called `seedData` in the `controllers/v1/base.js` file. This function will fetch institution and department data from the **API** you created in **Task Rua** using **Axios**, then insert the data into the `Institution` and `Department` tables. Create a route for the `seedData` function in the `routes/v1/institutions.js` and `routes/v1/departments.js` files. Test the changes in **Postman** before you move on to the **Code Review**.
 
 ### Code Review
 
