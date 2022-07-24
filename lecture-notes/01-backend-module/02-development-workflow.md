@@ -235,7 +235,7 @@ To get started, run the following command:
 ```bash
 npm install husky lint-staged --save-dev
 npx husky install
-npx husky add .husky/pre-commit "lint-staged"
+npx husky add .husky/pre-commit "npx lint-staged"
 ```
 
 Check the `package.json` file to ensure you have installed `husky` and `lint-staged`.
