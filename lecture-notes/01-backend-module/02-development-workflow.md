@@ -178,10 +178,16 @@ In `rules`, add the following:
 In the `package.json` file, add the following script in the `scripts` block:
 
 ```bash
-"lint:fix": "npx eslint --fix ."
+"lint:check": "npx eslint ."
 ```
 
-Test this script before you move on to the **Formative Assessment**.
+In the root directory, create a new file called `.eslintignore`. In the `.eslintignore` file, add the following:
+
+```bash
+node_modules
+```
+
+Test this script before you move on to the **Formative Assessment**. Make the appropriate changes if there are any errors.
 
 **Resource:** <https://eslint.org>
 
@@ -201,7 +207,8 @@ Use the resource below and the following options to the `.prettierrc.json` file:
 - Double quotes instead of single quotes.
 - Include parentheses around a single arrow function parameter.
 - Tab width of 2 spaces.
-- Include semicolons when necessary
+- Semicolons at the end of every statement.
+- Trailing commas wherever possible.
 
 Test these options before you move on to **Task Toru**.
 
@@ -211,18 +218,36 @@ Test these options before you move on to **Task Toru**.
 
 Use the resource below and add the following rules to the `.eslintrc.json` file:
 
-- Disallow multiple empty lines.
-- Disallow multiple spaces.
-- Disallow mixed spaces and tabs for indentation.
-- Disallow unnecessary parentheses.
-- Disallow trailing whitespace at the end of lines.
-- Disallow unused variables.
+- Enforce the consistent use of either backticks, double, or single quotes. Set to off.
+- Disallow multiple empty lines. Set to warning.
+- Disallow multiple spaces. Set to warning.
+- Disallow mixed spaces and tabs for indentation. Set to warning.
+- Disallow unnecessary parentheses. Set to warning.
+- Disallow trailing whitespace at the end of lines. Set to warning.
+- Disallow unused variables. Set to warning.
+- Require return statements to either always or never specify values. Set to warning.
 
-Test these rules before you move on to **Task Whā**.
+You may encounter conflicts between **ESLint** and **Prettier** where one's rules are overriding the other. To avoid this, you want to include the rules in the `.prettierrc.json` file in the `.eslintrc.json` file. To do this, run the following command:
+
+```bash
+npm install eslint-plugin-prettier --save-dev
+```
+
+You need to add the following rule:
+
+```json
+"prettier/prettier": 2
+```
+
+Under the `rules` block, add the following:
+
+```json
+"plugins": ["prettier"]
+```
+
+Test these rules before you move on to **Task Whā**. Make the appropriate changes if there are any errors.
 
 **Resource:** <https://eslint.org/docs/latest/rules>
-
----
 
 ## Additional Task
 
@@ -253,7 +278,7 @@ In the `package.json` file, add the following:
 "lint-staged": {
   "*.{js, json}": [
     "npm run prettier:fix",
-    "npm run lint:fix"
+    "npm run lint:check"
   ]
 }
 ```
