@@ -71,23 +71,25 @@ git log --oneline --grep "^build\|^feat\|^style"
 
 ## Prettier
 
-**Prettier** is an opinionated code formatter. You will remember using **Prettier** in **ID607001: Introductory Application Development**.
+**Prettier** is an opinionated code formatter. You will remember using **Prettier** in **ID607001: Introductory Application Development**. 
+
+In reality you only want to format staged files. The reason is because you do not want to format files that are out of scope of the feature you are working on. You can use a dependency called `pretty-quick` to achieve this.
 
 To get started, run the following command:
 
 ```bash
-npm install prettier --save-dev
+npm install prettier pretty-quick --save-dev
 ```
 
-Check the `package.json` file to ensure you have installed `prettier`.
+Check the `package.json` file to ensure you have installed `prettier` and `pretty-quick`.
 
 In the root directory, create a new file called `.prettierrc.json`.
 
 In the `package.json` file, add the following scripts in the `scripts` block:
 
 ```bash
-"prettier:fix": "npx prettier --write .",
-"prettier:check": "npx prettier --check ."
+"prettier:check": "npx prettier --check .",
+"prettier:write": "npx pretty-quick --staged"
 ```
 
 In the root directory, create a new file called `.prettierignore`. In the `.prettierignore` file, add the following:
@@ -100,7 +102,10 @@ node_modules
 
 Test these scripts before you move on to the **ESLint** section.
 
-**Resource:** <https://prettier.io>
+**Resources:** 
+
+- <https://prettier.io>
+- <https://www.npmjs.com/package/pretty-quick>
 
 ---
 
