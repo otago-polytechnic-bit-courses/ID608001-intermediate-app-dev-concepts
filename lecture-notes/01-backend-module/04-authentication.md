@@ -218,7 +218,7 @@ const login = async (req, res) => {
         name: user.name,
       },
       JWT_SECRET,
-      { JWT_LIFETIME }
+      { expiresIn: JWT_LIFETIME }
     );
 
     return res.status(200).json({
