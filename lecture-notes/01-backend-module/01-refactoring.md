@@ -158,8 +158,8 @@ The `.env` file should look like this:
 
 ```bash
 PORT=3000
-DATABASE_URL=The first PostgreSQL connection string, i.e., the `DATABASE_URL` environment variable on Heroku
-SHADOW_DATABASE_URL=The second PostgreSQL connection string, i.e., the `HEROKU_POSTGRESQL_<SOME_RANDOM_NAME>_URL` environment variable on Heroku
+DATABASE_URL=The first PostgreSQL connection string, i.e., the DATABASE_URL environment variable on Heroku
+SHADOW_DATABASE_URL=The second PostgreSQL connection string, i.e., the HEROKU_POSTGRESQL_<SOME_RANDOM_NAME>_URL environment variable on Heroku
 ```
 
 Run the following command to connect to the **PostgreSQL** database and create a migration:
