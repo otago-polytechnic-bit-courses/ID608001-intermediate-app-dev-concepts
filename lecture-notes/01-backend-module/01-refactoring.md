@@ -149,7 +149,7 @@ Once, you are logged in, follow the steps below:
 6. Click on the **Settings** tab.
 7. In the **Config Vars** section, click on the **Reveal Config Vars** button.
 8. Copy the `DATABASE_URL` environment variable's value. This is the first (production) **PostgreSQL** database connection string.
-9. Repeat steps 1 to 8.
+9. Repeat steps 2 to 8.
 10. Copy the `HEROKU_POSTGRESQL_<SOME_RANDOM_NAME>_URL` environment variable's value. This is the second (development) **PostgreSQL** database connection string. 
 
 In the `.env` file, set the `DATABASE_URL` environment variable to the **PostgreSQL** database connection string. Also, add another environment variable called `SHADOW_DATABASE_URL`. Again, set this to the **PostgreSQL** database connection string.
