@@ -129,7 +129,7 @@ model Department {
   name          String
   institutionId Int
   createdAt     DateTime    @default(now())
-  institution   Institution @relation(fields: [institutionId], references: [id])
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
 }
 ```
 
@@ -141,14 +141,16 @@ You are going to use **PostgreSQL** for the data source. To create a **PostgreSQ
 
 Once, you are logged in, follow the steps below:
 
-- Create a new application and name it **id608-your OP username-dev-db**.
-- Click the **Resources** tab.
-- Type **Postgres** into the **Add-ons** search bar
-- Click on the **Heroku Postgres** option.
-- Click on the **Submit Order Form** button.
-- Click on the **Settings** tab.
-- In the **Config Vars** section, click on the **Reveal Config Vars** button.
-- Copy the `DATABASE_URL` environment variable's value. This is the **PostgreSQL** database connection string.
+1. Create a new application and name it **id608-your OP username-dev-db**.
+2. Click the **Resources** tab.
+3. Type **Postgres** into the **Add-ons** search bar
+4. Click on the **Heroku Postgres** option.
+5. Click on the **Submit Order Form** button.
+6. Click on the **Settings** tab.
+7. In the **Config Vars** section, click on the **Reveal Config Vars** button.
+8. Copy the `DATABASE_URL` environment variable's value. This is the first (production) **PostgreSQL** database connection string.
+9. Repeat steps 1 to 8.
+10. Copy the `HEROKU_POSTGRESQL_<SOME_RANDOM_NAME>_URL` environment variable's value. This is the second (development) **PostgreSQL** database connection string. 
 
 In the `.env` file, set the `DATABASE_URL` environment variable to the **PostgreSQL** database connection string. Also, add another environment variable called `SHADOW_DATABASE_URL`. Again, set this to the **PostgreSQL** database connection string.
 
@@ -156,8 +158,8 @@ The `.env` file should look like this:
 
 ```bash
 PORT=3000
-DATABASE_URL=The PostgreSQL connection string
-SHADOW_DATABASE_URL=The PostgreSQL connection string
+DATABASE_URL=The first PostgreSQL connection string, i.e., the `DATABASE_URL` environment variable on Heroku
+SHADOW_DATABASE_URL=The second PostgreSQL connection string, i.e., the `HEROKU_POSTGRESQL_<SOME_RANDOM_NAME>_URL` environment variable on Heroku
 ```
 
 Run the following command to connect to the **PostgreSQL** database and create a migration:
@@ -179,21 +181,27 @@ You will be prompt to enter a name for the new migration. Do not worry about thi
 ```sql
 -- CreateTable
 CREATE TABLE "Institution" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "region" TEXT NOT NULL,
     "country" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Institution_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Department" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "institutionId" INTEGER NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "Department_institutionId_fkey" FOREIGN KEY ("institutionId") REFERENCES "Institution" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Department_pkey" PRIMARY KEY ("id")
 );
+
+-- AddForeignKey
+ALTER TABLE "Department" ADD CONSTRAINT "Department_institutionId_fkey" FOREIGN KEY ("institutionId") REFERENCES "Institution"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 ```
 
 **Prisma** has created an `Institution` and `Department` table in the `dev.db` file.
