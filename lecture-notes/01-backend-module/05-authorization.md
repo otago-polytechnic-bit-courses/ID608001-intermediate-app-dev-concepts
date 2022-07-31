@@ -34,7 +34,7 @@ const register = async (req, res) => {
     /**
      * Get the role from the Request's body property
      */ 
-    const { name, email, password, role } = req.body;
+    const { name, email, password, username, role } = req.body;
 
     let user = await prisma.user.findUnique({ where: { email } });
 
@@ -47,7 +47,7 @@ const register = async (req, res) => {
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     user = await prisma.user.create({
-      data: { name, email, password: hashedPassword, role },
+      data: { name, email, password: hashedPassword, username, role },
     });
 
     delete user.password;
@@ -116,7 +116,7 @@ const createInstitution = async (req, res) => {
 
 Test the changes in **Postman** before you move on to the **Formative Assessment** section.
 
-The screenshot below is an example of registering an basic user.
+The screenshot below is an example of registering a basic user.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-1.jpeg)
 
@@ -144,7 +144,7 @@ The screenshot below is an example of a **POST** request to a protected route us
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-7.jpeg)
 
-The screenshot below is an example of disabling the **Authorization** headers for an basic user.
+The screenshot below is an example of disabling the **Authorization** headers for a basic user.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-8.jpeg)
 
