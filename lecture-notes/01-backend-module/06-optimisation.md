@@ -65,7 +65,7 @@ As you can see, there is 3.4 kilobytes transferred over the network which is sig
 
 **Caching** enables the application to store data, i.e., **JSON** response so that future requests for that data can be accessed faster.
 
-View this video to learn more about how **caching*** works - <https://youtu.be/6FyXURRVmR0>
+View this video to learn more about how **caching** works - <https://youtu.be/6FyXURRVmR0>
 
 To get started, run the following command:
 

@@ -630,7 +630,7 @@ In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` file
 
 ### Task Toru
 
-In the `package.json` file, add two scripts. The first script creates a new migration, i.e., `npx prisma migrate reset && npx prisma migrate` and the second script runs **Prisma Studio**, i.e., `npx prisma studio`. Test these scripts before you move on to the **Code Review**.
+In the `package.json` file, add two scripts. The first script creates a new migration, i.e., `npx prisma migrate reset && npx prisma migrate dev` and the second script runs **Prisma Studio**, i.e., `npx prisma studio`. Test these scripts before you move on to the **Code Review**.
 
 ### Code Review
 

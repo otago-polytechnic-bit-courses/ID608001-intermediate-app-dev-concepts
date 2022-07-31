@@ -69,7 +69,7 @@ model User {
 }
 ```
 
-**Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate`.
+**Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev`.
 
 ### middleware/authRoute.js
 
@@ -365,7 +365,7 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-In the `schema.prisma` file, add a new field called `username` of type `String` to the `User` model. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate` before you move on to **Task Toru**.
+In the `schema.prisma` file, add a new field called `username` of type `String` to the `User` model. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev` before you move on to **Task Toru**.
 
 ### Task Toru
 
