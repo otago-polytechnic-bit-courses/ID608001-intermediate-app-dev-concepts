@@ -69,6 +69,15 @@ git log --oneline --grep "^build\|^feat\|^style"
 
 ---
 
+## Useful Visual Studio Code Extensions
+
+The following extensions will add intellisense for your **Prettier** and **ESLint** configuration files, as well as add syntax checking in your source files:
+
+- [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+---
+
 ## Prettier
 
 **Prettier** is an opinionated code formatter. You will remember using **Prettier** in **ID607001: Introductory Application Development**. 
@@ -294,12 +303,6 @@ Test this hook script before you move on to the **Code Review**.
 
 - <https://typicode.github.io/husky>
 - <https://www.npmjs.com/package/lint-staged>
-
-#### VS Code extensions for ESlint and prettier:
-- [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-These extensions will add intellisense for eslint and prettier configuration files, as well as add syntax checking in source files.
 
 ### Code Review
 
