@@ -365,7 +365,7 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-In the `schema.prisma` file, add a new field called `username` of type `String` to the `User` model. Make sure you create a new migration before you move on to **Task Toru**.
+In the `schema.prisma` file, add a new field called `username` of type `String` to the `User` model. Make sure you create a new migration using the command `npx prisma migrate reset` before you move on to **Task Toru**.
 
 ### Task Toru
 
