@@ -173,7 +173,7 @@ npx prisma migrate dev --name init
 You must create a new migration if you change the `prisma.schema` file. To create a new migration, run the following command:
 
 ```bash
-npx prisma migrate dev
+npx prisma migrate reset && npx prisma migrate dev
 ```
 
 You will be prompt to enter a name for the new migration. Do not worry about this and press the <kbd>Enter</kbd> key. You will find the new migration in the `migrations` directory. Have a look at the `migration.sql` file. You should see the following:
@@ -630,7 +630,7 @@ In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` file
 
 ### Task Toru
 
-In the `package.json` file, add two scripts. The first script creates a new migration and the second script runs **Prisma Studio**. Test these scripts before you move on to the **Code Review**.
+In the `package.json` file, add two scripts. The first script creates a new migration, i.e., `npx prisma migrate reset && npx prisma migrate` and the second script runs **Prisma Studio**, i.e., `npx prisma studio`. Test these scripts before you move on to the **Code Review**.
 
 ### Code Review
 

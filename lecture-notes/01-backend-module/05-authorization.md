@@ -22,7 +22,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ### Schema
 
-In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN_USER` and `BASIC_USER`. Update the `User` to include a `role` field with the default value of `BASIC_USER`. Make sure you create a new migration.
+In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN_USER` and `BASIC_USER`. Update the `User` to include a `role` field with the default value of `BASIC_USER`. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate`.
 
 ### controllers/v1/auth.js
 
@@ -160,7 +160,7 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-In the `schema.prisma` file, add a new value called `SUPER_ADMIN_USER` to the `Role` enum. Make sure you create a new migration before you move on to **Task Toru**.
+In the `schema.prisma` file, add a new value called `SUPER_ADMIN_USER` to the `Role` enum. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate` before you move on to **Task Toru**.
 
 ### Task Toru
 
