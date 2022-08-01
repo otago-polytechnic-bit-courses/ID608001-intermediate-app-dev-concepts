@@ -26,7 +26,7 @@ In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN
 
 ### controllers/v1/auth.js
 
-In the `controllers/v1/auth.js`, refactor the refactor the `createInstitution` function:
+In the `controllers/v1/auth.js`, refactor the `register` function:
 
 ```js
 const register = async (req, res) => {
@@ -67,7 +67,7 @@ const register = async (req, res) => {
 
 ### controllers/v1/institutions.js
 
-In the `controllers/v1/institutions.js`, refactor the refactor the `createInstitution` function:
+In the `controllers/v1/institutions.js`, refactor the `createInstitution` function:
 
 ```js
 const createInstitution = async (req, res) => {
