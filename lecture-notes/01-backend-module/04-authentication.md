@@ -373,7 +373,7 @@ In the `controllers/v1/auth.js` file, refactor the `register` function so that t
 
 ### Task Whā
 
-In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their `email` and `password` or `username` and `password`. Test the changes in **Postman** before you move on to the **Code Review**.
+In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their `email` and `password` or `username` and `password`. **Note:** You will need to use the `findFirst()` function instead of the `findUnique()` function and the `OR` operator to filter the user by either is `email` or `username`. Test the changes in **Postman** before you move on to the **Code Review**.
 
 ### Code Review
 
