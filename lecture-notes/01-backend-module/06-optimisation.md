@@ -84,6 +84,8 @@ const cache = new NodeCache({ stdTTL: 300, checkperiod: 310 });
 
 const cacheRoute = (req, res, next) => {
   const key = req.url + req.headers.authorization;
+  
+  const cachedRes = cache.get(key);
 
   if (req.method !== "GET" && cachedRes) {
     console.log(`${key} deleted from the cache`);
