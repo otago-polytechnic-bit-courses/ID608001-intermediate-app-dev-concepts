@@ -1,4 +1,4 @@
-# 10: AWS Deployment
+# 08: AWS Deployment
 
 ## Overview
 

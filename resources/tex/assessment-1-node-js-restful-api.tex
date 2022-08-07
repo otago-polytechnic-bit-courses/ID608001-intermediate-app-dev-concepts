@@ -34,6 +34,9 @@
 \maketitle
 
 \section*{Assessment Overview}
+In this \textbf{individual} assessment, you will develop a \textbf{RESTful API} using \textbf{Node.js} \& deploy it to \textbf{AWS}. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{RESTful API} using the various taught concepts. However, you will be required to independently research \& implement more complex concepts. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.\\
+
+Due to a nation-wide lockdown, your local pub is no longer able to run their weekly quiz night onsite. Your local pub owners know you are an IT student \& ask if you want create an online quiz night application for them. For the first step, the pub owners want a \textbf{RESTful API} that provides various functions for registering, logging in, participating in various quizzes \& keeping track of scores so that they can give away prizes at the end of each quiz night.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -48,8 +51,8 @@ At the successful completion of this course, learners will be able to:
 	\hline
 	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcomes} \\ \hline
 	\small Practical: Skills-Based & \small 20\%        & \small 27-10-2022 (Wed at 7.59 AM)   & \small 1                   \\ \hline
-	\small Assessment 1: Node.js RESTful API - Open Trivia DB              & \small 40\%        & \small 17-10-2022 (Mon at 7.59 AM)  & \small 1 \& 2                   \\ \hline
-	\small Assessment 2: React - Open Trivia DB                        & \small 40\%        & \small 09-11-2022 (Wed at 2.59 PM)  & \small 1 \& 2                   \\ \hline
+	\small Assessment 1: Node.js RESTful API - Open Trivia DB              & \small 45\%        & \small 17-10-2022 (Mon at 7.59 AM)  & \small 1 \& 2                   \\ \hline
+	\small Assessment 2: React - Open Trivia DB                        & \small 35\%        & \small 09-11-2022 (Wed at 2.59 PM)  & \small 1 \& 2                   \\ \hline
 \end{tabular}
 
 \section*{Conditions of Assessment}
@@ -74,19 +77,19 @@ Familiarise yourself with the assessment due date. If you need an extension, con
 Learners may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are to be completed within a negotiable short time frame \& usually \textbf{must} be completed within the timing of the course to which the assessment relates. Resubmissions will be available to learners who have made a genuine attempt at the first assessment opportunity \& achieved a \textbf{D grade (40-49\%)}. The maximum grade awarded for resubmission will be \textbf{C-}.
 
 \section*{Resits}
-Resits \& reassessments \textbf{are not} applicable in \textbf{ID721001: Mobile Application Development}.
+Resits \& reassessments \textbf{are not} applicable in \textbf{ID608001: Intermediate Application Development Concepts}.
 
 \section*{Instructions}
 You will need to submit an application \& documentation that meet the following requirements:
 
-\subsection*{Functionality - Learning Outcomes 1, 2, 3 (50\%)}
+\subsection*{Functionality - Learning Outcomes 1, 2, 3 (60\%)}
 \begin{itemize}
-	\item User:
+	\item \textbf{User:}
 	\begin{itemize}
-		\item You will have three types of users - super admin, admin and basic user.
-		\item Each user will have the following information: first name, last name, username, email address, profile picture, password, confirm password and role. The users' profile picture will be fetched from the following API - \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api} using Axios. 
-		\item Each user can login, logout, get their information and update their information. A super admin user can get all users' information, update all admin and basic users' information and delete all admin and basic users. An admin user can get all admin and basic users' information and update all basic users' information. A basic user can register.
-		\item When performing a POST request for registering a basic user, the following error checking must be implemented:
+		\item You will have \textbf{three} types of users - \textbf{super admin}, \textbf{admin} and \textbf{basic} user.
+		\item Each user will have the following information: first name, last name, username, email address, profile picture, password, confirm password and role. The users' profile picture will be fetched from the following \textbf{API} - \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api} using Axios. 
+		\item Each user can login, logout, get their information and update their information. A \textbf{super admin} user can get all users' information, update all \textbf{admin} and \textbf{basic} users' information and delete all \textbf{admin} and \textbf{basic} users. An \textbf{admin} user can get all \textbf{admin} and \textbf{basic} users' information and update all \textbf{basic} users' information. A \textbf{basic} user can register.
+		\item When performing a \textbf{POST} request for registering a \textbf{basic} user, the following error checking must be implemented:
 		\begin{itemize}
 			\item First name has a minimum length of two characters, a maximum length of 50 characters and alpha characters only.
 			\item Last name has the same error checking as first name above.
@@ -96,18 +99,18 @@ You will need to submit an application \& documentation that meet the following 
 			\item Confirm password is the same as the password above.
 		\end{itemize}
 		For each error check, a status code and response message is returned, i.e., "First name must have a minimum length of two characters".
-		\item When performing a POST request for logging in a user, return a status code, a response message, i.e., "<User's username> has successfully logged in" and the user's JWT.
-		\item When performing a GET request for logging out a user, return a status code, a response message, i.e., "<User's username> has successfully logged out" and set the user's JWT to expired.
-		\item When performing a PUT and DELETE request, return a status code and a response message, i.e., "<User's username>'s information has successfully updated" or "<User's username> has successfully deleted".
-		\item Two super admin users are seeded via you. Only you can seed the two super admin users. The admin users' data will be fetched from a local file and inserted into the User table using Prisma. 
-		\item Five admin users are seeded via a super admin user. Only a super admin user can seed the five admin users. The admin users' data will be fetched from a private GitHub Gist using Axios and inserted into the User table using Prisma.  
-		\item Five basic users are seeded via a super admin or an admin user. Only a super admin or an admin user can seed the five basic users. The basic users' data will be fetched from a private GitHub Gist using Axios and inserted into the User table using Prisma. 
+		\item When performing a \textbf{POST} request for logging in a user using either username/password or email address/password, return a status code, a response message, i.e., "<User's username> has successfully logged in" and the user's \textbf{JWT}.
+		\item When performing a \textbf{GET} request for logging out a user, return a status code, a response message, i.e., "<User's username> has successfully logged out" and set the user's \textbf{JWT} to expired.
+		\item When performing a \textbf{PUT} and \textbf{DELETE} request, return a status code and a response message, i.e., "<User's username>'s information has successfully updated" or "<User's username> has successfully deleted".
+		\item Two \textbf{super admin} users are seeded via you. Only you can seed the two \textbf{super admin} users. The \textbf{admin} users' data will be fetched from a local file and inserted into the \textbf{User} table using \textbf{Prisma}. 
+		\item Five \textbf{admin} users are seeded via a \textbf{super admin} user. Only a \textbf{super admin} user can seed the five \textbf{admin} users. The \textbf{admin} users' data will be fetched from a private \textbf{GitHub Gist} using \textbf{Axios} and inserted into the \textbf{User} table using \textbf{Prisma}.  
+		\item Five \textbf{basic} users are seeded via a \textbf{super admin} or an \textbf{admin} user. Only a \textbf{super admin} or an \textbf{admin} user can seed the five \textbf{basic} users. The \textbf{basic} users' data will be fetched from a private \textbf{GitHub Gist} using \textbf{Axios} and inserted into the \textbf{User} table using \textbf{Prisma}. 
 	\end{itemize} 
 	\item Quiz:
 	\begin{itemize}
-		\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores, average score, list of ratings and average rating. The category, list of questions, list of correct answers and list of incorrect answers will be fetched from the following API - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium and hard. The types will be multiple choice or true/false.
-		\item Each user can get all quizzes, get all past quizzes, get all present quizzes and get all future quizzes. A super admin and an admin user can create a quiz. A super admin user can delete a quiz. A basic user can participate in a quiz and rate a quiz.
-		\item When performing a POST request for creating a quiz, the following error checking must be implemented:
+		\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores, average score, list of ratings, average rating and overall winner. The category, list of questions, list of correct answers and list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium and hard. The types will be multiple choice or true/false.
+		\item Each user can get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes, get a list of scores and get a list of ratings. A \textbf{super admin} and an \textbf{admin} user can create a quiz. A \textbf{super admin} user can delete a quiz. A \textbf{basic} user can participate in a quiz and rate a quiz.
+		\item When performing a \textbf{POST} request for creating a quiz, the following error checking must be implemented:
 		\begin{itemize}
 			\item Name has a minimum length of five characters, a maximum length of 30 characters and alpha characters only.
 			\item Start date has to greater than today's date.
@@ -115,25 +118,77 @@ You will need to submit an application \& documentation that meet the following 
 			\item Number of questions has to be ten.
 		\end{itemize}
 		For each error check, a status code and response message is returned, i.e., "Name must have a minimum length of five characters".
-		\item When performing a POST request for a basic user who has participated in a quiz, return a status code, a response message, i.e., "<User's username> has successfully participated in <Quiz's name>", user's score and quiz's average score.
+		\item When performing a \textbf{POST} request for a \textbf{basic} user who is participating in a quiz, the following error checking must be implemented:
+		\begin{itemize}
+			\item Can not participate if today's date is before the start date and after the end date.
+			\item Answered all ten questions.
+		\end{itemize}
+		\item When performing a \textbf{POST} request for a \textbf{basic} user who has participated in a quiz, return a status code, a response message, i.e., "<User's username> has successfully participated in <Quiz's name>", user's score and quiz's average score.
+	\end{itemize}
+	\item HTTP:
+	\begin{itemize}
+		\item When performing a \textbf{GET} request for \textbf{/api/v1/}, return a response containing all available endpoints in the \textbf{RESTful API}. 
+		\item Headers are secured using \textbf{Helmet}.
+		\item Implement \textbf{CORS}, \textbf{compression}, \textbf{caching} and \textbf{rate limiting}.
+	\end{itemize}
+	\item API Testing:
+	\begin{itemize}
+		\item API tests are written using \textbf{Mocha} and \textbf{Chai}.
+		\item At least 40 \textbf{API}/integration tests verifying the user and quiz functionality.
+		\item Code coverage using \textbf{c8}. 
+	\end{itemize}
+	\item Deployment:
+	\begin{itemize}
+		\item \textbf{RESTful API} is deployment to \textbf{AWS}. 
 	\end{itemize}
 \end{itemize}
 
-\subsection*{Code Elegance - Learning Outcome 1 (30\%)}
+\subsection*{Code Elegance - Learning Outcome 1 (25\%)}
 \begin{itemize}
-	\item Environment variables' key is stored in the example.env file. 
-	\item Database configured for development and production environments.
+	\item Environment variables' key is stored in the \textbf{example.env} file. 
+	\item \textbf{PostgreSQL} databases configured for development and production environments.
 	\item Variables, functions and resource groups are named appropriately.
 	\item Idiomatic use of control flow, data structures and in-built functions.
-	\item A file header comment for each controller and route file explaining its purpose using JSDoc.
-	\item Code is formatted.
-	\item No unused code.
+	\item File header comment for each controller and route file explaining its purpose using \textbf{JSDoc}.
+	\item Code is linted and formatted using \textbf{ESLint} and \textbf{Prettier}.
+	\item \textbf{Pre-commit hook} for \textbf{ESLint}, \textbf{Prettier} and \textbf{Git} commit message conventions using \textbf{Husky}.
+	\item \textbf{Mocha}, \textbf{Chai}, \textbf{ESlint}, \textbf{Prettier} and \textbf{Husky} are install as \textbf{development dependencies}.
+	\item NPM scripts for the following:
+	\begin{itemize}
+		\item Opening \textbf{Prisma Studio}.
+		\item Creating a migration using \textbf{Prisma}. 
+		\item Linting and fixing your code using \textbf{ESLint}.
+		\item Formatting your code using \textbf{Prettier}.
+		\item Running \textbf{API}/integration tests using \textbf{Mocha}.
+		\item Running code coverage using \textbf{c8} and \textbf{Mocha}.
+	\end{itemize}
 \end{itemize}
 
-\subsection*{Documentation \& Git/GitHub Usage - Learning Outcomes 2, 3 (20\%)}
-% \begin{itemize}
-	
-% \end{itemize}
+\subsection*{Documentation \& Git/GitHub Usage - Learning Outcomes 2, 3 (15\%)}
+\begin{itemize}
+	\item Project board to help you organise and prioritise your work. 
+	\item A \textbf{Entity-Relationship} diagram of your \textbf{Prisma} schema.
+	\item \textbf{GitHub} repository contains a \textbf{Node.js .gitignore}.
+	\item Provide the following in your repository \textbf{README.md} file:
+	\begin{itemize}
+		\item URL to the \textbf{RESTful API} on \textbf{AWS}.
+		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{RESTful API}?
+		\item How do you deploy the \textbf{RESTful API} to \textbf{AWS}
+		\item How do you open \textbf{Prisma Studio}?
+		\item How do you create a migration?
+		\item How do you lint and fix your code?
+		\item How do you format your code?
+		\item How do you run your \textbf{API}/integration tests?
+		\item How do you run your code coverage \& output the results to \textbf{HTML}?
+	\end{itemize}
+	\item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
+	\item Correct spelling and grammar. 
+	\item Your \textbf{Git commit messages} should:
+	\begin{itemize}
+		\item Reflect the context of each functional requirement change.
+		\item Be formatted using an appropriate naming convention style.
+	\end{itemize}	
+\end{itemize}
 
 \subsection*{Additional Information}
 \begin{itemize}
