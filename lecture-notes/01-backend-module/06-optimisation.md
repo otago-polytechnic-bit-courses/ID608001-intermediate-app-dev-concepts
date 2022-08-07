@@ -12,7 +12,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 Compression with **GZIP** helps decrease the downloadable amount of data served to the client. This compression technique can improve the application's performance by significantly reducing the payload size, i.e., **JSON** response.
 
-View this video to learn more about how **GZIP*** works - <https://www.youtube.com/watch?v=NLtt4S9ErIA>
+View this video to learn more about how **GZIP** works - <https://www.youtube.com/watch?v=NLtt4S9ErIA>
 
 To get started, run the following command:
 
