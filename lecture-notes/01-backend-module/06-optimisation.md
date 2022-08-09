@@ -148,4 +148,4 @@ If you have not already, implement the code examples above before you move onto 
 
 ### Code Review
 
-Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
+Once you have completed the task, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
