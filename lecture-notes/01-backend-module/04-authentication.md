@@ -377,4 +377,4 @@ In the `controllers/v1/auth.js` file, refactor the `login` function so that the 
 
 ### Code Review
 
-Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
+Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.

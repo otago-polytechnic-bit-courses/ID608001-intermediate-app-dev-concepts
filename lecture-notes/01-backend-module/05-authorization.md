@@ -172,4 +172,4 @@ In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` file
 
 ### Code Review
 
-Once you have completed all three tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull requesting.
+Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
