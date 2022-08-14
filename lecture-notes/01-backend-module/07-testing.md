@@ -48,6 +48,7 @@ In the root directory, create a new directory called `test`. In the `test` direc
 
 ```js
 import chai from "chai";
+import { describe, it } from "mocha";
 
 /**
  * @param {Number} a 
