@@ -237,6 +237,8 @@ describe("institutions", () => {
 });
 ```
 
+In the `package.json` file, add the following script:
+
 ```bash
 "test": "npx mocha --timeout 10000 --exit"
 ```
