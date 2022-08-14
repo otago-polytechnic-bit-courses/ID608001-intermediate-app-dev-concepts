@@ -201,6 +201,7 @@ chai.use(chaiHttp);
 
 const BASE_URL = "/api/v1";
 
+// If your seeder does not reset the id count to 0 (zero), then remove th id key/value pair
 const institution = {
   id: 3,
   name: "Southern Institute of Technology",
