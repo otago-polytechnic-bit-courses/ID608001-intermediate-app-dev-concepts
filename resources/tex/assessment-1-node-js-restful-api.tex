@@ -87,7 +87,7 @@ You will need to submit an application \& documentation that meet the following 
 	\item \textbf{User:}
 	\begin{itemize}
 		\item You will have \textbf{three} types of users - \textbf{super admin}, \textbf{admin} \& \textbf{basic} user.
-		\item Each user will have the following information: first name, last name, username, email address, profile picture, password, confirm password \& role. The users' profile picture will from the following \textbf{API} - \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api}. 
+		\item Each user will have the following information: first name, last name, username, email address, profile picture, password, confirm password \& role. The users' profile picture will be from the following \textbf{API} - \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api}. Each profile picture should be, in most cases, different. I suggest using a random seed when setting the user's profile picture.
 		\item Each user can login, logout, get their information \& update their information. A \textbf{super admin} user can get all users' information, update all \textbf{admin} \& \textbf{basic} users' information \& delete all \textbf{admin} \& \textbf{basic} users. An \textbf{admin} user can get all \textbf{admin} \& \textbf{basic} users' information \& update all \textbf{basic} users' information. A \textbf{basic} user can register.
 		\item When performing a \textbf{POST} request for registering a \textbf{basic} user, the following error checking must be implemented:
 		\begin{itemize}
@@ -95,7 +95,7 @@ You will need to submit an application \& documentation that meet the following 
 			\item Last name has the same error checking as first name above.
 			\item Username is unique, has a minimum length of five characters, maximum length of ten characters \& alphanumeric characters only, i.e., johndoe123.
 			\item Email address is unique, contains the username above, an @ special character \& a second-level domain, i.e., johndoe123@email.com.
-			\item Password has a minimum length of eight characters, maximum length of 16 characters \& contains one numeric character \& one special charcater.
+			\item Password has a minimum length of eight characters, maximum length of 16 characters \& contains one numeric character \& one special character.
 			\item Confirm password is the same as the password above. \textbf{Note:} Confirm password will not be a field in the \textbf{User} table. Rather, it will be used to validate the user's password.
 		\end{itemize}
 		For each error check, a status code \& response message is returned, i.e., "First name must have a minimum length of two characters".
@@ -139,7 +139,7 @@ You will need to submit an application \& documentation that meet the following 
 	\end{itemize}
 	\item \textbf{Deployment:}
 	\begin{itemize}
-		\item \textbf{RESTful API} is deployment to \textbf{AWS}. 
+		\item \textbf{RESTful API} is deployed to \textbf{AWS}. 
 	\end{itemize}
 	\item \textbf{NPM scripts:}
 	\begin{itemize}
