@@ -22,7 +22,7 @@ In the `package.json` file, add the following:
 
 ## Dotenv
 
-Install **Dotenv** by running the commands:
+To get started with **Dotenv**, run the following command:
 
 ```bash
 npm install dotenv
@@ -36,7 +36,7 @@ PORT=3000
 
 ## Express
 
-Install **Express** by running the command:
+To get started with **Express**, run the following command:
 
 ```bash
 npm install express

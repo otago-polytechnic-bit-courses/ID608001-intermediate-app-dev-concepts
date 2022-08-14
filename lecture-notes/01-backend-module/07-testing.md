@@ -8,27 +8,72 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ---
 
-## Overview
-
----
-
 ## Mocha
+
+**Mocha** is a **JavaScript** testing framework for **Node.js** applications. 
+
+**Note:** Most programming languages, i.e., **C#**, **Java**, **PHP**, etc., each have several testing frameworks.
+
+To get started with **Mocha**, run the following command:
+
 
 ```bash
 npm install mocha --save-dev
 ```
 
+**Resource:** <https://mochajs.org>
+
 ---
 
 ## Chai
+
+**Chai** is a **JavaScript** assertion library for **Node.js** applications. 
+
+To get started with **Chai**, run the following command:
+
 
 ```bash
 npm install chai chai-http --save-dev
 ```
 
+**Resource:** <https://www.chaijs.com>
+
+---
+
+## Unit Testing
+
+**Unit testing** is a **software testing** technique by which units of code, i.e., **functions** or **methods** are tested **individually** to determine whether they are fit for use.
+
+In the root directory, create a new directory called `test`. In the `test` directory, create a new file called `00-unit-test.test.js`. In the `00-unit-test.test.js` file, add the following code:
+
+```js
+import chai from "chai";
+
+/**
+ * @param {Number} a 
+ * @param {Number} b 
+ * @returns the sum of a and b
+ */
+const addTwoNums = (a, b) => a + b;
+
+describe("unit test example", () => {
+  it("should return the correct result for addTwoNums", (done) => {
+    chai.expect(addTwoNums(1, 2)).to.equal(3);
+    done();
+  });
+
+  it("should return the incorrect result for addTwoNums", (done) => {
+    chai.expect(addTwoNums(1, 2)).to.not.equal(4);
+    done();
+  });
+});
+```
+
 ---
 
 ## Seeding
+
+In the `test` directory, create a new file called `01-setup.test.js`. In the `01-setup.test.js` file, add the following code:
 
 ```js
 import { before, after } from "mocha";
@@ -40,21 +85,26 @@ const seed = () => {
   seedDepartments();
 };
 
+// Before each test, seed the Institution and Department tables with data fetched from a GitHub Gist
 before((done) => {
   seed();
   done();
 });
 
+// After each test, do something
 after((done) => {
-  seed();
+  // You may want to delete all the data from the Institution and Department tables
   done();
 });
-
 ```
 
 ---
 
 ## Integration Testing
+
+**Integration testing** is a **software testing** technique by which units of code, i.e., **functions** or **methods** are tested as a **group** to determine whether they are fit for use.
+
+In the `test` directory, create a new file called `02-integration.test.js`. In the `02-integration.test.js` file, add the following code:
 
 ```js
 import chai from "chai";
@@ -63,7 +113,7 @@ import { describe, it } from "mocha";
 
 const BASE_URL = "https://gist.githubusercontent.com/Grayson-Orr/c17079a40517ec29679dc9585ba7af76/raw";
 
-chai.use(chaiHttp);
+chai.use(chaiHttp); // Provides an interface for integration testing
 
 describe("integration - GitHub Gist", () => {
   it("should get institutions", (done) => {
@@ -81,6 +131,8 @@ describe("integration - GitHub Gist", () => {
 ---
 
 ## API Testing
+
+In the `test` directory, create a new file called `03-auth.test.js`. In the `03-auth.test.js` file, add the following code:
 
 ```js
 import chai from "chai";
@@ -133,6 +185,8 @@ describe("auth", () => {
 
 export default adminUser;
 ```
+
+In the `test` directory, create a new file called `04-institutions.test.js`. In the `04-institutions.test.js` file, add the following code:
 
 ```js
 import chai from "chai";
@@ -190,6 +244,14 @@ describe("institutions", () => {
 ---
 
 ## Formative Assessment
+
+### Task Tahi
+
+If you have not already, implement the code examples above before you move on to **Task Rua**.
+
+### Task Rua
+
+Create four additional **API tests** for getting one institution, get all institutions, updating an institution and deleting an institution. Test your **API tests** before you move on to the **Code Review**.
 
 ### Code Review
 
