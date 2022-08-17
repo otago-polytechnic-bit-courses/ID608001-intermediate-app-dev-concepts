@@ -281,7 +281,7 @@ In the `package.json` file, add the following:
   }
 },
 "lint-staged": {
-  "*.{js, json}": [
+  "*.{js,json}": [
     "npm run prettier:fix",
     "npm run lint:check"
   ]
