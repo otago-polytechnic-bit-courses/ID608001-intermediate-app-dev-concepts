@@ -4,8 +4,6 @@
 
 Use the repository from the previous **Formative Assessment**. Create a new branch called `06-playground`. Checkout to the `06-playground` branch and open the repository in **Visual Studio Code**.
 
-**Note:** Carefully read the comments in the code examples below.
-
 ---
 
 ## Compression

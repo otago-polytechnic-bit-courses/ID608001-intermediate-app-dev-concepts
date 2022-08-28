@@ -4,8 +4,6 @@
 
 Use the repository from the previous **Formative Assessment**. Create a new branch called `07-playground`. Checkout to the `07-playground` branch and open the repository in **Visual Studio Code**.
 
-**Note:** Carefully read the comments in the code examples below.
-
 ---
 
 ## Mocha
@@ -197,13 +195,12 @@ import { describe, it } from "mocha";
 
 import app from "../app.js";
 
-import adminUser from "./02-auth.test.js";
+import adminUser from "./03-auth.test.js";
 
 chai.use(chaiHttp);
 
 const BASE_URL = "/api/v1";
 
-// If your seeder does not reset the id count to 0 (zero), then remove th id key/value pair
 const institution = {
   id: 3,
   name: "Southern Institute of Technology",
@@ -256,7 +253,7 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-Create four additional **API tests** for getting one institution, get all institutions, updating an institution and deleting an institution. Test your **API tests** before you move on to the **Code Review**.
+Create four additional **API tests** for getting one institution, getting all institutions, updating an institution and deleting an institution. Test your **API tests** before you move on to the **Code Review**.
 
 ### Code Review
 

@@ -121,11 +121,13 @@ If you have not already, implement the code examples above before you move on to
 In this task, you will create an **API** containing institution and department data. Navigate to <https://gist.github.com>. In the **Filename including extension...** input, type `institutions.json`. In the window below, add the following:
 
 ```json
-{
+[
+  {
     "name": "Otago Polytechnic",
     "region": "Otago",
     "country": "New Zealand"
-}
+  }   
+]
 ```
 
 Click the **Add file** button and repeat the same process but for department. Click the **Create secret gist** button. Click the **Raw** button and copy the **URL**.

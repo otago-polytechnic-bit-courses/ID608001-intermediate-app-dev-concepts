@@ -4,7 +4,7 @@
 
 Create a new repository - <https://classroom.github.com/a/SNd5oi2t>. Remember to add the `README.md` and `.gitignore` **(Node)** files. Clone the repository. Change the directory to the repository and create a new branch called `01-playground`. Checkout to the `01-playground` branch and open the repository in **Visual Studio Code**.
 
-**Note:** Carefully read the comments in the code examples below.
+---
 
 ## package.json
 
@@ -20,6 +20,8 @@ In the `package.json` file, add the following:
 "type": "module"
 ```
 
+---
+
 ## Dotenv
 
 To get started with **Dotenv**, run the following command:
@@ -34,6 +36,8 @@ In the root directory, create a new file called `.env`. In the `.env` file, add 
 PORT=3000
 ```
 
+---
+
 ## Express
 
 To get started with **Express**, run the following command:
@@ -41,6 +45,8 @@ To get started with **Express**, run the following command:
 ```bash
 npm install express
 ```
+
+---
 
 ## app.js
 
@@ -81,6 +87,8 @@ app.listen(PORT, () => {
 ```
 
 It is a simple **Express** server setup but feel free to add other dependencies you learned in **ID607001: Introductory Application Development Concepts/Pia o Te Taupānga Tukutuku**.
+
+---
 
 ## Prisma
 
@@ -205,6 +213,8 @@ ALTER TABLE "Department" ADD CONSTRAINT "Department_institutionId_fkey" FOREIGN 
 ```
 
 **Prisma** has created an `Institution` and `Department` table in the `dev.db` file.
+
+---
 
 ## Refactoring
 
