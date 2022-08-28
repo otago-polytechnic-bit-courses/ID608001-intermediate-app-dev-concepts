@@ -12,6 +12,7 @@ To get started, run the following command:
 
 ```bash
 npx create-react-app tic-tac-toe
+cd tic-tac-toe
 ```
 
 **Resource:** <https://create-react-app.dev>
