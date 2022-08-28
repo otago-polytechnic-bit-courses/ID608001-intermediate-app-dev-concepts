@@ -8,7 +8,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## Create React App
 
-To get started, run the following command: 
+To get started, run the following commands: 
 
 ```bash
 npx create-react-app tic-tac-toe
