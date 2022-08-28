@@ -87,7 +87,7 @@ export default Board;
 
 **Resource:** <https://reactjs.org/docs/lists-and-keys>
 
-In the `src` directory, create a new directory called **utils**. Create a new **JavaScript** file called `index`.
+In the `src` directory, create a new directory called **utils**. Create a new **JavaScript** file called `index.js`.
 
 ```javascript
 const calculateWinner = (squares) => {
@@ -129,11 +129,13 @@ export default calculateWinner;
 3. Iterating through the length of `lines`. Use destructuring to access each index in each line. For example, `[a => 0, b => 1, c => 2]`, `[a => 3, b => 4, c => 5]`, etc. This means you do not need to access each line using `[idx][idx]`.
 4. Checking if `squares[a]` (first position) in `squares` contains the value **X** or **O**. If `true`, compare the value in `squares[a]` with the value in `squares[b]` (second position) and the value in `squares[a]` with the value in `squares[c]` (third position), then return the value in `squares[a]` (winner). Otherwise, return `null`.
 
-### src/components/Games.js
+### src/components/Game.js
+
+In the `components` directory, create a new file called `Game.js`. In the `Game.js` file, add the following code:
 
 ```jsx
 import { useState } from 'react';
-import calculateWinner from '../utils';
+import calculateWinner from '../utils/calculateWinner';
 import Board from './Board';
 
 const styles = {
@@ -178,13 +180,17 @@ export default Game;
 ```
 
 **What is happening?**
+
 1. Declaring three states - `board` and `xIsNext` using the `useState` hook and fill it with initial data. Also, you will need a way of setting a state's value - `setBoard` and `setXIsNext`. 
 2. Declaring a function called `handleClick` which accepts a parameter called `idx`. Declaring a variable called `boardCopy` and assign its value to a shallow copy of the current `board` state using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) (horizontal ellipsis). Return if there is a winner or if a `Square` in `boardCopy` contains a value that is not `null`. Setting a `Square` in `boardCopy` to either **X** and **O** based on the current `xIsNext` state. Setting the `board` state to `boardCopy` using the `setBoard` function and `xIsNext` to `!xIsNext` using the `setXIsNext` function.
 3. Declaring a function called `startGame` which returns a `button`. The `button` has an `onClick` listener which resets and the fills the `Array` of size 9 to `null`.
 4. Returning a `Fragment` containing a `Board`. In the `div`, if `winner` is `true`, display the winning value (**X** or **O**). Otherwise, display the next value based on the current `xIsNext` state. Also, declare `startGame` which renders the button mentioned above.
 
+### src/App.js
+
+In the `App.js` file, replace the existing code with the following code:
+
 ```jsx
-import React from 'react';
 import Game from './components/Game';
 
 const App = () => <Game />;
@@ -194,4 +200,40 @@ export default App;
 
 ---
 
+## Testing
+
+Navigate to <http:localhost:3000> and test the changes before you move on to the **Formative Assessment** section.
+
+The screenshot below is an example of an empty board.
+
+![](../../resources/img/10-recap/10-recap-1.jpeg)
+
+The screenshot below is an example of square set to **X**. 
+
+![](../../resources/img/10-recap/10-recap-2.jpeg)
+
+The screenshot below is an example of the **X** win state.
+
+![](../../resources/img/10-recap/10-recap-3.jpeg)
+
+The screenshot below is an example of the **O** win state. 
+
+![](../../resources/img/10-recap/10-recap-4.jpeg)
+
+The screenshot below is an example of the draw state.
+
+![](../../resources/img/10-recap/10-recap-5.jpeg)
+
 ## Formative Assessment
+
+### Task Tahi
+
+If you have not already, implement the code examples above before you move on to **Task Rua**. 
+
+### Task Rua
+
+Create a function that checks the draw state. Display "Draw" if the draw state is true. Test the changes before you move on to the **Code Review**.
+
+### Code Review
+
+Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
