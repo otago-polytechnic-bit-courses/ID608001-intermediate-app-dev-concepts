@@ -27,17 +27,17 @@ In the `root/src` directory of the `tic-tac-toe` application, create a new direc
 In the `components` directory, create a new file called `Square.js`. In the `Square.js` file, add the following code:
 
 ```jsx
-const btnStyle = {
-  border: '1px solid #000',
-  cursor: 'pointer',
-  fontSize: '30px',
-  fontWeight: '800',
-  outline: 'none',
-};
-
 const Square = (props) => {
+  const style = {
+    border: '1px solid #000',
+    cursor: 'pointer',
+    fontSize: '30px',
+    fontWeight: '800',
+    outline: 'none',
+  };
+
   return (
-    <button style={btnStyle} onClick={props.onClick}>
+    <button style={style} onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -59,17 +59,17 @@ In the `components` directory, create a new file called `Board.js`. In the `Boar
 ```jsx
 import Square from './Square';
 
-const boardStyle = {
-  border: '1px solid #000',
-  display: 'grid',
-  gridTemplate: 'repeat(3, 1fr) / repeat(3, 1fr)',
-  height: '200px',
-  width: '200px',
-};
-
 const Board = (props) => {
+  const style = {
+    border: '1px solid #000',
+    display: 'grid',
+    gridTemplate: 'repeat(3, 1fr) / repeat(3, 1fr)',
+    height: '200px',
+    width: '200px',
+  };
+
   return (
-    <div style={boardStyle}>
+    <div style={style}>
       {props.squares.map((square, idx) => (
         <Square key={idx} value={square} onClick={() => props.onClick(idx)} />
       ))}
@@ -138,17 +138,18 @@ import { useState } from 'react';
 import calculateWinner from '../utils/calculateWinner';
 import Board from './Board';
 
-const styles = {
-  width: '200px',
-};
 
 const Game = () => {
+  const style = {
+    width: '200px',
+  };
+
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
 
   const winner = calculateWinner(board);
 
-  const handleClick = (idx) => {
+  const handleClick = (idx) => 
     const boardCopy = [...board];
     if (winner || boardCopy[idx]) return;
     boardCopy[idx] = xIsNext ? 'X' : 'O';
@@ -163,7 +164,7 @@ const Game = () => {
   return (
     <>
       <Board squares={board} onClick={handleClick} />
-      <div style={styles}>
+      <div style={style}>
         <p>
           {winner
             ? `Winner: ${winner}`
