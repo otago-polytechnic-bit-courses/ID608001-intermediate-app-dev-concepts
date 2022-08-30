@@ -130,7 +130,7 @@ Refactor the `Square`, `Board` and `Game` **components** to use either **CSS in 
 
 Create a new branch called `11-playground-sass`. Checkout to the `11-playground-sass` branch.
 
-### Task Whā
+### Task Toru
 
 In the repository's `README.md` file, answer the following questions:
 
@@ -140,7 +140,7 @@ In the repository's `README.md` file, answer the following questions:
 
 Please reference your sources using **APA 7th Edition**.
 
-### Task Rima
+### Task Whā
 
 Refactor the `Square`, `Board` and `Game` **components** to use **Sass**. Test the changes before you move on to the **Code Review**.
 
