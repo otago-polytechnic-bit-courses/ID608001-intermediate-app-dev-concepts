@@ -1,4 +1,4 @@
-# 10: Recap
+# 10: React Recap
 
 ## Preparation
 
@@ -204,7 +204,7 @@ export default App;
 
 ## Testing
 
-Navigate to <http:localhost:3000> and test the changes before you move on to the **Formative Assessment** section.
+Navigate to <http://localhost:3000> and test the changes before you move on to the **Formative Assessment** section.
 
 The screenshot below is an example of an empty board.
 
@@ -234,7 +234,7 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-Create a function that checks the draw state. Display "Draw" if the draw state is true. Test the changes before you move on to the **Code Review**.
+Write some code that checks the draw state. Display "Draw" if the draw state is true. Test the changes before you move on to the **Code Review**.
 
 ### Code Review
 
