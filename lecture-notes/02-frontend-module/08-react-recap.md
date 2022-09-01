@@ -1,8 +1,8 @@
-# 10: React Recap
+# 08: React Recap
 
 ## Preparation
 
-Use the repository from the previous **Formative Assessment**. Create a new branch called `10-playground`. Checkout to the `10-playground` branch and open the repository in **Visual Studio Code**.
+Use the repository from the previous **Formative Assessment**. Create a new branch called `08-playground`. Checkout to the `08-playground` branch and open the repository in **Visual Studio Code**.
 
 ---
 
