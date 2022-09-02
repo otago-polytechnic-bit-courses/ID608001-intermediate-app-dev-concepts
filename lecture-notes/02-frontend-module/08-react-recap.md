@@ -88,7 +88,7 @@ export default Board;
 
 **Resource:** <https://reactjs.org/docs/lists-and-keys>
 
-In the `src` directory, create a new directory called **utils**. Create a new **JavaScript** file called `index.js`.
+In the `src` directory, create a new directory called **utils**. Create a new **JavaScript** file called `calculateWinner.js`.
 
 ```javascript
 const calculateWinner = (squares) => {
