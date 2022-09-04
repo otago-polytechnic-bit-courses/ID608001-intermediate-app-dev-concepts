@@ -25,7 +25,7 @@ In the `root/src` directory of the `book-shop` application, create a new directo
 
 ### src/components/Book.js
 
-In the `Book` directory, create a new file called `Book.js`. In the `Book.js` file, add the following code:
+In the `components` directory, create a new file called `Book.js`. In the `Book.js` file, add the following code:
 
 ```jsx
 const Book = (props) => {
@@ -47,7 +47,7 @@ A `Book` has three `props` - `name`, i.e., **Pride and Prejudice**, `price`, i.e
 
 ### src/components/BookList.js
 
-In the `BookList` directory, create a new file called `BookList.js`. In the `BookList.js` file, add the following code:
+In the `components` directory, create a new file called `BookList.js`. In the `BookList.js` file, add the following code:
 
 ```jsx
 import { useEffect, useState } from 'react';
