@@ -49,7 +49,7 @@ export default Square;
 
 **What is happening?**
 
-1. A `Square` has two `props` - `value`, i.e., **X**, **O** or `null` and `onClick` which will be passed down to the `Board.js` file or `Board` **component** then to the `Square.js` file or `Square` **component**.
+A `Square` has two `props` - `value`, i.e., **X**, **O** or `null` and `onClick`. This data will be passed down from the `Game.js` file or `Game` component to the `Board.js` file or `Board` **component**.
 
 **Resource:** <https://reactjs.org/docs/components-and-props>
 
@@ -84,7 +84,7 @@ export default Board;
 **What is happening?**
 
 1. Mapping through the `squares` **prop**, i.e., an `Array` of size 9 which is declared in the `Game.js` file or `Game` **component**. 
-2. Declare a `Square` for each `square` in the `squares` **prop**. Each `Square` must have a `key`. It tells **React** which items have been added, changed or removed.
+2. Declaring a `Square` for each `square` in the `squares` **prop**. Each `Square` must have a `key`. It tells **React** which items have been added, changed or removed.
 
 **Resource:** <https://reactjs.org/docs/lists-and-keys>
 
