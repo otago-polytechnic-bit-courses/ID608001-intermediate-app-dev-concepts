@@ -121,19 +121,7 @@ export default Cart;
 In the `App.js` file, replace the existing code with the following code:
 
 ```jsx
-import BookList from './components/BookList';
-import Cart from './components/Cart';
 
-const App = () => {
-	return (
-		<>
-			<Cart />
-			<BookList />
-		</>
-	);
-}
-
-export default App;
 ```
 
 ### Refactoring
