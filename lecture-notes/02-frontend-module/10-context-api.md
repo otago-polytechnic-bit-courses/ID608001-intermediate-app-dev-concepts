@@ -125,13 +125,13 @@ import BookList from './components/BookList';
 import Cart from './components/Cart';
 
 const App = () => {
-	return (
-		<>
-			<Cart />
-			<BookList />
-		</>
-	);
-}
+  return (
+    <>
+      <Cart />
+      <BookList />
+    </>
+  );
+};
 
 export default App;
 ```
@@ -208,7 +208,7 @@ const App = () => {
       </CartProvider>
     </>
   );
-}
+};
 
 export default App;
 ```
