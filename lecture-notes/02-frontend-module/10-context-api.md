@@ -146,7 +146,7 @@ The screenshot below is an example the book list and a cart with two books when 
 
 ## Overview
 
-Thus far, you have used **props** to pass data from a higher-level component and a lower-level component. **Context API** is a light-weight state management system that provides you a way to pass data from a higher-level component and a lower-level component without having to use **props**. 
+Thus far, you have used **props** to pass data from a higher-level component to a lower-level component. **Context API** is a light-weight state management system that provides you a way to pass data from a higher-level component to a lower-level component without having to use **props**. 
 
 In a typical React data flow, components communicate with each other using **props**. For example, the parent component, i.e., `BookList` passes data, i.e., `name`, `price` and `addToCart()` to the child component, i.e., `Book`. Though this is a simple example, usually when a lower-level component that is nested several levels in the component tree needs to access data from a higher-level component, it is a common practice to pass the data down to each component in the tree until the lower-level component receives the data. In most cases, the components between the high-level component and the lower-level component do not care about that data. However, by the time the lower-level component receives the data, you may have passed the data to three or four components. Just imagine five to ten components. This is called **prop-drilling**. 
 
@@ -293,13 +293,13 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-In the `components` directory, create a new file called `Checkout.js`. In the `Checkout.js` file, display all books in the `cart`. Display as you wish, i.e., in a list or table. Test the changes before you move on to **Task Toru**.
+In the `components` directory, create a new file called `Checkout.js`. In the `Checkout.js` file, display all books in the `cart`. Display as you wish, i.e., in a list or table. Once you have completed **task rua**, move on to **Task Toru**.
 
 ### Task Toru
 
 Using **React Router**, create new route that will render the `Checkout` component. Test the changes before you move on to the **Code Review**.
 
-Expected output:
+**Expected output:**
 
 The screenshot below is an example of the book list and an empty cart. **Note:** the cart is clickable and when clicked, it will navigate you to <http://localhost:3000/checkout>.
 
