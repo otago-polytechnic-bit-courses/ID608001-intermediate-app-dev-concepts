@@ -142,6 +142,7 @@ The screenshot below is an example the book list and an empty cart.
 
 The screenshot below is an example the book list and a cart with two books when the **Add to cart** button is clicked twice.
 
+![](../../resources/img/10-context-api/10-context-api-2.jpeg)
 
 ## Overview
 
