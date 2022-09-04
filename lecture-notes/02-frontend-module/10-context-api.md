@@ -58,7 +58,7 @@ const BookList = () => {
     console.log(cart); // Debugging purposes
   });
 
-  const [books, setBooks] = useState([
+  const [books, ] = useState([
     { name: 'Pride and Prejudice', price: '10' },
     { name: '1984', price: '15' },
     { name: 'Crime and Punishment', price: '20' },
@@ -246,7 +246,7 @@ const BookList = () => {
     console.log(cart); // Debugging purposes
   });
 
-  const [books, _] = useState([
+  const [books, ] = useState([
     { name: 'Pride and Prejudice', price: '10' },
     { name: '1984', price: '15' },
     { name: 'Crime and Punishment', price: '20' },
