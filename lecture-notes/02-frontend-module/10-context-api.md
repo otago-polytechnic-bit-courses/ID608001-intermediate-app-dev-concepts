@@ -307,11 +307,11 @@ The screenshot below is an example of the book list and an empty cart. **Note:**
 
 The screenshot below is an example of the book list and a cart with three books.
 
-![](../../resources/img/10-context-api/10-context-api-5.jpeg)
-
-The screenshot below is an example of the cart.
-
 ![](../../resources/img/10-context-api/10-context-api-4.jpeg)
+
+The screenshot below is an example of the checkout cart.
+
+![](../../resources/img/10-context-api/10-context-api-5.jpeg)
 
 ### Code Review
 
