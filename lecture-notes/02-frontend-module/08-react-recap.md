@@ -208,23 +208,23 @@ Navigate to <http://localhost:3000> and test the changes before you move on to t
 
 The screenshot below is an example of an empty board.
 
-![](../../resources/img/10-recap/10-recap-1.jpeg)
+![](../../resources/img/08-recap/08-recap-1.jpeg)
 
 The screenshot below is an example of square set to **X**. 
 
-![](../../resources/img/10-recap/10-recap-2.jpeg)
+![](../../resources/img/08-recap/08-recap-2.jpeg)
 
 The screenshot below is an example of the **X** win state.
 
-![](../../resources/img/10-recap/10-recap-3.jpeg)
+![](../../resources/img/08-recap/08-recap-3.jpeg)
 
 The screenshot below is an example of the **O** win state. 
 
-![](../../resources/img/10-recap/10-recap-4.jpeg)
+![](../../resources/img/08-recap/08-recap-4.jpeg)
 
 The screenshot below is an example of the draw state.
 
-![](../../resources/img/10-recap/10-recap-5.jpeg)
+![](../../resources/img/08-recap/08-recap-5.jpeg)
 
 ## Formative Assessment
 

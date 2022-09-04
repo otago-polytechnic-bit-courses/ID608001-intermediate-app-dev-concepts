@@ -19,17 +19,17 @@ While this is perfectly fine, **prop-drilling** can be difficult to manage. Ther
 To get started, run the following commands: 
 
 ```bash
-npx create-react-app library
-cd library
+npx create-react-app book-shop
+cd book-shop
 ```
 
 **Resource:** <https://create-react-app.dev>
 
 ---
 
-## Library
+## Book SHop
 
-In the `root/src` directory of the `library` application, create a new directory called `components`.
+In the `root/src` directory of the `book-shop` application, create a new directory called `components`.
 
 ### src/components/Book.js
 
@@ -40,7 +40,7 @@ const Book = (props) => {
   return (
     <>
       <h1>{props.name}</h1>
-      <h3>{props.price}</h3>
+      <h3>${props.price}</h3>
       <button onClick={() => props.addToCart()}>Add to cart</button>
     </>
   );
@@ -67,10 +67,10 @@ const BookList = () => {
   });
 
   const [books, setBooks] = useState([
-    { name: 'Pride and Prejudice', price: '$10' },
-    { name: '1984', price: '$15' },
-    { name: 'Crime and Punishment', price: '$20' },
-    { name: 'Hamlet', price: '$20' }
+    { name: 'Pride and Prejudice', price: '10' },
+    { name: '1984', price: '15' },
+    { name: 'Crime and Punishment', price: '20' },
+    { name: 'Hamlet', price: '20' }
   ]);
 
   const [cart, setCart] = useState([]);
@@ -136,9 +136,25 @@ const App = () => {
 export default App;
 ```
 
+Run the application by running the following command:
+
+```bash
+npm run start
+```
+
+Navigate to <http://localhost:3000>. You should see following:
+
+The screenshot below is an example the book list and an empty cart.
+
+![](../../resources/img/10-context-api/10-context-api-1.jpeg)
+
+The screenshot below is an example the book list and a cart with two books when the **Add to cart** button is clicked twice.
+
+![](../../resources/img/10-context-api/10-context-api-2.jpeg)
+
 ### Refactoring
 
-In the `root/src` directory of the `library` application, create a new directory called `contexts`. In the `contexts` directory, create a new file called `CartContext.js`. In the `CartContext.js` file, add the following code:
+In the `root/src` directory of the `book-shop` application, create a new directory called `contexts`. In the `contexts` directory, create a new file called `CartContext.js`. In the `CartContext.js` file, add the following code:
 
 ```jsx
 import { createContext, useState } from "react";
@@ -209,7 +225,7 @@ const Book = (props) => {
   return (
     <>
       <h1>{props.name}</h1>
-      <h3>{props.price}</h3>
+      <h3>${props.price}</h3>
       <button onClick={() => addToCart(props.name, props.price)}>Add to cart</button>
     </>
   );
@@ -227,14 +243,14 @@ const BookList = () => {
   const { cart } = useContext(CartContext);
 
   useEffect(() => {
-    console.log(cart);
+    console.log(cart); // Debugging purposes
   });
 
   const [books, _] = useState([
-    { name: 'Pride and Prejudice', price: '$10' },
-    { name: '1984', price: '$15' },
-    { name: 'Crime and Punishment', price: '$20' },
-    { name: 'Hamlet', price: '$20' }
+    { name: 'Pride and Prejudice', price: '10' },
+    { name: '1984', price: '15' },
+    { name: 'Crime and Punishment', price: '20' },
+    { name: 'Hamlet', price: '20' }
   ]);
 
   return (
@@ -282,6 +298,20 @@ In the `components` directory, create a new file called `Checkout.js`. In the `C
 ### Task Toru
 
 Using **React Router**, create new route that will render the `Checkout` component. Test the changes before you move on to the **Code Review**.
+
+Expected output:
+
+The screenshot below is an example of the book list and an empty cart. **Note:** the cart is clickable and when clicked, it will navigate you to <http://localhost:3000/checkout>.
+
+![](../../resources/img/10-context-api/10-context-api-3.jpeg)
+
+The screenshot below is an example of the book list and a cart with three books.
+
+![](../../resources/img/10-context-api/10-context-api-5.jpeg)
+
+The screenshot below is an example of the cart.
+
+![](../../resources/img/10-context-api/10-context-api-4.jpeg)
 
 ### Code Review
 
