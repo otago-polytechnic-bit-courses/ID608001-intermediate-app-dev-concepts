@@ -1,12 +1,12 @@
 # 11: React Query
 
-https://api.nasa.gov/
+## Preparation
 
-https://api.nasa.gov/planetary/apod?api_key=3Q6v9kGXsocmqCOxzXX9M21BsVmj0qb5QlzP95dI
+Use the repository from the previous **Formative Assessment**. Create a new branch called `11-playground`. Checkout to the `11-playground` branch and open the repository in **Visual Studio Code**.
 
-https://www.youtube.com/watch?v=NQULKpW6hK4e
+---
 
-# 11: React Query
+## React Query
 
 **React** does not have an opinionated way of fetching data. Usually, you will use the `useState()` and `useEffect()` hooks. For example:
 
@@ -67,11 +67,15 @@ const App = () => {
 export default App;
 ```
 
-What if I told you there is a way to fetch data without having to worry about using the 
+What if I told you there is a way to fetch data without having to worry about using the `useState()` and `useEffect()` hooks. This is where **React Query** comes in. To get started, run the command: 
 
 ```bash
 npm install react-query
 ```
+
+### App.js
+
+Refactor the `App.js` file as follows:
 
 ```jsx
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -89,6 +93,22 @@ const App = () => {
 
 export default App;
 ```
+
+**What is going on here:**
+
+- Importing `QueryClientProvider` and `QueryClient` from `react-query`. The `QueryClientProvider` component is used to connect a `QueryClient` to your application. 
+- Create a new instance of `QueryClient`. **Note:** It can used to interact with a cache.
+- Set the `QueryClientProvider` component's `client` prop value to the new instance of `QueryClient`.
+
+**Resources:**
+
+- <https://react-query-v3.tanstack.com/reference/QueryClientProvider>
+- <https://react-query-v3.tanstack.com/reference/QueryClient>
+
+
+### components/Post.js
+
+Refactor the `Post.js` file as follows:
 
 ```jsx
 import axios from "axios";
@@ -118,3 +138,34 @@ const Post = () => {
 export default Post;
 ```
 
+**What is going on here:**
+
+- Importing `useQuery` from `react-query`. This return variables such as `isLoading`, `error` and `data`.
+- Calling the `useQuery()` hook which accepts two arguments - key, i.e., 'post' and callback, i.e., a `GET` request to the **JSON Placeholder API**.
+- Using the `isLoading`, `error` and `data` variables return by the `useQuery()` hook.
+
+**Resource:** <https://react-query-v3.tanstack.com/reference/useQuery>
+
+---
+
+## Formative Assessment
+
+### Task Tahi
+
+If you have not already, implement the code examples above before you move on to **Task Rua**.
+
+### Task Rua
+
+In the repository's `README.md` file, answer the following question:
+
+1. What are two other ways you can use **React Query**?
+
+Please reference your sources using **APA 7th Edition**.
+
+### Task Toru
+
+Using the **NASA API**, display 25 photos of the **Mars Rover**. **Note:** To use the **NASA API**, you will have to generate an **API key**. Test the changes before you move on to the **Code Review**.
+
+### Code Review
+
+Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
