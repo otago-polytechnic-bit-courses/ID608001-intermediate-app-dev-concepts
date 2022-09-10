@@ -6,8 +6,33 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ---
 
+## Create React App
+
+To get started, run the following commands: 
+
+```bash
+npx create-react-app login-form
+cd login-form
+```
+
+**Resource:** <https://create-react-app.dev>
+
+---
+
+## React Testing Library
+
+---
+
+## Login Form
+
+In the `root/src` directory of the `login-form` application, create a new directory called `components`.
+
+### src/components/Login.js
+
+In the `components` directory, create a new file called `Login.js`. In the `Login.js` file, add the following code:
+
 ```jsx
-import axios from "axios";
+import axios from "axios"; // Make sure to install axios - npm install axios
 import { useState } from "react";
 
 const Login = () => {
@@ -57,6 +82,10 @@ const Login = () => {
 
 export default Login;
 ```
+
+### src/components/Login.test.js
+
+In the `components` directory, create a new file called `Login.test.js`. In the `Login.test.js` file, add the following code:
 
 ```js
 import { fireEvent, render, screen } from "@testing-library/react";
