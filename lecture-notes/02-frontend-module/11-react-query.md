@@ -19,8 +19,6 @@ cd posts
 
 ---
 
----
-
 ## React Query
 
 **React** does not have an opinionated way of fetching data. Usually, you will use the `useState()` and `useEffect()` hooks. 
