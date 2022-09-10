@@ -6,9 +6,34 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ---
 
+## Create React App
+
+To get started, run the following commands: 
+
+```bash
+npx create-react-app post
+cd posts
+```
+
+**Resource:** <https://create-react-app.dev>
+
+---
+
+---
+
 ## React Query
 
-**React** does not have an opinionated way of fetching data. Usually, you will use the `useState()` and `useEffect()` hooks. For example:
+**React** does not have an opinionated way of fetching data. Usually, you will use the `useState()` and `useEffect()` hooks. 
+
+---
+
+## Posts
+
+In the `root/src` directory of the `post` application, create a new directory called `components`.
+
+### src/components/Post.js
+
+In the `components` directory, create a new file called `Post.js`. In the `Post.js` file, add the following code:
 
 ```jsx
 import axios from "axios";
@@ -105,8 +130,7 @@ export default App;
 - <https://react-query-v3.tanstack.com/reference/QueryClientProvider>
 - <https://react-query-v3.tanstack.com/reference/QueryClient>
 
-
-### components/Post.js
+### src/components/Post.js
 
 Refactor the `Post.js` file as follows:
 
@@ -160,7 +184,7 @@ In the repository's `README.md` file, answer the following question:
 
 1. What are two other ways you can use **React Query**?
 
-Please reference your sources using **APA 7th Edition**.
+Please reference your sources using **APA 7th Edition** before you move on to **Task Toru**.
 
 ### Task Toru
 
