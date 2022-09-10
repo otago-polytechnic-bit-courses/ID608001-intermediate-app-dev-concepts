@@ -33,7 +33,9 @@ const Login = () => {
 
   return (
     <>
-      <span data-testid="message">{isLoading ? "Loading..." : error ? "Unable to fetch data. Please try again later" : user.name}</span>
+      <span data-testid="message">
+        {isLoading ? "Loading..." : error ? "Unable to fetch data. Please try again later" : user.name}
+      </span>
       <form>
         <input
           type="text"
