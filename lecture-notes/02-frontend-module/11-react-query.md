@@ -20,16 +20,16 @@ const Post = () => {
   const [error, setError] = useState(false);
 
   const getPosts = async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       const res = await axios.get(
         "https://jsonplaceholder.typicode.com/posts/1"
       );
       setPost(res.data);
-      setIsLoading(false);
     } catch (err) {
       setError(false);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
