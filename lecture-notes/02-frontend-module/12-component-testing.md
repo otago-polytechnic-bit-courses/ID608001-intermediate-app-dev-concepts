@@ -248,7 +248,7 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-Write **component tests* for the following:
+Write **component tests** for the following:
 
 1. Password element exists in the document
 2. Password element's value is empty
