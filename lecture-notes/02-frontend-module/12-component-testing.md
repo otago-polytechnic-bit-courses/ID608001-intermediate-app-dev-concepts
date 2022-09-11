@@ -95,7 +95,7 @@ const Login = () => {
 export default Login;
 ```
 
-Run the command `npm run start`, then navigate to <http:localhost:3000>.
+Run the command `npm run start`, then navigate to <http://localhost:3000>. Spend a moment to understand what the `Login` component is doing.
 
 ### src/components/Login.test.js
 
