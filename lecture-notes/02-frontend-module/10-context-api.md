@@ -313,6 +313,8 @@ The screenshot below is an example of the checkout cart.
 
 ![](../../resources/img/10-context-api/10-context-api-5.jpeg)
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
