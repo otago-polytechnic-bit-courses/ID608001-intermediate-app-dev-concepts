@@ -138,12 +138,16 @@ The screenshot below is an example of a cache hit.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/06-optimisation/06-optimisation-5.PNG)
 
+---
+
 ## Formative Assessment
 
 ### Task Tahi
 
 If you have not already, implement the code examples above before you move onto the **Code Review**.
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
