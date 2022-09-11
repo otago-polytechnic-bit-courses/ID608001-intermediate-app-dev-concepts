@@ -112,7 +112,7 @@ import Login from "./Login";
  *
  * 1. Using the render() function to virtually render the Login component in the testing environment
  * 2. Get the input element by its placeholder attribute
- * 3. Test is the input element exists in the document, i.e., when the Login component is rendered
+ * 3. Test if the input element exists in the document, i.e., when the Login component is rendered
  */
 test("username input should be rendered", () => {
   render(<Login />);
@@ -125,7 +125,7 @@ test("username input should be rendered", () => {
  *
  * 1. Using the render() function to virtually render the Login component in the testing environment
  * 2. Get the button element by its role
- * 3. Test is the button element exists in the document, i.e., when the Login component is rendered
+ * 3. Test if the button element exists in the document, i.e., when the Login component is rendered
  */
 test("button should be rendered", () => {
   render(<Login />);
@@ -138,7 +138,7 @@ test("button should be rendered", () => {
  *
  * 1. Using the render() function to virtually render the Login component in the testing environment
  * 2. Get the input element by its placeholder attribute
- * 3. Test is the input element's value is empty
+ * 3. Test if the input element's value is empty
  */
 test("username input should be empty", () => {
   render(<Login />);
@@ -151,7 +151,7 @@ test("username input should be empty", () => {
  *
  * 1. Using the render() function to virtually render the Login component in the testing environment
  * 2. Get the span element by its data test id attribute
- * 3. Test is the span element's text content is empty
+ * 3. Test if the span element's text content is empty
  */
 test("error message should not be visible", () => {
   render(<Login />);
@@ -221,7 +221,7 @@ test("button should not be disabled when username and password inputs exist", ()
  * 4. Get the input elements by their placeholder attribute
  * 5. Change the input elements' value to John Doe and Pazzw0rd123
  * 6. Click the button element
- * 5. Test if the span element's text content is Loading...
+ * 7. Test if the span element's text content is Loading...
  */
 test("loading should be rendered when click", () => {
   render(<Login />);
@@ -247,6 +247,29 @@ test("loading should be rendered when click", () => {
 If you have not already, implement the code examples above before you move on to **Task Rua**.
 
 ### Task Rua
+
+Write **component tests* for the following:
+
+1. Password element exists in the document
+2. Password element's value is empty
+3. Button element is not disabled
+4. Span element's text content is not **Loading...**
+5. Span's element's text content is the user's name fetch from the **JSON Placeholder** API
+
+**Note:** You will need to rearrange the order of your tests so that they execute and pass.
+
+Please ensure your **component tests** pass before you move on to **Task Toru**.
+
+## Additional Task
+
+### Task Toru
+
+In the repository's `README.md` file, answer the following questions:
+
+1. What is **Test Driven Development**?
+2. What is **Behaviour Driven Development**?
+
+Please reference your sources using **APA 7th Edition** before you move on to the **Code Review**.
 
 ### Code Review
 
