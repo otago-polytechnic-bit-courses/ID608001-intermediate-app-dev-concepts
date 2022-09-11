@@ -21,6 +21,16 @@ cd login-form
 
 ## React Testing Library
 
+**React Testing Library** is a testing library that allows you to test your **React** components. By default, applications created with **Create React App** have **React Testing Library** already installed. If you are not using **Create React App**, you can install the following:
+
+```bash
+npm install --save-dev @testing-library/jest-dom @testing-library/react @testing-library/user-event
+```
+
+In the `package.json` file, create a new block called `devDependencies`. Cut (<kbd>CTRL</kbd> + <kbd>X</kbd>) `@testing-library/jest-dom`, `@testing-library/react` and `@testing-library/user-event` from the `dependencies` block and paste (<kbd>CTRL</kbd> + <kbd>V</kbd>) them into the `devDependencies` block.
+
+**Resource:** <https://testing-library.com/docs/react-testing-library/intro>
+
 ---
 
 ## Login Form
