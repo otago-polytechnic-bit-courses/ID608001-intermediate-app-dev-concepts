@@ -1,4 +1,4 @@
-## 07: Testing
+# 07: Testing
 
 ## Preparation
 
@@ -255,6 +255,8 @@ If you have not already, implement the code examples above before you move on to
 
 Create four additional **API tests** for getting one institution, getting all institutions, updating an institution and deleting an institution. Test your **API tests** before you move on to the **Code Review**.
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
