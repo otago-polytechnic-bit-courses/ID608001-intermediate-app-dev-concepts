@@ -168,6 +168,8 @@ In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` file
 
 In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `delete` function so that the `SUPER_ADMIN_USER` is the only user authorised to delete a resource, i.e., institution or department. Test the changes in **Postman** before you move on to the **Code Review**.
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
