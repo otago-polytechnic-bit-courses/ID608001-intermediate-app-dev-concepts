@@ -271,6 +271,8 @@ In the repository's `README.md` file, answer the following questions:
 
 Please reference your sources using **APA 7th Edition** before you move on to the **Code Review**.
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
