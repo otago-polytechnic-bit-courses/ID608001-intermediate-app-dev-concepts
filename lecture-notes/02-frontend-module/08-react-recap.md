@@ -236,6 +236,8 @@ If you have not already, implement the code examples above before you move on to
 
 Write some code that checks the draw state. Display "Draw" if the draw state is true. Test the changes before you move on to the **Code Review**.
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
