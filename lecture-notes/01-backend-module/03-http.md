@@ -135,8 +135,7 @@ Click the **Add file** button and repeat the same process but for department. Cl
 ### Task Toru
 
 In this task, you will create a function called `seedData` in the `controllers/v1/base.js` file. This function will fetch institution and department data from the **API** you created in **Task Rua** using **Axios**, then insert the data into the `Institution` and `Department` tables. Create a route for the `seedData` function in the `routes/v1/institutions.js` and `routes/v1/departments.js` files. Test the changes in **Postman** before you move on to the **Code Review**.
----
 
-## Code Review
+---
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
