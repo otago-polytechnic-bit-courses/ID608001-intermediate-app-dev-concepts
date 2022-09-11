@@ -295,6 +295,8 @@ Test this hook script before you move on to the **Code Review**.
 - <https://typicode.github.io/husky>
 - <https://www.npmjs.com/package/lint-staged>
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
