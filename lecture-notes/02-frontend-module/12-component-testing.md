@@ -260,13 +260,12 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-Write **component tests** for the following:
+Write four **component tests** for the following:
 
 1. Password element exists in the document
 2. Password element's value is empty
-3. Button element is not disabled
-4. Span element's text content is not **Loading...**
-5. Span's element's text content is the user's name fetch from the **JSON Placeholder** API
+3. Button element is disabled
+4. Span element's text content is the user's name fetched from the **JSON Placeholder** API
 
 **Note:** You will need to rearrange the order of your tests so that they execute and pass.
 
