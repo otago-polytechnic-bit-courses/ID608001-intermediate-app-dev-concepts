@@ -43,6 +43,8 @@ import '@testing-library/jest-dom';
 
 **Note:** Please ignore this file. Alternatively, feel free to delete it.
 
+---
+
 ## Login Form
 
 In the `root/src` directory of the `login-form` application, create a new directory called `components`.
