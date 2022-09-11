@@ -33,6 +33,16 @@ In the `package.json` file, create a new block called `devDependencies`. Cut (<k
 
 ---
 
+## Setup 
+
+In the `root/src` directory, you will notice a file called `setupTests.js` which contains the following code:
+
+```js
+import '@testing-library/jest-dom';
+```
+
+**Note:** Please ignore this file. Alternatively, feel free to delete it.
+
 ## Login Form
 
 In the `root/src` directory of the `login-form` application, create a new directory called `components`.
