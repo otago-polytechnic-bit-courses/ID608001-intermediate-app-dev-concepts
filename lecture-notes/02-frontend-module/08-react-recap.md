@@ -226,6 +226,8 @@ The screenshot below is an example of the draw state.
 
 ![](../../resources/img/08-recap/08-recap-5.jpeg)
 
+---
+
 ## Formative Assessment
 
 ### Task Tahi
