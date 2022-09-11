@@ -642,6 +642,8 @@ In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` file
 
 In the `package.json` file, add two scripts. The first script creates a new migration, i.e., `npx prisma migrate reset && npx prisma migrate dev` and the second script runs **Prisma Studio**, i.e., `npx prisma studio`. Test these scripts before you move on to the **Code Review**.
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
