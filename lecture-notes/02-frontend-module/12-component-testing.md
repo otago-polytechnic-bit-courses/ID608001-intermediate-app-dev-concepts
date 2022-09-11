@@ -165,7 +165,7 @@ test("username input should be empty", () => {
  * 2. Get the span element by its data test id attribute
  * 3. Test if the span element's text content is empty
  */
-test("error message should not be visible", () => {
+test("loading message should be visible", () => {
   render(<Login />);
   const messageSpanElement = screen.getByTestId("message");
   expect(messageSpanElement).toHaveTextContent("");
@@ -212,7 +212,7 @@ test("password input should change", () => {
  * 4. Change the input elements' value to John Doe and Pazzw0rd123
  * 5. Test if the button element is not disabled
  */
-test("button should not be disabled when username and password inputs exist", () => {
+test("button should not be disabled when username and password input changes", () => {
   render(<Login />);
   const buttonElement = screen.getByRole("button");
   const usernameInputElement = screen.getByPlaceholderText("Username");
