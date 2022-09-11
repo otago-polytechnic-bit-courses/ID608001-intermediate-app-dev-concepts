@@ -188,6 +188,8 @@ Please reference your sources using **APA 7th Edition** before you move on to **
 
 Using the **NASA API**, display 25 photos of the **Mars Rover**. **Note:** To use the **NASA API**, you will have to generate an **API key**. Test the changes before you move on to the **Code Review**.
 
-### Code Review
+---
+
+## Code Review
 
 Once you have completed all tasks, open a pull request and assign **grayson-orr** as a reviewer. Please do not merge the pull request.
