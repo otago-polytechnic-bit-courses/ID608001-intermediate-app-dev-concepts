@@ -37,6 +37,18 @@ As the name suggests, **Prop Types** checks your **props'** types at runtime.
 
 **Resource:** <https://storybook.js.org/>
 
+### Install
+
+There are a few dependencies that you will need to install. To get started, run the following command:
+
+```bash
+npx storybook init
+```
+
+You will be prompt to proceed.
+
+In the `package.json` file, note all the changes, i.e., `storybook` and `build-storybook` scripts, `overrides` block and `devDependencies` block. Also, it will create a `.storybook` in the `root` directory.
+
 ## Bedtime Story
 
 In the `root/src` directory of the `bedtime-story` application, create a new directory called `components`.
