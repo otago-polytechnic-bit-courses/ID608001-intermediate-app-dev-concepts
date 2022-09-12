@@ -19,13 +19,31 @@ cd bedtime-story
 
 ---
 
+## Prop Types
+
+Install the following dependency:
+
 ```bash
 npm install prop-types
 ```
 
-```bash
-npm install --save-dev 
-```
+As the name suggests, **Prop Types** checks your **props'** types at runtime.
+
+**Resource:** <https://www.npmjs.com/package/prop-types>
+
+## Storybook
+
+**Storybook** is a UI development tool that allows you develop your component outside your application and in an isolated environment.
+
+**Resource:** <https://storybook.js.org/>
+
+## Bedtime Story
+
+In the `root/src` directory of the `bedtime-story` application, create a new directory called `components`.
+
+### src/components/Button.js
+
+In the `components` directory, create a new file called `Button.js`. In the `Button.js` file, add the following code:
 
 ```jsx
 import PropTypes from "prop-types";
@@ -58,6 +76,10 @@ Button.propTypes = {
 
 export default Button;
 ```
+
+### src/components/Button.stories.js
+
+In the `components` directory, create a new file called `Button.stories.js`. In the `Button.stories.js` file, add the following code:
 
 ```js
 import Button from "./Button";
@@ -102,7 +124,7 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-Test the changes before you move on to the **Code Review**.
+Complete the **Intro to Storybook** tutorial - <https://storybook.js.org/tutorials/intro-to-storybook>. Once you have completed the **Addons** section, move on to the **Code Review**.
 
 ---
 
