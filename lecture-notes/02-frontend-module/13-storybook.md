@@ -79,19 +79,28 @@ export default Button;
 
 ### src/components/Button.stories.js
 
+**Note:** Please read the comments carefully.
+
 In the `components` directory, create a new file called `Button.stories.js`. In the `Button.stories.js` file, add the following code:
 
 ```js
 import Button from "./Button";
 
+// This determines where this story goes in the story list
 export default {
-    title: "Components/Button",
+    title: "Components/Button", // The title prop is optional
     component: Button,
     argTypes: { handleClick: { action: "handleClick" } },
 };
 
+// Create a template of how args map to rendering
 const Template = (args) => <Button {...args} />
 
+/** 
+ * A technique for making a copy of a function, i.e., Template. You use
+ * this technique to allow each exported story to set it own properties,
+ * but use the same implementation
+ */
 export const Red = Template.bind({})
 Red.args = {
   backgroundColor: "#ff0000",
