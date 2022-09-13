@@ -143,6 +143,14 @@ npm run storybook
 
 Navigate to <http://localhost:6006>.
 
+![](../../resources/img/13-storybook/13-storybook-1.jpeg)
+
+![](../../resources/img/13-storybook/13-storybook-2.jpeg)
+
+![](../../resources/img/13-storybook/13-storybook-3.jpeg)
+
+![](../../resources/img/13-storybook/13-storybook-4.jpeg)
+
 ---
 
 ## Formative Assessment
