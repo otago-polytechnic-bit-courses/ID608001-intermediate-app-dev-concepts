@@ -135,6 +135,14 @@ Blue.args = {
 }
 ```
 
+To open **Storybook**, run the following command:
+
+```bash
+npm run storybook
+```
+
+Navigate to <http://localhost:6006>.
+
 ---
 
 ## Formative Assessment
