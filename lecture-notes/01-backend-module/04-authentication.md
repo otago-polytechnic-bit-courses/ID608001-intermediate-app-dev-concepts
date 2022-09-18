@@ -359,7 +359,7 @@ The screenshot below is an example of a **POST** request to a protected route us
 
 ### Task Tahi
 
-If you have not already, implement the code examples above before you move on to **Task Rua**. 
+If you have not already, implement the code examples above before you move on to **Task Rua**.
 
 ### Task Rua
 

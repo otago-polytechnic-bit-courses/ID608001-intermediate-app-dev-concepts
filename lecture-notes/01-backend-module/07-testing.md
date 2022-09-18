@@ -8,12 +8,11 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## Mocha
 
-**Mocha** is a **JavaScript** testing framework for **Node.js** applications. 
+**Mocha** is a **JavaScript** testing framework for **Node.js** applications.
 
 **Note:** Most programming languages, i.e., **C#**, **Java**, **PHP**, etc., each have several testing frameworks.
 
 To get started with **Mocha**, run the following command:
-
 
 ```bash
 npm install mocha --save-dev
@@ -25,10 +24,9 @@ npm install mocha --save-dev
 
 ## Chai
 
-**Chai** is a **JavaScript** assertion library for **Node.js** applications. 
+**Chai** is a **JavaScript** assertion library for **Node.js** applications.
 
 To get started with **Chai**, run the following command:
-
 
 ```bash
 npm install chai chai-http --save-dev
@@ -49,8 +47,8 @@ import chai from "chai";
 import { describe, it } from "mocha";
 
 /**
- * @param {Number} a 
- * @param {Number} b 
+ * @param {Number} a
+ * @param {Number} b
  * @returns the sum of a and b
  */
 const addTwoNums = (a, b) => a + b;
@@ -110,7 +108,8 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
 
-const BASE_URL = "https://gist.githubusercontent.com/Grayson-Orr/c17079a40517ec29679dc9585ba7af76/raw";
+const BASE_URL =
+  "https://gist.githubusercontent.com/Grayson-Orr/c17079a40517ec29679dc9585ba7af76/raw";
 
 chai.use(chaiHttp); // Provides an interface for integration testing
 

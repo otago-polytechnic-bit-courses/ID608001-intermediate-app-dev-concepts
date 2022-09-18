@@ -8,17 +8,17 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## CSS
 
-**CSS** is very easy to implement. You can have internal like you saw in **08-react-recap** or like below. 
+**CSS** is very easy to implement. You can have internal like you saw in **08-react-recap** or like below.
 
 In the `src/components` directory, create a new file called `Square.css`. In the `Square.css` file, add the following style:
 
 ```css
 .square {
-    border: 1px solid #000;
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: 800;
-    outline: none;
+  border: 1px solid #000;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 800;
+  outline: none;
 }
 ```
 
@@ -30,11 +30,11 @@ To use the style in the `Square.css` file in the `Square` **component**, you nee
 import "./Square.css";
 
 const Square = (props) => {
-    return (
-        <button className="square" onClick={props.onClick}>
-            {props.value}
-        </button>
-    );
+  return (
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 };
 
 export default Square;
@@ -44,7 +44,7 @@ export default Square;
 
 ## CSS in JS
 
-**CSS in JS** is slightly different to the **CSS** mentioned above where the styles are encapsulated. 
+**CSS in JS** is slightly different to the **CSS** mentioned above where the styles are encapsulated.
 
 To get started, run the following command:
 
@@ -53,26 +53,26 @@ npm install react-jss
 ```
 
 ```jsx
-import { createUseStyles } from 'react-jss';
+import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   square: {
-    border: '1px solid #000',
-    cursor: 'pointer',
-    fontSize: '30px',
-    fontWeight: '800',
-    outline: 'none',
-  }
+    border: "1px solid #000",
+    cursor: "pointer",
+    fontSize: "30px",
+    fontWeight: "800",
+    outline: "none",
+  },
 });
 
 const Square = (props) => {
-    const classes = useStyles()
+  const classes = useStyles();
 
-    return (
-        <button className={classes.square} onClick={props.onClick}>
-            {props.value}
-        </button>
-    );
+  return (
+    <button className={classes.square} onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 };
 
 export default Square;
@@ -88,27 +88,23 @@ export default Square;
 
 To get started, run the following command:
 
-```bash 
+```bash
 npm install styled-components
 ```
 
 ```jsx
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Square = (props) => {
-    const Button = styled.button`
-        border: 1px solid #000;
-        cursor: pointer;
-        font-size: 30px;
-        font-weight: 800;
-        outline: none;
-    `;
+  const Button = styled.button`
+    border: 1px solid #000;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 800;
+    outline: none;
+  `;
 
-    return (
-        <Button onClick={props.onClick}>
-            {props.value}
-        </Button>
-    );
+  return <Button onClick={props.onClick}>{props.value}</Button>;
 };
 
 export default Square;

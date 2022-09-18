@@ -8,7 +8,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## Create React App
 
-To get started, run the following commands: 
+To get started, run the following commands:
 
 ```bash
 npx create-react-app bedtime-story
@@ -62,7 +62,9 @@ const Button = (props) => {
   };
 
   return (
-    <button onClick={props.handleClick} style={style}>{props.textContent}</button>
+    <button onClick={props.handleClick} style={style}>
+      {props.textContent}
+    </button>
   );
 };
 
@@ -85,33 +87,33 @@ In the `components` directory, create a new file called `Button.stories.js`. In 
 import Button from "./Button";
 
 export default {
-    title: "Components/Button",
-    component: Button,
-    argTypes: { handleClick: { action: "handleClick" } },
+  title: "Components/Button",
+  component: Button,
+  argTypes: { handleClick: { action: "handleClick" } },
 };
 
-const Template = (args) => <Button {...args} />
+const Template = (args) => <Button {...args} />;
 
-export const Red = Template.bind({})
+export const Red = Template.bind({});
 Red.args = {
   backgroundColor: "#ff0000",
   textContent: "Click Me!",
   size: "sm",
-}
+};
 
-export const Green = Template.bind({})
+export const Green = Template.bind({});
 Green.args = {
   backgroundColor: "#00ff00",
   textContent: "Click Me!",
   size: "md",
-}
+};
 
-export const Blue = Template.bind({})
+export const Blue = Template.bind({});
 Blue.args = {
   backgroundColor: "#0000ff",
   textContent: "Click Me!",
   size: "lg",
-}
+};
 ```
 
 ---

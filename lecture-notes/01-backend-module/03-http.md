@@ -126,7 +126,7 @@ In this task, you will create an **API** containing institution and department d
     "name": "Otago Polytechnic",
     "region": "Otago",
     "country": "New Zealand"
-  }   
+  }
 ]
 ```
 

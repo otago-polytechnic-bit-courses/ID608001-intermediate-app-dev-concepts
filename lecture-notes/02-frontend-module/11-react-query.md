@@ -8,7 +8,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## Create React App
 
-To get started, run the following commands: 
+To get started, run the following commands:
 
 ```bash
 npx create-react-app post
@@ -21,7 +21,7 @@ cd posts
 
 ## React Query
 
-**React** does not have an opinionated way of fetching data. Usually, you will use the `useState()` and `useEffect()` hooks. 
+**React** does not have an opinionated way of fetching data. Usually, you will use the `useState()` and `useEffect()` hooks.
 
 ---
 
@@ -90,7 +90,7 @@ const App = () => {
 export default App;
 ```
 
-What if I told you there is a way to fetch data without having to worry about using the `useState()` and `useEffect()` hooks. This is where **React Query** comes in. To get started, run the command: 
+What if I told you there is a way to fetch data without having to worry about using the `useState()` and `useEffect()` hooks. This is where **React Query** comes in. To get started, run the command:
 
 ```bash
 npm install react-query
@@ -117,9 +117,9 @@ const App = () => {
 export default App;
 ```
 
-**What is going on here:**
+**What is happening?**
 
-- Importing `QueryClientProvider` and `QueryClient` from `react-query`. The `QueryClientProvider` component is used to connect a `QueryClient` to your application. 
+- Importing `QueryClientProvider` and `QueryClient` from `react-query`. The `QueryClientProvider` component is used to connect a `QueryClient` to your application.
 - Create a new instance of `QueryClient`. **Note:** It can used to interact with a cache.
 - Set the `QueryClientProvider` component's `client` prop value to the new instance of `QueryClient`.
 
@@ -137,15 +137,13 @@ import axios from "axios";
 import { useQuery } from "react-query";
 
 const Post = () => {
-  const { isLoading, error, data } = useQuery('post', async () => {
-    return await axios.get(
-      "https://jsonplaceholder.typicode.com/posts/1"
-    );
+  const { isLoading, error, data } = useQuery("post", async () => {
+    return await axios.get("https://jsonplaceholder.typicode.com/posts/1");
   });
 
-  if (isLoading) return <h1>Loading...</h1>
+  if (isLoading) return <h1>Loading...</h1>;
 
-  if (error) return <h1>Unable to fetch data. Please try again later</h1>
+  if (error) return <h1>Unable to fetch data. Please try again later</h1>;
 
   const { title, body } = data.data;
 
@@ -160,7 +158,7 @@ const Post = () => {
 export default Post;
 ```
 
-**What is going on here:**
+**What is happening?**
 
 - Importing `useQuery` from `react-query`. This return variables such as `isLoading`, `error` and `data`.
 - Calling the `useQuery()` hook which accepts two arguments - key, i.e., 'post' and callback, i.e., a `GET` request to the **JSON Placeholder API**.

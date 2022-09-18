@@ -31,7 +31,7 @@ const register = async (req, res) => {
   try {
     /**
      * Get the role from the Request's body property
-     */ 
+     */
     const { name, email, password, username, role } = req.body;
 
     let user = await prisma.user.findUnique({ where: { email } });
@@ -60,7 +60,6 @@ const register = async (req, res) => {
     });
   }
 };
-
 ```
 
 ### controllers/v1/institutions.js
@@ -154,7 +153,7 @@ The screenshot below is an example of a **POST** request to a protected route us
 
 ### Task Tahi
 
-If you have not already, implement the code examples above before you move on to **Task Rua**. 
+If you have not already, implement the code examples above before you move on to **Task Rua**.
 
 ### Task Rua
 

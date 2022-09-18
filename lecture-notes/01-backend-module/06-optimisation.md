@@ -30,12 +30,12 @@ For testing purposes, add the following `GET` route:
 
 ```js
 app.get(`/${BASE_URL}/${CURRENT_VERSION}/optimisation`, (req, res) => {
-  const text = "See you later, alligator. Bye bye bye, butterfly"
-  res.json({ msg: text.repeat(1000) })
+  const text = "See you later, alligator. Bye bye bye, butterfly";
+  res.json({ msg: text.repeat(1000) });
 });
 ```
 
-In a browser, navigate to <http://localhost:3000/api/v1/optimisation>. Open the **development tools** and keep an eye on the amount of kilobytes transferred over the network. 
+In a browser, navigate to <http://localhost:3000/api/v1/optimisation>. Open the **development tools** and keep an eye on the amount of kilobytes transferred over the network.
 
 The screenshot below is an example of before compression.
 
@@ -82,7 +82,7 @@ const cache = new NodeCache({ stdTTL: 300, checkperiod: 310 });
 
 const cacheRoute = (req, res, next) => {
   const key = req.originalUrl + req.headers.authorization;
-  
+
   const cachedRes = cache.get(key);
 
   if (req.method !== "GET" && cachedRes) {

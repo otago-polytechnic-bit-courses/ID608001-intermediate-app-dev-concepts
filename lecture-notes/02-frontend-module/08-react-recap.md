@@ -8,7 +8,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## Create React App
 
-To get started, run the following commands: 
+To get started, run the following commands:
 
 ```bash
 npx create-react-app tic-tac-toe
@@ -30,11 +30,11 @@ In the `components` directory, create a new file called `Square.js`. In the `Squ
 ```jsx
 const Square = (props) => {
   const style = {
-    border: '1px solid #000',
-    cursor: 'pointer',
-    fontSize: '30px',
-    fontWeight: '800',
-    outline: 'none',
+    border: "1px solid #000",
+    cursor: "pointer",
+    fontSize: "30px",
+    fontWeight: "800",
+    outline: "none",
   };
 
   return (
@@ -58,15 +58,15 @@ A `Square` has two `props` - `value`, i.e., **X**, **O** or `null` and `onClick`
 In the `components` directory, create a new file called `Board.js`. In the `Board.js` file, add the following code:
 
 ```jsx
-import Square from './Square';
+import Square from "./Square";
 
 const Board = (props) => {
   const style = {
-    border: '1px solid #000',
-    display: 'grid',
-    gridTemplate: 'repeat(3, 1fr) / repeat(3, 1fr)',
-    height: '200px',
-    width: '200px',
+    border: "1px solid #000",
+    display: "grid",
+    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)",
+    height: "200px",
+    width: "200px",
   };
 
   return (
@@ -83,7 +83,7 @@ export default Board;
 
 **What is happening?**
 
-1. Mapping through the `squares` **prop**, i.e., an `Array` of size 9 which is declared in the `Game.js` file or `Game` **component**. 
+1. Mapping through the `squares` **prop**, i.e., an `Array` of size 9 which is declared in the `Game.js` file or `Game` **component**.
 2. Declaring a `Square` for each `square` in the `squares` **prop**. Each `Square` must have a `key`. It tells **React** which items have been added, changed or removed.
 
 **Resource:** <https://reactjs.org/docs/lists-and-keys>
@@ -100,7 +100,7 @@ const calculateWinner = (squares) => {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
 
   for (let s = 0; s < lines.length; s++) {
@@ -110,20 +110,17 @@ const calculateWinner = (squares) => {
     }
   }
   return null;
-}
+};
 
 export default calculateWinner;
 ```
+
 **What is happening?**
 
 1. Declaring and export a function called `calculateWinner`. This function accepts a parameter called `squares` which represents the current board state. When you start a new game of **tic-tac-toe**, the board state will look like the following:
 
 ```javascript
-[
-  null, null, null,
-  null, null, null,
-  null, null, null,
-]
+[null, null, null, null, null, null, null, null, null];
 ```
 
 2. Declaring a **2D array** called `lines`. This contains all the possible winning combinations.
@@ -150,7 +147,7 @@ const Game = () => {
 
   const winner = calculateWinner(board);
 
-  const handleClick = (idx) => 
+  const handleClick = (idx) =>
     const boardCopy = [...board];
     if (winner || boardCopy[idx]) return;
     boardCopy[idx] = xIsNext ? 'X' : 'O';
@@ -183,7 +180,7 @@ export default Game;
 
 **What is happening?**
 
-1. Declaring three states - `board` and `xIsNext` using the `useState` hook and fill it with initial data. Also, you will need a way of setting a state's value - `setBoard` and `setXIsNext`. 
+1. Declaring three states - `board` and `xIsNext` using the `useState` hook and fill it with initial data. Also, you will need a way of setting a state's value - `setBoard` and `setXIsNext`.
 2. Declaring a function called `handleClick` which accepts a parameter called `idx`. Declaring a variable called `boardCopy` and assign its value to a shallow copy of the current `board` state using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) (horizontal ellipsis). Return if there is a winner or if a `Square` in `boardCopy` contains a value that is not `null`. Setting a `Square` in `boardCopy` to either **X** and **O** based on the current `xIsNext` state. Setting the `board` state to `boardCopy` using the `setBoard` function and `xIsNext` to `!xIsNext` using the `setXIsNext` function.
 3. Declaring a function called `startGame` which returns a `button`. The `button` has an `onClick` listener which resets and the fills the `Array` of size 9 to `null`.
 4. Returning a `Fragment` containing a `Board`. In the `div`, if `winner` is `true`, display the winning value (**X** or **O**). Otherwise, display the next value based on the current `xIsNext` state. Also, declare `startGame` which renders the button mentioned above.
@@ -193,7 +190,7 @@ export default Game;
 In the `App.js` file, replace the existing code with the following code:
 
 ```jsx
-import Game from './components/Game';
+import Game from "./components/Game";
 
 const App = () => <Game />;
 
@@ -210,7 +207,7 @@ The screenshot below is an example of an empty board.
 
 ![](../../resources/img/08-recap/08-recap-1.jpeg)
 
-The screenshot below is an example of square set to **X**. 
+The screenshot below is an example of square set to **X**.
 
 ![](../../resources/img/08-recap/08-recap-2.jpeg)
 
@@ -218,7 +215,7 @@ The screenshot below is an example of the **X** win state.
 
 ![](../../resources/img/08-recap/08-recap-3.jpeg)
 
-The screenshot below is an example of the **O** win state. 
+The screenshot below is an example of the **O** win state.
 
 ![](../../resources/img/08-recap/08-recap-4.jpeg)
 
@@ -232,7 +229,7 @@ The screenshot below is an example of the draw state.
 
 ### Task Tahi
 
-If you have not already, implement the code examples above before you move on to **Task Rua**. 
+If you have not already, implement the code examples above before you move on to **Task Rua**.
 
 ### Task Rua
 

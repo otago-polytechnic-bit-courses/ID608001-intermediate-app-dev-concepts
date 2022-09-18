@@ -23,7 +23,7 @@ Here is a list of types:
 - **style:** style-related change, i.e., formatting a file or piece of code.
 - **test:** an automation test change, i.e., adding a new test file or updating an existing test file.
 
-**What is a scope?** A noun referring to functionality in the codebase, i.e., authentication. 
+**What is a scope?** A noun referring to functionality in the codebase, i.e., authentication.
 
 You are probably wondering how I should write a message using this convention. A **Git** commit looks like this:
 
@@ -43,7 +43,7 @@ Here is a **Git** commit example with an extended description and footer:
 git commit -m "style (login): format jsx" -m "additional information" -m "pr closed #12345"
 ```
 
-**When should I use an extended description?** When a message is greater than 50 characters. 
+**When should I use an extended description?** When a message is greater than 50 characters.
 
 **What happens if I want to view a commit with a specific type?**
 
@@ -53,14 +53,14 @@ git log --oneline --grep <type>
 
 `--oneline` displays the output as one commit per line.
 
-Here is a **Git**  log example:
+Here is a **Git** log example:
 
 ```bash
 git log --oneline --grep feat
 ```
 
-Here is a **Git**  example with multiple types:
- 
+Here is a **Git** example with multiple types:
+
 ```bash
 git log --oneline --grep "^build\|^feat\|^style"
 ```
@@ -71,7 +71,7 @@ git log --oneline --grep "^build\|^feat\|^style"
 
 ## Prettier
 
-**Prettier** is an opinionated code formatter. You will remember using **Prettier** in **ID607001: Introductory Application Development**. 
+**Prettier** is an opinionated code formatter. You will remember using **Prettier** in **ID607001: Introductory Application Development**.
 
 In reality you only want to format staged files. The reason is because you do not want to format files that are out of scope of the feature you are working on. You can use a dependency called `pretty-quick` to achieve this.
 
@@ -102,7 +102,7 @@ node_modules
 
 Test these scripts before you move on to the **ESLint** section.
 
-**Resources:** 
+**Resources:**
 
 - <https://prettier.io>
 - <https://www.npmjs.com/package/pretty-quick>
@@ -202,7 +202,7 @@ Test this script before you move on to the **Formative Assessment**. Make the ap
 
 ### Task Tahi
 
-If you have not already, implement the code examples above before you move on to **Task Rua**. 
+If you have not already, implement the code examples above before you move on to **Task Rua**.
 
 ### Task Rua
 
@@ -270,7 +270,7 @@ npx husky add .husky/pre-commit "npx lint-staged"
 
 Check the `package.json` file to ensure you have installed `husky` and `lint-staged`.
 
-The first command will install **Husky**, and **Lint Staged** as development dependencies. The second command will install **Husky** and create a directory called `.husky` in the root directory. The three commands will create a file called `pre-commit` in the `.husky` directory. This file tells **Husky** to look at the "lint-staged" block in the `package.json` file and run the given commands pre-commit. 
+The first command will install **Husky**, and **Lint Staged** as development dependencies. The second command will install **Husky** and create a directory called `.husky` in the root directory. The three commands will create a file called `pre-commit` in the `.husky` directory. This file tells **Husky** to look at the "lint-staged" block in the `package.json` file and run the given commands pre-commit.
 
 In the `package.json` file, add the following:
 

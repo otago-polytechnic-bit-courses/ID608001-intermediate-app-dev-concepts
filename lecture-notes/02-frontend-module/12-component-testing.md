@@ -8,7 +8,7 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 ## Create React App
 
-To get started, run the following commands: 
+To get started, run the following commands:
 
 ```bash
 npx create-react-app login-form
@@ -33,12 +33,12 @@ In the `package.json` file, create a new block called `devDependencies`. Cut (<k
 
 ---
 
-## Setup 
+## Setup
 
 In the `root/src` directory, you will notice a file called `setupTests.js` which contains the following code:
 
 ```js
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 ```
 
 **Note:** Please ignore this file. Alternatively, feel free to delete it.
@@ -83,7 +83,11 @@ const Login = () => {
   return (
     <>
       <span data-testid="message">
-        {isLoading ? "Loading..." : error ? "Unable to fetch data. Please try again later" : user.name}
+        {isLoading
+          ? "Loading..."
+          : error
+          ? "Unable to fetch data. Please try again later"
+          : user.name}
       </span>
       <form>
         <input
@@ -98,7 +102,9 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button disabled={!username || !password} onClick={handleClick}>Login</button>
+        <button disabled={!username || !password} onClick={handleClick}>
+          Login
+        </button>
       </form>
     </>
   );
