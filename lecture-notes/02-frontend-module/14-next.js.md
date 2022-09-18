@@ -115,7 +115,7 @@ If you have not already, implement the code examples above before you move on to
 
 ### Task Rua
 
-Test the changes before you move on to the **Code Review**.
+Choose two **APIs** of your choice. Implement an **API** and page component for each of your chosen **APIs**. **Note:** Do not choose an **API** that has been used an example in this course. Test the changes before you move on to the **Code Review**.
 
 ---
 
