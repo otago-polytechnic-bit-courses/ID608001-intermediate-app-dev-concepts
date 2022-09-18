@@ -37,6 +37,18 @@ As the name suggests, **Prop Types** checks your **props'** types at runtime.
 
 **Resource:** <https://storybook.js.org/>
 
+### Install
+
+There are a few dependencies that you will need to install. To get started, run the following command:
+
+```bash
+npx storybook init
+```
+
+You will be prompt to proceed.
+
+In the `package.json` file, note all the changes, i.e., `storybook` and `build-storybook` scripts, `overrides` block and `devDependencies` block. Also, it will create a `.storybook` in the `root` directory.
+
 ## Bedtime Story
 
 In the `root/src` directory of the `bedtime-story` application, create a new directory called `components`.
@@ -81,20 +93,29 @@ export default Button;
 
 ### src/components/Button.stories.js
 
+**Note:** Please read the comments carefully.
+
 In the `components` directory, create a new file called `Button.stories.js`. In the `Button.stories.js` file, add the following code:
 
 ```js
 import Button from "./Button";
 
+// This determines where this story goes in the story list
 export default {
-  title: "Components/Button",
-  component: Button,
-  argTypes: { handleClick: { action: "handleClick" } },
+    title: "Components/Button", // The title prop is optional
+    component: Button,
+    argTypes: { handleClick: { action: "handleClick" } },
 };
 
-const Template = (args) => <Button {...args} />;
+// Create a template of how args map to rendering
+const Template = (args) => <Button {...args} />
 
-export const Red = Template.bind({});
+/** 
+ * A technique for making a copy of a function, i.e., Template. You use
+ * this technique to allow each exported story to set it own properties,
+ * but use the same implementation
+ */
+export const Red = Template.bind({})
 Red.args = {
   backgroundColor: "#ff0000",
   textContent: "Click Me!",
@@ -115,6 +136,30 @@ Blue.args = {
   size: "lg",
 };
 ```
+
+To open **Storybook**, run the following command:
+
+```bash
+npm run storybook
+```
+
+Navigate to <http://localhost:6006>.
+
+The screenshot below is an example of the **Components** story in the story list.
+
+<img src="../../resources/img/13-storybook/13-storybook-1.jpeg" width="550" height="650" />
+
+The screenshot below is an example of the red `Button` component. **Note:** You can adjust the various properties.
+
+<img src="../../resources/img/13-storybook/13-storybook-2.jpeg" width="550" height="650" />
+
+The screenshot below is an example of the green `Button` component. 
+
+<img src="../../resources/img/13-storybook/13-storybook-3.jpeg" width="550" height="650" />
+
+The screenshot below is an example of the blue `Button` component. 
+
+<img src="../../resources/img/13-storybook/13-storybook-4.jpeg" width="550" height="650" />
 
 ---
 
