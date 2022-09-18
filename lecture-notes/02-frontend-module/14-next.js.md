@@ -10,6 +10,23 @@ Use the repository from the previous **Formative Assessment**. Create a new bran
 
 View this video to learn more about how **Server-Side Rendering** works - <https://youtube.com/Sklc_fQBmcs>.
 
+### Client-Side Rendering (CSR)
+
+You have used **React** to create **Single Page Applications**. **React** provides **CSR** which means the application is rendered on the client-side by the browser. Because of this, rendering the inital page will take some time. **Next.js** renders your pages on server-side and returns pre-rendered **HTML** for your pages.
+
+### Server-Side Rendering (SSR)
+
+When you request a page, the server prepares the page by fetching information and sending back to the user. The browser interprets the information and displays the page. This process of fetching data from a database or **API**, creating an **HTML** page and serving it to the user is known as **SSR**.
+
+**Next.js** builds the **HTML** page at build-time and the pre-rendered page from server to browser and serves the page with minimal **JavaScript** code. When the browser loads the page, its **JavaScript** code runs, making the page fully interactive.
+
+### Types of Pre-Rendering 
+
+There are two forms of pre-rendering that you should concerned about:
+
+1. **Static Site Generation (SSG)** - **HTML** is generated at build-time.
+2. **Server-Side Rendering (SSR)**: - **HTML** is generated on each request by the user.
+
 ---
 
 ## Create Next App
