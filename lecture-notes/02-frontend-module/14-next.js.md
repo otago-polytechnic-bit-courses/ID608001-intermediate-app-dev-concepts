@@ -49,7 +49,7 @@ cd star-wars
 After you have created the `stars-wars` application, run the following command:
 
 ```bash
-`npm run dev
+npm run dev
 ```
 
 This command will start the development server. Navigate to `http://localhost:3000` to view your `stars-wars` application. Update the `pages/index.js` file and see the results in your browser.
