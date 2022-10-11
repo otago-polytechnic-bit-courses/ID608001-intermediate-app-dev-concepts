@@ -1,0 +1,136 @@
+% Author: Grayson Orr
+% Course: ID608001: Intermediate Application Development Concepts
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 1.75cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology}
+\lfoot{Practical: Skills-Based\\Version 1, Semester Two, 2022}
+\rfoot{\thepage}
+ 
+\begin{document}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=50mm]{../../resources/img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology\\ID608001: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{Practical: Skills-Based}}
+\date{}
+\maketitle
+
+\section*{Assessment Overview}
+In this \textbf{individual} assessment, you will solve  problems/sub problems using various taught frontend concepts. The main purpose of this assessment is to simulate a real-world take-home coding challenge and demonstrate your problem-solving ability within a short time-frame (72 hours).
+
+\section*{Learning Outcome}
+At the successful completion of this course, learners will be able to:
+\begin{enumerate}
+	\item Apply design patterns \& programming principles using software development best practices.
+	\item Design \& implement full-stack applications using industry relevant programming languages.
+\end{enumerate}
+
+\section*{Assessments}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Assessment}                                       & \textbf{Weighting} & \textbf{Due Date}                    & \textbf{Learning Outcomes} \\ \hline
+	\small Practical: Skills-Based                            & \small 20\%        & \small 27-10-2022 (Thur at 10.00 AM) & \small 1                   \\ \hline
+	\small Assessment 1: Node.js RESTful API - Open Trivia DB & \small 45\%        & \small 17-10-2022 (Mon at 7.59 AM)   & \small 1 \& 2              \\ \hline
+	\small Assessment 2: Next.js Application                  & \small 35\%        & \small 09-11-2022 (Wed at 2.59 PM)   & \small 1 \& 2              \\ \hline
+\end{tabular}
+
+\section*{Conditions of Assessment}
+You will complete this assessment during your learner-managed time. However, there will be time during class to discuss the requirements \& your progress on this assessment. This assessment will need to be completed by \textbf{Thursday, 27 October 2022} at \textbf{10.00 AM}.
+
+\section*{Pass Criteria}
+This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} over all assessments in \textbf{ID608001: Intermediate Application Development Concepts}.
+
+\section*{Authenticity}
+All parts of your submitted assessment \textbf{must} be completely your work. If you use code snippets from \textbf{GitHub}, \textbf{StackOverflow} or other online resources, you \textbf{must} reference it appropriately using \textbf{APA 7th edition}. Provide your references in the \textbf{README.md} file in your repository. Failure to do this will result in a mark of \textbf{zero} for this assessment.
+
+\section*{Policy on Submissions, Extensions, Resubmissions \& Resits}
+The school's process concerning submissions, extensions, resubmissions \& resits complies with \textbf{Otago Polytechnic} policies. Learners can view policies on the \textbf{Otago Polytechnic} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
+
+\section*{Submission}
+You \textbf{must} submit all project files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/emcxguPw}{https://classroom.github.com/a/emcxguPw}.  Create a \textbf{.gitignore} \& add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest project files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. 
+
+\section*{Extensions}
+Extensions \textbf{are not} applicable for this assessment.
+
+\section*{Resubmissions}
+Resubmissions \textbf{are not} applicable for this assessment.
+
+\section*{Resits}
+Resits \& reassessments \textbf{are not} applicable in \textbf{ID608001: Intermediate Application Development Concepts}.
+
+\section*{Instructions}
+
+\subsection*{Functionality - Learning Outcome 1 (100\%)}
+\begin{itemize}
+	\item \textbf{Task One - Tic-Tac-Toe (25\%):}
+	      \begin{itemize}
+	      	\item You can not start to code the solution for this task without completing the formative assessments outlined in the  \textbf{08-react-recap.md} \& \textbf{09-styling.md} files. This is worth (5\%).
+	      	\item In this sub-problem, you will implement conditional rendering such that the colour of X is yellow and the colour of O is blue. In the \textbf{Square.css} file, create two \textbf{CSS} rules called \textbf{.isX} \& \textbf{.isO}. Give each rule a \textbf{color} property with the appropriate value. In the \textbf{Square.js} file, implement conditional rendering using the two \textbf{CSS} rules in the \textbf{Square.css} file in the \textbf{button} element's \textbf{className} property. This is worth (10\%).
+	      	\item In this sub-problem, you will implement a scoreboard which keeps track of how many times X wins, O wins and draws. Store the scoreboard as state using the \textbf{useState} hook. The scoreboard state is an object with the keys - x, o and draw (all lowercase). Each key has the value 0 (zero). If you encounter the following error - \textbf{Too many re-renders. React limits the number of renders to prevent an infinite loop}, you need to set the scoreboard state using the \textbf{useEffect} hook. To get you started, the logic for X is:
+	      	      \begin{verbatim}
+    useEffect(() => {
+        if (winner === "X") setScoreboard((prev) => ({ ...prev, X: prev.X + 1 });
+    }, [winner]);
+	      	      \end{verbatim}
+	      	      
+	      	      
+	      	      Display the scoreboard state in the following format - \textbf{X: 0,  O: 0, Draw: 0}. \textbf{Note:} You do not need to store the scoreboard state in any storage, i.e., \textbf{Local Storage} or \textbf{Session Storage}. This is worth (10\%).
+	      	      
+	      	      
+	      	      
+	      \end{itemize}
+	      
+	\item \textbf{Task Two - Book Library (25\%):}
+	      \begin{itemize}
+	      	\item You can not start to code the solution for this task without completing the formative assessment outlined in the  \textbf{10-context-api.md}. This is worth (5\%).
+	      	\item In this sub-problem, you will calculate the cart's total at checkout. In the \textbf{Checkout.js} file, calculate the cart's total using the \textbf{reduce} function or a similar implementation. To access the cart, you need to use the \textbf{useContext} hook which accepts a context object, i.e., \textbf{CartContext} and returns the current context value, as given by the nearest context provider, i.e., \textbf{CartContext.Provider} for the given context. This is worth (10\%).
+	      	\item In this sub-problem, you will implement deleting a book from the cart at checkout. In the \textbf{CartContext.js} file, you have a function that enables adding a book to the cart. Create a function that enables deleting a book from the cart. Again, to access the functions (adding and deleting), you need to  use the \textbf{useContext} hook. This is worth (10\%).
+	      \end{itemize}
+	      \textbf{Expect Output}:
+	\item \textbf{Task Three - Sass (15\%):} In this repository, you have been given a file called \textbf{styles.css}. Create a new file called \textbf{styles.sass}. In the \textbf{styles.sass} file, convert the \textbf{CSS} rules in the \textbf{styles.css} to use \textbf{Sass} syntax. The \textbf{styles.sass} file needs to demonstrate the use of variables and nesting.
+	      
+	\item \textbf{Task Four - Component Testing (20\%):}	
+	\item \textbf{Task Five - Storybook (15\%):}		
+	      
+	      \textbf{Expect Output}:
+\end{itemize}
+
+\subsection*{Additional Information}
+\begin{itemize}
+	\item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time.
+	\item There are several mistakes you can make with take-home challenges. Some of these are minor mistakes, while others are major mistakes that will leave you frustrated and unable to successfully complete the assessment. Here are some mistake you can make: 
+	      \begin{itemize}
+	      	\item Time management
+	      	\item Trying to learn too many new things at once. Remember, you only have 48 hours to complete this assessment
+	      	\item Making too many assumptions
+	      	\item Starting to code without proper planning
+	      \end{itemize}
+\end{itemize}
+
+\newpage
+
+\begin{figure}
+	\centering
+	\includegraphics[width=100mm]{../../resources/img/practical-skills-based/tic-tac-toe-1-expected-output.png}
+\end{figure}
+
+\end{document}
