@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will replicate the given application on \textbf{Heroku} using \textbf{Next.js}. The main purpose of this assessment is to demonstrate your ability to develop an application using various taught frontend concepts. However, you will be required to independently research \& implement more complex concepts. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
+In this \textbf{individual} assessment, you will replicate the given application hosted on \textbf{Heroku} using \textbf{Next.js}. The main purpose of this assessment is to demonstrate your ability to replicate an existing application using various taught frontend concepts. However, you will be required to independently research \& implement more complex concepts. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -81,8 +81,59 @@ Resits \& reassessments \textbf{are not} applicable in \textbf{ID608001: Interme
 You will need to submit an application \& documentation that meet the following requirements:
 
 \subsection*{Functionality - Learning Outcomes 1, 2, 3 (50\%)}
+Link to application - \href{}{}
 \begin{itemize}
-	
+	\item \textbf{Header:}
+	\begin{itemize}
+		\item The \textbf{Header} component will render six icon components using the \textbf{@material-ui/icons} dependency. The components are:
+		\begin{itemize}
+			\item Home
+			\item FlashOn
+			\item LiveTv
+			\item PersonOutline
+			\item Search
+			\item VideoLibrary
+		\end{itemize} 
+		\item When the cursor hovers on an icon, it will display the following:
+		\begin{itemize}
+			\item Home icon - Home
+			\item FlashOn icon - Trending
+			\item LiveTv - Verified
+			\item PersonOutline - Collections
+			\item Search - Search
+			\item VideoLibrary - Account
+		\end{itemize}
+		\item \textbf{Resource:} \href{https://www.npmjs.com/package/@material-ui/icons}{https://www.npmjs.com/package/@material-ui/icons}
+	\end{itemize}
+	\item \textbf{Navigation Bar:}
+	\begin{itemize}
+		\item The \textbf{Navbar} component will render eight items fetched from the given file - \textbf{endpoint.js}. In the \textbf{endpoint.js}, refer to the \textbf{type} key.
+		\item The eight items need to be centered.
+		\item When the cursor hovers on an item, it will change it's colour and font size.
+	\end{itemize}
+	\item \textbf{Movie Card:}
+	\begin{itemize}
+		\item You have been given the incomplete \textbf{MovieCard} component file. Using the given comments in the \textbf{MovieCard} component file, complete the following functionality:
+		\begin{itemize}
+			\item Under the \textbf{img} element, render the movie's overview using the \textbf{react-text-truncate} dependency. 
+			\item Under the \textbf{h1} element, render the movie's media type, release date or first air date \& vote count in a \textbf{span} element. 
+		\end{itemize}
+		\item For styling, the \textbf{MovieCard} component uses \textbf{react-jss}.
+		\item \textbf{Resources:}
+		\begin{itemize}
+			\item \href{https://www.npmjs.com/package/react-text-truncate}{https://www.npmjs.com/package/react-text-truncate}
+			\item \href{https://www.npmjs.com/package/react-jss}{https://www.npmjs.com/package/react-jss}
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Dashboard:}
+	\begin{itemize}
+		\item The \textbf{Dashboard} component will fetch a list of movies from the given file - \textbf{endpoint.js}. In the \textbf{endpoint.js}, refer to the \textbf{url} key.
+		\item For each movie in the list of movies, render the \textbf{MovieCard} component.
+	\end{itemize}
+	\item \textbf{App:}
+	\begin{itemize}
+		\item The \textbf{App} component will render the \textbf{Header} component, \textbf{Navbar} component \& \textbf{Dashboard} component.
+	\end{itemize}
 \end{itemize}
 
 \subsection*{Code Elegance - Learning Outcome 1 (35\%)}
@@ -101,16 +152,9 @@ You will need to submit an application \& documentation that meet the following 
 	\item \textbf{GitHub} project board to help you organise \& prioritise your work. 
 	\item Provide the following in your repository \textbf{README.md} file:
 	\begin{itemize}
-		\item A \textbf{Entity-Relationship} diagram of your \textbf{Prisma} schema.
-		\item URL to the \textbf{RESTful API} on \textbf{Heroku}.
-		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{RESTful API}?
-		\item How do you deploy the \textbf{RESTful API} to \textbf{Heroku}
-		\item How do you open \textbf{Prisma Studio}?
-		\item How do you create a migration?
+		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{Next.js} application?
 		\item How do you lint \& fix your code?
 		\item How do you format your code?
-		\item How do you run your \textbf{API/integration} tests?
-		\item How do you run your code coverage \& output the results to \textbf{HTML}?
 	\end{itemize}
 	\item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
 	\item Correct spelling \& grammar. 
