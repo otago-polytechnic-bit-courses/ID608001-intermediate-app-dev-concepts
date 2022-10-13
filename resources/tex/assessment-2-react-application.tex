@@ -19,7 +19,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology}
-\lfoot{Assessment 2: Next.js Application\\Version 1, Semester Two, 2022}
+\lfoot{Assessment 2: React Application - The Movie DB\\Version 1, Semester Two, 2022}
 \rfoot{\thepage}
  
 \begin{document}
@@ -29,12 +29,12 @@
 	\includegraphics[width=50mm]{../../resources/img/logo.png}
 \end{figure}
 
-\title{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology\\ID608001: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{Assessment 2: Next.js Application}}
+\title{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology\\ID608001: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{Assessment 2: React Application - The Movie DB}}
 \date{}
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will replicate the given application hosted on \textbf{Heroku} using \textbf{Next.js}. The main purpose of this assessment is to demonstrate your ability to replicate an existing application using various taught frontend concepts. However, you will be required to independently research \& implement more complex concepts. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
+In this \textbf{individual} assessment, you will replicate a given application using \textbf{React}. The main purpose of this assessment is to demonstrate your ability to replicate an existing application using various taught frontend concepts. However, you will be required to independently research \& implement more complex concepts. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -50,7 +50,7 @@ At the successful completion of this course, learners will be able to:
 	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcomes} \\ \hline
 	\small Practical: Skills-Based & \small 20\%        & \small 27-10-2022 (Thur at 10.00 AM)   & \small 1                   \\ \hline
 	\small Assessment 1: Node.js RESTful API - Open Trivia DB              & \small 45\%        & \small 17-10-2022 (Mon at 7.59 AM)  & \small 1 \& 2                   \\ \hline
-	\small Assessment 2: Next.js Application - The Movie DB                       & \small 35\%        & \small 09-11-2022 (Wed at 2.59 PM)  & \small 1 \& 2                   \\ \hline
+	\small Assessment 2: React Application - The Movie DB                       & \small 35\%        & \small 09-11-2022 (Wed at 2.59 PM)  & \small 1 \& 2                   \\ \hline
 \end{tabular}
 
 \section*{Conditions of Assessment}
@@ -81,11 +81,10 @@ Resits \& reassessments \textbf{are not} applicable in \textbf{ID608001: Interme
 You will need to submit an application \& documentation that meet the following requirements:
 
 \subsection*{Functionality - Learning Outcomes 1, 2, 3 (50\%)}
-Link to application - \href{}{}
 \begin{itemize}
 	\item \textbf{Header:}
 	\begin{itemize}
-		\item The \textbf{Header} component will render six icon components using the \textbf{@material-ui/icons} dependency. The components are:
+		\item The \textbf{Header} component will render six icon components using the \textbf{@material-ui/core@4.11.2} \& \textbf{@material-ui/icons@4.11.2} dependencies. The components are:
 		\begin{itemize}
 			\item Home
 			\item FlashOn
@@ -115,10 +114,10 @@ Link to application - \href{}{}
 	\begin{itemize}
 		\item You have been given the incomplete \textbf{MovieCard} component file. Using the given comments in the \textbf{MovieCard} component file, complete the following functionality:
 		\begin{itemize}
-			\item Under the \textbf{img} element, render the movie's overview using the \textbf{react-text-truncate} dependency. 
+			\item Under the \textbf{img} element, render the movie's overview using the \textbf{react-text-truncate@0.16.0} dependency. 
 			\item Under the \textbf{h1} element, render the movie's media type, release date or first air date \& vote count in a \textbf{span} element. 
 		\end{itemize}
-		\item For styling, the \textbf{MovieCard} component uses \textbf{react-jss}.
+		\item For styling, the \textbf{MovieCard} component uses the \textbf{react-jss@10.5.0} dependency.
 		\item \textbf{Resources:}
 		\begin{itemize}
 			\item \href{https://www.npmjs.com/package/react-text-truncate}{https://www.npmjs.com/package/react-text-truncate}
@@ -152,7 +151,7 @@ Link to application - \href{}{}
 	\item \textbf{GitHub} project board to help you organise \& prioritise your work. 
 	\item Provide the following in your repository \textbf{README.md} file:
 	\begin{itemize}
-		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{Next.js} application?
+		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{React} application?
 		\item How do you lint \& fix your code?
 		\item How do you format your code?
 	\end{itemize}
@@ -167,6 +166,7 @@ Link to application - \href{}{}
 
 \subsection*{Additional Information}
 \begin{itemize}
+	\item In this repository, you have been given a directory called \textbf{expected-outputs}. In this directory, you are given expected output screenshots for this assessment
 	\item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time.
 \end{itemize}
 
