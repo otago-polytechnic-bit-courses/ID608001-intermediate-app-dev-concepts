@@ -2,72 +2,387 @@
 
 # 01 B: React Basics
 
-## Components
+## JSX
 
-### What is a component?
+JSX is a syntax extension for JavaScript that allows you to write HTML-like elements and components in JavaScript. It was developed by Facebook and is commonly used in React and other JavaScript libraries and frameworks.
 
-In React, a component is a reusable piece of code that represents a part of the user interface. It can accept inputs (props) and return a React element that describes how the component should be rendered. Components are the building blocks of a React application, and they can be used to create complex user interfaces by composing simple components together.
-
-There are two main types of components in React: functional components and class components. Functional components are simple JavaScript functions that take in props and return a React element, while class components are ES6 classes that extend from React.Component and have a render method that returns a React element.
-
-A component can also have its own internal state and lifecycle methods that allow it to change over time based on user interactions or other events. Components can also communicate with each other by passing data down via props and handling events via callbacks.
-
-### How to write a component
-
-There are two main ways to write a component in React: using a functional component or using a class component.
-
-Functional component:
+For example, you can use JSX to create a simple component like this:
 
 ```jsx
-import React from "react";
+const MyFirstComponent = () => {
+  return <p>Hello, World!</p>;
+};
 
-const MyComponent = (props) => {
+export default MyFirstComponent;
+```
+
+Here, the JSX syntax `<p>Hello, World!</p>` creates a `p` element with the text "Hello, World!" inside of it.
+
+JSX is not directly readable by the browser, it needs to be transpiled by a tool like Babel, which converts the JSX code into regular JavaScript that the browser can understand.
+
+JSX is an important part of React's component-based architecture (more about this soon), as it allows you to describe the structure and content of a component in a declarative and intuitive way. It also makes it easy to pass data and interact with a component's state.
+
+## Rendering Elements
+
+## Components
+
+In React, a component is a piece of code that represents a part of a user interface. Components are reusable, meaning they can be used multiple times throughout an application.
+
+In React, there are two types of components - function and class. In this course, disregard any examples of class components. A function component (like the `MyComponent` above) is a JavaScript function that returns a component's structure and content.
+
+### Props
+
+A prop or property is a way of passing data from a parent component to a child component. A child component can access the prop(s) passed to it by using the `props` object. For example, if a parent component passes a prop called "name" to a child component, the child component can access the value of the "name" prop using `props.name`. Props are used to make a component more reusable by allowing it to accept different data based on how it is used.
+
+Here is an example of a simple function component that renders a heading:
+
+```jsx
+// components/examples/MyPropComponent.js
+const MyPropComponent = (props) => {
+  return <h1>Hello, {props.name}!</h1>;
+};
+
+export default MyPropComponent;
+
+// App.js
+import MyPropComponent from "./components/examples/MyPropComponent";
+
+const App = () => {
+  return <MyPropComponent name="John" />
+};
+
+export default App;
+```
+
+In this example, `MyPropComponent` accepts a prop called `name` and renders an `h1` element with the value of `name` passed as the content.
+
+### Fragments
+
+A fragment is a way to return multiple elements. Fragments let you group list of child without adding extra nodes, i.e., `div` to the DOM.
+
+Fragments are created using the `<React.Fragment>` component or the shorthand syntax `<>` and `</>` .
+
+```jsx
+// using <React.Fragment>
+const Example = () => {
   return (
-    <div>
-      <h1>Hello, {props.name}!</h1>
+    <React.Fragment>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </React.Fragment>
+  );
+};
+
+// or using shorthand syntax
+const Example = () => {
+  return (
+    <>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </>
+  );
+};
+```
+
+**Question:** What happens if you omit the Fragment from the example above?
+
+### State
+
+In React, state can be managed using the `useState` hook. The `useState` hook is an in-built hook that allows a function to have its own state. It takes an initial value as an argument and returns an array with two elements: the current state and a function to update it.
+
+For example, a function component that has a "count" state might look like this:
+
+```jsx
+// components/examples/MyCounter.js
+import { useState } from "react";
+
+const MyCounter = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => setCount(count + 1);
+
+  return (
+    <>
+      <button onClick={handleClick}>You clicked me {count} times</button>;
+    </>
+  );
+};
+
+export default MyCounter;
+```
+
+In this example, `count` has an initial state of 0, which is passed as an argument to `useState`. The first element of the array returned by `useState` is the current state of `count`, and the second element is a function to update `count`. When the button is clicked, the `handleClick` function is called, which updates `count` by calling `setCount` and incrementing `count`.
+
+It is important to note that the `useState` hook should only be called at the top level of the component, not inside loops or conditions.
+
+Here are some other examples:
+
+```jsx
+// components/examples/MyInput.js
+import { useState } from "react";
+
+const MyInput() {
+  const [text, setText] = useState("John Doe");
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  }
+
+  return (
+    <>
+      <input value={text} onChange={handleChange} />
+      <p>You typed: {text}</p>
+      <button onClick={() => setText("John Doe")}>Reset</button>
+    </>
+  );
+}
+```
+
+```jsx
+// components/examples/MyCheckbox.js
+import { useState } from "react";
+
+const MyCheckbox = () => {
+  const [liked, setLiked] = useState(true);
+
+  const handleChange = (e) => {
+    setLiked(e.target.checked);
+  };
+
+  return (
+    <>
+      <label>
+        <input type="checkbox" checked={liked} onChange={handleChange} />I liked
+        this
+      </label>
+      <p>You {liked ? "liked" : "did not like"} this.</p>
+    </>
+  );
+};
+```
+
+```jsx
+// components/examples/MyForm.js
+import { useState } from "react";
+
+const MyForm = () => {
+  const [name, setName] = useState("John Doe");
+  const [age, setAge] = useState(50);
+
+  return (
+    <>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <button onClick={() => setAge(age + 1)}>Increment age</button>
+      <p>
+        Hello, {name}. You are {age}.
+      </p>
+    </>
+  );
+};
+```
+
+**Activity:** For each example above, i.e., `MyInput`, `MyCheckbox` and `MyForm`, explain each line of code.
+
+### Lifecycle
+
+In React, every component has a lifecycle - mounting, updating and unmounting. These lifecycle methods are useful because we want to execute a piece of code a specific time. React provides a hook to create these methods called `useEffect`.
+
+The `useEffect` hook is used to perform side-effects, such as fetching data, after the component has rendered.
+
+Here is an example:
+
+```jsx
+// components/examples/MyLifecycle.js
+import { useState, useEffect } from "react";
+
+const MyLifecycle = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://api.example.com/data")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
+
+  //...
+};
+
+export default MyLifecycle;
+```
+
+The `useEffect` arguments are a callback function and dependency array. If the dependency array is empty, then that callback function will only be called once. If the dependency array is not empty, the callback function will be called when a value in the dependency array changes.
+
+Here is an example:
+
+```jsx
+// components/examples/MyCounterTwo.js
+import { useState, useEffect } from "react";
+
+const MyCounterTwo = () => {
+  const [increment, setIncrement] = useState(0);
+  const [decrement, setDecrement] = useState(0);
+
+  useEffect(() => {
+    console.log("componentDidMount");
+  }, []);
+
+  useEffect(() => {
+    console.log("componentDidUpdate - increment");
+  }, [increment]);
+
+  useEffect(() => {
+    console.log("componentDidUpdate - decrement");
+  }, [decrement]);
+
+  return (
+    <>
+      <button onClick={() => setIncrement(increment + 1)}>Increment</button>
+      <h1>{increment}</h1>
+      <button onClick={() => setDecrement(decrement - 1)}>Decrement</button>
+      <h1>{decrement}</h1>
+    </>
+  );
+};
+
+export default MyCounterTwo;
+```
+
+What about unmounting? Here is an example:
+
+```jsx
+// components/examples/MyUnmount.js
+import { useState, useEffect } from "react";
+
+const Child = () => {
+  useEffect(() => {
+    console.log("componentWillUnmount");
+  }, []);
+
+  return (
+    <>
+      <h1>Child Component</h1>
+    </>
+  );
+};
+
+const Parent = () => {
+  const [isToggled, setIsToggled] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setIsToggled(!isToggled)}>Toggle Child</button>
+      {isToggled ? <Child /> : null}
+    </>
+  );
+};
+
+export default Parent;
+```
+
+## Lists and Keys
+
+A list is a way to display multiple items in a consistent format. Lists are typically created using an array of data and then mapped over to create a list of components for each item.
+
+A key is an attribute that React uses to identify each item in a list and track changes over time. Keys help optimise the rendering of lists by allowing it to identify which items have changed and to update the corresponding components accordingly. Keys should be unique for each item in the list.
+
+Here is an example:
+
+```jsx
+// components/examples/MyProducts.js
+const products = [
+  { id: 1, name: "Product 1", price: 10.0 },
+  { id: 2, name: "Product 2", price: 20.0 },
+  { id: 3, name: "Product 3", price: 30.0 },
+];
+
+const MyProducts = () => {
+  return (
+    <>
+      {products.map((product) => (
+        <Product key={product.id} name={product.name} price={product.price} />
+      ))}
+    </>
+  );
+};
+
+export default MyProducts;
+```
+
+**Activity:** This example is incomplete. What is missing? Add whatever you feel is necessary to make this example complete.
+
+## Lifting Up State
+
+Lifting up state is a technique for managing the state of a component that is used by multiple child components. When a child component needs to change the state of a parent component, it typically passes a callback function as a prop to the child component, which the child component can call to update the parent's state. This allows the parent component to maintain control over the state, and to pass the updated state down to the child components as props.
+
+For example, you have a parent component, i.e., `MyProducts`, that renders a list of child components, i.e., `Product`, and you want to add a button to each `Product` that allows the user to add the product to a cart. The "cart" is represented as an array called `cart` in the state of `MyProducts`. In this case, you would lift up the state by:
+
+1. Defining a callback function in `MyProducts` called `addToCart` that updates `cart`
+2. Pass the `addToCart` callback function as a prop to `Product`
+3. In `Product`, define an `onClick` event that calls the `addToCart` function, passing in the product's id as an argument.
+
+```jsx
+// components/examples/MyProducts.js
+import { useState } from "react";
+
+const products = [
+  { id: 1, name: "Product 1", price: 10.0 },
+  { id: 2, name: "Product 2", price: 20.0 },
+  { id: 3, name: "Product 3", price: 30.0 },
+];
+
+
+const MyProducts = () => {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (productId) => {
+    setCart([...cart, productId]);
+  };
+
+  return (
+    <>
+      {products.map((product) => (
+        <Product
+          key={product.id}
+          name={product.name}
+          price={product.price}
+          addToCart={addToCart}
+        />
+      ))}
     </div>
   );
 };
 
-export default MyComponent;
-```
-
-In this example, the component is defined as a simple JavaScript function called `MyComponent` that takes in a single argument, `props`. The function returns a JSX element that describes how the component should be rendered.
-
-Class component:
-
-```jsx
-import React, { Component } from "react";
-
-class MyComponent extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Hello, {this.props.name}!</h1>
-      </div>
-    );
-  }
-}
-
-export default MyComponent;
-```
-
-In this example, the component is defined as a class called `MyComponent` that extends from `React.Component`. The class has a single method called `render` that returns a JSX element that describes how the component should be rendered.
-
-Both of these components can be used in other parts of your React application by importing and using them:
-
-```jsx
-import MyComponent from "./MyComponent";
-
-const App = () => {
+const Product = (props) => {
   return (
-    <div>
-      <MyComponent name="John" />
+    <>
+      <h1>{props.name} - ${props.price} </h1>
+      <button onClick={() => props.addToCart(product.id)}>Add To Cart</button>
     </div>
   );
-}
+};
+
+export default MyProducts;
 ```
 
-It is important to notice that the second example uses `this.props.name` instead of `props.name` because this refers to the component instance.
+## Strict Mode
 
-Also, it is important to note that in both examples, the component's name should start with an uppercase letter, this is because in React, the component names that starts with lowercase letter are reserved for built-in browser elements like `div`, `p` etc.
+Strict mode is a feature that helps you to find potential problems in your application by adding extra checks and warnings to the development version of your app. When a component is rendered in strict mode, React will perform additional checks and provide more information when it detects potential issues, such as accidental direct manipulation of the DOM, missing unique keys on list elements, use of deprecated methods, and other common mistakes.
+
+You can enable strict mode globally for your entire application by adding a `<React.StrictMode>` component at the root of your application:
+
+```jsx
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+```
+
+## Typechecking with Prop Types
