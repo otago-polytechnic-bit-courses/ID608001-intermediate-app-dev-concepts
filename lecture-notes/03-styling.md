@@ -20,7 +20,7 @@ const MyCSSModules = () => {
       <h1 className={styles.text}>Hello, World!</h1>
     </div>
   );
-}
+};
 
 export default MyCSSModules;
 ```
@@ -47,7 +47,7 @@ In this example, `MyCSSModules` uses two class names from the styles object impo
 For example, you can use the styled function from the library to create a `Button` that has its own styles:
 
 ```jsx
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Button = styled.button`
   background-color: blue;
@@ -68,7 +68,7 @@ You can then use this `Button` component in your JSX like any other component:
 
 ```jsx
 const Button = styled.button`
-  background-color: ${props => props.primary ? 'blue' : 'green'};
+  background-color: ${(props) => (props.primary ? "blue" : "green")};
   color: white;
   padding: 10px;
   border-radius: 5px;
@@ -82,6 +82,91 @@ and then use it like this:
 <Button primary>Click me</Button>
 ```
 
-## Sass
+## SASS
+
+SASS is a CSS preprocessor that extends the functionality of CSS and makes it easier to write and maintain styles for web pages. It was created to make writing CSS more efficient, maintainable, and reusable.
+
+Some of the key features of SASS are:
+
+1. Variables: You can use variables to store values that you can reuse throughout your styles.
+
+```css
+$primary-color: blue;
+$font-size: 16px;
+
+.header {
+  background-color: $primary-color;
+  font-size: $font-size;
+}
+```
+
+2. Nesting: You can nest styles within other styles, making it easier to understand the hierarchy of your styles and reducing the amount of code you need to write.
+
+```css
+.header {
+  background-color: blue;
+  font-size: 16px;
+
+  h1 {
+    color: white;
+    font-weight: bold;
+  }
+}
+```
+
+3. Mixins: You can reuse styles in multiple places without duplicating code. You can define a mixin once and then include it in multiple places in your styles.
+
+```css
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  background-color: blue;
+  font-size: 16px;
+  @include center;
+}
+```
+
+4. Functions: You can perform operations on values, such as manipulating colours or manipulating values to generate styles.
+
+```css
+$primary-color: blue;
+
+.header {
+  background-color: darken($primary-color, 10%);
+  font-size: 16px;
+}
+```
+
+5. Partials and Imports: You can break up your styles into smaller, reusable components called partials. You can then import these partials into your main stylesheet.
+
+```css
+// _variables.scss
+$primary-color: blue;
+$font-size: 16px;
+
+// _mixins.scss
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// main.scss
+@import "variables";
+@import "mixins";
+
+.header {
+  background-color: $primary-color;
+  font-size: $font-size;
+  @include center;
+}
+```
+
+SASS code is written in a syntax similar to CSS but with additional features and functionality. The SASS code is then compiled into CSS, which is then used by the browser to style the web page.
 
 ## Tailwind
+

@@ -91,7 +91,7 @@ const Example = () => {
 };
 
 // or using shorthand syntax
-const Example = () => {
+const AnotherExample = () => {
   return (
     <>
       <ChildA />
@@ -445,3 +445,5 @@ MyProps.propTypes = {
 
 export default MyProps;
 ```
+
+# Formative Assessment
