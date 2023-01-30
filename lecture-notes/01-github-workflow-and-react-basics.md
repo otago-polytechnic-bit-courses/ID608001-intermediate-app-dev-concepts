@@ -121,7 +121,7 @@ In this example, `MyProps` accepts a **prop** called `name` and renders an `h1` 
 
 ### Fragments
 
-A **fragment** is a way to return multiple elements. **Fragments** let you group list of child without adding extra nodes, i.e., `div` to the DOM.
+A **fragment** is a way to return multiple elements. **Fragments** let you group list of child without adding extra nodes, i.e., `div` to the **DOM**.
 
 **Fragments** are created using the `<React.Fragment>` component or the shorthand syntax `<>` and `</>` .
 
@@ -476,7 +476,7 @@ root.render(
 
 ## Typechecking with Prop Types
 
-As your application grows, you can catch bugs and mistakes early in the development process with typechecking. The `prop-types` library is a way to check the types of `props` passed to components. To use `prop-types`, you need to install the library, i.e., `npm install prop-types` and import it at the top of your component file. Then, you can define the expected **prop types** using the various validation functions provided by the library, such as `PropTypes.string` or `PropTypes.number`. These validation functions can be added as properties to the component function, usually after the component is defined.
+As your application grows, you can catch bugs and mistakes early in the development process with **typechecking**. The `prop-types` library is a way to check the types of `props` passed to components. To use `prop-types`, you need to install the library, i.e., `npm install prop-types` and import it at the top of your component file. Then, you can define the expected **prop types** using the various validation functions provided by the library, such as `PropTypes.string` or `PropTypes.number`. These validation functions can be added as properties to the component function, usually after the component is defined.
 
 Here is an example:
 
@@ -496,3 +496,11 @@ export default MyProps;
 ```
 
 # Formative Assessment
+
+Before you start, create a new branch called **01-formative-assessment**.
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
