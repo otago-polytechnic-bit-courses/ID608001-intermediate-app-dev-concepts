@@ -1,14 +1,14 @@
 # 01 A: GitHub Workflow
 
-By default, GitHub Classroom creates an empty repository. Firstly, you need to create a README and .gitignore file. GitHub provides an option for creating new files.
+By default, **GitHub Classroom** creates an empty repository. Firstly, you must create a **README** and `.gitignore` file. **GitHub** provides an option for creating new files once the repository is created.
 
 ## Create a README
 
-Click on the Add file button then the Create new file button. Name your file README.md (Markdown) or README.rst (reStructuredText) then click on the green Commit new file button. You should see a new file in your practicals repository called README.md/rst and the main branch.
+Click on the **Add file** button, then the **Create new file** button. Name your file `README.md` (Markdown), then click on the **Commit new file** button. You should see a new file in your formative assessments repository called `README.md` and the `main` branch.
 
 ## Create a .gitignore File
 
-Similar to before, click on the Add file button then the Create new file button. Name your file .gitignore. A .gitignore template dropdown will appear on the right-hand side of the screen. Select the Node .gitignore template. Click on the green. Commit new file button. You should see a new file in your practicals repository called .gitignore.
+Like before, click on the **Add file** button and then the **Create new file** button. Name your file `.gitignore`. A `.gitignore` template dropdown will appear on the right-hand side of the screen. Select the **Node** `.gitignore` template. Click on the **Commit new file** button. You should see a new file in your formative assessments repository called `.gitignore`.
 
 **Resources:**
 
@@ -17,7 +17,7 @@ Similar to before, click on the Add file button then the Create new file button.
 
 ## Clone a Repository
 
-Open up Git Bash on your computer. Clone your practicals repository to a location on your computer using the command: git clone <repository URL>
+Open up **Git Bash** or whatever alternative you see fit on your computer. Clone your formative assessments repository to a location on your computer using the command: `git clone <repository URL>`.
 
 **Resource:**
 
@@ -25,9 +25,9 @@ Open up Git Bash on your computer. Clone your practicals repository to a locatio
 
 ## Create a Local Branch
 
-cd into your practicals repository and create a branch using the command: git branch <name of the branch>. Checkout from the main branch to the new branch using the command: git checkout <name of the branch>. Alternatively, you can create and checkout a branch using the command: git checkout -b <name of the branch>.
+`cd` into your formative assessments repository and create a branch using the command `git branch <name of the branch>`. Checkout from the `main` branch to the new branch using the command `git checkout <name of the branch>`. Alternatively, you can create and checkout a branch using the command `git checkout -b <name of the branch>`.
 
-For each formative assessment, create a new branch, i.e., branch name 01-formative assessment for 01-formative assessment.<file extension>. When you create a new branch, make sure you are creating it from the main branch.
+For each formative assessment, create a new branch, i.e., branch name `01-formative assessment`. When you create a new branch, make sure you are creating it from the branch you last worked on.
 
 **Resources:**
 - <https://git-scm.com/docs/git-branch>
@@ -35,38 +35,40 @@ For each formative assessment, create a new branch, i.e., branch name 01-formati
 
 ## Push Local Branch to Remote Repository
 
-Push your local branch, i.e., 01-formative-assessment to your remote repository using the command: git push -u origin <name of branch>. You will continue working on your formative assessment code until you are ready to submit.
+Push your local branch, i.e., `01-formative-assessment`, to your remote repository using the command `git push -u origin <name of branch>`. You will continue working on your formative assessment code until you are ready to submit it.
 
 ## Create a Pull Request
 
-Once you have completed a formative assessment, create a pull request. Go to your formative assessments repository on GitHub. Click on the Pull requests tab then click on the green New pull request button. You will see two dropdowns (base and compare). Click the compare dropdown and select the formative assessments branch you want to compare with the master branch then click the green Create pull request button.
+Once you have completed a formative assessment, create a pull request. Go to your formative assessments repository on GitHub. Click on the **Pull requests** tab, then click on the **New pull request** button. You will see two dropdowns (base and compare). Click the compare dropdown, select the formative assessments branch you want to compare with the `main` branch, and then click the **Create pull request** button.
 
-On the right-side of the screen, you will see Reviewers. Click on the Reviewers section. Add `grayson-orr` as reviewers then click the green Create pull request button.
+On the right side of the screen, you will see **Reviewers**. Click on the **Reviewers** section. Add **grayson-orr** as reviewers, then click the **Create pull request** button.
 
-Grayson will receive an email. Your formative assessment code will be reviewed and you will receive feedback. You may be asked to reflect on your feedback and fix your formative assessment code. You will receive an email when your formative assessment code has been reviewed and/or approved.
+**Grayson** will receive an email. **Grayson** will review your formative assessment code, and you will receive feedback. You may be asked to reflect on your feedback and fix your formative assessment code. You will receive an email when your formative assessment code has been reviewed or approved.
 
 # 01 B: React Basics
 
 ## Create React App
 
-`create-react-app` is a command line tool that helps developers quickly set up a new React project with a basic file structure and a development environment to use modern best practices.
+**create-react-app** is a command line tool that helps developers quickly set up a new **React** project with a basic file structure and a development environment to use modern best practices.
 
-When you run the `npx create-react-app` command, it will generate a new directory that includes everything you need to start building a React application. This directory includes the following:
+**Activity:** Create a new **React** application using **create-react-app**. If you can not remember how to do this off the top of your head, ask **ChatGPT**.
 
-- `node_modules/`: This directory contains all of the project's required packages.
-- `public/`: This directory contains files that will be publicly accessible such as the index.html file, static assets, and the manifest.json file.
-- `src/`: This directory contains the project's source code files, including subdirectories for components, styles and any other code specific to the application.
-- `src/index.js`: This file is the entry point of the app, and it is where the React application is rendered.
-- `.gitignore`: This file contains a list of files and directories that should be ignored by Git when committing changes.
-- `package.json`: This file contains metadata about the project, including its dependencies, scripts, and information about its authors and license.
-- `README.md`: This file contains documentation about the project.
-- `yarn.lock` or `package-lock.json`: This file is automatically generated for any operations where npm modifies either the `node_modules` tree or `package.json`. It describes the exact tree generated, such that subsequent installs can generate identical trees, regardless of intermediate dependency updates.
+When you run the `npx create-react-app` command, it will generate a new directory that includes everything you need to start building a **React** application. This directory includes the following:
+
+- `node_modules/`: This directory contains all of the project's required packages
+- `public/`: This directory contains files that will be publicly accessible such as the `index.html` file, static assets, and the `manifest.json` file
+- `src/`: This directory contains the project's source code files, including subdirectories for components, styles and any other code specific to the application
+- `src/index.js`: This file is the entry point of the app, and it is where the **React** application is rendered
+- `.gitignore`: This file contains a list of files and directories that should be ignored by **Git** when committing changes
+- `package.json`: This file contains metadata about the project, including its dependencies, scripts, and information about its authors and license
+- `README.md`: This file contains documentation about the project
+- `yarn.lock` or `package-lock.json`: This file is automatically generated for any operations where npm modifies either the `node_modules` tree or `package.json`. It describes the exact tree generated, such that subsequent installs can generate identical trees, regardless of intermediate dependency updates
 
 ## JSX
 
-JSX is a syntax extension for JavaScript that allows you to write HTML-like elements and components in JavaScript. It was developed by Facebook and is commonly used in React and other JavaScript libraries and frameworks.
+**JSX** is a syntax extension for **JavaScript** that allows you to write **HTML-like** elements and components in **JavaScript**. It was developed by **Facebook** and is commonly used in **React** and other **JavaScript** libraries and frameworks.
 
-For example, you can use JSX to create a simple component like this:
+For example, you can use **JSX** to create a simple component like this:
 
 ```jsx
 // src/components/examples/MyFirstComponent.js
@@ -77,23 +79,23 @@ const MyFirstComponent = () => {
 export default MyFirstComponent;
 ```
 
-Here, the JSX syntax `<p>Hello, World!</p>` creates a `p` element with the text "Hello, World!" inside of it.
+Here, the **JSX** syntax `<p>Hello, World!</p>` creates a `p` element with the text "Hello, World!" inside of it.
 
-JSX is not directly readable by the browser, it needs to be transpiled by a tool like Babel, which converts the JSX code into regular JavaScript that the browser can understand.
+**JSX** is not directly readable by the browser, it needs to be transpiled by a tool like **Babel**, which converts the **JSX** code into regular **JavaScript** that the browser can understand.
 
-JSX is an important part of React's component-based architecture (more about this soon), as it allows you to describe the structure and content of a component in a declarative and intuitive way. It also makes it easy to pass data and interact with a component's state.
+**JSX** is an important part of **React's** component-based architecture (more about this soon), as it allows you to describe the structure and content of a component in a declarative and intuitive way. It also makes it easy to pass data and interact with a component's state.
 
 ## Rendering Elements
 
 ## Components
 
-In React, a component is a piece of code that represents a part of a user interface. Components are reusable, meaning they can be used multiple times throughout an application.
+In **React**, a component is a piece of code that represents a part of a user interface. Components are reusable, meaning they can be used multiple times throughout an application.
 
-In React, there are two types of components - function and class. In this course, disregard any examples of class components. A function component (like the `MyComponent` above) is a JavaScript function that returns a component's structure and content.
+In **React**, there are two types of components - function and class. In this course, disregard any examples of class components. A function component (like the `MyComponent` above) is a **JavaScript** function that returns a component's structure and content.
 
 ### Props
 
-A prop or property is a way of passing data from a parent component to a child component. A child component can access the prop(s) passed to it by using the `props` object. For example, if a parent component passes a prop called "name" to a child component, the child component can access the value of the "name" prop using `props.name`. Props are used to make a component more reusable by allowing it to accept different data based on how it is used.
+A **prop** or **property** is a way of passing data from a **parent** component to a **child** component. A **child** component can access the **prop(s)** passed to it by using the `props` object. For example, if a **parent** component passes a **prop** called "name" to a **child** component, the **child** component can access the value of the "name" **prop** using `props.name`. **Props** are used to make a component more reusable by allowing it to accept different data based on how it is used.
 
 Here is an example of a simple function component that renders a heading:
 
@@ -115,13 +117,13 @@ const App = () => {
 export default App;
 ```
 
-In this example, `MyProps` accepts a prop called `name` and renders an `h1` element with the value of `name` passed as the content.
+In this example, `MyProps` accepts a **prop** called `name` and renders an `h1` element with the value of `name` passed as the content.
 
 ### Fragments
 
-A fragment is a way to return multiple elements. Fragments let you group list of child without adding extra nodes, i.e., `div` to the DOM.
+A **fragment** is a way to return multiple elements. **Fragments** let you group list of child without adding extra nodes, i.e., `div` to the DOM.
 
-Fragments are created using the `<React.Fragment>` component or the shorthand syntax `<>` and `</>` .
+**Fragments** are created using the `<React.Fragment>` component or the shorthand syntax `<>` and `</>` .
 
 ```jsx
 // using <React.Fragment>
@@ -147,13 +149,13 @@ const AnotherExample = () => {
 };
 ```
 
-**Question:** What happens if you omit the Fragment from the example above?
+**Question:** What happens if you omit the `Fragment` from the example above?
 
 ### State
 
-In React, state can be managed using the `useState` hook. The `useState` hook is an in-built hook that allows a function to have its own state. It takes an initial value as an argument and returns an array with two elements: the current state and a function to update it.
+In **React**, **state** can be managed using the `useState` **hook**. The `useState` hook is an in-built **hook** that allows a function to have its own **state**. It takes an initial value as an argument and returns an array with two elements - the current state and a function to update it.
 
-For example, a function component that has a "count" state might look like this:
+For example, a function component that has a "count" **state** might look like this:
 
 ```jsx
 // src/components/examples/MyCounter.js
@@ -174,9 +176,11 @@ const MyCounter = () => {
 export default MyCounter;
 ```
 
-In this example, `count` has an initial state of 0, which is passed as an argument to `useState`. The first element of the array returned by `useState` is the current state of `count`, and the second element is a function to update `count`. When the button is clicked, the `handleClick` function is called, which updates `count` by calling `setCount` and incrementing `count`.
+In this example, `count` has an initial **state** of 0, which is passed as an argument to `useState`. The first element of the array returned by `useState` is the current **state** of `count`, and the second element is a function to update `count`. When the `button` is clicked, the `handleClick` function is called, which updates `count` by calling `setCount` and incrementing `count`.
 
-It is important to note that the `useState` hook should only be called at the top level of the component, not inside loops or conditions.
+It is important to note that the `useState` **hook** should only be called at the top level of the component, not inside loops or conditions.
+
+**Question:** What does should only be called at the top level of the component mean?
 
 Here are some other examples:
 
@@ -254,9 +258,9 @@ export default MyForm;
 
 ### Lifecycle
 
-In React, every component has a lifecycle - mounting, updating and unmounting. These lifecycle methods are useful because we want to execute a piece of code a specific time. React provides a hook to create these methods called `useEffect`.
+In **React**, every component has a **lifecycle** - **mounting**, **updating** and **unmounting**. These **lifecycle** methods are useful because we want to execute a piece of code a specific time. **React** provides a **hook** to create these methods called `useEffect`.
 
-The `useEffect` hook is used to perform side-effects, such as fetching data, after the component has rendered.
+The `useEffect` **hook** is used to perform side-effects, such as fetching data, after the component has rendered.
 
 Here is an example:
 
@@ -332,7 +336,7 @@ const MyCounterTwo = () => {
 export default MyCounterTwo;
 ```
 
-What about unmounting? Here is an example:
+What about **unmounting**? Here is an example:
 
 ```jsx
 // src/components/examples/MyUnmount.js
@@ -366,9 +370,9 @@ export default Parent;
 
 ## Lists and Keys
 
-A list is a way to display multiple items in a consistent format. Lists are typically created using an array of data and then mapped over to create a list of components for each item.
+A **list** is a way to display multiple items in a consistent format. **Lists** are typically created using an array of data and then mapped over to create a list of components for each item.
 
-A key is an attribute that React uses to identify each item in a list and track changes over time. Keys help optimise the rendering of lists by allowing it to identify which items have changed and to update the corresponding components accordingly. Keys should be unique for each item in the list.
+A **key** is an attribute that **React** uses to identify each item in a **list** and track changes over time. **Keys** help optimise the rendering of **lists** by allowing it to identify which items have changed and to update the corresponding components accordingly. **Keys** should be unique for each item in the **list**.
 
 Here is an example:
 
@@ -397,13 +401,13 @@ export default MyProducts;
 
 ## Lifting Up State
 
-Lifting up state is a technique for managing the state of a component that is used by multiple child components. When a child component needs to change the state of a parent component, it typically passes a callback function as a prop to the child component, which the child component can call to update the parent's state. This allows the parent component to maintain control over the state, and to pass the updated state down to the child components as props.
+**Lifting up state** is a technique for managing the **state** of a component that is used by multiple **child** components. When a **child** component needs to change the **state** of a **parent** component, it typically passes a **callback** function as a **prop** to the **child** component, which the **child** component can call to update the **parent's** state. This allows the **parent** component to maintain control over the **state**, and to pass the updated **state** down to the **child** components as `props`.
 
-For example, you have a parent component, i.e., `MyProducts`, that renders a list of child components, i.e., `Product`, and you want to add a button to each `Product` that allows the user to add the product to a cart. The "cart" is represented as an array called `cart` in the state of `MyProducts`. In this case, you would lift up the state by:
+For example, you have a **parent** component, i.e., `MyProducts`, that renders a list of **child** components, i.e., `Product`, and you want to add a button to each `Product` that allows the user to add the product to a cart. The "cart" is represented as an array called `cart` in the state of `MyProducts`. In this case, you would lift up the **state** by:
 
 1. Defining a callback function in `MyProducts` called `addToCart` that updates `cart`
 2. Pass the `addToCart` callback function as a prop to `Product`
-3. In `Product`, define an `onClick` event that calls the `addToCart` function, passing in the product's id as an argument.
+3. In `Product`, define an `onClick` event that calls the `addToCart` function, passing in the product's id as an argument
 
 ```jsx
 // src/components/examples/MyProducts.js
@@ -454,9 +458,9 @@ export default MyProducts;
 
 ## Strict Mode
 
-Strict mode is a feature that helps you to find potential problems in your application by adding extra checks and warnings to the development version of your app. When a component is rendered in strict mode, React will perform additional checks and provide more information when it detects potential issues, such as accidental direct manipulation of the DOM, missing unique keys on list elements, use of deprecated methods, and other common mistakes.
+**Strict mode** is a feature that helps you to find potential problems in your application by adding extra checks and warnings to the development version of your app. When a component is rendered in strict mode, **React** will perform additional checks and provide more information when it detects potential issues, such as accidental direct manipulation of the **DOM**, missing unique **keys** on **list** elements, use of deprecated methods, and other common mistakes.
 
-You can enable strict mode globally for your entire application by adding a `<React.StrictMode>` component at the root of your application:
+You can enable **strict mode** globally for your entire application by adding a `<React.StrictMode>` component at the root of your application:
 
 ```jsx
 import ReactDOM from "react-dom/client";
@@ -472,7 +476,7 @@ root.render(
 
 ## Typechecking with Prop Types
 
-As your application grows, you can catch bugs and mistakes early in the development process with typechecking. The `prop-types` library is a way to check the types of props passed to components. To use `prop-types`, you need to install the library, i.e., `npm install prop-types` and import it at the top of your component file. Then, you can define the expected prop types using the various validation functions provided by the library, such as `PropTypes.string` or `PropTypes.number`. These validation functions can be added as properties to the component function, usually after the component is defined.
+As your application grows, you can catch bugs and mistakes early in the development process with typechecking. The `prop-types` library is a way to check the types of `props` passed to components. To use `prop-types`, you need to install the library, i.e., `npm install prop-types` and import it at the top of your component file. Then, you can define the expected **prop types** using the various validation functions provided by the library, such as `PropTypes.string` or `PropTypes.number`. These validation functions can be added as properties to the component function, usually after the component is defined.
 
 Here is an example:
 
