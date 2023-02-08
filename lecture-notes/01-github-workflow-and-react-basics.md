@@ -571,3 +571,183 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+## Task 1
+
+Create a new app called `tic-tac-toe`. In the `src` directory, create a new directory called `components`. In the `components` directory, create three new files called `Square.js`, `Board.js` and `Game.js`.
+
+### src/components/Square.js
+
+In `Square.js`, add the following code:
+
+```jsx
+const Square = (props) => {
+  const style = {
+    border: "1px solid #000",
+    cursor: "pointer",
+    fontSize: "30px",
+    fontWeight: "800",
+    outline: "none",
+  };
+
+  return (
+    <button style={style} onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
+};
+
+export default Square;
+```
+
+### src/components/Board.js
+
+In `Board.js`, add the following code:
+
+```jsx
+import Square from "./Square";
+
+const Board = (props) => {
+  const style = {
+    border: "1px solid #000",
+    display: "grid",
+    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)",
+    height: "200px",
+    width: "200px",
+  };
+
+  return (
+    <div style={style}>
+      {props.squares.map((square, idx) => (
+        <Square key={idx} value={square} onClick={() => props.onClick(idx)} />
+      ))}
+    </div>
+  );
+};
+
+export default Board;
+```
+
+### src/utils
+
+In the `src` directory, create a new directory called `utils`. Create a new file called `calculateWinner.js`. In `calculateWinner.js`, add the following code:
+
+```javascript
+const calculateWinner = (squares) => {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (let s = 0; s < lines.length; s++) {
+    const [a, b, c] = lines[s];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+};
+
+export default calculateWinner;
+```
+
+### src/components/Game.js
+
+In `Game.js`, add the following code:
+
+```jsx
+import { useState } from 'react';
+import calculateWinner from '../utils/calculateWinner';
+import Board from './Board';
+
+
+const Game = () => {
+  const style = {
+    width: '200px',
+  };
+
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
+
+  const winner = calculateWinner(board);
+
+  const handleClick = (idx) =>
+    const boardCopy = [...board];
+    if (winner || boardCopy[idx]) return;
+    boardCopy[idx] = xIsNext ? 'X' : 'O';
+    setBoard(boardCopy);
+    setXIsNext(!xIsNext);
+  };
+
+  const startGame = () => (
+    <button onClick={() => setBoard(Array(9).fill(null))}>Start Game</button>
+  );
+
+  return (
+    <>
+      <Board squares={board} onClick={handleClick} />
+      <div style={style}>
+        <p>
+          {winner
+            ? `Winner: ${winner}`
+            : `Next Player: ${xIsNext ? 'X' : 'O'}`
+          }
+        </p>
+        {startGame()}
+      </div>
+    </>
+  );
+};
+
+export default Game;
+```
+
+### src/App.js
+
+In `App.js`, replace the existing code with the following code:
+
+```jsx
+import Game from "./components/Game";
+
+const App = () => <Game />;
+
+export default App;
+```
+
+### Testing
+
+Navigate to <http://localhost:3000> and test the changes.
+
+The screenshot below is an example of an empty board.
+
+![](../../resources/img/01-react-basics/01-react-basics-1.jpeg)
+
+The screenshot below is an example of square set to **X**.
+
+![](../../resources/img/01-react-basics/01-react-basics-2.jpeg)
+
+The screenshot below is an example of the **X** win state.
+
+![](../../resources/img/01-react-basics/01-react-basics-3.jpeg)
+
+The screenshot below is an example of the **O** win state.
+
+![](../../resources/img/01-react-basics/01-react-basics-4.jpeg)
+
+The screenshot below is an example of the draw state.
+
+![](../../resources/img/01-react-basics/01-react-basics-5.jpeg)
+
+## Task 2
+
+Write some code that checks the draw state. Display "Draw" if the draw state is true.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
