@@ -576,6 +576,8 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 Create a new app called `tic-tac-toe`. In the `src` directory, create a new directory called `components`. In the `components` directory, create three new files called `Square.js`, `Board.js` and `Game.js`.
 
+Use **ChatGPT** to understand the following code:
+
 ### src/components/Square.js
 
 In `Square.js`, add the following code:
