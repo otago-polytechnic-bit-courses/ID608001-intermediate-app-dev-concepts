@@ -45,7 +45,7 @@ On the right side of the screen, you will see **Reviewers**. Click on the **Revi
 
 **Grayson** will receive an email. **Grayson** will review your formative assessment code, and you will receive feedback. You may be asked to reflect on your feedback and fix your formative assessment code. You will receive an email when your formative assessment code has been reviewed or approved.
 
-### Git commit message naming conventions
+## Commit Message Naming Conventions
 
 You have written many commit messages thus far in your **BIT** degree. However, based on my observations, you could format your messages more concisely, and it only takes a little bit of care. We will discuss a message convention (not a standard) heavily adopted in the industry.
 
