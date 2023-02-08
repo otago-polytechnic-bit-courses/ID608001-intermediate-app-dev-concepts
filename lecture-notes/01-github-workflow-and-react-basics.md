@@ -726,23 +726,23 @@ Navigate to <http://localhost:3000> and test the changes.
 
 The screenshot below is an example of an empty board.
 
-![](../../resources/img/01-react-basics/01-react-basics-1.jpeg)
+![](../resources/img/01-react-basics/01-react-basics-1.jpeg)
 
 The screenshot below is an example of square set to **X**.
 
-![](../../resources/img/01-react-basics/01-react-basics-2.jpeg)
+![](../resources/img/01-react-basics/01-react-basics-2.jpeg)
 
 The screenshot below is an example of the **X** win state.
 
-![](../../resources/img/01-react-basics/01-react-basics-3.jpeg)
+![](../resources/img/01-react-basics/01-react-basics-3.jpeg)
 
 The screenshot below is an example of the **O** win state.
 
-![](../../resources/img/01-react-basics/01-react-basics-4.jpeg)
+![](../resources/img/01-react-basics/01-react-basics-4.jpeg)
 
 The screenshot below is an example of the draw state.
 
-![](../../resources/img/01-react-basics/01-react-basics-5.jpeg)
+![](../resources/img/01-react-basics/01-react-basics-5.jpeg)
 
 ## Task 2
 
