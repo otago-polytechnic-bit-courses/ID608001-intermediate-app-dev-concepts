@@ -2,11 +2,11 @@
 
 ## CSS Modules
 
-CSS Modules are a way to write CSS styles that are scoped to a specific component rather than having global styles that may accidentally affect other elements in the application.
+**CSS Modules** are a way to write **CSS** styles that are scoped to a specific component rather than having global styles that may accidentally affect other elements in the application.
 
-CSS Modules work by automatically generating unique class names based on the component's file name. This way, styles defined in one component will not affect other components, even if they have the same class name.
+**CSS Modules** work by automatically generating unique class names based on the component's file name. This way, styles defined in one component will not affect other components, even if they have the same class name.
 
-When you use CSS Modules, you will need to use the .module.css file extension instead of the regular .css extension. You can then import the CSS styles into your component using the import statement and use the class names in your JSX.
+When you use **CSS Modules**, you will need to use the `.module.css` file extension instead of the regular `.css` extension. You can then import the **CSS** styles into your component using the import statement and use the class names in your **JSX**.
 
 Here is an example:
 
@@ -42,7 +42,7 @@ In this example, `MyCSSModules` uses two class names from the styles object impo
 
 ## Styled Components
 
-`styled-components` is a library that allows you to write CSS styles in JavaScript. It uses a technique called "tagged template literals" to create a component that has the styles attached to it. It allows you to create and use your own custom components that are already styled, rather than having to add class names to existing HTML elements.
+`styled-components` is a library that allows you to write **CSS** styles in **JavaScript**. It uses a technique called "tagged template literals" to create a component that has the styles attached to it. It allows you to create and use your own custom components that are already styled, rather than having to add class names to existing **HTML** elements.
 
 For example, you can use the styled function from the library to create a `Button` that has its own styles:
 
@@ -58,13 +58,13 @@ const Button = styled.button`
 `;
 ```
 
-You can then use this `Button` component in your JSX like any other component:
+You can then use this `Button` component in your **JSX** like any other component:
 
 ```jsx
 <Button>Click me</Button>
 ```
 
-`styled-components` also provides a way to pass props to the component and use them in the styling, this way you can have dynamic styling.
+`styled-components` also provides a way to pass `props` to the component and use them in the styling, this way you can have dynamic styling.
 
 ```jsx
 const Button = styled.button`
@@ -84,9 +84,9 @@ and then use it like this:
 
 ## SASS
 
-SASS is a CSS preprocessor that extends the functionality of CSS and makes it easier to write and maintain styles for web pages. It was created to make writing CSS more efficient, maintainable, and reusable.
+**SASS** is a **CSS preprocessor** that extends the functionality of **CSS** and makes it easier to write and maintain styles for web pages. It was created to make writing **CSS** more efficient, maintainable, and reusable.
 
-Some of the key features of SASS are:
+Some of the key features of **SASS** are:
 
 1. Variables: You can use variables to store values that you can reuse throughout your styles.
 
@@ -166,7 +166,7 @@ $font-size: 16px;
 }
 ```
 
-SASS code is written in a syntax similar to CSS but with additional features and functionality. The SASS code is then compiled into CSS, which is then used by the browser to style the web page.
+**SASS** code is written in a syntax similar to **CSS** but with additional features and functionality. The **SASS** code is then compiled into **CSS**, which is then used by the browser to style the web page.
 
 # Formative Assessment
 
