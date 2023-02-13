@@ -160,6 +160,136 @@ In **React**, a component is a piece of code that represents a part of a user in
 
 In **React**, there are two types of components - function and class. In this course, disregard any examples of class components. A function component (like the `MyComponent` above) is a **JavaScript** function that returns a component's structure and content.
 
+### Lifecycle
+
+In **React**, every component has a **lifecycle** - **mounting**, **updating** and **unmounting**. These **lifecycle** methods are useful because we want to execute a piece of code a specific time. **React** provides a **hook** to create these methods called `useEffect`.
+
+The `useEffect` **hook** is used to perform side-effects, such as fetching data, after the component has rendered.
+
+Here is an example:
+
+```jsx
+// src/components/examples/MyLifecycle.js
+import { useState, useEffect } from "react";
+
+const MyLifecycle = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://api.example.com/data")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {data.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+};
+
+export default MyLifecycle;
+```
+
+The `useEffect` arguments are a callback function and dependency array. If the dependency array is empty, then that callback function will only be called once. If the dependency array is not empty, the callback function will be called when a value in the dependency array changes.
+
+Here is an example:
+
+```jsx
+// src/components/examples/MyCounterTwo.js
+import { useState, useEffect } from "react";
+
+const MyCounterTwo = () => {
+  const [increment, setIncrement] = useState(0);
+  const [decrement, setDecrement] = useState(0);
+
+  useEffect(() => {
+    console.log("componentDidMount");
+  }, []);
+
+  useEffect(() => {
+    console.log("componentDidUpdate - increment");
+  }, [increment]);
+
+  useEffect(() => {
+    console.log("componentDidUpdate - decrement");
+  }, [decrement]);
+
+  return (
+    <>
+      <button onClick={() => setIncrement(increment + 1)}>Increment</button>
+      <h1>{increment}</h1>
+      <button onClick={() => setDecrement(decrement - 1)}>Decrement</button>
+      <h1>{decrement}</h1>
+    </>
+  );
+};
+
+export default MyCounterTwo;
+```
+
+What about **unmounting**? Here is an example:
+
+```jsx
+// src/components/examples/MyUnmount.js
+import { useState, useEffect } from "react";
+
+const Child = () => {
+  useEffect(() => {
+    console.log("componentWillUnmount");
+  }, []);
+
+  return (
+    <>
+      <h1>Child Component</h1>
+    </>
+  );
+};
+
+const Parent = () => {
+  const [isToggled, setIsToggled] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setIsToggled(!isToggled)}>Toggle Child</button>
+      {isToggled ? <Child /> : null}
+    </>
+  );
+};
+
+export default Parent;
+```
+
+## Strict Mode
+
+**Strict mode** is a feature that helps you to find potential problems in your application by adding extra checks and warnings to the development version of your app. When a component is rendered in strict mode, **React** will perform additional checks and provide more information when it detects potential issues, such as accidental direct manipulation of the **DOM**, missing unique **keys** on **list** elements, use of deprecated methods, and other common mistakes.
+
+You can enable **strict mode** globally for your entire application by adding a `<React.StrictMode>` component at the root of your application:
+
+```jsx
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
 ### Props
 
 A **prop** or **property** is a way of passing data from a **parent** component to a **child** component. A **child** component can access the **prop(s)** passed to it by using the `props` object. For example, if a **parent** component passes a **prop** called "name" to a **child** component, the **child** component can access the value of the "name" **prop** using `props.name`. **Props** are used to make a component more reusable by allowing it to accept different data based on how it is used.
@@ -323,118 +453,6 @@ export default MyForm;
 
 **Activity:** For each example above, i.e., `MyInput`, `MyCheckbox` and `MyForm`, explain each line of code.
 
-### Lifecycle
-
-In **React**, every component has a **lifecycle** - **mounting**, **updating** and **unmounting**. These **lifecycle** methods are useful because we want to execute a piece of code a specific time. **React** provides a **hook** to create these methods called `useEffect`.
-
-The `useEffect` **hook** is used to perform side-effects, such as fetching data, after the component has rendered.
-
-Here is an example:
-
-```jsx
-// src/components/examples/MyLifecycle.js
-import { useState, useEffect } from "react";
-
-const MyLifecycle = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("https://api.example.com/data")
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
-
-  return (
-    <>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul>
-          {data.map((item) => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>
-      )}
-    </>
-  );
-};
-
-export default MyLifecycle;
-```
-
-The `useEffect` arguments are a callback function and dependency array. If the dependency array is empty, then that callback function will only be called once. If the dependency array is not empty, the callback function will be called when a value in the dependency array changes.
-
-Here is an example:
-
-```jsx
-// src/components/examples/MyCounterTwo.js
-import { useState, useEffect } from "react";
-
-const MyCounterTwo = () => {
-  const [increment, setIncrement] = useState(0);
-  const [decrement, setDecrement] = useState(0);
-
-  useEffect(() => {
-    console.log("componentDidMount");
-  }, []);
-
-  useEffect(() => {
-    console.log("componentDidUpdate - increment");
-  }, [increment]);
-
-  useEffect(() => {
-    console.log("componentDidUpdate - decrement");
-  }, [decrement]);
-
-  return (
-    <>
-      <button onClick={() => setIncrement(increment + 1)}>Increment</button>
-      <h1>{increment}</h1>
-      <button onClick={() => setDecrement(decrement - 1)}>Decrement</button>
-      <h1>{decrement}</h1>
-    </>
-  );
-};
-
-export default MyCounterTwo;
-```
-
-What about **unmounting**? Here is an example:
-
-```jsx
-// src/components/examples/MyUnmount.js
-import { useState, useEffect } from "react";
-
-const Child = () => {
-  useEffect(() => {
-    console.log("componentWillUnmount");
-  }, []);
-
-  return (
-    <>
-      <h1>Child Component</h1>
-    </>
-  );
-};
-
-const Parent = () => {
-  const [isToggled, setIsToggled] = useState(false);
-
-  return (
-    <>
-      <button onClick={() => setIsToggled(!isToggled)}>Toggle Child</button>
-      {isToggled ? <Child /> : null}
-    </>
-  );
-};
-
-export default Parent;
-```
-
 ## Lists and Keys
 
 A **list** is a way to display multiple items in a consistent format. **Lists** are typically created using an array of data and then mapped over to create a list of components for each item.
@@ -521,24 +539,6 @@ const Product = (props) => {
 };
 
 export default MyProducts;
-```
-
-## Strict Mode
-
-**Strict mode** is a feature that helps you to find potential problems in your application by adding extra checks and warnings to the development version of your app. When a component is rendered in strict mode, **React** will perform additional checks and provide more information when it detects potential issues, such as accidental direct manipulation of the **DOM**, missing unique **keys** on **list** elements, use of deprecated methods, and other common mistakes.
-
-You can enable **strict mode** globally for your entire application by adding a `<React.StrictMode>` component at the root of your application:
-
-```jsx
-import ReactDOM from "react-dom/client";
-import App from "./App";
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 ```
 
 ## Typechecking with Prop Types
