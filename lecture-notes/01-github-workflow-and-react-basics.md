@@ -151,8 +151,6 @@ Here, the **JSX** syntax `<p>Hello, World!</p>` creates a `p` element with the t
 
 **JSX** is an important part of **React's** component-based architecture (more about this soon), as it allows you to describe the structure and content of a component in a declarative and intuitive way. It also makes it easy to pass data and interact with a component's state.
 
-## Rendering Elements
-
 ## Components
 
 In **React**, a component is a piece of code that represents a part of a user interface. Components are reusable, meaning they can be used multiple times throughout an application.
