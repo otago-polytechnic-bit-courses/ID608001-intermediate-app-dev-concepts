@@ -117,7 +117,7 @@ git log --oneline --grep "^build\|^feat\|^style"
 
 **Activity:** Create a new **React** application using **create-react-app**. If you can not remember how to do this off the top of your head, ask **ChatGPT**.
 
-When you run the `npx create-react-app` command, it will generate a new directory that includes everything you need to start building a **React** application. This directory includes the following:
+When you run the `npx create-react-app <name of app>` command, it will generate a new directory that includes everything you need to start building a **React** application. This directory includes the following:
 
 - `node_modules/`: This directory contains all of the project's required packages.
 - `public/`: This directory contains files that will be publicly accessible such as the `index.html` file, static assets, and the `manifest.json` file.
