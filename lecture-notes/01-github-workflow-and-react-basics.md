@@ -676,7 +676,7 @@ const Game = () => {
 
   const winner = calculateWinner(board);
 
-  const handleClick = (idx) =>
+  const handleClick = (idx) => {
     const boardCopy = [...board];
     if (winner || boardCopy[idx]) return;
     boardCopy[idx] = xIsNext ? 'X' : 'O';
