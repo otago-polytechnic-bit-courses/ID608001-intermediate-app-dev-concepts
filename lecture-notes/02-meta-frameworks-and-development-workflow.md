@@ -8,6 +8,16 @@ With **Next.js**, you can build modern web applications that are optimized for p
 
 **Next.js** is commonly used for building complex web applications, e-commerce sites, blogs, and more. It is widely adopted by developers because it simplifies the development process and allows them to focus on building the application's features rather than configuring the build environment.
 
+### SSR vs. CSR
+
+SSR (Server-Side Rendering) and CSR (Client-Side Rendering) are two approaches for rendering web pages in modern web development.
+
+In SSR, the web server generates an HTML page and sends it to the client (web browser). The server fetches the data required to render the page, processes it, and returns a complete HTML page with the data. This approach is used for the initial page load and subsequent page refreshes. The client receives a fully rendered page, which improves the page's loading speed, and the search engines can easily index the page content for better SEO.
+
+On the other hand, in CSR, the web server sends an empty HTML page to the client, and the client-side JavaScript code handles rendering the page. The client fetches the data required to render the page from an API and then generates the HTML code required to display the data. This approach is used for subsequent page updates after the initial page load. The benefit of CSR is that it can provide a more dynamic and interactive user experience because the client can update the page without needing to reload the entire page.
+
+### Getting Started
+
 To get started, run the following command:
 
 ```bash
