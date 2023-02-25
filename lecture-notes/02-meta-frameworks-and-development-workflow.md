@@ -2,6 +2,168 @@
 
 ## Next.js
 
+**Next.js** is a popular open-source framework for building **server-side rendered (SSR)** **React** applications. It provides many features out-of-the-box, including automatic code splitting, server-side rendering, static site generation, and more.
+
+With **Next.js**, you can build modern web applications that are optimized for performance, scalability, and SEO. It also provides a seamless development experience with hot reloading, easy setup, and integrated **API** routes.
+
+**Next.js** is commonly used for building complex web applications, e-commerce sites, blogs, and more. It is widely adopted by developers because it simplifies the development process and allows them to focus on building the application's features rather than configuring the build environment.
+
+To get started, run the following command:
+
+```bash
+npx create-next-app 02-example
+```
+
+You will be prompt with the following options:
+
+```bash
+√ Would you like to use TypeScript with this project? No
+√ Would you like to use ESLint with this project? Yes
+√ Would you like to use `src/` directory with this project? No
+√ Would you like to use experimental `app/` directory with this project? No
+√ What import alias would you like configured? @/*
+```
+
+Change directory to `02-example`. You will be refactor some of the code.
+
+Install **axios** using the following command:
+
+```bash
+npm install axios
+```
+
+In the **root**, create a new directory called `components`. In the `components` directory, create a new file called `UsersTable.js`. In `UsersTable.js`, add the following code:
+
+```jsx
+const UsersTable = ({ data }) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((user) => (
+          <tr key={user.id}>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+
+export default UsersTable;
+```
+
+**What is this code doing?**
+
+This code defines a **functional component** called `UsersTable`. This **component** takes a single **prop** called `data`, which is an **array** of **objects** representing users. The component renders a table with two columns - **Name** and **Email**. The `data` **prop** is used to generate rows in the table, with each object in the `data` **array** representing a row.
+
+The `map` method is used to iterate over each `object` in the `data` **array** and generate a `table` row for each user. The `key` prop is set to the `id` property of each user **object** to ensure efficient rendering of the `table` rows.
+
+Finally, the `UsersTable` **component** is exported as the default export of the module.
+
+In `pages/index.js`, replace the existing code with the following:
+
+```jsx
+import axios from "axios";
+
+import UsersTable from "@/components/UsersTable";
+
+const Home = ({ users }) => {
+  return (
+    <>
+      <h1>Users</h1>
+      <UsersTable data={users} />
+    </>
+  );
+};
+
+export const getServerSideProps = async () => {
+  const usersRes = await axios.get("https://jsonplaceholder.typicode.com/users");
+  return {
+    props: {
+      users: usersRes.data,
+    },
+  };
+};
+
+export default Home;
+```
+
+**What is this code doing?**
+
+This code imports the `axios` library for making **HTTP** requests and the `UsersTable` component. It then defines a **functional** **component** called `Home` that renders a heading and the `UsersTable` **component** with `data` passed as `props`.
+
+The `getServerSideProps` **function** is a special **function** in **Next.js** that is called on the **server-side** during the rendering process. This function makes an **HTTP** **GET** request to the `https://jsonplaceholder.typicode.com/users` **API** and retrieves a list of users. It then returns an **object** with a `props` key that contains the users data as its value.
+
+Finally, the `Home` component is exported as the **default** **component** of this module.
+
+In the `pages` directory, create a new file called `[id].js`. In `[id.js]`, add the following code:
+
+```jsx
+import axios from "axios";
+import { useRouter } from "next/router";
+
+import UsersTable from "@/components/UsersTable";
+
+const User = ({ user }) => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  return (
+    <>
+      <h1>User {id}</h1>
+      <UsersTable data={[user]} />
+    </>
+  );
+};
+
+export const getServerSideProps = async (context) => {
+  const { id } = context.params;
+  const userRes = await axios.get(
+    `https://jsonplaceholder.typicode.com/users/${id}`
+  );
+  return {
+    props: {
+      user: userRes.data,
+    },
+  };
+};
+
+export default User;
+```
+
+**What is this code doing?**
+
+This code defines a **Next.js** **page** **component** called `User`. This component renders a page that displays information about a single user.
+
+The component imports the **axios** library and the `useRouter` hook from the **Next.js** **router**. It also imports a **component** called `UsersTable` from the **components** directory.
+
+The `User` **component** takes a prop called `user`, which represents the `user` **object** to be displayed on the page. The component extracts the `id` parameter from the router query object using the `useRouter` **hook**.
+
+The `getServerSideProps` **function** fetches the user data from the `https://jsonplaceholder.typicode.com/users` **API** based on the `id` parameter in the `context.params` **object**.
+
+The `User` **component** is exported as the default export of the module, which means it can be imported and used in other parts of the application. When the `User` page is rendered, it displays the user's name and email address in a table using the `UsersTable` **component**.
+
+In `_app.js`, remove the following line of code:
+
+```jsx
+import '@/styles/globals.css';
+```
+
+Run the application using the following command:
+
+```bash
+npm run dev
+``` 
+
+Navigate to http://localhost:3000/ and http://localhost:3000/1
+
 # 02 B: Development Workflow
 
 ## Commitizen
@@ -164,3 +326,24 @@ node_modules
 
 - <https://prettier.io>
 - <https://www.npmjs.com/package/pretty-quick>
+
+# Formative Assessment
+
+Before you start, create a new branch called **01-formative-assessment**.
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+## Task 1:
+
+## Task 2:
+
+## Task 3:
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
+````
