@@ -414,7 +414,7 @@ Using **CSS**, style the `UsersTable` component so that it looks like a table.
 
 ## Task 6: 
 
-Create a page which display information from three different **NASA** APIs.
+Create a page which displays information from **three** different **NASA** APIs.
 
 **Resource:** https://api.nasa.gov
 
