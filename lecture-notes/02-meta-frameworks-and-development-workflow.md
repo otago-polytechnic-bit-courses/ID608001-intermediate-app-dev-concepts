@@ -210,6 +210,8 @@ This command will install the `cz-conventional-changelog` package as a dev depen
 }
 ```
 
+4. Change the `path` value from `"path": "./node_modules/cz-conventional-changelog"` to `"path": "cz-conventional-changelog"`
+
 ## ESLint
 
 **ESLint** is a popular open-source tool that analyses and reports patterns found in **JavaScript** code. It is a linter that checks code for common mistakes and enforces a consistent coding style.
