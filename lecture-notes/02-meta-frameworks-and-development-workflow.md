@@ -339,7 +339,7 @@ node_modules
 
 # Formative Assessment
 
-Before you start, create a new branch called **01-formative-assessment**.
+Before you start, create a new branch called **02-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
