@@ -397,6 +397,27 @@ Under the rules block, add the following:
 
 Add the **tic-tac-toe** code from the previous **formative assessment**. Create a **page** for this called `tic-tac-toe.js`.
 
+## Task 4:
+
+In the `02-example` application, add the following values:
+
+- Username
+- Address which contains street, suite, city and zip code
+- Geo which contains latitude and longitude
+- Phone number
+- Website
+- Company which contains name and catch phrase
+
+## Task 5: 
+
+Using **CSS**, style the `UsersTable` component so that it looks like a table. 
+
+## Task 6: 
+
+Create a page which display information from three different **NASA** APIs.
+
+**Resource:** https://api.nasa.gov
+
 # Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
