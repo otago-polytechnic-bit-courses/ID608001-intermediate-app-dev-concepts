@@ -349,11 +349,54 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ## Task 1:
 
+Use the resource below and the following options to the `.prettierrc.json` file:
+
+- Print width of 80 characters.
+- Double quotes instead of single quotes.
+- Include parentheses around a single arrow function parameter.
+- Tab width of 2 spaces.
+- Semicolons at the end of every statement.
+- Trailing commas wherever possible.
+
+**Resource:** https://prettier.io/docs/en/options 
+
 ## Task 2:
 
+Use the resource below and add the following rules to the `.eslintrc.json` file:
+
+- Enforce the consistent use of either backticks, double, or single quotes. Set to off.
+- Disallow multiple empty lines. Set to warning.
+- Disallow multiple spaces. Set to warning.
+- Disallow mixed spaces and tabs for indentation. Set to warning.
+- Disallow unnecessary parentheses. Set to warning.
+- Disallow trailing whitespace at the end of lines. Set to warning.
+- Disallow unused variables. Set to warning.
+- Require return statements to either always or never specify values. Set to warning.
+
+You may encounter conflicts between **ESLint** and **Prettier** where one's rules are overriding the other. To avoid this, you want to include the rules in the `.prettierrc.json` file in the `.eslintrc.json` file. To do this, run the following command:
+
+```bash
+npm install eslint-plugin-prettier --save-dev
+```
+
+You need to add the following rule:
+
+```bash
+"prettier/prettier": 2
+```
+
+Under the rules block, add the following:
+
+```bash
+"plugins": ["prettier"]
+```
+
+**Resource:** https://eslint.org/docs/latest/rules
+
 ## Task 3:
+
+Add the **tic-tac-toe** code from the previous **formative assessment**. Create a **page** for this called `tic-tac-toe.js`.
 
 # Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
-````
