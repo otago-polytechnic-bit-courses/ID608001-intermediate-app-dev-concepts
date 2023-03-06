@@ -170,4 +170,88 @@ $font-size: 16px;
 
 # Formative Assessment
 
-# Research Assessment
+Before you start, create a new branch called **03-formative-assessment**.
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+
+## Task 1:
+
+Create a **signup** form using **Styled Components**. The **signup** form must have the following fields:
+
+* First name
+* Last name
+* Email address
+* Password
+* Confirm password
+
+When you submit the **signup** form via a **button** click, you must check the following errors:
+
+* First name must be at least two characters
+* Last name must be at least two characters
+* Email address must be in a valid format
+* Password must be at least eight characters
+* Confirm password must match Password
+
+If there are any errors, display them below the **signup** form.
+
+Render the **signup** form on a page called `signup.js`.
+
+## Task 2:
+
+Convert the following **CSS** to **SASS**:
+
+```css
+nav {
+  background-color: #00ff00;
+  padding: 1em;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+button {
+  background-color: #ff0000;
+  color: #000;
+}
+
+button:hover {
+  background-color: #000;
+  color: #fff;
+}
+```
+
+You need to demonstrate the use of variables and nesting.
+
+**Note:** You do not need to test this.
+
+## Task 3:
+
+Using the following resource - https://dev.to/josemukorivo/create-a-reusable-table-with-react-styled-components-and-compound-components-design-pattern-40cn, convert the `UserTable` component so that it is using **Styled Components**.
+
+## Task 4 (Research):
+
+Create a **login** form using **Tailwind CSS**. The **login** form must have the following fields:
+
+* Username
+* Password
+
+When you submit the **login** form via a **button** click, you must check the following errors:
+
+* Username is not empty
+* Password is not empty
+
+If there are any errors, display them below the **login** form.
+
+Render the **login** form on a page called `login.js`.
