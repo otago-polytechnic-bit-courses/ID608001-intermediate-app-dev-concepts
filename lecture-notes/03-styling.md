@@ -112,6 +112,53 @@ export default function Home() {
 }
 ```
 
+```jsx
+import { useState, useEffect } from "react";
+
+const useIsMounted = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  return [isMounted, setIsMounted];
+};
+
+const withNoSsr = (Component) => {
+  return function NoSsrWrapper(props) {
+    const [isMounted] = useIsMounted();
+    return isMounted ? <Component {...props} /> : null;
+  };
+};
+
+export default withNoSsr;
+```
+
+```jsx
+import styled from "styled-components";
+import withNoSsr from "@/utils/useIsMounted";
+
+const Button = styled.button`
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+`;
+
+const Home = () => {
+  return (
+    <>
+      <h1>Hello, World!</h1>
+      <Button>Hello</Button>
+    </>
+  );
+}
+
+export default withNoSsr(Home);
+```
+
 ## SASS
 
 **SASS** is a **CSS preprocessor** that extends the functionality of **CSS** and makes it easier to write and maintain styles for web pages. It was created to make writing **CSS** more efficient, maintainable, and reusable.
