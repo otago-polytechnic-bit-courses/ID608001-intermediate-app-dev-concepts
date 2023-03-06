@@ -82,6 +82,36 @@ and then use it like this:
 <Button primary>Click me</Button>
 ```
 
+This what it would would look like if you used it in a component:
+
+```jsx
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const Button = styled.button`
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+`;
+
+export default function Home() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true); // Check if component has mounted, then apply styles
+  });
+
+  return (
+    <>
+      <h1>Hello, World!</h1>
+      {isMounted && <Button>Hello, World!</Button>}
+    </>
+  );
+}
+```
+
 ## SASS
 
 **SASS** is a **CSS preprocessor** that extends the functionality of **CSS** and makes it easier to write and maintain styles for web pages. It was created to make writing **CSS** more efficient, maintainable, and reusable.
