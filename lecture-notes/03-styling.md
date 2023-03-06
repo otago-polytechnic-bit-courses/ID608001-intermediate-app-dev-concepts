@@ -255,3 +255,9 @@ When you submit the **login** form via a **button** click, you must check the fo
 If there are any errors, display them below the **login** form.
 
 Render the **login** form on a page called `login.js`.
+
+**Resource:** https://tailwindcss.com/docs/installation
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
