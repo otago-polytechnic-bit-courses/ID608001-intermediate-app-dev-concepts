@@ -116,11 +116,11 @@ This is an example of a higher-ordered component. This is where a component wrap
 
 `withNoSsr` accepts an argument called `Component` which is the component to be wrapped. It returns a new function called `NoSsrWrapper`.
 
-In `NoSsrWrapper`, it calls the custom hook called `useIsMounted` which returns a boolean called `isMounted` state and a function `setIsMounted` to update the state. The useIsMounted hook uses the useState and useEffect hooks to set the isMounted state to true only after the component has mounted.
+In `NoSsrWrapper`, it calls the custom hook called `useIsMounted` which returns a boolean called `isMounted` state and a function `setIsMounted` to update the state. The `useIsMounted` hook uses the `useState` and `useEffect` hooks to set the `isMounted` state to `true` only after the component has mounted.
 
-The NoSsrWrapper component then conditionally renders the Component only if isMounted is true. This ensures that the Component is not rendered on the server during server-side rendering (SSR) when there is no browser DOM available.
+The `NoSsrWrapper` component then conditionally renders the `Component` only if `isMounted` is true. This ensures that the `Component` is not rendered on the server during server-side rendering (SSR) when there is no browser DOM available.
 
-By wrapping a component with withNoSsr, you can ensure that the component is only rendered client-side and not server-side, which can improve performance and prevent errors related to differences in the server and client environments.
+By wrapping a component with `withNoSsr`, you can ensure that the component is only rendered client-side and not server-side, which can improve performance and prevent errors related to differences in the server and client environments.
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -144,6 +144,8 @@ const withNoSsr = (Component) => {
 
 export default withNoSsr;
 ```
+
+This is how your use the higher-ordered component:
 
 ```jsx
 import styled from "styled-components";
