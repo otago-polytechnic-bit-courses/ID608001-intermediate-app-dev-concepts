@@ -112,7 +112,7 @@ export default function Home() {
 }
 ```
 
-This is an example of a higher-ordered component. This is where a component wraps another component and conditionally renders it based on whether the component is being rendered on the server or the client.
+Below is an example of a higher-ordered component. This is where a component wraps another component and conditionally renders it based on whether the component is being rendered on the server or the client.
 
 `withNoSsr` accepts an argument called `Component` which is the component to be wrapped. It returns a new function called `NoSsrWrapper`.
 
@@ -149,7 +149,7 @@ This is how your use the higher-ordered component:
 
 ```jsx
 import styled from "styled-components";
-import withNoSsr from "@/utils/useIsMounted";
+import withNoSsr from // path to file
 
 const Button = styled.button`
   background-color: blue;
