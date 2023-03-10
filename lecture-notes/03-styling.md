@@ -100,7 +100,7 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true); // Check if component has mounted, then apply styles
+    setIsMounted(true); // Ensures that the button is only rendered after the component has mounted
   });
 
   return (
