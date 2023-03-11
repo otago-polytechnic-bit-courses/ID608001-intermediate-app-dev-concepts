@@ -288,3 +288,8 @@ The screenshot below is an example of the book list and a cart with three books.
 The screenshot below is an example of the checkout cart.
 
 ![](../../resources/img/04-state-management-api/04-state-management-api-5.jpeg)
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
+
