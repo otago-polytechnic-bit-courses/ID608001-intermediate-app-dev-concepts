@@ -113,11 +113,11 @@ Run the application and navigate to <http://localhost:3000/book-cart>. You shoul
 
 The screenshot below is an example the book list and an empty cart.
 
-![](../../resources/img/04-state-management/04-state-management-1.jpeg)
+![](../resources/img/04-state-management/04-state-management-1.jpeg)
 
 The screenshot below is an example the book list and a cart with two books when the **Add to cart** button is clicked twice.
 
-![](../../resources/img/04-state-management/04-state-management-2.jpeg)
+![](../resources/img/04-state-management/04-state-management-2.jpeg)
 
 ### Refactoring
 
@@ -279,15 +279,15 @@ In the `pages` directory, create a new file called `checkout.js`. This page will
 
 The screenshot below is an example of the book list and an empty cart. **Note:** the cart is clickable and when clicked, it will navigate you to <http://localhost:3000/checkout>.
 
-![](../../resources/img/04-state-management/04-state-management-3.jpeg)
+![](../resources/img/04-state-management/04-state-management-3.jpeg)
 
 The screenshot below is an example of the book list and a cart with three books.
 
-![](../../resources/img/04-state-management/04-state-management-4.jpeg)
+![](../resources/img/04-state-management/04-state-management-4.jpeg)
 
 The screenshot below is an example of the checkout cart.
 
-![](../../resources/img/04-state-management/04-state-management-5.jpeg)
+![](../resources/img/04-state-management/04-state-management-5.jpeg)
 
 # Formative Assessment Submission
 
