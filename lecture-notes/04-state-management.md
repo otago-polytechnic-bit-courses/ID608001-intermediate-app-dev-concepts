@@ -161,25 +161,19 @@ const CartProvider = (props) => {
 export { CartContext, CartProvider };
 ```
 
-In the `App.js` file, wrap the `Cart` and `BookList` in the `CartProvider`.
+In the `pages/_app.js` file, wrap the `Component` in the `CartProvider`.
 
 ```jsx
-import BookList from "./components/BookList";
-import Cart from "./components/Cart";
-import { CartProvider } from "./contexts/CartContext";
+import { CartProvider } from "@/contexts/CartContext";
 
-const App = () => {
+export default function App({ Component, pageProps }) {
   return (
-    <>
-      <CartProvider>
-        <Cart />
-        <BookList />
-      </CartProvider>
-    </>
+    <CartProvider>
+      <Component {...pageProps} />
+    </CartProvider>
   );
-};
+}
 
-export default App;
 ```
 
 In the following components, import the `useContext` hook and `CartContext`. The `useContext` hook accepts a context object, i.e., `CartContext` and returns the current context value for that context.
