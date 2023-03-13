@@ -89,7 +89,7 @@ const Cart = () => <h3>Cart: 0</h3>;
 export default Cart;
 ```
 
-### pages/book.js
+### pages/book-cart.js
 
 In the `pages` directory, create a new file called `book-cart.js`. In the `book-cart.js` file, add the following code:
 
