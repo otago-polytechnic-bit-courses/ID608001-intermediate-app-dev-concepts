@@ -260,3 +260,129 @@ npm run test
 ### User Acceptance Testing
 
 ## Storybook
+
+**Storybook** is a UI development tool that allows you develop your component outside your application and in an isolated environment.
+
+**Resource:** <https://storybook.js.org/>
+
+### Install
+
+There are a few dependencies that you will need to install. To get started, run the following command:
+
+```bash
+npx storybook init
+```
+
+You will be prompt to proceed. You may be prompt twice. One for **ESLint** and the other for **npm**. Choose **no** for both.
+
+In the `package.json` file, note all the changes, i.e., `storybook` and `build-storybook` scripts and `devDependencies` block. Also, it will create a `.storybook` and `stories` directory in the `root` directory.
+
+In the `stories` directory, remove all files and directories.
+
+### stories/Button.js
+
+In the `stories` directory, create a new file called `Button.js`. In the `Button.js` file, add the following code:
+
+```jsx
+import PropTypes from "prop-types";
+
+const Button = (props) => {
+  let scale = 0.0;
+  if (props.size === "sm") scale = 1.0;
+  else if (props.size === "md") scale = 2.0;
+  else scale = 3.0;
+
+  const style = {
+    color: props.color,
+    backgroundColor: props.backgroundColor,
+    padding: `${scale * 0.5}rem ${scale * 1}rem`,
+    border: "none",
+  };
+
+  return (
+    <button onClick={props.handleClick} style={style}>
+      {props.textContent}
+    </button>
+  );
+};
+
+Button.propTypes = {
+  textContent: PropTypes.string,
+  color: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  size: PropTypes.oneOf(["sm", "md", "lg"]),
+  handleClick: PropTypes.func,
+};
+
+export default Button;
+```
+
+### stories/Button.stories.js
+
+**Note:** Please read the comments carefully.
+
+In the `components` directory, create a new file called `Button.stories.js`. In the `Button.stories.js` file, add the following code:
+
+```js
+import Button from "./Button";
+
+// This determines where this story goes in the story list
+export default {
+    title: "Components/Button", // The title prop is optional
+    component: Button,
+    argTypes: { handleClick: { action: "handleClick" } },
+};
+
+// Create a template of how args map to rendering
+const Template = (args) => <Button {...args} />
+
+/** 
+ * A technique for making a copy of a function, i.e., Template. You use
+ * this technique to allow each exported story to set it own properties,
+ * but use the same implementation
+ */
+export const Red = Template.bind({})
+Red.args = {
+  backgroundColor: "#ff0000",
+  textContent: "Click Me!",
+  size: "sm",
+};
+
+export const Green = Template.bind({});
+Green.args = {
+  backgroundColor: "#00ff00",
+  textContent: "Click Me!",
+  size: "md",
+};
+
+export const Blue = Template.bind({});
+Blue.args = {
+  backgroundColor: "#0000ff",
+  textContent: "Click Me!",
+  size: "lg",
+};
+```
+
+To open **Storybook**, run the following command:
+
+```bash
+npm run storybook
+```
+
+Navigate to <http://localhost:6006>.
+
+The screenshot below is an example of the **Components** story in the story list.
+
+<img src="../../resources/img/13-storybook/13-storybook-1.jpeg" width="550" height="650" />
+
+The screenshot below is an example of the red `Button` component. **Note:** You can adjust the various properties.
+
+<img src="../../resources/img/13-storybook/13-storybook-2.jpeg" width="550" height="650" />
+
+The screenshot below is an example of the green `Button` component. 
+
+<img src="../../resources/img/13-storybook/13-storybook-3.jpeg" width="550" height="650" />
+
+The screenshot below is an example of the blue `Button` component. 
+
+<img src="../../resources/img/13-storybook/13-storybook-4.jpeg" width="550" height="650" />
