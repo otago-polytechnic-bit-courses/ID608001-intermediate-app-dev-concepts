@@ -115,10 +115,6 @@ The screenshot below is an example the book list and an empty cart.
 
 ![](../resources/img/04-state-management/04-state-management-1.jpeg)
 
-The screenshot below is an example the book list and a cart with two books when the **Add to cart** button is clicked twice.
-
-![](../resources/img/04-state-management/04-state-management-2.jpeg)
-
 ### Refactoring
 
 In the `root` directory, create a new directory called `contexts`. In the `contexts` directory, create a new file called `CartContext.js`. In the `CartContext.js` file, add the following code:
@@ -246,6 +242,10 @@ const Cart = () => {
 
 export default Cart;
 ```
+
+The screenshot below is an example the book list and a cart with two books when the **Add to cart** button is clicked twice.
+
+![](../resources/img/04-state-management/04-state-management-2.jpeg)
 
 # Formative Assessment
 
