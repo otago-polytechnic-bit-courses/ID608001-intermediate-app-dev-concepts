@@ -373,16 +373,16 @@ Navigate to <http://localhost:6006>.
 
 The screenshot below is an example of the **Components** story in the story list.
 
-<img src="../../resources/img/13-storybook/13-storybook-1.jpeg" width="550" height="650" />
+<img src="../../resources/img/05-storybook/05-storybook-1.jpeg" width="550" height="650" />
 
 The screenshot below is an example of the red `Button` component. **Note:** You can adjust the various properties.
 
-<img src="../../resources/img/13-storybook/13-storybook-2.jpeg" width="550" height="650" />
+<img src="../../resources/img/05-storybook/05-storybook-2.jpeg" width="550" height="650" />
 
 The screenshot below is an example of the green `Button` component. 
 
-<img src="../../resources/img/13-storybook/13-storybook-3.jpeg" width="550" height="650" />
+<img src="../../resources/img/05-storybook/05-storybook-3.jpeg" width="550" height="650" />
 
 The screenshot below is an example of the blue `Button` component. 
 
-<img src="../../resources/img/13-storybook/13-storybook-4.jpeg" width="550" height="650" />
+<img src="../../resources/img/05-storybook/05-storybook-4.jpeg" width="550" height="650" />
