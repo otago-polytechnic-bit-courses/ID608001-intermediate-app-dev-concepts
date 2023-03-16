@@ -2,11 +2,15 @@
 
 ## Testing
 
+**Testing** in **software development** refers to evaluating a software application or system to detect and identify any defects or errors and verify that it meets the specified requirements and expectations. Testing aims to ensure that the software is functional, reliable, secure, and performs as expected under different conditions.
 
+ **Testing** involves executing the software with a specific set of inputs, known as test cases, and observing the output to determine whether it meets the expected results. The testing process may involve various techniques, including manual testing, automated testing, regression testing, performance testing, and security testing, among others.
 
 ## React Testing Library and Jest
 
+**React Testing Library** is a testing library enables developers test **React** components in a way that is closer to how users interact with the application. It encourages developers to write tests that are focused on testing the behavior of the components rather than implementation details. 
 
+**Jest** is a **JavaScript** testing framework that is often used in conjunction with **React Testing Library**. It provides a test runner, assertion library, and mocking capabilities, and it is easy to set up and configure for testing **React** components.
 
 To get started, install the following:
 
@@ -259,6 +263,40 @@ npm run test
 
 ### User Acceptance Testing
 
+User acceptance testing (UAT) is a type of software testing in which end-users or clients test a software application to determine whether it meets their requirements and expectations. UAT aims to ensure that the software is fit for purpose, satisfies the user's needs, and is ready for deployment.
+
+UAT is usually performed after all other testing has been completed. During UAT, end-users or clients are provided a test environment to test the software with their data and scenarios. They perform tasks, evaluate the software's functionality, and provide feedback on any issues they encounter.
+
+**What does a simple UAT test plan look like?**
+
+1. Introduction:
+Provide an overview of the UAT test plan, including the purpose of testing, scope of testing, and expected outcome.
+
+2. Test Environment:
+Describe the test environment, including the hardware and software requirements, test data, and any other resources needed for testing.
+
+3. Test Cases:
+* Identify the test cases that will be used to evaluate the software.
+* Each test case should have a unique identifier, description, and expected outcome.
+
+4. Test Execution:
+* Provide instructions on how to execute the test cases.
+* Define the criteria for passing or failing each test case.
+* Include a timeline for completing the testing.
+
+5. Defect Management:
+* Define the process for reporting defects.
+* Identify the roles and responsibilities of the testing and development teams in managing defects.
+
+6. Acceptance Criteria:
+* Define the acceptance criteria for the software.
+* Identify the requirements that must be met for the software to be considered acceptable.
+
+7. Conclusion:
+* Summarise the results of the UAT testing.
+* Identify any issues or concerns that were identified during testing.
+* Make recommendations for improving the software or the testing process.
+
 ## Storybook
 
 **Storybook** is a UI development tool that allows you develop your component outside your application and in an isolated environment.
@@ -373,15 +411,15 @@ Navigate to <http://localhost:6006>.
 
 The screenshot below is an example of the red `Button` component. **Note:** You can adjust the various properties.
 
-<img src="../../resources/img/05-storybook/05-storybook-2.jpeg" width="550" height="650" />
+<img src="../resources/img/05-storybook/05-storybook-1.PNG" width="550" height="650" />
 
 The screenshot below is an example of the green `Button` component. 
 
-<img src="../../resources/img/05-storybook/05-storybook-3.jpeg" width="550" height="650" />
+<img src="../resources/img/05-storybook/05-storybook-2.PNG" width="550" height="650" />
 
 The screenshot below is an example of the blue `Button` component. 
 
-<img src="../../resources/img/05-storybook/05-storybook-4.jpeg" width="550" height="650" />
+<img src="../resources/img/05-storybook/05-storybook-3.PNG" width="550" height="650" />
 
 # Formative Assessment
 
@@ -395,9 +433,31 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task Tahi
 
+If you have not already, implement the code examples above before you move on to **Task Rua**.
+
 ### Task Rua
 
+Write **component tests** for the following:
+
+1. Password element exists in the document
+2. Password element's value is empty
+3. Button element is disabled
+4. Span element's text content is the user's name fetched from the **JSON Placeholder** API
+
+**Note:** You will need to rearrange the order of your tests so that they execute and pass.
+
+Please ensure your **component tests** pass before you move on to **Task Toru**.
+
 ### Task Toru
+
+In the repository's `README.md` file, answer the following questions:
+
+1. What is **Test Driven Development**?
+2. What is **Behaviour Driven Development**?
+
+### Task Wha
+
+Use **ChatGPT** to generate a UAT test plan for a simple calculator with four operations (addition, subtraction, multiplication, and division).
 
 # Formative Assessment Submission
 
