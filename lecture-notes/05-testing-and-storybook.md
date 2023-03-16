@@ -270,10 +270,10 @@ UAT is usually performed after all other testing has been completed. During UAT,
 **What does a simple UAT test plan look like?**
 
 1. Introduction:
-Provide an overview of the UAT test plan, including the purpose of testing, scope of testing, and expected outcome.
+* Provide an overview of the UAT test plan, including the purpose of testing, scope of testing, and expected outcome.
 
 2. Test Environment:
-Describe the test environment, including the hardware and software requirements, test data, and any other resources needed for testing.
+* Describe the test environment, including the hardware and software requirements, test data, and any other resources needed for testing.
 
 3. Test Cases:
 * Identify the test cases that will be used to evaluate the software.
