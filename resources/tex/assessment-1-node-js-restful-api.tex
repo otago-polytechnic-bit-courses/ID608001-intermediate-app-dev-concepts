@@ -1,0 +1,191 @@
+% Author: Grayson Orr
+% Course: ID608001: Intermediate Application Development Concepts
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 1.75cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue 
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology}
+\lfoot{Project 2: Node.js \& Express Pub Quiz App \\Version 2, Semester One, 2023}
+\rfoot{\thepage}
+ 
+\begin{document}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=50mm]{../../resources/img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology\\ID608001: Intermediate Application Development Concepts\\Level 6, Credits 15\\\textbf{Project 2: Node.js \& Express Pub Quiz App }}
+\date{}
+\maketitle
+
+\section*{Assessment Overview}
+In this \textbf{individual} assessment, you will develop a \textbf{RESTful API} using \textbf{Node.js} \& \textbf{Express}. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{RESTful API} using various taught concepts. However, you will be required to independently research \& implement more complex concepts. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.\\
+
+Due to a nation-wide lockdown, your local pub is no longer able to run their weekly quiz night onsite. Your local pub owners know you are an IT student \& ask if you want create an online quiz night application for them. For the first step, the pub owners want a \textbf{RESTful API} that provides various functions for registering, logging in, participating in various quizzes \& keeping track of scores so that they can give away prizes at the end of each quiz night.
+
+\section*{Learning Outcome}
+At the successful completion of this course, learners will be able to:
+\begin{enumerate}
+	\item Apply design patterns \& programming principles using software development best practices.
+	\item Design \& implement full-stack applications using industry relevant programming languages.
+\end{enumerate}
+
+\section*{Assessments}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcomes} \\ \hline
+	\small Practical: Skills-Based & \small 20\%        & \small 31-03-2023 (Fri at 10.00 AM)   & \small 1                   \\ \hline
+	\small Project 1: Next.js Hacker News App             & \small 30\%        & \small 27-04-2023 (Thur at 4.59 PM)  & \small 1 \& 2                   \\ \hline
+	\small Project 2: Node.js \& Express Pub Quiz App                       & \small 50\%        & \small 15-06-2023 (Thur at 4.59 PM)  & \small 1 \& 2                   \\ \hline
+\end{tabular}
+
+\section*{Conditions of Assessment}
+You will complete this assessment during your learner-managed time. However, there will be time during class to discuss the requirements \& your progress on this assessment. This assessment will need to be completed by \textbf{Thursday, 17 June 2023} at \textbf{4.59 PM}.
+
+\section*{Pass Criteria}
+This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} over all assessments in \textbf{ID608001: Intermediate Application Development Concepts}.
+
+\section*{Authenticity}
+All parts of your submitted assessment \textbf{must} be completely your work. Do your best to complete this assessment without \textbf{ChatGPT}. You need to demonstrate to the course lecturer that you can meet the learning outcome for this assessment. \\
+ 
+ However, if you get stuck, you can use \textbf{ChatGPT} to help you get unstuck, permitting you acknowledge that you have used \textbf{ChatGPT}. In the assessment's repository \textbf{README.md} file, please include what prompt(s) you provided to \textbf{ChatGPT} \& how you used the response(s) to help you with your work. It also applies to code snippets retrieved from \textbf{StackOverflow} \& \textbf{GitHub}. Failure to do this will result in a mark of \textbf{zero} for this assessment.
+
+\section*{Policy on Submissions, Extensions, Resubmissions \& Resits}
+The school's process concerning submissions, extensions, resubmissions \& resits complies with \textbf{Otago Polytechnic} policies. Learners can view policies on the \textbf{Otago Polytechnic} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
+
+\section*{Submission}
+You \textbf{must} submit all project files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/i4G4NwNS}{https://classroom.github.com/a/i4G4NwNS}.  Create a \textbf{.gitignore} \& add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest project files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+
+\section*{Extensions}
+Familiarise yourself with the assessment due date. If you need an extension, contact the course lecturer before the due date. If you require more than a week's extension, a medical certificate or support letter from your manager may be needed.
+
+\section*{Resubmissions}
+Learners may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are to be completed within a negotiable short time frame \& usually \textbf{must} be completed within the timing of the course to which the assessment relates. Resubmissions will be available to learners who have made a genuine attempt at the first assessment opportunity \& achieved a \textbf{D grade (40-49\%)}. The maximum grade awarded for resubmission will be \textbf{C-}.
+
+\section*{Resits}
+Resits \& reassessments \textbf{are not} applicable in \textbf{ID608001: Intermediate Application Development Concepts}.
+
+\section*{Instructions}
+You will need to submit an application \& documentation that meet the following requirements:
+
+\subsection*{Functionality - Learning Outcomes 1, 2, 3 (50\%)}
+\begin{itemize}
+	\item \textbf{User:}
+	\begin{itemize}
+		\item You will have \textbf{two} types of users - \textbf{super admin} \& \textbf{basic} user.
+		\item Each user will have the following information: first name, last name, username, email address, profile picture, password, confirm password \& role. The users' profile picture will be from the following \textbf{API} - \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api}. Each profile picture should be, in most cases, different. I suggest using a random seed when setting the user's profile picture.
+		\item Each user can login, get their information \& update their information. A \textbf{super admin} user can get all users' information, update all \textbf{basic} users' information \& delete all \textbf{basic} users. A \textbf{basic} user can register.
+		\item When performing a \textbf{POST} request for registering a \textbf{basic} user, the following error checking must be implemented using \textbf{Joi}:
+		\begin{itemize}
+			\item First name has a minimum length of two characters, a maximum length of 50 characters \& alpha characters only.
+			\item Last name has the same error checking as first name above.
+			\item Username is unique, has a minimum length of five characters, maximum length of ten characters \& alphanumeric characters only, i.e., johndoe123.
+			\item Email address is unique, contains the username above, an @ special character \& a second-level domain, i.e., johndoe123@email.com.
+			\item Password has a minimum length of eight characters, maximum length of 16 characters \& contains one numeric character \& one special character.
+			\item Confirm password is the same as the password above. \textbf{Note:} Confirm password will not be a field in the \textbf{User} table. Rather, it will be used to validate the user's password.
+		\end{itemize}
+		For each error check, a status code \& response message is returned, i.e., "First name must have a minimum length of two characters".
+		\item When performing a \textbf{POST} request for logging in a user using either username/password or email address/password, return a status code, a response message, i.e., "$<$User's username$>$ has successfully logged in" \& the user's \textbf{JWT}.
+		\item When performing a \textbf{PUT} \& \textbf{DELETE} request, return a status code \& a response message, i.e., "$<$User's username$>$'s information has successfully updated" or "$<$User's username$>$ has successfully deleted".
+		\item Two \textbf{super admin} users are seeded via you. Only you can seed the two \textbf{super admin} users via a \textbf{npm} script. The \textbf{super admin} users' data will be fetched from a local file \& inserted into the \textbf{User} table using \textbf{Prisma}.  
+		\item Five \textbf{basic} users are seeded via a \textbf{super admin}user. The \textbf{basic} users' data will be fetched from a private \textbf{GitHub Gist} using \textbf{Axios} \& inserted into the \textbf{User} table using \textbf{Prisma}. 
+	\end{itemize} 
+	\item \textbf{Quiz:}
+	\begin{itemize}
+		\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores, average score, list of ratings, average rating \& overall winner. The category, list of questions, list of correct answers \& list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium \& hard. The types will be multiple choice or true/false.
+		\item Each user can get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes, get a list of scores \& get a list of ratings. A \textbf{super admin} user can create \& delete a quiz. A \textbf{basic} user can participate in a quiz \& rate a quiz.
+		\item When performing a \textbf{POST} request for creating a quiz, the following error checking must be implemented using \textbf{Joi}:
+		\begin{itemize}
+			\item Name has a minimum length of five characters, a maximum length of 30 characters \& alpha characters only.
+			\item Start date has to be greater than today's date.
+			\item End date has to be greater than the start date \& no longer than five days. 
+			\item Number of questions has to be ten.
+		\end{itemize}
+		For each error check, a status code \& response message is returned, i.e., "Name must have a minimum length of five characters".
+		\item When performing a \textbf{POST} request for a \textbf{basic} user who is participating in a quiz, the following error checking must be implemented using \textbf{Joi}:
+		\begin{itemize}
+			\item Can not participate if today's date is before the start date \& after the end date.
+			\item Answered all ten questions.
+		\end{itemize}
+		\item When performing a \textbf{POST} request for a \textbf{basic} user who has participated in a quiz, return a status code, a response message, i.e., "$<$User's username$>$ has successfully participated in $<$Quiz's name$>$", user's score \& quiz's average score.
+	\end{itemize}
+	\item \textbf{HTTP:}
+	\begin{itemize}
+		\item When performing a \textbf{GET} request for \textbf{/api/v1/}, return a response containing all available endpoints in the \textbf{RESTful API}. 
+		\item Headers are secured using \textbf{Helmet}.
+		\item Implement \textbf{CORS}, \textbf{compression}, \textbf{caching} \& \textbf{rate limiting}.
+	\end{itemize}
+	\item \textbf{Testing:}
+	\begin{itemize}
+		\item API tests are written using \textbf{Mocha} \& \textbf{Chai}.
+		\item At least 20 \textbf{API/integration} tests verifying the user \& quiz functionality.
+		\item Code coverage using \textbf{c8}. 
+	\end{itemize}
+	\item \textbf{NPM scripts:}
+	\begin{itemize}
+		\item Opening \textbf{Prisma Studio}.
+		\item Creating a migration using \textbf{Prisma}. 
+		\item Creating \textbf{admin} users.
+		\item Linting \& fixing your code using \textbf{ESLint}.
+		\item Formatting your code using \textbf{Prettier}.
+		\item Running \textbf{API/integration} tests using \textbf{Mocha}.
+		\item Running code coverage using \textbf{c8} \& \textbf{Mocha}.
+	\end{itemize}
+\end{itemize}
+
+\subsection*{Code Elegance - Learning Outcome 1 (35\%)}
+\begin{itemize}
+	\item Environment variables' key is stored in the \textbf{env.example} file. 
+	\item Variables, functions \& resource groups are named appropriately.
+	\item Idiomatic use of control flow, data structures \& in-built functions.
+	\item File header comment for each controller \& route file explaining its purpose using \textbf{JSDoc}.
+	\item Code is linted \& formatted using \textbf{ESLint} \& \textbf{Prettier}.
+	\item \textbf{Mocha}, \textbf{Chai}, \textbf{c8}, \textbf{ESLint}, \textbf{Prettier} \& \textbf{Commitizen} are installed as \textbf{development dependencies}.	
+\end{itemize}
+
+\subsection*{Documentation \& Git/GitHub Usage - Learning Outcomes 2, 3 (15\%)}
+\begin{itemize}
+	\item \textbf{GitHub} project board to help you organise \& prioritise your work. 
+	\item Provide the following in your repository \textbf{README.md} file:
+	\begin{itemize}
+		\item A \textbf{Entity-Relationship} diagram of your \textbf{Prisma} schema.
+		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{RESTful API}?
+		\item How do you open \textbf{Prisma Studio}?
+		\item How do you create a migration?
+		\item How do you create \textbf{admin} users?
+		\item How do you lint \& fix your code?
+		\item How do you format your code?
+		\item How do you run your \textbf{API/integration} tests?
+		\item How do you run your code coverage \& output the results to \textbf{HTML}?
+	\end{itemize}
+	\item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
+	\item Correct spelling \& grammar. 
+	\item Your \textbf{Git commit messages} should:
+	\begin{itemize}
+		\item Reflect the context of each functional requirement change.
+		\item Be formatted using an appropriate naming convention style using \textbf{Commitizen}.
+	\end{itemize}	
+\end{itemize}
+
+\subsection*{Additional Information}
+\begin{itemize}
+	\item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time.
+\end{itemize}
+
+\end{document}
