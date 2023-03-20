@@ -120,7 +120,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
  * What is happening here?
  *
  * 1. Using the render() function to virtually render the LoginTestExample component in the testing environment
- * 2. Get the input element by its placeholder attribute
+ * 2. Get the input element by data test id attribute
  * 3. Test if the input element exists in the document, i.e., when the LoginTestExample component is rendered
  */
 test("username input should be rendered", () => {
@@ -133,7 +133,7 @@ test("username input should be rendered", () => {
  * What is happening here?
  *
  * 1. Using the render() function to virtually render the LoginTestExample component in the testing environment
- * 2. Get the button element by its role
+ * 2. Get the input element by data test id attribute
  * 3. Test if the button element exists in the document, i.e., when the LoginTestExample component is rendered
  */
 test("button should be rendered", () => {
@@ -146,7 +146,7 @@ test("button should be rendered", () => {
  * What is happening here?
  *
  * 1. Using the render() function to virtually render the LoginTestExample component in the testing environment
- * 2. Get the input element by its placeholder attribute
+ * 2. Get the input element by data test id attribute
  * 3. Test if the input element's value is empty
  */
 test("username input should be empty", () => {
@@ -159,7 +159,7 @@ test("username input should be empty", () => {
  * What is happening here?
  *
  * 1. Using the render() function to virtually render the LoginTestExample component in the testing environment
- * 2. Get the span element by its data test id attribute
+ * 2. Get the span element by data test id attribute
  * 3. Test if the span element's text content is empty
  */
 test("loading should not be visible", () => {
@@ -172,7 +172,7 @@ test("loading should not be visible", () => {
  * What is happening here?
  *
  * 1. Using the render() function to virtually render the LoginTestExample component in the testing environment
- * 2. Get the input element by its placeholder attribute
+ * 2. Get the input element by data test id attribute
  * 3. Change the input element's value to John Doe
  * 4. Test if the input element's value is John Doe
  */
@@ -188,7 +188,7 @@ test("username input should change", () => {
  * What is happening here?
  *
  * 1. Using the render() function to virtually render the LoginTestExample component in the testing environment
- * 2. Get the input element by its placeholder attribute
+ * 2. Get the input element by data test id attribute
  * 3. Change the input element's value to Pazzw0rd123
  * 4. Test if the input element's value is Pazzw0rd123
  */
@@ -204,8 +204,8 @@ test("password input should change", () => {
  * What is happening here?
  *
  * 1. Using the render() function to virtually render the LoginTestExample component in the testing environment
- * 2. Get the button element by its role
- * 3. Get the input elements by their placeholder attribute
+ * 2. Get the button element by data test id attribute
+ * 3. Get the input elements by data test id attribute
  * 4. Change the input elements' value to John Doe and Pazzw0rd123
  * 5. Test if the button element is not disabled
  */
@@ -225,9 +225,9 @@ test("button should not be disabled when username and password input changes", (
  * What is happening here?
  *
  * 1. Using the render() function to virtually render the LoginTestExample component in the testing environment
- * 2. Get the button element by its role
- * 3. Get the span element by its data test id attribute
- * 4. Get the input elements by their placeholder attribute
+ * 2. Get the button element by data test id attribute
+ * 3. Get the span element by data test id attribute
+ * 4. Get the input elements by data test id attribute
  * 5. Change the input elements' value to John Doe and Pazzw0rd123
  * 6. Click the button element
  * 7. Test if the span element's text content is Loading...
