@@ -112,7 +112,7 @@ export default LoginTestExample;
 In the root directory, create a new file called `LoginTestExample.test.js`. In the `LoginTestExample.test.js` file, add the following code:
 
 ```js
-import LoginTestExample from "@/components/LoginTestExample";
+import LoginTestExample from "./components/LoginTestExample";
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 
@@ -359,7 +359,7 @@ export default Button;
 
 **Note:** Please read the comments carefully.
 
-In the `components` directory, create a new file called `Button.stories.js`. In the `Button.stories.js` file, add the following code:
+In the `stories` directory, create a new file called `Button.stories.js`. In the `Button.stories.js` file, add the following code:
 
 ```js
 import Button from "./Button";
