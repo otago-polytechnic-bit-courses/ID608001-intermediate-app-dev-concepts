@@ -108,8 +108,8 @@ You will need to submit an application \& documentation that meet the following 
 	\end{itemize} 
 	\item \textbf{Quiz:}
 	\begin{itemize}
-		\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores, average score, list of ratings, average rating \& overall winner. The category, list of questions, list of correct answers \& list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium \& hard. The types will be multiple choice or true/false.
-		\item Each user can get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes, get a list of scores \& get a list of ratings. A \textbf{super admin} user can create \& delete a quiz. A \textbf{basic} user can participate in a quiz \& rate a quiz.
+		\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores, average score \& overall winner. The category, list of questions, list of correct answers \& list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium \& hard. The types will be multiple choice or true/false.
+		\item Each user can get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes \& get a list of scores . A \textbf{super admin} user can create \& delete a quiz. A \textbf{basic} user can participate in a quiz \& rate a quiz.
 		\item When performing a \textbf{POST} request for creating a quiz, the following error checking must be implemented using \textbf{Joi}:
 		\begin{itemize}
 			\item Name has a minimum length of five characters, a maximum length of 30 characters \& alpha characters only.
@@ -137,7 +137,7 @@ You will need to submit an application \& documentation that meet the following 
 		\item At least 20 \textbf{API/integration} tests verifying the user \& quiz functionality.
 		\item Code coverage using \textbf{c8}. 
 	\end{itemize}
-	\item \textbf{NPM scripts:}
+	\item \textbf{NPM Scripts:}
 	\begin{itemize}
 		\item Opening \textbf{Prisma Studio}.
 		\item Creating a migration using \textbf{Prisma}. 
