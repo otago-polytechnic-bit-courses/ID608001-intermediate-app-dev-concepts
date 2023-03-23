@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop an application using \textbf{Next.js} \& the \textbf{Hacker News API}. The main purpose of this assessment is to demonstrate your ability to develop an application using various taught concepts. However, you will be required to independently research \& implement more complex concepts. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.\\
+In this \textbf{individual} assessment, you will develop an application using \textbf{Next.js} \& the \textbf{Hacker News API}. The main purpose of this assessment is to demonstrate your ability to develop an application using various taught concepts. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -68,7 +68,7 @@ All parts of your submitted assessment \textbf{must} be completely your work. Do
 The school's process concerning submissions, extensions, resubmissions \& resits complies with \textbf{Otago Polytechnic} policies. Learners can view policies on the \textbf{Otago Polytechnic} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
 
 \section*{Submission}
-You \textbf{must} submit all project files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/i4G4NwNS}{https://classroom.github.com/a/i4G4NwNS}.  Create a \textbf{.gitignore} \& add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest project files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+You \textbf{must} submit all project files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/T9vHopU9}{https://classroom.github.com/a/T9vHopU9}.  Create a \textbf{.gitignore} \& add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest project files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Extensions}
 Familiarise yourself with the assessment due date. If you need an extension, contact the course lecturer before the due date. If you require more than a week's extension, a medical certificate or support letter from your manager may be needed.
@@ -83,6 +83,8 @@ Resits \& reassessments \textbf{are not} applicable in \textbf{ID608001: Interme
 You will need to submit an application \& documentation that meet the following requirements:
 
 \subsection*{Functionality - Learning Outcomes 1, 2, 3 (40\%)}
+\begin{itemize}
+	\item \textbf{App:}
 \begin{itemize}
 	\item Display a drop down with the following options:
 	\begin{itemize}
@@ -102,8 +104,45 @@ You will need to submit an application \& documentation that meet the following 
 		\item Show Stories - \href{https://hacker-news.firebaseio.com/v0/showstories.json?print=pretty}{https://hacker-news.firebaseio.com/v0/showstories.json?print=pretty}
 		\item Top Stories - \href{https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty}{https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty}
 	\end{itemize}
-	\item When an option is selected, display the title of the first 100 stories.
-	\item 
+	\item When an option is selected, display the title of the first 50 stories.
+	\begin{itemize}
+		\item Style each story to look like a card.
+		\item Display five stories per row.
+	\end{itemize}
+	\item When a story is clicked, the user will be navigate to a page that displays the following information:
+	\begin{itemize}
+		\item By
+		\item Kids. \textbf{Note:} This is an array of ids. If the array is empty, display \textbf{N/A}. Display the first five ids as URLs in this format: \href{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}. When clicked, these URLs will open in a new tab. 
+		\item Score
+		\item Time. \textbf{Note:} Convert the time to a readable format.
+		\item Title
+		\item Type 
+		\item URL. \textbf{Note:} When clicked, this URL will open in a new tab.
+	\end{itemize}
+	This information is fetched from the following endpoint: \href{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}.
+	\item On a page, display the top 20 leaders. You can get this information from the following URL: \href{https://news.ycombinator.com/leaders}{https://news.ycombinator.com/leaders}. \textbf{Note:} You need to manually retrieve the information from the URL. 
+	\item When a leader is clicked, the user will be navigate to a page that displays the following information:
+	\begin{itemize}
+		\item About
+		\item Created. \textbf{Note:} Convert the time to a readable format.
+		\item Id
+		\item Karma
+		\item Submitted. \textbf{Note:} This is an array of ids. Display the first 10 ids as URLs in this format: \href{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}.
+	\end{itemize}
+	This information is fetched from the following endpoint: \href{https://hacker-news.firebaseio.com/v0/user/<Id>.json?print=pretty}{https://hacker-news.firebaseio.com/v0/user/<Id>.json?print=pretty}.
+	\item Deployed to \textbf{Vercel}. \textbf{Note:} Use your \textbf{GitHub} account to login to \textbf{Vercel}.
+\end{itemize}
+\item \textbf{Testing:}
+\begin{itemize}
+	\item \textbf{Component tests} are written using \textbf{React Testing Library} \& \textbf{Jest}.
+	\item At least 15 \textbf{component tests} verifying the app functionality.
+\end{itemize}
+\item \textbf{NPM Scripts:}
+\begin{itemize}
+	\item Linting \& fixing your code using \textbf{ESLint}.
+	\item Formatting your code using \textbf{Prettier}.
+	\item Running \textbf{component tests} using \textbf{React Testing Library} \& \textbf{Jest}.
+\end{itemize}
 \end{itemize}
 
 \subsection*{Code Elegance - Learning Outcome 1 (45\%)}
@@ -112,10 +151,11 @@ You will need to submit an application \& documentation that meet the following 
 	\item Variables, functions \& components are named appropriately.
 	\item Idiomatic use of control flow, data structures \& in-built functions.
 	\item Sufficient modularity.
-	\item File header comment for each component \& page file explaining its purpose using \textbf{JSDoc}.
+	\item Each \textbf{component} \& \textbf{page} file \textbf{must} have a header comment located immediately before the \textbf{import} statements.
+  \item In-line comments where required.
 	\item Code is linted \& formatted using \textbf{ESLint} \& \textbf{Prettier}.
 	\item No dead or unused code.
-	\item \textbf{ESLint}, \textbf{Prettier} \& \textbf{Commitizen} are installed as \textbf{development dependencies}.	
+	\item \textbf{React Testing Library}, \textbf{Jest}, \textbf{ESLint}, \textbf{Prettier} \& \textbf{Commitizen} are installed as \textbf{development dependencies}.	
 \end{itemize}
 
 \subsection*{Documentation \& Git/GitHub Usage - Learning Outcomes 2, 3 (15\%)}
@@ -127,6 +167,7 @@ You will need to submit an application \& documentation that meet the following 
 		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the application?
 		\item How do you lint \& fix your code?
 		\item How do you format your code?
+		\item How do you run your \textbf{component tests}?
 	\end{itemize}
 	\item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
 	\item Correct spelling \& grammar. 
