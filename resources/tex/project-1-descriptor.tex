@@ -112,24 +112,28 @@ You will need to submit an application \& documentation that meet the following 
 	\item When a story is clicked, the user will be navigate to a page that displays the following information:
 	\begin{itemize}
 		\item By
-		\item Kids. \textbf{Note:} This is an array of ids. If the array is empty, display \textbf{N/A}. Display the first five ids as URLs in this format: \href{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}. When clicked, these URLs will open in a new tab. 
+		\item Kids. \textbf{Note:} This is an array of ids. If the array is empty, display \textbf{N/A}. Display the first five ids as URLs in this format: \href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}. When clicked, these URLs will open in a new tab. 
 		\item Score
 		\item Time. \textbf{Note:} Convert the time to a readable format.
 		\item Title
 		\item Type 
 		\item URL. \textbf{Note:} When clicked, this URL will open in a new tab.
 	\end{itemize}
-	This information is fetched from the following endpoint: \href{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}.
-	\item On a page, display the top 20 leaders. You can get this information from the following URL: \href{https://news.ycombinator.com/leaders}{https://news.ycombinator.com/leaders}. \textbf{Note:} You need to manually retrieve the information from the URL. 
+	This information is fetched from the following endpoint:\\
+	\href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}.
+	\item On a page, display the top 20 leaders. You can get this information from the following URL:\\
+	\href{https://news.ycombinator.com/leaders}{https://news.ycombinator.com/leaders}. \textbf{Note:} You need to manually retrieve the information from the URL. 
 	\item When a leader is clicked, the user will be navigate to a page that displays the following information:
 	\begin{itemize}
 		\item About
 		\item Created. \textbf{Note:} Convert the time to a readable format.
 		\item Id
 		\item Karma
-		\item Submitted. \textbf{Note:} This is an array of ids. Display the first 10 ids as URLs in this format: \href{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/<Id>.json?print=pretty}.
+		\item Submitted. \textbf{Note:} This is an array of ids. Display the first 10 ids as URLs in this format:\\
+		 \href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}.
 	\end{itemize}
-	This information is fetched from the following endpoint: \href{https://hacker-news.firebaseio.com/v0/user/<Id>.json?print=pretty}{https://hacker-news.firebaseio.com/v0/user/<Id>.json?print=pretty}.
+	This information is fetched from the following endpoint:\\
+	\href{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}.
 	\item Deployed to \textbf{Vercel}. \textbf{Note:} Use your \textbf{GitHub} account to login to \textbf{Vercel}.
 \end{itemize}
 \item \textbf{Testing:}
