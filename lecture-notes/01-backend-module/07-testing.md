@@ -1,11 +1,5 @@
 # 07: Testing
 
-## Preparation
-
-Use the repository from the previous **Formative Assessment**. Create a new branch called `07-playground`. Checkout to the `07-playground` branch and open the repository in **Visual Studio Code**.
-
----
-
 ## Mocha
 
 **Mocha** is a **JavaScript** testing framework for **Node.js** applications.
@@ -20,8 +14,6 @@ npm install mocha --save-dev
 
 **Resource:** <https://mochajs.org>
 
----
-
 ## Chai
 
 **Chai** is a **JavaScript** assertion library for **Node.js** applications.
@@ -33,8 +25,6 @@ npm install chai chai-http --save-dev
 ```
 
 **Resource:** <https://www.chaijs.com>
-
----
 
 ## Unit Testing
 
@@ -68,7 +58,7 @@ describe("unit test example", () => {
 
 ---
 
-## Seeding
+## Setup
 
 In the `test` directory, create a new file called `01-setup.test.js`. In the `01-setup.test.js` file, add the following code:
 
@@ -94,39 +84,6 @@ after((done) => {
   done();
 });
 ```
-
----
-
-## Integration Testing
-
-**Integration testing** is a **software testing** technique by which units of code, i.e., **functions** or **methods** are tested as a **group** to determine whether they are fit for use.
-
-In the `test` directory, create a new file called `02-integration.test.js`. In the `02-integration.test.js` file, add the following code:
-
-```js
-import chai from "chai";
-import chaiHttp from "chai-http";
-import { describe, it } from "mocha";
-
-const BASE_URL =
-  "https://gist.githubusercontent.com/Grayson-Orr/c17079a40517ec29679dc9585ba7af76/raw";
-
-chai.use(chaiHttp); // Provides an interface for integration testing
-
-describe("integration - GitHub Gist", () => {
-  it("should get institutions", (done) => {
-    chai
-      .request(BASE_URL)
-      .get("/institutions.json")
-      .end((_, res) => {
-        chai.expect(res.status).to.be.equal(200);
-        done();
-      });
-  });
-});
-```
-
----
 
 ## API Testing
 
@@ -194,49 +151,36 @@ import { describe, it } from "mocha";
 
 import app from "../app.js";
 
-import adminUser from "./03-auth.test.js";
 
 chai.use(chaiHttp);
 
 const BASE_URL = "/api/v1";
 
 const institution = {
-  id: 3,
-  name: "Southern Institute of Technology",
-  region: "Southland",
+  name: "Otago Polytechnic",
+  region: "Otago",
   country: "New Zealand",
 };
 
 describe("institutions", () => {
   it("should create institution", (done) => {
-    const { email, password } = adminUser;
     chai
       .request(app)
-      .post(`${BASE_URL}/auth/login`)
-      .send({
-        email,
-        password,
-      })
-      .end((_, loginRes) => {
+      .post(`${BASE_URL}/institutions`)
+      .send(institution)
+      .end((__, institutionRes) => {
+        chai.expect(institutionRes.status).to.be.equal(201);
+        chai.expect(institutionRes.body).to.be.a("object");
         chai
-          .request(app)
-          .post(`${BASE_URL}/institutions`)
-          .auth(loginRes.body.token, { type: "bearer" })
-          .send(institution)
-          .end((__, institutionRes) => {
-            chai.expect(institutionRes.status).to.be.equal(201);
-            chai.expect(institutionRes.body).to.be.a("object");
-            chai
-              .expect(institutionRes.body.msg)
-              .to.be.equal("Institution successfully created");
-            done();
-          });
+          .expect(institutionRes.body.msg)
+          .to.be.equal("Institution successfully created");
+        done();
       });
   });
 });
 ```
 
-In the `package.json` file, add the following script:
+In the `package.json` file, replace the `test` script with the following:
 
 ```bash
 "test": "npx mocha --timeout 10000 --exit"
