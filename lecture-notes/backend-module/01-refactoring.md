@@ -188,9 +188,6 @@ CREATE TABLE "Department" (
 -- AddForeignKey
 ALTER TABLE "Department" ADD CONSTRAINT "Department_institutionId_fkey" FOREIGN KEY ("institutionId") REFERENCES "Institution"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 ```
-
-**Prisma** has created an `Institution` and `Department` table in the `migration.sql` file.
-
 ---
 
 ## Refactoring
