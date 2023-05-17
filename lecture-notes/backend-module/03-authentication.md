@@ -38,7 +38,6 @@ The `.env` file should look like this:
 ```bash
 PORT=3000
 DATABASE_URL=The PostgreSQL connection string
-SHADOW_DATABASE_URL=The PostgreSQL connection string
 JWT_SECRET=Pazzw0rd123
 JWT_LIFETIME=1hr
 ```
