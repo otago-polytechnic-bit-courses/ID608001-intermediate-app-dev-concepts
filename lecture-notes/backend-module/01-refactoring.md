@@ -114,7 +114,6 @@ generator client {
 datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Institution {
@@ -189,9 +188,6 @@ CREATE TABLE "Department" (
 -- AddForeignKey
 ALTER TABLE "Department" ADD CONSTRAINT "Department_institutionId_fkey" FOREIGN KEY ("institutionId") REFERENCES "Institution"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 ```
-
-**Prisma** has created an `Institution` and `Department` table in the `dev.db` file.
-
 ---
 
 ## Refactoring
