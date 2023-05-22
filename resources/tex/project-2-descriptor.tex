@@ -104,7 +104,7 @@ You will need to submit an application \& documentation that meet the following 
 		\item When performing a \textbf{POST} request for logging in a user using either username/password or email address/password, return a status code, a response message, i.e., "$<$User's username$>$ has successfully logged in" \& the user's \textbf{JWT}.
 		\item When performing a \textbf{PUT} \& \textbf{DELETE} request, return a status code \& a response message, i.e., "$<$User's username$>$'s information has successfully updated" or "$<$User's username$>$ has successfully deleted".
 		\item Two \textbf{super admin} users are seeded via you. Only you can seed the two \textbf{super admin} users via a \textbf{npm} script. The \textbf{super admin} users' data will be fetched from a local file \& inserted into the \textbf{User} table using \textbf{Prisma}.  
-		\item Five \textbf{basic} users are seeded via a \textbf{super admin}user. The \textbf{basic} users' data will be fetched from a private \textbf{GitHub Gist} using \textbf{Axios} \& inserted into the \textbf{User} table using \textbf{Prisma}. 
+		\item Five \textbf{basic} users are seeded via a \textbf{super admin} user. The \textbf{basic} users' data will be fetched from a private \textbf{GitHub Gist} using \textbf{Axios} \& inserted into the \textbf{User} table using \textbf{Prisma}. 
 	\end{itemize} 
 	\item \textbf{Quiz:}
 	\begin{itemize}
@@ -135,7 +135,6 @@ You will need to submit an application \& documentation that meet the following 
 	\begin{itemize}
 		\item \textbf{API/integration tests} are written using \textbf{Mocha} \& \textbf{Chai}.
 		\item At least 20 \textbf{API/integration tests} verifying the user \& quiz functionality.
-		\item Code coverage using \textbf{c8}. 
 	\end{itemize}
 	\item \textbf{NPM Scripts:}
 	\begin{itemize}
@@ -159,7 +158,7 @@ You will need to submit an application \& documentation that meet the following 
 	\item Each \textbf{controller} \& \textbf{route} file \textbf{must} have a header comment describing its purpose. It should be located immediately before the \textbf{import} statements.
   \item In-line comments where appropriate.
 	\item Code is linted \& formatted using \textbf{ESLint} \& \textbf{Prettier}.
-	\item \textbf{Mocha}, \textbf{Chai}, \textbf{c8}, \textbf{ESLint}, \textbf{Prettier} \& \textbf{Commitizen} are installed as \textbf{development dependencies}.	
+	\item \textbf{Mocha}, \textbf{Chai}, \textbf{ESLint}, \textbf{Prettier} \& \textbf{Commitizen} are installed as \textbf{development dependencies}.	
 	\item No dead or unused code.
 \end{itemize}
 
