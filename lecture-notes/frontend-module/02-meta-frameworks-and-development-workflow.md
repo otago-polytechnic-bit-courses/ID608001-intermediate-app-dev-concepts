@@ -1,7 +1,5 @@
 # 02 A: Meta Frameworks
 
-Lecture video can be found here - https://bit.ly/3L0MeLR
-
 ## Next.js
 
 **Next.js** is a popular open-source framework for building **server-side rendered (SSR)** **React** applications. It provides many features out-of-the-box, including automatic code splitting, server-side rendering, static site generation, and more.

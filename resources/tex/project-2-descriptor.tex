@@ -19,7 +19,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Project 2: Node.js and Express Pub Quiz App \\Version 2, Semester One, 2023}
+\lfoot{Project 2: Node.js and Express Pub Quiz App \\Version 3, Semester Two, 2023}
 \rfoot{\thepage}
  
 \begin{document}
@@ -50,8 +50,8 @@ At the successful completion of this course, learners will be able to:
 \begin{tabular}{|c|c|c|c|}
 	\hline
 	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcomes} \\ \hline
-	\small Practical: Skills-Based & \small 20\%        & \small 31-03-2023 (Fri at 10.00 AM)   & \small 1                   \\ \hline
-	\small Project 1: Next.js Hacker News App             & \small 30\%        & \small 27-04-2023 (Thur at 4.59 PM)  & \small 1 and 2                   \\ \hline
+	\small Practical: Skills-Based & \small 20\%        & \small 28-08-2023 (Wednesday at 11.59 AM)   & \small 1                   \\ \hline
+	\small Project 1: Next.js Hacker News App             & \small 30\%        & \small 11-09-2023 (Monday at 04.59 PM)  & \small 1 and 2                   \\ \hline
 	\small Project 2: Node.js and Express Pub Quiz App                       & \small 50\%        & \small 13-11-2023 (Monday at 04.59 PM)  & \small 1 and 2                   \\ \hline
 \end{tabular}
 
@@ -105,13 +105,13 @@ You will need to submit an application and documentation that meet the following
 		For each error check, a status code and response message is returned, i.e., "First name must have a minimum length of two characters".
 		\item When performing a \textbf{POST} request for logging in a user using either username/password or email address/password, return a status code, a response message, i.e., "$<$User's username$>$ has successfully logged in" and the user's \textbf{JWT}.
 		\item When performing a \textbf{PUT} and \textbf{DELETE} request, return a status code and a response message, i.e., "$<$User's username$>$'s information has successfully updated" or "$<$User's username$>$ has successfully deleted".
-		\item Five \textbf{super admin} users are seeded via an automation script. Only this automation script can seed the \textbf{super admin} users via a \textbf{npm} script. The \textbf{super admin} users' data will be fetched from a local file and inserted into the \textbf{User} table using \textbf{Prisma}.  
+		\item Five \textbf{super admin} users are seeded via a \textbf{script} in the \textbf{package.json} file. The \textbf{super admin} users' data will be fetched from a local file and inserted into the \textbf{User} table using \textbf{Prisma}.  
 		\item Five \textbf{basic} users are seeded via a \textbf{super admin} user. The \textbf{basic} users' data will be fetched from a private \textbf{GitHub Gist} using \textbf{Axios} and inserted into the \textbf{User} table using \textbf{Prisma}. 
 	\end{itemize} 
 	\item \textbf{Quiz:}
 	\begin{itemize}
 		\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores, average score and overall winner. The category, list of questions, list of correct answers and list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium and hard. The types will be multiple choice or true/false.
-		\item A \textbf{super admin} and \textbf{basic} user can get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes and get a list of scores . A \textbf{super admin} user can create and delete a quiz. A \textbf{basic} user can participate in a quiz and rate a quiz.
+		\item A \textbf{super admin} and \textbf{basic} user can get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes and get a list of scores . A \textbf{super admin} user can create and delete a quiz. A \textbf{basic} user can participate in a quiz only once.
 		\item When performing a \textbf{POST} request for creating a quiz, the following error checking must be implemented using \textbf{Joi}:
 		\begin{itemize}
 			\item Name has a minimum length of five characters, a maximum length of 30 characters and alpha characters only.
@@ -122,49 +122,49 @@ You will need to submit an application and documentation that meet the following
 		For each error check, a status code and response message is returned, i.e., "Name must have a minimum length of five characters".
 		\item When performing a \textbf{POST} request for a \textbf{basic} user who is participating in a quiz, the following error checking must be implemented using \textbf{Joi}:
 		\begin{itemize}
-			\item Can not participate if today's date is before the start date and after the end date.
+			\item Can not participate if quiz has not started or has ended.
 			\item Answered all ten questions.
 		\end{itemize}
 		\item When performing a \textbf{POST} request for a \textbf{basic} user who has participated in a quiz, return a status code, a response message, i.e., "$<$User's username$>$ has successfully participated in $<$Quiz's name$>$", user's score and quiz's average score.
 	\end{itemize}
+	
 	\item \textbf{HTTP:}
 	\begin{itemize}
-		\item When performing a \textbf{GET} request for \textbf{/api/v1/}, return a response containing all available endpoints in the \textbf{RESTful API}. 
 		\item Headers are secured using \textbf{Helmet}.
 		\item Implement \textbf{CORS}, \textbf{compression}, \textbf{caching} and \textbf{rate limiting}.
 	\end{itemize}
+	
 	\item \textbf{Testing:}
 	\begin{itemize}
 		\item \textbf{API/integration tests} are written using \textbf{Mocha} and \textbf{Chai}.
-		\item Four \textbf{API/integration tests} verifying the following functionality:
-		\begin{itemize}
-			\item Registering a \textbf{basic} user.
-			\item Logging in either a \textbf{basic} user or \textbf{super admin} user using their email and password.
-			\item Creating a quiz.
-			\item Participating in a quiz.
-		\end{itemize}
+		\item 20 \textbf{API/integration tests} verifying the \textbf{User} \& \textbf{Quiz} functionality.
 	\end{itemize}
-	\item \textbf{NPM Scripts:}
+
+	\item \textbf{Scripts:}
 	\begin{itemize}
-		\item Opening \textbf{Prisma Studio}.
-		\item Creating a migration using \textbf{Prisma}. 
-		\item Creating \textbf{super admin} users.
-		\item Linting and fixing your code using \textbf{ESLint}.
-		\item Formatting your code using \textbf{Prettier}.
-		\item Running \textbf{API/integration tests} using \textbf{Mocha}.
+		\item Run your \textbf{API/integration tests} using \textbf{Mocha}.
+		\item Create and apply a migration using \textbf{Prisma}.
+		\item Reset your database using \textbf{Prisma}.
+		\item Seed \textbf{super admin} users.
+		\item Open \textbf{Prisma Studio}. 
+		\item Lint and fix your code using \textbf{ESLint}.
+		\item Format your code using \textbf{Prettier}.
 	\end{itemize}
 \end{itemize} 
 
 \subsection*{Code Elegance - Learning Outcome 1 (45\%)}
 \begin{itemize}
+	\item A \textbf{Node.js} \textbf{.gitignore} file is used.
 	\item Environment variables' key is stored in the \textbf{env.example} file. 
-	\item Databases configured for the development and production environments.
-	\item Appropriate naming of variables, functions and resource groups.
+	\item Appropriate naming of files, variables, functions and resource groups.
+	\begin{itemize}
+	  \item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
+	\end{itemize}
 	\item Idiomatic use of control flow, data structures and in-built functions.
 	  \item Efficient algorithmic approach.
   \item Sufficient modularity.
-	\item Each \textbf{controller} and \textbf{route} file \textbf{must} have a header comment describing its purpose. It should be located immediately before the \textbf{import} statements.
-  \item In-line comments where appropriate.
+  \item Each \textbf{controller} and \textbf{route} file \textbf{must} have a \textbf{JSDoc} header comment located at the top of the file.
+\item In-line comments where required. It should be for code that needs further explanation.
 	\item Code is linted and formatted using \textbf{ESLint} and \textbf{Prettier}.
 	\item \textbf{Mocha}, \textbf{Chai}, \textbf{ESLint}, \textbf{Prettier} and \textbf{Commitizen} are installed as \textbf{development dependencies}.	
 	\item No dead or unused code.
@@ -172,16 +172,19 @@ You will need to submit an application and documentation that meet the following
 
 \subsection*{Documentation and Git/GitHub Usage - Learning Outcomes 2, 3 (15\%)}
 \begin{itemize}
-	\item \textbf{GitHub} project board to help you organise and prioritise your work. 
+	\item A \textbf{GitHub} project board to help you organise and prioritise your work. 
 	\item Provide the following in your repository \textbf{README.md} file:
 	\begin{itemize}
-		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{RESTful API}?
+		\item A URL to your \textbf{RESTful API} as a \textbf{web service} on \textbf{Render}.
+		\item How do you setup the environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{RESTful API}?
+		\item How do you run your \textbf{REST API} locally?
+		\item How do you run your \textbf{API/integration tests}?
+		\item How do you create and apply a migration?  
+		\item How do you reset your database?
+		\item How do you seed \textbf{super admin} users?
 		\item How do you open \textbf{Prisma Studio}?
-		\item How do you create a migration?
-		\item How do you create \textbf{super admin} users?
 		\item How do you lint and fix your code?
 		\item How do you format your code?
-		\item How do you run your \textbf{API/integration tests}?
 	\end{itemize}
 	\item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
 	\item Correct spelling and grammar. 
