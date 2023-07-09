@@ -1,4 +1,4 @@
-# 05: Testing and Storybook
+# 05: Component Testing and Storybook
 
 ## Testing
 

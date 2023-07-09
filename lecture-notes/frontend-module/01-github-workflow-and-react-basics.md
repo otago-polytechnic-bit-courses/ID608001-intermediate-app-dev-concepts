@@ -1,4 +1,4 @@
-# 01 A: GitHub Workflow
+# Development Workflow
 
 By default, **GitHub Classroom** creates an empty repository. Firstly, you must create a **README** and `.gitignore` file. **GitHub** provides an option for creating new files once the repository is created.
 
@@ -109,7 +109,7 @@ git log --oneline --grep "^build\|^feat\|^style"
 
 **Resource:** <https://git-scm.com/docs/git-log>
 
-# 01 B: React Basics
+# React
 
 ## Create React App
 
