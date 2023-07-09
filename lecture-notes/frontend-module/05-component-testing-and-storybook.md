@@ -261,42 +261,6 @@ npm run test
 
 **Resource:** https://nextjs.org/docs/testing 
 
-### User Acceptance Testing
-
-User acceptance testing (UAT) is a type of software testing in which end-users or clients test a software application to determine whether it meets their requirements and expectations. UAT aims to ensure that the software is fit for purpose, satisfies the user's needs, and is ready for deployment.
-
-UAT is usually performed after all other testing has been completed. During UAT, end-users or clients are provided a test environment to test the software with their data and scenarios. They perform tasks, evaluate the software's functionality, and provide feedback on any issues they encounter.
-
-**What does a simple UAT test plan look like?**
-
-1. Introduction:
-* Provide an overview of the UAT test plan, including the purpose of testing, scope of testing, and expected outcome.
-
-2. Test Environment:
-* Describe the test environment, including the hardware and software requirements, test data, and any other resources needed for testing.
-
-3. Test Cases:
-* Identify the test cases that will be used to evaluate the software.
-* Each test case should have a unique identifier, description, and expected outcome.
-
-4. Test Execution:
-* Provide instructions on how to execute the test cases.
-* Define the criteria for passing or failing each test case.
-* Include a timeline for completing the testing.
-
-5. Defect Management:
-* Define the process for reporting defects.
-* Identify the roles and responsibilities of the testing and development teams in managing defects.
-
-6. Acceptance Criteria:
-* Define the acceptance criteria for the software.
-* Identify the requirements that must be met for the software to be considered acceptable.
-
-7. Conclusion:
-* Summarise the results of the UAT testing.
-* Identify any issues or concerns that were identified during testing.
-* Make recommendations for improving the software or the testing process.
-
 ## Storybook
 
 **Storybook** is a UI development tool that allows you develop your component outside your application and in an isolated environment.
@@ -454,10 +418,6 @@ In the repository's `README.md` file, answer the following questions:
 
 1. What is **Test Driven Development**?
 2. What is **Behaviour Driven Development**?
-
-### Task Wha
-
-Use **ChatGPT** to generate a UAT test plan for a simple calculator with four operations (addition, subtraction, multiplication, and division).
 
 # Formative Assessment Submission
 

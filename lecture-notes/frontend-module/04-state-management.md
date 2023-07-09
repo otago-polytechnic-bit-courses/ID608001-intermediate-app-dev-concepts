@@ -1,4 +1,4 @@
-# 04 A: State Management
+# 04: State Management
 
 ## Context API
 
