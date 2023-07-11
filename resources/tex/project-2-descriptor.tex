@@ -93,7 +93,7 @@ You will need to submit an application and documentation that meet the following
 		\item You will have \textbf{two} types of users - \textbf{super admin} and \textbf{basic} user.
 		\item A \textbf{super admin} and \textbf{basic} user will have the following information: first name, last name, username, email address, profile picture, password, confirm password and role. The users' profile picture will be from the following \textbf{API} - \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api}. Each profile picture should be, in most cases, different. I suggest using a random seed when setting the user's profile picture.
 		\item A \textbf{super admin} and \textbf{basic} user can login, get their information and update their information. A \textbf{super admin} user can get all users' information, update all \textbf{basic} users' information and delete all \textbf{basic} users. A \textbf{basic} user can register.
-		\item When performing a \textbf{POST} request for registering a \textbf{basic} user, the following error checking must be implemented using \textbf{Joi}:
+		\item When performing a \textbf{POST} request for registering a \textbf{basic} user, the following error checking needs to be implemented using \textbf{Joi}:
 		\begin{itemize}
 			\item First name has a minimum length of two characters, a maximum length of 50 characters and alpha characters only.
 			\item Last name has the same error checking as first name above.
@@ -112,7 +112,7 @@ You will need to submit an application and documentation that meet the following
 	\begin{itemize}
 		\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores, average score and overall winner. The category, list of questions, list of correct answers and list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium and hard. The types will be multiple choice or true/false.
 		\item A \textbf{super admin} and \textbf{basic} user can get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes and get a list of scores . A \textbf{super admin} user can create and delete a quiz. A \textbf{basic} user can participate in a quiz only once.
-		\item When performing a \textbf{POST} request for creating a quiz, the following error checking must be implemented using \textbf{Joi}:
+		\item When performing a \textbf{POST} request for creating a quiz, the following error checking needs to be implemented using \textbf{Joi}:
 		\begin{itemize}
 			\item Name has a minimum length of five characters, a maximum length of 30 characters and alpha characters only.
 			\item Start date has to be greater than today's date.
@@ -120,7 +120,7 @@ You will need to submit an application and documentation that meet the following
 			\item Number of questions has to be ten.
 		\end{itemize}
 		For each error check, a status code and response message is returned, i.e., "Name must have a minimum length of five characters".
-		\item When performing a \textbf{POST} request for a \textbf{basic} user who is participating in a quiz, the following error checking must be implemented using \textbf{Joi}:
+		\item When performing a \textbf{POST} request for a \textbf{basic} user who is participating in a quiz, the following error checking needs to be implemented using \textbf{Joi}:
 		\begin{itemize}
 			\item Can not participate if quiz has not started or has ended.
 			\item Answered all ten questions.
@@ -163,7 +163,7 @@ You will need to submit an application and documentation that meet the following
 	\item Idiomatic use of control flow, data structures and in-built functions.
 	  \item Efficient algorithmic approach.
   \item Sufficient modularity.
-  \item Each \textbf{controller} and \textbf{route} file \textbf{must} have a \textbf{JSDoc} header comment located at the top of the file.
+  \item Each \textbf{controller} and \textbf{route} file needs to have a \textbf{JSDoc} header comment located at the top of the file.
 \item In-line comments where required. It should be for code that needs further explanation.
 	\item Code is linted and formatted using \textbf{ESLint} and \textbf{Prettier}.
 	\item \textbf{Mocha}, \textbf{Chai}, \textbf{ESLint}, \textbf{Prettier} and \textbf{Commitizen} are installed as \textbf{development dependencies}.	
