@@ -725,23 +725,23 @@ Navigate to <http://localhost:3000> and test the changes.
 
 The screenshot below is an example of an empty board.
 
-![](../resources/img/01-react-basics/01-react-basics-1.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/01-react-basics/01-react-basics-1.jpeg?raw=true)
 
 The screenshot below is an example of square set to **X**.
 
-![](../resources/img/01-react-basics/01-react-basics-2.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/01-react-basics/01-react-basics-2.jpeg?raw=true)
 
 The screenshot below is an example of the **X** win state.
 
-![](../resources/img/01-react-basics/01-react-basics-3.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/01-react-basics/01-react-basics-3.jpeg?raw=true)
 
 The screenshot below is an example of the **O** win state.
 
-![](../resources/img/01-react-basics/01-react-basics-4.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/01-react-basics/01-react-basics-4.jpeg?raw=true)
 
 The screenshot below is an example of the draw state.
 
-![](../resources/img/01-react-basics/01-react-basics-5.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/01-react-basics/01-react-basics-5.jpeg?raw=true)
 
 ## Task 2
 
