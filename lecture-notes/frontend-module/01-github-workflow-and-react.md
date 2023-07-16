@@ -1,4 +1,4 @@
-# Development Workflow
+# GitHub Workflow
 
 By default, **GitHub Classroom** creates an empty repository. Firstly, you must create a **README** and `.gitignore` file. **GitHub** provides an option for creating new files once the repository is created.
 
