@@ -26,10 +26,11 @@ You will be prompt with the following options:
 
 ```bash
 √ Would you like to use TypeScript with this project? No
-√ Would you like to use ESLint with this project? Yes
+√ Would you like to use ESLint? Yes
+√ Would you like to use Tailwind? No
 √ Would you like to use `src/` directory with this project? No
-√ Would you like to use experimental `app/` directory with this project? No
-√ What import alias would you like configured? @/*
+√ Would you like to use App Router? (recomended) No
+√ What you like to customize the default import alias? No
 ```
 
 Change directory to `02-example`. You will be refactor some of the code.
