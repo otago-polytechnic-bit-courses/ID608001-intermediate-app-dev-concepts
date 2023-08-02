@@ -375,15 +375,15 @@ Navigate to <http://localhost:6006>.
 
 The screenshot below is an example of the red `Button` component. **Note:** You can adjust the various properties.
 
-[](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/05-storybook/05-storybook-1.PNG?raw=true)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/05-storybook/05-storybook-1.PNG?raw=true)
 
 The screenshot below is an example of the green `Button` component. 
 
-[](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/05-storybook/05-storybook-2.PNG?raw=true)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/05-storybook/05-storybook-2.PNG?raw=true)
 
 The screenshot below is an example of the blue `Button` component. 
 
-[](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/05-storybook/05-storybook-3.PNG?raw=true)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/05-storybook/05-storybook-3.PNG?raw=true)
 
 # Formative Assessment
 
