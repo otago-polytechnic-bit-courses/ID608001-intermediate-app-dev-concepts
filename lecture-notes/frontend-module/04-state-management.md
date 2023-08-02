@@ -113,7 +113,7 @@ Run the application and navigate to <http://localhost:3000/book-cart>. You shoul
 
 The screenshot below is an example the book list and an empty cart.
 
-![](../resources/img/04-state-management/04-state-management-1.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/04-state-management/04-state-management-1.jpeg?raw=true)
 
 ### Refactoring
 
@@ -245,7 +245,7 @@ export default Cart;
 
 The screenshot below is an example the book list and a cart with two books when the **Add to cart** button is clicked twice.
 
-![](../resources/img/04-state-management/04-state-management-2.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/04-state-management/04-state-management-2.jpeg?raw=true)
 
 # Formative Assessment
 
@@ -273,15 +273,15 @@ In the `pages` directory, create a new file called `checkout.js`. This page will
 
 The screenshot below is an example of the book list and an empty cart. **Note:** the cart is clickable and when clicked, it will navigate you to <http://localhost:3000/checkout>.
 
-![](../resources/img/04-state-management/04-state-management-3.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/04-state-management/04-state-management-3.jpeg?raw=true)
 
 The screenshot below is an example of the book list and a cart with three books.
 
-![](../resources/img/04-state-management/04-state-management-4.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/04-state-management/04-state-management-4.jpeg?raw=true)
 
 The screenshot below is an example of the checkout cart.
 
-![](../resources/img/04-state-management/04-state-management-5.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-23/resources/img/04-state-management/04-state-management-5.jpeg?raw=true)
 
 # Formative Assessment Submission
 
