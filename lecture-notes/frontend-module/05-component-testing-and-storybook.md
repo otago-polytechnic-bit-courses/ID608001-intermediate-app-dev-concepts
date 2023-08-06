@@ -387,7 +387,7 @@ The screenshot below is an example of the blue `Button` component.
 
 # Formative Assessment
 
-Before you start, create a new branch called **04-formative-assessment**.
+Before you start, create a new branch called **05-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
