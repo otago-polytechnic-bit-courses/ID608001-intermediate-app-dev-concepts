@@ -272,7 +272,7 @@ npm run test
 There are a few dependencies that you will need to install. To get started, run the following command:
 
 ```bash
-npx storybook init
+npx storybook@latest init
 ```
 
 You will be prompt to proceed. You may be prompt twice. One for **ESLint** and the other for **npm**. Choose **no** for both.
