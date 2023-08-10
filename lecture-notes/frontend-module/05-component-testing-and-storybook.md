@@ -109,7 +109,7 @@ export default LoginTestExample;
 
 **Note:** Make sure you create a page for this.
 
-In the root directory, create a new file called `LoginTestExample.test.js`. In the `LoginTestExample.test.js` file, add the following code:
+In the root directory, create a new directory called `test`. In the `tests` directory, create a new file called `LoginTestExample.test.js`. In the `LoginTestExample.test.js` file, add the following code:
 
 ```js
 import LoginTestExample from "./components/LoginTestExample";
