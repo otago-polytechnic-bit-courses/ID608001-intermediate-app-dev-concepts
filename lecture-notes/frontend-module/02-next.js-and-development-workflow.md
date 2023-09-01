@@ -173,8 +173,6 @@ npm run dev
 
 Navigate to http://localhost:3000/ and http://localhost:3000/1
 
-# 02 B: Development Workflow
-
 ## Commitizen
 
 **Commitizen** is a command-line tool that helps developers to write standardized and consistent commit messages in their **Git** projects. It provides a guided interface that prompts developers for the necessary information to create a well-formatted commit message that follows a specific format.

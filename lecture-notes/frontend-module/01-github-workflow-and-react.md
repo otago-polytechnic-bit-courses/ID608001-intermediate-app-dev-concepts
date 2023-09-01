@@ -1,4 +1,4 @@
-# GitHub Workflow
+# 01: GitHub Workflow and React
 
 By default, **GitHub Classroom** creates an empty repository. Firstly, you must create a **README** and `.gitignore` file. **GitHub** provides an option for creating new files once the repository is created.
 
@@ -49,11 +49,11 @@ On the right side of the screen, you will see **Reviewers**. Click on the **Revi
 
 You have written many commit messages thus far in your **BIT** degree. However, based on my observations, you could format your messages more concisely, and it only takes a little bit of care. We will discuss a message convention (not a standard) heavily adopted in the industry.
 
-A message is broken down into five components - type, scope (optional), subject, extended description (optional) & footer (optional).
+A message is broken down into five components - type, scope (optional), subject, extended description (optional) and footer (optional).
 
 List of types:
 * build: build related change, i.e., installing application dependencies.
-* chore: change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting & version control.
+* chore: change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting and version control.
 * feat: a new feature or piece of functionality that an end-user will see, i.e., a register or login page.
 * fix: a bug fix, i.e. an issue with the register or login page.
 * docs: documentation related change, i.e., changing **README.md** file.
@@ -63,7 +63,7 @@ List of types:
 
 What is a scope? A noun referring to functionality in your codebase, i.e., authentication. 
 
-Familiarise yourself with this convention, particularly if you are currently enrolled in my courses. However, if you are not, then it is something you should consider adding to your existing **Git** skills & knowledge.
+Familiarise yourself with this convention, particularly if you are currently enrolled in my courses. However, if you are not, then it is something you should consider adding to your existing **Git** skills and knowledge.
 
 You are probably wondering, how do I write a message using this convention. A **Git** commit looks like this:
 
@@ -79,7 +79,7 @@ Here is a **Git** commit example:
 git commit -m "style (login): format jsx"
 ```
 
-Here is a **Git** commit example with an extended description & footer:
+Here is a **Git** commit example with an extended description and footer:
 
 ```bash
 git commit -m "style (login): format jsx" -m "additional information" -m "PR Close #12345"
@@ -108,8 +108,6 @@ git log --oneline --grep "^build\|^feat\|^style"
 ```
 
 **Resource:** <https://git-scm.com/docs/git-log>
-
-# React
 
 ## Create React App
 
@@ -646,7 +644,7 @@ const calculateWinner = (squares) => {
 
   for (let s = 0; s < lines.length; s++) {
     const [a, b, c] = lines[s];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+    if (squares[a] andand squares[a] === squares[b] andand squares[a] === squares[c]) {
       return squares[a];
     }
   }
