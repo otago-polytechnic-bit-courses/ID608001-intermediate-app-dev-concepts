@@ -363,7 +363,7 @@ In the `controllers/v1/auth.js` file, refactor the `register` function so that t
 
 ## Task Whā
 
-In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their `email` and `password` or `username` and `password`. **Note:** You will use the same function and operator mentioned in **Task Toru**. Test the changes in **Postman** before you move on to the **Code Review**.
+In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their `email` and `password` or `username` and `password`. **Note:** You will use the same function and operator mentioned in **Task Toru**. Test the changes in **Postman** before you move on to the **Formative Assessment Submission**.
 
 # Formative Assessment Submission
 
