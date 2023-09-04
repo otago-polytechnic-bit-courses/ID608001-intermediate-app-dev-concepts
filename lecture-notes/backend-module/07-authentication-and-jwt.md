@@ -349,19 +349,19 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
-### Task Tahi
+## Task Tahi
 
 If you have not already, implement the code examples above before you move on to **Task Rua**.
 
-### Task Rua
+## Task Rua
 
 In the `schema.prisma` file, add a new field called `username` of type `String` that is unique to the `User` model. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev` before you move on to **Task Toru**.
 
-### Task Toru
+## Task Toru
 
 In the `controllers/v1/auth.js` file, refactor the `register` function so that the `username` is included when registering a new user. You have to check if the new user's `email` and `username` does not exist. **Note:** You will need to use the `findFirst` function instead of the `findUnique` function and the `OR` operator to filter the user by either is `email` or `username`. Test the changes in **Postman** before you move on to **Task Whā**.
 
-### Task Whā
+## Task Whā
 
 In the `controllers/v1/auth.js` file, refactor the `login` function so that the user can login with either their `email` and `password` or `username` and `password`. **Note:** You will use the same function and operator mentioned in **Task Toru**. Test the changes in **Postman** before you move on to the **Code Review**.
 
