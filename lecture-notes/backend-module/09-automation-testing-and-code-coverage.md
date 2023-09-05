@@ -86,8 +86,6 @@ What is the purpose of the `test` script? Used to run tests.
 
 **Note:** The `npx prisma migrate reset --force` will also seed your database.
 
----
-
 In the root directory, create a new directory called `test`. Create a new file called `institution.test.js` in the' test' directory. Add the following code.
 
 ```javascript

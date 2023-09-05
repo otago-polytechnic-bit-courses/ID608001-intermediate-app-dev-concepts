@@ -305,8 +305,6 @@ app.use(
 - <https://www.npmjs.com/package/jsonwebtoken>
 - <https://www.npmjs.com/package/bcryptjs>
 
----
-
 ## Postman
 
 Test the changes in **Postman** before you move on to the **Formative Assessment** section.

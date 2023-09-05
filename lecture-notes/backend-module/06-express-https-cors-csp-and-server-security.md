@@ -34,8 +34,6 @@ Also, add the following line under the `scripts` block.
 
 What is the purpose of the `type` property? Used to enable **ES6** module syntax. For example, `import` and `export` statements.
 
----
-
 Create a file named `index.js` in the root directory and add the following code.
 
 ```javascript
@@ -70,8 +68,6 @@ Open a browser and navigate to `http://localhost:3000/`. You should see the foll
 ```bash
 Hello, World!
 ```
-
----
 
 Let us do some refactoring. 
 
