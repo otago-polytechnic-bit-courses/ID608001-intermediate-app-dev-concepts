@@ -216,6 +216,34 @@ You want to see those **green checkmarks**. If you see any red crosses, then you
 
 ## Code Coverage
 
+Code coverage is a measure used to describe the degree to which the source code of a program is tested by a particular test suite. A program with high code coverage, measured as a percentage, has had more of its source code executed during testing, which suggests it has a lower chance of containing undetected software bugs compared to a program with low code coverage.
+
+### Getting Started
+
+We will use **nyc** to generate our code coverage report. To install **nyc**, run the following command in your terminal.
+
+```bash
+npm install nyc --save-dev
+```
+
+In the `package.json` file, replace the `test` script's value with the following.
+
+```json
+"test": "npx prisma migrate reset --force && npx nyc --reporter=html --reporter=text npx mocha --timeout 10000 --exit"
+```
+
+Run the following command in your terminal.
+
+```bash
+npm test
+```
+
+or 
+
+```bash
+npm run test
+```
+
 # Formative Assessment
 
 Before you start, create a new branch called **09-formative-assessment**.
