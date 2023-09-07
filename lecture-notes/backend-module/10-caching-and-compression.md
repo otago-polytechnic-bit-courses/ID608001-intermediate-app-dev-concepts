@@ -2,7 +2,7 @@
 
 ## Caching
 
-**Caching** enables the application to store data, i.e., **JSON** response so that future requests for that data can be accessed faster.
+**Caching** is a technique that stores a copy of a resource in a cache. A cache is a temporary storage area. When a resource is requested, a copy of the resource is returned from the cache if it exists. If the resource does not exist in the cache, the resource is retrieved from the source and stored in the cache for future use. This process is called a **cache miss**. If the resource does exist in the cache, the resource is returned from the cache. This process is called a **cache hit**. **Caching** is a great way to improve the performance of an application.
 
 View this video to learn more about how **caching** works - <https://youtu.be/6FyXURRVmR0>
 

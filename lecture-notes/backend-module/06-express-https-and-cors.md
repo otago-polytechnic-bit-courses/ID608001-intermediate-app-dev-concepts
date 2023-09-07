@@ -215,10 +215,6 @@ app.use(cors());
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>
 - <https://www.npmjs.com/package/cors>
-  
-## CSP
-
-## Server Security
 
 ### Helmet
 
@@ -276,6 +272,10 @@ app.use(limiter);
 ```
 
 **Resource:** <https://www.npmjs.com/package/express-rate-limit>
+
+## Other Resource
+
+I encourage you to have a look at this resource - https://roadmap.sh/best-practices/api-security
 
 # Refresher Exercise
 
