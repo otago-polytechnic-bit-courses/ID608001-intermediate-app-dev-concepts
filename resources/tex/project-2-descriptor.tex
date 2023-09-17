@@ -92,7 +92,7 @@ You will need to submit an application and documentation that meet the following
 	\begin{itemize}
 		\item You will have \textbf{two} types of users - \textbf{super admin} and \textbf{basic} user.
 		\item A \textbf{super admin} and \textbf{basic} user will have the following information: first name, last name, username, email address, profile picture, password, confirm password and role. The users' profile picture will be from the following \textbf{API} - \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api}. Each profile picture should be, in most cases, different. I suggest using a random seed when setting the user's profile picture.
-		\item A \textbf{super admin} and \textbf{basic} user can login, get their information and update their information. A \textbf{super admin} user can get all users' information, update all \textbf{basic} users' information and delete all \textbf{basic} users. A \textbf{basic} user can register.
+		\item A \textbf{super admin} and \textbf{basic} user can login, get their information and update their information but not delete themselves. A \textbf{super admin} user can get all users' information, update all \textbf{basic} users' information but not \textbf{super admin} user's information and delete all \textbf{basic} users but not \textbf{super admin} users. A \textbf{basic} user can register.
 		\item When performing a \textbf{POST} request for registering a \textbf{basic} user, the following error checking needs to be implemented using \textbf{Joi}:
 		\begin{itemize}
 			\item First name has a minimum length of two characters, a maximum length of 50 characters and alpha characters only.
@@ -137,8 +137,8 @@ You will need to submit an application and documentation that meet the following
 	\item \textbf{Testing:}
 	\begin{itemize}
 		\item \textbf{API/integration tests} are written using \textbf{Mocha} and \textbf{Chai}.
-		\item 20 \textbf{API/integration tests} verifying the \textbf{User} and \textbf{Quiz} functionality.
-		\item Code coverage using \textbf{Istanbul} is greater than or equal to 80\%.
+		\item 10 \textbf{API/integration tests} verifying the \textbf{User} and \textbf{Quiz} functionality.
+		\item Code coverage using \textbf{Istanbul} is greater than or equal to 75\%.
 	\end{itemize}
 
 	\item \textbf{Scripts:}
@@ -201,6 +201,7 @@ You will need to submit an application and documentation that meet the following
 \subsection*{Additional Information}
 \begin{itemize}
 	\item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time.
+	\item You have been provided a \textbf{schema.prisma} file. You are required to use the \textbf{schema.prisma} file. In addition, do not change the \textbf{schema.prisma} file.
 \end{itemize}
 
 \end{document}
