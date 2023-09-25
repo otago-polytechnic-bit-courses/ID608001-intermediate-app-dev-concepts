@@ -1,3 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  Int                   @id @default(autoincrement())
+  email               String                @unique
+  firstName           String
+  lastName            String
+  password            String
+  avatar              String
+  username            String                @unique
+  createdAt           DateTime              @default(now())
+  role                Role                  @default(BASIC_USER)
+  UserQuestionAnswer  UserQuestionAnswer[]
+  UserParticipateQuiz UserParticipateQuiz[]
+  UserQuizScore       UserQuizScore[]
+}
+
+enum Role {
+  BASIC_USER
+  SUPER_ADMIN_USER
+}
+
 enum Type {
   multiple
   boolean
@@ -7,20 +39,6 @@ enum Difficulty {
   easy
   medium
   hard
-}
-
-model User {
-  id                     Int                   @id @default(autoincrement())
-  firstName              String
-  lastName               String
-  username               String
-  emailAddress           String                @unique
-  profilePicture         String
-  password               String
-  role                   Role                  @default(BASIC_USER)
-  createdAt              DateTime              @default(now())
-  userQuestionAnswers    UserQuestionAnswer[]
-  userQuizScores         UserQuizScore[]
 }
 
 model Category {
@@ -38,7 +56,7 @@ model Question {
   incorrectAnswers    String[]
   createdAt           DateTime             @default(now())
   userQuestionAnswers UserQuestionAnswer[]
-  quiz                Quiz?                @relation(fields: [quizId], references: [id])
+  quiz                Quiz?                @relation(fields: [quizId], references: [id], onDelete: Cascade)
 }
 
 model Quiz {
@@ -54,7 +72,7 @@ model Quiz {
   userQuestionAnswers    UserQuestionAnswer[]
   userParticipateQuizzes UserParticipateQuiz[]
   userQuizScores         UserQuizScore[]
-  category               Category              @relation(fields: [categoryId], references: [id])
+  category               Category              @relation(fields: [categoryId], references: [id],onDelete: Cascade)
 }
 
 model UserQuestionAnswer {
@@ -65,9 +83,18 @@ model UserQuestionAnswer {
   answer     String
   isCorrect  Boolean  @default(false)
   createdAt  DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
-  quiz       Quiz     @relation(fields: [quizId], references: [id])
-  question   Question @relation(fields: [questionId], references: [id])
+  user       User     @relation(fields: [userId], references: [id],onDelete: Cascade)
+  quiz       Quiz     @relation(fields: [quizId], references: [id],onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id],onDelete: Cascade)
+}
+
+model UserParticipateQuiz {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  quizId    Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id],onDelete: Cascade)
+  quiz      Quiz     @relation(fields: [quizId], references: [id],onDelete: Cascade)
 }
 
 model UserQuizScore {
@@ -76,6 +103,6 @@ model UserQuizScore {
   quizId    Int
   score     Int
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id])
-  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  user      User     @relation(fields: [userId], references: [id],onDelete: Cascade)
+  quiz      Quiz     @relation(fields: [quizId], references: [id],onDelete: Cascade)
 }
