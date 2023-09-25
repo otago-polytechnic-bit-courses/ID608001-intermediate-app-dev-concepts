@@ -72,7 +72,7 @@ model Quiz {
   userQuestionAnswers    UserQuestionAnswer[]
   userParticipateQuizzes UserParticipateQuiz[]
   userQuizScores         UserQuizScore[]
-  category               Category              @relation(fields: [categoryId], references: [id],onDelete: Cascade)
+  category               Category              @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
 model UserQuestionAnswer {
@@ -83,9 +83,9 @@ model UserQuestionAnswer {
   answer     String
   isCorrect  Boolean  @default(false)
   createdAt  DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id],onDelete: Cascade)
-  quiz       Quiz     @relation(fields: [quizId], references: [id],onDelete: Cascade)
-  question   Question @relation(fields: [questionId], references: [id],onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz       Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 }
 
 model UserParticipateQuiz {
@@ -93,8 +93,8 @@ model UserParticipateQuiz {
   userId    Int
   quizId    Int
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id],onDelete: Cascade)
-  quiz      Quiz     @relation(fields: [quizId], references: [id],onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
 }
 
 model UserQuizScore {
@@ -103,6 +103,6 @@ model UserQuizScore {
   quizId    Int
   score     Int
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id],onDelete: Cascade)
-  quiz      Quiz     @relation(fields: [quizId], references: [id],onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
 }
