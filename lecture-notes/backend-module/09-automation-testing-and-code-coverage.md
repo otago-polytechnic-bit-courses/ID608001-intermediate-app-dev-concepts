@@ -227,7 +227,7 @@ npm install nyc --save-dev
 In the `package.json` file, replace the `test` script's value with the following.
 
 ```json
-"test": "npx prisma migrate reset --force && npx nyc --reporter=html --reporter=text npx mocha --timeout 10000 --exit"
+"test": "npx prisma migrate reset --force && npx nyc --reporter=html --reporter=text && npx mocha --timeout 10000 --exit"
 ```
 
 Run the following command in your terminal.
