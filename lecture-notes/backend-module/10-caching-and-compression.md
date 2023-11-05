@@ -27,6 +27,8 @@ const cacheRoute = (req, res, next) => {
   // Generate a unique cache key based on the request's URL and authorization header
   const key = req.originalUrl + req.headers.authorization;
 
+  const cachedRes = cache.get(key);
+
   // Check if it's not a GET request and there's a cached response for the key
   if (req.method !== "GET" && cachedRes) {
     // Log a message indicating that the cached entry is deleted from the cache
