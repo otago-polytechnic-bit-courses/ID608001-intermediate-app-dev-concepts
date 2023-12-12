@@ -1,4 +1,4 @@
-# 08: Authorisation/Access Control
+# 03: Authorisation/Access Control
 
 Authorisation/access control is a process of determining if a user has the right to access a resource. For example, if a user is logged in, they should be able to access their user data. If a user is not logged in, they should not be able to access their user data.
 
