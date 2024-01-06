@@ -59,7 +59,7 @@ const createInstitution = async (req, res) => {
 
     const { id } = req.user;
 
-    const user = await prisma.user.findUnique({ where: { id: Number(id) } });
+    const user = await prisma.user.findUnique({ where: { id: id } });
 
     /**
      * If the authenticated user is not an admin, they can
@@ -135,7 +135,7 @@ The screenshot below is an example of a **POST** request to a protected route us
 
 # Formative Assessment
 
-Before you start, create a new branch called **08-formative-assessment**.
+Before you start, create a new branch called **03-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
@@ -161,4 +161,4 @@ In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` file
 
 # Formative Assessment Submission
 
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

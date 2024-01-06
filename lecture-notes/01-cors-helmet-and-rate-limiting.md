@@ -1,4 +1,4 @@
-# 06: CORS, Helmet and Rate Limiting
+# 01: CORS, Helmet and Rate Limiting
 
 ## CORS
 
@@ -95,7 +95,7 @@ app.use(limiter);
 
 # Refresher Exercise
 
-Before you start, create a new branch called **07-refresher-exercise**.
+Before you start, create a new branch called **01-refresher-exercise**.
 
 ## Task 1:
 

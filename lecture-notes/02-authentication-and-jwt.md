@@ -1,4 +1,4 @@
-# 02: Authentication
+# 02: Authentication and JWT
 
 As a developer, you ideally want to safeguard sensitive data from being accessed by unauthorised users. Only when a user has logged in or authenticated they will be able to access their data. However, authorisation goes beyond authentication. Users can have different roles and permissions, which gives them specific access. For example, an admin user can create, update and delete a resource, but a normal user can only read a resource.
 
@@ -43,7 +43,7 @@ In the `prisma.schema` file, add the following `User` model:
 
 ```js
 model User {
-  id              Int           @id @default(autoincrement())
+  id              String       @id @default(uuid())
   email           String        @unique
   name            String
   password        String
@@ -53,7 +53,7 @@ model User {
 }
 ```
 
-**Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev`.
+**Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev`. Also, we are using the `uuid` function to generate a unique id for the `User` model.
 
 ### middleware/authRoute.js
 
@@ -311,35 +311,35 @@ Test the changes in **Postman** before you move on to the **Formative Assessment
 
 The screenshot below is an example of registering a user.
 
-![](../../resources/img/07-authentication/07-authentication-1.jpeg)
+![](../../resources/img/02-authentication/02-authentication-1.jpeg)
 
 The screenshot below is an example of registering an existing user.
 
-![](../../resources/img/07-authentication/07-authentication-2.jpeg)
+![](../../resources/img/02-authentication/02-authentication-2.jpeg)
 
 The screenshot below is an example of logging in as a user with an invalid email.
 
-![](../../resources/img/07-authentication/07-authentication-3.jpeg)
+![](../../resources/img/02-authentication/02-authentication-3.jpeg)
 
 The screenshot below is an example of logging in as a user with an invalid password.
 
-![](../../resources/img/07-authentication/07-authentication-4.jpeg)
+![](../../resources/img/02-authentication/02-authentication-4.jpeg)
 
 The screenshot below is an example of logging in as a user and being returned a token.
 
-![](../../resources/img/07-authentication/07-authentication-5.jpeg)
+![](../../resources/img/02-authentication/02-authentication-5.jpeg)
 
 The screenshot below is an example of a **POST** request to a protected route without providing a token.
 
-![](../../resources/img/07-authentication/07-authentication-6.jpeg)
+![](../../resources/img/02-authentication/02-authentication-6.jpeg)
 
 The screenshot below is an example of a **POST** request to a protected route using an authenticated user.
 
-![](../../resources/img/07-authentication/07-authentication-7.jpeg)
+![](../../resources/img/02-authentication/02-authentication-7.jpeg)
 
 # Formative Assessment
 
-Before you start, create a new branch called **07-formative-assessment**.
+Before you start, create a new branch called **02-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
@@ -365,4 +365,4 @@ In the `controllers/v1/auth.js` file, refactor the `login` function so that the 
 
 # Formative Assessment Submission
 
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

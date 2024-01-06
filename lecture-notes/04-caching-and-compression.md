@@ -29,7 +29,7 @@ const cacheRoute = (req, res, next) => {
 
   const cachedRes = cache.get(key);
 
-  // Check if it's not a GET request and there's a cached response for the key
+  // Check if it is not a GET request and there's a cached response for the key
   if (req.method !== "GET" && cachedRes) {
     // Log a message indicating that the cached entry is deleted from the cache
     console.log(`${key} deleted from the cache`);
@@ -40,7 +40,7 @@ const cacheRoute = (req, res, next) => {
     // Proceed to the next middleware in the stack
     return next();
   } 
-  // If there is a cached response, and it's a GET request, return it
+  // If there is a cached response, and it is a GET request, return it
   else if (cachedRes) {
     // Log a message indicating a cache hit
     console.log("Cache hit");
@@ -48,7 +48,7 @@ const cacheRoute = (req, res, next) => {
     // Send the cached response back to the client
     return res.json(cachedRes);
   } 
-  // If there's no cached response, it's a cache miss
+  // If there's no cached response, it is a cache miss
   else {
     // Log a message indicating a cache miss
     console.log("Cache miss");
@@ -69,7 +69,6 @@ const cacheRoute = (req, res, next) => {
 };
 
 export default cacheRoute;
-
 ```
 
 ## app.js
@@ -155,7 +154,7 @@ As you can see, there is 3.4 kilobytes transferred over the network which is sig
 
 # Formative Assessment
 
-Before you start, create a new branch called **10-formative-assessment**.
+Before you start, create a new branch called **04-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
@@ -169,4 +168,4 @@ If you have not already, implement the code examples above before you move on to
 
 # Formative Assessment Submission
 
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please don't merge your own pull request.
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
