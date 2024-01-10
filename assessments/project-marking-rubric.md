@@ -29,7 +29,7 @@
 
 ### Functionality: Testing - 5%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **2-3**                                               | **1-0**                                               |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
 | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Registering a Basic User**       | Successfully implement and pass the Cypress test for registering a basic user. | Minor issues or gaps in implementing and passing the test for registering a basic user. | Significant issues or incomplete implementation of the test for registering a basic user. | No or inadequate implementation of the test for registering a basic user. |
 | **Logging in a Super Admin and Creating a Quiz** | Successfully implement and pass the Cypress test for logging in a super admin and creating a quiz. | Minor issues or gaps in implementing and passing the test for logging in a super admin and creating a quiz. | Significant issues or incomplete implementation of the test for logging in a super admin and creating a quiz. | No or inadequate implementation of the test for logging in a super admin and creating a quiz. |
@@ -37,7 +37,7 @@
 
 ### Functionality: Scripts - 5%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **2-3**                                               | **1-0**                                               |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
 | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Run RESTful API and Frontend Locally** | Provide clear instructions and scripts that successfully run both the RESTful API and frontend application locally. | Minor issues or gaps in the provided instructions and scripts for running the RESTful API and frontend locally. | Significant issues or incomplete instructions/scripts for running the RESTful API and frontend locally. | No or inadequate instructions/scripts for running the RESTful API and frontend locally. |
 | **Run End-to-End Tests Using Cypress** | Provide clear instructions and scripts that successfully run end-to-end tests using Cypress. | Minor issues or gaps in the provided instructions and scripts for running end-to-end tests using Cypress. | Significant issues or incomplete instructions/scripts for running end-to-end tests using Cypress. | No or inadequate instructions/scripts for running end-to-end tests using Cypress. |
@@ -64,7 +64,7 @@
 
 ### Documentation - 5%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **2-3**                                               | **1-0**                                               |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
 | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **GitHub Project Board**                    | Consistent and effective use of GitHub project board for organising and prioritising development work. | Minor inconsistencies in GitHub project board usage. | Significant issues in GitHub project board usage.   | GitHub project board is not used or poorly maintained. |
 | **README Content**                    | Well-documented repository README.md with required information. | Minor issues in documentation or missing some details. | Significant issues in documentation or missing key information. | README.md lacks essential information or is poorly structured. |
