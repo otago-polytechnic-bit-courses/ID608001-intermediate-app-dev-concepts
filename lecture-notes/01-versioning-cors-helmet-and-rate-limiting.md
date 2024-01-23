@@ -1,4 +1,16 @@
-# 01: CORS, Helmet and Rate Limiting
+# 01: Versioning, CORS, Helmet and Rate Limiting
+
+## Versioning
+
+**API versioning** is the process of versioning your API. It is a way to ensure that future changes to an API do not break the client. It is also a way to ensure that the client can continue to use the API even if the API changes.
+
+There are two main ways to version an API:
+
+1. **URL versioning** - This is where the version is included in the URL. For example, `http://api.example.com/v1/users`.
+
+2. **Header versioning** - This is where the version is included in the header. For example, `Accept: application/vnd.example.v1+json`.
+
+We will use **URL versioning** in this course.
 
 ## CORS
 

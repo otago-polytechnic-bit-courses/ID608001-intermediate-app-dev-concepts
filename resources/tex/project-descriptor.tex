@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop a \textbf{RESTful API} using \textbf{Express}, \textbf{Node.js} and the \textbf{OpenTDB API}, and deploy it as a \textbf{web service} on \textbf{Render}. Your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. Also, you will develop a \textbf{frontend application} using \textbf{Next.js}. This application will consume the \textbf{RESTful API} mentioned above. The main purpose of this assessment is not just to build a \textbf{full-stack application}, but rather to demonstrate an ability to decouple your \textbf{RESTful API} from your \textbf{frontend application}. In addition, marks will be allocated for code quality and best practices, documentation and \textbf{Git} usage.
+In this \textbf{individual} assessment, you will develop a \textbf{RESTful API} using \textbf{Express}, \textbf{Node.js} and the \textbf{OpenTDB API}, and deploy it as a \textbf{web service} on \textbf{Render}. Your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. Also, you will develop \textbf{frontend applications} using \textbf{Next.js}. These applications will consume the \textbf{RESTful API} mentioned above. The main purpose of this assessment is not just to build \textbf{full-stack applications}, but rather to demonstrate an ability to decouple your \textbf{RESTful API} from your \textbf{frontend applications}. In addition, marks will be allocated for code quality and best practices, documentation and \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -107,8 +107,8 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 		\end{itemize} 
 		\item \textbf{Quiz:}
 		\begin{itemize}
-			\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores, average score and overall winner. The category, list of questions, list of correct answers and list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium and hard. The types will be multiple choice or true/false.
-			\item A \textbf{super admin} and \textbf{basic} user can get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes and get a list of scores . A \textbf{super admin} user can create and delete a quiz. A \textbf{basic} user can participate in a quiz only once.
+			\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores and average score. The category, list of questions, list of correct answers and list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium and hard. The types will be multiple choice or true/false.
+			A \textbf{super admin} user can create and delete a quiz. A \textbf{basic} user can participate in a quiz only once. A \textbf{super admin}, \textbf{basic} and \textbf{unauthenticated} user can get all quizzes, get all past quizzes, get all present quizzes and get all future quizzes, get a list of scores for a quiz and average score for a quiz.
 			\item When performing a \textbf{POST} request for creating a quiz, the following error checking needs to be implemented using \textbf{Joi} and/or conditional statements:
 			\begin{itemize}
 				\item Name has a minimum length of five characters, a maximum length of 30 characters and alpha characters only.
@@ -124,17 +124,16 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 			\end{itemize}
 			\item When performing a \textbf{POST} request for a \textbf{basic} user who has participated in a quiz, return a status code, a response message, i.e., "$<$User's username$>$ has successfully participated in $<$Quiz's name$>$", user's score and quiz's average score.
 		\end{itemize}
-		\item Headers are secured using \textbf{Helmet}.
-		\item Implement \textbf{CORS}, \textbf{rate limiting}, \textbf{caching} and \textbf{compression}
+		\item Implement versioning, \textbf{Helmet}, \textbf{CORS}, \textbf{rate limiting}, \textbf{caching} and \textbf{compression}
 	\end{itemize} 
 
-	\item \textbf{Frontend Application:}
+	\item \textbf{Frontend Application - Quiz:}
 	\begin{itemize}
 		\item \textbf{User:}
 		\begin{itemize}
-			\item Create a register page that allows a \textbf{basic} user to register.
-			\item Create a login page that allows a \textbf{super admin} and \textbf{basic} user to login.
-			\item Create user pages that allow:
+			\item Create a page that allows a \textbf{basic} user to register.
+			\item Create a page that allows a \textbf{super admin} and \textbf{basic} user to login.
+			\item Create pages that allow:
 			\begin{itemize}
 				\item A \textbf{super admin} user to get their information, update their information but not delete themselves, get all user's information, update all \textbf{basic} users' information but not \textbf{super admin} user's information and delete all \textbf{basic} users but not \textbf{super admin} users.
 				\item A \textbf{basic} user to get their information and update their information but not delete themselves.
@@ -142,15 +141,29 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 		\end{itemize}
 		\item \textbf{Quiz:}
 		\begin{itemize}
-			\item Create quiz pages that allow:
+			\item Create pages that allow:
 			\begin{itemize}
-				\item A \textbf{super admin} user to create and delete a quiz, get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes and get a list of scores. 
-				\item A \textbf{basic} user to participate in a quiz only once get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes and get a list of scores.
+				\item A \textbf{super admin} user to create and delete a quiz.
+				\item A \textbf{basic} user to participate in a quiz only once get all quizzes.
+				\item A \textbf{super admin}, \textbf{basic} and \textbf{unauthenticated} user to get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes, list of scores for a quiz and average score for a quiz.
 			\end{itemize}
 		\end{itemize}
-		\item Create a navigation bar that allows a \textbf{super admin} and \textbf{basic} user to navigate to the pages above.
-		\item Create a footer that displays the current year and the name of the application.
+		\item Create a navigation bar that allows a \textbf{super admin}, \textbf{basic} and \textbf{unauthenticated} user to navigate to the pages above.
 		\item Incorrectly formatted form field values handled gracefully using validation error messages.
+		\item Create a footer that displays the current year and the name of the application.
+		\item UI is visually attractive with a coherent graphical theme and style using \textbf{Tailwind CSS}.
+	\end{itemize}
+
+	\item \textbf{Frontend Application - RESTful API:}
+	\begin{itemize}
+		\item Create a page that allows an \textbf{unauthenticated} user to get \textbf{RESTful API} information. This includes:
+		\begin{itemize}
+			\item Name of the endpoint. For example, \textbf{Register Basic User}.
+			\item HTTP method. For example, \textbf{POST}.
+			\item Endpoint URL. For example, \textbf{/api/v1/auth/register}.
+			\item Request body.
+			\item Response body.
+		\end{itemize}
 		\item UI is visually attractive with a coherent graphical theme and style using \textbf{Tailwind CSS}.
 	\end{itemize}
 
@@ -166,7 +179,7 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 
 	\item \textbf{Scripts:}
 	\begin{itemize}
-		\item Run your \textbf{RESTful API} and \textbf{frontend application} locally.
+		\item Run your \textbf{RESTful API} and \textbf{frontend applications} locally.
 		\item Run your \textbf{end-to-end tests} using \textbf{Cypress}.
 		\item Create and apply a migration using \textbf{Prisma}.
 		\item Reset your database using \textbf{Prisma}.
@@ -203,7 +216,7 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 		\item A URL to your \textbf{RESTful API} as a \textbf{web service} on \textbf{Render}.
 		\item A URL to your published \textbf{RESTful API} documentation. Each route needs to be documented. Include a description, example request and example response.
 		\item How do you setup the environments, i.e., after the repository is cloned?
-		\item How do you run your \textbf{RESTful API} and \textbf{frontend application} locally?
+		\item How do you run your \textbf{RESTful API} and \textbf{frontend applications} locally?
 		\item How do you run your \textbf{End-to-end tests}?
 		\item How do you create and apply a migration?  
 		\item How do you reset your database?
