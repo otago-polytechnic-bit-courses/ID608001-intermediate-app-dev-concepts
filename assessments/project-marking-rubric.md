@@ -29,24 +29,24 @@
 
 ### Functionality: Frontend Application - RESTful API - 5%
 
-| **Criteria**                                 | **10-9**                                                 | **8-7**                                                  | **6-5**                                                  | **4-0**                                                  |
-| -------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **RESTful API Page Functionality**     | Implementation of a page allowing an unauthenticated user to retrieve RESTful API information. | Minor issues or inconsistencies in the implementation.   | Significant issues or incomplete implementation.        | No or critical omissions in implementation.              |
 | **UI Styling**    | UI is visually attractive with Tailwind CSS. | Minor issues or inconsistencies in UI styling. | Significant issues or incomplete implementation in UI styling. | No or critical omissions in UI styling.  |
 
 ### Functionality: Testing - 5%
 
-| **Criteria**                                | **10-9**                                                 | **8-7**                                                  | **6-5**                                                   | **4-0** 
-| ------------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Registering a Basic User**       | Successfully implement and pass the Cypress test for registering a basic user. | Minor issues or gaps in implementing and passing the test for registering a basic user. | Significant issues or incomplete implementation of the test for registering a basic user. | No or inadequate implementation of the test for registering a basic user. |
 | **Logging in a Super Admin and Creating a Quiz** | Successfully implement and pass the Cypress test for logging in a super admin and creating a quiz. | Minor issues or gaps in implementing and passing the test for logging in a super admin and creating a quiz. | Significant issues or incomplete implementation of the test for logging in a super admin and creating a quiz. | No or inadequate implementation of the test for logging in a super admin and creating a quiz. |
 | **Logging in a Basic User and Participating in a Quiz** | Successfully implement and pass the Cypress test for logging in a basic user and participating in a quiz. | Minor issues or gaps in implementing and passing the test for logging in a basic user and participating in a quiz. | Significant issues or incomplete implementation of the test for logging in a basic user and participating in a quiz. | No or inadequate implementation of the test for logging in a basic user and participating in a quiz. |
 
 ### Functionality: Scripts - 5%
 
-| **Criteria**                                  | **10-9**                                                 | **8-7**                                                  | **6-5**                                                   | **4-0**                                                 |
-| --------------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------- |
-| **Run RESTful API and Frontend Locally** | Provide clear instructions and scripts that successfully run both the RESTful API and frontend application locally. | Minor issues or gaps in the provided instructions and scripts for running the RESTful API and frontend locally. | Significant issues or incomplete instructions/scripts for running the RESTful API and frontend locally. | No or inadequate instructions/scripts for running the RESTful API and frontend locally. |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Run RESTful API and Frontend Locally** | Provide clear instructions and scripts that successfully run both the RESTful API and frontend applications locally. | Minor issues or gaps in the provided instructions and scripts for running the RESTful API and frontend locally. | Significant issues or incomplete instructions/scripts for running the RESTful API and frontend locally. | No or inadequate instructions/scripts for running the RESTful API and frontend locally. |
 | **Run End-to-End Tests Using Cypress** | Provide clear instructions and scripts that successfully run end-to-end tests using Cypress. | Minor issues or gaps in the provided instructions and scripts for running end-to-end tests using Cypress. | Significant issues or incomplete instructions/scripts for running end-to-end tests using Cypress. | No or inadequate instructions/scripts for running end-to-end tests using Cypress. |
 | **Create and Apply Migration Using Prisma** | Provide clear instructions and scripts that successfully create and apply a migration using Prisma. | Minor issues or gaps in the provided instructions and scripts for creating and applying a migration using Prisma. | Significant issues or incomplete instructions/scripts for creating and applying a migration using Prisma. | No or inadequate instructions/scripts for creating and applying a migration using Prisma. |
 | **Reset Database Using Prisma**       | Provide clear instructions and scripts that successfully reset the database using Prisma. | Minor issues or gaps in the provided instructions and scripts for resetting the database using Prisma. | Significant issues or incomplete instructions/scripts for resetting the database using Prisma. | No or inadequate instructions/scripts for resetting the database using Prisma. |
@@ -71,8 +71,8 @@
 
 ### Documentation - 5%
 
-| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
-| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **GitHub Project Board**                    | Consistent and effective use of GitHub project board for organising and prioritising development work. | Minor inconsistencies in GitHub project board usage. | Significant issues in GitHub project board usage.   | GitHub project board is not used or poorly maintained. |
 | **README Content**                    | Well-documented repository README.md with required information. | Minor issues in documentation or missing some details. | Significant issues in documentation or missing key information. | README.md lacks essential information or is poorly structured. |
 | **Markdown Usage**                          | Effective use of Markdown, including headings, bold text, code blocks, etc. | Some Markdown elements are used, but inconsistencies are present. | Limited use of Markdown or improper formatting.      | Markdown is not used or severely misformatted.         |
@@ -97,7 +97,9 @@
 
 **Functionality: RESTful API: [x/20]**
 
-**Functionality: Frontend Application: [x/20]**
+**Functionality: Frontend Application - Quiz: [x/15]**
+
+**Functionality: Frontend Application - Scores: [x/15]**
 
 **Functionality: Testing: [x/5]**
 
