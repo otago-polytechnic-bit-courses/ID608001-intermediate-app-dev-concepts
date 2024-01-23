@@ -1,6 +1,26 @@
 
 # Marking Rubric
 
+## How is this assessment marked?
+
+Let us use the **Functionality: RESTful API** section as an example.  
+
+* This section is worth 20% and has 11 criteria.
+
+* If a learner achieves a 10 for criteria 1, a 9 for criteria 2, a 8 for criteria 3, a 7 for criteria 4, a 6 for criteria 5, a 5 for criteria 6, a 4 for criteria 7, a 3 for criteria 8, a 2 for criteria 9, a 1 for criteria 10, and a 0 for criteria 11, then the learner's mark for this section is calculated as follows:
+
+    ```
+    (10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 + 0) / 11 = 5
+    ```
+
+* The total above is multiplied by the weighting of this section, then multiplied by 10:
+
+    ```
+    (5 * 0.20) * 10 = 10
+    ```
+
+* This learner would receive a mark of 10% for this section.
+
 ### Functionality: RESTful API - 20%
 
 | **Criteria**                                             | **10-9**                                                 | **8-7**                                                  | **6-5**                                                  | **4-0**                                                  |
