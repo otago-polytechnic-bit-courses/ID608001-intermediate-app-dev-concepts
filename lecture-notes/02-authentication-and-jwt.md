@@ -22,7 +22,7 @@ In the `.env` file, add the following environment variables:
 
 ```bash
 JWT_SECRET=Pazzw0rd123
-JWT_LIFETIME=1hr
+JWT_LIFETIME=1800
 ```
 
 The `.env` file should look like this:
@@ -31,14 +31,14 @@ The `.env` file should look like this:
 PORT=3000
 DATABASE_URL=The PostgreSQL connection string
 JWT_SECRET=Pazzw0rd123
-JWT_LIFETIME=1hr
+JWT_LIFETIME=1800
 ```
 
 You will use the `JWT_SECRET` environment variable's value, i.e., Pazzw0rd123, to sign the **JWT**. The lifetime of the **JWT** is the `JWT_LIFETIME` environment variable's value, i.e., 1 hour.
 
 ### Schema
 
-In the `prisma.schema` file, add the following `User` model:
+In the `prisma.schema` file, add the following model:
 
 ```js
 model User {
@@ -49,6 +49,12 @@ model User {
   createdAt       DateTime      @default(now())
   institutions    Institution[]
   departments     Department[]
+}
+
+model TokenBlacklist {
+  id              String       @id @default(uuid())
+  token           String        @unique
+  createdAt       DateTime      @default(now())
 }
 ```
 
