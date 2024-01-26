@@ -1,4 +1,65 @@
-# 01: Versioning, CORS, Helmet and Rate Limiting
+# 01: GitHub, Versioning, CORS, Helmet and Rate Limiting
+
+## GitHub
+
+In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking the following:
+
+<https://classroom.github.com/a/XHo2mFNU>
+
+You will use this repository for your **formative assessments** only.
+
+## Development Workflow
+
+By default, **GitHub Classroom** creates an empty repository. Firstly, you must create a **README** and `.gitignore` file. **GitHub** provides an option for creating new files once the repository is created.
+
+## Create a README
+
+Click on the **Add file** button, then the **Create new file** button. Name your file `README.md` (Markdown), then click on the **Commit new file** button. You should see a new file in your formative assessments repository called `README.md` and the `main` branch.
+
+## Create a .gitignore File
+
+Like before, click on the **Add file** button and then the **Create new file** button. Name your file `.gitignore`. A `.gitignore` template dropdown will appear on the right-hand side of the screen. Select the **Node** `.gitignore` template. Click on the **Commit new file** button. You should see a new file in your formative assessments repository called `.gitignore`.
+
+**Resources:**
+
+- <https://git-scm.com/docs/gitignore>
+- <https://github.com/github/gitignore>
+
+## Clone a Repository
+
+Open up **Git Bash** or whatever alternative you see fit on your computer. Clone your formative assessments repository to a location on your computer using the command: `git clone <repository URL>`.
+
+**Resource:**
+
+- <https://git-scm.com/docs/git-clone>
+
+## Commit Message Conventions
+
+When committing changes to your repository, you should follow the **conventional commits** convention. A **conventional commit** consists of a **type**, **scope** and **description**. The **type** and **description** are mandatory, while the **scope** is optional. The **type** must be one of the following:
+
+- **build**: Changes that affect the build system or external dependencies
+- **ci**: Changes to our CI configuration files and scripts
+- **docs**: Documentation only changes
+- **feat**: A new feature
+- **fix**: A bug fix
+- **perf**: A code change that improves performance
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- **test**: Adding missing tests or correcting existing tests
+
+The **scope** is a phrase describing the section of the codebase that is affected by the change. For example, if you are working on the **formative assessment** for **JavaScript**, you can use the scope `javascript`. If you are working on the **formative assessment** for **HTML**, you can use the scope `html`.
+
+The **description** is a short description of the change. It should be written in the imperative mood, meaning it should be written as if you are giving a command or instruction. For example, "Add a new feature" instead of "Added a new feature".
+
+Here are some examples of **conventional commits**:
+
+- `feat(javascript): Add a new feature`
+- `fix(html): Fix a bug`
+- `docs(css): Update documentation`
+
+**Resource:** 
+
+- <https://www.conventionalcommits.org/en/v1.0.0/>
 
 ## Versioning
 

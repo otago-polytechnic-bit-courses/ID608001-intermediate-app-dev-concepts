@@ -1,26 +1,6 @@
 
 # Marking Rubric
 
-## How is this assessment marked?
-
-Let us use the **Functionality: RESTful API** section as an example.  
-
-* This section is worth 20% and has 11 criteria.
-
-* If a learner achieves a 10 for criteria 1, a 9 for criteria 2, a 8 for criteria 3, a 7 for criteria 4, a 6 for criteria 5, a 5 for criteria 6, a 4 for criteria 7, a 3 for criteria 8, a 2 for criteria 9, a 1 for criteria 10, and a 0 for criteria 11, then the learner's mark for this section is calculated as follows:
-
-    ```
-    (10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 + 0) / 11 = 5
-    ```
-
-* The total above is multiplied by the weighting of this section, then multiplied by 10:
-
-    ```
-    (5 * 0.20) * 10 = 10
-    ```
-
-* This learner would receive a mark of 10% for this section.
-
 ### Functionality: RESTful API - 20%
 
 | **Criteria**                                             | **10-9**                                                 | **8-7**                                                  | **6-5**                                                  | **4-0**                                                  |
@@ -37,7 +17,7 @@ Let us use the **Functionality: RESTful API** section as an example.
 | **Quiz: Response Messages and Status Codes**        | Clear and appropriate response messages and status codes for various quiz requests. | Minor inconsistencies or less clarity in response messages and status codes. | Significant issues or lack of clarity in response messages and status codes. | Missing or inadequate response messages and status codes. |
 | **Other Security Measures**       | Implementation of versioning, Helmet, CORS, rate limiting, caching, and compression. | Minor issues or gaps in implementing other security measures. | Significant issues or incomplete implementation of other security measures. | No or inadequate implementation of other security measures. |
 
-### Functionality: Frontend Application - Quiz - 15%
+### Functionality: Frontend Application - Quiz - 20%
 
 | **Criteria**                                 | **10-9**                                                 | **8-7**                                                  | **6-5**                                                  | **4-0**                                                  |
 | -------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
@@ -45,14 +25,14 @@ Let us use the **Functionality: RESTful API** section as an example.
 | **User Pages Functionality**           | Successful creation of user pages with accurate functionality for super admin and basic users. | Minor issues or inconsistencies in user page functionality. | Significant issues or incomplete implementation in user page functionality. | No or critical omissions in user page functionality.       |
 | **Quiz Pages Functionality**           | Successful creation of quiz pages with accurate functionality for super admin and basic users. | Minor issues or inconsistencies in quiz page functionality. | Significant issues or incomplete implementation in quiz page functionality. | No or critical omissions in quiz page functionality.       |
 | **Navigation and Footer**             | Implementation of a navigation bar and footer that meets the specified requirements. | Minor issues or inconsistencies in navigation bar and footer. | Significant issues or incomplete implementation in navigation bar and footer. | No or critical omissions in navigation bar and footer.     |
-| **Form Validation and UI Styling**    | Graceful handling of incorrectly formatted form field values with validation error messages. UI is visually attractive with Tailwind CSS. | Minor issues or inconsistencies in form validation and UI styling. | Significant issues or incomplete implementation in form validation and UI styling. | No or critical omissions in form validation and UI styling.  |
+| **Form Validation and UI Styling**    | Graceful handling of incorrectly formatted form field values with validation error messages. UI is visually attractive with Tailwind CSS and Shadcn UI. | Minor issues or inconsistencies in form validation and UI styling. | Significant issues or incomplete implementation in form validation and UI styling. | No or critical omissions in form validation and UI styling.  |
 
-### Functionality: Frontend Application - RESTful API - 5%
+### Functionality: Frontend Application - RESTful API - 10%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
-| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                 | **10-9**                                                 | **8-7**                                                  | **6-5**                                                  | **4-0**                                                  |
+| -------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | **RESTful API Page Functionality**     | Implementation of a page allowing an unauthenticated user to retrieve RESTful API information. | Minor issues or inconsistencies in the implementation.   | Significant issues or incomplete implementation.        | No or critical omissions in implementation.              |
-| **UI Styling**    | UI is visually attractive with Tailwind CSS. | Minor issues or inconsistencies in UI styling. | Significant issues or incomplete implementation in UI styling. | No or critical omissions in UI styling.  |
+| **UI Styling**    | UI is visually attractive with Tailwind CSS and Shadcn UI. | Minor issues or inconsistencies in UI styling. | Significant issues or incomplete implementation in UI styling. | No or critical omissions in UI styling.  |
 
 ### Functionality: Testing - 5%
 
@@ -117,9 +97,9 @@ Let us use the **Functionality: RESTful API** section as an example.
 
 **Functionality: RESTful API: [x/20]**
 
-**Functionality: Frontend Application - Quiz: [x/15]**
+**Functionality: Frontend Application - Quiz: [x/20]**
 
-**Functionality: Frontend Application - Scores: [x/15]**
+**Functionality: Frontend Application - Scores: [x/10]**
 
 **Functionality: Testing: [x/5]**
 
