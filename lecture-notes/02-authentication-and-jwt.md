@@ -50,12 +50,6 @@ model User {
   institutions    Institution[]
   departments     Department[]
 }
-
-model TokenBlacklist {
-  id              String       @id @default(uuid())
-  token           String        @unique
-  createdAt       DateTime      @default(now())
-}
 ```
 
 **Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev`. Also, we are using the `uuid` function to generate a unique id for the `User` model.
