@@ -87,9 +87,9 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 		\item \textbf{Note:} You are required to use the provided \textbf{schema.prisma} file. You can find this in the \textbf{assessments} directory of the \textbf{course materials} repository.
 		\item \textbf{User:}
 		\begin{itemize}
-			\item You will have \textbf{two} types of users - \textbf{super admin} and \textbf{basic} user.
+			\item You will have \textbf{two} types of users - \textbf{admin} and \textbf{basic} user.
 			\item An \textbf{admin} and \textbf{basic} user will have the following information: first name, last name, username, email address, profile picture, password, confirm password and role. The confirm password does not need to be stored in the database. The users' profile picture will be from the following \textbf{API} - \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api}. Each profile picture should be, in most cases, different. I suggest using a random seed when setting the user's profile picture.
-			\item An \textbf{admin} and \textbf{basic} user can login, get their information and update their information but not delete themselves. An \textbf{admin} user can get all users' information, update all \textbf{basic} users' information but not \textbf{super admin} user's information and delete all \textbf{basic} users but not \textbf{super admin} users. A \textbf{basic} user can register.
+			\item An \textbf{admin} and \textbf{basic} user can login, get their information and update their information but not delete themselves. An \textbf{admin} user can get all users' information, update all \textbf{basic} users' information but not \textbf{admin} user's information and delete all \textbf{basic} users but not \textbf{admin} users. A \textbf{basic} user can register.
 			\item When performing a \textbf{POST} request for registering a \textbf{basic} user, the following error checking needs to be implemented using \textbf{Joi} and/or conditional statements:
 			\begin{itemize}
 				\item First name has a minimum length of two characters, a maximum length of 50 characters and alpha characters only.
@@ -102,7 +102,7 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 			For each error check, a status code and response message is returned, i.e., "First name must have a minimum length of two characters".
 			\item When performing a \textbf{POST} request for logging in a user using either username/password or email address/password, return a status code, a response message, i.e., "$<$User's username$>$ has successfully logged in" and the user's \textbf{JWT}.
 			\item When performing a \textbf{PUT} and \textbf{DELETE} request, return a status code and a response message, i.e., "$<$User's username$>$'s information has successfully updated" or "$<$User's username$>$ has successfully deleted".
-			\item Five \textbf{super admin} users are seeded via a \textbf{script} in the \textbf{package.json} file. The \textbf{super admin} users' data will be fetched from a local file and inserted into the \textbf{User} table using \textbf{Prisma}.  
+			\item Five \textbf{admin} users are seeded via a \textbf{script} in the \textbf{package.json} file. The \textbf{admin} users' data will be fetched from a local file and inserted into the \textbf{User} table using \textbf{Prisma}.  
 			\item Five \textbf{basic} users are seeded via an \textbf{admin} user. The \textbf{basic} users' data will be fetched from a private \textbf{GitHub Gist} using \textbf{Axios} and inserted into the \textbf{User} table using \textbf{Prisma}. 
 		\end{itemize} 
 		\item \textbf{Quiz:}
@@ -132,10 +132,10 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 		\item \textbf{User:}
 		\begin{itemize}
 			\item Create a page that allows a \textbf{basic} user to register.
-			\item Create a page that allows an \textbf{admin} and \textbf{basic} user to login.
+			\item Create a page that allows an \textbf{admin} and \textbf{basic} user to login and logout.
 			\item Create pages that allow:
 			\begin{itemize}
-				\item An \textbf{admin} user to get their information, update their information but not delete themselves, get all user's information, update all \textbf{basic} users' information but not \textbf{super admin} user's information and delete all \textbf{basic} users but not \textbf{super admin} users.
+				\item An \textbf{admin} user to get their information, update their information but not delete themselves, get all user's information, update all \textbf{basic} users' information but not \textbf{admin} user's information and delete all \textbf{basic} users but not \textbf{admin} users.
 				\item A \textbf{basic} user to get their information and update their information but not delete themselves.
 			\end{itemize}
 		\end{itemize}
@@ -220,7 +220,7 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 		\item How do you run your \textbf{End-to-end tests}?
 		\item How do you create and apply a migration?  
 		\item How do you reset your database?
-		\item How do you seed \textbf{super admin} users?
+		\item How do you seed \textbf{admin} users?
 		\item How do you open \textbf{Prisma Studio}?
 		\item How do you format your code?
 		\item How do you lint your code?		
