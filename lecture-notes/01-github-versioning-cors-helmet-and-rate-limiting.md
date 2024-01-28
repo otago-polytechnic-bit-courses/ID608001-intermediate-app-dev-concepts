@@ -73,6 +73,12 @@ There are two main ways to version an API:
 
 We will use **URL versioning** in this course.
 
+Here is an example of **URL versioning** in the `app.js` file:
+
+```js
+app.use("/api/v1/institutions", institutionRoutes);
+```
+
 ## CORS
 
 CORS stands for **Cross-Origin Resource Sharing**. It is a mechanism that uses additional **HTTP headers** to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin.
