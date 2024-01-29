@@ -27,7 +27,7 @@ model User {
 
 enum Role {
   BASIC_USER
-  SUPER_ADMIN_USER
+  ADMIN_USER
 }
 
 enum Type {
