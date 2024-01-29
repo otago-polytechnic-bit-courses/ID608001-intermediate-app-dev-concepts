@@ -21,7 +21,7 @@ const App = () => {
     queryKey: ["institutionData"],
     queryFn: ({ pageParam = 1 }) =>
       fetch(
-        `https://id607001-graysono-wbnj.onrender.com/api/institutions?page=${pageParam}&amount=3`
+        `https://id607001-graysono-wbnj.onrender.com/api/institutions?page=${pageParam}&amount=5`
       ).then((res) => res.json()),
     getNextPageParam: (prevData) => prevData.nextPage,
   });
