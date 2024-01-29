@@ -1,5 +1,7 @@
 # 05: React, Prettier and ESLint
 
+If you get stuck, a completed version of this project is available in the **exemplar** directory.
+
 ## React
 
 Refresh your memory on the following topics:
@@ -8,6 +10,8 @@ Refresh your memory on the following topics:
 2. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/s1-24/lecture-notes/11-react-2
 3. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/s1-24/lecture-notes/12-react-3
 
+**Note:** You do not need to complete the **formative assessments**. However, you are welcome to do so.
+
 ## Prettier
 
 You are going to extend your knowledge of **Prettier**. Instead of formatting every file in your project, you can configure **Prettier** to only format files that are staged for commit.
@@ -15,15 +19,19 @@ You are going to extend your knowledge of **Prettier**. Instead of formatting ev
 1. Install the following package:
 
 ```bash
-npm install --save-dev pretty-quick simple-git-hooks
+npm install pretty-quick --save-dev 
 ```
 
 2. Add the following script to your `package.json` file:
 
 ```json
-"simple-git-hooks": {
-  "pre-commit": "pretty-quick --staged"
-}
+"pretty-quick": "pretty-quick --staged"
+```
+
+3. Run the following command:
+
+```bash
+npm run pretty-quick
 ```
 
 ## ESLint
@@ -33,7 +41,7 @@ npm install --save-dev pretty-quick simple-git-hooks
 1. Install the following packages:
 
 ```bash
-npm install --save-dev eslint eslint-config-prettier eslint-plugin-prettier prettier
+npm install eslint eslint-config-prettier eslint-plugin-prettier prettier --save-dev 
 ```
 
 2. Update your `.eslintrc.cjs` file:
@@ -80,3 +88,6 @@ then running the following command:
 ```bash
 npm run lint
 ```
+
+## Formative Assessment
+
