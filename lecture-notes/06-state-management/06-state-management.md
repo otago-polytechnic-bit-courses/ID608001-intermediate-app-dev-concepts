@@ -2,10 +2,6 @@
 
 If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
-## State Management
-
-State management is a way to manage the state of your application. It is a way to store and update data in your application. There are many ways to manage state in your application. In this lecture, we will be looking at **React Context API** and **Redux**.
-
 ## Preparation
 
 Create a new project using **Create Vite App**:
@@ -20,11 +16,15 @@ When prompted, select the following options:
 - Framework: **React**
 - Variant: **JavaScript + SWC**
 
-Install the following dependencies:
+Install the following dependency:
 
 ```bash
-npm install prop-types redux @reduxjs/toolkit
+npm install prop-types
 ```
+
+## State Management
+
+State management is a way to manage the state of your application. It is a way to store and update data in your application. There are many ways to manage state in your application. In this lecture, we will be looking at **React Context API** and **Redux**.
 
 ---
 
@@ -243,20 +243,11 @@ Here we are using the `useContext()` hook to access the data provided by the `Ca
 
 **Redux** much like **React Context API** is a way to manage state in your application. It provides a predictable state container which means the state of your application is stored in a single **JavaScript** object called a **store**.
 
----
+To get started, install the following dependencies:
 
-In the `src` directory, create a new directory called `utils`. In the `utils` directory, create a new file called `actions.js`. In `src/utils/actions.js`, add the following code:
-
-```js
-export const ADD_TO_CART = "ADD_TO_CART";
-
-export const addToCart = (name, price) => ({
-  type: ADD_TO_CART,
-  payload: { name, price },
-});
+```bash
+npm install redux @reduxjs/toolkit react-redux
 ```
-
-Here we are creating an action creator function called `addToCart()`. An action creator function is a function that returns an action object. An action object is an object that contains a `type` property and a `payload` property. The `type` property is a string that describes the action. The `payload` property is an object that contains the data that you want to pass to the reducer function.
 
 ---
 
