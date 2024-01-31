@@ -89,7 +89,7 @@ const App = () => {
 export default App;
 ```
 
-<ADD IMAGE HERE>
+![](../../resources/img/07-react-query/07-react-query-1.jpeg)
 
 ### Developer Tools
 
@@ -116,7 +116,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 </React.StrictMode>,
 ```
 
-<ADD IMAGE HERE>
+Click on the icon in the bottom right corner to open the developer tools.
+
+![](../../resources/img/07-react-query/07-react-query-2.jpeg)
+
+![](../../resources/img/07-react-query/07-react-query-3.jpeg)
 
 ## Mutation Example
 
@@ -171,7 +175,6 @@ const App = () => {
 
 ```js
 // ...
-
 return (
   <>
     <form onSubmit={handleSubmit}>
@@ -189,4 +192,78 @@ return (
 // ...
 ```
 
-<ADD IMAGE HERE>
+![](../../resources/img/07-react-query/07-react-query-4.jpeg)
+
+## Infinite Query Example
+
+1. In `src/App.jsx`, import the `useInfiniteQuery` hook from `@tanstack/react-query`:
+
+```js
+// ...
+import { useQuery, useMutation, useInfiniteQuery } from "@tanstack/react-query";
+```
+
+2. Using the `useInfiniteQuery` hook, create a new infinite query:
+
+```js
+const App = () => {
+  // Comment out the existing query
+
+  // const { isLoading, err, data } = useQuery({
+  //   queryKey: ["institutionData"],
+  //   queryFn: () =>
+  //     fetch(
+  //       "https://id607001-graysono-wbnj.onrender.com/api/institutions"
+  //     ).then((res) => res.json()),
+  // });
+
+  const {
+    isLoading,
+    err,
+    data,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["institutionData"],
+    queryFn: ({ pageParam = 1 }) => // Use the pageParam to fetch the next page. If the pageParam is undefined, fetch the first page
+      fetch(
+        `https://id607001-graysono-wbnj.onrender.com/api/institutions?page=${pageParam}&amount=5`
+      ).then((res) => res.json()),
+    getNextPageParam: (prevData) => prevData.nextPage, // Get the next page from the previous data. If a next page does not exist, return undefined
+  });
+  // ...
+};
+```
+
+**What is an infinite query?**
+
+An infinite query is a query that fetches data in pages. It is similar to a query, but it is used for fetching large amounts of data.
+
+3. Declare the following in the `return` statement under the `table` element:
+
+```js
+{hasNextPage && (
+  <button onClick={() => fetchNextPage()}>
+    {isFetchingNextPage ? "Loading..." : "Load More"}
+  </button>
+)}
+```
+
+![](../../resources/img/07-react-query/07-react-query-4.jpeg)
+
+Click on the **Load More** button to fetch the next page of data.
+
+![](../../resources/img/07-react-query/07-react-query-5.jpeg)
+
+# Formative Assessment
+
+Before you start, create a new branch called **07-formative-assessment**.
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+## Task Tahi
