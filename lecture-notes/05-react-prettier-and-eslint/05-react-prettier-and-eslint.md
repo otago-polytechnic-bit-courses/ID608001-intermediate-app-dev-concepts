@@ -33,7 +33,7 @@ You are going to extend your knowledge of **Prettier**. Instead of formatting ev
 1. Install the following package:
 
 ```bash
-npm install pretty-quick --save-dev 
+npm install pretty-quick --save-dev
 ```
 
 2. Add the following script to your `package.json` file:
@@ -55,7 +55,7 @@ npm run pretty-quick
 1. Install the following packages:
 
 ```bash
-npm install eslint eslint-config-prettier eslint-plugin-prettier prettier --save-dev 
+npm install eslint eslint-config-prettier eslint-plugin-prettier prettier --save-dev
 ```
 
 2. Update your `.eslintrc.cjs` file:
@@ -65,24 +65,24 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-    'prettier',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "prettier",
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh', 'prettier'],
+  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
+  settings: { react: { version: "18.2" } },
+  plugins: ["react-refresh", "prettier"],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
+    "react-refresh/only-export-components": [
+      "warn",
       { allowConstantExport: true },
     ],
-    'prettier/prettier': 'warn',
+    "prettier/prettier": "warn",
   },
-}
+};
 ```
 
 3. Run the following command:
@@ -114,3 +114,9 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
 ## Task Tahi
+
+If you have not already, implement the code examples above before you move on to **Formative Assessment Submission**.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

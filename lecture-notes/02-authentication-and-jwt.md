@@ -310,31 +310,31 @@ Test the changes in **Postman** before you move on to the **Formative Assessment
 
 The screenshot below is an example of registering a user.
 
-![](../../resources/img/02-authentication/02-authentication-1.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-1.jpeg)
 
 The screenshot below is an example of registering an existing user.
 
-![](../../resources/img/02-authentication/02-authentication-2.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-2.jpeg)
 
 The screenshot below is an example of logging in as a user with an invalid email.
 
-![](../../resources/img/02-authentication/02-authentication-3.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-3.jpeg)
 
 The screenshot below is an example of logging in as a user with an invalid password.
 
-![](../../resources/img/02-authentication/02-authentication-4.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-4.jpeg)
 
 The screenshot below is an example of logging in as a user and being returned a token.
 
-![](../../resources/img/02-authentication/02-authentication-5.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-5.jpeg)
 
 The screenshot below is an example of a **POST** request to a protected route without providing a token.
 
-![](../../resources/img/02-authentication/02-authentication-6.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-6.jpeg)
 
 The screenshot below is an example of a **POST** request to a protected route using an authenticated user.
 
-![](../../resources/img/02-authentication/02-authentication-7.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-7.jpeg)
 
 # Formative Assessment
 
