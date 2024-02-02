@@ -4,17 +4,19 @@ If you get stuck, a completed version of this project is available in the **exem
 
 ## Preparation
 
-Create a new project using **Create Vite App**:
+1. Create a new project using **Create Vite App**:
 
 ```bash
 npm init vite@latest
 ```
 
-When prompted, select the following options:
+2. When prompted, select the following options:
 
 - Project name: **05-react-prettier-and-eslint**
 - Framework: **React**
 - Variant: **JavaScript + SWC**
+
+3. `cd` into **05-react-prettier-and-eslint**, run `npm install` and open it in your code editor.
 
 ## React
 

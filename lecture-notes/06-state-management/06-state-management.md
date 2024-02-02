@@ -4,23 +4,19 @@ If you get stuck, a completed version of this project is available in the **exem
 
 ## Preparation
 
-Create a new project using **Create Vite App**:
+1. Create a new project using **Create Vite App**:
 
 ```bash
 npm init vite@latest
 ```
 
-When prompted, select the following options:
+2. When prompted, select the following options:
 
 - Project name: **06-state-management**
 - Framework: **React**
 - Variant: **JavaScript + SWC**
 
-Install the following dependency:
-
-```bash
-npm install prop-types
-```
+3. `cd` into **06-state-management**, run `npm install` and open it in your code editor.
 
 ## State Management
 
@@ -36,19 +32,30 @@ In the `src` directory, create a new directory called `components`. In the `comp
 In `src/components/Book.jsx`, add the following code:
 
 ```js
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"; // Remember to install this dependency
 
 const Book = (props) => {
   return (
     <>
       <p>{props.name}</p>
       <p>${props.price}</p>
-      <button onClick={() => props.addToCart()}>Add to cart</button>
+      <button
+        onClick={() =>
+          props.addToCart({
+            id: props.id,
+            name: props.name,
+            price: props.price,
+          })
+        }
+      >
+        Add to cart
+      </button>
     </>
   );
 };
 
 Book.prototypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   addToCart: PropTypes.func.isRequired,
@@ -83,12 +90,7 @@ const BookList = () => {
   return (
     <>
       {books.map((book) => (
-        <Book
-          key={book.id}
-          name={book.name}
-          price={book.price}
-          addToCart={() => addToCart(book.name, book.price)}
-        />
+        <Book key={book.id} id={book.id} name={book.name} price={book.price} />
       ))}
     </>
   );
@@ -129,8 +131,8 @@ const CartContext = createContext();
 const CartProvider = (props) => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (name, price) =>
-    setCart((prevCart) => [...prevCart, { name, price }]);
+  const addToCart = (id, name, price) =>
+    setCart((prevCart) => [...prevCart, { id, name, price }]);
 
   return (
     <CartContext.Provider value={{ cart, addToCart }}>
@@ -183,7 +185,15 @@ const Book = (props) => {
     <>
       <p>{props.name}</p>
       <p>${props.price}</p>
-      <button onClick={() => addToCart(props.name, props.price)}>
+      <button
+        onClick={() =>
+          addToCart({
+            id: props.id,
+            name: props.name,
+            price: props.price,
+          })
+        }
+      >
         Add to cart
       </button>
     </>
@@ -191,6 +201,7 @@ const Book = (props) => {
 };
 
 Book.prototypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };
@@ -228,7 +239,7 @@ const BookList = () => {
   return (
     <>
       {books.map((book) => (
-        <Book key={book.id} name={book.name} price={book.price} />
+        <Book key={book.id} id={book.id} name={book.name} price={book.price} />
       ))}
     </>
   );
@@ -362,7 +373,7 @@ import { useSelector } from "react-redux";
 import Book from "./Book";
 
 const BookList = () => {
-  const data = useSelector((state) => state);
+  const { cart } = useSelector((state) => state.data);
 
   const [books] = useState([
     { id: 1, name: "Pride and Prejudice", price: 10 },
@@ -372,13 +383,13 @@ const BookList = () => {
   ]);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    console.log(cart);
+  }, [cart]);
 
   return (
     <>
       {books.map((book) => (
-        <Book key={book.id} name={book.name} price={book.price} />
+        <Book key={book.id} id={book.id} name={book.name} price={book.price} />
       ))}
     </>
   );
@@ -400,3 +411,13 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
 ## Task Tahi
+
+Move the `books` state in the `BookList` component to the `initialState` object in the `src/slices/cartSlice.js` file. Update the `BookList.jsx` file to use the `useSelector()` hook to access the `books` state.
+
+## Task Rua
+
+In the `src/components` directory, create a new file called `Cart.jsx`. In the `Cart.jsx` file, display the total number of items and the total price of the items in the cart. Use the `useSelector()` hook to access the `cart` state.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

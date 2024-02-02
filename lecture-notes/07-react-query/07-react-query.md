@@ -2,6 +2,23 @@
 
 If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
+## Preparation
+
+1. Create a new project using **Create Vite App**:
+
+```bash
+npm init vite@latest
+```
+
+2. When prompted, select the following options:
+
+- Project name: **07-react-query**
+- Framework: **React**
+- Variant: **JavaScript + SWC**
+
+3. `cd` into **07-react-query**, run `npm install` and open it in your code editor.
+
+
 ## React Query
 
 **React Query** is a library that helps you fetch, cache and update data in your React applications. It is a great alternative to Redux and other state management libraries. It is also a great alternative to the `fetch` API and `axios` for fetching data from APIs.
@@ -267,6 +284,8 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
 ## Task Tahi
+
+
 
 ## Task Rua
 
