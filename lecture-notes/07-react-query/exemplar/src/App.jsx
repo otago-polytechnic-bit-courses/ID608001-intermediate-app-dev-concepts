@@ -33,7 +33,11 @@ const App = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(institution),
+        body: JSON.stringify({
+          name: institution.name,
+          region: institution.region,
+          country: institution.country,
+        }),
       }).then((res) => res.json()),
     onSuccess: () => {
       queryClient.invalidateQueries("institutionData");
@@ -71,15 +75,23 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {data.pages
-            .flatMap((data) => data.data)
-            .map((institution) => (
-              <tr key={institution.id}>
-                <td>{institution.name}</td>
-                <td>{institution.region}</td>
-                <td>{institution.country}</td>
-              </tr>
-            ))}
+          {data.pages[0].msg ? (
+            <tr>
+              <td colSpan="3">{data.pages[0].msg}</td>
+            </tr>
+          ) : (
+            <>
+              {data.pages
+                .flatMap((data) => data.data)
+                .map((institution) => (
+                  <tr key={institution.id}>
+                    <td>{institution.name}</td>
+                    <td>{institution.region}</td>
+                    <td>{institution.country}</td>
+                  </tr>
+                ))}
+            </>
+          )}
         </tbody>
       </table>
       {hasNextPage && (

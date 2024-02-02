@@ -18,7 +18,6 @@ npm init vite@latest
 
 3. `cd` into **07-react-query**, run `npm install` and open it in your code editor.
 
-
 ## React Query
 
 **React Query** is a library that helps you fetch, cache and update data in your React applications. It is a great alternative to Redux and other state management libraries. It is also a great alternative to the `fetch` API and `axios` for fetching data from APIs.
@@ -58,7 +57,6 @@ export const queryClient = new QueryClient();
 In `src/App.jsx`, update the code to the following:
 
 ```js
-import { queryClient } from "./main";
 import { useQuery } from "@tanstack/react-query";
 
 const App = () => {
@@ -84,9 +82,9 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {data.data.length === 0 ? (
+          {data.msg ? (
             <tr>
-              <td colSpan="3">No data available</td>
+              <td colSpan="3">{data.msg}</td>
             </tr>
           ) : (
             data.data.map((institution) => (
@@ -141,11 +139,13 @@ Click on the icon in the bottom right corner to open the developer tools.
 
 ## Mutation Example
 
-1. In `src/App.jsx`, import the `useMutation` hook from `@tanstack/react-query`:
+1. In `src/App.jsx`, import the `useMutation` hook from `@tanstack/react-query` and `queryClient` from `src/main.jsx`:
 
 ```js
 // ...
 import { useQuery, useMutation } from "@tanstack/react-query";
+
+import { queryClient } from "./main";
 ```
 
 2. Using the `useMutation` hook, create a new mutation:
@@ -160,7 +160,11 @@ const App = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(institution),
+        body: JSON.stringify({
+          name: institution.name,
+          region: institution.region,
+          country: institution.country,
+        }),
       }).then((res) => res.json()),
     onSuccess: () => queryClient.invalidateQueries("institutionData"),
   });
@@ -195,11 +199,11 @@ const App = () => {
 return (
   <>
     <form onSubmit={handleSubmit}>
-      <label for="name">Name</label>
+      <label htmlFor="name">Name</label>
       <input type="text" id="name" name="name" />
-      <label for="region">Region</label>
+      <label htmlFor="region">Region</label>
       <input type="text" id="region" name="region" />
-      <label for="country">Country</label>
+      <label htmlFor="country">Country</label>
       <input type="text" id="country" name="country" />
       <button type="submit">Submit</button>
     </form>
@@ -243,7 +247,9 @@ const App = () => {
     fetchNextPage,
   } = useInfiniteQuery({
     queryKey: ["institutionData"],
-    queryFn: ({ pageParam = 1 }) => // Use the pageParam to fetch the next page. If the pageParam is undefined, fetch the first page
+    queryFn: (
+      { pageParam = 1 } // Use the pageParam to fetch the next page. If the pageParam is undefined, fetch the first page
+    ) =>
       fetch(
         `https://id607001-graysono-wbnj.onrender.com/api/institutions?page=${pageParam}&amount=5`
       ).then((res) => res.json()),
@@ -257,14 +263,54 @@ const App = () => {
 
 An infinite query is a query that fetches data in pages. It is similar to a query, but it is used for fetching large amounts of data.
 
-3. Declare the following in the `return` statement under the `table` element:
+3. Update the `table` element to the following:
 
 ```js
-{hasNextPage && (
-  <button onClick={() => fetchNextPage()}>
-    {isFetchingNextPage ? "Loading..." : "Load More"}
-  </button>
-)}
+return (
+  <>
+    {/* /...  */}
+    <table>
+      <thead>
+        <tr>
+          <th>Institution</th>
+          <th>Region</th>
+          <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.pages[0].msg ? (
+          <tr>
+            <td colSpan="3">{data.pages[0].msg}</td>
+          </tr>
+        ) : (
+          <>
+            {data.pages
+              .flatMap((data) => data.data)
+              .map((institution) => (
+                <tr key={institution.id}>
+                  <td>{institution.name}</td>
+                  <td>{institution.region}</td>
+                  <td>{institution.country}</td>
+                </tr>
+              ))}
+          </>
+        )}
+      </tbody>
+    </table>
+  </>
+);
+```
+
+4. Declare the following in the `return` statement under the `table` element:
+
+```js
+{
+  hasNextPage && (
+    <button onClick={() => fetchNextPage()}>
+      {isFetchingNextPage ? "Loading..." : "Load More"}
+    </button>
+  );
+}
 ```
 
 ![](../../resources/img/07-react-query/07-react-query-4.jpeg)
@@ -285,11 +331,23 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ## Task Tahi
 
+Create a new mutation that deletes an institution. The mutation should take an `id` as an argument and should invalidate the `institutionData` query upon success. For each table row, add a **Delete** button that calls the mutation when clicked.
 
+![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-1.jpeg)
+
+![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-2.jpeg)
 
 ## Task Rua
 
-## Task Toru
+Create a new mutation that edits an institution. The mutation should take an `institution` as an argument and should invalidate the `institutionData` query upon success. For each table row, add an **Edit** button that populates the form with the institution's data when clicked. When the form is submitted, the mutation should be called.
+
+![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-3.jpeg)
+
+![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-4.jpeg)
+
+![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-5.jpeg)
+
+![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-6.jpeg)
 
 # Formative Assessment Submission
 

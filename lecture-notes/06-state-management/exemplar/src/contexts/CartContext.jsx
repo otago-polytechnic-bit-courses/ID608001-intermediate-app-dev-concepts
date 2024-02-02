@@ -5,8 +5,8 @@ const CartContext = createContext();
 const CartProvider = (props) => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (name, price) =>
-    setCart((prevState) => [...prevState, { name, price }]);
+  const addToCart = (id, name, price) =>
+    setCart((prevCart) => [...prevCart, { id, name, price }]);
 
   return (
     <CartContext.Provider value={{ cart, addToCart }}>

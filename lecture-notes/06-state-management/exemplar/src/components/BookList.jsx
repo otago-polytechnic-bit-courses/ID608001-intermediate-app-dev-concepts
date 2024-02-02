@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Book from "./Book";
 
 const BookList = () => {
-  const data = useSelector((state) => state);
+  const { cart } = useSelector((state) => state.data);
 
   const [books] = useState([
     { id: 1, name: "Pride and Prejudice", price: 10 },
@@ -14,13 +14,13 @@ const BookList = () => {
   ]);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    console.log(cart);
+  }, [cart]);
 
   return (
     <>
       {books.map((book) => (
-        <Book key={book.id} name={book.name} price={book.price} />
+        <Book key={book.id} id={book.id} name={book.name} price={book.price} />
       ))}
     </>
   );

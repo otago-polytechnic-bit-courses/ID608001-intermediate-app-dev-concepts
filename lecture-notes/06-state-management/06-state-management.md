@@ -84,8 +84,8 @@ const BookList = () => {
     console.log(cart);
   }, [cart]);
 
-  const addToCart = (name, price) =>
-    setCart((prevCart) => [...prevCart, { name, price }]);
+  const addToCart = (id, name, price) =>
+    setCart((prevCart) => [...prevCart, { id, name, price }]);
 
   return (
     <>
@@ -276,7 +276,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.cart.push(action.payload);
+      state.cart = [...state.cart, action.payload];
     },
   },
 });
@@ -345,7 +345,17 @@ const Book = (props) => {
     <>
       <p>{props.name}</p>
       <p>${props.price}</p>
-      <button onClick={() => dispatch(addToCart(props.name, props.price))}>
+      <button
+        onClick={() =>
+          dispatch(
+            addToCart({
+              id: props.id,
+              name: props.name,
+              price: props.price,
+            })
+          )
+        }
+      >
         Add to cart
       </button>
     </>
@@ -353,6 +363,7 @@ const Book = (props) => {
 };
 
 Book.prototypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };

@@ -10,7 +10,17 @@ const Book = (props) => {
     <>
       <p>{props.name}</p>
       <p>${props.price}</p>
-      <button onClick={() => dispatch(addToCart(props.name, props.price))}>
+      <button
+        onClick={() =>
+          dispatch(
+            addToCart({
+              id: props.id,
+              name: props.name,
+              price: props.price,
+            })
+          )
+        }
+      >
         Add to cart
       </button>
     </>
@@ -18,6 +28,7 @@ const Book = (props) => {
 };
 
 Book.prototypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };
