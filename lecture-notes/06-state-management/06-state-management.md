@@ -418,6 +418,8 @@ Move the `books` state in the `BookList` component to the `initialState` object 
 
 In the `src/components` directory, create a new file called `Cart.jsx`. In the `Cart.jsx` file, display the total number of items and the total price of the items in the cart. Use the `useSelector()` hook to access the `cart` state.
 
+![](../../resources/img/06-state-management/formative-assessment/06-state-management-formative-assessment-1.jpeg)
+
 # Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
