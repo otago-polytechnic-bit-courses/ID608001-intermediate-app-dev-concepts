@@ -16,6 +16,10 @@ When prompted, select the following options:
 - Framework: **React**
 - Variant: **JavaScript + SWC**
 
+## GraphQL
+
+ 
+
 # Formative Assessment 
 
 Before you start, create a new branch called **09-formative-assessment**.

@@ -1,4 +1,4 @@
-# 07: React Query
+# 08: React Query
 
 If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
@@ -12,11 +12,11 @@ npm init vite@latest
 
 2. When prompted, select the following options:
 
-- Project name: **07-react-query**
+- Project name: **08-react-query**
 - Framework: **React**
 - Variant: **JavaScript + SWC**
 
-3. `cd` into **07-react-query**, run `npm install` and open it in your code editor.
+3. `cd` into **08-react-query**, run `npm install` and open it in your code editor.
 
 ## React Query
 
@@ -104,7 +104,7 @@ const App = () => {
 export default App;
 ```
 
-![](../../resources/img/07-react-query/07-react-query-1.jpeg)
+![](../../resources/img/08-react-query/08-react-query-1.jpeg)
 
 ### Developer Tools
 
@@ -133,9 +133,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 Click on the icon in the bottom right corner to open the developer tools.
 
-![](../../resources/img/07-react-query/07-react-query-2.jpeg)
+![](../../resources/img/08-react-query/08-react-query-2.jpeg)
 
-![](../../resources/img/07-react-query/07-react-query-3.jpeg)
+![](../../resources/img/08-react-query/08-react-query-3.jpeg)
 
 ## Mutation Example
 
@@ -213,7 +213,7 @@ return (
 // ...
 ```
 
-![](../../resources/img/07-react-query/07-react-query-4.jpeg)
+![](../../resources/img/08-react-query/08-react-query-4.jpeg)
 
 ## Infinite Query Example
 
@@ -313,15 +313,15 @@ return (
 }
 ```
 
-![](../../resources/img/07-react-query/07-react-query-4.jpeg)
+![](../../resources/img/08-react-query/08-react-query-4.jpeg)
 
 Click on the **Load More** button to fetch the next page of data.
 
-![](../../resources/img/07-react-query/07-react-query-5.jpeg)
+![](../../resources/img/08-react-query/08-react-query-5.jpeg)
 
 # Formative Assessment
 
-Before you start, create a new branch called **07-formative-assessment**.
+Before you start, create a new branch called **08-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
@@ -333,21 +333,21 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 Create a new mutation that deletes an institution. The mutation should take an `id` as an argument and should invalidate the `institutionData` query upon success. For each table row, add a **Delete** button that calls the mutation when clicked.
 
-![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-1.jpeg)
+![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-1.jpeg)
 
-![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-2.jpeg)
+![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-2.jpeg)
 
 ## Task Rua
 
 Create a new mutation that edits an institution. The mutation should take an `institution` as an argument and should invalidate the `institutionData` query upon success. For each table row, add an **Edit** button that populates the form with the institution's data when clicked. When the form is submitted, the mutation should be called.
 
-![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-3.jpeg)
+![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-3.jpeg)
 
-![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-4.jpeg)
+![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-4.jpeg)
 
-![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-5.jpeg)
+![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-5.jpeg)
 
-![](../../resources/img/07-react-query/formative-assessment/07-react-query-formative-assessment-6.jpeg)
+![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-6.jpeg)
 
 # Formative Assessment Submission
 

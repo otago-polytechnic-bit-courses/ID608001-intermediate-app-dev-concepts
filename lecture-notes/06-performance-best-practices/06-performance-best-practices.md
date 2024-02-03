@@ -1,10 +1,10 @@
-# 10: React Testing Library, Jest and Cypress
+# 06: Performance Best Practices
 
 If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
 # Formative Assessment 
 
-Before you start, create a new branch called **10-formative-assessment**.
+Before you start, create a new branch called **06-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 

@@ -1,4 +1,4 @@
-# 06: State Management
+# 07: State Management
 
 If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
@@ -12,11 +12,11 @@ npm init vite@latest
 
 2. When prompted, select the following options:
 
-- Project name: **06-state-management**
+- Project name: **07-state-management**
 - Framework: **React**
 - Variant: **JavaScript + SWC**
 
-3. `cd` into **06-state-management**, run `npm install` and open it in your code editor.
+3. `cd` into **07-state-management**, run `npm install` and open it in your code editor.
 
 ## State Management
 
@@ -413,7 +413,7 @@ Here we are using the `useSelector()` hook to access the **Redux** store. The `u
 
 # Formative Assessment
 
-Before you start, create a new branch called **06-formative-assessment**.
+Before you start, create a new branch called **07-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
@@ -429,7 +429,7 @@ Move the `books` state in the `BookList` component to the `initialState` object 
 
 In the `src/components` directory, create a new file called `Cart.jsx`. In the `Cart.jsx` file, display the total number of items and the total price of the items in the cart. Use the `useSelector()` hook to access the `cart` state.
 
-![](../../resources/img/06-state-management/formative-assessment/06-state-management-formative-assessment-1.jpeg)
+![](../../resources/img/07-state-management/formative-assessment/07-state-management-formative-assessment-1.jpeg)
 
 # Formative Assessment Submission
 

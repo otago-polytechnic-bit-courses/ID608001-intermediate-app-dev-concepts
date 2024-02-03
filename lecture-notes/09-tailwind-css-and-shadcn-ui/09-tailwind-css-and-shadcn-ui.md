@@ -1,4 +1,4 @@
-# 08: Tailwind CSS and Shadcn UI
+# 09: Tailwind CSS and Shadcn UI
 
 If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
@@ -12,7 +12,7 @@ npm init vite@latest
 
 When prompted, select the following options:
 
-- Project name: **08-tailwind-css-and-shadcn-ui**
+- Project name: **09-tailwind-css-and-shadcn-ui**
 - Framework: **React**
 - Variant: **JavaScript + SWC**
 
@@ -136,7 +136,7 @@ export default App;
 
 # Formative Assessment
 
-Before you start, create a new branch called **08-formative-assessment**.
+Before you start, create a new branch called **09-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
