@@ -1,7 +1,5 @@
 # 01: GitHub, Versioning, CORS, Helmet and Rate Limiting
 
-If you get stuck, a completed version of this project is available in the **exemplar** directory.
-
 ## GitHub
 
 In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking the following:

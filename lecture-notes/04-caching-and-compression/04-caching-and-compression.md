@@ -78,13 +78,13 @@ export default cacheRoute;
 In the `app.js` file, add the following import:
 
 ```js
-import cacheRoute from "./middleware/cacheRoute.js";
+import cacheRouteMiddleware from "./middleware/cacheRoute.js";
 ```
 
 Then add the following **middleware**:
 
 ```js
-app.use(cacheRoute);
+app.use(cacheRouteMiddleware);
 ```
 
 ## Postman
@@ -93,15 +93,15 @@ Test the changes in **Postman** before you move on to the **Formative Assessment
 
 The screenshot below is an example of a cache miss.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/06-optimisation/06-optimisation-3.PNG)
+![](../../resources/img/04-caching-and-compression/04-caching-and-compression-1.PNG)
 
 The screenshot below is an example of deleting a key from the cache.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/06-optimisation/06-optimisation-4.PNG)
+![](../../resources/img/04-caching-and-compression/04-caching-and-compression-2.PNG)
 
 The screenshot below is an example of a cache hit.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/06-optimisation/06-optimisation-5.PNG)
+![](../../resources/img/04-caching-and-compression/04-caching-and-compression-3.PNG)
 
 ## Compression
 
@@ -126,7 +126,7 @@ import compression from "compression";
 For testing purposes, add the following `GET` route:
 
 ```js
-app.get(`/${BASE_URL}/${CURRENT_VERSION}/optimisation`, (req, res) => {
+app.get("/api/v1/optimisation", (req, res) => {
   const text = "See you later, alligator. Bye bye bye, butterfly";
   res.json({ msg: text.repeat(1000) });
 });
@@ -136,7 +136,7 @@ In a browser, navigate to <http://localhost:3000/api/v1/optimisation>. Open the 
 
 The screenshot below is an example of before compression.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/06-optimisation/06-optimisation-1.PNG)
+![](../../resources/img/04-caching-and-compression/04-caching-and-compression-4.PNG)
 
 As you can see, there is 51.1 kilobytes transferred over the network.
 
@@ -150,7 +150,7 @@ In the browser, refresh the page.
 
 The screenshot below is an example of after compression.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/06-optimisation/06-optimisation-2.PNG)
+![](../../resources/img/04-caching-and-compression/04-caching-and-compression-5.PNG)
 
 As you can see, there is 3.4 kilobytes transferred over the network which is significantly lower than the previous benchmark.
 
