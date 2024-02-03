@@ -323,8 +323,9 @@ export default router;
 In the `app.js` file, add the following imports:
 
 ```js
-import authV1Routes from "./routes/v1/auth.js";
 import authRouteMiddleware from "./middleware/authRoute.js";
+
+import authV1Routes from "./routes/v1/auth.js";
 ```
 
 Add the following route for `/auth`:

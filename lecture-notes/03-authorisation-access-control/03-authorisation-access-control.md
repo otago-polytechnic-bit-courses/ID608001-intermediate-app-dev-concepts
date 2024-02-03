@@ -17,8 +17,15 @@ In the `controllers/v1/auth.js`, refactor the `register` function:
 ```js
 const register = async (req, res) => {
   try {
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json",
+      });
+    }
+
     // Get the role from the Request's body property
-    const { name, email, password, username, role } = req.body;
+    const { name, email, password, role } = req.body;
 
     let user = await prisma.user.findUnique({ where: { email } });
 
@@ -31,7 +38,7 @@ const register = async (req, res) => {
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     user = await prisma.user.create({
-      data: { name, email, password: hashedPassword, username, role },
+      data: { name, email, password: hashedPassword, role },
     });
 
     delete user.password;

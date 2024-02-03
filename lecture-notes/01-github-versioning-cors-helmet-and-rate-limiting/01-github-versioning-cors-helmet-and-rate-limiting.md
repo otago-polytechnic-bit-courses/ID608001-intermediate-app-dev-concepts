@@ -78,7 +78,7 @@ We will use **URL versioning** in this course.
 Here is an example of **URL versioning** in the `app.js` file:
 
 ```js
-app.use("/api/v1/institutions", institutionRoutes);
+app.use("/api/v1/institutions", /** ... */);
 ```
 
 ## CORS
