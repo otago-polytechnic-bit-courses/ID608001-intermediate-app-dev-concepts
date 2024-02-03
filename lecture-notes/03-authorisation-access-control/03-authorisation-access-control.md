@@ -8,7 +8,7 @@ Authorisation/access control is a process of determining if a user has the right
 
 ### schema.prisma
 
-In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN_USER` and `BASIC_USER`. Update the `User` to include a `role` field with the default value of `BASIC_USER`. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev`.
+In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN_USER` and `BASIC_USER`. Update the `User` to include a `role` field with the default value of `BASIC_USER`. Make sure you create a new migration.
 
 ### controllers/v1/auth.js
 
@@ -106,39 +106,39 @@ Test the changes in **Postman** before you move on to the **Formative Assessment
 
 The screenshot below is an example of registering a basic user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-1.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-1.PNG)
 
 The screenshot below is an example of registering an admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-2.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-2.PNG)
 
 The screenshot below is an example of logging in as a basic user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-3.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-3.PNG)
 
 The screenshot below is an example of logging in as an admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-4.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-4.PNG)
 
 The screenshot below is an example of setting the **Authorization** headers for a basic and an admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-5.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-5.PNG)
 
 The screenshot below is an example of disabling the **Authorization** headers for an admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-6.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-6.PNG)
 
 The screenshot below is an example of a **POST** request to a protected route using a basic user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-7.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-7.PNG)
 
 The screenshot below is an example of disabling the **Authorization** headers for a basic user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-8.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-8.PNG)
 
 The screenshot below is an example of a **POST** request to a protected route using an admin user.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/master/resources/img/05-authorization/05-authorization-9.jpeg)
+![](../../resources/img/03-authorisation-access-control/03-authorisation-access-control-9.PNG)
 
 # Formative Assessment
 
