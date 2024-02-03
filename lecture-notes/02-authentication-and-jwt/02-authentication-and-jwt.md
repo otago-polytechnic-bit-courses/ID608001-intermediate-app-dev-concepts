@@ -298,13 +298,13 @@ import authRoute from "./middleware/authRoute.js";
 Add the following route for `auth`:
 
 ```js
-app.use(`/v1/auth`, auth);
+app.use(`/api/v1/auth`, auth);
 ```
 
 Update the routes for `institutions` so that it is using the `authRoute` **middleware**:
 
 ```js
-app.use(`/v1/institutions`, authRoute, institutions);
+app.use(`/api/v1/institutions`, authRoute, institutions);
 ```
 
 **Resources:**
