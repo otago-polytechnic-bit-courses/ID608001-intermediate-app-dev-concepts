@@ -1,5 +1,7 @@
 # 04: Caching and Compression
 
+If you get stuck, a completed version of this project is available in the **exemplar** directory.
+
 ## Caching
 
 **Caching** is a technique that stores a copy of a resource in a cache. A cache is a temporary storage area. When a resource is requested, a copy of the resource is returned from the cache if it exists. If the resource does not exist in the cache, the resource is retrieved from the source and stored in the cache for future use. This process is called a **cache miss**. If the resource does exist in the cache, the resource is returned from the cache. This process is called a **cache hit**. **Caching** is a great way to improve the performance of an application.

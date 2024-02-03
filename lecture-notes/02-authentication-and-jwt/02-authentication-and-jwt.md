@@ -1,5 +1,9 @@
 # 02: Authentication and JWT
 
+If you get stuck, a completed version of this project is available in the **exemplar** directory.
+
+## Overview
+
 As a developer, you ideally want to safeguard sensitive data from being accessed by unauthorised users. Only when a user has logged in or authenticated they will be able to access their data. However, authorisation goes beyond authentication. Users can have different roles and permissions, which gives them specific access. For example, an admin user can create, update and delete a resource, but a normal user can only read a resource.
 
 ## Token vs. Session
@@ -8,15 +12,15 @@ Token based authentication is stateless, session based authentication is statefu
 
 ## JSON Web Tokens (JWT)
 
-**JWT** is an open standard that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. **JWT**s can be signed using a secret or a public/private key pair.
+**JWT** is an open standard that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. **JWTs** can be signed using a secret or a public/private key pair.
 
 To get started, run the following command:
 
 ```bash
-npm install jsonwebtoken bcryptjs
+npm install bcryptjs jsonwebtoken
 ```
 
-Check the `package.json` file to ensure you have installed `jsonwebtoken` and `bcryptjs`.
+Check the `package.json` file to ensure you have installed `bcryptjs` and `jsonwebtoken`.
 
 In the `.env` file, add the following environment variables:
 
@@ -46,6 +50,8 @@ model User {
   email           String        @unique
   name            String
   password        String
+  loginAttempts   Int          @default(0)
+  lastLoginAttempt       DateTime?
   createdAt       DateTime      @default(now())
   institutions    Institution[]
   departments     Department[]
@@ -83,9 +89,7 @@ const authRoute = (req, res, next) => {
       });
     }
 
-    /**
-     * Get the JWT from the bearer token
-     */
+    // Get the JWT from the bearer token
     const token = authHeader.split(" ")[1];
 
     /**
@@ -94,11 +98,10 @@ const authRoute = (req, res, next) => {
      */
     const payload = jwt.verify(token, process.env.JWT_SECRET);
 
-    /**
-     * Set Request's user property to the authenticated user
-     */
+    // Set Request's user property to the authenticated user
     req.user = payload;
 
+    // Call the next middleware in the stack
     return next();
   } catch (error) {
     return res.status(403).json({
@@ -114,17 +117,24 @@ export default authRoute;
 
 ### controllers/v1/auth.js
 
-In the `controllers/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the `controllers` directory, create a new directory called `v1`. In the `v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
 ```js
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
 const register = async (req, res) => {
   try {
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json",
+      });
+    }
+
     const { name, email, password } = req.body;
 
     let user = await prisma.user.findUnique({ where: { email } });
@@ -170,6 +180,13 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json",
+      });
+    }
+
     const { email, password } = req.body;
 
     const user = await prisma.user.findUnique({ where: { email } });
@@ -218,23 +235,19 @@ const login = async (req, res) => {
 export { register, login };
 ```
 
-### controllers/v1/institutions.js
+### controllers/v1/institution.js
 
-In the `controllers/v1/institutions.js` file, refactor the `createInstitution` function:
+In the `controllers/v1` directory, create a new file called `institution.js`. In the `institution.js` file, add the following code:
 
 ```js
 const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
 
-    /**
-     * Get the authenticated user's id from the Request's user property
-     */
+    // Get the authenticated user's id from the Request's user property
     const { id } = req.user;
 
-    /**
-     * Now you will know which authenticated user created which institution
-     */
+    // Now you will know which authenticated user created which institution
     await prisma.institution.create({
       data: { name, region, country, userId: id },
     });
@@ -259,7 +272,7 @@ const createInstitution = async (req, res) => {
 
 ### routes/v1/auth.js
 
-In the `routes/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the `routes` directory, create a new directory called `v1`. In the `v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
 ```js
 import { Router } from "express";
@@ -285,17 +298,13 @@ import authRoute from "./middleware/authRoute.js";
 Add the following route for `auth`:
 
 ```js
-app.use(`/${BASE_URL}/${CURRENT_VERSION}/auth`, auth);
+app.use(`/v1/auth`, auth);
 ```
 
 Update the routes for `institutions` so that it is using the `authRoute` **middleware**:
 
 ```js
-app.use(
-  `/${BASE_URL}/${CURRENT_VERSION}/institutions`,
-  authRoute,
-  institutions
-);
+app.use(`/v1/institutions`, authRoute, institutions);
 ```
 
 **Resources:**

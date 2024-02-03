@@ -1,8 +1,10 @@
 # 03: Authorisation/Access Control
 
-Authorisation/access control is a process of determining if a user has the right to access a resource. For example, if a user is logged in, they should be able to access their user data. If a user is not logged in, they should not be able to access their user data.
+If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
-## Simple Implementation
+## Authorisation/Access Control
+
+Authorisation/access control is a process of determining if a user has the right to access a resource. For example, if a user is logged in, they should be able to access their user data. If a user is not logged in, they should not be able to access their user data.
 
 ### schema.prisma
 
@@ -15,9 +17,7 @@ In the `controllers/v1/auth.js`, refactor the `register` function:
 ```js
 const register = async (req, res) => {
   try {
-    /**
-     * Get the role from the Request's body property
-     */
+    // Get the role from the Request's body property
     const { name, email, password, username, role } = req.body;
 
     let user = await prisma.user.findUnique({ where: { email } });
@@ -48,9 +48,9 @@ const register = async (req, res) => {
 };
 ```
 
-### controllers/v1/institutions.js
+### controllers/v1/institution.js
 
-In the `controllers/v1/institutions.js`, refactor the `createInstitution` function:
+In the `controllers/v1/institution.js`, refactor the `createInstitution` function:
 
 ```js
 const createInstitution = async (req, res) => {
@@ -153,11 +153,11 @@ In the `schema.prisma` file, add a new value called `SUPER_ADMIN_USER` to the `R
 
 ## Task Toru
 
-In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `create` \& `update` functions so that the `ADMIN_USER` and `SUPER_ADMIN_USER` are the only users authorised to create and update a resource, i.e., institution or department. Test the changes in **Postman** before you move on to **Task Whā**.
+In the `controllers/v1/institution.js` and `controllers/v1/departments.js` files, refactor the `create` \& `update` functions so that the `ADMIN_USER` and `SUPER_ADMIN_USER` are the only users authorised to create and update a resource, i.e., institution or department. Test the changes in **Postman** before you move on to **Task Whā**.
 
 ## Task Whā
 
-In the `controllers/v1/institutions.js` and `controllers/v1/departments.js` files, refactor the `delete` function so that the `SUPER_ADMIN_USER` is the only user authorised to delete a resource, i.e., institution or department. Test the changes in **Postman** before you move on to the **Formative Assessment Submission**.
+In the `controllers/v1/institution.js` and `controllers/v1/departments.js` files, refactor the `delete` function so that the `SUPER_ADMIN_USER` is the only user authorised to delete a resource, i.e., institution or department. Test the changes in **Postman** before you move on to the **Formative Assessment Submission**.
 
 # Formative Assessment Submission
 
