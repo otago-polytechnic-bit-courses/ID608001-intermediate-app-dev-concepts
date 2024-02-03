@@ -4,6 +4,13 @@ const prisma = new PrismaClient();
 
 const createInstitution = async (req, res) => {
   try {
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json",
+      });
+    }
+    
     const { name, region, country } = req.body;
 
     // Get the authenticated user's id from the Request's user property
