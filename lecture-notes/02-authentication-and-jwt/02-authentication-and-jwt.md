@@ -331,13 +331,13 @@ import authV1Routes from "./routes/v1/auth.js";
 Add the following route for `/auth`:
 
 ```js
-app.use(`/api/v1/auth`, authV1Routes);
+app.use("/api/v1/auth", authV1Routes);
 ```
 
 Update the following routes for `/institutions`:
 
 ```js
-app.use(`/api/v1/institutions`, authRouteMiddleware, institutionV1Routes); // Authenticated route
+app.use("/api/v1/institutions", authRouteMiddleware, institutionV1Routes); // Authenticated route
 ```
 
 **Resources:**
