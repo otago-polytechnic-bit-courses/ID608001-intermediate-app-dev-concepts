@@ -32,7 +32,6 @@ JWT_LIFETIME=1800
 The `.env` file should look like this:
 
 ```bash
-PORT=3000
 DATABASE_URL=The PostgreSQL connection string
 JWT_SECRET=Pazzw0rd123
 JWT_LIFETIME=1800
@@ -46,15 +45,15 @@ In the `prisma.schema` file, add the following model:
 
 ```js
 model User {
-  id              String       @id @default(uuid())
-  email           String        @unique
-  name            String
-  password        String
-  loginAttempts   Int          @default(0)
-  lastLoginAttempt       DateTime?
-  createdAt       DateTime      @default(now())
-  institutions    Institution[]
-  departments     Department[]
+  id               String        @id @default(uuid())
+  email            String        @unique
+  name             String
+  password         String
+  loginAttempts    Int           @default(0)
+  lastLoginAttempt DateTime?
+  createdAt        DateTime      @default(now())
+  institutions     Institution[]
+  departments      Department[]
 }
 ```
 
@@ -103,7 +102,7 @@ const authRoute = (req, res, next) => {
 
     // Call the next middleware in the stack
     return next();
-  } catch (error) {
+  } catch (err) {
     return res.status(403).json({
       msg: "Not authorized to access this route",
     });
@@ -139,9 +138,7 @@ const register = async (req, res) => {
 
     let user = await prisma.user.findUnique({ where: { email } });
 
-    if (user) {
-      return res.status(409).json({ msg: "User already exists" });
-    }
+    if (user) return res.status(409).json({ msg: "User already exists" });
 
     /**
      * A salt is random bits added to a password before it is hashed. Salts
@@ -179,6 +176,9 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
+  const MAX_LOGIN_ATTEMPTS = 5;
+  const LOCK_TIME_MS = 5 * 60 * 1000; // 5 minutes
+
   try {
     const contentType = req.headers["content-type"];
     if (!contentType || contentType !== "application/json") {
@@ -191,8 +191,15 @@ const login = async (req, res) => {
 
     const user = await prisma.user.findUnique({ where: { email } });
 
-    if (!user) {
-      return res.status(401).json({ msg: "Invalid email" });
+    if (!user) return res.status(401).json({ msg: "Invalid email" });
+
+    if (
+      user.loginAttempts >= MAX_LOGIN_ATTEMPTS &&
+      user.lastLoginAttempt >= Date.now() - LOCK_TIME_MS
+    ) {
+      return res.status(401).json({
+        msg: "Maximum login attempts reached. Please try again later",
+      });
     }
 
     /**
@@ -202,6 +209,14 @@ const login = async (req, res) => {
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
+      await prisma.user.update({
+        where: { email },
+        data: {
+          loginAttempts: user.loginAttempts + 1,
+          lastLoginAttempt: new Date(),
+        },
+      });
+
       return res.status(401).json({ msg: "Invalid password" });
     }
 
@@ -221,6 +236,14 @@ const login = async (req, res) => {
       { expiresIn: JWT_LIFETIME }
     );
 
+    await prisma.user.update({
+      where: { email },
+      data: {
+        loginAttempts: 0,
+        lastLoginAttempt: null,
+      },
+    });
+
     return res.status(200).json({
       msg: "User successfully logged in",
       token: token,
@@ -237,9 +260,11 @@ export { register, login };
 
 ### controllers/v1/institution.js
 
-In the `controllers/v1` directory, create a new file called `institution.js`. In the `institution.js` file, add the following code:
+In the `controllers` directory, create a new directory called `v1`. In the `routes/v1` directory, move the `institution.js` file into it. In the `institution.js` file, update the `createInstitution` function to include the authenticated user's id. The `createInstitution` function should look like this:
 
 ```js
+// ...
+
 const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
@@ -268,17 +293,24 @@ const createInstitution = async (req, res) => {
     });
   }
 };
+
+// ...
 ```
+
+### routes/v1/institution.js
+
+In the `routes` directory, create a new directory called `v1`. In the `routes/v1` directory, move the `institution.js` file into it.
 
 ### routes/v1/auth.js
 
-In the `routes` directory, create a new directory called `v1`. In the `v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the `routes/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
 ```js
 import { Router } from "express";
-const router = Router();
 
 import { register, login } from "../../controllers/v1/auth.js";
+
+const router = Router();
 
 router.route("/register").post(register);
 router.route("/login").post(login);
@@ -291,20 +323,20 @@ export default router;
 In the `app.js` file, add the following imports:
 
 ```js
-import auth from "./routes/v1/auth.js";
-import authRoute from "./middleware/authRoute.js";
+import authV1Routes from "./routes/v1/auth.js";
+import authRouteMiddleware from "./middleware/authRoute.js";
 ```
 
-Add the following route for `auth`:
+Add the following route for `/auth`:
 
 ```js
-app.use(`/api/v1/auth`, auth);
+app.use(`/api/v1/auth`, authV1Routes);
 ```
 
-Update the routes for `institutions` so that it is using the `authRoute` **middleware**:
+Update the following routes for `/institutions`:
 
 ```js
-app.use(`/api/v1/institutions`, authRoute, institutions);
+app.use(`/api/v1/institutions`, authRouteMiddleware, institutionV1Routes); // Authenticated route
 ```
 
 **Resources:**
@@ -318,32 +350,36 @@ app.use(`/api/v1/institutions`, authRoute, institutions);
 Test the changes in **Postman** before you move on to the **Formative Assessment** section.
 
 The screenshot below is an example of registering a user.
-
-![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-1.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-1.PNG)
 
 The screenshot below is an example of registering an existing user.
 
-![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-2.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-2.PNG)
 
 The screenshot below is an example of logging in as a user with an invalid email.
 
-![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-3.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-3.PNG)
 
 The screenshot below is an example of logging in as a user with an invalid password.
 
-![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-4.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-4.PNG)
+
+The screenshot below is an example of max login attempts reached.
+
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-5.PNG)
 
 The screenshot below is an example of logging in as a user and being returned a token.
 
-![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-5.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-6.PNG)
 
-The screenshot below is an example of a **POST** request to a protected route without providing a token.
+The screenshot below is an example of a **GET** request to a protected route without providing a token.
 
-![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-6.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-7.PNG)
 
-The screenshot below is an example of a **POST** request to a protected route using an authenticated user.
+The screenshot below is an example of a **GET** request to a protected route using an authenticated user.
 
-![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-7.jpeg)
+![](../../resources/img/02-authentication-and-jwt/02-authentication-and-jwt-8.PNG)
+
 
 # Formative Assessment
 
@@ -361,7 +397,7 @@ If you have not already, implement the code examples above before you move on to
 
 ## Task Rua
 
-In the `schema.prisma` file, add a new field called `username` of type `String` that is unique to the `User` model. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev` before you move on to **Task Toru**.
+In the `schema.prisma` file, add a new field called `username` of type `String` that is unique to the `User` model. Make sure you create a new migration before you move on to **Task Toru**.
 
 ## Task Toru
 

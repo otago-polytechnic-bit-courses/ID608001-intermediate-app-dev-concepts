@@ -6,7 +6,7 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../controllers/institution.js";
+} from "../../controllers/v1/institution.js";
 
 const router = express.Router();
 

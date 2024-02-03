@@ -36,7 +36,7 @@ const authRoute = (req, res, next) => {
 
     // Call the next middleware in the stack
     return next();
-  } catch (error) {
+  } catch (err) {
     return res.status(403).json({
       msg: "Not authorized to access this route",
     });
