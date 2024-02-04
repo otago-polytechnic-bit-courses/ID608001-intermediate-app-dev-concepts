@@ -121,9 +121,15 @@ If you have not already, implement the code examples above before you move on to
 
 ## Task Rua
 
-In the `src/components` directory, create three new files called `Square.jsx`, `Board.jsx` and `Game.jsx`.
+1. In `src/main.jsx`, remove the following code:
 
-In `Square.jsx`, add the following code:
+```jsx
+import "./index.css";
+```
+
+2. In the `src/components` directory, create three new files called `Square.jsx`, `Board.jsx` and `Game.jsx`.
+
+3. In `Square.jsx`, add the following code:
 
 ```jsx
 import PropTypes from "prop-types"; // Make sure you install prop-types -> npm install prop-types
@@ -152,7 +158,7 @@ Square.propTypes = {
 export default Square;
 ```
 
-In `Board.jsx`, add the following code:
+4. In `Board.jsx`, add the following code:
 
 ```jsx
 import PropTypes from "prop-types";
@@ -185,7 +191,7 @@ Board.propTypes = {
 export default Board;
 ```
 
-In the `src` directory, create a new directory called `utils`. In the `utils` directory, create a new file called `calculateGameState.js` and add the following code:
+5. In the `src` directory, create a new directory called `utils`. In the `utils` directory, create a new file called `calculateGameState.js` and add the following code:
 
 ```js
 const calculateGameState = (squares) => {
@@ -212,7 +218,7 @@ const calculateGameState = (squares) => {
 export default calculateGameState;
 ```
 
-In `Game.jsx`, add the following code:
+6. In `Game.jsx`, add the following code:
 
 ```jsx
 import { useState } from "react";
@@ -269,7 +275,7 @@ const Game = () => {
 export default Game;
 ```
 
-In `App.jsx`, add the following code:
+7. In `App.jsx`, add the following code:
 
 ```jsx
 import Game from "./components/Game";

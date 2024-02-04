@@ -145,7 +145,7 @@ const App = () => {
 export default App;
 ```
 
-**Resource:** [Shadcn UI](https://ui.shadcn.com/)
+**Resource:** [](https://ui.shadcn.com/)
 
 # Formative Assessment
 
@@ -159,7 +159,15 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ## Task Tahi
 
-## Task Rua
+Replace the `form` and `table` code with **Shadcn UI** components.
+
+![](../../resources/img/09-tailwind-css-and-shadcn-ui/formative-assessment/09-tailwind-css-and-shadcn-ui-formative-assessment-1.jpeg)
+
+**Resources:**
+
+- [](https://ui.shadcn.com/docs/components/form)
+- [](https://ui.shadcn.com/docs/components/input)
+- [](https://ui.shadcn.com/docs/components/table)
 
 # Formative Assessment Submission
 
