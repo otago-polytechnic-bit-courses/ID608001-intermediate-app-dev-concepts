@@ -47,7 +47,20 @@ export default {
 };
 ```
 
-4. In `src/index.css`, update the code to the following:
+4. In the root directory, create a new file called `tsconfig.json`. In the `tsconfig.json` file, add the following code:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+5. In `src/index.css`, update the code to the following:
 
 ```css
 @tailwind base;
@@ -55,7 +68,7 @@ export default {
 @tailwind utilities;
 ```
 
-5. In `src/App.jsx`, update the code to the following:
+6. In `src/App.jsx`, update the code to the following:
 
 ```jsx
 const App = () => {

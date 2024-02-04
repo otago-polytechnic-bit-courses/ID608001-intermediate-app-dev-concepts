@@ -170,41 +170,75 @@ const App = () => {
   });
   // ...
 };
+
+export default App;
 ```
 
 **What is a mutation?**
 
 A mutation is a function that performs an asynchronous task. It is similar to a query, but it is used for updating data.
 
-3. Create a new function called `handleSubmit`:
+3. We are going to use `react-hook-form` to handle the form. Install the package:
+
+```bash
+npm install react-hook-form
+```
+
+4. Declare the `useForm` hook from `react-hook-form`:
+
+```js
+// ...
+import { useForm } from "react-hook-form";
+// ...
+const App = () => {
+  const form = useForm();
+  // ...
+};
+
+export default App;
+```
+
+5. Create a new function called `handleSubmit`:
 
 ```js
 const App = () => {
   // ...
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const institution = Object.fromEntries(formData); // Convert the form data to an object
-    postMutation.mutate(institution); // Call the mutation
-    e.target.reset(); // Reset the form
+  const handleSubmit = (values) => {
+    postMutation.mutate(values);
+    form.reset((formValues) => ({
+      ...formValues,
+      name: "",
+      region: "",
+      country: "",
+    }));
   };
   // ...
 };
 ```
 
-4. Declare a `form` element in the `return` statement above the `table` element:
+6. Declare a `form` element in the `return` statement above the `table` element:
 
 ```js
 // ...
 return (
   <>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={form.handleSubmit(handleSubmit)}>
       <label htmlFor="name">Name</label>
-      <input type="text" id="name" name="name" />
+      <input type="text" id="name" name="name" {...form.register("name")} />
       <label htmlFor="region">Region</label>
-      <input type="text" id="region" name="region" />
+      <input
+        type="text"
+        id="region"
+        name="region"
+        {...form.register("region")}
+      />
       <label htmlFor="country">Country</label>
-      <input type="text" id="country" name="country" />
+      <input
+        type="text"
+        id="country"
+        name="country"
+        {...form.register("country")}
+      />
       <button type="submit">Submit</button>
     </form>
     {/* // ...  */}
@@ -257,6 +291,8 @@ const App = () => {
   });
   // ...
 };
+
+export default App;
 ```
 
 **What is an infinite query?**

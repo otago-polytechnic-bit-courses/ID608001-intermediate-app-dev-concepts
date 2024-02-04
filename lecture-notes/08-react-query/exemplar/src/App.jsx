@@ -1,7 +1,10 @@
 import { queryClient } from "./main";
 import { useQuery, useMutation, useInfiniteQuery } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 
 const App = () => {
+  const form = useForm();
+
   // const { isLoading, err, data } = useQuery({
   //   queryKey: ["institutionData"],
   //   queryFn: () =>
@@ -44,12 +47,15 @@ const App = () => {
     },
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const institution = Object.fromEntries(formData);
-    postMutation.mutate(institution);
-    e.target.reset();
+  const handleSubmit = (values) => {
+    console.log(values);
+    postMutation.mutate(values);
+    form.reset((formValues) => ({
+      ...formValues,
+      name: "",
+      region: "",
+      country: "",
+    }));
   };
 
   if (isLoading) return "Loading...";
@@ -57,13 +63,23 @@ const App = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" />
-        <label for="region">Region</label>
-        <input type="text" id="region" name="region" />
-        <label for="country">Country</label>
-        <input type="text" id="country" name="country" />
+      <form onSubmit={form.handleSubmit(handleSubmit)}>
+        <label htmlFor="name">Name</label>
+        <input type="text" id="name" name="name" {...form.register("name")} />
+        <label htmlFor="region">Region</label>
+        <input
+          type="text"
+          id="region"
+          name="region"
+          {...form.register("region")}
+        />
+        <label htmlFor="country">Country</label>
+        <input
+          type="text"
+          id="country"
+          name="country"
+          {...form.register("country")}
+        />
         <button type="submit">Submit</button>
       </form>
       <table>
