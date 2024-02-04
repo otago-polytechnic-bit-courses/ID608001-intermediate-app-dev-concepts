@@ -28,6 +28,46 @@ Refresh your memory on the following topics:
 
 **Note:** You do not need to complete the **formative assessments**. However, you are welcome to do so.
 
+### useRef
+
+**useRef** is a hook that returns a mutable ref object whose `.current` property is initialised to the passed argument (`initialValue`). The returned object will persist for the full lifetime of the component.
+
+```jsx
+import { useRef } from "react";
+
+const Counter = () => {
+  let ref = useRef(0);
+
+  const handleClick = () => {
+    ref.current++;
+    console.log(`You clicked ${ref.current} times`);
+  };
+
+  return <button onClick={handleClick}>Click Me!</button>;
+};
+
+export default Counter;
+```
+
+**Note:** Do not read or write `ref.current` during rendering. For example:
+
+```jsx
+// This is not allowed
+const Counter = () => {
+  let ref = useRef(0);
+  ref.current++;
+
+  return (
+    <>
+      <button>Click Me!</button>
+      <p>You clicked {ref.current} times</p>
+    </>
+  );
+};
+
+export default Counter;
+```
+
 ## Prettier
 
 You are going to extend your knowledge of **Prettier**. Instead of formatting every file in your project, you can configure **Prettier** to only format files that are staged for commit.
@@ -118,6 +158,180 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 ## Task Tahi
 
 If you have not already, implement the code examples above before you move on to **Formative Assessment Submission**.
+
+## Task Rua
+
+In the `src/components` directory, create three new files called `Square.jsx`, `Board.jsx` and `Game.jsx`.
+
+In `Square.jsx`, add the following code:
+
+```jsx
+import PropTypes from "prop-types"; // Make sure you install prop-types -> npm install prop-types
+
+const Square = (props) => {
+  const style = {
+    border: "1px solid #000",
+    cursor: "pointer",
+    fontSize: "30px",
+    fontWeight: "800",
+    outline: "none",
+  };
+
+  return (
+    <button style={style} onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
+};
+
+Square.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
+
+export default Square;
+```
+
+In `Board.jsx`, add the following code:
+
+```jsx
+import PropTypes from "prop-types";
+
+import Square from "./Square";
+
+const Board = (props) => {
+  const style = {
+    border: "1px solid #000",
+    display: "grid",
+    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)",
+    height: "200px",
+    width: "200px",
+  };
+
+  return (
+    <div style={style}>
+      {props.squares.map((square, idx) => (
+        <Square key={idx} value={square} onClick={() => props.onClick(idx)} />
+      ))}
+    </div>
+  );
+};
+
+Board.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  squares: PropTypes.array.isRequired,
+};
+
+export default Board;
+```
+
+In the `src` directory, create a new directory called `utils`. In the `utils` directory, create a new file called `calculateGameState.js` and add the following code:
+
+```js
+const calculateGameState = (squares) => {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (let s = 0; s < lines.length; s++) {
+    const [a, b, c] = lines[s];
+    if (squares[a] andand squares[a] === squares[b] andand squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+};
+
+export default calculateGameState;
+```
+
+In `Game.jsx`, add the following code:
+
+```jsx
+import { useState } from "react";
+
+import Board from "./Board";
+
+import calculateGameState from "../utils/calculateGameState";
+
+const Game = () => {
+  const style = {
+    width: "200px",
+  };
+
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
+
+  const winner = calculateGameState(board);
+
+  const handleClick = (idx) => {
+    const boardCopy = [...board];
+    if (winner || boardCopy[idx]) return;
+    boardCopy[idx] = xIsNext ? "X" : "O";
+    setBoard(boardCopy);
+    setXIsNext(!xIsNext);
+  };
+
+  return (
+    <>
+      <Board squares={board} onClick={handleClick} />
+      <div style={style}>
+        <p>
+          {winner ? `Winner: ${winner}` : `Next Player: ${xIsNext ? "X" : "O"}`}
+        </p>
+        <button
+          onClick={() => {
+            setBoard(Array(9).fill(null));
+            setGameStarted(true);
+          }}
+        >
+          {gameStarted ? "Restart Game" : "Start Game"}
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default Game;
+```
+
+In `App.jsx`, add the following code:
+
+```jsx
+import Game from "./components/Game";
+
+const App = () => <Game />;
+
+export default App;
+```
+
+Here are some screenshots of the final result:
+
+![](../../resources/img/05-react-prettier-and-eslint/05-react-prettier-and-eslint-1.jpeg)
+
+![](../../resources/img/05-react-prettier-and-eslint/05-react-prettier-and-eslint-2.jpeg)
+
+![](../../resources/img/05-react-prettier-and-eslint/05-react-prettier-and-eslint-3.jpeg)
+
+![](../../resources/img/05-react-prettier-and-eslint/05-react-prettier-and-eslint-4.jpeg)
+
+![](../../resources/img/05-react-prettier-and-eslint/05-react-prettier-and-eslint-5.jpeg)
+
+## Task Toru
+
+Write code that displays a message when the game is a draw.
+
+## Task Whā
+
+Write code that displays the location for each move in the format (col, row) in a move history list.
 
 # Formative Assessment Submission
 
