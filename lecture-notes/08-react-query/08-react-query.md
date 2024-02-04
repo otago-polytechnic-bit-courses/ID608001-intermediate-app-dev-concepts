@@ -184,6 +184,8 @@ A mutation is a function that performs an asynchronous task. It is similar to a 
 npm install react-hook-form
 ```
 
+`react-hook-form` is a library that helps you create forms in React. It is a great alternative to `Formik` and other form libraries.
+
 4. Declare the `useForm` hook from `react-hook-form`:
 
 ```js
