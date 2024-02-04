@@ -186,7 +186,7 @@ const Square = (props) => {
 
 Square.propTypes = {
   onClick: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 export default Square;
@@ -242,7 +242,7 @@ const calculateGameState = (squares) => {
 
   for (let s = 0; s < lines.length; s++) {
     const [a, b, c] = lines[s];
-    if (squares[a] andand squares[a] === squares[b] andand squares[a] === squares[c]) {
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
@@ -266,32 +266,38 @@ const Game = () => {
     width: "200px",
   };
 
-  const [board, setBoard] = useState(Array(9).fill(null));
+  const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
   const [gameStarted, setGameStarted] = useState(false);
 
-  const winner = calculateGameState(board);
+  const winner = calculateGameState(squares);
 
   const handleClick = (idx) => {
-    const boardCopy = [...board];
-    if (winner || boardCopy[idx]) return;
-    boardCopy[idx] = xIsNext ? "X" : "O";
-    setBoard(boardCopy);
+    const squaresCopy = [...squares];
+    if (winner || squaresCopy[idx]) return;
+    squaresCopy[idx] = xIsNext ? "X" : "O";
+    setSquares(squaresCopy);
     setXIsNext(!xIsNext);
+  };
+
+  const restartGame = () => {
+    setSquares(Array(9).fill(null));
+    setGameStarted(true);
   };
 
   return (
     <>
-      <Board squares={board} onClick={handleClick} />
+      {gameStarted && <Board squares={squares} onClick={handleClick} />}
       <div style={style}>
-        <p>
-          {winner ? `Winner: ${winner}` : `Next Player: ${xIsNext ? "X" : "O"}`}
-        </p>
+        {gameStarted && (
+          <p>
+            {winner
+              ? `Winner: ${winner}`
+              : `Next Player: ${xIsNext ? "X" : "O"}`}
+          </p>
+        )}
         <button
-          onClick={() => {
-            setBoard(Array(9).fill(null));
-            setGameStarted(true);
-          }}
+          onClick={restartGame}
         >
           {gameStarted ? "Restart Game" : "Start Game"}
         </button>
@@ -321,17 +327,11 @@ Here are some screenshots of the final result:
 
 ![](../../resources/img/05-react-prettier-and-eslint/05-react-prettier-and-eslint-3.jpeg)
 
-![](../../resources/img/05-react-prettier-and-eslint/05-react-prettier-and-eslint-4.jpeg)
-
-![](../../resources/img/05-react-prettier-and-eslint/05-react-prettier-and-eslint-5.jpeg)
-
 ## Task Toru
 
 Write code that displays a message when the game is a draw.
 
-## Task Whā
-
-Write code that displays the location for each move in the format (col, row) in a move history list.
+![](../../resources/img/05-react-prettier-and-eslint/formative-assessment/05-react-prettier-and-eslint-formative-assessment-1.jpeg)
 
 # Formative Assessment Submission
 
