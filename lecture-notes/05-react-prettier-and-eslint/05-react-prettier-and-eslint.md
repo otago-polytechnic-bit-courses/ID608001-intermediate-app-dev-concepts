@@ -28,46 +28,6 @@ Refresh your memory on the following topics:
 
 **Note:** You do not need to complete the **formative assessments**. However, you are welcome to do so.
 
-### useRef
-
-**useRef** is a hook that returns a mutable ref object whose `.current` property is initialised to the passed argument (`initialValue`). The returned object will persist for the full lifetime of the component.
-
-```jsx
-import { useRef } from "react";
-
-const Counter = () => {
-  let ref = useRef(0);
-
-  const handleClick = () => {
-    ref.current++;
-    console.log(`You clicked ${ref.current} times`);
-  };
-
-  return <button onClick={handleClick}>Click Me!</button>;
-};
-
-export default Counter;
-```
-
-**Note:** Do not read or write `ref.current` during rendering. For example:
-
-```jsx
-// This is not allowed
-const Counter = () => {
-  let ref = useRef(0);
-  ref.current++;
-
-  return (
-    <>
-      <button>Click Me!</button>
-      <p>You clicked {ref.current} times</p>
-    </>
-  );
-};
-
-export default Counter;
-```
-
 ## Prettier
 
 You are going to extend your knowledge of **Prettier**. Instead of formatting every file in your project, you can configure **Prettier** to only format files that are staged for commit.

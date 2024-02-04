@@ -69,7 +69,7 @@ const App = () => {
   });
 
   if (isLoading) return "Loading...";
-  if (err) return `An error has occurred: ${err.message}`;
+  if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <>
