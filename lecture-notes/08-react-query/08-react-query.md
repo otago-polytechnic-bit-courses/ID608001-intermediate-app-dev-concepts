@@ -377,7 +377,7 @@ Create a new mutation that deletes an institution. The mutation should take an `
 
 ## Task Rua
 
-Create a new mutation that edits an institution. The mutation should take an `institution` as an argument and should invalidate the `institutionData` query upon success. For each table row, add an **Edit** button that populates the form with the institution's data when clicked. When the form is submitted, the mutation should be called.
+Create a new mutation that updates an institution. The mutation should take an `institution` as an argument and should invalidate the `institutionData` query upon success. For each table row, add an **Edit** button that populates the form with the institution's data when clicked. When the form is submitted, the mutation should be called.
 
 ![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-3.jpeg)
 

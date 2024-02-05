@@ -159,12 +159,13 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ## Task Tahi
 
-Replace the `form` and `table` code with **Shadcn UI** components.
+Using the **08-react-query** exemplar, replace the `button`, `form`, `input` and `table` code with **Shadcn UI** components.
 
 ![](../../resources/img/09-tailwind-css-and-shadcn-ui/formative-assessment/09-tailwind-css-and-shadcn-ui-formative-assessment-1.jpeg)
 
 **Resources:**
 
+- [](https://ui.shadcn.com/docs/components/button)
 - [](https://ui.shadcn.com/docs/components/form)
 - [](https://ui.shadcn.com/docs/components/input)
 - [](https://ui.shadcn.com/docs/components/table)
