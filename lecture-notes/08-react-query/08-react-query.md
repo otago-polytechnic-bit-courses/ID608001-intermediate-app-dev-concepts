@@ -421,15 +421,11 @@ Create a new mutation that updates an institution. The mutation should take an `
 
 ![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-6.jpeg)
 
-<<<<<<< HEAD
 ## Independent Study
 
 **Note:** This study is important for the **Project** assessment. 
 
 In the **independent-study-exemplars** directory are two applications - the exemplar from the **03-authorisation-access-control** lecture and a client application that consumes it. In addition to code above, the client application has register and login mutations. You are task with separating the register, login and institution functionality into separate components and pages. The user should be able to navigate to `/register` and `/login` to register and login respectively. The user should be able to navigate to `/institutions` to view the institutions and create an institution. 
-=======
-## Task Toru
->>>>>>> 72f33179b317df84d0450ff6d4bd1e1ece42fc14
 
 # Formative Assessment Submission
 
