@@ -3,9 +3,9 @@ import { useQuery, useMutation, useInfiniteQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
 const App = () => {
-  const form = useForm();
+  const institutionForm = useForm();
 
-  // const { isLoading, err, data } = useQuery({
+  // const { isLoading, data: institutionData } = useQuery({
   //   queryKey: ["institutionData"],
   //   queryFn: () =>
   //     fetch(
@@ -15,8 +15,7 @@ const App = () => {
 
   const {
     isLoading,
-    err,
-    data,
+    data: institutionData,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
@@ -29,59 +28,67 @@ const App = () => {
     getNextPageParam: (prevData) => prevData.nextPage,
   });
 
-  const postMutation = useMutation({
-    mutationFn: (institution) =>
-      fetch("https://id607001-graysono-wbnj.onrender.com/api/institutions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: institution.name,
-          region: institution.region,
-          country: institution.country,
+  const { mutate: postInstitutionMutation, data: postInstitutionData } =
+    useMutation({
+      mutationFn: (institution) =>
+        fetch("https://id607001-graysono-wbnj.onrender.com/api/institutions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: institution.name,
+            region: institution.region,
+            country: institution.country,
+          }),
+        }).then((res) => {
+          if (res.status === 201) {
+            institutionForm.reset((formValues) => ({
+              ...formValues,
+              name: "",
+              region: "",
+              country: "",
+            }));
+          }
+          return res.json();
         }),
-      }).then((res) => res.json()),
-    onSuccess: () => {
-      queryClient.invalidateQueries("institutionData");
-    },
-  });
+      onSuccess: () => {
+        queryClient.invalidateQueries("institutionData");
+      },
+    });
 
-  const handleSubmit = (values) => {
-    console.log(values);
-    postMutation.mutate(values);
-    form.reset((formValues) => ({
-      ...formValues,
-      name: "",
-      region: "",
-      country: "",
-    }));
-  };
+  const handleInstitutionSubmit = (values) =>
+    postInstitutionMutation(values);
 
   if (isLoading) return "Loading...";
-  if (err) return `An error has occurred: ${err.message}`;
 
   return (
     <>
-      <form onSubmit={form.handleSubmit(handleSubmit)}>
+      <form onSubmit={institutionForm.handleSubmit(handleInstitutionSubmit)}>
         <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="name" {...form.register("name")} />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          {...institutionForm.register("name")}
+        />
         <label htmlFor="region">Region</label>
         <input
           type="text"
           id="region"
           name="region"
-          {...form.register("region")}
+          {...institutionForm.register("region")}
         />
         <label htmlFor="country">Country</label>
         <input
           type="text"
           id="country"
           name="country"
-          {...form.register("country")}
+          {...institutionForm.register("country")}
         />
         <button type="submit">Submit</button>
       </form>
+      <p>{postInstitutionData?.msg}</p>
       <table>
         <thead>
           <tr>
@@ -91,13 +98,13 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {data.pages[0].msg ? (
+          {institutionData.pages[0].msg ? (
             <tr>
-              <td colSpan="3">{data.pages[0].msg}</td>
+              <td colSpan="3">{institutionData.pages[0].msg}</td>
             </tr>
           ) : (
             <>
-              {data.pages
+              {institutionData.pages
                 .flatMap((data) => data.data)
                 .map((institution) => (
                   <tr key={institution.id}>

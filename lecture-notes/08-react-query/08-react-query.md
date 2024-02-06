@@ -60,7 +60,7 @@ In `src/App.jsx`, update the code to the following:
 import { useQuery } from "@tanstack/react-query";
 
 const App = () => {
-  const { isLoading, err, data } = useQuery({
+  const { isLoading, data: institutionData } = useQuery({
     queryKey: ["institutionData"],
     queryFn: () =>
       fetch(
@@ -69,7 +69,6 @@ const App = () => {
   });
 
   if (isLoading) return "Loading...";
-  if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <>
@@ -82,12 +81,12 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {data.msg ? (
+          {institutionData.msg ? (
             <tr>
-              <td colSpan="3">{data.msg}</td>
+              <td colSpan="3">{institutionData.msg}</td>
             </tr>
           ) : (
-            data.data.map((institution) => (
+            institutionData.data.map((institution) => (
               <tr key={institution.id}>
                 <td>{institution.name}</td>
                 <td>{institution.region}</td>
@@ -153,21 +152,22 @@ import { queryClient } from "./main";
 ```js
 const App = () => {
   // ...
-  const postMutation = useMutation({
-    mutationFn: (institution) =>
-      fetch("https://id607001-graysono-wbnj.onrender.com/api/institutions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: institution.name,
-          region: institution.region,
-          country: institution.country,
-        }),
-      }).then((res) => res.json()),
-    onSuccess: () => queryClient.invalidateQueries("institutionData"),
-  });
+  const { mutate: postInstitutionMutation, data: postInstitutionData } =
+    useMutation({
+      mutationFn: (institution) =>
+        fetch("https://id607001-graysono-wbnj.onrender.com/api/institutions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: institution.name,
+            region: institution.region,
+            country: institution.country,
+          }),
+        }).then((res) => res.json()),
+      onSuccess: () => queryClient.invalidateQueries("institutionData"),
+    });
   // ...
 };
 
@@ -193,56 +193,91 @@ npm install react-hook-form
 import { useForm } from "react-hook-form";
 // ...
 const App = () => {
-  const form = useForm();
+  const institutionForm = useForm();
   // ...
 };
 
 export default App;
 ```
 
-5. Create a new function called `handleSubmit`:
+5. Create a new function called `handleInstitutionSubmit`:
 
 ```js
 const App = () => {
   // ...
-  const handleSubmit = (values) => {
-    postMutation.mutate(values);
-    form.reset((formValues) => ({
-      ...formValues,
-      name: "",
-      region: "",
-      country: "",
-    }));
-  };
+  const handleInstitutionSubmit = (values) => postInstitutionMutation(values);
   // ...
 };
 ```
 
-6. Declare a `form` element in the `return` statement above the `table` element:
+6. Update the `then()` method with the following:
+
+```js
+const App = () => {
+  // ...
+  const { mutate: postInstitutionMutation, data: postInstitutionData } =
+    useMutation({
+      mutationFn: (institution) =>
+        fetch("https://id607001-graysono-wbnj.onrender.com/api/institutions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: institution.name,
+            region: institution.region,
+            country: institution.country,
+          }),
+        }).then((res) => {
+          if (res.status === 201) {
+            form.reset((formValues) => ({
+              ...formValues,
+              name: "",
+              region: "",
+              country: "",
+            }));
+          }
+          return res.json();
+        }),
+      onSuccess: () => queryClient.invalidateQueries("institutionData"),
+    });
+  // ...
+};
+
+export default App;
+```
+
+7. Declare a `form` element in the `return` statement above the `table` element:
 
 ```js
 // ...
 return (
   <>
-    <form onSubmit={form.handleSubmit(handleSubmit)}>
+    <form onSubmit={institutionForm.handleSubmit(handleInstitutionSubmit)}>
       <label htmlFor="name">Name</label>
-      <input type="text" id="name" name="name" {...form.register("name")} />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        {...institutionForm.register("name")}
+      />
       <label htmlFor="region">Region</label>
       <input
         type="text"
         id="region"
         name="region"
-        {...form.register("region")}
+        {...institutionForm.register("region")}
       />
       <label htmlFor="country">Country</label>
       <input
         type="text"
         id="country"
         name="country"
-        {...form.register("country")}
+        {...institutionForm.register("country")}
       />
       <button type="submit">Submit</button>
     </form>
+    <p>{postInstitutionData?.msg}</p>
     {/* // ...  */}
   </>
 );
@@ -266,7 +301,7 @@ import { useQuery, useMutation, useInfiniteQuery } from "@tanstack/react-query";
 const App = () => {
   // Comment out the existing query
 
-  // const { isLoading, err, data } = useQuery({
+  // const { isLoading, data: institutionData } = useQuery({
   //   queryKey: ["institutionData"],
   //   queryFn: () =>
   //     fetch(
@@ -276,8 +311,7 @@ const App = () => {
 
   const {
     isLoading,
-    err,
-    data,
+    data: institutionData,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
@@ -316,13 +350,13 @@ return (
         </tr>
       </thead>
       <tbody>
-        {data.pages[0].msg ? (
+        {institutionData.pages[0].msg ? (
           <tr>
-            <td colSpan="3">{data.pages[0].msg}</td>
+            <td colSpan="3">{institutionData.pages[0].msg}</td>
           </tr>
         ) : (
           <>
-            {data.pages
+            {institutionData.pages
               .flatMap((data) => data.data)
               .map((institution) => (
                 <tr key={institution.id}>
@@ -386,6 +420,12 @@ Create a new mutation that updates an institution. The mutation should take an `
 ![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-5.jpeg)
 
 ![](../../resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-6.jpeg)
+
+## Independent Study
+
+**Note:** This study is important for the **Project** assessment. 
+
+In the **independent-study-exemplars** directory are two applications - the exemplar from the **03-authorisation-access-control** lecture and a client application that consumes it. In addition to code above, the client application has register and login mutations. You are task with separating the register, login and institution functionality into separate components and pages. The user should be able to navigate to `/register` and `/login` to register and login respectively. The user should be able to navigate to `/institutions` to view the institutions and create an institution. 
 
 # Formative Assessment Submission
 
