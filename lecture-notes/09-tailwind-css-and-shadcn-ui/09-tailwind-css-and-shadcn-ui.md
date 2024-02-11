@@ -78,7 +78,7 @@ const App = () => {
 export default App;
 ```
 
-**Resource:** [Tailwind CSS](https://tailwindcss.com/)
+**Resource:** https://tailwindcss.com/
 
 ## Shadcn UI
 
@@ -109,19 +109,33 @@ export default defineConfig({
 });
 ```
 
-3. Run the following command to initialise **Shadcn UI**:
+3. In the root directory, create a new file called `tsconfig.json`. In the `tsconfig.json` file, add the following code:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+4. Run the following command to initialise **Shadcn UI**:
 
 ```bash
 npx shadcn-ui@latest init
 ```
 
-4. You will be prompt with the following questions:
+5. You will be prompt with the following questions:
 
 ```bash
 √ Would you like to use TypeScript (recommended)? ... no
 √ Which style would you like to use? » Default
 √ Which color would you like to use as base color? » Slate
 √ Where is your global CSS file? ... src/index.css
+√ Would you like to use CSS variables for colors? ... yes
 √ Are you using a custom tailwind prefix eg. tw-? (Leave blank
 if not) ...
 √ Where is your tailwind.config.js located? ... tailwind.config.js
@@ -133,7 +147,13 @@ if not) ...
 
 You see a new file called `components.json` in the root directory.
 
-5. In `src/App.jsx`, update the code to the following:
+6. You can start adding components from **Shadcn UI** to your project. For example, you can add a button component by running the following command:
+
+```bash
+npx shadcn-ui@latest add button
+```
+
+7. In `src/App.jsx`, update the code to the following:
 
 ```jsx
 import { Button } from "@/components/ui/button";
@@ -145,7 +165,7 @@ const App = () => {
 export default App;
 ```
 
-**Resource:** [](https://ui.shadcn.com/)
+**Resource:** <https://ui.shadcn.com/>
 
 # Formative Assessment
 
