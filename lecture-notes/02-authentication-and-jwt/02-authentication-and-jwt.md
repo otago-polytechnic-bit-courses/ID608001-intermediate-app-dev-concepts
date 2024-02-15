@@ -2,11 +2,11 @@
 
 If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
-## Overview
+## Authentication and JWT
 
 As a developer, you ideally want to safeguard sensitive data from being accessed by unauthorised users. Only when a user has logged in or authenticated they will be able to access their data. However, authorisation goes beyond authentication. Users can have different roles and permissions, which gives them specific access. For example, an admin user can create, update and delete a resource, but a normal user can only read a resource.
 
-## Token vs. Session
+### Token vs. Session
 
 Token based authentication is stateless, session based authentication is stateful. This means that the server does not need to keep track of the user's session. The user sends the token with every request, and the server can verify the token without having to store any information about the user.
 
@@ -25,19 +25,19 @@ Check the `package.json` file to ensure you have installed `bcryptjs` and `jsonw
 In the `.env` file, add the following environment variables:
 
 ```bash
-JWT_SECRET=Pazzw0rd123
-JWT_LIFETIME=1800
+JWT_SECRET=HellWorld123
+JWT_LIFETIME=1hr
 ```
 
 The `.env` file should look like this:
 
 ```bash
 DATABASE_URL=The PostgreSQL connection string
-JWT_SECRET=Pazzw0rd123
-JWT_LIFETIME=1800
+JWT_SECRET=HellWorld123
+JWT_LIFETIME=1hr
 ```
 
-You will use the `JWT_SECRET` environment variable's value, i.e., Pazzw0rd123, to sign the **JWT**. The lifetime of the **JWT** is the `JWT_LIFETIME` environment variable's value, i.e., 1 hour.
+You will use the `JWT_SECRET` environment variable's value, i.e., HellWorld123, to sign the **JWT**. The lifetime of the **JWT** is the `JWT_LIFETIME` environment variable's value, i.e., 1 hour.
 
 ### Schema
 
@@ -260,7 +260,7 @@ export { register, login };
 
 ### controllers/v1/institution.js
 
-In the `controllers` directory, create a new directory called `v1`. In the `routes/v1` directory, move the `institution.js` file into it. In the `institution.js` file, update the `createInstitution` function to include the authenticated user's id. The `createInstitution` function should look like this:
+In the `institution.js` file, update the `createInstitution` function to include the authenticated user's id. The `createInstitution` function should look like this:
 
 ```js
 // ...
@@ -303,6 +303,8 @@ const createInstitution = async (req, res) => {
 
 // ...
 ```
+
+**Note:** Make sure to put the `institution.js` file in the `v1` directory in the `controllers` directory.
 
 ### routes/v1/institution.js
 
