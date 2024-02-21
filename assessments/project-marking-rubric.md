@@ -19,8 +19,8 @@
 
 ### Functionality: Frontend Application - Quiz - 15%
 
-| **Criteria**                                 | **10-9**                                                 | **8-7**                                                  | **6-5**                                                  | **4-0**                                                  |
-| -------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Registration, Login and Logout Pages Functionality**       | Implementation of a well-functioning user registration page and login page. | Minor issues or inconsistencies in user registration, login and logout. | Significant issues or incomplete implementation in user registration, login and logout. | No or critical omissions in user registration, login and logout.  |
 | **User Pages Functionality**           | Successful creation of user pages with accurate functionality for admin and basic users. | Minor issues or inconsistencies in user page functionality. | Significant issues or incomplete implementation in user page functionality. | No or critical omissions in user page functionality.       |
 | **Quiz Pages Functionality**           | Successful creation of quiz pages with accurate functionality for admin and basic users. | Minor issues or inconsistencies in quiz page functionality. | Significant issues or incomplete implementation in quiz page functionality. | No or critical omissions in quiz page functionality.       |
@@ -29,8 +29,8 @@
 
 ### Functionality: Frontend Application - RESTful API - 10%
 
-| **Criteria**                                 | **10-9**                                                 | **8-7**                                                  | **6-5**                                                  | **4-0**                                                  |
-| -------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **RESTful API Page Functionality**     | Implementation of a page allowing an unauthenticated user to retrieve RESTful API information. | Minor issues or inconsistencies in the implementation.   | Significant issues or incomplete implementation.        | No or critical omissions in implementation.              |
 | **UI Styling**    | UI is visually attractive with Tailwind CSS and Shadcn UI. | Minor issues or inconsistencies in UI styling. | Significant issues or incomplete implementation in UI styling. | No or critical omissions in UI styling.  |
 
@@ -113,7 +113,5 @@
 **Total Marks (100%):** [Total Marks]
 
 **Assessor's Name:** [Assessor's Name]
-
-**Assessor's Signature:** ___________________
 
 *Note: This cover sheet is to be completed and submitted with the assignment.*
