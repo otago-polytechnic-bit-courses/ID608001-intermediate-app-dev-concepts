@@ -213,8 +213,10 @@ Before you start, create a new branch called **01-refresher-exercise**.
 
 Refresh your memory on the following topics:
 
-1. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-23/lecture-notes/04-postgresql-and-object-relational-mapper.md
-2. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-23/lecture-notes/05-relationships.md
-3. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-23/lecture-notes/06-validation.md
+1. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-24/lecture-notes/02-express-and-postman.md
+2. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-24/lecture-notes/03-deployment-and-kanban.md
+3. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-24/lecture-notes/04-postgresql-and-object-relational-mapper.md
+4. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-24/lecture-notes/05-relationships.md
+5. https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-24/lecture-notes/06-validation.md
 
 **Note:** You do not need to complete the **formative assessments**. However, you are welcome to do so.
