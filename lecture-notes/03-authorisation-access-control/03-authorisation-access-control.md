@@ -160,11 +160,11 @@ In the `schema.prisma` file, add a new value called `SUPER_ADMIN_USER` to the `R
 
 ## Task Toru
 
-In the `controllers/v1/institution.js` and `controllers/v1/departments.js` files, refactor the `create` \& `update` functions so that the `ADMIN_USER` and `SUPER_ADMIN_USER` are the only users authorised to create and update a resource, i.e., institution or department. Test the changes in **Postman** before you move on to **Task Whā**.
+In the `controllers/v1/institution.js` and `controllers/v1/department.js` files, refactor the `create` \& `update` functions so that the `ADMIN_USER` and `SUPER_ADMIN_USER` are the only users authorised to create and update a resource, i.e., institution or department. Test the changes in **Postman** before you move on to **Task Whā**.
 
 ## Task Whā
 
-In the `controllers/v1/institution.js` and `controllers/v1/departments.js` files, refactor the `delete` function so that the `SUPER_ADMIN_USER` is the only user authorised to delete a resource, i.e., institution or department. Test the changes in **Postman** before you move on to the **Formative Assessment Submission**.
+In the `controllers/v1/institution.js` and `controllers/v1/department.js` files, refactor the `delete` function so that the `SUPER_ADMIN_USER` is the only user authorised to delete a resource, i.e., institution or department. Test the changes in **Postman** before you move on to the **Formative Assessment Submission**.
 
 # Formative Assessment Submission
 
