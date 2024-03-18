@@ -8,7 +8,7 @@ If you get stuck, a completed version of this project is available in the **exem
 
 How does the **cache** know when there is a data change?
 
-Firstly, let us understand a couple caching mechanisms:
+Firstly, let us understand a couple of important caching mechanisms:
 - **Entity Tag (ETag)**: An **ETag** is a unique identifier for a specific version of a resource. It is used to determine if the resource has changed. If the resource has changed, the **ETag** changes. If the resource has not changed, the **ETag** remains the same.
 - **Last-Modified Header**: The **Last-Modified** header is a response header that indicates the date and time at which the resource was last modified.
 
