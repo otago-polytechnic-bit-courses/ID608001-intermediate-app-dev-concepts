@@ -6,6 +6,14 @@ If you get stuck, a completed version of this project is available in the **exem
 
 **Caching** is a technique that stores a copy of a resource in a cache. A cache is a temporary storage area. When a resource is requested, a copy of the resource is returned from the cache if it exists. If the resource does not exist in the cache, the resource is retrieved from the source and stored in the cache for future use. This process is called a **cache miss**. If the resource does exist in the cache, the resource is returned from the cache. This process is called a **cache hit**. **Caching** is a great way to improve the performance of an application.
 
+How does the **cache** know when there is a data change?
+
+Firstly, let us understand a couple caching mechanisms:
+- **Entity Tag (ETag)**: An **ETag** is a unique identifier for a specific version of a resource. It is used to determine if the resource has changed. If the resource has changed, the **ETag** changes. If the resource has not changed, the **ETag** remains the same.
+- **Last-Modified Header**: The **Last-Modified** header is a response header that indicates the date and time at which the resource was last modified.
+
+When a client requests a resource, the server sends the resource along with an **ETag** and a **Last-Modified** header. The client stores the **ETag** and the **Last-Modified** header. When the client requests the resource again, it sends the **ETag** and the **Last-Modified** header to the server. The server compares the **ETag** and the **Last-Modified** header with the current **ETag** and the current **Last-Modified** header. If the **ETag** and the **Last-Modified** header match the current **ETag** and the current **Last-Modified** header, the server returns a **304 Not Modified** response. This means that the resource has not changed. If the **ETag** and the **Last-Modified** header do not match the current **ETag** and the current **Last-Modified** header, the server returns the resource along with a new **ETag** and a new **Last-Modified** header. 
+
 View this video to learn more about how **caching** works - <https://youtu.be/6FyXURRVmR0>
 
 To get started, run the following command:
@@ -78,12 +86,14 @@ export default cacheRoute;
 In the `app.js` file, add the following import:
 
 ```js
+// Declare this with your other imports
 import cacheRouteMiddleware from "./middleware/cacheRoute.js";
 ```
 
 Then add the following **middleware**:
 
 ```js
+// Declare this under app.use(limiter);
 app.use(cacheRouteMiddleware);
 ```
 
