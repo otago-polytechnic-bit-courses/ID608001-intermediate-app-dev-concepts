@@ -18,6 +18,8 @@ model User {
   password            String
   avatar              String
   username            String                @unique
+  loginAttempts       Int           @default(0)
+  lastLoginAttempt    DateTime?
   createdAt           DateTime              @default(now())
   role                Role                  @default(BASIC_USER)
   UserQuestionAnswer  UserQuestionAnswer[]
