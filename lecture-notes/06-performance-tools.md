@@ -14,7 +14,7 @@
 
 ## WebPageTest
 
-**WebPageTest** is a website performance and optimization test tool. It runs a free website speed test from multiple locations around the globe using real browsers and at real consumer connection speeds. You can run simple tests or perform advanced testing including multi-step transactions, video capture, content blocking, and much more.
+**WebPageTest** is a website performance and optimisation test tool. It runs a free website speed test from multiple locations around the globe using real browsers and at real consumer connection speeds. You can run simple tests or perform advanced testing including multi-step transactions, video capture, content blocking, and much more.
 
 **Resource:** https://www.webpagetest.org
 
@@ -35,23 +35,3 @@
 **Squoosh.app** is a tool that allows you to compress and compare images with different codecs and settings. It is a web app that can be used to compress images for the web.
 
 **Resource:** https://squoosh.app
-
-# Formative Assessment 
-
-Before you start, create a new branch called **06-formative-assessment**.
-
-If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
-
-- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
-
-## Task Tahi
-
-## Task Rua
-
-## Task Toru
-
-# Formative Assessment Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
