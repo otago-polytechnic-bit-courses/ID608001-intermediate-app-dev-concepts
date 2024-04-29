@@ -64,7 +64,7 @@ const App = () => {
     queryKey: ["institutionData"],
     queryFn: () =>
       fetch(
-        "https://id607001-graysono-wbnj.onrender.com/api/institutions"
+        "https://id607001-graysono-1i3w.onrender.com/api/institutions"
       ).then((res) => res.json()),
   });
 
@@ -155,7 +155,7 @@ const App = () => {
   const { mutate: postInstitutionMutation, data: postInstitutionData } =
     useMutation({
       mutationFn: (institution) =>
-        fetch("https://id607001-graysono-wbnj.onrender.com/api/institutions", {
+        fetch("https://id607001-graysono-1i3w.onrender.com/api/institutions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -218,7 +218,7 @@ const App = () => {
   const { mutate: postInstitutionMutation, data: postInstitutionData } =
     useMutation({
       mutationFn: (institution) =>
-        fetch("https://id607001-graysono-wbnj.onrender.com/api/institutions", {
+        fetch("https://id607001-graysono-1i3w.onrender.com/api/institutions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -305,7 +305,7 @@ const App = () => {
   //   queryKey: ["institutionData"],
   //   queryFn: () =>
   //     fetch(
-  //       "https://id607001-graysono-wbnj.onrender.com/api/institutions"
+  //       "https://id607001-graysono-1i3w.onrender.com/api/institutions"
   //     ).then((res) => res.json()),
   // });
 
@@ -321,7 +321,7 @@ const App = () => {
       { pageParam = 1 } // Use the pageParam to fetch the next page. If the pageParam is undefined, fetch the first page
     ) =>
       fetch(
-        `https://id607001-graysono-wbnj.onrender.com/api/institutions?page=${pageParam}&amount=5`
+        `https://id607001-graysono-1i3w.onrender.com/api/institutions?page=${pageParam}&amount=5`
       ).then((res) => res.json()),
     getNextPageParam: (prevData) => prevData.nextPage, // Get the next page from the previous data. If a next page does not exist, return undefined
   });
