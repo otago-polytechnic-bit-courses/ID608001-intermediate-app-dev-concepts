@@ -9,7 +9,7 @@ const App = () => {
   //   queryKey: ["institutionData"],
   //   queryFn: () =>
   //     fetch(
-  //       "https://id607001-graysono-wbnj.onrender.com/api/institutions"
+  //       "https://id607001-graysono-1i3w.onrender.com/api/institutions"
   //     ).then((res) => res.json()),
   // });
 
@@ -23,7 +23,7 @@ const App = () => {
     queryKey: ["institutionData"],
     queryFn: ({ pageParam = 1 }) =>
       fetch(
-        `https://id607001-graysono-wbnj.onrender.com/api/institutions?page=${pageParam}&amount=5`
+        `https://id607001-graysono-1i3w.onrender.com/api/institutions?page=${pageParam}&amount=5`
       ).then((res) => res.json()),
     getNextPageParam: (prevData) => prevData.nextPage,
   });
@@ -31,7 +31,7 @@ const App = () => {
   const { mutate: postInstitutionMutation, data: postInstitutionData } =
     useMutation({
       mutationFn: (institution) =>
-        fetch("https://id607001-graysono-wbnj.onrender.com/api/institutions", {
+        fetch("https://id607001-graysono-1i3w.onrender.com/api/institutions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
