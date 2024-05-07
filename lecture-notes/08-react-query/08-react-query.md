@@ -229,11 +229,12 @@ const App = () => {
           }),
         }).then((res) => {
           if (res.status === 201) {
-            institution.reset({
+            institutionForm.reset((formValues) => ({
+              ...formValues,
               name: "",
               region: "",
               country: "",
-            });
+            }));
           }
           return res.json();
         }),
