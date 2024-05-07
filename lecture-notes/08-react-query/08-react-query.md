@@ -141,7 +141,6 @@ Click on the icon in the bottom right corner to open the developer tools.
 1. In `src/App.jsx`, import the `useMutation` hook from `@tanstack/react-query` and `queryClient` from `src/main.jsx`:
 
 ```js
-// ...
 import { useQuery, useMutation } from "@tanstack/react-query";
 
 import { queryClient } from "./main";
@@ -230,12 +229,11 @@ const App = () => {
           }),
         }).then((res) => {
           if (res.status === 201) {
-            form.reset((formValues) => ({
-              ...formValues,
+            institution.reset({
               name: "",
               region: "",
               country: "",
-            }));
+            });
           }
           return res.json();
         }),
