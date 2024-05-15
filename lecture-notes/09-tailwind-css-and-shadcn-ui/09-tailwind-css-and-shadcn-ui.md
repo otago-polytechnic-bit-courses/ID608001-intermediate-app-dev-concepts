@@ -23,7 +23,7 @@ When prompted, select the following options:
 1. Install the following dependency:
 
 ```bash
-npm install tailwindcss postcss autoprefixer --save-dev
+npm install tailwindcss postcss autoprefixer @vitejs/plugin-react-swc --save-dev
 ```
 
 2. Create a **Tailwind CSS** configuration file:
