@@ -3,7 +3,7 @@ import InfoCard from "./InfoCard";
 const App = () => {
   const data = [
     {
-      title: "Register Basic User",
+      title: "Register User",
       description: "Register a new user.",
       method: "POST",
       url: "/api/v1/auth/register",
