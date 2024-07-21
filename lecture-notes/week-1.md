@@ -193,9 +193,8 @@ const Counter = () => {
 
   return (
     <>
-            <p>{count}</p>      <button onClick={increment(1)}>
-        Increment
-      </button>   {" "}
+      <p>{count}</p>     
+      <button onClick={increment(1)}>Increment</button>
     </>
   );
 };
@@ -289,11 +288,9 @@ export default App;
 const List = (props) => {
   return (
     <ul>
-           {" "}
       {props.items.map((item, index) => (
         <li key={index}>{item}</li>
       ))}
-         {" "}
     </ul>
   );
 };
@@ -335,7 +332,7 @@ const Form = () => {
       <input type="text" value={name} onChange={handleChange} />
       <button type="submit">Submit</button>
     </form>
- );
+  );
 };
 
 export default Form;
@@ -526,8 +523,9 @@ const Game = () => {
 
   return (
     <>
-            {gameStarted && <Board squares={squares} onClick={handleClick} />}   
-        <div style={style}>
+            {gameStarted && <Board squares={squares} onClick={handleClick} />} 
+         {" "}
+      <div style={style}>
                {" "}
         {gameStarted && (
           <p>
@@ -541,7 +539,8 @@ const Game = () => {
                 <button onClick={restartGame}>
                     {gameStarted ? "Restart Game" : "Start Game"}       {" "}
         </button>     {" "}
-      </div>   {" "}
+      </div>
+         {" "}
     </>
   );
 };
