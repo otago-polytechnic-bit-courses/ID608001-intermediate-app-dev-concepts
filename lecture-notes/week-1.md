@@ -546,7 +546,7 @@ export default Game;
 6. In `App.jsx`, import the `Game` component and render it in the `App` component:
 
 ```jsx
-import Game from "./components/Game";
+import Game from "./Game";
 
 const App = () => <Game />;
 
