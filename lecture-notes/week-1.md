@@ -108,7 +108,7 @@ npm install
 npm run dev
 ```
 
-6. Open your browser and navigate to <http://localhost:3000>. You should see the default **React** application.
+6. Open your browser and navigate to <http://localhost:5173>. You should see the default **React** application.
 
 ---
 
