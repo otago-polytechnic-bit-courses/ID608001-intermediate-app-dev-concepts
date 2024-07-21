@@ -147,14 +147,14 @@ There are two types of components in React:
 ```jsx
 // Functional Component
 const Welcome = () => {
-  return <h1>Hello, World!</h1>;
+  return <h1>Hello, World!</h1>;
 };
 
 // Class Component
 class Welcome extends React.Component {
-  render() {
-    return <h1>Hello, World!</h1>;
-  }
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
 }
 ```
 
@@ -166,14 +166,14 @@ Props are short for properties. They are a way to pass data from parent to child
 
 ```jsx
 // Parent Component
-function App() {
-  return <Welcome name="John" />;
-}
+const App = () => {
+  return <Welcome name="John" />;
+};
 
 // Child Component
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
+const Welcome = (props) => {
+  return <h1>Hello, {props.name}</h1>;
+};
 ```
 
 ### State
@@ -185,18 +185,19 @@ State is a built-in object in React that is used to contain data that controls t
 import { useState } from "react";
 
 const Counter = () => {
-  const [count, setCount] = useState(0); // Initial state is 0
+  const [count, setCount] = useState(0); // Initial state is 0
 
-  const increment = (amount) => {
-    setCount(count + amount); // Increment the count by the given amount
-  };
+  const increment = (amount) => {
+    setCount(count + amount); // Increment the count by the given amount
+  };
 
-  return (
-    <>
-      <p>{count}</p>
-      <button onClick={increment(1)}>Increment</button>
-    </>
- );
+  return (
+    <>
+            <p>{count}</p>      <button onClick={increment(1)}>
+        Increment
+      </button>   {" "}
+    </>
+  );
 };
 
 export default Counter;
@@ -212,16 +213,15 @@ You have already seen the `useState` hook in the previous example. Hooks are a n
 import { useState, useEffect } from "react";
 
 const RandomProgrammingJoke = () => {
-  const [joke, setJoke] = useState("");
+  const [joke, setJoke] = useState(""); // Fetch a random programming joke when the component mounts
 
-  // Fetch a random programming joke when the component mounts
-  useEffect(() => {
-    fetch("https://official-joke-api.appspot.com/jokes/programming/random") // Fetch a random programming joke
-      .then((response) => response.json()) // Parse the response as JSON
-      .then((data) => setJoke(`${data[0].setup} ${data[0].punchline}`)); // Set the joke
-  }, []);
+  useEffect(() => {
+    fetch("https://official-joke-api.appspot.com/jokes/programming/random") // Fetch a random programming joke
+      .then((response) => response.json()) // Parse the response as JSON
+      .then((data) => setJoke(`${data[0].setup} ${data[0].punchline}`)); // Set the joke
+  }, []);
 
-  return <p>{joke}</p>;
+  return <p>{joke}</p>;
 };
 
 export default RandomProgrammingJoke;
@@ -262,7 +262,7 @@ or you can use the ternary operator:
 
 ```jsx
 const Greeting = (props) => {
-  return props.isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign up!</h1>;
+  return props.isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign up!</h1>;
 };
 
 export default Greeting;
@@ -279,21 +279,23 @@ You can use the `map` method to render a list of items in React. Each item in th
 import List from "./List";
 
 const App = () => {
-  const items = ["Apple", "Banana", "Cherry"];
-  return <List items={items} />;
+  const items = ["Apple", "Banana", "Cherry"];
+  return <List items={items} />;
 };
 
 export default App;
 
 // Child Component
 const List = (props) => {
-  return (
-    <ul>
-      {props.items.map((item, index) => (
-        <li key={index}>{item}</li>
- ))}
-    </ul>
- );
+  return (
+    <ul>
+           {" "}
+      {props.items.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+         {" "}
+    </ul>
+  );
 };
 ```
 
@@ -348,12 +350,12 @@ You can style React components using CSS. You can use inline styles, CSS modules
 ```jsx
 // Inline Styles
 const styles = {
-  color: "red",
-  fontSize: "24px",
+  color: "red",
+  fontSize: "24px",
 };
 
 const App = () => {
-  return <h1 style={styles}>Hello, World!</h1>;
+  return <h1 style={styles}>Hello, World!</h1>;
 };
 
 export default App;
@@ -364,7 +366,7 @@ export default App;
 import styles from "./App.module.css";
 
 const App = () => {
-  return <h1 className={styles.heading}>Hello, World!</h1>;
+  return <h1 className={styles.heading}>Hello, World!</h1>;
 };
 
 export default App;
@@ -375,12 +377,12 @@ export default App;
 import styled from "styled-components"; // Install styled-components using npm install styled-components
 
 const Heading = styled.h1`
- color: red;
- font-size: 24px;
+  color: red;
+  font-size: 24px;
 `;
 
 const App = () => {
-  return <Heading>Hello, World!</Heading>;
+  return <Heading>Hello, World!</Heading>;
 };
 
 export default App;
@@ -416,19 +418,19 @@ import "./index.css";
 
 ```jsx
 const Square = (props) => {
-  const style = {
-    border: "1px solid #000",
-    cursor: "pointer",
-    fontSize: "30px",
-    fontWeight: "800",
-    outline: "none",
-  };
+  const style = {
+    border: "1px solid #000",
+    cursor: "pointer",
+    fontSize: "30px",
+    fontWeight: "800",
+    outline: "none",
+  };
 
-  return (
-    <button style={style} onClick={props.onClick}>
-      {props.value}
-    </button>
- );
+  return (
+    <button style={style} onClick={props.onClick}>
+            {props.value}   {" "}
+    </button>
+  );
 };
 
 export default Square;
@@ -442,21 +444,23 @@ export default Square;
 import Square from "./Square";
 
 const Board = (props) => {
-  const style = {
-    border: "1px solid #000",
-    display: "grid",
-    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)",
-    height: "200px",
-    width: "200px",
-  };
+  const style = {
+    border: "1px solid #000",
+    display: "grid",
+    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)",
+    height: "200px",
+    width: "200px",
+  };
 
-  return (
-    <div style={style}>
-      {props.squares.map((square, idx) => (
-        <Square key={idx} value={square} onClick={() => props.onClick(idx)} />
- ))}
-    </div>
- );
+  return (
+    <div style={style}>
+           {" "}
+      {props.squares.map((square, idx) => (
+        <Square key={idx} value={square} onClick={() => props.onClick(idx)} />
+      ))}
+         {" "}
+    </div>
+  );
 };
 
 export default Board;
@@ -472,71 +476,74 @@ import { useState } from "react";
 import Board from "./Board";
 
 const Game = () => {
-  const style = {
-    width: "200px",
-  };
+  const style = {
+    width: "200px",
+  };
 
-  const calculateGameState = (squares) => {
-    const lines = [
- [0, 1, 2],
- [3, 4, 5],
- [6, 7, 8],
- [0, 3, 6],
- [1, 4, 7],
- [2, 5, 8],
- [0, 4, 8],
- [2, 4, 6],
- ];
+  const calculateGameState = (squares) => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
 
-    for (let s = 0; s < lines.length; s++) {
-      const [a, b, c] = lines[s];
-      if (
-        squares[a] &&
-        squares[a] === squares[b] &&
-        squares[a] === squares[c]
- ) {
-        return squares[a];
-      }
-    }
-    return null;
-  };
+    for (let s = 0; s < lines.length; s++) {
+      const [a, b, c] = lines[s];
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
+        return squares[a];
+      }
+    }
+    return null;
+  };
 
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState(true);
-  const [gameStarted, setGameStarted] = useState(false);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
 
-  const winner = calculateGameState(squares);
+  const winner = calculateGameState(squares);
 
-  const handleClick = (idx) => {
-    const squaresCopy = [...squares];
-    if (winner || squaresCopy[idx]) return;
-    squaresCopy[idx] = xIsNext ? "X" : "O";
-    setSquares(squaresCopy);
-    setXIsNext(!xIsNext);
-  };
+  const handleClick = (idx) => {
+    const squaresCopy = [...squares];
+    if (winner || squaresCopy[idx]) return;
+    squaresCopy[idx] = xIsNext ? "X" : "O";
+    setSquares(squaresCopy);
+    setXIsNext(!xIsNext);
+  };
 
-  const restartGame = () => {
-    setSquares(Array(9).fill(null));
-    setGameStarted(true);
-  };
+  const restartGame = () => {
+    setSquares(Array(9).fill(null));
+    setGameStarted(true);
+  };
 
-  return (
-    <>
-      {gameStarted && <Board squares={squares} onClick={handleClick} />}
-      <div style={style}>
-        {gameStarted && (
-          <p>
-            {winner
- ? `Winner: ${winner}`
- : `Next Player: ${xIsNext ? "X" : "O"}`}
-          </p>
- )}
-        <button onClick={restartGame}>
-          {gameStarted ? "Restart Game" : "Start Game"}
-        </button>
-      </div>
-    </>
- );
+  return (
+    <>
+            {gameStarted && <Board squares={squares} onClick={handleClick} />}   
+        <div style={style}>
+               {" "}
+        {gameStarted && (
+          <p>
+                       {" "}
+            {winner
+              ? `Winner: ${winner}`
+              : `Next Player: ${xIsNext ? "X" : "O"}`}
+                     {" "}
+          </p>
+        )}
+                <button onClick={restartGame}>
+                    {gameStarted ? "Restart Game" : "Start Game"}       {" "}
+        </button>     {" "}
+      </div>   {" "}
+    </>
+  );
 };
 
 export default Game;
