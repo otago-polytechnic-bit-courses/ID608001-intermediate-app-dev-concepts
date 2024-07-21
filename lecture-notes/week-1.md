@@ -425,7 +425,7 @@ const Square = (props) => {
 
   return (
     <button style={style} onClick={props.onClick}>
-            {props.value}   {" "}
+      {props.value}
     </button>
   );
 };
@@ -451,11 +451,9 @@ const Board = (props) => {
 
   return (
     <div style={style}>
-           {" "}
       {props.squares.map((square, idx) => (
         <Square key={idx} value={square} onClick={() => props.onClick(idx)} />
       ))}
-         {" "}
     </div>
   );
 };
@@ -523,24 +521,19 @@ const Game = () => {
 
   return (
     <>
-            {gameStarted && <Board squares={squares} onClick={handleClick} />} 
-         {" "}
+      {gameStarted && <Board squares={squares} onClick={handleClick} />} 
       <div style={style}>
-               {" "}
         {gameStarted && (
           <p>
-                       {" "}
             {winner
               ? `Winner: ${winner}`
               : `Next Player: ${xIsNext ? "X" : "O"}`}
-                     {" "}
           </p>
         )}
-                <button onClick={restartGame}>
-                    {gameStarted ? "Restart Game" : "Start Game"}       {" "}
-        </button>     {" "}
+        <button onClick={restartGame}>
+          {gameStarted ? "Restart Game" : "Start Game"}      
+        </button>
       </div>
-         {" "}
     </>
   );
 };
