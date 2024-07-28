@@ -148,6 +148,18 @@ numbers.push(6); // OK
 numbers.push("7"); // Error: Argument of type 'string' is not assignable to parameter of type 'number'
 ```
 
+You can also specify a **2D array** or an array with mixed types:
+
+```typescript
+let 2DArray: number[][] = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+let mixedArray: (number | string)[] = [1, "2", 3, "4", 5];
+```
+
 ---
 
 ### Functions
@@ -250,7 +262,7 @@ if (direction === Direction.Up) {
 
 ## TypeScript in React
 
-Let us convert the following example into TypeScript:
+Here is an example of converting a **React** component to use **TypeScript**:
 
 ```jsx
 import { useState } from "react";
@@ -264,7 +276,7 @@ const Counter = () => {
 
   return (
     <>
-      <p>{count}</p>     
+      <p>{count}</p>     
       <button onClick={increment(1)}>Increment</button>
     </>
   );
@@ -276,7 +288,7 @@ export default Counter;
 ```typescript
 import { useState } from "react";
 
-const Counter = () => {
+const Counter: React.FC = () => {
   const [count, setCount] = useState<number>(0); // Initial state is 0
 
   const increment = (amount: number) => {
@@ -294,7 +306,9 @@ const Counter = () => {
 export default Counter;
 ```
 
-Here is another example:
+---
+
+Here is an example of a **React** component that fetches a random programming joke using **TypeScript**:
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -309,16 +323,19 @@ const RandomProgrammingJoke: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch("https://official-joke-api.appspot.com/jokes/programming/random")
-      .then((response) => response.json())
-      .then((data: Joke[]) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://official-joke-api.appspot.com/jokes/programming/random");
+        const data = await response.json();
         setJoke(data[0]);
         setIsLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
         setIsLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -341,6 +358,45 @@ export default RandomProgrammingJoke;
 
 ---
 
+Here is an example of a **React** component that takes props using **TypeScript**:
+
+```typescript
+// Parent Component
+import Person from "./Person";
+
+const App: React.FC = () => {
+  return (
+    <>
+      <Person name="John Doe" age={30} isStudent={true} />
+      <Person name="Jane Doe" age={25} isStudent={false} />
+    </>
+  );
+};
+
+export default App;
+
+// Child Component
+interface PersonProps {
+  name: string;
+  age: number;
+  isStudent: boolean;
+}
+
+const Person: React.FC<PersonProps> = (props) => {
+  return (
+    <>
+      <p>Name: {props.name}</p>
+      <p>Age: {props.age}</p>
+      <p>Student: {props.isStudent ? "Yes" : "No"}</p>
+    </>
+  );
+};
+
+export default Person;
+```
+
+---
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
@@ -352,3 +408,153 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 ---
 
 ### Task One
+
+Create a new component called **Person**. The component should take the following props:
+
+- `id` (number)
+- `name` (string)
+- `age` (number)
+- `isStudent` (boolean)
+- `onDelete` (function). The function should take the person's id as an argument.
+
+In the `App` component, create an array of people with the following data:
+
+- John Doe, 30, true
+- Jane Doe, 25, false
+- Jack Doe, 20, true
+- Jill Doe, 15, false
+- Jim Doe, 10, true
+
+Render the `Person` component for each person in the array. When the delete button is clicked, remove the person from the array.
+
+---
+
+### Task Two
+
+Create a new component called **Riddle**. The component should fetch a random riddle from the <https://riddles-api.vercel.app/random> API and display it. Display the riddle and the answer.
+
+---
+
+### Task Three
+
+You have been given a component called **MultiplicationMatrix**. The component has two input fields for rows and columns. When the user enters the number of rows and columns and clicks the **Generate Matrix** button, a multiplication matrix should be generated. For example, if the user enters 3 for rows and 3 for columns, the matrix should look like this:
+
+```
+1 2 3
+2 4 6
+3 6 9
+```
+
+Implement the TODOs in the component.
+
+```typescript
+import { useState } from "react";
+
+const MultiplicationMatrix: React.FC = () => {
+  // TODO: The type for rows and columns is a number
+  const [rows, setRows] = useState<>(0);
+  const [columns, setColumns] = useState<>(0);
+
+  // TODO: The type for matrix is a 2D array of numbers
+  const [matrix, setMatrix] = useState<>([]);
+
+  const handleRowsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // TODO: Convert the input value to a number and set the rows
+  };
+
+  const handleColumnsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // TODO: Convert the input value to a number and set the columns
+  };
+
+  const generateMatrix = () => {
+    const newMatrix: number[][] = [];
+
+    for (let i = 1; i <= rows; i++) {
+      const row: number[] = [];
+      for (let j = 1; j <= columns; j++) {
+        // TODO: Multiply i and j and push the result to the row
+      }
+      // TODO: Push the row to the newMatrix
+    }
+    // TODO: Set the newMatrix to the matrix
+  };
+
+  return (
+    <>
+      <div>
+        <label>
+          Rows:
+          <input type="number" value={rows} onChange={handleRowsChange} />
+        </label>
+      </div>
+      <div>
+        <label>
+          Columns:
+          <input type="number" value={columns} onChange={handleColumnsChange} />
+        </label>
+      </div>
+      <button onClick={generateMatrix}>Generate Matrix</button>
+      {matrix.length > 0 && (
+        <table>
+          <tbody>
+            {matrix.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </>
+  );
+};
+
+export default MultiplicationMatrix;
+```
+
+---
+
+### Task Four
+
+Create a new component called **Calculator**. The component should have two input fields for numbers and a select field for the operation (addition, subtraction, multiplication, division). When the user enters two numbers and selects an operation, the result should be displayed.
+
+---
+
+### Task Five - Prettier (Research)
+
+**Prettier** is a popular code formatting tool.
+
+Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
+
+In the `.prettierrc.json` file, implement the following rules:
+
+- Print width is 80
+- Tab width is 2
+- Semi-colons are required
+- Single quotes are required
+- Trailing commas wherever possible
+
+In the `package.json` file, add the following lines to the `scripts` block.
+
+```json
+"prettier:format": "npx prettier --write .",
+"prettier:check": "npx prettier --check ."
+```
+
+- `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
+- `prettier:check` script is used to check if the code is formatted based on the rules specified in the `.prettierrc.json` file.
+
+Run the `prettier:format` script to format your code. Run the `prettier:check` script to check if your code is formatted correctly.
+
+### Task Six - Pretty Quick (Research)
+
+**Pretty Quick** is a tool that runs **Prettier** on your changed files. 
+
+Read the documentation on [Pretty Quick]() and use it to format your code based on the rules specified in the `.prettierrc.json` file.
+
+### Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+

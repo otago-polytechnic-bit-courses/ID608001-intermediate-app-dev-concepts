@@ -220,16 +220,19 @@ const RandomProgrammingJoke = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://official-joke-api.appspot.com/jokes/programming/random")
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://official-joke-api.appspot.com/jokes/programming/random");
+        const data = await response.json();
         setJoke(data[0]);
         setIsLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
         setIsLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
