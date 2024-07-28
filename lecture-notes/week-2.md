@@ -552,7 +552,7 @@ Run the `prettier:format` script to format your code. Run the `prettier:check` s
 
 **Pretty Quick** is a tool that runs **Prettier** on your changed files. 
 
-Read the documentation on [Pretty Quick]() and use it to format your code based on the rules specified in the `.prettierrc.json` file.
+Read the documentation on [Pretty Quick](https://www.npmjs.com/package/pretty-quick) and use it to format your code based on the rules specified in the `.prettierrc.json` file.
 
 ### Submission
 
