@@ -291,7 +291,7 @@ import { useState } from "react";
 const Counter: React.FC = () => {
   const [count, setCount] = useState<number>(0); // Initial state is 0
 
-  const increment = (amount: number) => {
+  const increment = (amount: number): void => {
     setCount(count + amount); // Increment the count by the given amount
   };
 
@@ -547,6 +547,8 @@ In the `package.json` file, add the following lines to the `scripts` block.
 - `prettier:check` script is used to check if the code is formatted based on the rules specified in the `.prettierrc.json` file.
 
 Run the `prettier:format` script to format your code. Run the `prettier:check` script to check if your code is formatted correctly.
+
+---
 
 ### Task Six - Pretty Quick (Research)
 
