@@ -556,6 +556,8 @@ Run the `prettier:format` script to format your code. Run the `prettier:check` s
 
 Read the documentation on [Pretty Quick](https://www.npmjs.com/package/pretty-quick) and use it to format your code based on the rules specified in the `.prettierrc.json` file.
 
+---
+
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
