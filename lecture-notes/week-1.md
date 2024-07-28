@@ -39,7 +39,7 @@ Open up **Git Bash** or whatever alternative you see fit on your computer. Clone
 ### Commit Message Conventions
 
 You should follow the **conventional commits** convention when committing changes to your repository. A **conventional commit** consists of a **type**, **scope** and **description**. The **type** and **description** are mandatory, while the **scope** is optional. The **type** must be one of the following:
-
+  
 - **build**: Changes that affect the build system or external dependencies
 - **ci**: Changes to our CI configuration files and scripts
 - **docs**: Documentation only changes
@@ -170,10 +170,14 @@ const App = () => {
   return <Welcome name="John" />;
 };
 
+export default App;
+
 // Child Component
 const Welcome = (props) => {
   return <h1>Hello, {props.name}</h1>;
 };
+
+export default Welcome;
 ```
 
 ### State
@@ -212,15 +216,35 @@ You have already seen the `useState` hook in the previous example. Hooks are a n
 import { useState, useEffect } from "react";
 
 const RandomProgrammingJoke = () => {
-  const [joke, setJoke] = useState(""); // Fetch a random programming joke when the component mounts
+  const [joke, setJoke] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://official-joke-api.appspot.com/jokes/programming/random") // Fetch a random programming joke
-      .then((response) => response.json()) // Parse the response as JSON
-      .then((data) => setJoke(`${data[0].setup} ${data[0].punchline}`)); // Set the joke
+    fetch("https://official-joke-api.appspot.com/jokes/programming/random")
+      .then((response) => response.json())
+      .then((data) => {
+        setJoke(data[0]);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsLoading(false);
+      });
   }, []);
 
-  return <p>{joke}</p>;
+  return (
+    <>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : joke ? (
+        <p>
+          {joke.setup} {joke.punchline}
+        </p>
+      ) : (
+        <p>Failed to load joke.</p>
+      )}
+    </>
+  );
 };
 
 export default RandomProgrammingJoke;
@@ -240,7 +264,11 @@ import Greeting from "./Greeting";
 
 const App = () => {
   const isLoggedIn = true;
-  return <Greeting isLoggedIn={isLoggedIn} />;
+  return (
+    <>
+      <Greeting isLoggedIn={isLoggedIn} />
+    </>
+  );
 };
 
 export default App;
@@ -441,10 +469,11 @@ export default Square;
 import Square from "./Square";
 
 const Board = (props) => {
+  // Define the style for the board
   const style = {
     border: "1px solid #000",
     display: "grid",
-    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)",
+    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)", // 3x3 grid
     height: "200px",
     width: "200px",
   };
@@ -475,6 +504,7 @@ const Game = () => {
     width: "200px",
   };
 
+  // This function calculates the winner of the game. There are eight possible winning combinations
   const calculateGameState = (squares) => {
     const lines = [
       [0, 1, 2],
@@ -487,6 +517,7 @@ const Game = () => {
       [2, 4, 6],
     ];
 
+    // Check each winning combination
     for (let s = 0; s < lines.length; s++) {
       const [a, b, c] = lines[s];
       if (
@@ -494,13 +525,13 @@ const Game = () => {
         squares[a] === squares[b] &&
         squares[a] === squares[c]
       ) {
-        return squares[a];
+        return squares[a]; // Return the winner which is either "X" or "O"
       }
     }
-    return null;
+    return null; // Return null if there is no winner
   };
 
-  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [squares, setSquares] = useState(Array(9).fill(null)); // Initialise the board with 9 empty squares
   const [xIsNext, setXIsNext] = useState(true);
   const [gameStarted, setGameStarted] = useState(false);
 
