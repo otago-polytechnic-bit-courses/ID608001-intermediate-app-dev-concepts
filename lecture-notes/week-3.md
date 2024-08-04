@@ -111,7 +111,13 @@ const BookList = () => {
   return (
     <>
       {books.map((book) => (
-        <Book key={book.id} id={book.id} name={book.name} price={book.price} />
+        <Book
+          key={book.id}
+          id={book.id}
+          name={book.name}
+          price={book.price}
+          addToCart={() => addToCart(book.id, book.name, book.price)}
+        />
       ))}
     </>
   );
