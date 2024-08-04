@@ -164,7 +164,7 @@ npm install redux @reduxjs/toolkit react-redux
 
 A **Redux** slice is a way to organise the state and the reducer functions. 
 
-In the `src` directory, create a new directory called `slices`. In the `slices` directory, create a new file called `cartSlice.js`. In `src/reducers/cartSlice.js`, add the following code:
+In the `src` directory, create a new directory called `slices`. In the `slices` directory, create a new file called `cartSlice.js`. In `src/slices/cartSlice.js`, add the following code:
 
 ```js
 import { createSlice } from "@reduxjs/toolkit";
