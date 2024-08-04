@@ -548,11 +548,15 @@ In the `package.json` file, add the following lines to the `scripts` block.
 
 Run the `prettier:format` script to format your code. Run the `prettier:check` script to check if your code is formatted correctly.
 
+---
+
 ### Task Six - Pretty Quick (Research)
 
 **Pretty Quick** is a tool that runs **Prettier** on your changed files. 
 
 Read the documentation on [Pretty Quick](https://www.npmjs.com/package/pretty-quick) and use it to format your code based on the rules specified in the `.prettierrc.json` file.
+
+---
 
 ### Submission
 
