@@ -156,6 +156,8 @@ npm install redux @reduxjs/toolkit react-redux
 
 ### Slice
 
+A **Redux** slice is a way to organise the state and the reducer functions. 
+
 In the `src` directory, create a new directory called `slices`. In the `slices` directory, create a new file called `cartSlice.js`. In `src/reducers/cartSlice.js`, add the following code:
 
 ```js
@@ -185,6 +187,8 @@ Here we are creating a **Redux** slice using the `createSlice()` function. The `
 ---
 
 ### Store
+
+A **Redux** store is an object that holds the state of your application. It is the single source of truth for your application. 
 
 In the `src/utils` directory, create a new file called `store.js`. In `src/utils/store.js`, add the following code:
 
