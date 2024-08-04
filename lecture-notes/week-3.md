@@ -318,19 +318,19 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ---
 
-## Task One
+### Task One
 
 Convert the `Book` and `BookList` components to use TypeScript.
 
 ---
 
-## Task Two
+### Task Two
 
 Move the `books` state in the `BookList` component to the `initialState` object in the `src/slices/cartSlice.js` file. Update the `BookList.tsx` file to use the `useSelector()` hook to access the `books` state.
 
 ---
 
-## Task Three
+### Task Three
 
 In the `src/components` directory, create a new file called `Cart.tsx`. In the `Cart.tsx` file, display the total number of items and the total price of the items in the cart. Use the `useSelector()` hook to access the `cart` state.
 
