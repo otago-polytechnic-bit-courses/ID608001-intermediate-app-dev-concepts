@@ -291,7 +291,7 @@ import { useState } from "react";
 const Counter: React.FC = () => {
   const [count, setCount] = useState<number>(0); // Initial state is 0
 
-  const increment = (amount: number) => {
+  const increment = (amount: number): void => {
     setCount(count + amount); // Increment the count by the given amount
   };
 
