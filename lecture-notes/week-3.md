@@ -306,6 +306,8 @@ export default BookList;
 
 Here we are using the `useSelector()` hook to access the **Redux** store. The `useSelector()` hook accepts a function as an argument. The function accepts the state as an argument. The `useSelector()` hook returns the state.
 
+---
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
