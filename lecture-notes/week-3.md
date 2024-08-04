@@ -196,7 +196,7 @@ Here we are creating a **Redux** slice using the `createSlice()` function. The `
 
 A **Redux** store is an object that holds the state of your application. It is the single source of truth for your application. 
 
-In the `src/utils` directory, create a new file called `store.js`. In `src/utils/store.js`, add the following code:
+In the `src` directory, create a new directory called `utils`. In the `src/utils` directory, create a new file called `store.js`. In `src/utils/store.js`, add the following code:
 
 ```js
 import { configureStore } from "@reduxjs/toolkit";
