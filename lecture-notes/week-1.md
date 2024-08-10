@@ -76,7 +76,7 @@ Open your **s2-24-intermediate-app-dev-repo-GitHub username** repository in **Vi
 
 **Vite** is a build tool that aims to provide a faster and more efficient development experience for modern web projects. It is a front-end build tool that is designed to be fast, lightweight, and flexible. **Vite** is optimized for modern web development and provides features like hot module replacement, fast builds, and instant server start.
 
-### Create a New Vite Project
+## Create a New Vite Project
 
 1. Create a new project using **Create Vite App**:
 

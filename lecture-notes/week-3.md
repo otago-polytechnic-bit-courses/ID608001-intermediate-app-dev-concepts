@@ -8,9 +8,7 @@ Open your **s2-24-intermediate-app-dev-repo-GitHub username** repository in **Vi
 
 ---
 
-If you get stuck, a completed version of this project is available in the **exemplar** directory.
-
-## Preparation
+## Create a New Vite Project
 
 1. Create a new project using **Create Vite App**:
 
