@@ -56,7 +56,7 @@ npm run dev
 npm install @tanstack/react-query
 ```
 
-2. In `src/main.jsx`, import the `QueryClientProvider` and `QueryClient` from `@tanstack/react-query`:
+2. In `src/main.tsx`, import the `QueryClientProvider` and `QueryClient` from `@tanstack/react-query`:
 
 ```js
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
@@ -71,16 +71,18 @@ export const queryClient = new QueryClient();
 4. Wrap the `App` component in the `QueryClientProvider`:
 
 ```js
-<React.StrictMode>
+<StrictMode>
   <QueryClientProvider client={queryClient}>
     <App />
   </QueryClientProvider>
-</React.StrictMode>,
+</StrictMode>,
 ```
+
+---
 
 ### Query Example
 
-In `src/App.jsx`, update the code to the following:
+In `src/App.tsx`, update the code to the following:
 
 ```js
 import { useQuery } from "@tanstack/react-query";
@@ -129,7 +131,7 @@ const App = () => {
 export default App;
 ```
 
-![](../../resources/img/08-react-query/08-react-query-1.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-1.jpeg?raw=true)
 
 ### Developer Tools
 
@@ -139,7 +141,7 @@ export default App;
 npm install @tanstack/react-query-devtools --save-dev
 ```
 
-2. In `src/main.jsx`, import the `ReactQueryDevtools` component from `@tanstack/react-query-devtools`:
+2. In `src/main.tsx`, import the `ReactQueryDevtools` component from `@tanstack/react-query-devtools`:
 
 ```js
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -148,23 +150,23 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 3. Add the `ReactQueryDevtools` component to the `QueryClientProvider`:
 
 ```js
-<React.StrictMode>
+<StrictMode>
   <QueryClientProvider client={queryClient}>
     <App />
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
-</React.StrictMode>,
+</StrictMode>,
 ```
 
 Click on the icon in the bottom right corner to open the developer tools.
 
-![](../../resources/img/08-react-query/08-react-query-2.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-2.jpeg)
 
-![](../../resources/img/08-react-query/08-react-query-3.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-3.jpeg)
 
 ## Mutation Example
 
-1. In `src/App.jsx`, import the `useMutation` hook from `@tanstack/react-query` and `queryClient` from `src/main.jsx`:
+1. In `src/App.tsx`, import the `useMutation` hook from `@tanstack/react-query` and `queryClient` from `src/main.tsx`:
 
 ```js
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -309,11 +311,11 @@ return (
 // ...
 ```
 
-![](../../resources/img/08-react-query/08-react-query-4.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-4.jpeg)
 
 ## Infinite Query Example
 
-1. In `src/App.jsx`, import the `useInfiniteQuery` hook from `@tanstack/react-query`:
+1. In `src/App.tsx`, import the `useInfiniteQuery` hook from `@tanstack/react-query`:
 
 ```js
 // ...
@@ -410,11 +412,11 @@ return (
 }
 ```
 
-![](../../resources/img/08-react-query/08-react-query-4.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-4.jpeg)
 
 Click on the **Load More** button to fetch the next page of data.
 
-![](../../resources/img/08-react-query/08-react-query-5.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-5.jpeg)
 
 ---
 
