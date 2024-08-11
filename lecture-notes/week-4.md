@@ -4,7 +4,7 @@
 
 Open your **s2-24-intermediate-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-formative-assessment** from **week-03-formative-assessment**.
 
-> **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Read the comments in the code examples. It will help you understand where to type the code. Also, some code examples may show **TypeScript** warnings.
 
 ---
 
@@ -92,7 +92,7 @@ const App = () => {
     queryKey: ["institutionData"],
     queryFn: () =>
       fetch(
-        "https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com//api/institutions"
+        "https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com/api/institutions"
       ).then((res) => res.json()),
   });
 
@@ -100,36 +100,35 @@ const App = () => {
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>Institution</th>
-            <th>Region</th>
-            <th>Country</th>
-          </tr>
-        </thead>
-        <tbody>
-          {institutionData.msg ? (
+      {institutionData.data.length > 0 && (
+        <table>
+          <thead>
             <tr>
-              <td colSpan="3">{institutionData.msg}</td>
+              <th>Institution</th>
+              <th>Region</th>
+              <th>Country</th>
             </tr>
-          ) : (
-            institutionData.data.map((institution) => (
+          </thead>
+          <tbody>
+            {institutionData.data.map((institution) => (
               <tr key={institution.id}>
                 <td>{institution.name}</td>
                 <td>{institution.region}</td>
                 <td>{institution.country}</td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </table>
+      )}
+      {institutionData.data.length === 0 && <p>No data available.</p>}
     </>
   );
 };
 
 export default App;
 ```
+
+In the browser, you should see the following:
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-1.jpeg?raw=true)
 
@@ -155,14 +154,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
     <App />
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
-</StrictMode>,
+</StrictMode>
 ```
 
 Click on the icon in the bottom right corner to open the developer tools.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-2.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-2.jpeg?raw=true)
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-3.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-3.jpeg?raw=true)
 
 ## Mutation Example
 
@@ -182,17 +181,20 @@ const App = () => {
   const { mutate: postInstitutionMutation, data: postInstitutionData } =
     useMutation({
       mutationFn: (institution) =>
-        fetch("https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com//api/institutions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: institution.name,
-            region: institution.region,
-            country: institution.country,
-          }),
-        }).then((res) => res.json()),
+        fetch(
+          "https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com/api/institutions",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: institution.name,
+              region: institution.region,
+              country: institution.country,
+            }),
+          }
+        ).then((res) => res.json()),
       onSuccess: () => queryClient.invalidateQueries("institutionData"),
     });
   // ...
@@ -242,20 +244,23 @@ const App = () => {
 ```js
 const App = () => {
   // ...
-  const { mutate: postInstitutionMutation, data: postInstitutionData } =
+  const { mutate: postInstitutionMutation } =
     useMutation({
       mutationFn: (institution) =>
-        fetch("https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com//api/institutions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: institution.name,
-            region: institution.region,
-            country: institution.country,
-          }),
-        }).then((res) => {
+        fetch(
+          "https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com/api/institutions",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: institution.name,
+              region: institution.region,
+              country: institution.country,
+            }),
+          }
+        ).then((res) => {
           if (res.status === 201) {
             institutionForm.reset((formValues) => ({
               ...formValues,
@@ -285,26 +290,22 @@ return (
       <input
         type="text"
         id="name"
-        name="name"
         {...institutionForm.register("name")}
       />
       <label htmlFor="region">Region</label>
       <input
         type="text"
         id="region"
-        name="region"
         {...institutionForm.register("region")}
       />
       <label htmlFor="country">Country</label>
       <input
         type="text"
         id="country"
-        name="country"
         {...institutionForm.register("country")}
       />
       <button type="submit">Submit</button>
     </form>
-    <p>{postInstitutionData?.msg}</p>
     {/* // ...  */}
   </>
 );
@@ -312,111 +313,6 @@ return (
 ```
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-4.jpeg)
-
-## Infinite Query Example
-
-1. In `src/App.tsx`, import the `useInfiniteQuery` hook from `@tanstack/react-query`:
-
-```js
-// ...
-import { useQuery, useMutation, useInfiniteQuery } from "@tanstack/react-query";
-```
-
-2. Using the `useInfiniteQuery` hook, create a new infinite query:
-
-```js
-const App = () => {
-  // Comment out the existing query
-
-  // const { isLoading, data: institutionData } = useQuery({
-  //   queryKey: ["institutionData"],
-  //   queryFn: () =>
-  //     fetch(
-  //       "https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com//api/institutions"
-  //     ).then((res) => res.json()),
-  // });
-
-  const {
-    isLoading,
-    data: institutionData,
-    isFetchingNextPage,
-    hasNextPage,
-    fetchNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["institutionData"],
-    queryFn: (
-      { pageParam = 1 } // Use the pageParam to fetch the next page. If the pageParam is undefined, fetch the first page
-    ) =>
-      fetch(
-        `https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com//api/institutions?page=${pageParam}&amount=5`
-      ).then((res) => res.json()),
-    getNextPageParam: (prevData) => prevData.nextPage, // Get the next page from the previous data. If a next page does not exist, return undefined
-  });
-  // ...
-};
-
-export default App;
-```
-
-**What is an infinite query?**
-
-An infinite query is a query that fetches data in pages. It is similar to a query, but it is used for fetching large amounts of data.
-
-3. Update the `table` element to the following:
-
-```js
-return (
-  <>
-    {/* /...  */}
-    <table>
-      <thead>
-        <tr>
-          <th>Institution</th>
-          <th>Region</th>
-          <th>Country</th>
-        </tr>
-      </thead>
-      <tbody>
-        {institutionData.pages[0].msg ? (
-          <tr>
-            <td colSpan="3">{institutionData.pages[0].msg}</td>
-          </tr>
-        ) : (
-          <>
-            {institutionData.pages
-              .flatMap((data) => data.data)
-              .map((institution) => (
-                <tr key={institution.id}>
-                  <td>{institution.name}</td>
-                  <td>{institution.region}</td>
-                  <td>{institution.country}</td>
-                </tr>
-              ))}
-          </>
-        )}
-      </tbody>
-    </table>
-  </>
-);
-```
-
-4. Declare the following in the `return` statement under the `table` element:
-
-```js
-{
-  hasNextPage && (
-    <button onClick={() => fetchNextPage()}>
-      {isFetchingNextPage ? "Loading..." : "Load More"}
-    </button>
-  );
-}
-```
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-4.jpeg)
-
-Click on the **Load More** button to fetch the next page of data.
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-5.jpeg)
 
 ---
 
@@ -432,15 +328,23 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
+Convert the `App` components to use TypeScript.
 
 ---
 
-### Task Two
+### Task Two - DELETE Mutation (Research)
 
+Create a new mutation that deletes an institution. The mutation should take an `id` as an argument and should invalidate the `institutionData` query upon success. For each table row, add a **Delete** button that calls the mutation when clicked.
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s1-24/resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-1.jpeg)
 
 ---
 
-### Task Three
+### Task Three - PUT Mutation (Research)
+
+Create a new mutation that updates an institution. The mutation should take an `institution` as an argument and should invalidate the institutionData query upon success. For each table row, add an **Edit** button that populates the form with the institution's data when clicked. When the form is submitted, the mutation should be called.
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s1-24/resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-2.jpeg)
 
 
 ---
