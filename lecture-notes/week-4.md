@@ -352,6 +352,10 @@ Create a new mutation that updates an institution. The mutation should take an `
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s1-24/resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-3.jpeg)
 
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s1-24/resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-4.jpeg)
+
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s1-24/resources/img/08-react-query/formative-assessment/08-react-query-formative-assessment-5.jpeg)
+
 
 ---
 
