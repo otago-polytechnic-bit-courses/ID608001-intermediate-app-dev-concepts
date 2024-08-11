@@ -163,6 +163,8 @@ Click on the icon in the bottom right corner to open the developer tools.
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-2.jpeg?raw=true)
 
+You should see the following:
+
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/08-react-query/08-react-query-3.jpeg?raw=true)
 
 ---
