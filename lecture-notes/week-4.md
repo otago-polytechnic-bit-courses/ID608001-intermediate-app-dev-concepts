@@ -75,7 +75,7 @@ export const queryClient = new QueryClient();
   <QueryClientProvider client={queryClient}>
     <App />
   </QueryClientProvider>
-</StrictMode>,
+</StrictMode>
 ```
 
 ---
