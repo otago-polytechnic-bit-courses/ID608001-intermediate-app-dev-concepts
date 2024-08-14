@@ -334,7 +334,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
-Convert the `App` components to use TypeScript.
+Convert the `App` component to use TypeScript.
 
 ---
 
