@@ -1,4 +1,4 @@
-# Week 5: Tailwind CSS and Shadcn U
+# Week 5
 
 ## Before We Start
 
