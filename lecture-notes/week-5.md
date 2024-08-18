@@ -105,6 +105,10 @@ export default {
 @tailwind utilities;
 ```
 
+- **@tailwind base;** includes the base styles for the project. For example, you can use classes like `font-sans` to style text
+- **@tailwind components;** includes the component styles for the project. For example, you can use classes like `btn` to style buttons
+- **@tailwind utilities;** includes the utility styles for the project. For example, you can use classes like `text-blue-500` to style text.
+
 6. In `src/App.tsx`, update the code to the following:
 
 ```jsx
