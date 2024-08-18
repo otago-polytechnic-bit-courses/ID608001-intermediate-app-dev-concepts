@@ -181,13 +181,6 @@ Using the **08-react-query** exemplar, replace the `button`, `form`, `input` and
 
 ![](../../resources/img/09-tailwind-css-and-shadcn-ui/formative-assessment/09-tailwind-css-and-shadcn-ui-formative-assessment-1.jpeg)
 
-**Resources:**
-
-- [](https://ui.shadcn.com/docs/components/button)
-- [](https://ui.shadcn.com/docs/components/form)
-- [](https://ui.shadcn.com/docs/components/input)
-- [](https://ui.shadcn.com/docs/components/table)
-
 # Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
