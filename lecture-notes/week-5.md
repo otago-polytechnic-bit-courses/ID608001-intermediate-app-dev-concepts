@@ -2,23 +2,57 @@
 
 ## Before We Start
 
-Create a new project using **Create Vite App**:
+Open your **s2-24-intermediate-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-05-formative-assessment** from **week-04-formative-assessment**.
+
+> **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Read the comments in the code examples. It will help you understand where to type the code. Also, some code examples may show **TypeScript** warnings.
+
+---
+
+## Create a New Vite Project
+
+1. Create a new project using **Create Vite App**:
 
 ```bash
 npm init vite@latest
 ```
 
-When prompted, select the following options:
+2. When prompted, select the following options:
 
-- Project name: **09-tailwind-css-and-shadcn-ui**
+- Project name: **week-05-formative-assessment**
 - Framework: **React**
-- Variant: **JavaScript + SWC**
+- Variant: **TypeScript + SWC**
+
+3. Change into the project directory:
+
+```bash
+cd week-05-formative-assessment
+```
+
+4. Install the project dependencies:
+
+```bash
+npm install
+```
+
+5. Start the development server:
+
+```bash
+npm run dev
+```
+
+6. Open your browser and navigate to <http://localhost:5173>. You should see the default **React** application.
+
+---
 
 ## Tailwind CSS
 
-**Tailwind CSS** is a utility-first CSS framework. It is highly customizable and can be used to create unique designs. It is also very popular and has a large community.
+**Tailwind CSS** is a utility-first **CSS** framework. Utility first means that you can use classes to style your elements. It is highly customisable and can be used to create unique designs. It is also very popular and has a large community.
 
-1. Install the following dependency:
+---
+
+### Setup
+
+1. Install the following packages:
 
 ```bash
 npm install tailwindcss postcss autoprefixer @vitejs/plugin-react-swc --save-dev
@@ -70,13 +104,17 @@ export default {
 
 ```jsx
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Hello, world!</h1>;
+  return (
+    <h1 className="text-3xl font-bold underline">Hello, world!</h1>
+  )
 };
 
 export default App;
 ```
 
-**Resource:** https://tailwindcss.com/
+> **Resource:** https://tailwindcss.com/
+
+---
 
 ## Shadcn UI
 
@@ -157,17 +195,19 @@ npx shadcn-ui@latest add button
 import { Button } from "@/components/ui/button";
 
 const App = () => {
-  return <Button>Click Me!</Button>;
+  return (
+    <Button>Click Me!</Button>
+  );
 };
 
 export default App;
 ```
 
-**Resource:** <https://ui.shadcn.com/>
+> **Resource:** <https://ui.shadcn.com/>
 
-# Formative Assessment
+---
 
-Before you start, create a new branch called **09-formative-assessment**.
+## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
@@ -175,9 +215,11 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
-## Task Tahi
+---
 
-Using the **08-react-query** exemplar, replace the `button`, `form`, `input` and `table` code with **Shadcn UI** components.
+## Task One
+
+Using **Shadcn UI** components, style the CRUD (create, read, update and delete) application created in last week's formative assessment. 
 
 ![](../../resources/img/09-tailwind-css-and-shadcn-ui/formative-assessment/09-tailwind-css-and-shadcn-ui-formative-assessment-1.jpeg)
 

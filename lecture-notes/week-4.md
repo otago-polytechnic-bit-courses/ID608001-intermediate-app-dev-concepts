@@ -48,6 +48,8 @@ npm run dev
 
 **React Query** is a library that helps you fetch, cache and update data in your React applications. It is a great alternative to Redux and other state management libraries. It is also a great alternative to the `fetch` API and `axios` for fetching data from APIs.
 
+---
+
 ### Setup
 
 1. To get started, install the library:
