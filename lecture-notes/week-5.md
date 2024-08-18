@@ -1,8 +1,6 @@
-# Week 5: Tailwind CSS and Shadcn UI
+# Week 5: Tailwind CSS and Shadcn U
 
-If you get stuck, a completed version of this project is available in the **exemplar** directory.
-
-## Preparation
+## Before We Start
 
 Create a new project using **Create Vite App**:
 
@@ -82,7 +80,7 @@ export default App;
 
 ## Shadcn UI
 
-Unlike **Reactstrap**, **Shadcn UI** is not a component library. It is a collection of resuable components that you copy and paste into your project. It means that you do not have to install **Shadcn UI** as a dependency.
+**Shadcn UI** is not a component library. It is a collection of resuable components that you copy and paste into your project. It means that you do not have to install **Shadcn UI** as a dependency.
 
 1. Install the following dependency:
 
