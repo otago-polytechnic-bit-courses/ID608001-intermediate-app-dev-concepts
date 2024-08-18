@@ -79,10 +79,15 @@ export default {
 };
 ```
 
-4. In the root directory, create a new file called `tsconfig.json`. In the `tsconfig.json` file, add the following code:
+4. In the `tsconfig.json` file, add the following code:
 
 ```json
 {
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -105,8 +110,10 @@ export default {
 ```jsx
 const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">Hello, world!</h1>
-  )
+    <h1 className="text-3xl font-bold underline text-blue-500">
+      Hello, world!
+    </h1>
+  );
 };
 
 export default App;
@@ -145,18 +152,6 @@ export default defineConfig({
 });
 ```
 
-3. In the root directory, create a new file called `tsconfig.json`. In the `tsconfig.json` file, add the following code:
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
-}
-```
 
 4. Run the following command to initialise **Shadcn UI**:
 
@@ -167,7 +162,7 @@ npx shadcn-ui@latest init
 5. You will be prompt with the following questions:
 
 ```bash
-√ Would you like to use TypeScript (recommended)? ... no
+√ Would you like to use TypeScript (recommended)? ... yes
 √ Which style would you like to use? » Default
 √ Which color would you like to use as base color? » Slate
 √ Where is your global CSS file? ... src/index.css
@@ -221,8 +216,9 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 Using **Shadcn UI** components, style the CRUD (create, read, update and delete) application created in last week's formative assessment. 
 
-![](../../resources/img/09-tailwind-css-and-shadcn-ui/formative-assessment/09-tailwind-css-and-shadcn-ui-formative-assessment-1.jpeg)
+---
 
-# Formative Assessment Submission
+### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+
