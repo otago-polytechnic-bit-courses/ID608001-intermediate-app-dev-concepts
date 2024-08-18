@@ -105,7 +105,7 @@ export default {
 @tailwind utilities;
 ```
 
-6. In `src/App.jsx`, update the code to the following:
+6. In `src/App.tsx`, update the code to the following:
 
 ```jsx
 const App = () => {
@@ -184,7 +184,7 @@ You see a new file called `components.json` in the root directory.
 npx shadcn-ui@latest add button
 ```
 
-7. In `src/App.jsx`, update the code to the following:
+7. In `src/App.tsx`, update the code to the following:
 
 ```jsx
 import { Button } from "@/components/ui/button";
