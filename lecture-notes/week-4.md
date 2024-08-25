@@ -203,7 +203,9 @@ const App = () => {
             }),
           }
         ).then((res) => res.json()),
-      onSuccess: () => queryClient.invalidateQueries("institutionData"),
+      onSuccess: () => queryClient.invalidateQueries({
+        queryKey: ["institutionData"],
+      }),
     });
   // ...
 };
@@ -279,7 +281,9 @@ const App = () => {
           }
           return res.json();
         }),
-      onSuccess: () => queryClient.invalidateQueries("institutionData"),
+      onSuccess: () => queryClient.invalidateQueries({
+        queryKey: ["institutionData"],
+      }),
     });
   // ...
 };

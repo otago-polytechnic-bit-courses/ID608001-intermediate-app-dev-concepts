@@ -131,6 +131,8 @@ export default App;
 
 **Shadcn UI** is not a component library. It is a collection of resuable components that you copy and paste into your project. It means that you do not have to install **Shadcn UI** as a dependency.
 
+> **Note:** **Shadcn UI** requires **React** and **Tailwind CSS** to work.
+
 1. Install the following dependency:
 
 ```bash
