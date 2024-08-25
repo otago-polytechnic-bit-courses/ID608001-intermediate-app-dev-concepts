@@ -84,7 +84,7 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 
 \subsection*{Functionality - Learning Outcomes 1 and 2 (60\%)}
 
-\subsection*{Milestone One - Due Friday, 13 September 2024 (Week 8) at 4.59 PM.}
+\subsection*{Milestone One - Due Wednesday, 11 September 2024 (Week 8) at 4.59 PM. Code defence on Thursday, 12 September 2024 (Week 8) at 10.00 AM.}
 \begin{itemize} 
 	\item \textbf{Movie Listings Application (10\%):}
 	\begin{itemize}
@@ -116,7 +116,7 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 	\end{itemize}
 	\end{itemize}
 \end{itemize}
-	\subsection*{Milestone Two - Due Friday, 18 October 2024 (Week 11) at 4.59 PM.}
+	\subsection*{Milestone Two - Due Wednesday, 16 October 2024 (Week 11) at 4.59 PM. Code defence on Thursday, 17 October 2024 (Week 11) at 10.00 AM.}
 	\begin{itemize}
 	\item \textbf{Hacker News Application (20\%):}
 	\begin{itemize}
@@ -174,9 +174,7 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 	\href{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}.
 	\end{itemize}
 \end{itemize}
-\end{itemize}
-
-	\subsection*{Milestone Three - Due Wednesday, 18 November 2024 (Week 15) at 4.59 PM.}
+	\subsection*{Milestone Three - Due Wednesday, 18 November 2024 (Week 15) at 4.59 PM. Code defence on Thursday, 19 November 2024 (Week 15) at 10.00 AM.}
 	\begin{itemize}
 	\item \textbf{Trivia Application (20\%):}
 	\begin{itemize}
@@ -185,33 +183,24 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 		\item Use \textbf{React Query} and \textbf{GraphQL} to fetch data from the \textbf{OpenTDB API}.
 		\item Create a form with the following inputs:
 		\begin{itemize}
-			\item Amount. \textbf{Note:} This is the number of questions to retrieve. The default value is 10.
-			\item Category. \textbf{Note:} This is a dropdown list with the following options:
+			\item Amount. This is the number of questions to retrieve. The default value is 10.
+			\item Category. This is a dropdown list. The options can be retrieved from the following endpoint:\\
+			\href{https://opentdb.com/api\_category.php}{https://opentdb.com/api\_category.php}. The default option is \textbf{Any Category}.			
+			\item Difficulty. This is a dropdown list with the following options:
 			\begin{itemize}
-				\item General Knowledge. This is the default option.
-				\item Entertainment: Books
-				\item Entertainment: Film
-				\item Science: Computers
-				\item Sports
-				\item Geography
-				\item Art
-				\item Celebrities
-				\item Animals
-				\item Vehicles
-			\end{itemize}
-			\item Difficulty. \textbf{Note:} This is a dropdown list with the following options:
-			\begin{itemize}
-				\item Easy. This is the default option.
+				\item Any Difficulty. This is the default option.
+				\item Easy. 
 				\item Medium
 				\item Hard
 			\end{itemize}
-			\item Type. \textbf{Note:} This is a dropdown list with the following options:
+			\item Type. This is a dropdown list with the following options:
 			\begin{itemize}
-				\item Multiple Choice. This is the default option.
+				\item Any Type. This is the default option.
+				\item Multiple Choice
 				\item True/False
 			\end{itemize}
 		\end{itemize}
-		\item When the form is submitted, perform a request to the \textbf{OpenTDB API}. 
+		\item When the form is submitted, perform a request to the \href{OpenTDB API}{https://opentdb.com/api\_config.php}. 
 		\item Use the response to display the questions and answers in a quiz format. 
 		\item Create a form that allows the user to submit their answers. After the user submits their answers, display their score and the correct answers.
 	\end{itemize} 
