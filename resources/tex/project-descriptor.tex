@@ -37,7 +37,7 @@
 \maketitle 
 
 \section*{Assessment Overview}
-In this \textbf{individual} or \textbf{group} assessment, you will develop a \textbf{RESTful API} using \textbf{Express}, \textbf{Node.js} and the \textbf{OpenTDB API}, and deploy it as a \textbf{web service} on \textbf{Render}. Your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. Also, you will develop \textbf{frontend applications} using \textbf{React} and \textbf{Vite}. These applications will consume the \textbf{RESTful API} mentioned above. The main purpose of this assessment is not just to build \textbf{full-stack applications}, but rather to demonstrate an ability to decouple your \textbf{RESTful API} from your \textbf{frontend applications}. In addition, marks will be allocated for code quality and best practices, documentation and \textbf{Git} usage.
+In this \textbf{individual} assessment, you will develop a three frontend applications. In addition, marks will be allocated for code quality and best practices, documentation and \textbf{Git} usage.
 
 \section*{Learning Outcomes}
 At the successful completion of this course, learners will be able to:
@@ -46,13 +46,13 @@ At the successful completion of this course, learners will be able to:
 	\item Design and implement full-stack applications using industry relevant programming languages.
 \end{enumerate}
 
-\section*{Assessments}
+\section*{Assessments} 
 \renewcommand{\arraystretch}{1.5}
 \begin{tabular}{|c|c|c|c|}
-	\hline
+	\hline 
 	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcome} \\ \hline
-	\small Practical & \small 20\%        & \small 26-06-2024 (Wednesday at 4.59 PM)   & \small 1                   \\ \hline
-	\small Project                 & \small 80\%        & \small 21-06-2024 (Friday at 4.59 PM) \small  & \small 1 and 2                   \\ \hline
+	\small Practical & \small 20\%        & \small 13-11-2024 (Wednesday at 4.59 PM)   & \small 1                   \\ \hline
+	\small Project                 & \small 80\%        & \small 13-11-2024 (Wednesday at 4.59 PM) \small  & \small 1, 2                   \\ \hline
 \end{tabular}
 
 \section*{Conditions of Assessment}
@@ -72,7 +72,7 @@ All parts of your submitted assessment \textbf{must} be completely your work. Do
 The school's process concerning submissions, extensions, resubmissions and resits complies with \textbf{Otago Polytechnic | Te Pūkenga} policies. Learners can view policies on the \textbf{Otago Polytechnic | Te Pūkenga} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
 
 \section*{Submission}
-You \textbf{must} submit all application files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/wlzE5yYo}{https://classroom.github.com/a/wlzE5yYo}. If you do not have not one, create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest application files in the \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+You \textbf{must} submit all application files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/eGYqq7-g}{https://classroom.github.com/a/eGYqq7-g}. If you do not have not one, create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. Create a branch called \textbf{project}. The latest application files in the \textbf{project} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Extensions}
 Familiarise yourself with the assessment due date. Extensions will \textbf{only} be granted if you are unable to complete the assessment by the due date because of \textbf{unforeseen circumstances outside your control}. The length of the extension granted will depend on the circumstances and \textbf{must} be negotiated with the course lecturer before the assessment due date. A medical certificate or support letter may be needed. Extensions will not be granted for poor time management or pressure of other assessments.
@@ -82,141 +82,152 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 
 \section*{Instructions}
 
-\subsection*{Functionality - Learning Outcomes 1 and 2 (50\%)}
+\subsection*{Functionality - Learning Outcomes 1 and 2 (60\%)}
+
+\subsection*{Milestone One - Due Friday, 13 September 2024 (Week 8) at 4.59 PM.}
 \begin{itemize} 
-
-\item \textbf{RESTful API:}
+	\item \textbf{Movie Listings Application (10\%):}
 	\begin{itemize}
-		\item \textbf{Note:} You are required to use the provided \textbf{schema.prisma} file. You can find this in the \textbf{assessments} directory of the \textbf{course materials} repository.
-		\item \textbf{User:}
+		\item Create a new directory called \textbf{movie-listings-application} and create a new \textbf{React} application using \textbf{Vite}.
+		\item Can run in development without modification.
+		\item Use \textbf{React Query} and the \textbf{Fetch API} to fetch data from the \textbf{The Movie DB API}.
+		\item Navigation bar using \textbf{Tailwind CSS} and \textbf{Shadcn UI} with the following movie type options:
 		\begin{itemize}
-			\item You will have \textbf{two} types of users - \textbf{admin} and \textbf{basic} user.
-			\item An \textbf{admin} and \textbf{basic} user will have the following information: first name, last name, username, email address, profile picture, password, confirm password and role. The confirm password does not need to be stored in the database. The users' profile picture will be from the following \textbf{API} - \\ \href{https://avatars.dicebear.com/docs/http-api}{https://avatars.dicebear.com/docs/http-api}. Each profile picture should be, in most cases, different. I suggest using a random seed when setting the user's profile picture.
-			\item An \textbf{admin} and \textbf{basic} user can login, get their information and update their information but not delete themselves. An \textbf{admin} user can get all users' information, update all \textbf{basic} users' information but not \textbf{admin} user's information and delete all \textbf{basic} users but not \textbf{admin} users. A \textbf{basic} user can register.
-			\item When performing a \textbf{POST} request for registering a \textbf{basic} user, the following error checking needs to be implemented using \textbf{Joi} and/or conditional statements:
-			\begin{itemize}
-				\item First name has a minimum length of two characters, a maximum length of 50 characters and alpha characters only.
-				\item Last name has the same error checking as first name above.
-				\item Username is unique, has a minimum length of five characters, maximum length of ten characters and alphanumeric characters only, i.e., johndoe123.
-				\item Email address is unique, contains the username above, an @ special character and a second-level domain, i.e., johndoe123@email.com.
-				\item Password has a minimum length of eight characters, maximum length of 16 characters and contains one numeric character and one special character.
-				\item Confirm password is the same as the password above. \textbf{Note:} Confirm password will not be a field in the \textbf{User} table. Rather, it will be used to validate the user's password.
-			\end{itemize}
-			For each error check, a status code and response message is returned, i.e., "First name must have a minimum length of two characters".
-			\item When performing a \textbf{POST} request for logging in a user using either username/password or email address/password, return a status code, a response message, i.e., "$<$User's username$>$ has successfully logged in" and the user's \textbf{JWT}.
-			\item When performing a \textbf{PUT} and \textbf{DELETE} request, return a status code and a response message, i.e., "$<$User's username$>$'s information has successfully updated" or "$<$User's username$>$ has successfully deleted".
-			\item Five \textbf{admin} users are seeded via a \textbf{script} in the \textbf{package.json} file. The \textbf{admin} users' data will be fetched from a local file and inserted into the \textbf{User} table using \textbf{Prisma}.  
-			\item Five \textbf{basic} users are seeded via an \textbf{admin} user. The \textbf{basic} users' data will be fetched from a private \textbf{GitHub Gist} using \textbf{Axios} and inserted into the \textbf{User} table using \textbf{Prisma}. 
-		\end{itemize} 
-		\item \textbf{Quiz:}
-		\begin{itemize}
-			\item Each quiz will have the following information: name, start date, end date, category, difficulty, type, number of questions, list of questions, list of correct answers, list of incorrect answers, list of scores and average score. The category, list of questions, list of correct answers and list of incorrect answers will be fetched from the following \textbf{API} - \href{https://opentdb.com/api\_config.php}{https://opentdb.com/api\_config.php}. The difficulties will be easy, medium and hard. The types will be multiple choice or true/false.
-			An \textbf{admin} user can create and delete a quiz. A \textbf{basic} user can participate in a quiz only once. An \textbf{admin}, \textbf{basic} and \textbf{unauthenticated} user can get all quizzes, get all past quizzes, get all present quizzes and get all future quizzes, get a list of scores for a quiz and average score for a quiz.
-			\item When performing a \textbf{POST} request for creating a quiz, the following error checking needs to be implemented using \textbf{Joi} and/or conditional statements:
-			\begin{itemize}
-				\item Name has a minimum length of five characters, a maximum length of 30 characters and alpha characters only.
-				\item Start date has to be greater than or equal to today's date.
-				\item End date has to be greater than the start date and no longer than five days. 
-				\item Number of questions has to be ten.
-			\end{itemize}
-			For each error check, a status code and response message is returned, i.e., "Name must have a minimum length of five characters".
-			\item When performing a \textbf{POST} request for a \textbf{basic} user who is participating in a quiz, the following error checking needs to be implemented using \textbf{Joi} and/or conditional statements:
-			\begin{itemize}
-				\item Can not participate if quiz has not started or has ended.
-				\item Answered all ten questions.
-			\end{itemize}
-			\item When performing a \textbf{POST} request for a \textbf{basic} user who has participated in a quiz, return a status code, a response message, i.e., "$<$User's username$>$ has successfully participated in $<$Quiz's name$>$", user's score and quiz's average score.
+			\item Trending. This is the default option.
+			\item Top Rated
+			\item Action
+			\item Animation
+			\item Comedy
 		\end{itemize}
-		\item Implement versioning, \textbf{Helmet}, \textbf{CORS}, \textbf{rate limiting}, \textbf{caching} and \textbf{compression}
+		\textbf{Note:} You will use \textbf{React Router} to navigate between the options.
+		\item The endpoints for the movie types are as follows:
+	\begin{itemize}
+		\item Trending - \href{https://api.themoviedb.org/3/trending/all/week?api\_key=$<$API KEY$>$\&language=en-US}{https://api.themoviedb.org/3/trending/all/week?api\_key=$<$API KEY$>$\&language=en-US}
+		\item Top Rated - \href{https://api.themoviedb.org/3/movie/top\_rated?api\_key=$<$API KEY$>$\&language=en-US}{https://api.themoviedb.org/3/movie/top\_rated?api\_key=$<$API KEY$>$\&language=en-US}
+		\item Action - \href{https://api.themoviedb.org/3/discover/movie?api\_key=$<$API KEY$>$\&with\_genres=28}{https://api.themoviedb.org/3/discover/movie?api\_key=$<$API KEY$>$\&with\_genres=28}
+		\item Animation - \href{https://api.themoviedb.org/3/discover/movie?api\_key=$<$API KEY$>$\&with\_genres=16}{https://api.themoviedb.org/3/discover/movie?api\_key=$<$API KEY$>$\&with\_genres=16}
+		\item Comedy - \href{https://api.themoviedb.org/3/discover/movie?api\_key=$<$API KEY$>$\&with\_genres=35}{https://api.themoviedb.org/3/discover/movie?api\_key=$<$API KEY$>$\&with\_genres=35}
+	\end{itemize}
+	\textbf{Note:} Replace $<$API KEY$>$ with your \textbf{The Movie DB API} key. More information can be \\found at: \href{https://developer.themoviedb.org/docs/getting-started}{https://developer.themoviedb.org/docs/getting-started}.
+	\item When an option is selected, display the title, overview, poster path and release date of the first 10 movies.
+	\begin{itemize}
+		\item Style each story to look like a card using \textbf{Tailwind CSS} and \textbf{Shadcn UI}.
+		\item Display five stories per row.
+	\end{itemize}
+	\end{itemize}
+\end{itemize}
+	\subsection*{Milestone Two - Due Friday, 18 October 2024 (Week 11) at 4.59 PM.}
+	\begin{itemize}
+	\item \textbf{Hacker News Application (20\%):}
+	\begin{itemize}
+		\item Create a new directory called \textbf{hacker-news-application} and create a new \textbf{React} application using \textbf{Vite}.
+		\item Can run in development without modification.
+		\item Use \textbf{React Query} and \textbf{GraphQL} to fetch data from the \textbf{Hacker News API}.
+		\item Navigation bar using \textbf{Tailwind CSS} and \textbf{Shadcn UI} with the following story options:
+		\begin{itemize}
+			\item Ask Stories. This is the default option.
+			\item Best Stories
+			\item Job Stories
+			\item New Stories
+			\item Show Stories
+			\item Top Stories
+		\end{itemize}
+		\textbf{Note:} You will use \textbf{React Router} to navigate between the options.
+	\item The endpoints for the stories are as follows:
+	\begin{itemize}
+		\item Ask Stories - \href{https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty}{https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty}
+		\item Best Stories - \href{https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty}{https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty}
+		\item Job Stories - \href{https://hacker-news.firebaseio.com/v0/jobstories.json?print=pretty}{https://hacker-news.firebaseio.com/v0/jobstories.json?print=pretty}
+		\item New Stories - \href{https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty}{https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty}
+		\item Show Stories - \href{https://hacker-news.firebaseio.com/v0/showstories.json?print=pretty}{https://hacker-news.firebaseio.com/v0/showstories.json?print=pretty}
+		\item Top Stories - \href{https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty}{https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty}
+	\end{itemize}
+	\item When an option is selected, display the title of the first 25 stories.
+	\begin{itemize}
+		\item Style each story to look like a card using \textbf{Tailwind CSS} and \textbf{Shadcn UI}.
+		\item Display five stories per row.
+	\end{itemize}
+	\item When a story is clicked, the user will be navigate to a page that displays the following information:
+	\begin{itemize}
+		\item By
+		\item Kids. \textbf{Note:} This is an array of ids. If the array is empty, display \textbf{N/A}. Display the first five ids as URLs in this format: \href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}. When clicked, these URLs will open in a new tab. 
+		\item Score
+		\item Time. \textbf{Note:} Convert the time to a readable format.
+		\item Title
+		\item Type 
+		\item URL. \textbf{Note:} When clicked, this URL will open in a new tab.
+	\end{itemize}
+	This information is fetched from the following endpoint:\\
+	\href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}.
+	\item On a page, display the top 15 leaders. You can get this information from the following URL:\\
+	\href{https://news.ycombinator.com/leaders}{https://news.ycombinator.com/leaders}. \textbf{Note:} You need to manually retrieve the information from the URL. 
+	\item When a leader is clicked, the user will be navigate to a page that displays the following information:
+	\begin{itemize}
+		\item About
+		\item Created. \textbf{Note:} Convert the time to a readable format.
+		\item Id
+		\item Karma
+		\item Submitted. \textbf{Note:} This is an array of ids. Display the first 5 ids as URLs in this format:\\
+		 \href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}.
+	\end{itemize}
+	This information is fetched from the following endpoint:\\
+	\href{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}.
+	\end{itemize}
+\end{itemize}
+\end{itemize}
+
+	\subsection*{Milestone Three - Due Wednesday, 18 November 2024 (Week 15) at 4.59 PM.}
+	\begin{itemize}
+	\item \textbf{Trivia Application (20\%):}
+	\begin{itemize}
+		\item Create a new directory called \textbf{trivia-application} and create a new \textbf{React} application using \textbf{Vite}.
+		\item Can run in development without modification.
+		\item Use \textbf{React Query} and \textbf{GraphQL} to fetch data from the \textbf{OpenTDB API}.
+		\item Create a form with the following inputs:
+		\begin{itemize}
+			\item Amount. \textbf{Note:} This is the number of questions to retrieve. The default value is 10.
+			\item Category. \textbf{Note:} This is a dropdown list with the following options:
+			\begin{itemize}
+				\item General Knowledge. This is the default option.
+				\item Entertainment: Books
+				\item Entertainment: Film
+				\item Science: Computers
+				\item Sports
+				\item Geography
+				\item Art
+				\item Celebrities
+				\item Animals
+				\item Vehicles
+			\end{itemize}
+			\item Difficulty. \textbf{Note:} This is a dropdown list with the following options:
+			\begin{itemize}
+				\item Easy. This is the default option.
+				\item Medium
+				\item Hard
+			\end{itemize}
+			\item Type. \textbf{Note:} This is a dropdown list with the following options:
+			\begin{itemize}
+				\item Multiple Choice. This is the default option.
+				\item True/False
+			\end{itemize}
+		\end{itemize}
+		\item When the form is submitted, perform a request to the \textbf{OpenTDB API}. 
+		\item Use the response to display the questions and answers in a quiz format. 
+		\item Create a form that allows the user to submit their answers. After the user submits their answers, display their score and the correct answers.
 	\end{itemize} 
-
-	\item \textbf{Frontend Application - Quiz:}
-	Create a new application using \textbf{Create Vite App}. In this application:
-	\begin{itemize}
-		\item \textbf{User:}
-		\begin{itemize}
-			\item Create a page that allows a \textbf{basic} user to register.
-			\item Create a page that allows an \textbf{admin} and \textbf{basic} user to login and logout.
-			\item Create pages that allow:
-			\begin{itemize}
-				\item An \textbf{admin} user to get their information, update their information but not delete themselves, get all user's information, update all \textbf{basic} users' information but not \textbf{admin} user's information and delete all \textbf{basic} users but not \textbf{admin} users.
-				\item A \textbf{basic} user to get their information and update their information but not delete themselves.
-			\end{itemize}
-		\end{itemize}
-		\item \textbf{Quiz:} 
-		\begin{itemize}
-			\item Create pages that allow:
-			\begin{itemize}
-				\item An \textbf{admin} user to create and delete a quiz.
-				\item A \textbf{basic} user to participate in a quiz only once.
-				\item An \textbf{admin}, \textbf{basic} and \textbf{unauthenticated} user to get all quizzes, get all past quizzes, get all present quizzes, get all future quizzes, list of scores for a quiz and average score for a quiz.
-			\end{itemize}
-		\end{itemize}
-		\item Create a navigation bar that allows an \textbf{admin}, \textbf{basic} and \textbf{unauthenticated} user to navigate to the pages above.
-		\item Incorrectly formatted form field values handled gracefully using validation error messages.
-		\item Create a footer that displays the current year and the name of the application.
-		\item UI is visually attractive with a coherent graphical theme and style using \textbf{Tailwind CSS} and \textbf{Shadcn UI}.
-	\end{itemize}
-
-	\item \textbf{Frontend Application - RESTful API:}
-	Create a new application using \textbf{Create Vite App}. In this application:
-	\begin{itemize}
-		\item Create a page that allows an \textbf{unauthenticated} user to get \textbf{RESTful API} information regarding the following:
-		\begin{itemize}
-			\item Logging in a user
-			\item Registering a user
-			\item Creating a quiz
-		\end{itemize}
-		The information to display includes:
-		\begin{itemize}
-			\item Name of the endpoint. For example, \textbf{Register User}.
-			\item HTTP method. For example, \textbf{POST}.
-			\item Endpoint URL. For example, \textbf{/api/v1/auth/register}.
-			\item Request body.
-			\item Response body.
-		\end{itemize}
-		\item UI is visually attractive with a coherent graphical theme and style using \textbf{Tailwind CSS} and \textbf{Shadcn UI}.
-	\end{itemize}
-
-	\item \textbf{Testing:}
-	\begin{itemize}
-		\item Implement the following \textbf{end-to-end tests} using \textbf{Cypress}:
-		\begin{itemize}
-			\item Registering a new user.
-			\item Logging in as an \textbf{admin} user and creating a quiz.
-			\item Logging in as a \textbf{basic} user and participating in a quiz.
-		\end{itemize}
-	\end{itemize}
-
-	\item \textbf{Scripts:}
-	\begin{itemize}
-		\item Run your \textbf{RESTful API} and \textbf{frontend applications} locally.
-		\item Run your \textbf{end-to-end tests} using \textbf{Cypress}.
-		\item Create and apply a migration using \textbf{Prisma}.
-		\item Reset your database using \textbf{Prisma}.
-		\item Seed \textbf{admin} users.
-		\item Open \textbf{Prisma Studio}. 
-		\item Lint your code using \textbf{ESLint}.
-		\item Format your code using \textbf{Prettier}.
-	\end{itemize}
 \end{itemize}
 
 \subsection*{Code Quality and Best Practices - Learning Outcome 1 (45\%)}
 \begin{itemize}
 	\item A \textbf{Node.js} \textbf{.gitignore} file is used.
 	\item Environment variables' key is stored in the \textbf{.env.example} file. 
-  	\item Appropriate naming of files, variables, functions and resource groups.
-  \begin{itemize}
-	\item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
-  \end{itemize}
-	\item Idiomatic use of control flow, data structures, in-built functions, data fetching and state management design patterns.
-  \item Efficient algorithmic approach.
-  \item Sufficient modularity.
-  \item Each \textbf{controller}, \textbf{route} and \textbf{component} file has a \textbf{JSDoc} header comment located at the top of the file.
-  \item Code is formatted using \textbf{Prettier}.
-  \item Code is linted using \textbf{ESLint}.
-  \item \textbf{Prettier}, \textbf{ESLint} and \textbf{Cypress} are installed as a \textbf{development dependency}.	
-\item No dead or unused code. 
+  	\item Appropriate naming of files, variables, functions and components.
+	\item Idiomatic use of \textbf{TypeScript}, control flow, data structures and in-built functions.
+	\item Efficient algorithmic approach.
+	\item Sufficient modularity.
+	\item Each file has a \textbf{JSDoc} header comment located at the top of the file.
+	\item Code is formatted.
+	\item No dead or unused code. 
 \end{itemize}
 
 \subsection*{Documentation and Git Usage - Learning Outcomes 1 (5\%)}
@@ -224,17 +235,10 @@ Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Interm
 	\item A \textbf{GitHub} project board or issues to help you organise and prioritise your development work. The course lecturer needs to see consistent use of the \textbf{GitHub} project board or issues for the duration of the assessment.
 	\item Provide the following in your repository \textbf{README.md} file:
 	\begin{itemize}
-		\item A URL to your \textbf{RESTful API} as a \textbf{web service} on \textbf{Render}.
-		\item A URL to your published \textbf{RESTful API} documentation. Each route needs to be documented. Include a description, example request and example response.
 		\item How do you setup the environments, i.e., after the repository is cloned?
-		\item How do you run your \textbf{RESTful API} and \textbf{frontend applications} locally?
-		\item How do you run your \textbf{End-to-end tests}?
-		\item How do you create and apply a migration?  
-		\item How do you reset your database?
-		\item How do you seed \textbf{admin} users?
-		\item How do you open \textbf{Prisma Studio}?
+		\item How do you run your \textbf{frontend applications} locally?
+		\item How do you check your code?
 		\item How do you format your code?
-		\item How do you lint your code?	 	
 	\end{itemize}
     \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
     \item Correct spelling and grammar.
