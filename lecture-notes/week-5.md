@@ -239,4 +239,3 @@ Using the **Shadcn UI** documentation, implement a line chart and pie chart.
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
-
