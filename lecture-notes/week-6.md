@@ -59,23 +59,38 @@ npm run dev
 1. Install the following dependencies:
 
 ```bash
-npm install @testing-library/dom @testing-library/jest-dom @testing-library/react @testing-library/user-event @vitest/coverage-v8 @vitest/ui jsdom vitest --save-dev
+npm install 
+@testing-library/dom@9.3.4 
+@testing-library/jest-dom@6.5.0 
+@testing-library/react@14.2.1 
+@testing-library/user-event@14.5.2 
+@vitest/coverage-v8@1.2.2 
+@vitest/ui@1.2.2
+jsdom@24.0.0
+vitest@1.2.2 --save-dev
 ```
 
-2. In the `src` directory, create a new file called `App.test.js`.
+2. In the `src` directory, create a new file called `App.test.tsx`.
 
-3. Add the following code to the `App.test.js` file:
+3. Add the following code to the `App.test.tsx` file:
 
 ```javascript
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it } from "vitest";
 
 import App from "./App";
 
 describe("Tests", () => {
   it("should render Pride and Prejudice", () => {
     render(<App />);
-    expect(screen.getByText("Pride and Prejudice")).toBeInTheDocument();
+    expect(screen.getByText("Pride and Prejudice"));
+  });
+
+  it("should click on the first Add to Cart button", () => {
+    render(<App />);
+    const button = screen.getAllByTestId("add-to-cart-1")[0];
+    userEvent.click(button);
   });
 });
 ```
@@ -88,17 +103,34 @@ describe("Tests", () => {
 "test:ui": "vitest --ui"
 ```
 
-5. Run each script above. For example, if you run `npm run test`, you should see the following output:
+5. In the `vite.config.ts` file, add the following:
+
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+
+  // This object
+  test: {
+    environment: "jsdom",
+  },
+})
+```
+
+6. Run each script above. For example, if you run `npm run test`, you should see the following output:
 
 ```bash
-✓ src/App.test.jsx (1)
+✓ src/App.test.tsx (1)
   ✓ Tests (1)
     ✓ should render Pride and Prejudice
 ```
 
-6. Let us look at user events. For example, a button click. In `Book.jsx`, update the `button` element to include a `data-testid` prop:
+7. Let us look at user events. For example, a button click. In `Book.tsx`, update the `button` element to include a `data-testid` prop:
 
-```jsx
+```tsx
 <button
   onClick={() =>
     dispatch(
@@ -116,20 +148,20 @@ describe("Tests", () => {
 ```
 A `data-testid` prop can be given to any element. It is used to identify an element in a test.
 
-7. In `App.test.js`, add the following test:
+8. In `App.test.tsx`, add the following test:
 
 ```js
 it("should click on the first Add to cart button", () => {
   render(<App />);
-  const button = screen.getByTestId("add-to-cart-1"); // What happens if you change this to 10? Why? 
+  const button = screen.getAllByTestId("add-to-cart-1")[0]; // What happens if you change 1 to 10? Why? 
   userEvent.click(button);
 });
 ```
 
-8. If you run `npm run test`, you should see the following output:
+9. If you run `npm run test`, you should see the following output:
 
 ```bash
-✓ src/App.test.jsx (2)
+✓ src/App.test.tsx (2)
   ✓ Tests (2)
     ✓ should render Pride and Prejudice
     ✓ should click on the first Add to cart button
