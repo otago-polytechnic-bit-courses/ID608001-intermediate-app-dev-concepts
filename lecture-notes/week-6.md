@@ -25,7 +25,7 @@ npm init vite@latest
 3. Change into the project directory:
 
 ```bash
-cd week-05-formative-assessment
+cd week-06-formative-assessment
 ```
 
 4. Install the project dependencies:
@@ -48,7 +48,7 @@ npm run dev
 
 **Vitest** is a testing framework for **Vite**. It is highly configurable and can be extended with **plugins**.
 
-**Resource:** <https://vitest.dev>
+> **Resource:** <https://vitest.dev>
 
 ---
 
