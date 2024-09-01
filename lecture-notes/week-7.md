@@ -62,6 +62,8 @@ In the `package.json` file, note all the changes, i.e., `storybook` and `build-s
 
 In the `src` directory, you will see files for `Button`, `Header` and `Page`. 
 
+---
+
 ### Adding a Prop
 
 We are going to add a new property called `loading` to the `Button`. In the `src/stories/Button.ts` file, update the code to the following:
