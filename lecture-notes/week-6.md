@@ -56,6 +56,8 @@ npm run dev
 
 **React Testing Library** is a library for testing **React** components. It is designed to test the output of your components from the perspective of the user. For example, you can test if a component renders a specific piece of text.
 
+> The code snippets below are based on **week 03**.
+
 1. Install the following dependencies:
 
 ```bash
@@ -77,12 +79,6 @@ describe("Tests", () => {
   it("should render Pride and Prejudice", () => {
     render(<App />);
     expect(screen.getByText("Pride and Prejudice"));
-  });
-
-  it("should click on the first Add to Cart button", () => {
-    render(<App />);
-    const button = screen.getAllByTestId("add-to-cart-1")[0];
-    userEvent.click(button);
   });
 });
 ```
