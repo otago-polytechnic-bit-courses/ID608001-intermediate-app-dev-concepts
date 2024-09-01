@@ -167,9 +167,9 @@ Implement the code above.
 
 In the `src/stories/Button.ts` file, add the following props to the `ButtonProps` interface:
 
-- `loadingLabel: string`
-- `loadingLabelColor: string`
-- `labelColor: string`
+- `loadingLabel: string`. This prop will be used to display a loading label when the `loading` prop is `true`.
+- `loadingLabelColor: string`. This prop will be used to set the color of the loading label.
+- `labelColor: string`. This prop will be used to set the color of the label.
 
 ---
 
