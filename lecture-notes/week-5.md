@@ -162,7 +162,7 @@ export default defineConfig({
 4. Run the following command to initialise **Shadcn UI**:
 
 ```bash
-npx shadcn-ui@0.8.0 init
+npx shadcn-ui init
 ```
 
 5. You will be prompt with the following questions:
@@ -187,7 +187,7 @@ You see a new file called `components.json` in the root directory.
 6. You can start adding components from **Shadcn UI** to your project. For example, you can add a button component by running the following command:
 
 ```bash
-npx shadcn-ui@0.8.0 add button
+npx shadcn-ui add button
 ```
 
 7. In `src/App.tsx`, update the code to the following:
