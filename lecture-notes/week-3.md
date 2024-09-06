@@ -344,7 +344,7 @@ In the `src/components` directory, create a new file called `Cart.tsx`. In the `
 
 ---
 
-### Task Four
+### Task Four (Research)
 
 Implement a checkout feature that displays the name and price of each book in the cart. You must reuse the Book component in the Checkout component. **Note:** The Checkout component should not render the Add to cart button. The user should be able to navigate from the BookList component to the Checkout component by clicking on the Cart: <NUMBER OF BOOKS IN THE CART> text. Use the Link component from **React Router DOM** to achieve this. 
 
