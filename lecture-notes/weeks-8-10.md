@@ -21,6 +21,8 @@ Over the next three weeks, you will **independently** learn about **Next.js**. Y
 - Pages and Routes - <https://www.youtube.com/watch?v=vwg4Wrk-kWE&list=PL4cUxeGkcC9jZIVqmy_QhfQdi6mzQvJnT&index=3&pp=iAQB>
 - Layouts and Links - <https://www.youtube.com/watch?v=R7A5vBDfZ18&list=PL4cUxeGkcC9jZIVqmy_QhfQdi6mzQvJnT&index=4&pp=iAQB>
 
+> **Note:** **TypeScript** is configured by default in **Next.js**. You do not need to install **TypeScript** separately.
+
 ### Week 09
 
 - Styles, Fonts and Images - <https://www.youtube.com/watch?v=oWUQQD97Rz0&list=PL4cUxeGkcC9jZIVqmy_QhfQdi6mzQvJnT&index=5&pp=iAQB>
