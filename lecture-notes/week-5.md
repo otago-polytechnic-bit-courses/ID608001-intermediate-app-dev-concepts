@@ -162,7 +162,7 @@ export default defineConfig({
 4. Run the following command to initialise **Shadcn UI**:
 
 ```bash
-npx shadcn init
+npx shadcn@latest init
 ```
 
 5. You will be prompt with the following questions:
