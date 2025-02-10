@@ -41,6 +41,7 @@ Open up **Git Bash** or whatever alternative you see fit on your computer. Clone
 You should follow the **conventional commits** convention when committing changes to your repository. A **conventional commit** consists of a **type**, **scope** and **description**. The **type** and **description** are mandatory, while the **scope** is optional. The **type** must be one of the following:
   
 - **build**: Changes that affect the build system or external dependencies
+- **chore**: Regular code maintenance, such as refactoring or updating dependencies
 - **ci**: Changes to our CI configuration files and scripts
 - **docs**: Documentation only changes
 - **feat**: A new feature
