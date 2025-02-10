@@ -2,7 +2,7 @@
 
 ## GitHub
 
-This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/eGYqq7-g>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository. You will use this repository to submit your formative (non-graded) and summative (graded) assessments.
+This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link [https://classroom.github.com/a/eGYqq7-g](https://classroom.github.com/a/hrCxp8lT). You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository. You will use this repository to submit your formative (non-graded) and summative (graded) assessments.
 
 ---
 
