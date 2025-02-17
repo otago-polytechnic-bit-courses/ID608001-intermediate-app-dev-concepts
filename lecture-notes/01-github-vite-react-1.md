@@ -596,6 +596,8 @@ export default App;
 
 Currently, the game does not have a way to determine if the game has ended in a draw. Refactor the `calculateGameState` function in the `Game` component to include a check for a draw. The game should end in a draw if all squares are filled and there is no winner.
 
+> **Hint on how to solve this task:** You can check if all squares are filled by counting the number of non-null squares. If the number of non-null squares is equal to the total number of squares (9), then the game has ended in a draw.
+
 ---
 
 ### Task Three
@@ -608,11 +610,15 @@ Implement conditional styling for the `Square` component based on the value of t
 
 Implement a feature highlighting the winning squares when a player wins the game. When a player wins, the winning squares should be styled with a green background.
 
+> **Hint on how to solve this task:** You can modify the `calculateGameState` function to return an array of the winning squares when a player wins. You can then pass this array to the `Board` component and use it to conditionally style the winning squares.
+
 ---
 
 ### Task Five
 
 Implement a feature that displays the number of wins for each player and the number of draws. The wins and draws should be displayed below the game board.
+
+> **Hint on how to solve this task:** You can use the `useState` hook to manage the number of wins and draws in the `Game` component. You can increment the number of wins and draws when a player wins or the game ends in a draw.
 
 ---
 
@@ -625,6 +631,8 @@ Implement a button allowing players to reset the number of wins and draws.
 ### Task Seven
 
 What happens if you refresh the page? The number of wins and draws will be reset. Implement a feature that persists the number of wins and draws in the browser's local storage. When the page is refreshed, the number of wins and draws should be retrieved from local storage and displayed.
+
+> **Hint on how to solve this task:** You can use the `localStorage` API to store and retrieve the number of wins and draws. You can use the `useEffect` hook to load the number of wins and draws from local storage when the component mounts.
 
 ---
 
