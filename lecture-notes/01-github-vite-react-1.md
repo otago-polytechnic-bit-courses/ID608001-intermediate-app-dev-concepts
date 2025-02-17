@@ -588,6 +588,8 @@ const App = () => <Game />;
 export default App;
 ```
 
+> **Note:** Replace the existing code in `App.jsx` with the code above.
+
 7. Start the development server and open your browser to see the tic-tac-toe game in action.
 
 ---
