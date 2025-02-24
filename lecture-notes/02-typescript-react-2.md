@@ -135,6 +135,20 @@ let person2: Person = {
 };
 ```
 
+What is the difference between an **interface** and an **abstract class**?
+
+
+| Feature            | Abstract Class | Interface |
+|--------------------|--------------------|---------------|
+| **Definition**     | A class that can define abstract methods (without implementation) and concrete methods (with implementation). | A contract that defines method signatures and property types but has no implementation. |
+| **Method Implementation** | Can have both abstract methods and fully implemented methods. | Cannot have method implementations (except in TS 4.2+, which allows optional methods with default values using `type`). |
+| **Fields**        | Can have instance variables and initialized fields. | Can only define property types but cannot initialize them. |
+| **Access Modifiers** | Can have `public`, `protected`, and `private` members. | All properties and methods are `public` by default. |
+| **Constructor**   | Can have constructors. | Cannot have constructors. |
+| **Multiple Inheritance** | A class can extend only one abstract class. | A class can implement multiple interfaces. |
+| **Extensibility** | Use `extends` to inherit from an abstract class. | Use `implements` to enforce an interface. |
+| **Usage**         | Used when a class should provide base functionality for subclasses. | Used when multiple unrelated classes should follow the same contract. |
+
 ---
 
 ### Arrays
