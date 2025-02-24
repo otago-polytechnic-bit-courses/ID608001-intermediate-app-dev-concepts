@@ -259,6 +259,7 @@ if (direction === Direction.Up) {
   console.log("Up");
 }
 ```
+---
 
 ## TypeScript in React
 
