@@ -254,8 +254,16 @@ const RandomProgrammingJoke = () => {
 export default RandomProgrammingJoke;
 ```
 
-We will see more hooks in the coming weeks.
+Things to note:
 
+1. What does `[]` do in `useEffect`? The `[]` argument is an empty array that tells React to run the effect only once when the component mounts. If you want the effect to run every time the component updates, you can omit the `[]` argument.
+
+2. What are the main lifecycle methods?
+
+- **componentDidMount**: Invoked immediately after a component is mounted (inserted into the tree).
+- **componentDidUpdate**: Invoked immediately after updating occurs. This method is not called for the initial render.
+- **componentWillUnmount**: Invoked immediately before a component is unmounted and destroyed.
+- 
 ---
 
 ### Conditional Rendering
