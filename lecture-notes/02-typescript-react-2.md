@@ -1,5 +1,11 @@
 # Week 02
 
+## Previous Class
+
+Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/01-github-vite-react-1.md)
+
+---
+
 ## Before We Start
 
 Open your **s2-24-intermediate-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-02-formative-assessment** from **week-01-formative-assessment**.
@@ -134,20 +140,6 @@ let person2: Person = {
   isStudent: false,
 };
 ```
-
-What is the difference between an **interface** and an **abstract class**?
-
-
-| Feature            | Abstract Class | Interface |
-|--------------------|--------------------|---------------|
-| **Definition**     | A class that can define abstract methods (without implementation) and concrete methods (with implementation). | A contract that defines method signatures and property types but has no implementation. |
-| **Method Implementation** | Can have both abstract methods and fully implemented methods. | Cannot have method implementations (except in TS 4.2+, which allows optional methods with default values using `type`). |
-| **Fields**        | Can have instance variables and initialized fields. | Can only define property types but cannot initialize them. |
-| **Access Modifiers** | Can have `public`, `protected`, and `private` members. | All properties and methods are `public` by default. |
-| **Constructor**   | Can have constructors. | Cannot have constructors. |
-| **Multiple Inheritance** | A class can extend only one abstract class. | A class can implement multiple interfaces. |
-| **Extensibility** | Use `extends` to inherit from an abstract class. | Use `implements` to enforce an interface. |
-| **Usage**         | Used when a class should provide base functionality for subclasses. | Used when multiple unrelated classes should follow the same contract. |
 
 ---
 
@@ -414,11 +406,11 @@ export default Person;
 
 ## Formative Assessment
 
-If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
-- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
 
 ---
 
@@ -571,9 +563,6 @@ Run the `prettier:format` script to format your code. Run the `prettier:check` s
 
 Read the documentation on [Pretty Quick](https://www.npmjs.com/package/pretty-quick) and use it to format your code based on the rules specified in the `.prettierrc.json` file.
 
----
+## Next Class
 
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
-
+Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/03-state-management.md)
