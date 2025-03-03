@@ -262,7 +262,7 @@ Things to note:
 
 ```jsx
 useEffect(() => {
-  // This effect will run every time the `count` variable changes
+  // This effect will run every time the "count" variable changes
 }, [count]);
 ```
 
