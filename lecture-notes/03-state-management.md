@@ -152,6 +152,8 @@ In a typical **React** data flow, components communicate with each other using *
 
 **Prop-drilling** can be avoided by using a state management library like **Redux**. **Redux** is a way to pass data through the component tree without having to pass props manually at every level. It is a way to share data between components without having to explicitly pass props.
 
+Are there performance implications of using **Redux**? Yes, there are. **Redux** is a powerful tool, but it is not always the best tool for every job. **Redux** is best suited for large applications with complex data flow. For small applications, **React**'s built-in state management is usually sufficient.
+
 ---
 
 ### Getting Started
