@@ -320,6 +320,8 @@ export default BookList;
 
 Here we are using the `useSelector()` hook to access the **Redux** store. The `useSelector()` hook accepts a function as an argument. The function accepts the state as an argument. The `useSelector()` hook returns the state.
 
+> **Note:** You will notice that we have moved state and functions from the `BookList` component to the **Redux** store. This is because the `BookList` component and the `Book` component are now sharing the same state.
+
 ---
 
 ## Formative Assessment
