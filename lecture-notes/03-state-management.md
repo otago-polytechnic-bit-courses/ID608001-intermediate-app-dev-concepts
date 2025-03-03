@@ -1,5 +1,11 @@
 # Week 03
 
+## Previous Class
+
+Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/01-github-vite-react-1.md)
+
+---
+
 ## Before We Start
 
 Open your **s2-24-intermediate-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-03-formative-assessment** from **week-02-formative-assessment**.
