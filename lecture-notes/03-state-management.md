@@ -182,14 +182,14 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.cart = [...state.cart, action.payload];
+      state.cart = [...state.cart, action.payload]; // ...state.cart is a shallow copy of the state.cart array. Shall copy is used to avoid mutating the state.cart array
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart } = cartSlice.actions; // .actions is an object that contains the action creator functions
 
-export default cartSlice.reducer;
+export default cartSlice.reducer; // .reducer is a function that contains the reducer functions
 ```
 
 Here we are creating a **Redux** slice using the `createSlice()` function. The `createSlice()` function accepts an object as an argument. The object contains a `name` property, an `initialState` property, and a `reducers` property. The `name` property is a string that describes the slice. The `initialState` property is an object that contains the initial state of the slice. The `reducers` property is an object that contains the reducer functions. The `createSlice()` function returns an object that contains the reducer functions and the action creator functions.
