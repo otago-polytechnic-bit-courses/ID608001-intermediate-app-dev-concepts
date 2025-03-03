@@ -256,19 +256,27 @@ export default RandomProgrammingJoke;
 
 Things to note:
 
-1. What does `[]` do in `useEffect`? The `[]` argument is an empty array that tells React to run the effect only once when the component mounts. If you want the effect to run every time the component updates, you can omit the `[]` argument.
+1. What does `[]` do in `useEffect`? The `[]` argument is an empty array that tells **React** to run the effect only once when the component mounts. If you want the effect to run every time the component updates, you can omit the `[]` argument.
 
-2. What are the main lifecycle methods?
+2. What can go into the `[]` argument? You can put variables in the `[]` argument that the effect depends on. If any of the variables change, the effect will run again. Here is an example:
+
+```jsx
+useEffect(() => {
+  // This effect will run every time the `count` variable changes
+}, [count]);
+```
+
+3. What are the main lifecycle methods?
 
 - **componentDidMount**: Invoked immediately after a component is mounted (inserted into the tree).
 - **componentDidUpdate**: Invoked immediately after updating occurs. This method is not called for the initial render.
 - **componentWillUnmount**: Invoked immediately before a component is unmounted and destroyed.
-- 
+  
 ---
 
 ### Conditional Rendering
 
-Conditional rendering is a technique used to render different user interface parts based on certain conditions. You can use JavaScript expressions to render elements in React conditionally.
+Conditional rendering is a technique used to render different user interface parts based on certain conditions. You can use JavaScript expressions to render elements in **React** conditionally.
 
 ```jsx
 // Parent Component
