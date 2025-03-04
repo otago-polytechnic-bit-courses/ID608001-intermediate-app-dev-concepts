@@ -177,6 +177,10 @@ function add(a: number, b: number): number {
   return a + b;
 }
 
+// or
+
+const add = (a: number, b: number): number => a + b;
+
 let result: number = add(10, 20); // OK
 
 let result2: number = add("10", 20); // Error: Argument of type 'string' is not assignable to parameter of type 'number'
@@ -295,7 +299,7 @@ export default Counter;
 ```typescript
 import { useState } from "react";
 
-const Counter: React.FC = () => {
+const Counter: React.FC = () => { // .FC means Functional Component
   const [count, setCount] = useState<number>(0); // Initial state is 0
 
   const increment = (amount: number): void => {
