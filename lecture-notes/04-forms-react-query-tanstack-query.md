@@ -227,7 +227,12 @@ A mutation is a function that performs an asynchronous task. It is similar to a 
 npm install react-hook-form
 ```
 
-`react-hook-form` is a library that helps you create forms in React. It is a great alternative to `Formik` and other form libraries.
+`react-hook-form` (RFH) is a library that helps you create forms in React. It is a great alternative to `Formik` and other form libraries.
+
+What is the difference between `react-hook-form` and normal form?
+
+- RFH uses uncontrolled components, which means you do not need to use `useState` to manage the form state. Instead of using `value` and `onChange`, you can use the `register` function to register the form fields.
+- RFH is more performant than normal forms because it does not re-render the entire form when the form state changes.
 
 4. Declare the `useForm` hook from `react-hook-form`:
 
