@@ -8,7 +8,6 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:reset": "prisma migrate reset --force",
     "prisma:studio": "prisma studio",
-    "prisma:seed": "prisma db seed",
     "pretty": "prettier --write ."
   },
   "keywords": [],

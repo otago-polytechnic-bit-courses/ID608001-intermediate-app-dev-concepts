@@ -15,7 +15,7 @@ const createInstitution = async (req, res) =>
   createResource(req, res, "institution");
 
 const getInstitutions = async (req, res) =>
-  getResources(req, res, "institution", { departments: true });
+  getResources(req, res, "institution");
 
 const getInstitution = async (req, res) => getResource(req, res, "institution");
 

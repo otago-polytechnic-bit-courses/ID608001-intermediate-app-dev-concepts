@@ -35,7 +35,7 @@ const createResource = async (req, res, model) => {
   }
 };
 
-const getResources = async (req, res, model, include) => {
+const getResources = async (req, res, model) => {
   const paginationDefault = {
     amount: 10, // The number of items per page
     page: 1, // The page number
@@ -54,7 +54,6 @@ const getResources = async (req, res, model, include) => {
       orderBy: {
         [sortBy]: sortOrder,
       },
-      include: include,
     };
 
     const where = {};
