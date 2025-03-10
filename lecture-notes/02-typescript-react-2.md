@@ -470,7 +470,7 @@ const MultiplicationMatrix: React.FC = () => {
   const [matrix, setMatrix] = useState<>([]);
 
   const handleRowsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // TODO: Convert the input value to a number and set the rows
+    // TODO: Convert the input value to a number and set the rows. This is resource is helpful in getting the input's value - https://medium.com/@Musakusbey/x-target-value-kullan%C4%B1m%C4%B1-c7933b2049b4
   };
 
   const handleColumnsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
