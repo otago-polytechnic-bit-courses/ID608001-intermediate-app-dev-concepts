@@ -132,7 +132,7 @@ export default App;
 
 In the browser, you should see the following:
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/04-images/04-images-1.jpeg?raw=true)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/04-images-1.jpeg?raw=true)
 
 ---
 
@@ -163,11 +163,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 Click on the icon in the bottom right corner to open the developer tools.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/04-images/04-images-2.jpeg?raw=true)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/04-images-2.jpeg?raw=true)
 
 You should see the following:
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/04-images/04-images-3.jpeg?raw=true)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/04-images-3.jpeg?raw=true)
 
 ---
 
@@ -324,7 +324,7 @@ return (
 // ...
 ```
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/main-s2-24/resources/img/04-images/04-images-4.jpeg)
+![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/04-images-4.jpeg)
 
 ---
 
