@@ -67,7 +67,7 @@ Here are some examples of **conventional commits**:
 
 ## Before We Start
 
-Open your **s2-24-intermediate-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-01-formative-assessment**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-01-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 

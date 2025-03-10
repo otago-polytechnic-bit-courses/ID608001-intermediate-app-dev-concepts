@@ -2,7 +2,7 @@
 
 ## Before We Start
 
-Open your **s2-24-intermediate-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-formative-assessment** from **week-03-formative-assessment**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-04-formative-assessment** from **week-03-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Read the comments in the code examples. It will help you understand where to type the code. Also, some code examples may show **TypeScript** warnings.
 
@@ -362,12 +362,4 @@ Create a new mutation that updates an institution. The mutation should take an `
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-5.jpeg)
 
-
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-6.jpeg)
-
-
----
-
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
