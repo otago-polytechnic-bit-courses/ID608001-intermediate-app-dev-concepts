@@ -84,25 +84,30 @@ export const queryClient = new QueryClient();
 
 ### Query Example
 
+> **Note:** The backend project is available in the `lecture-notes` folder called `04-forms-react-query-tanstack-query-backend`.
+
 In `src/App.tsx`, update the code to the following:
 
 ```js
 import { useQuery } from "@tanstack/react-query";
 
 const App = () => {
-  const { isLoading, data: institutionData } = useQuery({
+  const {
+    isLoading,
+    error,
+    data: institutionData,
+  } = useQuery({
     queryKey: ["institutionData"],
     queryFn: () =>
-      fetch(
-        "https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com/api/institutions"
-      ).then((res) => res.json()),
+      fetch("http://localhost:3000/api/institutions").then((res) => res.json()),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <>
-      {institutionData.data.length > 0 && (
+      {institutionData.data.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -121,8 +126,9 @@ const App = () => {
             ))}
           </tbody>
         </table>
+      ) : (
+        <p>No data available.</p>
       )}
-      {institutionData.data.length === 0 && <p>No data available.</p>}
     </>
   );
 };
@@ -190,7 +196,7 @@ const App = () => {
     useMutation({
       mutationFn: (institution) =>
         fetch(
-          "https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com/api/institutions",
+          "http://localhost:3000/api/institutions",
           {
             method: "POST",
             headers: {
@@ -258,7 +264,7 @@ const App = () => {
     useMutation({
       mutationFn: (institution) =>
         fetch(
-          "https://s2-24-intro-app-dev-repo-grayson-orr.onrender.com/api/institutions",
+          "http://localhost:3000/api/institutions",
           {
             method: "POST",
             headers: {
@@ -363,3 +369,9 @@ Create a new mutation that updates an institution. The mutation should take an `
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-5.jpeg)
 
 ![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-6.jpeg)
+
+---
+
+### Task Four (Independent Research)
+
+Research how to use **Zod** with **React Hook Form** to validate the form fields.
