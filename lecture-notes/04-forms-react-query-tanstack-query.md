@@ -195,23 +195,21 @@ const App = () => {
   const { mutate: postInstitutionMutation, data: postInstitutionData } =
     useMutation({
       mutationFn: (institution) =>
-        fetch(
-          "http://localhost:3000/api/institutions",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: institution.name,
-              region: institution.region,
-              country: institution.country,
-            }),
-          }
-        ).then((res) => res.json()),
-      onSuccess: () => queryClient.invalidateQueries({
-        queryKey: ["institutionData"],
-      }),
+        fetch("http://localhost:3000/api/institutions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: institution.name,
+            region: institution.region,
+            country: institution.country,
+          }),
+        }).then((res) => res.json()),
+      onSuccess: () =>
+        queryClient.invalidateQueries({
+          queryKey: ["institutionData"],
+        }),
     });
   // ...
 };
@@ -260,37 +258,34 @@ const App = () => {
 ```js
 const App = () => {
   // ...
-  const { mutate: postInstitutionMutation } =
-    useMutation({
-      mutationFn: (institution) =>
-        fetch(
-          "http://localhost:3000/api/institutions",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: institution.name,
-              region: institution.region,
-              country: institution.country,
-            }),
-          }
-        ).then((res) => {
-          if (res.status === 201) {
-            institutionForm.reset((formValues) => ({
-              ...formValues,
-              name: "",
-              region: "",
-              country: "",
-            }));
-          }
-          return res.json();
+  const { mutate: postInstitutionMutation } = useMutation({
+    mutationFn: (institution) =>
+      fetch("http://localhost:3000/api/institutions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: institution.name,
+          region: institution.region,
+          country: institution.country,
         }),
-      onSuccess: () => queryClient.invalidateQueries({
+      }).then((res) => {
+        if (res.status === 201) {
+          institutionForm.reset((formValues) => ({
+            ...formValues,
+            name: "",
+            region: "",
+            country: "",
+          }));
+        }
+        return res.json();
+      }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
         queryKey: ["institutionData"],
       }),
-    });
+  });
   // ...
 };
 
@@ -305,17 +300,9 @@ return (
   <>
     <form onSubmit={institutionForm.handleSubmit(handleInstitutionSubmit)}>
       <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        id="name"
-        {...institutionForm.register("name")}
-      />
+      <input type="text" id="name" {...institutionForm.register("name")} />
       <label htmlFor="region">Region</label>
-      <input
-        type="text"
-        id="region"
-        {...institutionForm.register("region")}
-      />
+      <input type="text" id="region" {...institutionForm.register("region")} />
       <label htmlFor="country">Country</label>
       <input
         type="text"
