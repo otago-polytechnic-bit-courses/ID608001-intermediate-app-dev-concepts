@@ -61,61 +61,27 @@ npm run dev
 1. Install the following packages:
 
 ```bash
-npm install tailwindcss postcss autoprefixer @vitejs/plugin-react-swc --save-dev
+npm install tailwindcss @tailwindcss/vite
 ```
 
-2. Create a **Tailwind CSS** configuration file:
-
-```bash
-npx tailwindcss init -p
-```
-
-You should see a new file called `tailwind.config.js` in the root directory.
-
-3. In the `tailwind.config.js` file, update the code to the following:
+2. In the `vite.config.js` file, update the code to the following:
 
 ```js
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  plugins: [tailwindcss()],
+});
 ```
 
-4. In the `tsconfig.json` file, add the following code:
-
-```json
-{
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
-}
-```
-
-5. In `src/index.css`, update the code to the following:
+3. In `src/index.css`, update the code to the following:
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 ```
 
-- **@tailwind base;** includes the base styles for the project. For example, you can use classes like `font-sans` to style text.
-- **@tailwind components;** includes the component styles for the project. For example, you can use classes like `btn` to style buttons.
-- **@tailwind utilities;** includes the utility styles for the project. For example, you can use classes like `text-blue-500` to style text.
-
-6. In `src/App.tsx`, update the code to the following:
+4. In `src/App.tsx`, update the code to the following:
 
 ```jsx
 const App = () => {
