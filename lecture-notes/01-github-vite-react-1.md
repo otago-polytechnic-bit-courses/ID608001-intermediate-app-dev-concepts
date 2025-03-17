@@ -417,22 +417,6 @@ const App = () => {
 export default App;
 ```
 
-```jsx
-// styled-components
-import styled from "styled-components"; // Install styled-components using npm install styled-components
-
-const Heading = styled.h1`
-  color: red;
-  font-size: 24px;
-`;
-
-const App = () => {
-  return <Heading>Hello, World!</Heading>;
-};
-
-export default App;
-```
-
 ---
 
 ## Formative Assessment
