@@ -356,4 +356,4 @@ In the `src/components` directory, create a new file called `Cart.tsx`. In the `
 
 ## Next Class
 
-Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/04-react-query-tanstack-query-react-hook-form)
+Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/04-react-query-tanstack-query-react-hook-form)
