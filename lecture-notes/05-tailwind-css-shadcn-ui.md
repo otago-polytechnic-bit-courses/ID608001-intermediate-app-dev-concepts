@@ -99,6 +99,18 @@ export default App;
 
 ---
 
+### Visual Studio Code Extensions
+
+Here are some useful extensions for **Tailwind CSS**:
+
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+- [Tailwind Fold](https://marketplace.visualstudio.com/items?itemName=stivo.tailwind-fold)
+- [Tailwind Documentation](https://marketplace.visualstudio.com/items?itemName=alfredbirk.tailwind-documentation)
+- [Tailwind Config Viewer](https://marketplace.visualstudio.com/items?itemName=KalimahApps.tailwind-config-viewer)
+- [Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind)
+
+---
+
 ## Shadcn UI
 
 **Shadcn UI** is not a component library. It is a collection of resuable components that you copy and paste into your project. It means that you do not have to install **Shadcn UI** as a dependency.
