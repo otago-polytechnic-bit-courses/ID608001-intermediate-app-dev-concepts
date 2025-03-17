@@ -197,6 +197,8 @@ const App = () => {
 export default App;
 ```
 
+**Note:** `"@/components/ui/button";` will have a red squiggly line. Please ignore.
+
 > **Resource:** <https://ui.shadcn.com/>
 
 ---
