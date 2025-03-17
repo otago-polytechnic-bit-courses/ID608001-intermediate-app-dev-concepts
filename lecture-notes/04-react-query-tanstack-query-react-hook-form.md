@@ -50,9 +50,9 @@ npm run dev
 
 ---
 
-## React Query
+## React Query/Tanstack Query
 
-**React Query** is a library that helps you fetch, cache and update data in your React applications. It is a great alternative to Redux and other state management libraries. It is also a great alternative to the `fetch` API and `axios` for fetching data from APIs.
+**React Query** or **Tanstack Query** is a library that helps you fetch, cache and update data in your React applications. It is a great alternative to Redux and other state management libraries. It is also a great alternative to the `fetch` API and `axios` for fetching data from APIs.
 
 ---
 
@@ -227,7 +227,11 @@ export default App;
 
 A mutation is a function that performs an asynchronous task. It is similar to a query, but it is used for updating data.
 
-3. We are going to use `react-hook-form` to handle the form. Install the package:
+---
+
+## React Hook Form
+
+1. We are going to use `react-hook-form` to handle the form. Install the package:
 
 ```bash
 npm install react-hook-form
@@ -240,7 +244,7 @@ What is the difference between `react-hook-form` and normal form?
 - RHF uses uncontrolled components, which means you do not need to use `useState` to manage the form state. Instead of using `value` and `onChange`, you can use the `register` function to register the form fields.
 - RHF is more performant than normal forms because it does not re-render the entire form when the form state changes.
 
-4. Declare the `useForm` hook from `react-hook-form`:
+2. Declare the `useForm` hook from `react-hook-form`:
 
 ```js
 // ...
@@ -254,7 +258,7 @@ const App = () => {
 export default App;
 ```
 
-5. Create a new function called `handleInstitutionSubmit`:
+3. Create a new function called `handleInstitutionSubmit`:
 
 ```js
 const App = () => {
@@ -264,7 +268,7 @@ const App = () => {
 };
 ```
 
-6. Update the `then()` method with the following:
+4. Update the `then()` method with the following:
 
 ```js
 const App = () => {
@@ -303,7 +307,7 @@ const App = () => {
 export default App;
 ```
 
-7. Declare a `form` element in the `return` statement above the `table` element:
+5. Declare a `form` element in the `return` statement above the `table` element:
 
 ```js
 // ...
