@@ -221,13 +221,7 @@ Using **Shadcn UI** components, style the CRUD (create, read, update and delete)
 
 ### Task Two (Research)
 
-Using the **Shadcn UI** documentation, implement a data table and date picker.
-
----
-
-### Task Three (Research)
-
-Using the **Shadcn UI** documentation, implement a line chart and pie chart.
+Using the **Shadcn UI** documentation, implement five different components.
 
 ---
 
