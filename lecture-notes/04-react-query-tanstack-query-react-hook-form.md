@@ -1,5 +1,11 @@
 # Week 04
 
+## Previous Class
+
+Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/03-state-management.md)
+
+---
+
 ## Before We Start
 
 Open your repository in **Visual Studio Code**. Create a new branch called **week-04-formative-assessment** from **week-03-formative-assessment**.
@@ -367,3 +373,10 @@ Create a new mutation that updates an institution. The mutation should take an `
 ### Task Four (Independent Research)
 
 Research how to use **Zod** with **React Hook Form** to validate the form fields.
+
+---
+
+## Next Class
+
+Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/05-tailwind-css-shadcn-ui.md)
+
