@@ -352,3 +352,8 @@ Move the `books` state in the `BookList` component to the `initialState` object 
 
 In the `src/components` directory, create a new file called `Cart.tsx`. In the `Cart.tsx` file, display the total number of items and the total price of the items in the cart. Use the `useSelector()` hook to access the `cart` state. Render the `Cart` component in the `BookList` component.
 
+---
+
+## Next Class
+
+Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/04-react-query-tanstack-query-react-hook-form)

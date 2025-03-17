@@ -568,6 +568,8 @@ Run the `prettier:format` script to format your code. Run the `prettier:check` s
 
 Read the documentation on [Pretty Quick](https://www.npmjs.com/package/pretty-quick) and use it to format your code based on the rules specified in the `.prettierrc.json` file.
 
+---
+
 ## Next Class
 
 Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/03-state-management.md)
