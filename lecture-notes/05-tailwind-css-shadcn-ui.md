@@ -1,5 +1,11 @@
 # Week 05
 
+## Previous Class
+
+Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/04-react-query-tanstack-query-react-hook-form.md)
+
+---
+
 ## Before We Start
 
 Open your repository in **Visual Studio Code**. Create a new branch called **week-05-formative-assessment** from **week-04-formative-assessment**.

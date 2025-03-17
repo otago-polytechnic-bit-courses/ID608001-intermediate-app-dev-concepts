@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/02-typescript-react-2.md)
+Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/01-github-vite-react-1.md)
 
 ---
 
