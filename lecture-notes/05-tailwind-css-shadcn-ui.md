@@ -105,10 +105,11 @@ export default App;
 
 > **Note:** **Shadcn UI** requires **React** and **Tailwind CSS** to work.
 
-1. Install the following dependency:
+1. Install the following dependencies:
 
 ```bash
 npm install @types/node --save-dev
+npm install @vitejs/plugin-react
 ```
 
 It will allow you to import `path` without any errors.
@@ -117,11 +118,12 @@ It will allow you to import `path` without any errors.
 
 ```js
 import path from "path";
-import react from "@vitejs/plugin-react-swc";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -130,8 +132,37 @@ export default defineConfig({
 });
 ```
 
+3. In `tsconfig.json`, update the code to the following:
 
-4. Run the following command to initialise **Shadcn UI**:
+```json
+{
+  // Omitted for brevity
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+4. In `tsconfig.app.json`, update the code to the following:
+
+```json
+{
+  "compilerOptions": {
+    // Omitted for brevity
+  },
+  "include": ["src"],
+  "baseUrl": ".",
+  "paths": {
+    "@/*": ["./src/*"]
+  }
+}
+```
+
+
+5. Run the following command to initialise **Shadcn UI**:
 
 ```bash
 npx shadcn@latest init
@@ -140,9 +171,8 @@ npx shadcn@latest init
 5. You will be prompt with the following questions:
 
 ```bash
-√ Which style would you like to use? » Default
-√ Which color would you like to use as base color? » Slate
-√ Would you like to use CSS variables for colors? ... yes
+√ Which color would you like to use as the base color? » Neutral
+√ How would you like to proceed? » Use --legacy-peer-deps
 ```
 
 You see a new file called `components.json` in the root directory.
@@ -150,7 +180,7 @@ You see a new file called `components.json` in the root directory.
 6. You can start adding components from **Shadcn UI** to your project. For example, you can add a button component by running the following command:
 
 ```bash
-npx shadcn-ui add button
+npx shadcn@latest add button
 ```
 
 7. In `src/App.tsx`, update the code to the following:
