@@ -248,13 +248,15 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        {/* Omitted for brevity */}
         <Route path="*" element={<NotFound />} />
+        {/* Omitted for brevity */}
       </Routes>
     </BrowserRouter>
   </StrictMode>
 );
 ``` 
+
+> **Note:** Declare the `Route` component for the 404 page before the other routes.
 
 In the `NotFound` component, you can display a message indicating that the page was not found:
 
@@ -284,9 +286,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
----
+Using **Tailwind CSS**, **Shadcn UI** and **React Router**, create a simple web application that displays a list of items. The application should have the following features:
 
-### Task Two (Research)
+- A home page that displays a list of items
+- A details page that displays more information about a selected item
+- A contact page that displays contact information
+- A 404 page that is displayed when the URL does not match any of the defined routes
+- A navigation menu that allows the user to navigate between the different pages
 
 ---
 
