@@ -25,7 +25,7 @@
 \begin{document}
 	\begin{figure}
 		\centering
-		\includegraphics[width=50mm]{../../resources/img/logo.png}
+		\includegraphics[width=50mm]{../../resources/img/logo.jpg}
 	\end{figure}
 
 	\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information
@@ -35,7 +35,7 @@
 	\maketitle
 
 	\section*{Assessment Overview}
-	In this \textbf{individual} assessment, you will develop a \textbf{four}
+	In this \textbf{individual} assessment, you will develop \textbf{four}
 	frontend applications. In addition, marks will be allocated for code quality
 	and best practices, documentation and \textbf{Git} usage.
 
@@ -79,7 +79,7 @@
 	outcome for this assessment. \\
 
 	Learning to use AI tool is an important skill. While AI tools are powerful, you
-	\textbf{must} be aware of the following:
+	\textbf{must} be aware of the following: 
 
 	\begin{itemize}
 		\item If you provide an AI tool with a prompt that is not refined enough, it
@@ -126,7 +126,7 @@
 
 	\subsection*{Functionality - Learning Outcomes 1 and 2 (50\%)}
 
-	\textbf{Milestone One}
+	\textbf{Milestone One - Due Monday, 7 April 2025 at 7.59 AM}
 	\begin{itemize}
 		\item \textbf{Movie Listings Application (10\%):}
 			\begin{itemize}
@@ -187,11 +187,11 @@
 
 						\item Display five movies per row.
 					\end{itemize}
-			\end{itemize}
 			\item Handle any missing data or errors gracefully.
+			\end{itemize} 
 	\end{itemize}
 
-	\textbf{Milestone Two}
+	\textbf{Milestone Two - Monday, 5 May 2025 at 7.59 AM}
 	\begin{itemize}
 		\item \textbf{Hacker News Application (20\%):}
 			\begin{itemize}
@@ -270,69 +270,113 @@
 					\end{itemize}
 					This information is fetched from the following endpoint:\\ \href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}.
 
-				\item On a page, display the top 15 leaders. You can get this information from the following URL:\\
-					\href{https://news.ycombinator.com/leaders}{https://news.ycombinator.com/leaders}. \textbf{Note:} The \textbf{Hacker News API} does not provide this information. You will need to hardcode this information in your application.
+				\item On a page, create a form that allows the user to search a leader by their name. You can get the leader's name from the following URL: \href{https://news.ycombinator.com/leaders}{https://news.ycombinator.com/leaders}. \textbf{Note:} The \textbf{Hacker News API} does not provide leader information. You will need to hardcode the leader information in your application. When the form is submitted, display the leader's information such as:
 
-				\item When a leader is clicked, the user will be navigate to a page that
-					displays the following information:
-					\begin{itemize}
-						\item About
+				\begin{itemize}
+					\item About
 
-						\item Created. \textbf{Note:} Convert the time to a readable format.
+					\item Created. \textbf{Note:} Convert the time to a readable format.
 
-						\item Id
+					\item Id
 
-						\item Karma
+					\item Karma
 
-						\item Submitted. \textbf{Note:} This is an array of ids. Display the
-							first 5 ids as URLs in this format:\\
-							\href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}.
-					\end{itemize}
-					This information is fetched from the following endpoint:\\ \href{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}.
+					\item Submitted. \textbf{Note:} This is an array of ids. Display the
+						first 5 ids as URLs in this format:\\
+						\href{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/item/$<$Id$>$.json?print=pretty}.
+				\end{itemize}
+				This information is fetched from the following endpoint:\\ \href{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}{https://hacker-news.firebaseio.com/v0/user/$<$Id$>$.json?print=pretty}.
+				
+				If the leader does not exist, display an error message.
+
+				\item Style the leader information to look like a card using \textbf{Tailwind CSS} and \textbf{Shadcn UI}. 
+					
+				\item Handle any missing data or errors gracefully.
 			\end{itemize}
-			\item Handle any missing data or errors gracefully.
 	\end{itemize}
 
-	\textbf{Milestone Three}
+	\textbf{Milestone Three - Due Monday, 26 May 2025 at 7.59 AM}
+	\begin{itemize}
+	\item \textbf{Trivia Application (25\%):}
+	\begin{itemize}
+		\item Create a new directory called \textbf{trivia-application} and
+					create a new \textbf{React} application using \textbf{Vite}.
+		\item Use \textbf{React Query/TanStack Query} and \textbf{Fetch API} to fetch data from the \textbf{OpenTDB API}.
+		\item Create a form with the following inputs:
+		\begin{itemize}
+			\item Name of the user. This is a text input field. The default value is \textbf{Anonymous}.
+			\item Amount. This is the number of questions to retrieve. The default value is 10.
+			\item Category. This is a dropdown list. The options can be retrieved from the following endpoint:\\
+			\href{https://opentdb.com/api\_category.php}{https://opentdb.com/api\_category.php}. The default option is \textbf{Any Category}.			
+			\item Difficulty. This is a dropdown list with the following options:
+			\begin{itemize}
+				\item Any Difficulty. This is the default option.
+				\item Easy. 
+				\item Medium
+				\item Hard
+			\end{itemize}
+			\item Type. This is a dropdown list with the following options:
+			\begin{itemize}
+				\item Any Type. This is the default option.
+				\item Multiple Choice
+				\item True/False
+			\end{itemize}
+		\end{itemize}
+		\item When the form is submitted, perform a request to the \href{OpenTDB API}{https://opentdb.com/api\_config.php}. 
+		\item Use the response to display the questions and answers in a quiz format. 
+		\item Create a form that allows the user to submit their answers. After the user submits their answers, display their name, score and the correct answers.
+		\item Store their name, score and category in an \textbf{array} of \textbf{objects} in \textbf{localStorage}. 
+		\item Display a leaderboard that shows the top 5 scores for each category stored in \textbf{localStorage}.
+		\item Style the application using \textbf{Tailwind CSS} and \textbf{Shadcn UI}.
+		\item Handle any missing data or errors gracefully.
+	\end{itemize} 
+	\end{itemize}
 
-	\textbf{Milestone Four}
+	\textbf{Milestone Four - Due Monday, 9 June 2025 at 7.59 AM} 
 	\begin{itemize}
 		\item \textbf{Emerging Technologies Application (10\%):}
 			\begin{itemize}
 				\item Create a new directory called \textbf{emerging-technologies-application}
 					and create a new \textbf{Astro} or \textbf{Solid.js} application.
-
-				\item  
-
-				
-			\item Handle any missing data or errors gracefully.
-	\end{itemize}
-
+				\item The user should be able to:
+				\begin{itemize}
+					\item Add a new todo.
+					\item Delete a todo.
+					\item Edit a todo.
+					\item Mark a todo as complete.
+					\item Mark a todo as incomplete.
+					\item View all todos.
+					\item View completed todos.
+					\item View incomplete todos.
+				\end{itemize}
+				\item Style the application using \textbf{Tailwind CSS}.
+				\item Handle any missing data or errors gracefully.
+		\end{itemize}
 	\end{itemize}
 
 	\subsection*{Code Quality and Best Practices - Learning Outcome 1 (40\%)}
 	\begin{itemize}
-		\item Project Structure (10\%) - The codebase should be well-organised with
+		\item Project Structure - The codebase should be well-organised with
 			a clear and logical structure that separates concerns and promotes
 			reusability and maintainability.
 
-		\item Naming Conventions (5\%) - File, component, function and variable
+		\item Naming Conventions - File, component, function and variable
 			names should be clear, descriptive and consistent across the codebase.
 
-		\item Documentation and Comments (5\%) - The codebase should be well-documented
+		\item Documentation and Comments - The codebase should be well-documented
 			using the \textbf{JSDoc} format with comments that explain complex logic and
 			clarify the purpose of classes, functions or complex sections.
 
-		\item Code Formatting (5\%) - Consistent indentation and spacing should be
+		\item Code Formatting - Consistent indentation and spacing should be
 			used across the codebase. It includes ensuring proper indentation for code
 			blocks, following a standard format for braces and adding blank lines
 			between sections. It should be automated using a tool like \textbf{Prettier}.
 
-		\item Dead Code (5\%) - The codebase should not contain unused or redundant
+		\item Dead Code - The codebase should not contain unused or redundant
 			files, components, functions or variables. Keeping unnecessary codebase around
 			can lead to confusion, clutter and potential bugs down the line.
 
-		\item Performance and Scalability (10\%) - The codebase should be optimised
+		\item Performance and Scalability - The codebase should be optimised
 			for performance, using efficient algorithms and data structures to minimise
 			bottlenecks.
 	\end{itemize}
@@ -351,8 +395,8 @@
 		\item Correct spelling and grammar.
 
 		\item A \textbf{.gitignore} file containing the ignored files in this
-			resource -
-			\href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}.
+			resource -\\
+			\href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. 
 
 		\item Your \textbf{Git commit messages} should:
 			\begin{itemize}
