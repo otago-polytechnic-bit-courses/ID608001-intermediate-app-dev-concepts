@@ -217,11 +217,11 @@ export default App;
 
 ## Formative Assessment
 
-If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
-- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
 
 ---
 
@@ -237,6 +237,6 @@ Using the **Shadcn UI** documentation, implement five different components.
 
 ---
 
-### Submission
+## Next Class
 
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/06-routing.md)
