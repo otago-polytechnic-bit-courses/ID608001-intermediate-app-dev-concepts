@@ -295,7 +295,7 @@ Using **Tailwind CSS**, **Shadcn UI** and **React Router**, create a simple web 
 - A navigation menu that allows the user to navigate between the different pages
 
 ---
-
+-
 ## Next Class
 
 Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/07-micro-frontends.md)
