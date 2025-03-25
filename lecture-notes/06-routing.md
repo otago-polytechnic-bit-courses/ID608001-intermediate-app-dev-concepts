@@ -1,4 +1,4 @@
-# Week 05
+# Week 06
 
 ## Previous Class
 
@@ -67,7 +67,7 @@ npm run dev
 Install **React Router** using the following command:
 
 ```bash
-npm install react-router-dom
+npm install react-router
 ```
 
 ---
