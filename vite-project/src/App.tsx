@@ -1,22 +1,31 @@
-import { Link, NavLink } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
+
+import "./index.css";
+import Home from "./components/Home.tsx";
+import Contact from "./components/Contact.tsx";
+import Details from "./components/Details.tsx";
+import NotFound from "./components/NotFound.tsx";
+import Navbar from "./components/Navbar.tsx";
 
 const App = () => {
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="dashboard">Dashboard</NavLink>
-          </li>
-          <li>
-            <NavLink to="user/1">User 1</NavLink>
-          </li>
-        </ul>
-        <Link to="dashboard/settings">Go to Dashboard Settings</Link>
-      </nav>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+              </>
+            }
+          />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/details/:id" element={<Details />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };
