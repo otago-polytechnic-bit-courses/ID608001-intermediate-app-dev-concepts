@@ -239,4 +239,4 @@ Using the **Shadcn UI** documentation, implement five different components.
 
 ## Next Class
 
-Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/06-routing.md)
+Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/06-routing.md)
