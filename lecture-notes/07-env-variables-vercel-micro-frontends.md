@@ -36,6 +36,12 @@ console.log(import.meta.env.VITE_API_KEY);
 
 ## Vercel
 
+1. Navigate to the [Vercel Dashboard](https://vercel.com/dashboard)
+2. Login with your **GitHub** account
+3. Click on the **Add New... > Project** option
+4. Import a **Git** repository
+5. Provide a project name, framework preset, root directory and environment variables (if applicable)
+6. Click on the **Deploy** button
 
 ---
 
