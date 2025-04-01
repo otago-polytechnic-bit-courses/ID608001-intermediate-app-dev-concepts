@@ -53,6 +53,8 @@ In the root directory of your **Vite** project, create a new file called `vercel
 }
 ```
 
+---
+
 ### Deployment
 
 1. Navigate to the [Vercel Dashboard](https://vercel.com/dashboard)
