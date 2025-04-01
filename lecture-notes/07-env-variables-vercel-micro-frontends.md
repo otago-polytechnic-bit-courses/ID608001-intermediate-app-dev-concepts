@@ -16,9 +16,9 @@ Open your repository in **Visual Studio Code**. Create a new branch called **wee
 
 ## Environment Variables
 
-Environment variables are variables that are set outside of the application. They are used to store sensitive information such as API keys, database credentials, etc. They are also used to store configuration information such as the application's environment such development, production, etc.
+Environment variables are variables that are set outside of the application. They are used to store sensitive information such as API keys, database credentials, etc. They are also used to store configuration information such as the application's environment such as development, production, etc.
 
-In a **Vite** project, you can create environment variables by creating a `.env` file in the root of the project. You can then access these environment variables in your application using `import.meta.env`.
+In a **Vite** project, you can create environment variables by creating a `.env` file in the project's root folder. You can then access these environment variables in your application using `import.meta.env`.
 
 For example, create a `.env` file in the root of the project with the following content:
 
@@ -36,11 +36,13 @@ console.log(import.meta.env.VITE_API_KEY);
 
 ## Vercel
 
-**Vercel**
+**Vercel** is a cloud platform for deploying applications. It is designed to make the deployment process simple and efficient. It supports many frameworks and languages, including **React**, **Next.js**, **Angular**, **Vue** and more.
+
+---
 
 ### Vercel JSON File
 
-In the root directory of your **Vite** project, create a new file called `vercel.json`. In the `vercel.json` file, add the following:
+In the root of the project, create a new file called `vercel.json` with the following content:
 
 ```json
 {
@@ -53,16 +55,22 @@ In the root directory of your **Vite** project, create a new file called `vercel
 }
 ```
 
+This file is used to configure the **Vercel** deployment. The `rewrites` property is used to specify the rewrites for the deployment. In this case, all requests are rewritten to the `index.html` file. 
+
+> **Note:** If you do not have a `vercel.json` file with the above configuration, your **Vite** project that uses **React Router** will not work correctly when deployed to **Vercel**.
+
 ---
 
 ### Deployment
 
-1. Navigate to the [Vercel Dashboard](https://vercel.com/dashboard)
-2. Login with your **GitHub** account
-3. Click on the **Add New... > Project** option
-4. Import a **Git** repository
-5. Provide a project name, framework preset, root directory and environment variables (if applicable)
+1. Go to [Vercel](https://vercel.com/) and login using your **GitHub** account
+2. Click on the **Add New... > Project** option
+3. Select the **Import Git Repository** option. You will need to authorise **Vercel** to access your **GitHub** repositories
+4. Import the repository that you want to deploy
+5. Configure the project settings such as name, framework preset, etc
 6. Click on the **Deploy** button
+
+The application will be deployed to **Vercel**. You can access the deployed application using the provided URL.
 
 ---
 
@@ -89,7 +97,7 @@ In the **micro-frontend-two** project, install the following dependencies:
 npm install concurrently --save-dev
 ```
 
-The `@originjs/vite-plugin-federation` package is used to enable **Module Federation** in **Vite** and the `concurrently` package is used to run multiple commands concurrently. 
+The `@originjs/vite-plugin-federation` package enables **Module Federation** in **Vite**, and the `concurrently` package is used to run multiple commands concurrently. 
 
 ---
 
@@ -101,7 +109,7 @@ In the **micro-frontend-one** project's `package.json` file, change the `script`
 "dev": "vite --port 5000 --strictPort",
 ```
 
-The `dev` script will start the development server on port 5000. The `--strictPort` option will make sure that the server will not start if port 5000 is already in use.
+The `dev` script will start the development server on port 5000. The `--strictPort` option will ensure that the server will not start if port 5000 is already in use.
 
 ---
 
@@ -114,7 +122,7 @@ In the **micro-frontend-two** project's `package.json` file, change the `script`
 "build": "concurrently \"vite build --watch\" \"vite preview --port 5001 --strictPort\"",
 ```
 
-The `build` script will build the application and then start a preview server on port 5001.
+The `build` script will build the application and start a preview server on port 5001.
 
 ---
 
@@ -129,25 +137,25 @@ import react from '@vitejs/plugin-react';
 import federation from '@originjs/vite-plugin-federation';
 
 export default defineConfig({
-  plugins: [
+ plugins: [
     react(),
     federation({
-      name: 'micro-frontend-one',
-      remotes: {
-        micro_frontend_two: 'http://localhost:5001/assets/remoteEntry.js',
+ name: 'micro-frontend-one',
+ remotes: {
+ micro_frontend_two: 'http://localhost:5001/assets/remoteEntry.js',
       },
-      shared: ["react", "react-dom"],
+ shared: ["react", "react-dom"],
     }),
-  ],
+ ],
 });
 ```
 
 What is happening here?
 
-- The `federation` plugin is used to enable **Module Federation** in **Vite**.
+- The `federation` plugin enables **Module Federation** in **Vite**.
 - The `name` property is used to specify the name of the micro frontend. This name will be used to identify the micro frontend in the application.
 - The `remotes` property is used to specify the remote micro frontends that this micro frontend will consume. In this case, it is consuming the **micro-frontend-two** micro frontend.
-- The `shared` property is used to specify the shared dependencies between the micro frontends. In this case, it is sharing the `react` and `react-dom` packages.
+- The `shared` property is used to specify the shared dependencies between the micro frontends. In this case, it shares the `react` and `react-dom` packages.
 
 ---
 
@@ -161,19 +169,19 @@ import react from '@vitejs/plugin-react';
 import federation from '@originjs/vite-plugin-federation';
 
 export default defineConfig({
-  plugins: [
+ plugins: [
     react(),
     federation({
-      name: 'micro-frontend-two',
-      filename: 'remoteEntry.js',
-      exposes: {
+ name: 'micro-frontend-two',
+ filename: 'remoteEntry.js',
+ exposes: {
         './Button': './src/components/Button.tsx',
       },
-      shared: ["react", "react-dom"],
+ shared: ["react", "react-dom"],
     }),
-  ],
-  build: {
-    target: 'esnext',
+ ],
+ build: {
+ target: 'esnext',
   },
 });
 ```
@@ -197,7 +205,7 @@ const Button = () => {
 export default Button;
 ```
 
-This is a simple button component that will be exposed by the **micro-frontend-two** micro frontend.
+This simple button component will be exposed by the **micro-frontend-two** micro frontend.
 
 ---
 
@@ -211,10 +219,10 @@ import Button from "micro_frontend_two/Button";
 const App = () => {
   return (
     <>
-      <h1>Hello, World!</h1>
+ <h1>Hello, World!</h1>
       <Button />
     </>
-  );
+ );
 };
 
 export default App;
