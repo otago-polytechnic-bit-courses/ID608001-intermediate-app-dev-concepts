@@ -36,6 +36,25 @@ console.log(import.meta.env.VITE_API_KEY);
 
 ## Vercel
 
+**Vercel**
+
+### Vercel JSON File
+
+In the root directory of your **Vite** project, create a new file called `vercel.json`. In the `vercel.json` file, add the following:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+
+### Deployment
+
 1. Navigate to the [Vercel Dashboard](https://vercel.com/dashboard)
 2. Login with your **GitHub** account
 3. Click on the **Add New... > Project** option
