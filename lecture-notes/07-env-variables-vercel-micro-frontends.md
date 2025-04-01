@@ -32,6 +32,8 @@ You can then access the `VITE_API_KEY` environment variable in your application 
 console.log(import.meta.env.VITE_API_KEY);
 ```
 
+> **Note:** Environment variables that start with `VITE_` are exposed to your **Vite** application. Other environment variables are not exposed.
+
 ---
 
 ## Vercel
@@ -55,7 +57,7 @@ In the root of the project, create a new file called `vercel.json` with the foll
 }
 ```
 
-This file is used to configure the **Vercel** deployment. The `rewrites` property is used to specify the rewrites for the deployment. In this case, all requests are rewritten to the `index.html` file. 
+This file is used to configure the **Vercel** deployment. The `rewrites` property is used to specify the rewrites for the deployment. In this case, all requests are rewritten to the `index.html` file.
 
 > **Note:** If you do not have a `vercel.json` file with the above configuration, your **Vite** project that uses **React Router** will not work correctly when deployed to **Vercel**.
 
@@ -67,7 +69,7 @@ This file is used to configure the **Vercel** deployment. The `rewrites` propert
 2. Click on the **Add New... > Project** option
 3. Select the **Import Git Repository** option. You will need to authorise **Vercel** to access your **GitHub** repositories
 4. Import the repository that you want to deploy
-5. Configure the project settings such as name, framework preset, etc
+5. Configure the project settings such as name, framework preset, environment variables, etc
 6. Click on the **Deploy** button
 
 The application will be deployed to **Vercel**. You can access the deployed application using the provided URL.
@@ -76,13 +78,13 @@ The application will be deployed to **Vercel**. You can access the deployed appl
 
 ## Micro Frontends
 
-**Micro Frontends** is an architectural style where a web application is composed of multiple smaller applications. Each smaller application is developed and deployed independently. 
+**Micro Frontends** is an architectural style where a web application is composed of multiple smaller applications. Each smaller application is developed and deployed independently.
 
 ---
 
-### Setup 
+### Setup
 
-Create two new **Vite** projects called **micro-frontend-one** and **micro-frontend-two**. 
+Create two new **Vite** projects called **micro-frontend-one** and **micro-frontend-two**.
 
 In both applications, install the following dependencies:
 
@@ -97,7 +99,7 @@ In the **micro-frontend-two** project, install the following dependencies:
 npm install concurrently --save-dev
 ```
 
-The `@originjs/vite-plugin-federation` package enables **Module Federation** in **Vite**, and the `concurrently` package is used to run multiple commands concurrently. 
+The `@originjs/vite-plugin-federation` package enables **Module Federation** in **Vite**, and the `concurrently` package is used to run multiple commands concurrently.
 
 ---
 
@@ -128,25 +130,24 @@ The `build` script will build the application and start a preview server on port
 
 ### Micro-Frontend One Vite Config File
 
-
 In the **micro-frontend-one** project's `vite.config.ts` file, add the following code:
 
 ```typescript
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import federation from '@originjs/vite-plugin-federation';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
- plugins: [
+  plugins: [
     react(),
     federation({
- name: 'micro-frontend-one',
- remotes: {
- micro_frontend_two: 'http://localhost:5001/assets/remoteEntry.js',
+      name: "micro-frontend-one",
+      remotes: {
+        micro_frontend_two: "http://localhost:5001/assets/remoteEntry.js",
       },
- shared: ["react", "react-dom"],
+      shared: ["react", "react-dom"],
     }),
- ],
+  ],
 });
 ```
 
@@ -164,24 +165,24 @@ What is happening here?
 In the **micro-frontend-two** project's `vite.config.ts` file, add the following code:
 
 ```typescript
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import federation from '@originjs/vite-plugin-federation';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
- plugins: [
+  plugins: [
     react(),
     federation({
- name: 'micro-frontend-two',
- filename: 'remoteEntry.js',
- exposes: {
-        './Button': './src/components/Button.tsx',
+      name: "micro-frontend-two",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Button": "./src/components/Button.tsx",
       },
- shared: ["react", "react-dom"],
+      shared: ["react", "react-dom"],
     }),
- ],
- build: {
- target: 'esnext',
+  ],
+  build: {
+    target: "esnext",
   },
 });
 ```
@@ -219,16 +220,16 @@ import Button from "micro_frontend_two/Button";
 const App = () => {
   return (
     <>
- <h1>Hello, World!</h1>
+      <h1>Hello, World!</h1>
       <Button />
     </>
- );
+  );
 };
 
 export default App;
 ```
 
-Where does the `micro_frontend_two` value come from? It comes from the `remotes` > `micro_frontend_two` property in the **micro-frontend-one** project's `vite.config.ts` file. 
+Where does the `micro_frontend_two` value come from? It comes from the `remotes` > `micro_frontend_two` property in the **micro-frontend-one** project's `vite.config.ts` file.
 
 ---
 
@@ -264,7 +265,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
-Create a new **Vite** project called **micro-frontend-three**. This micro-frontend will display a table of data. The data will be fetched from a public API. You can use any public API you like. For example, you can use the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API. 
+Create a new **Vite** project called **micro-frontend-three**. This micro-frontend will display a table of data. The data will be fetched from a public API. You can use any public API you like. For example, you can use the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API.
 
 In the **micro-frontend-one** project, add the **micro-frontend-three** micro frontend as a remote and render the table of data in the **micro-frontend-one** project.
 
