@@ -124,7 +124,38 @@ In the first example, the HTML markup does not convey any meaning about the cont
 
 ### ARIA
 
-> **Resource:** [WAI-ARIA Overview](https://www.w3.org/WAI/standards-guidelines/aria/)
+***ARIA** (Accessible Rich Internet Applications) is a set of attributes that can be added to **HTML** elements to improve accessibility. **ARIA** attributes provide additional information about the role, state, and properties of an element.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantic HTML Example</title>
+  </head>
+  <body>
+    <header role="banner" aria-label="Site Header">
+      <h1>Welcome to My Website</h1>
+    </header>
+    <main role="main" aria-labelledby="main-content">
+      <section aria-labelledby="section1">
+        <p>This is a paragraph about something interesting.</p>
+      </section>
+      <section aria-labelledby="section2">
+        <p>Here is another paragraph of text.</p>
+      </section>
+    </main>
+  </body>
+</html>
+```
+
+In the example above, the `role` attribute is used to specify the role of the element. The `aria-label` attribute is used to provide a label for the element. The `aria-labelledby` attribute is used to specify the ID of another element that labels the current element.
+
+What is the difference `aria-label` and `aria-labelledby`?
+
+- `aria-label` is used to provide a label for an element that does not have a visible label. It is used to provide a text alternative for the element.
+- `aria-labelledby` is used to specify the ID of another element that labels the current element. It is used to provide a reference to another element that provides a label for the current element.
 
 ---
 
