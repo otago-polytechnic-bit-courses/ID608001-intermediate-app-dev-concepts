@@ -67,7 +67,7 @@ This file is used to configure the **Vercel** deployment. The `rewrites` propert
 
 1. Go to [Vercel](https://vercel.com/) and login using your **GitHub** account
 2. Click on the **Add New... > Project** option
-3. Select the **Import Git Repository** option. You will need to authorise **Vercel** to access your **GitHub** repositories
+3. In the **Import Git Repository** section, click on the dropdown and select **GitHub** account. If your name is not visible, select **Add GitHub Account** and follow the on screen instructions. This will allow you to connect your **GitHub** account to **Vercel**. You will be redirected to **GitHub** to authorise **Vercel** to access your repositories. If you have already authorised **Vercel**, you will not be redirected to **GitHub**.
 4. Import the repository that you want to deploy
 5. Configure the project settings such as name, framework preset, environment variables, etc
 6. Click on the **Deploy** button
