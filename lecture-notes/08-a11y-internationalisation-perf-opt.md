@@ -124,7 +124,7 @@ In the first example, the HTML markup does not convey any meaning about the cont
 
 ### ARIA
 
-***ARIA** (Accessible Rich Internet Applications) is a set of attributes that can be added to **HTML** elements to improve accessibility. **ARIA** attributes provide additional information about the role, state, and properties of an element.
+**ARIA** (Accessible Rich Internet Applications) is a set of attributes that can be added to **HTML** elements to improve accessibility. **ARIA** attributes provide additional information about the role, state, and properties of an element.
 
 ```html
 <!DOCTYPE html>
