@@ -193,6 +193,8 @@ Here is an example of using the `tabindex` attribute:
 </html>
 ```
 
+> **Note:** `tabindex="1"` is not recommended. It is better to use `tabindex="0"` for all elements that should be focusable. The order in which elements receive focus is determined by the order in which they appear in the HTML document. 
+
 ---
 
 ### WCAG Guidelines
