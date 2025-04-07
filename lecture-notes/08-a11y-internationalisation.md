@@ -193,7 +193,7 @@ Here is an example of using the `tabindex` attribute:
 </html>
 ```
 
-> **Note:** `tabindex="1"` is not recommended. It is better to use `tabindex="0"` for all elements that should be focusable. The order in which elements receive focus is determined by the order in which they appear in the HTML document. 
+> **Note:** `tabindex="1"` is not recommended. It is better to use `tabindex="0"` for all elements that should be focusable. The order in which elements receive focus is determined by the order in which they appear in the HTML document.
 
 ---
 
@@ -201,25 +201,24 @@ Here is an example of using the `tabindex` attribute:
 
 **WCAG** (Web Content Accessibility Guidelines) is a set of guidelines for making web content more accessible. The guidelines are organized into four principles:
 
-1. **Perceivable**: Information and user interface components must be presentable to users in ways they can perceive. 
+1. **Perceivable**: Information and user interface components must be presentable to users in ways they can perceive.
    - Text alternatives for non-text content
    - Captions for audio and video content
    - Adaptable content that can be presented in different ways (e.g., screen readers, braille displays)
    - Content that can be distinguished from the background (e.g., color contrast, text size)
 2. **Operable**: User interface components and navigation must be operable.
-    - Keyboard navigation for all interactive elements
-    - Enough time to read and use content (e.g., time limits, auto-updating content)
-    - No content that causes seizures (e.g., flashing content, animations)
-    - Navigable content (e.g., clear navigation, headings, links)
+   - Keyboard navigation for all interactive elements
+   - Enough time to read and use content (e.g., time limits, auto-updating content)
+   - No content that causes seizures (e.g., flashing content, animations)
+   - Navigable content (e.g., clear navigation, headings, links)
 3. **Understandable**: Information and the operation of user interface must be understandable.
-    - Text that is readable and understandable (e.g., plain language, clear instructions)
-    - Predictable user interface (e.g., consistent navigation, predictable behavior)
-    - Input assistance (e.g., error suggestions, labels for form fields)
+   - Text that is readable and understandable (e.g., plain language, clear instructions)
+   - Predictable user interface (e.g., consistent navigation, predictable behavior)
+   - Input assistance (e.g., error suggestions, labels for form fields)
 4. **Robust**: Content must be robust enough that it can be interpreted reliably by a wide variety of user agents, including assistive technologies.
-    - Compatible with current and future user agents (e.g., valid HTML, ARIA attributes)
-    - Accessible to assistive technologies (e.g., screen readers, braille displays)
-    - Support for different input methods (e.g., keyboard, mouse, touch)
-
+   - Compatible with current and future user agents (e.g., valid HTML, ARIA attributes)
+   - Accessible to assistive technologies (e.g., screen readers, braille displays)
+   - Support for different input methods (e.g., keyboard, mouse, touch)
 
 > **Resource:** [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/WCAG21/quickref/)
 
@@ -227,11 +226,75 @@ Here is an example of using the `tabindex` attribute:
 
 ## Internationalisation
 
----
-
-## Performance Optimisation
+**Internationalisation** (i18n) is the process of designing your application so that it can be adapted to different languages and regions without requiring changes to the source code. This is important for making your application accessible to users in different countries and regions.
 
 ---
+
+### Setting Up Internationalisation
+
+1. Install the **i18next** and **react-i18next** packages:
+
+```bash
+npm install i18next react-i18next
+```
+
+2. In the `src` directory, create a new file called **i18n.js**. This file will contain the configuration for **i18next**.
+
+3. In the **i18n.js** file, add the following code:
+
+```javascript
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+
+const resources = {
+  en: {
+    translation: {
+      "Welcome to React": "Welcome to React and react-i18next",
+    },
+  },
+  fr: {
+    translation: {
+      "Welcome to React": "Bienvenue à React et react-i18next",
+    },
+  },
+};
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
+
+export default i18n;
+```
+
+4. In the **src/main.jsx** file, import the **i18n.js** file:
+
+```javascript
+import "./i18n";
+```
+
+1. In the **src/App.jsx** file, add the following code:
+
+```javascript
+import { useTranslation } from "react-i18next";
+
+const App = () => {
+  const { t } = useTranslation();
+  return <h2>{t("Welcome to React")}</h2>;
+};
+
+export default App;
+```
+
+What is the `t` function? The `t` function is a translation function provided by **i18next**. It is used to translate keys into the current language. The `t` function takes a key as an argument and returns the translated string for the current language.
+
+Navigate to <http://localhost:5173>. You should see the text "Welcome to React and react-i18next".
+If you change the language to **French**, you should see the text "Bienvenue à React et react-i18next".
+
+--
 
 ## Formative Assessment
 
@@ -244,6 +307,40 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 ---
 
 ### Task One
+
+Convert the following **HTML** code to **React** code, i.e., create components for the **header**, **main**, and **section** elements. 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantic HTML Example</title>
+  </head>
+  <body>
+    <header role="banner" aria-label="Site Header">
+      <h1>Welcome to My Website</h1>
+    </header>
+    <main role="main" aria-labelledby="main-content">
+      <section aria-labelledby="section1">
+        <p>This is a paragraph about something interesting.</p>
+        <button tabindex="0">Click Me</button>
+      </section>
+      <section aria-labelledby="section2">
+        <p>Here is another paragraph of text.</p>
+        <button tabindex="1">Click Me Too</button>
+      </section>
+    </main>
+  </body>
+</html>
+```
+
+---
+
+### Task Two
+
+Implement the internationalisation code above. Create a component that allows the user to change the language of the application. The component should have a dropdown that allows the user to select the language. When the user selects a language, the application should update the text to the selected language.
 
 ---
 
