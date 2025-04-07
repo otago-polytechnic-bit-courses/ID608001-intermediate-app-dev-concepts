@@ -267,6 +267,8 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 Create a new **Vite** project called **micro-frontend-three**. This micro-frontend will display a table of data. The data will be fetched from a public API. You can use any public API you like. For example, you can use the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API.
 
+> **Note:** You will not be able to use **React Query/TanStack Query**. Instead, you will need to use the `useEffect` and `useState` hooks to fetch the data.
+
 In the **micro-frontend-one** project, add the **micro-frontend-three** micro frontend as a remote and render the table of data in the **micro-frontend-one** project.
 
 ---
