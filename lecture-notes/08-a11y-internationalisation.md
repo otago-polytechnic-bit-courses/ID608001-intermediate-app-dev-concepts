@@ -54,6 +54,8 @@ npm run dev
 
 **Accessibility** or **a11y** is the practice of making your application usable by as many people as possible. It is important to make your application accessible to people with disabilities.
 
+> **Note:** The term **a11y** is a numeronym for the word **accessibility**. The number 11 represents the number of letters between the first letter "a" and the last letter "y".
+
 ---
 
 ### Semantic HTML
@@ -199,7 +201,7 @@ Here is an example of using the `tabindex` attribute:
 
 ### WCAG Guidelines
 
-**WCAG** (Web Content Accessibility Guidelines) is a set of guidelines for making web content more accessible. The guidelines are organized into four principles:
+**WCAG** (Web Content Accessibility Guidelines) is a set of guidelines for making web content more accessible. The guidelines are organised into four principles:
 
 1. **Perceivable**: Information and user interface components must be presentable to users in ways they can perceive.
    - Text alternatives for non-text content
@@ -276,7 +278,7 @@ export default i18n;
 import "./i18n";
 ```
 
-1. In the **src/App.jsx** file, add the following code:
+5. In the **src/App.jsx** file, add the following code:
 
 ```javascript
 import { useTranslation } from "react-i18next";
