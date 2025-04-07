@@ -165,9 +165,59 @@ What is the difference `aria-label` and `aria-labelledby`?
 
 **Keyboard navigation** is achieved by using the `tabindex` attribute. The `tabindex` attribute specifies the order in which elements receive focus when the user presses the **Tab** key.
 
+Here is an example of using the `tabindex` attribute:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyboard Navigation Example</title>
+  </head>
+  <body>
+    <header role="banner" aria-label="Site Header">
+      <h1>Welcome to My Website</h1>
+    </header>
+    <main role="main" aria-labelledby="main-content">
+      <section aria-labelledby="section1">
+        <p>This is a paragraph about something interesting.</p>
+        <button tabindex="0">Click Me</button>
+      </section>
+      <section aria-labelledby="section2">
+        <p>Here is another paragraph of text.</p>
+        <button tabindex="1">Click Me Too</button>
+      </section>
+    </main>
+  </body>
+</html>
+```
+
 ---
 
 ### WCAG Guidelines
+
+**WCAG** (Web Content Accessibility Guidelines) is a set of guidelines for making web content more accessible. The guidelines are organized into four principles:
+
+1. **Perceivable**: Information and user interface components must be presentable to users in ways they can perceive. 
+   - Text alternatives for non-text content
+   - Captions for audio and video content
+   - Adaptable content that can be presented in different ways (e.g., screen readers, braille displays)
+   - Content that can be distinguished from the background (e.g., color contrast, text size)
+2. **Operable**: User interface components and navigation must be operable.
+    - Keyboard navigation for all interactive elements
+    - Enough time to read and use content (e.g., time limits, auto-updating content)
+    - No content that causes seizures (e.g., flashing content, animations)
+    - Navigable content (e.g., clear navigation, headings, links)
+3. **Understandable**: Information and the operation of user interface must be understandable.
+    - Text that is readable and understandable (e.g., plain language, clear instructions)
+    - Predictable user interface (e.g., consistent navigation, predictable behavior)
+    - Input assistance (e.g., error suggestions, labels for form fields)
+4. **Robust**: Content must be robust enough that it can be interpreted reliably by a wide variety of user agents, including assistive technologies.
+    - Compatible with current and future user agents (e.g., valid HTML, ARIA attributes)
+    - Accessible to assistive technologies (e.g., screen readers, braille displays)
+    - Support for different input methods (e.g., keyboard, mouse, touch)
+
 
 > **Resource:** [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/WCAG21/quickref/)
 
