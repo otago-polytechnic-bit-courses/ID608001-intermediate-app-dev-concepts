@@ -310,7 +310,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
-Convert the following **HTML** code to **React** code, i.e., create components for the **header**, **main**, and **section** elements. 
+Convert the following **HTML** code to **React** code, i.e., create components for the **header**, **main**, and **section** elements.
 
 ```html
 <!DOCTYPE html>
