@@ -178,7 +178,7 @@ it("should click on the first Add to cart button", () => {
 1. Install the following dependency:
 
 ```bash
-npm install cypress --save-dev
+npm install cypress --save-dev --force
 ```
 
 2. Create a new script in your `package.json` file:
