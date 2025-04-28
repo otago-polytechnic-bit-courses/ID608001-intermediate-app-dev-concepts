@@ -267,17 +267,17 @@ describe("Tests", () => {
 
 ## Formative Assessment
 
-If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
-- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
 
 ---
 
 ## Task One
 
-Using the completed **week 03** formative assessment and **React Testing Library**, write tests for the following:
+Using the completed **03-state-management** formative assessment and **React Testing Library**, write tests for the following:
 
 - Adding **1984** and **Crime and Punishment** to the cart.
 - Checking if the total number of items in the cart is 2.
@@ -287,7 +287,7 @@ Using the completed **week 03** formative assessment and **React Testing Library
 
 ## Task Two
 
-Using the completed **week 04** formative assessment and **Cypress**, write tests for the following:
+Using the completed **04-react-query-tanstack-query-react-hook-form** formative assessment and **Cypress**, write tests for the following:
 
 - Adding an institution.
 - Checking if the institution is added to the list of institutions.
@@ -298,6 +298,6 @@ Using the completed **week 04** formative assessment and **Cypress**, write test
 
 ---
 
-### Submission
+## Next Class
 
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+Link to the next class: [Week 10]()
