@@ -67,7 +67,7 @@ npm run dev
 1. Install the following dependencies:
 
 ```bash
-npm install @testing-library/dom @testing-library/react @types/react @types/react-dom jsdom vitest --save-dev
+npm install @testing-library/dom @testing-library/react @types/react @types/react-dom jsdom vitest @vitest/ui --save-dev
 ```
 
 2. In the `src` directory, create a new file called `App.test.tsx`.
