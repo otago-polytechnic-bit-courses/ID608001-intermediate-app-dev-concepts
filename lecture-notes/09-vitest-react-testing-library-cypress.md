@@ -310,6 +310,7 @@ Why `npx vite --host`? **Cypress** is running in a different environment to the 
 ```javascript
 describe("Tests", () => {
   const NETWORK_ADDRESS = "<Network address>:5173/" // Copy and paste the network address. Note: localhost will not work
+
   it("should render Pride and Prejudice", () => {
     cy.visit(NETWORK_ADDRESS); 
     cy.contains("Pride and Prejudice").should("exist");
