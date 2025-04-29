@@ -64,15 +64,64 @@ npm run dev
 
 > The code snippets below are based on **03-state-management.md**.
 
-1. Install the following dependencies:
+1. Update `Book.tsx` and the `books` state in `BookList.tsx` to the following:
+
+```jsx
+// Book.tsx
+
+// The first line will render the dollar sign (`$`) and `props.price` as separate text nodes,
+// which can introduce unexpected whitespace or line breaks:
+// <p>${props.price}</p>
+
+// The second line correctly uses a JavaScript template string inside JSX,
+// ensuring the dollar sign and the price are combined into one continuous string:
+// <p>{`$${props.price}`}</p>
+
+const Book = (props) => {
+  return (
+    <>
+      <p>{props.name}</p>
+      {/* <p>${props.price}</p> */}
+      <p>{`$${props.price}`}</p>
+      <button
+        onClick={() =>
+          props.addToCart({
+            id: props.id,
+            name: props.name,
+            price: props.price,
+          })
+        }
+        data-testid={`add-to-cart-${props.id}`}
+      >
+        Add to cart
+      </button>
+    </>
+  );
+};
+
+export default Book;
+```
+
+```jsx
+// BookList.tsx
+
+const [books] = useState([
+  { id: 1, name: "Pride and Prejudice", price: 15 },
+  { id: 2, name: "1984", price: 10 },
+  { id: 3, name: "Crime and Punishment", price: 15 },
+  { id: 4, name: "Hamlet", price: 15 },
+]);
+```
+
+2. Install the following dependencies:
 
 ```bash
 npm install @testing-library/dom @testing-library/react @testing-library/user-event @types/react @types/react-dom jsdom vitest @vitest/ui --save-dev
 ```
 
-2. In the `src` directory, create a new file called `App.test.tsx`.
+3. In the `src` directory, create a new file called `App.test.tsx`.
 
-3. Add the following code to the `App.test.tsx` file:
+4. Add the following code to the `App.test.tsx` file:
 
 ```javascript
 import { render, screen } from "@testing-library/react";
@@ -86,17 +135,22 @@ describe("Tests", () => {
     render(<App />);
     expect(screen.getByText("Pride and Prejudice"));
   });
+
+  it("should render $10", () => {
+    render(<App />);
+    expect(screen.getByText("$10"));
+  });
 });
 ```
 
-4. In the `package.json` file, add the following scripts:
+5. In the `package.json` file, add the following scripts:
 
 ```json
 "test": "vitest",
 "test:ui": "vitest --ui"
 ```
 
-5. In the `vite.config.ts` file, add the following:
+6. In the `vite.config.ts` file, add the following:
 
 ```ts
 import { defineConfig } from "vite";
@@ -113,7 +167,7 @@ export default defineConfig({
 });
 ```
 
-6. Run each script above. For example, if you run `npm run test`, you should see the following output:
+7. Run each script above. For example, if you run `npm run test`, you should see the following output:
 
 ```bash
 ✓ src/App.test.tsx (1)
@@ -121,14 +175,23 @@ export default defineConfig({
     ✓ should render Pride and Prejudice
 ```
 
-7. Let us look at user events. For example, a button click. In `Book.tsx`, update the `button` element to include a `data-testid` prop:
+8. Let us look at user events. For example, a button click. In `Book.tsx`, update the `button` element to include a `data-testid` prop:
 
 ```tsx
+// The first line will render the dollar sign (`$`) and `props.price` as separate text nodes,
+// which can introduce unexpected whitespace or line breaks:
+// <p>${props.price}</p>
+
+// The second line correctly uses a JavaScript template string inside JSX,
+// ensuring the dollar sign and the price are combined into one continuous string:
+// <p>{`$${props.price}`}</p>
+
 const Book = (props) => {
   return (
     <>
       <p>{props.name}</p>
-      <p>${props.price}</p>
+      {/* <p>${props.price}</p> */}
+      <p>{`$${props.price}`}</p>
       <button
         onClick={() =>
           props.addToCart({
@@ -150,7 +213,7 @@ export default Book;
 
 A `data-testid` prop can be given to any element. It is used to identify an element in a test.
 
-8. In `App.test.tsx`, add the following test:
+9. In `App.test.tsx`, add the following test:
 
 ```js
 it("should click on the first Add to cart button", async () => {
@@ -159,7 +222,7 @@ it("should click on the first Add to cart button", async () => {
 });
 ```
 
-9. If you run `npm run test`, you should see the following output:
+10. If you run `npm run test`, you should see the following output:
 
 ```bash
 ✓ src/App.test.tsx (2)
@@ -247,13 +310,14 @@ Why `npx vite --host`? **Cypress** is running in a different environment to the 
 
 ```javascript
 describe("Tests", () => {
+  const NETWORK_ADDRESS = "<Network address>:5173/" // Copy and paste the network address. Note: localhost will not work
   it("should render Pride and Prejudice", () => {
-    cy.visit("<Network address>:5173/"); // Copy and paste the network address. Note: localhost will not work
+    cy.visit(NETWORK_ADDRESS); 
     cy.contains("Pride and Prejudice").should("exist");
   });
 
   it("should click on the first Add to Cart button", () => {
-    cy.visit("<Network address>:5173/");
+    cy.visit(NETWORK_ADDRESS);
     cy.get('[data-testid="add-to-cart-1"]').click();
   });
 });
