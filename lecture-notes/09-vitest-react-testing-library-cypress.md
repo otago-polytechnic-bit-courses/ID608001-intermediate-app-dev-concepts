@@ -153,9 +153,8 @@ A `data-testid` prop can be given to any element. It is used to identify an elem
 8. In `App.test.tsx`, add the following test:
 
 ```js
-it("should click on the first Add to cart button", () => {
-  render(<App />);
-  const button = screen.getAllByTestId("add-to-cart-1")[0]; // What happens if you change 1 to 10? Why?
+it("should click on the first Add to cart button", async () => {
+  const button = await screen.findByTestId("add-to-cart-1"); // What happens if you change 1 to 10? Why?
   userEvent.click(button);
 });
 ```
