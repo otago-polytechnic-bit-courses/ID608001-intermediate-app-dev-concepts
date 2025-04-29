@@ -137,7 +137,6 @@ describe("Tests", () => {
   });
 
   it("should render $10", () => {
-    render(<App />);
     expect(screen.getByText("$10"));
   });
 });
@@ -170,9 +169,9 @@ export default defineConfig({
 7. Run each script above. For example, if you run `npm run test`, you should see the following output:
 
 ```bash
-✓ src/App.test.tsx (1)
-  ✓ Tests (1)
-    ✓ should render Pride and Prejudice
+ ✓ src/App.test.tsx (2 tests) 
+   ✓ Tests > should render Pride and Prejudice 
+   ✓ Tests > should render $10
 ```
 
 8. Let us look at user events. For example, a button click. In `Book.tsx`, update the `button` element to include a `data-testid` prop:
@@ -225,10 +224,10 @@ it("should click on the first Add to cart button", async () => {
 10. If you run `npm run test`, you should see the following output:
 
 ```bash
-✓ src/App.test.tsx (2)
-  ✓ Tests (2)
-    ✓ should render Pride and Prejudice
-    ✓ should click on the first Add to cart button
+ ✓ src/App.test.tsx (3 tests) 
+   ✓ Tests > should render Pride and Prejudice 
+   ✓ Tests > should render $10 
+   ✓ Tests > should click on the first Add to cart button
 ```
 
 ---
