@@ -67,7 +67,7 @@ npm run dev
 1. Install the following dependencies:
 
 ```bash
-npm install @testing-library/dom@9.3.4 @testing-library/jest-dom@6.5.0 @testing-library/react@14.2.1 @testing-library/user-event@14.5.2  @vitest/ui@1.2.2 jsdom@24.0.0 vitest@1.2.2 --save-dev --force
+npm install @testing-library/dom @testing-library/react @types/react @types/react-dom jsdom vitest --save-dev
 ```
 
 2. In the `src` directory, create a new file called `App.test.tsx`.
@@ -178,7 +178,7 @@ it("should click on the first Add to cart button", () => {
 1. Install the following dependency:
 
 ```bash
-npm install cypress --save-dev --force
+npm install cypress --save-dev
 ```
 
 2. Create a new script in your `package.json` file:
@@ -200,7 +200,6 @@ npm install cypress --save-dev --force
     { "path": "./tsconfig.node.json" }
   ]
 }
-
 ```
 
 4. Run the following command:
