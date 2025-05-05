@@ -374,9 +374,19 @@ Create a new mutation that updates an institution. The mutation should take an `
 
 ---
 
-### Task Four (Independent Research)
+## Independent Research
+
+In this section, you will independently undertake research on concepts not covered in the course.
+
+---
+
+### Task One
+
+**Zod** is a **TypeScript**-first schema declaration and validation library. It is used to validate data in **TypeScript** applications. It is a great alternative to `Yup` and other validation libraries.
 
 Research how to use **Zod** with **React Hook Form** to validate the form fields.
+
+> **Resource:** [Zod Documentation](https://zod.dev/)
 
 ---
 
