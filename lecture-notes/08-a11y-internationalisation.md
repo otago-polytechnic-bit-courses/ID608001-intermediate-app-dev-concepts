@@ -348,4 +348,4 @@ Implement the internationalisation code above. Create a component that allows th
 
 ## Next Class
 
-Link to the next class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/)
+Link to the next class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/09-vitest-react-testing-library-cypress.md)
