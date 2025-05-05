@@ -231,7 +231,7 @@ Using **Shadcn UI** components, style the CRUD (create, read, update and delete)
 
 ---
 
-### Task Two (Research)
+### Task Two
 
 Using the **Shadcn UI** documentation, implement five different components.
 

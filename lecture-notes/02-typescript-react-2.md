@@ -534,7 +534,13 @@ Create a new component called **Calculator**. The component should have two inpu
 
 ---
 
-### Task Five - Prettier (Research)
+# Independent Research
+
+In this section, you will independently undertake research on concepts not covered in the course.
+
+---
+
+### Task One
 
 **Prettier** is a popular code formatting tool.
 
@@ -562,7 +568,7 @@ Run the `prettier:format` script to format your code. Run the `prettier:check` s
 
 ---
 
-### Task Six - Pretty Quick (Research)
+### Task Two
 
 **Pretty Quick** is a tool that runs **Prettier** on your changed files. 
 
