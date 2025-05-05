@@ -14,6 +14,17 @@ Open your repository in **Visual Studio Code**. Create a new branch called **wee
 
 ## Emerging Frontend Frameworks
 
+In recent years, several new frontend frameworks have emerged that are designed to make web development easier and more efficient. Some of these frameworks include **SvelteKit**, **SolidJS**, **Astro**, **Next.js** and **Qwik**. Each of these frameworks has its own unique features and benefits, making them suitable for different types of projects.
+
+> **Note:** This is not an exhaustive list of all emerging frontend frameworks and not all specific to **React**. There are many other frameworks available, and new ones are being developed all the time.
+
+Here are some resources to help you learn more about these frameworks:
+
+- [SvelteKit](https://svelte.dev/docs/kit/introduction)
+- [SolidJS](https://solidjs.com/docs)
+- [Astro](https://docs.astro.build/en/getting-started/)
+- [Next.js](https://nextjs.org/docs/getting-started/)
+- [Qwik](https://qwik.dev/docs/getting-started/)
 
 ---
 
@@ -29,10 +40,20 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ## Task One
 
+Select two emerging frontend frameworks from the list above. For each framework, do the following:
+
+1. Create a new project using the framework
+2. Create a simple component that displays "Hello, World!" and a button that says "Click Me!"
+3. When the button is clicked, display an message that says "Button Clicked!"
 
 ---
 
-## Task Two
+# Independent Research
 
+In this section, you will independently undertake research on concepts not covered in the course.
 
+---
 
+### Task One
+
+Create a new **Astro** project called **todo**. In the project, create a simple todo list application. The application should allow the user to add, edit, and delete todos. The todos should be stored in memory, i.e., an array. The todos do not need to be persisted in local storage or a database.
