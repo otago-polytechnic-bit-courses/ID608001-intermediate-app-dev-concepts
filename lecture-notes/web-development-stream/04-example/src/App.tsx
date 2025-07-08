@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
-import { queryClient } from "./main";=
+import { queryClient } from "./main";
 
 const App = () => {
   const [users, setUsers] = useState([]);
