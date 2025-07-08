@@ -271,31 +271,31 @@ npm run cypress:open
 
 5. You should see the **Cypress** window open. Click on the **E2E Testing > Not Configured** button.
 
-![](../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-1.PNG)
+![](../../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-1.PNG)
 
 6. Click on the **Continue** button.
 
-![](../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-2.PNG)
+![](../../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-2.PNG)
 
 7. Click on the **Start E2E Testing in Chrome** button.
 
-![](../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-3.PNG)
+![](../../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-3.PNG)
 
 8. Click on **Create new spec**.
 
-![](../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-4.PNG)
+![](../../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-4.PNG)
 
 9. Name the **spec** file `App.cy.js` and click on the **Create spec** button.
 
-![](../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-5.PNG)
+![](../../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-5.PNG)
 
 10. Click on the **Okay, run the spec** button.
 
-![](../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-6.PNG)
+![](../../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-6.PNG)
 
 11. **Cypress** will run the test and you should see the following output:
 
-![](../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-7.PNG)
+![](../../resources/img/10-vitest-react-testing-library-and-cypress/10-vitest-react-testing-library-and-cypress-7.PNG)
 
 12. You need to make sure the development server is running. If it is not, run the following command:
 
