@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/05-tailwind-css-shadcn-ui.md)
+Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/05-tailwind-css-shadcn-ui.md)
 
 ---
 
@@ -298,4 +298,4 @@ Using **Tailwind CSS**, **Shadcn UI** and **React Router**, create a simple web 
 
 ## Next Class
 
-Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/07-vercel-micro-frontends.md)
+Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/07-vercel-micro-frontends.md)

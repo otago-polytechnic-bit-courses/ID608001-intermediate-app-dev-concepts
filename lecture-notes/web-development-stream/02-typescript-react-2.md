@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/01-github-vite-react-1.md)
+Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/01-github-vite-react-1.md)
 
 ---
 
@@ -578,4 +578,4 @@ Read the documentation on [Pretty Quick](https://www.npmjs.com/package/pretty-qu
 
 ## Next Class
 
-Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/03-state-management.md)
+Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/03-state-management.md)

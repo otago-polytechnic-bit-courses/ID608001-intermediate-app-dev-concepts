@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/03-state-management.md)
+Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/03-state-management.md)
 
 ---
 
@@ -304,4 +304,4 @@ Research how to use **Zod** with **React Hook Form** to validate the form fields
 
 ## Next Class
 
-Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/05-tailwind-css-shadcn-ui.md)
+Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/05-tailwind-css-shadcn-ui.md)

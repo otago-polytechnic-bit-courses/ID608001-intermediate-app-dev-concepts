@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/09-vitest-react-testing-library-cypress.md)
+Link to the previous class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/09-vitest-react-testing-library-cypress.md)
 
 ---
 

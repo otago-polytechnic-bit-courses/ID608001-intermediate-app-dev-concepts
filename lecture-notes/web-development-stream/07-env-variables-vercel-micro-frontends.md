@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/06-routing.md)
+Link to the previous class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/06-routing.md)
 
 ---
 
@@ -275,4 +275,4 @@ In the **micro-frontend-one** project, add the **micro-frontend-three** micro fr
 
 ## Next Class
 
-Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/)
+Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/)

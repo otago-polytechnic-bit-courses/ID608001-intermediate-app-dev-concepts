@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/08-a11y-internationalisation.md)
+Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/08-a11y-internationalisation.md)
 
 ---
 
@@ -347,19 +347,6 @@ Using the completed **03-state-management** formative assessment and **React Tes
 
 ---
 
-## Task Two
-
-Using the completed **04-react-query-tanstack-query-react-hook-form** formative assessment and **Cypress**, write tests for the following:
-
-- Adding an institution.
-- Checking if the institution is added to the list of institutions.
-- Updating the institution.
-- Checking if the institution is updated in the list of institutions.
-- Deleting the institution.
-- Checking if the institution is deleted from the list of institutions.
-
----
-
 ## Next Class
 
-Link to the next class: [Week 10]()
+Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/10-emerging-frontend-frameworks)
