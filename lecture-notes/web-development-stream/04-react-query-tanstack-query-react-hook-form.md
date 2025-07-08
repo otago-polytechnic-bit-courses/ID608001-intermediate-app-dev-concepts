@@ -90,51 +90,50 @@ export const queryClient = new QueryClient();
 
 ### Query Example
 
-> **Note:** The backend project is available in the `lecture-notes` folder called `04-forms-react-query-tanstack-query-backend`.
-
 In `src/App.tsx`, update the code to the following:
 
 ```js
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 const App = () => {
-  const {
-    isLoading,
-    error,
-    data: institutionData,
-  } = useQuery({
-    queryKey: ["institutionData"],
+  const [users, setUsers] = useState([]); 
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:3000/api/institutions").then((res) => res.json()),
+      fetch("https://jsonplaceholder.typicode.com/users").then((res) =>
+        res.json()
+      ),
   });
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>{error.message}</p>;
+  if (error) return <p>Something went wrong</p>;
+
+  const allUsers = [...(data ?? []), ...users];
 
   return (
     <>
-      {institutionData.data.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th>Institution</th>
-              <th>Region</th>
-              <th>Country</th>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allUsers.map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.address.city}</td>
+              <td>{user.email}</td>
             </tr>
-          </thead>
-          <tbody>
-            {institutionData.data.map((institution) => (
-              <tr key={institution.id}>
-                <td>{institution.name}</td>
-                <td>{institution.region}</td>
-                <td>{institution.country}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>No data available.</p>
-      )}
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };
@@ -142,44 +141,9 @@ const App = () => {
 export default App;
 ```
 
-In the browser, you should see the following:
+Open your browser and navigate to <http://localhost:5173>. You should see a table with the users' data.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/04-images-1.jpeg?raw=true)
-
----
-
-### Developer Tools
-
-1. Install the `react-query-devtools` package:
-
-```bash
-npm install @tanstack/react-query-devtools --save-dev
-```
-
-2. In `src/main.tsx`, import the `ReactQueryDevtools` component from `@tanstack/react-query-devtools`:
-
-```js
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-```
-
-3. Add the `ReactQueryDevtools` component to the `QueryClientProvider`:
-
-```js
-<StrictMode>
-  <QueryClientProvider client={queryClient}>
-    <App />
-    <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>
-</StrictMode>
-```
-
-Click on the icon in the bottom right corner to open the developer tools.
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/04-images-2.jpeg?raw=true)
-
-You should see the following:
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/04-images-3.jpeg?raw=true)
+> **Note:** The **JSON Placeholder API** does not persist data. If you refresh the page, the data will be fetched again from the API.
 
 ---
 
@@ -188,6 +152,7 @@ You should see the following:
 1. In `src/App.tsx`, import the `useMutation` hook from `@tanstack/react-query` and `queryClient` from `src/main.tsx`:
 
 ```js
+// ...
 import { useQuery, useMutation } from "@tanstack/react-query";
 
 import { queryClient } from "./main";
@@ -198,25 +163,19 @@ import { queryClient } from "./main";
 ```js
 const App = () => {
   // ...
-  const { mutate: postInstitutionMutation, data: postInstitutionData } =
-    useMutation({
-      mutationFn: (institution) =>
-        fetch("http://localhost:3000/api/institutions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: institution.name,
-            region: institution.region,
-            country: institution.country,
-          }),
-        }).then((res) => res.json()),
-      onSuccess: () =>
-        queryClient.invalidateQueries({
-          queryKey: ["institutionData"],
-        }),
-    });
+  const postMutation = useMutation({
+    mutationFn: (user) =>
+      fetch("https://jsonplaceholder.typicode.com/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      }).then((res) => res.json()),
+    onSuccess: (newUser) => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+      setUsers((prev) => [...prev, { ...newUser, id: newUser.id }]);
+      reset();
+    },
+  });
   // ...
 };
 
@@ -251,79 +210,44 @@ What is the difference between `react-hook-form` and normal form?
 import { useForm } from "react-hook-form";
 // ...
 const App = () => {
-  const institutionForm = useForm();
+  // ...
+  const userForm = useForm();
+  const { reset, handleSubmit, register } = userForm;
   // ...
 };
 
 export default App;
 ```
 
-3. Create a new function called `handleInstitutionSubmit`:
+3. Create a new function called `handleSubmitForm`:
 
 ```js
 const App = () => {
   // ...
-  const handleInstitutionSubmit = (values) => postInstitutionMutation(values);
+  const handleSubmitForm = (user) => {
+    if (user.id) {
+      // Update mutation logic will go here
+    } else {
+      postMutation.mutate(user);
+    }
+  };
   // ...
 };
 ```
 
-4. Update the `then()` method with the following:
-
-```js
-const App = () => {
-  // ...
-  const { mutate: postInstitutionMutation } = useMutation({
-    mutationFn: (institution) =>
-      fetch("http://localhost:3000/api/institutions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: institution.name,
-          region: institution.region,
-          country: institution.country,
-        }),
-      }).then((res) => {
-        if (res.status === 201) {
-          institutionForm.reset((formValues) => ({
-            ...formValues,
-            name: "",
-            region: "",
-            country: "",
-          }));
-        }
-        return res.json();
-      }),
-    onSuccess: () =>
-      queryClient.invalidateQueries({
-        queryKey: ["institutionData"],
-      }),
-  });
-  // ...
-};
-
-export default App;
-```
-
-5. Declare a `form` element in the `return` statement above the `table` element:
+4. Declare a `form` element in the `return` statement above the `table` element:
 
 ```js
 // ...
 return (
   <>
-    <form onSubmit={institutionForm.handleSubmit(handleInstitutionSubmit)}>
+    <form onSubmit={handleSubmit(handleSubmitForm)}>
       <label htmlFor="name">Name</label>
-      <input type="text" id="name" {...institutionForm.register("name")} />
-      <label htmlFor="region">Region</label>
-      <input type="text" id="region" {...institutionForm.register("region")} />
-      <label htmlFor="country">Country</label>
-      <input
-        type="text"
-        id="country"
-        {...institutionForm.register("country")}
-      />
+      <input type="text" id="name" {...register("name")} />
+      <label htmlFor="city">City</label>
+      <input type="text" id="city" {...register("address.city")} />
+      <label htmlFor="email">Email</label>
+      <input type="text" id="email" {...register("email")} />
       <button type="submit">Submit</button>
     </form>
     {/* // ...  */}
@@ -331,8 +255,6 @@ return (
 );
 // ...
 ```
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/04-images-4.jpeg)
 
 ---
 
@@ -352,27 +274,17 @@ Convert the `App` component to use TypeScript.
 
 ---
 
-### Task Two - DELETE Mutation (Research)
+### Task Two - DELETE Mutation 
 
-Create a new mutation that deletes an institution. The mutation should take an `id` as an argument and should invalidate the `institutionData` query upon success. For each table row, add a **Delete** button that calls the mutation when clicked.
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-1.jpeg)
+Create a new mutation that deletes a user. The mutation should take an `id` as an argument and should invalidate the `users` query upon success. For each table row, add a **Delete** button that calls the mutation when clicked.
 
 ---
 
-### Task Three - PUT Mutation (Research)
+### Task Three - PUT Mutation 
 
-Create a new mutation that updates an institution. The mutation should take an `institution` as an argument and should invalidate the institutionData query upon success. For each table row, add an **Edit** button that populates the form with the institution's data when clicked. When the form is submitted, the mutation should be called.
+Create a new mutation that updates a user. The mutation should take a user object as an argument and should invalidate the `users` query upon success. For each table row, add an **Edit** button that populates the form with the user's data when clicked.
 
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-3.jpeg)
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-4.jpeg)
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-5.jpeg)
-
-![](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/resources/img/04-images/formative-assessment/04-images-formative-assessment-6.jpeg)
-
----
+--- 
 
 ## Independent Research
 
@@ -393,4 +305,3 @@ Research how to use **Zod** with **React Hook Form** to validate the form fields
 ## Next Class
 
 Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s1-25/lecture-notes/05-tailwind-css-shadcn-ui.md)
-
