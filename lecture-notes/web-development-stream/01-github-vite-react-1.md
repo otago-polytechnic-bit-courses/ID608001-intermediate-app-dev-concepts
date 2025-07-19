@@ -429,7 +429,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task One (Optional)
+
+The concepts above are the foundation of React. If you want to further your understanding of React, please read the [React documentation](https://react.dev/learn).
+
+---
+
+### Task Two
 
 In this task, you will set up a tic-tac-toe game using React.
 
@@ -594,7 +600,7 @@ export default App;
 
 ---
 
-### Task Two
+### Task Three
 
 Currently, the game does not have a way to determine if the game has ended in a draw. Refactor the `calculateGameState` function in the `Game` component to include a check for a draw. The game should end in a draw if all squares are filled and there is no winner.
 
@@ -602,13 +608,13 @@ Currently, the game does not have a way to determine if the game has ended in a 
 
 ---
 
-### Task Three
+### Task Four
 
 Implement conditional styling for the `Square` component based on the value of the square. If the square is "X", it should be styled with a red text colour, and if the square is "O", it should be styled with a blue text colour.
 
 ---
 
-### Task Four
+### Task Five
 
 Implement a feature highlighting the winning squares when a player wins the game. When a player wins, the winning squares should be styled with a green background.
 
@@ -616,7 +622,7 @@ Implement a feature highlighting the winning squares when a player wins the game
 
 ---
 
-### Task Five
+### Task Six
 
 Implement a feature that displays the number of wins for each player and the number of draws. The wins and draws should be displayed below the game board.
 
@@ -624,13 +630,13 @@ Implement a feature that displays the number of wins for each player and the num
 
 ---
 
-### Task Six
+### Task Seven
 
 Implement a button allowing players to reset the number of wins and draws.
 
 ---
 
-### Task Seven
+### Task Eight
 
 What happens if you refresh the page? The number of wins and draws will be reset. Implement a feature that persists the number of wins and draws in the browser's local storage. When the page is refreshed, the number of wins and draws should be retrieved from local storage and displayed.
 
