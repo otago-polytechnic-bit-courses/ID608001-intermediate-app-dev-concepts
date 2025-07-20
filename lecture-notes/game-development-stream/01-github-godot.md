@@ -104,7 +104,7 @@ Read the following articles to understand the basics of **Godot**:
 
 ### Task Two
 
-Complete the [Your first 2D game](https://docs.godotengine.org/en/stable/getting_started/step_by_step/your_first_2d_game/index.html) tutorial. This tutorial will guide you through creating a simple 2D game using **Godot**. It covers the basics of the engine, including scenes, nodes and scripting.
+Complete the [Your first 2D game](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html) tutorial. This tutorial will guide you through creating a simple 2D game using **Godot**. It covers the basics of the engine, including scenes, nodes and scripting.
 
 > **Note:** You are encouraged to use **GDScript** for this tutorial. Feel free to use **C#** if you prefer, but **GDScript** is the recommended language for beginners in **Godot**.
 
@@ -112,13 +112,13 @@ Complete the [Your first 2D game](https://docs.godotengine.org/en/stable/getting
 
 ### Task Three
 
-Complete the [Your first 3D game](https://docs.godotengine.org/en/stable/getting_started/step_by_step/your_first_3d_game/index.html) tutorial. Much like the previous tutorial, this one will guide you through creating a simple 3D game using **Godot**.
+Complete the [Your first 3D game](https://docs.godotengine.org/en/stable/getting_started/first_3d_game/index.html) tutorial. Much like the previous tutorial, this one will guide you through creating a simple 3D game using **Godot**.
 
 ---
 
 ### Task Four
 
-Using the completed [Your first 2D game](https://docs.godotengine.org/en/stable/getting_started/step_by_step/your_first_2d_game/index.html), implement **five** additional features. These features can be anything you want, but they should improve the game in some way. The goal is to demonstrate your understanding of **Godot** and your ability to extend an existing project.
+Using the completed [Your first 2D game](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html), implement **five** additional features. These features can be anything you want, but they should improve the game in some way. The goal is to demonstrate your understanding of **Godot** and your ability to extend an existing project.
 
 ---
 
