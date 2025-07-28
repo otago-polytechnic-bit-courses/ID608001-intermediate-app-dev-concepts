@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/05-tailwind-css-shadcn-ui.md)
+Link to the previous class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/06-tailwind-css-shadcn-ui.md)
 
 ---
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-06-formative-assessment** from **week-05-formative-assessment**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-07-formative-assessment** from **week-06-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Read the comments in the code examples. It will help you understand where to type the code. Also, some code examples may show **TypeScript** warnings.
 
@@ -24,14 +24,14 @@ npm init vite@latest
 
 2. When prompted, select the following options:
 
-- Project name: **week-06-formative-assessment**
+- Project name: **week-07-formative-assessment**
 - Framework: **React**
 - Variant: **TypeScript + SWC**
 
 3. Change into the project directory:
 
 ```bash
-cd week-06-formative-assessment
+cd week-07-formative-assessment
 ```
 
 4. Install the project dependencies:
@@ -297,4 +297,4 @@ Using **Tailwind CSS**, **Shadcn UI** and **React Router**, create a simple web 
 
 ## Next Class
 
-Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/07-env-variables-vercel-micro-frontends.md)
+Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/08-env-variables-vercel-micro-frontends.md)

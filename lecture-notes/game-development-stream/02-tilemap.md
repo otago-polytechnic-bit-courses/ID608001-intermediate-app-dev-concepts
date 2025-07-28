@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/01-github-vite-react-1.md)
+Link to the previous class: [Week 01]()
 
 ---
 
@@ -86,7 +86,7 @@ Create a new `CharacterBody2D` node and name it `Player`. Add `Sprite2D`, `Colli
 
 ## Add Player to Level
 
-Drag and drop the `Player` node into the `Level1` node. Position it where you want the player to start. 
+Drag and drop the `Player` scene into the `Level1` scene. Position it where you want the player to start. 
 
 ![](../../resources/img/game-dev-stream/week-2/06-week-2.PNG)
 
@@ -118,7 +118,7 @@ In this section, you will independently undertake research on concepts not cover
 
 ### Task One
 
-Create a background for your levels. You can use a simple color or a more complex image. The background should not distract from the gameplay, but it should add to the overall aesthetic of the game.
+Create a parallax background for your levels. You can use multiple layers of images that move at different speeds to create a sense of depth. The background should not distract from the gameplay, but it should add to the overall aesthetic of the game.
 
 ---
 

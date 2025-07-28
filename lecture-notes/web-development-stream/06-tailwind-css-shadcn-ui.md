@@ -1,14 +1,14 @@
-# Week 05
+# Week 06
 
 ## Previous Class
 
-Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/04-react-query-tanstack-query-react-hook-form.md)
+Link to the previous class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/05-design-patterns-programming-principles.md)
 
 ---
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-05-formative-assessment** from **week-04-formative-assessment**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-06-formative-assessment** from **week-05-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Read the comments in the code examples. It will help you understand where to type the code. Also, some code examples may show **TypeScript** warnings.
 
@@ -24,7 +24,7 @@ npm init vite@latest
 
 2. When prompted, select the following options:
 
-- Project name: **week-05-formative-assessment**
+- Project name: **week-06-formative-assessment**
 - Framework: **React**
 - Variant: **TypeScript + SWC**
 
@@ -239,4 +239,4 @@ Using the **Shadcn UI** documentation, implement five different components.
 
 ## Next Class
 
-Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/06-routing.md)
+Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/07-routing.md)

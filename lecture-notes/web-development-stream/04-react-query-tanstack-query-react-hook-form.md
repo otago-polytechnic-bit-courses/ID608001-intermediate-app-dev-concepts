@@ -268,19 +268,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
-
-Convert the `App` component to use TypeScript.
-
----
-
-### Task Two - DELETE Mutation 
+### Task One - DELETE Mutation 
 
 Create a new mutation that deletes a user. The mutation should take an `id` as an argument and should invalidate the `users` query upon success. For each table row, add a **Delete** button that calls the mutation when clicked.
 
 ---
 
-### Task Three - PUT Mutation 
+### Task Two - PUT Mutation 
 
 Create a new mutation that updates a user. The mutation should take a user object as an argument and should invalidate the `users` query upon success. For each table row, add an **Edit** button that populates the form with the user's data when clicked.
 
@@ -304,4 +298,4 @@ Research how to use **Zod** with **React Hook Form** to validate the form fields
 
 ## Next Class
 
-Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/05-tailwind-css-shadcn-ui.md)
+Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/05-design-patterns-programming-principles.md)

@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/08-a11y-internationalisation.md)
+Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/08-env-variables-vercel-micro-frontends.md)
 
 ---
 
@@ -349,4 +349,4 @@ Using the completed **03-state-management** formative assessment and **React Tes
 
 ## Next Class
 
-Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/10-emerging-frontend-frameworks.md)
+Link to the next class: [Week 10]()

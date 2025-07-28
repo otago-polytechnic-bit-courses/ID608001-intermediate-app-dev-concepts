@@ -2,15 +2,51 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/06-routing.md)
+Link to the previous class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/07-routing.md)
 
 ---
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-07-formative-assessment** from **week-06-formative-assessment**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-08-formative-assessment** from **week-07-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Read the comments in the code examples. It will help you understand where to type the code. Also, some code examples may show **TypeScript** warnings.
+
+---
+
+## Create a New Vite Project
+
+1. Create a new project using **Create Vite App**:
+
+```bash
+npm init vite@latest
+```
+
+2. When prompted, select the following options:
+
+- Project name: **week-08-formative-assessment**
+- Framework: **React**
+- Variant: **TypeScript + SWC**
+
+3. Change into the project directory:
+
+```bash
+cd week-08-formative-assessment
+```
+
+4. Install the project dependencies:
+
+```bash
+npm install
+```
+
+5. Start the development server:
+
+```bash
+npm run dev
+```
+
+6. Open your browser and navigate to <http://localhost:5173>. You should see the default **React** application.
 
 ---
 
@@ -275,4 +311,4 @@ In the **micro-frontend-one** project, add the **micro-frontend-three** micro fr
 
 ## Next Class
 
-Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/08-a11y-internationalisation.md)
+Link to the next class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/web-development-stream/09-vitest-react-testing-library-cypress.md)
