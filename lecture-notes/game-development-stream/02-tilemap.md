@@ -106,7 +106,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
-Create five different levels. Each level should have a different layout and use different tiles. You can use the same tileset for all levels, but you should create different platforms and obstacles.
+Create three different levels. Each level should have a different layout and use different tiles. You can use the same tileset for all levels, but you should create different platforms and obstacles.
 
 ---
 

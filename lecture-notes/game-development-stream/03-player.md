@@ -40,7 +40,7 @@ In the script, add the following code to handle player movement:
 ```gdscript
 extends CharacterBody2D
 
-var direction_x := 0.0
+var direction_x = 0.0
 
 @export var speed = 150
 
@@ -55,7 +55,7 @@ func get_input():
 	direction_x = Input.get_axis("left", "right")
 
 	if Input.is_action_just_pressed("jump"):
-		velocity.y = -200
+		velocity.y = -400 # Adjust the jump height as needed
 
 func apply_gravity():
 	velocity.y += 20
@@ -75,7 +75,23 @@ Run the `Level1` scene to see the player in action. You should be able to move l
 
 ## Tilemap Collision
 
+Click on the `TileMapLayer` node in the `Level1` scene. In the `Inspector`, find the `Physics Layer` section and click on the `Add Element` button. This will add a new physics layer for the tilemap.
 
+![](../../resources/img/game-dev-stream/week-3/00-week-3.png)
+
+Click on the `TileSet` tab at the bottom. Click on the `Select a property editor` button, then `Physics Layer 0` in the `Physics` section. 
+
+![](../../resources/img/game-dev-stream/week-3/01-week-3.png)
+
+You should see the `Paint Properties` and `Painting` sections. The `Painting` section allows you to set the collision shape for the tiles. 
+
+![](../../resources/img/game-dev-stream/week-3/02-week-3.png)
+
+In your tileset, select the tile you want to use for collision. In the `Paint Properties` section, set the `Collision Shape` to `RectangleShape2D`. You can adjust the size of the collision shape to fit the tile.
+
+![](../../resources/img/game-dev-stream/week-3/03-week-3.png)
+
+Run the `Level1` scene again. You should now be able to collide with the tilemap and not fall through the ground.
 
 ---
 
@@ -91,9 +107,23 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
+You will notice if you press the jump key multiple times, the player will jump multiple times in the air. This is because we have not implemented a check to see if the player is on the ground before allowing them to jump.
+
+In **Godot**, you can use the `is_on_floor()` method to check if the player is on the ground. Update the `get_input()` function in the `Player` script to include this check.
 
 ---
 
+# Independent Research
+
+In this section, you will independently undertake research on concepts not covered in the course.
+
+---
+
+### Task One
+
+In the previous class's formative assessment, you created three levels. Add a node to the first and second levels that will allow the player move to the next level when they collide with it. At the end of the third level, add a node that will end the game when the player collides with it.
+
+---
 
 ## Next Class
 
