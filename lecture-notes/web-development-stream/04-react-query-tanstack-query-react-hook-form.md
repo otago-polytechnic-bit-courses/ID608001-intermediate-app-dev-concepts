@@ -110,8 +110,6 @@ const App = () => {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong</p>;
 
-  const allUsers = [...(data ?? []), ...users];
-
   return (
     <>
       <table>
@@ -124,7 +122,7 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {allUsers.map((user) => (
+          {(data ?? []).map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
@@ -171,9 +169,10 @@ const App = () => {
         body: JSON.stringify(user),
       }).then((res) => res.json()),
     onSuccess: (newUser) => {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
-      setUsers((prev) => [...prev, { ...newUser, id: newUser.id }]);
-      reset();
+      queryClient.setQueryData(["users"], (oldUsers = []) => [
+        ...oldUsers,
+        newUser,
+      ]);
     },
   });
   // ...
@@ -235,7 +234,20 @@ const App = () => {
 };
 ```
 
-4. Declare a `form` element in the `return` statement above the `table` element:
+4. Update the `postMutation` method so that the form resets on success:
+
+```js
+const postMutation = useMutation({
+  mutationFn: (user) =>
+    // ...
+  onSuccess: (newUser) => {
+    // ...
+    reset(); 
+  },
+});
+```
+
+5. Declare a `form` element in the `return` statement above the `table` element:
 
 ```js
 // ...
