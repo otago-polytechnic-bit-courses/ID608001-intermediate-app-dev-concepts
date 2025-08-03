@@ -78,10 +78,10 @@ uniform vec3 color: source_color = vec3(1.0);
 uniform float amount: hint_range(0.0, 1.0) = 0.0;
 
 void fragment() {
-	# Get the original colour of the texture at the current UV coordinates
+	// Get the original colour of the texture at the current UV coordinates
     vec3 original_color = texture(TEXTURE, UV).rgb; 
 
-	# Mix the original colour with the specified colour based on the amount
+	// Mix the original colour with the specified colour based on the amount
     COLOR.rgb = mix(original_color, color, amount); 
 }
 ```
@@ -121,6 +121,8 @@ What is happening here?
 - `tween.tween_property($Sprite2D, "material:shader_parameter/amount", 1.0, 0.0)` animates the `amount` property of the shader to 1.0 over 0 seconds, which will change the worm's colour to the specified `color`.
 
 - `tween.tween_property($Sprite2D, "material:shader_parameter/amount", 0.0, 0.1).set_delay(0.2)` animates the `amount` property back to 0.0 over 0.1 seconds after a delay of 0.2 seconds, returning the worm's colour to its original state.
+
+> **Note:** If you are using an `AnimatedSprite2D` instead of a `Sprite2D`, you will need to adjust the code accordingly to access the shader material. 
 
 Drag and drop the `Worm` scene into the `Level1` scene. Position it where you want the worm to start. Run the game to see the worm in the level. When the player collides with the worm, it should change colour and reduce its health.
 
