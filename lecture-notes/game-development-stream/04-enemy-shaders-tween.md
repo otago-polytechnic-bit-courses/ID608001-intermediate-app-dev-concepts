@@ -126,10 +126,6 @@ Drag and drop the `Worm` scene into the `Level1` scene. Position it where you wa
 
 ---
 
-## Movement
-
----
-
 ## Formative Assessment
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
@@ -142,9 +138,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
-You will notice if you press the jump key multiple times, the player will jump multiple times in the air. This is because we have not implemented a check to see if the player is on the ground before allowing them to jump.
-
-In **Godot**, you can use the `is_on_floor()` method to check if the player is on the ground. Update the `get_input()` function in the `Player` script to include this check.
+Implement movement for the worm. The worm should change direction when it collides with a wall or is at the edge of a platform. 
 
 ---
 
@@ -156,7 +150,13 @@ In this section, you will independently undertake research on concepts not cover
 
 ### Task One
 
-In the previous class's formative assessment, you created three levels. Add a node to the first and second levels that will allow the player move to the next level when they collide with it. At the end of the third level, add a node that will end the game when the player collides with it.
+Implement four pick-up items with different effects. 
+
+---
+
+### Task Two
+
+Create two enemies with different movement behaviours.
 
 ---
 
