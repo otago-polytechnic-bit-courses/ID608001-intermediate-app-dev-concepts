@@ -33,35 +33,35 @@ For each action, you can assign a key or button by clicking the **Add Key** butt
 
 Open the `Player` scene you created in the previous class. 
 
-Create a new script for the `Player` scene. In this script, you will handle player movement and actions.
+Create a new script for the `Player` scene. 
 
-In the script, add the following code to handle player movement:
+In the script, add the following code:
 
 ```gdscript
 extends CharacterBody2D
 
-var direction_x = 0.0
+var direction_x: float := 0.0
 
-@export var speed = 150
+@export var speed: float := 150.0
 
-func _process(delta):
+func _process(delta: float) -> void:
 	get_input()
 	apply_gravity()
-	
+
 	velocity.x = direction_x * speed
 	move_and_slide()
-		
-func get_input():
+
+func get_input() -> void:
 	direction_x = Input.get_axis("left", "right")
 
 	if Input.is_action_just_pressed("jump"):
-		velocity.y = -400 # Adjust the jump height as needed
+		velocity.y = -400.0 # Adjust the jump height as needed
 
-func apply_gravity():
-	velocity.y += 20
+func apply_gravity() -> void:
+	velocity.y += 20.0
 ```
 
-What is happening here:
+What is happening here?
 
 - `move_and_slide()`: This function is used to move the player character while handling collisions automatically.
 
