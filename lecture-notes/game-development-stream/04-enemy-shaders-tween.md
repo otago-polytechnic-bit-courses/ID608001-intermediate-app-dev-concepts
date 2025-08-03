@@ -138,7 +138,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
-Implement movement for the worm. The worm should change direction when it collides with a wall or is at the edge of a platform. 
+Implement movement for the worm. The worm should change direction when it collides with a wall or reaches the edge of a platform.
 
 ---
 
