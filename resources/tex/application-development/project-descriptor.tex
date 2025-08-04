@@ -106,34 +106,99 @@ You will complete this assessment mostly during your learner-managed time. Howev
 		 \item HackerNews API application with the following functionality:
 		 \begin{itemize}
 			\item Data is fetch from the \href{HackerNews API}{https://github.com/HackerNews/API}.
+			\item Display a spinner while the data is being fetched from the API.
+			
 			\item Responsive UI design using \textbf{Tailwind CSS}.
-			\item Display the 20 most recent ask, best, job, new, show and top stories.
-			\item For each story, display the title, by, text and time.
-			\item Display a link to the story using the id. The link is \href{https://news.ycombinator.com/item?id=ID}{https://news.ycombinator.com/item?id=ID}, where ID is the story's id.
-			\item Select any four \textbf{Medium Features} from the list below:
+
+			\item \textbf{Story Features:}
 			\begin{itemize}
-				\item Display the score with visual indicators. For example, if the score is greater than 100, display it in green; if the score is between 50 and 100, display it in yellow; and if the score is less than 50, display it in red.
-				\item Display the type with visual indicators. For example, if the type is "ask", display it with a blue badge; if the type is "best", display it with a green badge; if the type is "job", display it with a yellow badge; if the type is "new", display it with a purple badge; if the type is "show", display it with an orange badge; and if the type is "top", display it with a red badge.
+				\item Display the 50 ask, best, job, new, show and top stories.
+				\item For each story, display the title, by, text, time and a link to the story using the id. Here is an example link - \href{https://news.ycombinator.com/item?id=ID}{https://news.ycombinator.com/item?id=ID}, where ID is the story's id.
+				\item Truncate the text to 100 characters and add a link that expands the text when clicked.
+			\end{itemize}
+
+			\item \textbf{Polls Features:}
+			\begin{itemize}
+				\item Display 25 polls. Here is a link to the polls - \href{https://hnpolls.com}{https://hnpolls.com}. 
+				\item For each poll, display the id, title, by, time, parts (score and text) and a link to the poll using the id and title. Here is an example link - \href{https://hnpolls.com/poll/ID-TITLE}{https://hnpolls.com/poll/ID-TITLE}, where ID is the poll's id and TITLE is the poll's title.
+			\end{itemize}
+	
+			\item \textbf{Leader Features:}
+			\begin{itemize}
+				\item Display 100 leaders. Here is a link to the leaders - \href{https://news.ycombinator.com/leaders}{https://news.ycombinator.com/leaders}. 
+				\item For each leader, display their id, karma, created, about and a link to their profile using the id. Here is an example link - \href{https://news.ycombinator.com/user?id=ID}{https://news.ycombinator.com/user?id=ID}, where ID is the user's id. 
+			\end{itemize}
+
+			\item \textbf{Favourites Features:}
+			\begin{itemize}
+				\item Display a heart icon next to the story or leader. Toggle the heart icon when clicked to add or remove the story or leader from favourites. 
+				\item Display a list of favourite stories and leaders. 
+				\item If no favourites are found, display a message indicating that no favourites were found.
+			\end{itemize}
+			
+			\item \textbf{Search Features:}
+			\begin{itemize}
+				\item Search for stories by title or type.
+				\item Search for leaders by id.
+				\item The search should be case-insensitive and return results that contain the search term anywhere in the title, type or id.
+				\item Display the search results in a list. 
+				\item If no results are found, display a message indicating that no results were found.
+			\end{itemize}
+
+			\item \textbf{Sort Features:}
+			\begin{itemize}
+				\item Sort stories by time, score or type. 
+				\item Sort leaders by karma or created. 
+				\item The default sort order for stories is time and for leaders is karma.
+			\end{itemize}
+
+			\item Display the time and created in a human-readable format. 
+
+			\item Select any two \textbf{Medium Features} from the list below:
+			\begin{itemize}
+				\item Hover effects on stories and leaders.
+				\item Display the stories and leaders in pages of 10 with "Previous" and "Next" navigation buttons.
+				\item Display score-range badges with colours. For example, 0-100 is red, 101-500 is orange, 501-1000 is yellow, 1001-5000 is green and 5001+ is blue.
+				\item Display type badges with colours. For example, ask is blue, best is green, job is yellow, new is purple, show is orange and top is red.
+				\item Display karma-range badges with colours for leaders. For example, 0-100 is red, 101-500 is orange, 501-1000 is yellow, 1001-5000 is green and 5001+ is blue.
+				\item Display the domain name from the story's URL. For example, if the story's URL is \texttt{https://example.com/story}, display \texttt{example.com}.
 			 \end{itemize}	
-			 \item Select any four \textbf{Hard Features} from the list below:
+			 \item Select any two \textbf{Hard Features} from the list below:
 			 \begin{itemize}
-				 \item 
+				\item For stories, toggle between list and grid view. The list view should display the title, by, text, time and a link to the story using the id. The grid view should display the title, by and a link to the story using the id.
+				\item Display stories and leaders search history based on the search functionality.
+				\item Display a graph of the karma for each leader. Display their id on the x-axis and karma on the y-axis.
+				\item Select and compare two leaders. Display their id, karma, created, about and a link to their profile using the id.
+				 \item Display a list of recommended stories based on the user's favourites. The recommendations should be based on the user's favourites and the stories' type.
+				 \item Toggle between colour themes. 
 			  \end{itemize}	
 		 \end{itemize}
+
 		 \item OpenTDB API application with the following functionality:
 		 \begin{itemize}
 			\item Data is fetch from the \href{OpenTDB API}{https://opentdb.com/api_config.php}.
+			\item Display a spinner while the data is being fetched from the API.
 			\item Responsive UI design using \textbf{Shadcn UI}.
-			\item Create a new quiz by selecting the number of questions, category, difficulty and type.
+
+			\item Create a new quiz by selecting the start date, end date, number of questions, category, difficulty and type.
+			\item Display a list of past, current and future quizzes.
+			\item Play a quiz by selecting a quiz from the list. The quiz should display the start date, end date, category, difficulty, type, questions, options and a submit button.
+			\item Display the quiz results after submitting the quiz. The results should display the start date, end date, category, difficulty, type, questions, options, correct answer and score.
+			\item Store the quiz results appropriately.
+			\item For each quiz, display the scores in a list.
+			
 			\item Select any four \textbf{Medium Features} from the list below:
 			\begin{itemize}
-				\item 
+				\item Display a progress bar and "Question X of Y" text while playing the quiz.
+				\item Display category badges with colours. For example, general knowledge is blue, art is green, history is yellow, geography is purple, etc.
+				\item Display 
 			 \end{itemize}	
 			 \item Select any four \textbf{Hard Features} from the list below:
 			 \begin{itemize}
 				 \item 
 			  \end{itemize}	
 		 \end{itemize}
+
 		 \item Deploy both applications to \textbf{Vercel}.
 	\end{itemize}
 	
