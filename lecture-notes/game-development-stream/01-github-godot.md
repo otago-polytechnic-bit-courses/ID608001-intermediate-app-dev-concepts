@@ -75,9 +75,9 @@ Create a new branch called **week-01-formative-assessment**.
 
 ## Godot 
 
-**Godot** is an open-source game engine that provides a comprehensive set of tools for game development. It supports 2D and 3D game development and offers a user-friendly interface, making it accessible for both beginners and experienced developers. Godot uses a unique scene system that allows developers to create complex game worlds using reusable components.
+**Godot** is an open-source game engine that provides a comprehensive set of tools for game development. It supports 2D and 3D game development and offers a user-friendly interface, making it accessible for beginners and experienced developers. Godot uses a unique scene system that allows developers to create complex game worlds using reusable components.
 
-**Godot** uses its own scripting language called **GDScript**, which is similar to **Python**. It also supports **C#**, a node-based programming language. **Godot's** community is active, and there are many resources available for learning and troubleshooting.
+**Godot** uses its own scripting language called **GDScript**, which is similar to **Python**. It also supports **C#**, a node-based programming language. **Godot's** community is active, and many resources are available for learning and troubleshooting.
 
 > **Resource:** <https://godotengine.org/>
 
@@ -118,7 +118,7 @@ Complete the [Your first 3D game](https://docs.godotengine.org/en/stable/getting
 
 ### Task Four
 
-Using the completed [Your first 2D game](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html), implement **five** additional features. These features can be anything you want, but they should improve the game in some way. The goal is to demonstrate your understanding of **Godot** and your ability to extend an existing project.
+Using the completed [Your first 2D game](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html), implement **five** additional features. These features can be anything you want, but they should improve the game. The goal is to demonstrate your understanding of **Godot** and your ability to extend an existing project.
 
 ---
 

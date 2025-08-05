@@ -27,7 +27,7 @@ In the **Project** menu, select **Project Settings**. In the `Input Map` section
 - `jump`
 - `shoot`
 
-For each action, you can assign a key or button by clicking the **Add Key** button.
+You can assign a key or button for each action by clicking the **Add Key** button.
 
 ## Player
 
@@ -40,9 +40,9 @@ In the script, add the following code:
 ```gdscript
 extends CharacterBody2D
 
-var direction_x: float := 0.0
+var direction_x: float = 0.0
 
-@export var speed: float := 150.0
+@export var speed: float = 150.0
 
 func _process(delta: float) -> void:
 	get_input()
@@ -63,19 +63,19 @@ func apply_gravity() -> void:
 
 What is happening here?
 
-- `move_and_slide()`: This function is used to move the player character while handling collisions automatically.
+- `move_and_slide()`: This function automatically moves the player character while handling collisions.
 
 - `get_input()`: Checks for player input. It sets the `direction_x` variable based on the left and right input actions. If the jump action is pressed, it applies an upward velocity.
   
-- `apply_gravity()`: Applies gravity to the player by increasing the vertical velocity. This simulates the effect of gravity pulling the player down.
+- `apply_gravity()`: Applies gravity to the player by increasing the vertical velocity. It simulates the effect of gravity pulling the player down.
 
-Run the `Level1` scene to see the player in action. You should be able to move left and right and jump. However, the player will fall through the ground because we have not set up collision detection yet.
+Run the `Level1` scene to see the player in action. You should be able to move left and right and jump. However, the player will fall through the ground because we have not yet set up collision detection.
 
 ---
 
 ## Tilemap Collision
 
-Click on the `TileMapLayer` node in the `Level1` scene. In the `Inspector`, find the `Physics Layer` section and click on the `Add Element` button. This will add a new physics layer for the tilemap.
+Click on the `TileMapLayer` node in the `Level1` scene. In the `Inspector`, find the `Physics Layer` section and click the `Add Element` button. It will add a new physics layer for the tilemap.
 
 ![](../../resources/img/game-dev-stream/week-3/00-week-3.png)
 
@@ -92,7 +92,6 @@ In your tileset, select the tile you want to use for collision. In the `Paint Pr
 ![](../../resources/img/game-dev-stream/week-3/03-week-3.png)
 
 Run the `Level1` scene again. You should now be able to collide with the tilemap and not fall through the ground.
-
 ---
 
 ## Formative Assessment
@@ -107,7 +106,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
-You will notice if you press the jump key multiple times, the player will jump multiple times in the air. This is because we have not implemented a check to see if the player is on the ground before allowing them to jump.
+If you press the jump key multiple times, you will notice that the player will jump multiple times in the air. We have not implemented a check to see if the player is on the ground before allowing them to jump.
 
 In **Godot**, you can use the `is_on_floor()` method to check if the player is on the ground. Update the `get_input()` function in the `Player` script to include this check.
 
@@ -115,13 +114,13 @@ In **Godot**, you can use the `is_on_floor()` method to check if the player is o
 
 # Independent Research
 
-In this section, you will independently undertake research on concepts not covered in the course.
+In this section, you will independently research concepts covered in the course.
 
 ---
 
 ### Task One
 
-In the previous class's formative assessment, you created three levels. Add a node to the first and second levels that will allow the player move to the next level when they collide with it. At the end of the third level, add a node that will end the game when the player collides with it.
+In the previous class's formative assessment, you created three levels. Add a node to the first and second levels that will allow the player to move to the next level when they collide with it. At the end of the third level, add a node that will end the game when the player collides with it.
 
 ---
 

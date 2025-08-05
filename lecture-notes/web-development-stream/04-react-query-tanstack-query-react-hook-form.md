@@ -294,7 +294,7 @@ Create a new mutation that updates a user. The mutation should take a user objec
 
 ## Independent Research
 
-In this section, you will independently undertake research on concepts not covered in the course.
+In this section, you will independently research concepts covered in the course.
 
 ---
 

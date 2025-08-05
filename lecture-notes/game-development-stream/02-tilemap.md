@@ -16,7 +16,7 @@ Open your repository in **Visual Studio Code**. Create a new branch called **wee
 
 Open **Godot** and create a new project called **Tilemap**. 
 
-> **Note:** I have called the project **Week2**. This is not a good name for a project, but it is fine for demonstration purposes. You should always use meaningful names for your projects.
+> **Note:** I have called the project **Week2**. It is not a good name for a project, but it is fine for demonstration purposes. You should always use meaningful names for your projects.
 
 ---
 
@@ -70,7 +70,7 @@ Next to the `TileSet` tab, you will see a `TileMap` tab. Click on it and select 
 
 ## Rendering Texture
 
-In the **Project** menu, select **Project Settings**. In the `Rendering` >  `Texture` section, set the `Default Texture Filter` to `Nearest`. This will make the tiles look pixelated, which may be what you want for your game.
+In the **Project** menu, select **Project Settings**. In the `Rendering` >  `Texture` section, set the `Default Texture Filter` to `Nearest`. It will make the tiles look pixelated, which may be what you want for your game.
 
 ![](../../resources/img/game-dev-stream/week-2/04-week-2.PNG)
 
@@ -90,7 +90,7 @@ Drag and drop the `Player` scene into the `Level1` scene. Position it where you 
 
 ![](../../resources/img/game-dev-stream/week-2/06-week-2.PNG)
 
-Run the game to see the player in the level. 
+Run the game to see the player on the level. 
 
 ---
 
@@ -112,13 +112,13 @@ Create three different levels. Each level should have a different layout and use
 
 # Independent Research
 
-In this section, you will independently undertake research on concepts not covered in the course.
+In this section, you will independently research concepts covered in the course.
 
 ---
 
 ### Task One
 
-Create a parallax background for your levels. You can use multiple layers of images that move at different speeds to create a sense of depth. The background should not distract from the gameplay, but it should add to the overall aesthetic of the game.
+Create a parallax background for your levels. You can use multiple layers of images that move at different speeds to create a sense of depth. The background should not distract from the gameplay, but it should add to the game's overall aesthetic.
 
 ---
 

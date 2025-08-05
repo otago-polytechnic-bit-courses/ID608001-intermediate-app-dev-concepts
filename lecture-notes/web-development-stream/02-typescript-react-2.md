@@ -536,7 +536,7 @@ Create a new component called **Calculator**. The component should have two inpu
 
 # Independent Research
 
-In this section, you will independently undertake research on concepts not covered in the course.
+In this section, you will independently research concepts covered in the course.
 
 ---
 
