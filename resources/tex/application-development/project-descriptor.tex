@@ -25,7 +25,7 @@
 \begin{document}
 	\begin{figure}
 		\centering
-		\includegraphics[width=50mm]{../../resources/img/logo.jpg}
+		\includegraphics[width=50mm]{../../../resources/img/logo.jpg}
 	\end{figure}
 
 	\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information
@@ -35,14 +35,13 @@
 	\maketitle
 
 	\section*{Assessment Overview}
-	In this \textbf{individual} assessment, you will design and develop \textbf{three} full-stack applications. 
+	In this \textbf{individual} assessment, you will design and develop \textbf{two} web applications. 
 
 	\section*{Learning Outcomes}
 	At the successful completion of this course, learners will be able to:
 	\begin{enumerate}
 		\item Apply design patterns and programming principles using software development
 			best practices.
-
 		\item Design and implement full-stack applications using industry relevant programming
 			languages.
 	\end{enumerate}
@@ -105,7 +104,7 @@ You will complete this assessment mostly during your learner-managed time. Howev
 	\begin{itemize}
 		 \item HackerNews API application with the following functionality:
 		 \begin{itemize}
-			\item Data is fetch from the \href{HackerNews API}{https://github.com/HackerNews/API}.
+			\item Data is fetch from the \href{https://github.com/HackerNews/API}{HackerNews API}.
 			\item Display a spinner while the data is being fetched from the API.
 			
 			\item Responsive UI design using \textbf{Tailwind CSS}.
@@ -154,23 +153,23 @@ You will complete this assessment mostly during your learner-managed time. Howev
 
 			\item Display the time and created in a human-readable format. 
 
-			\item Select any two \textbf{Medium Features} from the list below:
+			\item Select any five \textbf{Medium Features} from the list below:
 			\begin{itemize}
 				\item Hover effects on stories and leaders.
-				\item Display the stories and leaders in pages of 10 with "Previous" and "Next" navigation buttons.
+				\item Toggle between colour themes. 
+				\item Display the domain name from the story's URL. For example, if the story's URL is \texttt{https://example.com/story}, display \texttt{example.com}.
 				\item Display score-range badges with colours. For example, 0-100 is red, 101-500 is orange, 501-1000 is yellow, 1001-5000 is green and 5001+ is blue.
 				\item Display type badges with colours. For example, ask is blue, best is green, job is yellow, new is purple, show is orange and top is red.
+				\item Select and compare two leaders. Display their id, karma, created, about and a link to their profile using the id.
 				\item Display karma-range badges with colours for leaders. For example, 0-100 is red, 101-500 is orange, 501-1000 is yellow, 1001-5000 is green and 5001+ is blue.
-				\item Display the domain name from the story's URL. For example, if the story's URL is \texttt{https://example.com/story}, display \texttt{example.com}.
-			 \end{itemize}	
-			 \item Select any two \textbf{Hard Features} from the list below:
-			 \begin{itemize}
 				\item For stories, toggle between list and grid view. The list view should display the title, by, text, time and a link to the story using the id. The grid view should display the title, by and a link to the story using the id.
+			\end{itemize}	
+			\item Select any two \textbf{Hard Features} from the list below:
+			\begin{itemize}
+				\item Display the stories and leaders in pages of 10 with "Previous" and "Next" navigation buttons.
 				\item Display stories and leaders search history based on the search functionality.
 				\item Display a graph of the karma for each leader. Display their id on the x-axis and karma on the y-axis.
-				\item Select and compare two leaders. Display their id, karma, created, about and a link to their profile using the id.
-				 \item Display a list of recommended stories based on the user's favourites. The recommendations should be based on the user's favourites and the stories' type.
-				 \item Toggle between colour themes. 
+				\item Display a list of recommended stories based on the user's favourites. The recommendations should be based on the user's favourites and the stories' type.
 			  \end{itemize}	
 		 \end{itemize}
 
@@ -182,21 +181,23 @@ You will complete this assessment mostly during your learner-managed time. Howev
 
 			\item Create a new quiz by selecting the start date, end date, number of questions, category, difficulty and type.
 			\item Display a list of past, current and future quizzes.
-			\item Play a quiz by selecting a quiz from the list. The quiz should display the start date, end date, category, difficulty, type, questions, options and a submit button.
-			\item Display the quiz results after submitting the quiz. The results should display the start date, end date, category, difficulty, type, questions, options, correct answer and score.
+			\item Past and future quizzes are not playable.
+			\item Play a quiz by selecting a current quiz from the list. The quiz should display the start date, end date, category, difficulty, type, questions, options and a submit button.
+			\item Shuffle the questions and options for each quiz.
+			\item Display the quiz results after submitting the quiz. Prompt the user to enter their name before displaying the results. The results should display the user's name, start date, end date, category, difficulty, type, questions, options, correct answer and score.
 			\item Store the quiz results appropriately.
+			\item Display the average score for each quiz.
+			\item Display the total number of quizzes played.
 			\item For each quiz, display the scores in a list.
 			
-			\item Select any four \textbf{Medium Features} from the list below:
+			\item Select any three \textbf{Medium Features} from the list below:
 			\begin{itemize}
 				\item Display a progress bar and "Question X of Y" text while playing the quiz.
 				\item Display category badges with colours. For example, general knowledge is blue, art is green, history is yellow, geography is purple, etc.
-				\item Display 
+				\item Allow a user to retake a completed quiz.
+				\item For each quiz, display a countdown timer per question. The timer should start at ten minutes. If the timer reaches 0, the quiz should automatically submit.
+				\item Select and compare two users. Display their name, number of quizzes played and average score.
 			 \end{itemize}	
-			 \item Select any four \textbf{Hard Features} from the list below:
-			 \begin{itemize}
-				 \item 
-			  \end{itemize}	
 		 \end{itemize}
 
 		 \item Deploy both applications to \textbf{Vercel}.
@@ -204,10 +205,10 @@ You will complete this assessment mostly during your learner-managed time. Howev
 	
 	\subsection*{Code Quality and Best Practices - Learning Outcomes 1, 2 (40\%)}
 	\begin{itemize}
-	\item Write clean, readable, and maintainable code.
-	\item Use modular, reusable components and avoid code duplication.
-	\item Keep code simple and easy to understand.
-	\item Optimise performance by managing resources efficiently.
+		\item Write clean, readable, and maintainable code.
+		\item Use modular, reusable components and avoid code duplication.
+		\item Keep code simple and easy to understand.
+		\item Optimise performance by managing resources efficiently.
 	\end{itemize}
 	
 	\subsection*{Version Control - Learning Outcome 1 (5\%)}

@@ -25,7 +25,7 @@
 \begin{document}
 	\begin{figure}
 		\centering
-		\includegraphics[width=50mm]{../../resources/img/logo.jpg}
+		\includegraphics[width=50mm]{../../../resources/img/logo.jpg}
 	\end{figure}
 
 	\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information
@@ -35,14 +35,13 @@
 	\maketitle
 
 	\section*{Assessment Overview}
-	In this \textbf{individual} assessment, you will design and develop \textbf{three} full-stack applications. 
+	In this \textbf{individual} assessment, you will design and develop \textbf{two} games. 
 
 	\section*{Learning Outcomes}
 	At the successful completion of this course, learners will be able to:
 	\begin{enumerate}
 		\item Apply design patterns and programming principles using software development
 			best practices.
-
 		\item Design and implement full-stack applications using industry relevant programming
 			languages.
 	\end{enumerate}
@@ -101,38 +100,123 @@ You will complete this assessment mostly during your learner-managed time. Howev
 	Resits and reassessments \textbf{are not} applicable in \textbf{ID608001: Intermediate
 	Application Development Concepts}.
 
-	\subsection*{Functionality - Learning Outcomes 1 and 2 (15\%)}
+	\subsection*{Functionality - Learning Outcomes 1, 2 (25\%)}
 	\begin{itemize}
-		\item
+		 \item Godot game with the following functionality:
+		 \begin{itemize}
+			\item 
+			\item \textbf{Story Features:}
+			\begin{itemize}
+				\item Display the 50 ask, best, job, new, show and top stories.
+				\item For each story, display the title, by, text, time and a link to the story using the id. Here is an example link - \href{https://news.ycombinator.com/item?id=ID}{https://news.ycombinator.com/item?id=ID}, where ID is the story's id.
+				\item Truncate the text to 100 characters and add a link that expands the text when clicked.
+			\end{itemize}
+
+			\item \textbf{Polls Features:}
+			\begin{itemize}
+				\item Display 25 polls. Here is a link to the polls - \href{https://hnpolls.com}{https://hnpolls.com}. 
+				\item For each poll, display the id, title, by, time, parts (score and text) and a link to the poll using the id and title. Here is an example link - \href{https://hnpolls.com/poll/ID-TITLE}{https://hnpolls.com/poll/ID-TITLE}, where ID is the poll's id and TITLE is the poll's title.
+			\end{itemize}
+	
+			\item \textbf{Leader Features:}
+			\begin{itemize}
+				\item Display 100 leaders. Here is a link to the leaders - \href{https://news.ycombinator.com/leaders}{https://news.ycombinator.com/leaders}. 
+				\item For each leader, display their id, karma, created, about and a link to their profile using the id. Here is an example link - \href{https://news.ycombinator.com/user?id=ID}{https://news.ycombinator.com/user?id=ID}, where ID is the user's id. 
+			\end{itemize}
+
+			\item \textbf{Favourites Features:}
+			\begin{itemize}
+				\item Display a heart icon next to the story or leader. Toggle the heart icon when clicked to add or remove the story or leader from favourites. 
+				\item Display a list of favourite stories and leaders. 
+				\item If no favourites are found, display a message indicating that no favourites were found.
+			\end{itemize}
+			
+			\item \textbf{Search Features:}
+			\begin{itemize}
+				\item Search for stories by title or type.
+				\item Search for leaders by id.
+				\item The search should be case-insensitive and return results that contain the search term anywhere in the title, type or id.
+				\item Display the search results in a list. 
+				\item If no results are found, display a message indicating that no results were found.
+			\end{itemize}
+
+			\item \textbf{Sort Features:}
+			\begin{itemize}
+				\item Sort stories by time, score or type. 
+				\item Sort leaders by karma or created. 
+				\item The default sort order for stories is time and for leaders is karma.
+			\end{itemize}
+
+			\item Display the time and created in a human-readable format. 
+
+			\item Select any five \textbf{Medium Features} from the list below:
+			\begin{itemize}
+				\item 
+				\item 
+				\item 
+				\item 
+				\item 
+				\item 
+				\item 
+				\item 
+			\end{itemize}	
+
+			\item Select any two \textbf{Hard Features} from the list below:
+			\begin{itemize}
+				\item 
+				\item
+				\item
+				\item
+			  \end{itemize}	
+		 \end{itemize}
+
+		 \item 3D Unity/Godot game with the following functionality:
+		 \begin{itemize}
+			\item 
+			
+			\item Select any three \textbf{Medium Features} from the list below:
+			\begin{itemize}
+				\item 
+				\item 
+				\item 
+				\item 
+				\item
+			 \end{itemize}	
+		 \end{itemize}
+
+		 \item Deploy both games to \textbf{Itch.io}.
 	\end{itemize}
-
-	\subsection*{Testing - Learning Outcomes 1 and 2 (10\%)}
+	
+	\subsection*{Code Quality and Best Practices - Learning Outcomes 1, 2 (40\%)}
 	\begin{itemize}
-		\item
+		\item Write clean, readable, and maintainable code.
+		\item Use modular, reusable components and avoid code duplication.
+		\item Keep code simple and easy to understand.
+		\item Optimise performance by managing resources efficiently.
 	\end{itemize}
-
-	\subsection*{Code Quality and Best Practices - Learning Outcomes 1 and 2 (60\%)}
+	
+	\subsection*{Version Control - Learning Outcome 1 (5\%)}
 	\begin{itemize}
-		\item  
+	  \item Regular commits are made throughout development, demonstrating meaningful progress.
+	  \item Commit messages are clear and descriptive.
+	  \item The repository shows a clean and logical commit history that reflects the development process of the games.
+	\end{itemize} 
+	
+	\subsection*{Reflection - Learning Outcomes 1, 2 (5\%)}
+	\begin{itemize}
+	  \item Write a short reflection (300-500 words) on your development process and learning throughout the project, including:
+	  \begin{itemize}
+		\item Challenges you faced and how you overcame them.
+		\item What you would do differently in future projects.
+		\item New skills, tools or practices you learned during the project.
+	  \end{itemize}
 	\end{itemize}
-
-	\subsection*{Project Management - Learning Outcomes 1 and 2 (5\%)}
+	
+	\subsection*{Presentation - Learning Outcomes 1, 2 (5\%)}
 	\begin{itemize}
-		\item 	
-	\end{itemize} 
-
-	\subsection*{Version Control - Learning Outcomes 1 and 2 (5\%)}
-	\begin{itemize}
-		\item 	
-	\end{itemize} 
-
-	\subsection*{Reflection - Learning Outcomes 1 and 2 (5\%)}
-	\begin{itemize}
-		\item 	
-	\end{itemize} 
-
-	\subsection*{Additional Information}
-	\begin{itemize}
-		\item 
-	\end{itemize} 
+	  \item Record a 5-10 minute screen recording of your games.
+	  \item Demonstrate the Godot game and 3D Unity/Godot game features.
+	  \item Make sure the video is clear and easy to follow.
+	  \item Submit a link to the presentation in your repository's \textbf{README.md} file.
+	\end{itemize}
 \end{document}
