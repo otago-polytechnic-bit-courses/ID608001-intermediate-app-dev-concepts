@@ -6,3 +6,4 @@
 *.synctex.gz
 *.xdv
 *.log
+node_modules

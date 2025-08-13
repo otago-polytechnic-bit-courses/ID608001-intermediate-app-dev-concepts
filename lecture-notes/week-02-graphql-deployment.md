@@ -30,21 +30,30 @@ The full code example for this week is available here - <https://github.com/otag
 ---
 
 
-### Type System
+### Schemas
 
 ---
 
-### Schema Definition Language (SDL)
+### Types
 
 ---
 
-### Schema Design
+### Queries
 
 ---
 
-### Resolvers
+### Mutations
 
 ---
+
+### Subscriptions
+
+---
+
+### Validation
+
+---
+
 
 ### Development Tools
 
