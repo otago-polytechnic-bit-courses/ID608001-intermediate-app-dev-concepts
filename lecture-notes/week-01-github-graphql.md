@@ -6,7 +6,11 @@ This course will use **GitHub** and **GitHub Classroom** to manage our developme
 
 ---
 
-## TypeScript
+## GraphQL
+
+---
+
+
 
 
 ---
