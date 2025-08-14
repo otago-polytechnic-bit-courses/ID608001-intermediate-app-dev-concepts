@@ -137,6 +137,36 @@ app.use(
 
 ---
 
+
+## GraphiQL 
+
+**GraphiQL** is an interactive, in-browser **IDE** designed for exploring and testing **GraphQL** APIs. It provides a user-friendly interface to write, validate, and execute **GraphQL** queries with features like syntax highlighting, auto-completion and real-time error detection.
+
+---
+
+### Testing
+
+To access **GraphiQL**, open your web browser and navigate to `http://localhost:4000/graphql`. It will load the **GraphiQL** interface where you can interact directly with your **GraphQL** API.
+
+In the left panel, enter the following query to retrieve all institutions:
+
+```graphql
+{
+  institutions {
+    id
+    name
+    region
+    country
+  }
+}
+```
+
+Execute the query by clicking the **Execute Query** button or pressing `Ctrl + Enter`. The response will display in the right-hand panel, showing all institutions.
+
+> **Note:** Use the **Docs** panel on the right to explore your schema and discover available fields and queries.
+
+---
+
 ## Formative Assessment
 
 
