@@ -36,6 +36,12 @@ const institutionSchema = `
 
 const institutionResolvers = {
   institutions: () => institutions,
+  institution: ({ id }) =>
+    institutions.find((institution) => institution.id === id),
+  institutionByRegion: ({ region }) =>
+    institutions.filter((institution) => institution.region === region),
+  institutionsByCountry: ({ country }) =>
+    institutions.filter((institution) => institution.country === country),
 };
 
 const schema = buildSchema(institutionSchema);

@@ -8,11 +8,12 @@ This course will use **GitHub** and **GitHub Classroom** to manage our developme
 
 Open your **id608001-s2-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-01-formative-assessment**.
 
-In the **lecture-notes** directory, you have been given an **Express** application called `week-01-github-graphql`. Copy and paste the application into your **id608001-s2-26-GitHub username** repository.  
+In the **lecture-notes** directory, you have been given an **Express** application called `week-01-github-graphql`. Copy and paste the application into your **id608001-s2-26-GitHub username** repository.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
 ---
+
 ## Full Code Example
 
 The full code example for this week is available here - <>
@@ -31,7 +32,7 @@ The full code example for this week is available here - <>
 
 ```bash
 npm install express-graphql graphql
-``` 
+```
 
 ```js
 // app.js
@@ -107,8 +108,26 @@ const schema = buildSchema(institutionSchema);
 
 // Omitted for brevity
 
-const root = {
+const institutionResolvers = {
   institutions: () => institutions,
+};
+
+// Omitted for brevity
+```
+
+```js
+// app.js
+
+// Omitted for brevity
+
+const institutionResolvers = {
+  institutions: () => institutions,
+  institution: ({ id }) =>
+    institutions.find((institution) => institution.id === id),
+  institutionByRegion: ({ region }) =>
+    institutions.filter((institution) => institution.region === region),
+  institutionsByCountry: ({ country }) =>
+    institutions.filter((institution) => institution.country === country),
 };
 
 // Omitted for brevity
@@ -127,7 +146,7 @@ app.use(
   "/graphql",
   graphqlHTTP({
     schema,
-    rootValue: root,
+    rootValue: institutionResolvers,
     graphiql: true,
   })
 );
@@ -137,8 +156,7 @@ app.use(
 
 ---
 
-
-## GraphiQL 
+## GraphiQL
 
 **GraphiQL** is an interactive, in-browser **IDE** designed for exploring and testing **GraphQL** APIs. It provides a user-friendly interface to write, validate, and execute **GraphQL** queries with features like syntax highlighting, auto-completion and real-time error detection.
 
@@ -169,7 +187,6 @@ Execute the query by clicking the **Execute Query** button or pressing `Ctrl + E
 
 ## Formative Assessment
 
-
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -180,21 +197,17 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
-
 ---
 
 ### Task Two
-
 
 ---
 
 ### Task Three
 
-
 ---
 
 ### Task Four
-
 
 ---
 
