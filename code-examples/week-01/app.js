@@ -2,12 +2,41 @@ import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from "graphql";
 
-import { institutionResolvers } from "./resolvers/institution.js";
-import { institutionSchema } from "./schemas/institution.js";
-
 const app = express();
 
 const PORT = process.env.PORT || 4000;
+
+const institutions = [
+  {
+    id: 1,
+    name: "Otago Polytechnic",
+    region: "Otago",
+    country: "New Zealand",
+  },
+  {
+    id: 2,
+    name: "Southern Institute of Technology",
+    region: "Southland",
+    country: "New Zealand",
+  },
+];
+
+const institutionSchema = `
+    type Institution {
+        id: ID!
+        name: String!
+        region: String!
+        country: String!
+    }
+
+    type Query {
+        institutions: [Institution!]!
+    }
+`;
+
+const institutionResolvers = {
+  institutions: () => institutions,
+};
 
 const schema = buildSchema(institutionSchema);
 
