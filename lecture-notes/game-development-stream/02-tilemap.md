@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 01]()
+Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/game-development-stream/01-github-godot.md)
 
 ---
 
@@ -124,4 +124,4 @@ Create a parallax background for your levels. You can use multiple layers of ima
 
 ## Next Class
 
-Link to the next class: [Week 03]()
+Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/game-development-stream/03-player.md)

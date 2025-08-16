@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 02]()
+Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/game-development-stream/02-tilemap.md)
 
 ---
 
@@ -126,4 +126,4 @@ In the previous class's formative assessment, you created three levels. Add a no
 
 ## Next Class
 
-Link to the next class: [Week 03]()
+Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/game-development-stream/04-enemy-shaders-tween.md)

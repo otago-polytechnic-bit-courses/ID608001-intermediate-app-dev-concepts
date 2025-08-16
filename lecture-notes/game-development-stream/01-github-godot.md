@@ -124,4 +124,4 @@ Using the completed [Your first 2D game](https://docs.godotengine.org/en/stable/
 
 ## Next Class
 
-Link to the next class: [Week 02]()
+Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/tree/s2-25/lecture-notes/game-development-stream/02-tilemap.md)
