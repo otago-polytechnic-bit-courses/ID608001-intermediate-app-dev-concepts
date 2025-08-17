@@ -200,10 +200,9 @@ func heal(amount):
 
 ## Godot Design Patterns
 
-1. **Scene Composition Pattern**: This pattern uses Godot's scene system to compose complex objects from simpler, reusable components. Each component handles a specific functionality.
+1. **Scene Composition Pattern:** This pattern uses Godot's scene system to compose complex objects from simpler, reusable components. Each component handles a specific functionality.
 
 ```gdscript
-# Player scene structure:
 # Player (CharacterBody2D)
 # ├── PlayerMovement (Node)  
 # ├── PlayerHealth (Node)
@@ -217,8 +216,7 @@ extends Node
 @export var speed = 300
 
 func move(direction):
-	player.velocity = direction * speed
-	player.move_and_slide()
+	pass
 
 # PlayerHealth.gd  
 extends Node
@@ -227,10 +225,10 @@ extends Node
 var current_health
 
 func _ready():
-	current_health = max_health
+	pass
 
 func take_damage(amount):
-	current_health -= amount
+	pass
 ```
 
 2. **Observer Pattern (Signals)**: Godot's signal system implements the observer pattern, allowing objects to communicate without tight coupling.
