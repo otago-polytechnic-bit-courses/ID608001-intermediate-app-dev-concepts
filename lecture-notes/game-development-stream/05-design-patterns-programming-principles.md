@@ -200,7 +200,7 @@ func heal(amount):
 
 ## Godot Design Patterns
 
-1. **Scene Composition Pattern:** This pattern uses Godot's scene system to compose complex objects from simpler, reusable components. Each component handles a specific functionality.
+1. **Godot's** scene system uses the **scene composition pattern** to compose complex objects from simpler, reusable components. Each component handles a specific functionality.
 
 ```gdscript
 # Player (CharacterBody2D)
@@ -231,38 +231,31 @@ func take_damage(amount):
 	pass
 ```
 
-2. **Observer Pattern (Signals)**: Godot's signal system implements the observer pattern, allowing objects to communicate without tight coupling.
+2. **Godot's** signal system implements the **observer pattern**, allowing objects to communicate without tight coupling.
 
 ```gdscript
 # GameManager.gd
 extends Node
 
 func _ready():
-	var player = get_node("Player")
-	var ui = get_node("UI")
+	var player = $Player
+	var ui = $UI
 	
-	# Connect player events to UI updates
 	player.health_changed.connect(ui._on_health_changed)
-	player.score_changed.connect(ui._on_score_changed)
 
 # Player.gd
 extends CharacterBody2D
 
 signal health_changed(health)
-signal score_changed(score)
 
 func take_damage(amount):
-	health -= amount
-	health_changed.emit(health)
+	pass
 
 # UI.gd
 extends Control
 
 func _on_health_changed(health):
-	$HealthBar.value = health
-
-func _on_score_changed(score):
-	$ScoreLabel.text = "Score: " + str(score)
+	pass
 ```
 
 3. **State Pattern**: Used for managing different states of game objects like player states or game states.
