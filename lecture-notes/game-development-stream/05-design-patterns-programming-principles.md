@@ -142,7 +142,7 @@ func _ready():
 
 **Separation of Concerns (SoC)** is a **design principle** that encourages the separation of a game's concerns into distinct sections, each addressing a specific aspect of the game. 
 
-Example:
+Here is an example:
 
 ```gdscript
 # PlayerInput.gd

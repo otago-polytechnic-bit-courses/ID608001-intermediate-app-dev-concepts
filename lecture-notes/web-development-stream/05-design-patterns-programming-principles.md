@@ -153,7 +153,7 @@ const App = () => {
 
 **Separation of Concerns (SoC)** is a **design principle** that encourages the separation of an application's concerns into distinct sections, each addressing a specific aspect of the application. 
 
-Example:
+Here is an example:
 
 ```jsx
 // API communication
