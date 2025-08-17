@@ -8,7 +8,7 @@ Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-c
 
 ## Overview
 
-In this class, we will explore design patterns and programming principles that are essential for building scalable and maintainable games in Godot.
+In this class, we will explore design patterns and programming principles that are essential for building scalable and maintainable games in **Godot**.
 
 ---
 
@@ -25,7 +25,6 @@ extends CharacterBody2D
 @export var speed = 300
 var health = 100
 var score = 0
-var inventory = []
 
 func _ready():
 	load_player_data()
