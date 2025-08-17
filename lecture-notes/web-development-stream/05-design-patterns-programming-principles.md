@@ -128,11 +128,11 @@ const AdminProfile = () => {
 Here is an example of code that follows the **DRY principle**:
 
 ```jsx
-const Profile = ({ userType }) => {
+const Profile = (props) => {
   return (
     <>
-      <h1>{userType} Profile</h1>
-      <p>Details about the {userType.toLowerCase()}...</p>
+      <h1>{props.userType} Profile</h1>
+      <p>Details about the {props.userType.toLowerCase()}...</p>
     </>
   );
 };
