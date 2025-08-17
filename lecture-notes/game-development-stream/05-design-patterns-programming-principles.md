@@ -276,9 +276,9 @@ func change_state(new_state):
 		State.RUNNING:
 			handle_running()
 		State.JUMPING:
-			handle_jumping()
+			pass
 		State.ATTACKING:
-			handle_attacking()
+			pass
 
 func handle_idle():
 	pass
