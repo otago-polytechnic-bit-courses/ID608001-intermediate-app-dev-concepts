@@ -8,7 +8,7 @@ Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-c
 
 ## Overview
 
-In this class, we will explore design patterns and programming principles that are essential for building scalable and maintainable web applications.
+In this class, we will explore design patterns and programming principles that are essential for building scalable and maintainable web applications in **React**.
 
 ---
 
@@ -151,7 +151,7 @@ const App = () => {
 
 ## Separation of Concerns
 
-**Separation of Concerns (SoC)** is a **design principle** that encourages the separation of an application's concerns into distinct sections, each addressing a specific aspect of the application. For example, components handle the presentation logic, custom hooks handle business logic and services handle API communication.
+**Separation of Concerns (SoC)** is a **design principle** that encourages the separation of an application's concerns into distinct sections, each addressing a specific aspect of the application. 
 
 Example:
 
