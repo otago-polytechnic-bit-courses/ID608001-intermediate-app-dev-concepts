@@ -114,9 +114,6 @@ func _ready():
 func take_damage(amount):
 	pass
 
-func die():
-	queue_free()
-
 func move_towards_player():
 	pass
 
