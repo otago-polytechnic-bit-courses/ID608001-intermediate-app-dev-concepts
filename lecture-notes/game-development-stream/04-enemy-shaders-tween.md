@@ -30,7 +30,7 @@ Create a new script for the `Worm` scene.
 
 In the script, add the following code:
 
-"`gdscript
+```gdscript
 extends Node2D
 
 var health: int = 5
@@ -102,7 +102,7 @@ What is happening here?
 
 In **Godot**, a `Tween` creates smooth transitions between values over time. In the script, update the `_on_body_entered(body: Node2D)` function to create a `Tween` that will animate the `amount` property of the shader when the player collides with the worm:
 
-"`gdscript
+```gdscript
 # ...
 
 func _on_body_entered(body: Node2D) -> void:
@@ -124,7 +124,7 @@ What is happening here?
 
 > **Note:** If you are using an `AnimatedSprite2D` instead of a `Sprite2D`, you will need to adjust the code accordingly:
 
-"`gdscript
+```gdscript
 tween.tween_property($AnimatedSprite2D, "material:shader_parameter/amount", 1.0, 0.0)
 tween.tween_property($AnimatedSprite2D, "material:shader_parameter/amount", 0.0, 0.1).set_delay(0.2)
 ``` 
