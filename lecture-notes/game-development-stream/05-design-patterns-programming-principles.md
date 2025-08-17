@@ -282,44 +282,10 @@ func change_state(new_state):
 			handle_attacking()
 
 func handle_idle():
-	player.velocity.x = 0
+	pass
 
 func handle_running():
-	var input = Input.get_axis("ui_left", "ui_right")
-	player.velocity.x = input * player.speed
-```
-
-4. **Command Pattern**: Useful for input handling and creating undoable actions.
-
-```gdscript
-# Command.gd
-extends Resource
-class_name Command
-
-func execute():
 	pass
-
-func undo():
-	pass
-
-# MoveCommand.gd
-extends Command
-class_name MoveCommand
-
-var actor: Node2D
-var direction: Vector2
-var distance: float
-
-func _init(a: Node2D, dir: Vector2, dist: float):
-	actor = a
-	direction = dir
-	distance = dist
-
-func execute():
-	actor.position += direction * distance
-
-func undo():
-	actor.position -= direction * distance
 ```
 
 ---
@@ -328,31 +294,27 @@ func undo():
 
 Here are some common anti-patterns to avoid in **Godot** development:
 
-1. **Deep Node Dependencies**: Accessing nodes deep in the tree using long get_node() paths makes code fragile and hard to maintain.
+1. Accessing nodes deep in the tree using long paths makes code fragile and hard to maintain.
 
 ```gdscript
-# BAD: Deep node access
+# Bad
 extends Node
 
 func update_ui():
-	get_node("../../UI/PlayerInfo/HealthBar").value = health
-	get_node("../../UI/PlayerInfo/ScoreLabel").text = str(score)
+	$UI/PlayerInfo/HealthBar.value = health
 
-# GOOD: Use signals or references
+# Good
 extends Node
 
 signal health_changed(health)
-signal score_changed(score)
 
 func update_health(new_health):
-	health = new_health
-	health_changed.emit(health)
+	pass
 ```
-
-2. **Scene Bloat**: Putting too many nodes and scripts in a single scene makes it hard to manage and reuse.
+21. Putting too many nodes and scripts in a single scene makes it hard to manage and reuse.
 
 ```gdscript
-# BAD: Everything in one scene
+# Bad
 # Main (Node)
 # ├── Player (CharacterBody2D) - 500 lines of code
 # ├── Enemy1 (CharacterBody2D) - 300 lines of code  
@@ -360,35 +322,11 @@ func update_health(new_health):
 # ├── UI (Control) - 200 lines of code
 # └── GameLogic (Node) - 400 lines of code
 
-# GOOD: Separate scenes
+# Good
 # Main.tscn -> instances Player.tscn, Enemy.tscn, UI.tscn
 # Each scene focuses on one responsibility
 ```
-
-3. **Global State Overuse**: Using too many singletons/autoloads creates hidden dependencies and makes testing difficult.
-
-```gdscript
-# BAD: Everything as global state
-# globals.gd (AutoLoad)
-var player_health = 100
-var player_score = 0
-var current_level = 1
-var enemy_positions = []
-var ui_elements = {}
-
-# GOOD: Use local state with communication
-# Player.gd
-extends CharacterBody2D
-
-var health = 100
-signal health_changed(health)
-
-func take_damage(amount):
-	health -= amount
-	health_changed.emit(health)
-```
-
-4. **Tight Coupling**: Making nodes directly dependent on specific other nodes instead of using interfaces or signals.
+3. **Tight Coupling**: Making nodes directly dependent on specific other nodes instead of using interfaces or signals.
 
 ```gdscript
 # BAD: Tight coupling
