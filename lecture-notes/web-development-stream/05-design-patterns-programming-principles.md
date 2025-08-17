@@ -40,13 +40,14 @@ const UserDashboard = () => {
   // Renders everything
   return (
     <>
-      <h1>{user.firstName} {user.lastName}</h1>
-      <p>{user.emailAddress}</p>
+      <h1>{user?.firstName} {user?.lastName}</h1>
+      <p>{user?.emailAddress}</p>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>{post.title}</li>
         ))}
       </ul>
+    </>
   );
 };
 ```
@@ -57,9 +58,9 @@ Here is an example of a component that follows this principle:
 const UserInfo = (props) => (
   <>
     <h1>
-      {props.user.firstName} {props.user.lastName}
+      {props.user?.firstName} {props.user?.lastName}
     </h1>
-    <p>{props.user.emailAddress}</p>
+    <p>{props.user?.emailAddress}</p>
   </>
 );
 
@@ -76,7 +77,7 @@ const UserDashboard = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("/api/user")
+    fetch("/api/user/1")
       .then((res) => res.json())
       .then(setUser);
   }, []);
@@ -177,9 +178,9 @@ const UserProfile = () => {
   return (
     <>
       <h1>
-        {user.firstName} {user.lastName}
+        {user?.firstName} {user?.lastName}
       </h1>
-      <p>{user.emailAddress}</p>
+      <p>{user?.emailAddress}</p>
     </>
   );
 };
@@ -213,7 +214,7 @@ const UserProfile = (props) => {
       <h1>
         {props.user.firstName} {props.user.lastName}
       </h1>
-      <p>{props.user.email}</p>
+      <p>{props.user.emailAddress}</p>
     </>
   );
 };
@@ -269,10 +270,10 @@ const Counter = () => {
 
 Here are some common anti-patterns to avoid in **React** development:
 
-1. **Props Drilling**: Passing data through many layers of components can make your code hard to maintain. Consider using state management libraries to avoid this.
+1. **Props Drilling**: Passing data through many layers of components can make your code hard to maintain. Consider using Context or state management libraries to avoid this.
 
 ```jsx
-// Props drilling
+// Bad
 const App = () => {
   const user = {
     firstName: "John",
@@ -292,28 +293,52 @@ const GrandChild = (props) => (
     <p>{props.user.emailAddress}</p>
   </>
 );
+
+// Good
+const UserContext = createContext();
+const App = () => {
+  const user = {
+    firstName: "John",
+    lastName: "Doe", 
+    emailAddress: "john.doe@example.com",
+  };
+  return (
+    <UserContext.Provider value={user}>
+      <Parent />
+    </UserContext.Provider>
+  );
+};
+const GrandChild = () => {
+  const user = useContext(UserContext);
+  return (
+    <>
+      <h1>{user.firstName} {user.lastName}</h1>
+      <p>{user.emailAddress}</p>
+    </>
+  );
+};
 ```
 
 2. **State Mutation**: Never mutate state directly. Always use the state updater function returned by `useState` or `setState` to update state.
 
 ```jsx
-// Direct mutation
+// Bad
 const [items, setItems] = useState([1, 2, 3]);
 items.push(4); // Don't do this
 
-// Create new array
+// Good
 setItems([...items, 4]);
 ```
 
 3. **Inline Functions in Render**: Defining functions inside the render method can lead to performance issues. Instead, define functions outside the render method or use `useCallback`.
 
 ```jsx
-// Inline function
+// Bad
 const Component = () => (
   <button onClick={() => console.log("clicked")}>Click me</button>
 );
 
-// useCallback
+// Good
 const Component = () => {
   const handleClick = useCallback(() => {
     console.log("clicked");
@@ -326,10 +351,13 @@ const Component = () => {
 4. **Uncontrolled Components**: Avoid using uncontrolled components when you need to manage form state. Instead, use controlled components with state.
 
 ```jsx
-// BAD: Uncontrolled
-const Form = () => <input ref={inputRef} />;
+// Bad
+const Form = () => {
+  const inputRef = useRef();
+  return <input ref={inputRef} />;
+};
 
-// GOOD: Controlled
+// Good
 const Form = () => {
   const [value, setValue] = useState("");
   return <input value={value} onChange={(e) => setValue(e.target.value)} />;
