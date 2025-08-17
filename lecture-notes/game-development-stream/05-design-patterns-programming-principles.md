@@ -49,11 +49,11 @@ func update_ui():
 
 How to implement the **Single Responsibility Principle** in **Godot**?
 
-1. **Create separate scripts for different concerns**: Instead of having one script that handles multiple aspects of a game object (e.g., movement, health, UI), create separate scripts for each concern. 
+1. Instead of having one script that handles multiple aspects of a game object (e.g., movement, health, UI), create separate scripts for each concern. 
 
-2. **Use signals to communicate between scripts**: Instead of having one script directly manipulate another script's properties, use signals to emit events that other scripts can listen for. 
+2. Instead of having one script directly manipulate another script's properties, use signals to emit events that other scripts can listen for. 
 
-3. **Keep scripts focused**: Each script should have a clear and specific purpose. If a script starts to handle multiple concerns, consider refactoring it into smaller, more focused scripts.
+3. Each script should have a clear and specific purpose. If a script starts to handle multiple concerns, consider refactoring it into smaller, more focused scripts.
 
 ---
 
