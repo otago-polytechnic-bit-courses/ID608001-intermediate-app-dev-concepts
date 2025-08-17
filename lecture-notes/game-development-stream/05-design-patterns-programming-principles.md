@@ -254,7 +254,7 @@ func take_damage(amount):
 extends Control
 
 func _on_health_changed(health):
-	pass
+	pass 
 ```
 
 3. **State Pattern**: Used for managing different states of game objects like player states or game states.
@@ -310,7 +310,7 @@ signal health_changed(health)
 func update_health(new_health):
 	pass
 ```
-21. Putting too many nodes and scripts in a single scene makes it hard to manage and reuse.
+2. Putting too many nodes and scripts in a single scene makes it hard to manage and reuse.
 
 ```gdscript
 # Bad
@@ -325,31 +325,30 @@ func update_health(new_health):
 # Main.tscn -> instances Player.tscn, Enemy.tscn, UI.tscn
 # Each scene focuses on one responsibility
 ```
-3. **Tight Coupling**: Making nodes directly dependent on specific other nodes instead of using interfaces or signals.
+
+3. **Tight Coupling** makes nodes directly dependent on specific other nodes instead of using interfaces or signals.
 
 ```gdscript
-# BAD: Tight coupling
+# Bad
 extends CharacterBody2D
 
 func _ready():
-	var ui = get_node("../UI/HealthBar")  # Direct dependency
-	var sound = get_node("../AudioManager")  # Direct dependency
+	var ui = $UI/HealthBar # Direct dependency
+	var sound = $AudioManager # Direct dependency
 
 func take_damage(amount):
 	health -= amount
-	get_node("../UI/HealthBar").value = health  # Tightly coupled
-	get_node("../AudioManager").play("hurt")  # Tightly coupled
+	ui.value = health  # Tightly coupled
+	sound.play("hurt")  # Tightly coupled
 
-# GOOD: Loose coupling with signals
+# Good
 extends CharacterBody2D
 
 signal health_changed(health)
 signal took_damage
 
 func take_damage(amount):
-	health -= amount
-	health_changed.emit(health)
-	took_damage.emit()
+	pass
 ```
 
 ---
