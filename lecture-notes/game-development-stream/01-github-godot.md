@@ -67,7 +67,7 @@ Here are some examples of **conventional commits**:
 
 ## Before We Start
 
-Create a new branch called **week-01-formative-assessment**.
+Create a new branch called **week-01-A NAME THAT MAKES SENSE TO YOU**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -83,7 +83,7 @@ Create a new branch called **week-01-formative-assessment**.
 
 ---
 
-## Formative Assessment
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 

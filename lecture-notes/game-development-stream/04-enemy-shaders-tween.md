@@ -8,7 +8,7 @@ Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-04-formative-assessment** from **week-03-formative-assessment**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-04-A NAME THAT MAKES SENSE TO YOU from **week-03-A NAME THAT MAKES SENSE TO YOU**.
 
 ---
 
@@ -133,7 +133,7 @@ Drag and drop the `Worm` scene into the `Level1` scene. Position it where you wa
 
 ---
 
-## Formative Assessment
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 

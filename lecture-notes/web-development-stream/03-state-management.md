@@ -8,7 +8,7 @@ Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-03-formative-assessment** from **week-02-formative-assessment**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-03-A NAME THAT MAKES SENSE TO YOU from **week-02-A NAME THAT MAKES SENSE TO YOU**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Read the comments in the code examples. It will help you understand where to type the code. Also, some code examples may show **TypeScript** warnings.
 
@@ -24,14 +24,14 @@ npm init vite@latest
 
 2. When prompted, select the following options:
 
-- Project name: **week-03-formative-assessment**
+- Project name: **week-03-A NAME THAT MAKES SENSE TO YOU
 - Framework: **React**
 - Variant: **TypeScript + SWC**
 
 3. Change into the project directory:
 
 ```bash
-cd week-03-formative-assessment
+cd week-03-<A NAME THAT MAKES SENSE TO YOU>
 ```
 
 4. Install the project dependencies:
@@ -326,7 +326,7 @@ Here we are using the `useSelector()` hook to access the **Redux** store. The `u
 
 ---
 
-## Formative Assessment
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 

@@ -8,7 +8,7 @@ Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-02-formative-assessment** from **week-01-formative-assessment**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-02-A NAME THAT MAKES SENSE TO YOU from **week-01-A NAME THAT MAKES SENSE TO YOU**.
 
 ---
 
@@ -94,7 +94,7 @@ Run the game to see the player on the level.
 
 ---
 
-## Formative Assessment
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
