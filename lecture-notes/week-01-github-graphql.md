@@ -22,17 +22,54 @@ The full code example for this week is available here - <>
 
 ## GraphQL
 
+**GraphQL** is a query language for APIs and a runtime for executing those queries by using a type system you define for your data. It provides a more efficient, flexible, and powerful alternative to **REST**.
+
 ---
 
 ## REST APIs vs. GraphQL APIs
+
+<!-- Create a table -->
+
+| Feature         | REST API                            | GraphQL API                        |
+| --------------- | ----------------------------------- | ---------------------------------- |
+| Data Fetching   | Multiple endpoints                  | Single endpoint                    |
+| Response Format | Fixed structure                     | Flexible structure                 |
+| Over-fetching   | Common (fetches unnecessary data)   | Avoided (fetches only needed data) |
+| Under-fetching  | Possible (multiple requests needed) | Avoided (single request for all)   |
+| Versioning      | Requires versioning                 | No versioning needed               |
+| Tooling         | Mature tooling available            | Emerging tooling                   |
+
+Here is an REST API example:
+
+```bash
+GET /api/institutions
+GET /api/institutions/1
+```
+
+Here is a GraphQL API example:
+
+```graphql
+{
+  institutions {
+    id
+    name
+    region
+    country
+  }
+}
+```
 
 ---
 
 ## Dependencies
 
+To get started with **GraphQL** in your **Express** application, you need to install the following dependencies:
+
 ```bash
 npm install express-graphql graphql
 ```
+
+In `app.js`, add the following imports.
 
 ```js
 // app.js
@@ -48,6 +85,8 @@ import { buildSchema } from "graphql";
 ---
 
 ## Mock Data Layer
+
+In `app.js`, add the following code to create a mock data layer.
 
 ```js
 // app.js
@@ -72,9 +111,13 @@ const institutions = [
 // Omitted for brevity
 ```
 
+> **Note:** This is a mock data layer for demonstration purposes only. We will replace this with MongoDB.
+
 ---
 
 ## Schemas
+
+In **GraphQL**, a schema defines the structure of your API, including the types of data that can be queried and the relationships between them. It serves as a contract between the client and the server, ensuring that both sides understand the shape of the data being exchanged.
 
 ```js
 // app.js
@@ -103,6 +146,8 @@ const schema = buildSchema(institutionSchema);
 
 ## Resolvers
 
+A **resolver** is a function that resolves a value for a type or field in your schema. Resolvers are responsible for fetching the data for a specific field in response to a query.
+
 ```js
 // app.js
 
@@ -124,10 +169,6 @@ const institutionResolvers = {
   institutions: () => institutions,
   institution: ({ id }) =>
     institutions.find((institution) => institution.id === id),
-  institutionByRegion: ({ region }) =>
-    institutions.filter((institution) => institution.region === region),
-  institutionsByCountry: ({ country }) =>
-    institutions.filter((institution) => institution.country === country),
 };
 
 // Omitted for brevity
@@ -136,6 +177,8 @@ const institutionResolvers = {
 ---
 
 ## Middleware
+
+Unlike **REST**, **GraphQL** does not require separate endpoints for each resource. Instead, you can define a single endpoint that handles all queries and mutations.
 
 ```js
 // app.js
