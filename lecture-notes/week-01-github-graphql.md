@@ -24,11 +24,16 @@ The full code example for this week is available here - <>
 
 **GraphQL** is a query language for APIs and a runtime for executing those queries by using a type system you define for your data. It provides a more efficient, flexible, and powerful alternative to **REST**.
 
+**Key benefits of GraphQL:**
+- **Precise data fetching** - Request only the fields you need
+- **Single endpoint** - All operations go through one URL
+- **Strong type system** - Schema defines the structure of your API
+- **Real-time subscriptions** - Built-in support for live data updates
+- **Introspection** - Schema is self-documenting and explorable
+
 ---
 
 ## REST APIs vs. GraphQL APIs
-
-<!-- Create a table -->
 
 | Feature         | REST API                            | GraphQL API                        |
 | --------------- | ----------------------------------- | ---------------------------------- |
@@ -38,23 +43,29 @@ The full code example for this week is available here - <>
 | Under-fetching  | Possible (multiple requests needed) | Avoided (single request for all)   |
 | Versioning      | Requires versioning                 | No versioning needed               |
 | Tooling         | Mature tooling available            | Emerging tooling                   |
+| Caching         | HTTP caching works naturally        | Requires custom caching strategies |
+| Learning Curve  | Familiar to most developers         | Requires learning query syntax     |
 
-Here is an REST API example:
+Here is a REST API example:
 
 ```bash
 GET /api/institutions
 GET /api/institutions/1
+GET /api/institutions/1/courses
 ```
 
 Here is a GraphQL API example:
 
 ```graphql
 {
-  institutions {
+  institution(id: 1) {
     id
     name
     region
-    country
+    courses {
+      title
+      credits
+    }
   }
 }
 ```
@@ -111,7 +122,7 @@ const institutions = [
 // Omitted for brevity
 ```
 
-> **Note:** This is a mock data layer for demonstration purposes only. We will replace this with MongoDB.
+> **Note:** This is a mock data layer for demonstration purposes only. We will replace this with MongoDB in later weeks.
 
 ---
 
@@ -134,6 +145,9 @@ const institutionSchema = `
 
     type Query {
         institutions: [Institution!]!
+        institution(id: ID!): Institution
+        institutionsByRegion(region: String!): [Institution!]!
+        institutionsByCountry(country: String!): [Institution!]!
     }
 `;
 
@@ -141,6 +155,8 @@ const schema = buildSchema(institutionSchema);
 
 // Omitted for brevity
 ```
+
+> **Note:** The exclamation mark (`!`) indicates that a field is non-nullable, meaning it must always return a value. Square brackets (`[]`) indicate an array/list of items.
 
 ---
 
@@ -155,24 +171,18 @@ A **resolver** is a function that resolves a value for a type or field in your s
 
 const institutionResolvers = {
   institutions: () => institutions,
-};
-
-// Omitted for brevity
-```
-
-```js
-// app.js
-
-// Omitted for brevity
-
-const institutionResolvers = {
-  institutions: () => institutions,
   institution: ({ id }) =>
-    institutions.find((institution) => institution.id === id),
+    institutions.find((institution) => institution.id === parseInt(id)),
+  institutionsByRegion: ({ region }) =>
+    institutions.filter((institution) => institution.region === region),
+  institutionsByCountry: ({ country }) =>
+    institutions.filter((institution) => institution.country === country),
 };
 
 // Omitted for brevity
 ```
+
+> **Note:** The `parseInt(id)` converts the string ID from GraphQL to a number for comparison with our mock data.
 
 ---
 
@@ -199,6 +209,42 @@ app.use(
 
 ---
 
+## Error Handling
+
+**GraphQL** handles errors differently from **REST APIs**. Instead of HTTP status codes, GraphQL returns errors in the response along with any successfully resolved data.
+
+```js
+// Example resolver with error handling
+const institutionResolvers = {
+  institution: ({ id }) => {
+    const institution = institutions.find((inst) => inst.id === parseInt(id));
+    if (!institution) {
+      throw new Error(`Institution with id ${id} not found`);
+    }
+    return institution;
+  },
+};
+```
+
+When you query for a non-existent institution, **GraphQL** will return:
+
+```json
+{
+  "data": {
+    "institution": null
+  },
+  "errors": [
+    {
+      "message": "Institution with id 999 not found"
+    }
+  ]
+}
+```
+
+This approach allows partial success. Other fields in your query can still return data even if one field fails.
+
+---
+
 ## GraphiQL
 
 **GraphiQL** is an interactive, in-browser **IDE** designed for exploring and testing **GraphQL** APIs. It provides a user-friendly interface to write, validate, and execute **GraphQL** queries with features like syntax highlighting, auto-completion and real-time error detection.
@@ -209,7 +255,9 @@ app.use(
 
 To access **GraphiQL**, open your web browser and navigate to `http://localhost:4000/graphql`. It will load the **GraphiQL** interface where you can interact directly with your **GraphQL** API.
 
-In the left panel, enter the following query to retrieve all institutions:
+<ADD IMAGE HERE>
+
+Here is an example of a query to get all institutions:
 
 ```graphql
 {
@@ -222,13 +270,57 @@ In the left panel, enter the following query to retrieve all institutions:
 }
 ```
 
-Execute the query by clicking the **Execute Query** button or pressing `Ctrl + Enter`. The response will display in the right-hand panel, showing all institutions.
+<ADD IMAGE HERE>
 
-> **Note:** Use the **Docs** panel on the right to explore your schema and discover available fields and queries.
+Here is an example of a query to get a specific institution:
+
+```graphql
+{
+  institution(id: 1) {
+    name
+    region
+  }
+}
+```
+
+<ADD IMAGE HERE>
+
+Here is an example of a query to get institutions in a specific region:
+
+```graphql
+{
+  institutionsByRegion(region: "Otago") {
+    name
+    country
+  }
+}
+```
+
+<ADD IMAGE HERE>
+
+Here is an example of a query to get institutions in a specific country:
+
+```graphql
+{
+  institutionsByCountry(country: "New Zealand") {
+    id
+    name
+    region
+  }
+}
+```
+
+Execute queries by clicking the **Execute Query** button or pressing `Ctrl + Enter`. The response will display in the right-hand panel.
+
+<ADD IMAGE HERE>
+
+Use the **Docs** panel on the right to explore your schema and discover available fields and queries. You can also use `Ctrl + Space` for auto-completion while typing queries.
+
+<ADD IMAGE HERE>
 
 ---
 
-## Formative Assessment
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
@@ -238,23 +330,27 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task 1
+
 
 ---
 
-### Task Two
+### Task 2
 
 ---
 
-### Task Three
+### Task 3
+
 
 ---
 
-### Task Four
+### Task 4
+
 
 ---
 
-### Task Five
+### Task 5
+
 
 ---
 
