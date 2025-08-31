@@ -8,8 +8,7 @@ Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-08-cinemachine** from **week-03-player**.
-
+Open your repository in **Visual Studio Code**. Create a new branch called **week-08-cinemachine**.
 ---
 
 ## Unity 
