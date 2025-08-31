@@ -8,7 +8,7 @@ Link to the previous class: [Week 06](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-07-A NAME THAT MAKES SENSE TO YOU from **week-06-A NAME THAT MAKES SENSE TO YOU**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-07-routing**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Read the comments in the code examples. It will help you understand where to type the code. Also, some code examples may show **TypeScript** warnings.
 
@@ -24,14 +24,14 @@ npm init vite@latest
 
 2. When prompted, select the following options:
 
-- Project name: **week-07-A NAME THAT MAKES SENSE TO YOU
+- Project name: **week-07-routing**
 - Framework: **React**
 - Variant: **TypeScript + SWC**
 
 3. Change into the project directory:
 
 ```bash
-cd week-07-<A NAME THAT MAKES SENSE TO YOU>
+cd week-07-routing
 ```
 
 4. Install the project dependencies:
@@ -144,6 +144,8 @@ const Dashboard = () => {
     </>
   );
 };
+
+export default Dashboard;
 ```
 
 Now, when you navigate to `/dashboard` or `/dashboard/settings`, the `Dashboard` component will be rendered along with the nested routes.
@@ -267,6 +269,8 @@ const NotFound = () => {
     </>
   );
 };
+
+export default NotFound;
 ```
 
 Now, when you navigate to a URL that does not match any of the defined routes, the `NotFound` component will be rendered.
