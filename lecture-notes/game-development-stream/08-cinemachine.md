@@ -27,7 +27,6 @@ Open your repository in **Visual Studio Code**. Create a new branch called **wee
 
 For this module, you should use **Unity 6**. You can download this version from the following link: <https://unity.com/releases/unity-6>.
 
-
 ---
 
 ### Unity Project
