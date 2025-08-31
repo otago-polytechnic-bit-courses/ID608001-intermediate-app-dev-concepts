@@ -8,7 +8,7 @@ Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-03-A NAME THAT MAKES SENSE TO YOU from **week-02-A NAME THAT MAKES SENSE TO YOU**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-03-player** from **week-02-tilemap**.
 
 ---
 

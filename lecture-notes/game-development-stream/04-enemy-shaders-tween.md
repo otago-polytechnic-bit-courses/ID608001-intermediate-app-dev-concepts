@@ -8,7 +8,7 @@ Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-04-A NAME THAT MAKES SENSE TO YOU from **week-03-A NAME THAT MAKES SENSE TO YOU**.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-04-enemy-shaders-tween** from **week-03-player**.
 
 ---
 
