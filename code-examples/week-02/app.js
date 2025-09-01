@@ -3,7 +3,6 @@ import { graphqlHTTP } from "express-graphql";
 
 import schema from "./schema/index.js";
 import resolvers from "./resolvers/index.js";
-
 import prisma from "./prisma/client.js";
 
 const app = express();
