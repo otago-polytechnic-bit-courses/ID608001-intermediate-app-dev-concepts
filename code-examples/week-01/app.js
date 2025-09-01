@@ -22,23 +22,31 @@ const institutions = [
 ];
 
 const institutionSchema = `
-    type Institution {
-        id: ID!
-        name: String!
-        region: String!
-        country: String!
-    }
+  type Institution {
+    id: ID!
+    name: String!
+    region: String!
+    country: String!
+  }
 
-    type Query {
-        institutions: [Institution!]!
-    }
+  type Query {
+    institutions: [Institution!]!
+    institution(id: ID!): Institution
+    institutionsByRegion(region: String!): [Institution!]!
+    institutionsByCountry(country: String!): [Institution!]!
+  }
 `;
 
 const institutionResolvers = {
   institutions: () => institutions,
-  institution: ({ id }) =>
-    institutions.find((institution) => institution.id === id),
-  institutionByRegion: ({ region }) =>
+  institution: ({ id }) => {
+    const institution = institutions.find((inst) => inst.id === parseInt(id));
+    if (!institution) {
+      throw new Error(`No institution with the id: ${id} found`);
+    }
+    return institution;
+  },
+  institutionsByRegion: ({ region }) =>
     institutions.filter((institution) => institution.region === region),
   institutionsByCountry: ({ country }) =>
     institutions.filter((institution) => institution.country === country),
@@ -52,12 +60,15 @@ app.use(
     schema,
     rootValue: institutionResolvers,
     graphiql: true,
+    formatError: (err) => ({
+      message: err.message,
+    }),
   })
 );
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}/graphql`
   );
 });
 

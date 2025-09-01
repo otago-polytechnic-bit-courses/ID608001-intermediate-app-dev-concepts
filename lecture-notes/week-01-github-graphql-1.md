@@ -2,7 +2,7 @@
 
 ## GitHub
 
-This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/8sCyquQ_>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository.
+This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository.
 
 > **Note:** You will use this repository for non-assessed work.
 
@@ -18,36 +18,18 @@ Open your **id608001-s2-26-GitHub username** repository in **Visual Studio Code*
 
 ## GraphQL
 
-**GraphQL** is a query language for APIs and a runtime for executing those queries by using a type system you define for your data. It provides a more efficient, flexible, and powerful alternative to **REST**.
-
-**Key benefits of GraphQL:**
-- **Precise data fetching** - Request only the fields you need
-- **Single endpoint** - All operations go through one URL
-- **Strong type system** - Schema defines the structure of your API
-- **Real-time subscriptions** - Built-in support for live data updates
-- **Introspection** - Schema is self-documenting and explorable
+<Write stuff here>
 
 ---
 
 ## REST APIs vs. GraphQL APIs
 
-| Feature         | REST API                            | GraphQL API                        |
-| --------------- | ----------------------------------- | ---------------------------------- |
-| Data Fetching   | Multiple endpoints                  | Single endpoint                    |
-| Response Format | Fixed structure                     | Flexible structure                 |
-| Over-fetching   | Common (fetches unnecessary data)   | Avoided (fetches only needed data) |
-| Under-fetching  | Possible (multiple requests needed) | Avoided (single request for all)   |
-| Versioning      | Requires versioning                 | No versioning needed               |
-| Tooling         | Mature tooling available            | Emerging tooling                   |
-| Caching         | HTTP caching works naturally        | Requires custom caching strategies |
-| Learning Curve  | Familiar to most developers         | Requires learning query syntax     |
+<Write table here>
 
 Here is a REST API example:
 
 ```bash
-GET /api/institutions
 GET /api/institutions/1
-GET /api/institutions/1/courses
 ```
 
 Here is a GraphQL API example:
@@ -58,10 +40,6 @@ Here is a GraphQL API example:
     id
     name
     region
-    courses {
-      title
-      credits
-    }
   }
 }
 ```
@@ -118,13 +96,11 @@ const institutions = [
 // Omitted for brevity
 ```
 
-> **Note:** This is a mock data layer for demonstration purposes only. We will replace this with MongoDB in later weeks.
-
 ---
 
 ## Schemas
 
-In **GraphQL**, a schema defines the structure of your API, including the types of data that can be queried and the relationships between them. It serves as a contract between the client and the server, ensuring that both sides understand the shape of the data being exchanged.
+<Write stuff here>
 
 ```js
 // app.js
@@ -132,19 +108,19 @@ In **GraphQL**, a schema defines the structure of your API, including the types 
 // Omitted for brevity
 
 const institutionSchema = `
-    type Institution {
-        id: ID!
-        name: String!
-        region: String!
-        country: String!
-    }
+  type Institution {
+    id: ID!
+    name: String!
+    region: String!
+    country: String!
+  }
 
-    type Query {
-        institutions: [Institution!]!
-        institution(id: ID!): Institution
-        institutionsByRegion(region: String!): [Institution!]!
-        institutionsByCountry(country: String!): [Institution!]!
-    }
+  type Query {
+    institutions: [Institution!]!
+    institution(id: ID!): Institution
+    institutionsByRegion(region: String!): [Institution!]!
+    institutionsByCountry(country: String!): [Institution!]!
+  }
 `;
 
 const schema = buildSchema(institutionSchema);
@@ -152,13 +128,11 @@ const schema = buildSchema(institutionSchema);
 // Omitted for brevity
 ```
 
-> **Note:** The exclamation mark (`!`) indicates that a field is non-nullable, meaning it must always return a value. Square brackets (`[]`) indicate an array/list of items.
-
 ---
 
 ## Resolvers
 
-A **resolver** is a function that resolves a value for a type or field in your schema. Resolvers are responsible for fetching the data for a specific field in response to a query.
+<Write stuff here>
 
 ```js
 // app.js
@@ -178,13 +152,11 @@ const institutionResolvers = {
 // Omitted for brevity
 ```
 
-> **Note:** The `parseInt(id)` converts the string ID from GraphQL to a number for comparison with our mock data.
-
 ---
 
 ## Middleware
 
-Unlike **REST**, **GraphQL** does not require separate endpoints for each resource. Instead, you can define a single endpoint that handles all queries and mutations.
+<Write stuff here>
 
 ```js
 // app.js
@@ -197,6 +169,9 @@ app.use(
     schema,
     rootValue: institutionResolvers,
     graphiql: true,
+    formatError: (err) => ({
+      message: err.message,
+    }),
   })
 );
 
@@ -207,18 +182,19 @@ app.use(
 
 ## Error Handling
 
-**GraphQL** handles errors differently from **REST APIs**. Instead of HTTP status codes, GraphQL returns errors in the response along with any successfully resolved data.
+<Write stuff here>
 
 ```js
-// Example resolver with error handling
 const institutionResolvers = {
+  // Omitted for brevity
   institution: ({ id }) => {
     const institution = institutions.find((inst) => inst.id === parseInt(id));
     if (!institution) {
-      throw new Error(`Institution with id ${id} not found`);
+      throw new Error(`No institution with the id: ${id} found`);
     }
     return institution;
   },
+  // Omitted for brevity
 };
 ```
 
@@ -226,30 +202,28 @@ When you query for a non-existent institution, **GraphQL** will return:
 
 ```json
 {
-  "data": {
-    "institution": null
-  },
   "errors": [
     {
-      "message": "Institution with id 999 not found"
+      "message": "No institution with the id: 3 found"
     }
-  ]
+  ],
+  "data": {
+    "institution": null
+  }
 }
 ```
-
-This approach allows partial success. Other fields in your query can still return data even if one field fails.
 
 ---
 
 ## GraphiQL
 
-**GraphiQL** is an interactive, in-browser **IDE** designed for exploring and testing **GraphQL** APIs. It provides a user-friendly interface to write, validate, and execute **GraphQL** queries with features like syntax highlighting, auto-completion and real-time error detection.
+<Write stuff here>
 
 ---
 
 ### Testing
 
-To access **GraphiQL**, open your web browser and navigate to `http://localhost:4000/graphql`. It will load the **GraphiQL** interface where you can interact directly with your **GraphQL** API.
+<Write stuff here>
 
 <ADD IMAGE HERE>
 
@@ -328,7 +302,6 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task 1
 
-
 ---
 
 ### Task 2
@@ -337,16 +310,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task 3
 
-
 ---
 
 ### Task 4
 
-
 ---
 
 ### Task 5
-
 
 ---
 
