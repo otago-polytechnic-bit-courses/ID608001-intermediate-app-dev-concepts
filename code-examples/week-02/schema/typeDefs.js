@@ -43,11 +43,24 @@ const typeDefs = `
     institutionId: ID
   }
 
-  type Mutation {
-    createInstitution(input: CreateInstitutionInput!): Institution!
-    updateInstitution(id: ID!, input: UpdateInstitutionInput!): Institution!
-    deleteInstitution(id: ID!): String!
+  type InstitutionCreateResponse {
+    message: String!
+    data: [Institution!]!
+  }
 
+  type InstitutionUpdateResponse {
+    message: String!
+    data: Institution!
+  }
+
+  type InstitutionDeleteResponse {
+    message: String!
+  }
+
+  type Mutation {
+    createInstitution(input: CreateInstitutionInput!): InstitutionCreateResponse!
+    updateInstitution(id: ID!, input: UpdateInstitutionInput!): InstitutionUpdateResponse!
+    deleteInstitution(id: ID!): InstitutionDeleteResponse!
     createDepartment(input: CreateDepartmentInput!): Department!
     updateDepartment(id: ID!, input: UpdateDepartmentInput!): Department!
     deleteDepartment(id: ID!): String!

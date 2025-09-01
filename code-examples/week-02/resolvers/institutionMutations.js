@@ -8,9 +8,7 @@ const institutionMutations = {
       },
     });
 
-    const newInstitutions = await prisma.institution.findMany({
-      include: { departments: true },
-    });
+    const newInstitutions = await prisma.institution.findMany();
 
     return {
       message: "Institution successfully created",
@@ -34,7 +32,6 @@ const institutionMutations = {
         region: input.region,
         country: input.country,
       },
-      include: { departments: true },
     });
 
     return {

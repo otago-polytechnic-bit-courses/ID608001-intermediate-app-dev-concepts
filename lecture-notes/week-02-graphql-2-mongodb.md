@@ -26,6 +26,10 @@ To run **MongoDB** in a **Docker** container, use the following command:
 docker run -d -p 27017:27017 --name id608001-db-dev -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=HelloWorld123 mongo
 ```
 
+```bash
+DATABASE_URL="mongodb://admin:HelloWorld123@localhost:27017/id608001-dev-db?authSource=admin"
+```
+
 ---
 
 ### Prisma Schema File

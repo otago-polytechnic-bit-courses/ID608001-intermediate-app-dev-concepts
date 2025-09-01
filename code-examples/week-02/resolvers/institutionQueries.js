@@ -1,5 +1,5 @@
 const institutionQueries = {
-  institutions: async ({ prisma }) => {
+  institutions: async (args, { prisma }) => {
     try {
       const institutions = await prisma.institution.findMany({
         include: {
