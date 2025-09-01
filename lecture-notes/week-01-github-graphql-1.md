@@ -18,13 +18,9 @@ Open your **id608001-s2-26-GitHub username** repository in **Visual Studio Code*
 
 ## GraphQL
 
-<Write stuff here>
-
 ---
 
-## REST APIs vs. GraphQL APIs
-
-<Write table here>
+### REST APIs vs. GraphQL APIs
 
 Here is a REST API example:
 
@@ -47,7 +43,7 @@ Here is a GraphQL API example:
 
 ---
 
-## Dependencies
+### Dependencies
 
 To get started with **GraphQL** in your **Express** application, you need to install the following dependencies:
 
@@ -58,27 +54,19 @@ npm install express-graphql graphql
 In `app.js`, add the following imports.
 
 ```js
-// app.js
-
-// Omitted for brevity
-
+import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import { buildSchema } from "graphql";
-
-// Omitted for brevity
 ```
 
 ---
 
-## Mock Data Layer
+### Mock Data Layer
 
-In `app.js`, add the following code to create a mock data layer.
+In the root directory, create a new directory called `data`. In the `data` directory, create two new files called `institutions.js` and `departments.js`.
+
+In `institutions.js`, add the following code:
 
 ```js
-// app.js
-
-// Omitted for brevity
-
 const institutions = [
   {
     id: 1,
@@ -94,6 +82,12 @@ const institutions = [
   },
 ];
 
+export default institutions;
+```
+
+In `departments.js`, add the following code:
+
+```js
 const departments = [
   {
     id: 1,
@@ -107,21 +101,19 @@ const departments = [
   },
 ];
 
-// Omitted for brevity
+export default departments;
 ```
 
 ---
 
-## Schemas
+### Schemas
 
-<Write stuff here>
+In the root directory, create a new directory called `schema`. In the `schema` directory, create two new files called `typeDefs.js` and `index.js`.
+
+In `typeDefs.js`, add the following code:
 
 ```js
-// app.js
-
-// Omitted for brevity
-
-const schema = buildSchema(`
+const typeDefs = `
   type Institution {
     id: ID!
     name: String!
@@ -143,38 +135,62 @@ const schema = buildSchema(`
     departments: [Department!]!
     department(id: ID!): Department
   }
-`);
+`;
 
-// Omitted for brevity
+export default typeDefs;
+```
+
+In `index.js`, add the following code:
+
+```js
+import { buildSchema } from "graphql";
+
+import typeDefs from "./typeDefs.js";
+
+const schema = buildSchema(typeDefs);
+
+export default schema;
 ```
 
 ---
 
-## Helper Functions
+### Helper Functions
 
-<Write stuff here>
+In the root directory, create a new directory called `helpers`. In the `helpers` directory, create a new file called `utils.js`.
+
+In `utils.js`, add the following code:
 
 ```js
 const findById = (array, id) => array.find((item) => item.id === parseInt(id));
 const filterBy = (array, field, value) =>
   array.filter((item) => item[field] === value);
+
+export { findById, filterBy };
 ```
 
 ---
 
-## Resolvers
+### Resolvers
 
-<Write stuff here>
+In the root directory, create a new directory called `resolvers`. In the `resolvers` directory, create three new files called `institutionResolvers.js`, `departmentResolvers.js` and `index.js`.
+
+In `institutionResolvers.js`, add the following code:
 
 ```js
-// Omitted for brevity
+import institutions from "../data/institutions.js";
+import departments from "../data/departments.js";
+import { findById, filterBy } from "../helpers/utils.js";
 
-const resolvers = {
-  institutions: () =>
-    institutions.map((inst) => ({
+const institutionResolvers = {
+  institutions: () => {
+    if (institutions.length === 0) {
+      throw new Error("No institutions found");
+    }
+    return institutions.map((inst) => ({
       ...inst,
       departments: () => filterBy(departments, "institutionId", inst.id),
-    })),
+    }));
+  },
 
   institution: ({ id }) => {
     const institution = findById(institutions, id);
@@ -185,12 +201,28 @@ const resolvers = {
       departments: () => filterBy(departments, "institutionId", institution.id),
     };
   },
+};
 
-  departments: () =>
-    departments.map((dept) => ({
+export default institutionResolvers;
+```
+
+In `departmentResolvers.js`, add the following code:
+
+```js
+import institutions from "../data/institutions.js";
+import departments from "../data/departments.js";
+import { findById } from "../helpers/utils.js";
+
+const departmentResolvers = {
+  departments: () => {
+    if (departments.length === 0) {
+      throw new Error("No departments found");
+    }
+    return departments.map((dept) => ({
       ...dept,
       institution: () => findById(institutions, dept.institutionId),
-    })),
+    }));
+  },
 
   department: ({ id }) => {
     const department = findById(departments, id);
@@ -202,19 +234,38 @@ const resolvers = {
   },
 };
 
-// Omitted for brevity
+export default departmentResolvers;
+```
+
+In `index.js`, add the following code:
+
+```js
+import institutionResolvers from "./institutionResolvers.js";
+import departmentResolvers from "./departmentResolvers.js";
+
+const resolvers = {
+  ...institutionResolvers,
+  ...departmentResolvers,
+};
+
+export default resolvers;
 ```
 
 ---
 
-## Middleware
+### Middleware
 
-<Write stuff here>
+In `app.js`, add the following code:
 
 ```js
-// app.js
-
 // Omitted for brevity
+
+import schema from "./schema/index.js";
+import resolvers from "./resolvers/index.js";
+
+const app = express();
+
+const PORT = process.env.PORT || 4000;
 
 app.use(
   "/graphql",
@@ -222,28 +273,26 @@ app.use(
     schema,
     rootValue: resolvers,
     graphiql: true,
-    formatError: (err) => ({
-      message: err.message,
-    }),
+    customFormatErrorFn: (err) => ({ message: err.message }),
   })
 );
 
-// Omitted for brevity
+app.listen(PORT, () => {
+  console.log(
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}/graphql`
+  );
+});
+
+export default app;
 ```
 
 ---
 
 ## GraphiQL
 
-<Write stuff here>
-
 ---
 
 ### Testing
-
-<Write stuff here>
-
-<ADD IMAGE HERE>
 
 Here is an example of a query to get all institutions:
 
@@ -290,6 +339,8 @@ Here is an example of a query to get all institutions with their departments:
   }
 }
 ```
+
+<ADD IMAGE HERE>
 
 Execute queries by clicking the **Execute Query** button or pressing `Ctrl + Enter`. The response will display in the right-hand panel.
 
