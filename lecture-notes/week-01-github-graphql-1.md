@@ -40,6 +40,7 @@ Here is a GraphQL API example:
     id
     name
     region
+    country
   }
 }
 ```
@@ -93,6 +94,19 @@ const institutions = [
   },
 ];
 
+const departments = [
+  {
+    id: 1,
+    name: "Information Technology",
+    institutionId: 1,
+  },
+  {
+    id: 2,
+    name: "Nursing",
+    institutionId: 2,
+  },
+];
+
 // Omitted for brevity
 ```
 
@@ -107,25 +121,43 @@ const institutions = [
 
 // Omitted for brevity
 
-const institutionSchema = `
+const schema = buildSchema(`
   type Institution {
     id: ID!
     name: String!
     region: String!
     country: String!
+    departments: [Department!]!
+  }
+
+  type Department {
+    id: ID!
+    name: String!
+    institutionId: ID!
+    institution: Institution!
   }
 
   type Query {
     institutions: [Institution!]!
     institution(id: ID!): Institution
-    institutionsByRegion(region: String!): [Institution!]!
-    institutionsByCountry(country: String!): [Institution!]!
+    departments: [Department!]!
+    department(id: ID!): Department
   }
-`;
-
-const schema = buildSchema(institutionSchema);
+`);
 
 // Omitted for brevity
+```
+
+---
+
+## Helper Functions
+
+<Write stuff here>
+
+```js
+const findById = (array, id) => array.find((item) => item.id === parseInt(id));
+const filterBy = (array, field, value) =>
+  array.filter((item) => item[field] === value);
 ```
 
 ---
@@ -135,18 +167,39 @@ const schema = buildSchema(institutionSchema);
 <Write stuff here>
 
 ```js
-// app.js
-
 // Omitted for brevity
 
-const institutionResolvers = {
-  institutions: () => institutions,
-  institution: ({ id }) =>
-    institutions.find((institution) => institution.id === parseInt(id)),
-  institutionsByRegion: ({ region }) =>
-    institutions.filter((institution) => institution.region === region),
-  institutionsByCountry: ({ country }) =>
-    institutions.filter((institution) => institution.country === country),
+const resolvers = {
+  institutions: () =>
+    institutions.map((inst) => ({
+      ...inst,
+      departments: () => filterBy(departments, "institutionId", inst.id),
+    })),
+
+  institution: ({ id }) => {
+    const institution = findById(institutions, id);
+    if (!institution)
+      throw new Error(`No institution with the id: ${id} found`);
+    return {
+      ...institution,
+      departments: () => filterBy(departments, "institutionId", institution.id),
+    };
+  },
+
+  departments: () =>
+    departments.map((dept) => ({
+      ...dept,
+      institution: () => findById(institutions, dept.institutionId),
+    })),
+
+  department: ({ id }) => {
+    const department = findById(departments, id);
+    if (!department) throw new Error(`No department with the id: ${id} found`);
+    return {
+      ...department,
+      institution: () => findById(institutions, department.institutionId),
+    };
+  },
 };
 
 // Omitted for brevity
@@ -167,7 +220,7 @@ app.use(
   "/graphql",
   graphqlHTTP({
     schema,
-    rootValue: institutionResolvers,
+    rootValue: resolvers,
     graphiql: true,
     formatError: (err) => ({
       message: err.message,
@@ -176,41 +229,6 @@ app.use(
 );
 
 // Omitted for brevity
-```
-
----
-
-## Error Handling
-
-<Write stuff here>
-
-```js
-const institutionResolvers = {
-  // Omitted for brevity
-  institution: ({ id }) => {
-    const institution = institutions.find((inst) => inst.id === parseInt(id));
-    if (!institution) {
-      throw new Error(`No institution with the id: ${id} found`);
-    }
-    return institution;
-  },
-  // Omitted for brevity
-};
-```
-
-When you query for a non-existent institution, **GraphQL** will return:
-
-```json
-{
-  "errors": [
-    {
-      "message": "No institution with the id: 3 found"
-    }
-  ],
-  "data": {
-    "institution": null
-  }
-}
 ```
 
 ---
@@ -242,25 +260,13 @@ Here is an example of a query to get all institutions:
 
 <ADD IMAGE HERE>
 
-Here is an example of a query to get a specific institution:
+Here is an example of a query to get an institution by ID:
 
 ```graphql
 {
   institution(id: 1) {
     name
     region
-  }
-}
-```
-
-<ADD IMAGE HERE>
-
-Here is an example of a query to get institutions in a specific region:
-
-```graphql
-{
-  institutionsByRegion(region: "Otago") {
-    name
     country
   }
 }
@@ -268,14 +274,19 @@ Here is an example of a query to get institutions in a specific region:
 
 <ADD IMAGE HERE>
 
-Here is an example of a query to get institutions in a specific country:
+Here is an example of a query to get all institutions with their departments:
 
 ```graphql
 {
-  institutionsByCountry(country: "New Zealand") {
+  institutions {
     id
     name
     region
+    country
+    departments {
+      id
+      name
+    }
   }
 }
 ```

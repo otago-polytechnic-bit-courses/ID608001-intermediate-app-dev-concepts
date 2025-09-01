@@ -3,9 +3,9 @@ import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from "graphql";
 
 const app = express();
-
 const PORT = process.env.PORT || 4000;
 
+// Data Layer
 const institutions = [
   {
     id: 1,
@@ -21,55 +21,92 @@ const institutions = [
   },
 ];
 
-const institutionSchema = `
+const departments = [
+  {
+    id: 1,
+    name: "Information Technology",
+    institutionId: 1,
+  },
+  {
+    id: 2,
+    name: "Nursing",
+    institutionId: 2,
+  },
+];
+
+const schema = buildSchema(`
   type Institution {
     id: ID!
     name: String!
     region: String!
     country: String!
+    departments: [Department!]!
+  }
+
+  type Department {
+    id: ID!
+    name: String!
+    institutionId: ID!
+    institution: Institution!
   }
 
   type Query {
     institutions: [Institution!]!
     institution(id: ID!): Institution
-    institutionsByRegion(region: String!): [Institution!]!
-    institutionsByCountry(country: String!): [Institution!]!
+    departments: [Department!]!
+    department(id: ID!): Department
   }
-`;
+`);
 
-const institutionResolvers = {
-  institutions: () => institutions,
+const findById = (array, id) => array.find((item) => item.id === parseInt(id));
+const filterBy = (array, field, value) =>
+  array.filter((item) => item[field] === value);
+
+const resolvers = {
+  institutions: () =>
+    institutions.map((inst) => ({
+      ...inst,
+      departments: () => filterBy(departments, "institutionId", inst.id),
+    })),
+
   institution: ({ id }) => {
-    const institution = institutions.find((inst) => inst.id === parseInt(id));
-    if (!institution) {
+    const institution = findById(institutions, id);
+    if (!institution)
       throw new Error(`No institution with the id: ${id} found`);
-    }
-    return institution;
+    return {
+      ...institution,
+      departments: () => filterBy(departments, "institutionId", institution.id),
+    };
   },
-  institutionsByRegion: ({ region }) =>
-    institutions.filter((institution) => institution.region === region),
-  institutionsByCountry: ({ country }) =>
-    institutions.filter((institution) => institution.country === country),
-};
 
-const schema = buildSchema(institutionSchema);
+  departments: () =>
+    departments.map((dept) => ({
+      ...dept,
+      institution: () => findById(institutions, dept.institutionId),
+    })),
+
+  department: ({ id }) => {
+    const department = findById(departments, id);
+    if (!department) throw new Error(`No department with the id: ${id} found`);
+    return {
+      ...department,
+      institution: () => findById(institutions, department.institutionId),
+    };
+  },
+};
 
 app.use(
   "/graphql",
   graphqlHTTP({
     schema,
-    rootValue: institutionResolvers,
+    rootValue: resolvers,
     graphiql: true,
-    formatError: (err) => ({
-      message: err.message,
-    }),
+    customFormatErrorFn: (err) => ({ message: err.message }),
   })
 );
 
 app.listen(PORT, () => {
-  console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}/graphql`
-  );
+  console.log(`Server running at http://localhost:${PORT}/graphql`);
 });
 
 export default app;
