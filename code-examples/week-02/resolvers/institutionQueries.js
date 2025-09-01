@@ -1,5 +1,5 @@
-const institutionResolvers = {
-  institutions: async (args, { prisma }) => {
+const institutionQueries = {
+  institutions: async ({ prisma }) => {
     try {
       const institutions = await prisma.institution.findMany({
         include: {
@@ -37,4 +37,4 @@ const institutionResolvers = {
   },
 };
 
-export default institutionResolvers;
+export default institutionQueries;

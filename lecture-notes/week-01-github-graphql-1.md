@@ -172,16 +172,16 @@ export { findById, filterBy };
 
 ### Resolvers
 
-In the root directory, create a new directory called `resolvers`. In the `resolvers` directory, create three new files called `institutionResolvers.js`, `departmentResolvers.js` and `index.js`.
+In the root directory, create a new directory called `resolvers`. In the `resolvers` directory, create three new files called `institutionQueries.js`, `departmentQueries.js` and `index.js`.
 
-In `institutionResolvers.js`, add the following code:
+In `institutionQueries.js`, add the following code:
 
 ```js
 import institutions from "../data/institutions.js";
 import departments from "../data/departments.js";
 import { findById, filterBy } from "../helpers/utils.js";
 
-const institutionResolvers = {
+const institutionQueries = {
   institutions: () => {
     if (institutions.length === 0) {
       throw new Error("No institutions found");
@@ -203,17 +203,17 @@ const institutionResolvers = {
   },
 };
 
-export default institutionResolvers;
+export default institutionQueries;
 ```
 
-In `departmentResolvers.js`, add the following code:
+In `departmentQueries.js`, add the following code:
 
 ```js
 import institutions from "../data/institutions.js";
 import departments from "../data/departments.js";
 import { findById } from "../helpers/utils.js";
 
-const departmentResolvers = {
+const departmentQueries = {
   departments: () => {
     if (departments.length === 0) {
       throw new Error("No departments found");
@@ -234,18 +234,18 @@ const departmentResolvers = {
   },
 };
 
-export default departmentResolvers;
+export default departmentQueries;
 ```
 
 In `index.js`, add the following code:
 
 ```js
-import institutionResolvers from "./institutionResolvers.js";
-import departmentResolvers from "./departmentResolvers.js";
+import institutionQueries from "./institutionQueries.js";
+import departmentQueries from "./departmentQueries.js";
 
 const resolvers = {
-  ...institutionResolvers,
-  ...departmentResolvers,
+  ...institutionQueries,
+  ...departmentQueries,
 };
 
 export default resolvers;

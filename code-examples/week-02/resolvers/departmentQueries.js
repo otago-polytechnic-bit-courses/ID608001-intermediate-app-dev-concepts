@@ -1,5 +1,5 @@
-const departmentResolvers = {
-  departments: async (args, { prisma }) => {
+const departmentQueries = {
+  departments: async ({ prisma }) => {
     try {
       const departments = await prisma.department.findMany({
         include: {
@@ -37,4 +37,4 @@ const departmentResolvers = {
   },
 };
 
-export default departmentResolvers;
+export default departmentQueries;

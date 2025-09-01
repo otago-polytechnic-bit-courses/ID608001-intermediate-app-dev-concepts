@@ -1,9 +1,9 @@
-import institutionResolvers from "./institutionResolvers.js";
-import departmentResolvers from "./departmentResolvers.js";
+import institutionQueries from "./institutionQueries.js";
+import departmentQueries from "./departmentQueries.js";
 
 const resolvers = {
-  ...institutionResolvers,
-  ...departmentResolvers,
+  ...institutionQueries,
+  ...departmentQueries,
 };
 
 export default resolvers;

@@ -74,11 +74,11 @@ npx prisma db push
 
 ### Refactor Resolvers
 
-In `resolvers/institutionResolvers.js`, update the code to the following:
+In `resolvers/institutionQueries.js`, update the code to the following:
 
 ```js
-const institutionResolvers = {
-  institutions: async (args, { prisma }) => {
+const institutionQueries = {
+  institutions: async ({ prisma }) => {
     try {
       const institutions = await prisma.institution.findMany({
         include: {
@@ -116,14 +116,14 @@ const institutionResolvers = {
   },
 };
 
-export default institutionResolvers;
+export default institutionQueries;
 ```
 
-In `resolvers/departmentResolvers.js`, update the code to the following:
+In `resolvers/departmentQueries.js`, update the code to the following:
 
 ```js
-const departmentResolvers = {
-  departments: async (args, { prisma }) => {
+const departmentQueries = {
+  departments: async ({} prisma }) => {
     try {
       const departments = await prisma.department.findMany({
         include: {
@@ -161,7 +161,7 @@ const departmentResolvers = {
   },
 };
 
-export default departmentResolvers;
+export default departmentQueries;
 ```
 
 ---

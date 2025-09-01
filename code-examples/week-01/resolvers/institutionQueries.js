@@ -2,7 +2,7 @@ import institutions from "../data/institutions.js";
 import departments from "../data/departments.js";
 import { findById, filterBy } from "../helpers/utils.js";
 
-const institutionResolvers = {
+const institutionQueries = {
   institutions: () => {
     if (institutions.length === 0) {
       throw new Error("No institutions found");
@@ -24,4 +24,4 @@ const institutionResolvers = {
   },
 };
 
-export default institutionResolvers;
+export default institutionQueries;
