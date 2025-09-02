@@ -48,21 +48,22 @@ Here is a GraphQL API example:
 To get started with **GraphQL** in your **Express** application, you need to install the following dependencies:
 
 ```bash
-npm install express-graphql graphql
+npm install graphql graphql-http ruru
 ```
 
 In `app.js`, add the following imports.
 
 ```js
 import express from "express";
-import { graphqlHTTP } from "express-graphql";
+import { createHandler } from "graphql-http/lib/use/express";
+import { ruruHTML } from "ruru/server";
 ```
 
 ---
 
 ### Mock Data Layer
 
-In the root directory, create a new directory called `data`. In the `data` directory, create two new files called `institutions.js` and `departments.js`.
+In the root directory, create a new directory called `data`. In the `data` directory, create a new file called `institutions.js`.
 
 In `institutions.js`, add the following code:
 
@@ -85,25 +86,6 @@ const institutions = [
 export default institutions;
 ```
 
-In `departments.js`, add the following code:
-
-```js
-const departments = [
-  {
-    id: 1,
-    name: "Information Technology",
-    institutionId: 1,
-  },
-  {
-    id: 2,
-    name: "Nursing",
-    institutionId: 2,
-  },
-];
-
-export default departments;
-```
-
 ---
 
 ### Schemas
@@ -119,21 +101,11 @@ const typeDefs = `
     name: String!
     region: String!
     country: String!
-    departments: [Department!]!
-  }
-
-  type Department {
-    id: ID!
-    name: String!
-    institutionId: ID!
-    institution: Institution!
   }
 
   type Query {
     institutions: [Institution!]!
     institution(id: ID!): Institution
-    departments: [Department!]!
-    department(id: ID!): Department
   }
 `;
 
@@ -154,98 +126,30 @@ export default schema;
 
 ---
 
-### Helper Functions
-
-In the root directory, create a new directory called `helpers`. In the `helpers` directory, create a new file called `utils.js`.
-
-In `utils.js`, add the following code:
-
-```js
-const findById = (array, id) => array.find((item) => item.id === parseInt(id));
-const filterBy = (array, field, value) =>
-  array.filter((item) => item[field] === value);
-
-export { findById, filterBy };
-```
-
----
-
 ### Resolvers
 
-In the root directory, create a new directory called `resolvers`. In the `resolvers` directory, create three new files called `institutionQueries.js`, `departmentQueries.js` and `index.js`.
+In the root directory, create a new directory called `resolvers`. In the `resolvers` directory, create two new files called `institutionQueries.js` and `index.js`
 
 In `institutionQueries.js`, add the following code:
 
 ```js
 import institutions from "../data/institutions.js";
-import departments from "../data/departments.js";
-import { findById, filterBy } from "../helpers/utils.js";
 
 const institutionQueries = {
-  institutions: () => {
-    if (institutions.length === 0) {
-      throw new Error("No institutions found");
-    }
-    return institutions.map((inst) => ({
-      ...inst,
-      departments: () => filterBy(departments, "institutionId", inst.id),
-    }));
-  },
-
-  institution: ({ id }) => {
-    const institution = findById(institutions, id);
-    if (!institution)
-      throw new Error(`No institution with the id: ${id} found`);
-    return {
-      ...institution,
-      departments: () => filterBy(departments, "institutionId", institution.id),
-    };
-  },
+  institutions: () => institutions,
+  institution: ({ id }) => institutions.find((inst) => inst.id === Number(id)),
 };
 
 export default institutionQueries;
-```
-
-In `departmentQueries.js`, add the following code:
-
-```js
-import institutions from "../data/institutions.js";
-import departments from "../data/departments.js";
-import { findById } from "../helpers/utils.js";
-
-const departmentQueries = {
-  departments: () => {
-    if (departments.length === 0) {
-      throw new Error("No departments found");
-    }
-    return departments.map((dept) => ({
-      ...dept,
-      institution: () => findById(institutions, dept.institutionId),
-    }));
-  },
-
-  department: ({ id }) => {
-    const department = findById(departments, id);
-    if (!department) throw new Error(`No department with the id: ${id} found`);
-    return {
-      ...department,
-      institution: () => findById(institutions, department.institutionId),
-    };
-  },
-};
-
-export default departmentQueries;
 ```
 
 In `index.js`, add the following code:
 
 ```js
 import institutionQueries from "./institutionQueries.js";
-import departmentQueries from "./departmentQueries.js";
 
 const resolvers = {
   ...institutionQueries,
-  ...departmentQueries,
 };
 
 export default resolvers;
@@ -267,23 +171,24 @@ const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-app.use(
+app.all(
   "/graphql",
-  graphqlHTTP({
+  createHandler({
     schema,
     rootValue: resolvers,
-    graphiql: true,
-    customFormatErrorFn: (err) => ({ message: err.message }),
+    formatError: (err) => ({ message: err.message }),
   })
 );
 
-app.listen(PORT, () => {
-  console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}/graphql`
-  );
+app.get("/", (req, res) => {
+  res.send(ruruHTML({ endpoint: "/graphql" }));
 });
 
-export default app;
+app.listen(PORT, () => {
+  console.log(
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+  );
+});
 ```
 
 ---
@@ -320,35 +225,6 @@ Here is an example of a query to get an institution by ID:
   }
 }
 ```
-
-<ADD IMAGE HERE>
-
-Here is an example of a query to get all institutions with their departments:
-
-```graphql
-{
-  institutions {
-    id
-    name
-    region
-    country
-    departments {
-      id
-      name
-    }
-  }
-}
-```
-
-<ADD IMAGE HERE>
-
-Execute queries by clicking the **Execute Query** button or pressing `Ctrl + Enter`. The response will display in the right-hand panel.
-
-<ADD IMAGE HERE>
-
-Use the **Docs** panel on the right to explore your schema and discover available fields and queries. You can also use `Ctrl + Space` for auto-completion while typing queries.
-
-<ADD IMAGE HERE>
 
 ---
 

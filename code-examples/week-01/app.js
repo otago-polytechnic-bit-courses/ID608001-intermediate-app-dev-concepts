@@ -1,5 +1,6 @@
 import express from "express";
-import { graphqlHTTP } from "express-graphql";
+import { createHandler } from "graphql-http/lib/use/express";
+import { ruruHTML } from "ruru/server";
 
 import schema from "./schema/index.js";
 import resolvers from "./resolvers/index.js";
@@ -8,19 +9,22 @@ const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-app.use(
+app.all(
   "/graphql",
-  graphqlHTTP({
+  createHandler({
     schema,
     rootValue: resolvers,
-    graphiql: true,
-    customFormatErrorFn: (err) => ({ message: err.message }),
+    formatError: (err) => ({ message: err.message }),
   })
 );
 
+app.get("/", (req, res) => {
+  res.send(ruruHTML({ endpoint: "/graphql" }));
+});
+
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}/graphql`
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
   );
 });
 
