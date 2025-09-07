@@ -339,7 +339,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ## Task One
 
-Using the completed **03-state-management** formative assessment and **React Testing Library**, write tests for the following:
+Using the completed **03-state-management** exercises and **React Testing Library**, write tests for the following:
 
 - Adding **1984** and **Crime and Punishment** to the cart.
 - Checking if the total number of items in the cart is 2.

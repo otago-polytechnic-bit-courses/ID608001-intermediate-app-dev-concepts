@@ -227,7 +227,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task One
 
-Using **Shadcn UI** components, style the CRUD (create, read, update and delete) application created in last week's formative assessment. 
+Using **Shadcn UI** components, style the CRUD (create, read, update and delete) application created in last week's exercises.
 
 ---
 

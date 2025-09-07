@@ -120,7 +120,7 @@ In this section, you will independently research concepts covered in the course.
 
 ### Task One
 
-In the previous class's formative assessment, you created three levels. Add a node to the first and second levels that will allow the player to move to the next level when they collide with it. At the end of the third level, add a node that will end the game when the player collides with it.
+In the previous class's exercises, you created three levels. Add a node to the first and second levels that will allow the player to move to the next level when they collide with it. At the end of the third level, add a node that will end the game when the player collides with it.
 
 ---
 
