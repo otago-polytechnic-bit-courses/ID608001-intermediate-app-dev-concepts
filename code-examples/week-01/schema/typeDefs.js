@@ -7,7 +7,7 @@ const typeDefs = `
   }
 
   type Query {
-    institutions: [Institution!]!
+    institutions: [Institution!]
     institution(id: ID!): Institution 
   }
 `;

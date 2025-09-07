@@ -7,8 +7,12 @@ const typeDefs = `
   }
 
   type Query {
-    institutions: [Institution!]!
+    institutions: [Institution!]
     institution(id: ID!): Institution 
+  }
+
+  type Mutation {
+    createInstitution(name: String!, region: String!, country: String!): Institution
   }
 `;
 

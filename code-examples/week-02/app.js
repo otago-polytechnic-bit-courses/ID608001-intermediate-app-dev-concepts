@@ -4,6 +4,7 @@ import { ruruHTML } from "ruru/server";
 
 import schema from "./schema/index.js";
 import resolvers from "./resolvers/index.js";
+import prisma from "./prisma/client.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.all(
   createHandler({
     schema,
     rootValue: resolvers,
+    context: { prisma },
     formatError: (err) => ({ message: err.message }),
   })
 );
@@ -22,10 +24,9 @@ app.get("/", (req, res) => {
   res.send(ruruHTML({ endpoint: "/graphql" }));
 });
 
-app.listen(PORT, () => {
-  console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
-  );
+app.listen(4000, "0.0.0.0", () => {
+  console.log("GraphQL server running on http://0.0.0.0:4000/graphql");
 });
+
 
 export default app;

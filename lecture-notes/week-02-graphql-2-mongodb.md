@@ -23,11 +23,11 @@ Open your **id608001-s2-26-GitHub username** repository in **Visual Studio Code*
 To run **MongoDB** in a **Docker** container, use the following command:
 
 ```bash
-docker run -d -p 27017:27017 --name id608001-db-dev -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=HelloWorld123 mongo
+docker run -d -p 27017:27017 --name id608001-db-dev -v mongo_data:/data/db mongo --replSet rs0 --bind_ip_all
 ```
 
 ```bash
-DATABASE_URL="mongodb://admin:HelloWorld123@localhost:27017/id608001-dev-db?authSource=admin"
+DATABASE_URL="mongodb://localhost:27017/d608001-db-dev?replicaSet=rs0"
 ```
 
 ---
@@ -51,18 +51,8 @@ model Institution {
   name        String
   region      String
   country     String
-  departments Department[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-}
-
-model Department {
-  id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  institutionId String      @db.ObjectId
-  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
 }
 ```
 
@@ -81,91 +71,20 @@ npx prisma db push
 In `resolvers/institutionQueries.js`, update the code to the following:
 
 ```js
+import prisma from "../prisma/client.js";
+
 const institutionQueries = {
-  institutions: async ({ prisma }) => {
-    try {
-      const institutions = await prisma.institution.findMany({
-        include: {
-          departments: true,
-        },
-      });
-
-      if (institutions.length === 0) {
-        throw new Error("No institutions found");
-      }
-
-      return institutions;
-    } catch (err) {
-      throw new Error(err.message);
-    }
+  institutions: async () => {
+    return await prisma.institution.findMany();
   },
-
-  institution: async ({ id }, { prisma }) => {
-    try {
-      const institution = await prisma.institution.findUnique({
-        where: { id },
-        include: {
-          departments: true,
-        },
-      });
-
-      if (!institution) {
-        throw new Error(`No institution with the id: ${id} found`);
-      }
-
-      return institution;
-    } catch (err) {
-      throw new Error(err.message);
-    }
+  institution: async (_, { id }) => {
+    return await prisma.institution.findUnique({
+      where: { id },
+    });
   },
 };
 
 export default institutionQueries;
-```
-
-In `resolvers/departmentQueries.js`, update the code to the following:
-
-```js
-const departmentQueries = {
-  departments: async ({} prisma }) => {
-    try {
-      const departments = await prisma.department.findMany({
-        include: {
-          institution: true,
-        },
-      });
-
-      if (departments.length === 0) {
-        throw new Error("No departments found");
-      }
-
-      return departments;
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  },
-
-  department: async ({ id }, { prisma }) => {
-    try {
-      const department = await prisma.department.findUnique({
-        where: { id },
-        include: {
-          institution: true,
-        },
-      });
-
-      if (!department) {
-        throw new Error(`No department with the id: ${id} found`);
-      }
-
-      return department;
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  },
-};
-
-export default departmentQueries;
 ```
 
 ---
@@ -181,9 +100,9 @@ import prisma from "./prisma/client.js";
 
 // Omitted for brevity
 
-app.use(
+app.all(
   "/graphql",
-  graphqlHTTP({
+  createHandler({
     // Omitted for brevity
     context: { prisma },
     // Omitted for brevity
@@ -197,31 +116,34 @@ app.use(
 
 ```js
 import express from "express";
-import { graphqlHTTP } from "express-graphql";
+import { createHandler } from "graphql-http/lib/use/express";
+import { ruruHTML } from "ruru/server";
 
 import schema from "./schema/index.js";
 import resolvers from "./resolvers/index.js";
-
 import prisma from "./prisma/client.js";
 
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-app.use(
+app.all(
   "/graphql",
-  graphqlHTTP({
+  createHandler({
     schema,
     rootValue: resolvers,
-    graphiql: true,
     context: { prisma },
-    customFormatErrorFn: (err) => ({ message: err.message }),
+    formatError: (err) => ({ message: err.message }),
   })
 );
 
+app.get("/", (req, res) => {
+  res.send(ruruHTML({ endpoint: "/graphql" }));
+});
+
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}/graphql`
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
   );
 });
 

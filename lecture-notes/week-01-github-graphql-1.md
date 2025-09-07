@@ -104,7 +104,7 @@ const typeDefs = `
   }
 
   type Query {
-    institutions: [Institution!]!
+    institutions: [Institution!]
     institution(id: ID!): Institution
   }
 `;
@@ -202,7 +202,7 @@ app.listen(PORT, () => {
 Here is an example of a query to get all institutions:
 
 ```graphql
-{
+query {
   institutions {
     id
     name
@@ -217,7 +217,7 @@ Here is an example of a query to get all institutions:
 Here is an example of a query to get an institution by ID:
 
 ```graphql
-{
+query {
   institution(id: 1) {
     name
     region
