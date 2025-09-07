@@ -14,7 +14,7 @@ By default, **GitHub Classroom** creates an empty repository. Firstly, you must 
 
 ### Create a README
 
-Click the **Add file** button, then the **Create new file** button. Name your file `README.md` (Markdown), then click on the **Commit new file** button. You should see a new file in your formative assessments repository called `README.md` and the `main` branch.
+Click the **Add file** button, then the **Create new file** button. Name your file `README.md` (Markdown), then click on the **Commit new file** button. You should see a new file in your repository called `README.md` and the `main` branch.
 
 > **Resource:** <https://guides.github.com/features/mastering-markdown/>
 
@@ -22,7 +22,7 @@ Click the **Add file** button, then the **Create new file** button. Name your fi
 
 ### Create a .gitignore File
 
-Like before, click the **Add file** button and then the **Create new file** button. Name your file `.gitignore`. A `.gitignore` template dropdown will appear on the right-hand side of the screen. Select the **Node** `.gitignore` template. Click on the **Commit new file** button. You should see a new file in your formative assessments repository called `.gitignore`.
+Like before, click the **Add file** button and then the **Create new file** button. Name your file `.gitignore`. A `.gitignore` template dropdown will appear on the right-hand side of the screen. Select the **Node** `.gitignore` template. Click on the **Commit new file** button. You should see a new file in your repository called `.gitignore`.
 
 > **Resource:** <https://git-scm.com/docs/gitignore>
 
@@ -30,7 +30,7 @@ Like before, click the **Add file** button and then the **Create new file** butt
 
 ### Clone a Repository
 
-Open up **Git Bash** or whatever alternative you see fit on your computer. Clone your formative assessments repository to a location on your computer using the command: `git clone <repository URL>`.
+Open up **Git Bash** or whatever alternative you see fit on your computer. Clone your repository to a location on your computer using the command: `git clone <repository URL>`.
 
 > **Resource:** <https://git-scm.com/docs/git-clone>
 
