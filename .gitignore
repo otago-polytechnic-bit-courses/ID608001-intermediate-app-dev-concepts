@@ -6,3 +6,5 @@
 *.synctex.gz
 *.xdv
 *.log
+
+.DS_Store
