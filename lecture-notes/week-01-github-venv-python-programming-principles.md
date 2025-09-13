@@ -186,14 +186,14 @@ print(mySet) # {1, 2, 4, 5, 6}
 print(len(mySet)) # 5
 
 # Dictionary
-myDict = {"name": "John", "age": 30, "city": "New York"}
-print(myDict["name"]) # John
-myDict["age"] = 31
-print(myDict) # {"name": "John", "age": 31, "city": "New York"}
+myDict = {"firstName": "John", "lastName": "Doe", "age": 30, "city": "New York"}
+print(myDict["firstName"]) # John
+myDict["age"] = 35
+print(myDict) # {"firstName": "John", "lastName": "Doe", "age": 35, "city": "New York"}
 myDict["country"] = "USA"
-print(myDict) # {"name": "John", "age": 31, "city": "New York", "country": "USA"}
+print(myDict) # {"firstName": "John", "lastName": "Doe", "age": 35, "city": "New York", "country": "USA"}
 del myDict["city"]
-print(myDict) # {"name": "John", "age": 31, "country": "USA"}
+print(myDict) # {"firstName": "John", "lastName": "Doe", "age": 35, "country": "USA"}
 print(len(myDict)) # 3
 ```
 
@@ -230,34 +230,82 @@ print(squaredDict) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64,
 Here are some examples of file I/O in **Python**:
 
 ```python
+FILE_PATH = "example.txt"
+    
 # Writing to a file
-with open("example.txt", "w") as file:
+with open(FILE_PATH, "w") as file:
     file.write("Hello, World!")
 
 # Appending to a file
-with open("example.txt", "a") as file:
+with open(FILE_PATH, "a") as file:
     file.write("\nHow are you?")
 
 # Reading from a file
-with open("example.txt", "r") as file:
+with open(FILE_PATH, "r") as file:
     content = file.read()
     print(content) # Hello, World!
                    # How are you?
 ```
 
-The `with` keyword is used to ensure that the file is properly closed after its suite finishes, even if an exception is raised.
+The `with` keyword is used to ensure that the file, i.e., `example.txt`, is properly closed after its suite finishes, even if an exception is raised.
 
 ---
 
 ### Regular Expressions
 
+**Regular expressions** are sequences of characters that form a search pattern. They are used for pattern matching within strings. 
+
+Here are some examples of regular expressions in **Python**:
+
+```python
+import re
+
+# Match a pattern
+pattern = r"\d+" # Matches one or more digits
+text = "There are 123 apples and 456 oranges"
+matches = re.findall(pattern, text)
+print(matches) # ['123', '456']
+
+# Search for a pattern
+match = re.search(pattern, text)
+if match:
+    print(match.group()) # 123
+
+# Replace a pattern
+newText = re.sub(pattern, "NUM", text)
+print(newText) # There are NUM apples and NUM oranges
+```
+
 ---
 
 ### Modules and Packages
 
+In **Python**, a **module** is a file containing **Python** code that can define functions, classes, and variables. A **package** is a way of organizing related modules into a directory hierarchy.
+
+Here are some examples of modules and packages in **Python**:
+
+```python
+# Importing a module
+import math
+print(math.sqrt(16)) # 4.0
+print(math.pi) # 3.141592653589793
+
+# Importing specific functions from a module
+from math import sqrt, pi
+print(sqrt(25)) # 5.0
+print(pi) # 3.141592653589793
+
+# Importing a package
+import os
+print(os.getcwd()) # Current working directory
+print(os.listdir()) # List of files and directories in the current directory
+```
+
 ---
 
 ## Programming Principles
+
+**Programming principles** are guidelines that help you write clean, maintainable and efficient code. In this section, you will learn about three important programming principles: **DRY (Don't Repeat Yourself)**, **KISS (Keep It Simple, Stupid)**, and **YAGNI (You Aren't Gonna Need It)**.
 
 ---
 
