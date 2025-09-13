@@ -48,7 +48,7 @@ Once the **virtual environment** is activated, you should see the name of the **
 
 ## Python
 
-> You should already be familiar with these concepts from previous courses such as **ID510001: Programming 1**, **ID511001: Programming 2**, **ID607001: Introductory Application Development Concepts***, etc. However, we will review these concepts to ensure everyone is comfortable with **Python's** specific syntax and semantics before proceeding to advanced topics.
+> You should already be familiar with these concepts from previous courses such as **ID510001: Programming 1**, **ID511001: Programming 2**, **ID607001: Introductory Application Development Concepts\***, etc. However, we will review these concepts to ensure everyone is comfortable with **Python's** specific syntax and semantics before proceeding to advanced topics.
 
 ---
 
@@ -62,7 +62,7 @@ stringExample = "Hello, World!"
 integerExample = 10
 floatExample = 10.5
 booleanExample = True # or False
-noneExample = None 
+noneExample = None
 
 # Operators
 additionExample = integerExample + 5
@@ -104,25 +104,148 @@ notInOperatorExample = ("Python" not in stringExample)
 
 ### Control Structures
 
+Here are some examples of control structures in **Python**:
+
+```python
+# If-elif-else statement
+integerExample = 10
+
+if integerExample > 5:
+    print("integerExample is greater than 5")
+elif integerExample == 5:
+    print("integerExample is equal to 5")
+else:
+    print("integerExample is less than 5")
+
+# For loop
+for i in range(5):
+    print(i)
+
+# While loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+```
+
 ---
 
 ### Functions
+
+Here are some examples of functions in **Python**:
+
+```python
+# Function definition
+def add(a, b):
+    return a + b
+
+# Function call
+result = add(5, 10)
+print(result) # 15
+```
 
 ---
 
 ### Data Structures - Lists, Tuples, Sets and Dictionaries
 
+In **ID511001: Programming 2**, you learned about **lists** and **dictionaries**. In this section, we will review these concepts and introduce **tuples** and **sets**. **Tuples** are similar to **lists**, but they are immutable. They are defined using parentheses `()` instead of square brackets `[]`. **Sets** are unordered collections of unique elements. They are defined using curly braces `{}` or the `set()` function.
+
+Here are some examples of data structures in **Python**:
+
+```python
+# List
+myList = [1, 2, 3, 4, 5]
+myList.append(6)
+print(myList) # [1, 2, 3, 4, 5, 6]
+print(myList[0]) # 1
+print(myList[1:4]) # [2, 3, 4]
+myList.remove(3)
+print(myList) # [1, 2, 4, 5, 6]
+myList.pop()
+print(myList) # [1, 2, 4, 5]
+print(len(myList)) # 4
+myList.sort()
+print(myList) # [1, 2, 4, 5]
+myList.reverse()
+print(myList) # [5, 4, 2, 1]
+myList.clear()
+print(myList) # []
+
+# Tuple
+myTuple = (1, 2, 3, 4, 5)
+print(myTuple[0]) # 1
+print(myTuple[1:4]) # (2, 3, 4)
+print(len(myTuple)) # 5
+
+# Set
+mySet = {1, 2, 3, 4, 5}
+mySet.add(6)
+print(mySet) # {1, 2, 3, 4, 5, 6}
+mySet.remove(3)
+print(mySet) # {1, 2, 4, 5, 6}
+print(len(mySet)) # 5
+
+# Dictionary
+myDict = {"name": "John", "age": 30, "city": "New York"}
+print(myDict["name"]) # John
+myDict["age"] = 31
+print(myDict) # {"name": "John", "age": 31, "city": "New York"}
+myDict["country"] = "USA"
+print(myDict) # {"name": "John", "age": 31, "city": "New York", "country": "USA"}
+del myDict["city"]
+print(myDict) # {"name": "John", "age": 31, "country": "USA"}
+print(len(myDict)) # 3
+```
+
 ---
 
 ### Comprehensions
 
+**Comprehensions** provide a concise way to create lists, sets, or dictionaries in **Python**. They consist of brackets containing an expression followed by a `for` clause, and can also include optional `if` clauses to filter items.
+
+Here are some examples of comprehensions in **Python**:
+
+```python
+# List comprehension
+squaredList = [x**2 for x in range(10)]
+print(squaredList) # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# List comprehension with condition
+evenSquaredList = [x**2 for x in range(10) if x % 2 == 0]
+print(evenSquaredList) # [0, 4, 16, 36, 64]
+
+# Set comprehension
+squaredSet = {x**2 for x in range(10)}
+print(squaredSet) # {0, 1, 4, 9, 16, 25, 36, 49, 64, 81}
+
+# Dictionary comprehension
+squaredDict = {x: x**2 for x in range(10)}
+print(squaredDict) # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+```
+
 ---
 
-### File I/O and Exception Handling
+### File I/O
 
----
+Here are some examples of file I/O in **Python**:
 
-### Context Managers
+```python
+# Writing to a file
+with open("example.txt", "w") as file:
+    file.write("Hello, World!")
+
+# Appending to a file
+with open("example.txt", "a") as file:
+    file.write("\nHow are you?")
+
+# Reading from a file
+with open("example.txt", "r") as file:
+    content = file.read()
+    print(content) # Hello, World!
+                   # How are you?
+```
+
+The `with` keyword is used to ensure that the file is properly closed after its suite finishes, even if an exception is raised.
 
 ---
 
@@ -151,5 +274,3 @@ notInOperatorExample = ("Python" not in stringExample)
 ---
 
 ## Next Class
-
-
