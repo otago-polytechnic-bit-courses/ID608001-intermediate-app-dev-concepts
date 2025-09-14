@@ -48,7 +48,7 @@ Once the **virtual environment** is activated, you should see the name of the **
 
 ## Python
 
-> You should already be familiar with these concepts from previous courses such as **ID510001: Programming 1**, **ID511001: Programming 2**, **ID607001: Introductory Application Development Concepts\***, etc. However, we will review these concepts to ensure everyone is comfortable with **Python's** specific syntax and semantics before proceeding to advanced topics.
+> You should already be familiar with these concepts from previous courses such as **ID510001: Programming 1**, **ID511001: Programming 2**, **ID607001: Introductory Application Development Concepts**, etc. However, we will review these concepts to ensure everyone is comfortable with **Python's** specific syntax and semantics before proceeding to advanced topics.
 
 ---
 
@@ -90,8 +90,8 @@ orOperatorExample = (integerExample < 5 or booleanExample)
 notOperatorExample = not booleanExample
 
 # Identity operators
-isOperatorExample = (stringExample is "Hello, World!")
-isNotOperatorExample = (stringExample is not "Hello")
+isOperatorExample = (stringExample == "Hello, World!")
+isNotOperatorExample = (stringExample != "Hello")
 
 # Membership operators
 inOperatorExample = ("World" in stringExample)
@@ -146,6 +146,33 @@ print(result) # 15
 
 ---
 
+### Classes and Objects
+
+Here are some examples of classes and objects in **Python**:
+
+```python
+# Class definition
+class Institution:
+    def __init__(self, name, region, country):
+        self.name = name
+        self.region = region
+        self.country = country
+
+    def __str__(self):
+        return f"{self.name} is located in {self.region}, {self.country}"
+
+# Object instantiation
+institution = Institution("Otago Polytechnic", "Otago", "New Zealand")
+print(institution) # Otago Polytechnic is located in Otago, New Zealand
+print(institution.name) # Otago Polytechnic
+print(institution.region) # Otago
+print(institution.country) # New Zealand
+```
+
+> **Note:** The naming convention you should follow is **PascalCase** for classes.
+
+---
+
 ### Data Structures - Lists, Tuples, Sets and Dictionaries
 
 In **ID511001: Programming 2**, you learned about **lists** and **dictionaries**. In this section, we will review these concepts and introduce **tuples** and **sets**. **Tuples** are similar to **lists**, but they are immutable. They are defined using parentheses `()` instead of square brackets `[]`. **Sets** are unordered collections of unique elements. They are defined using curly braces `{}` or the `set()` function.
@@ -186,15 +213,15 @@ print(mySet) # {1, 2, 4, 5, 6}
 print(len(mySet)) # 5
 
 # Dictionary
-myDict = {"firstName": "John", "lastName": "Doe", "age": 30, "city": "New York"}
-print(myDict["firstName"]) # John
-myDict["age"] = 35
-print(myDict) # {"firstName": "John", "lastName": "Doe", "age": 35, "city": "New York"}
-myDict["country"] = "USA"
-print(myDict) # {"firstName": "John", "lastName": "Doe", "age": 35, "city": "New York", "country": "USA"}
-del myDict["city"]
-print(myDict) # {"firstName": "John", "lastName": "Doe", "age": 35, "country": "USA"}
+myDict = {"name": "Otago Polytechnic", "region": "Otago", "country": "New Zealand"}
+print(myDict["name"]) # Otago Polytechnic
+myDict["city"] = "Dunedin"
+print(myDict) # {'name': 'Otago Polytechnic', 'region': 'Otago', 'country': 'New Zealand', 'city': 'Dunedin'}
+del myDict["region"]
+print(myDict) # {'name': 'Otago Polytechnic', 'country': 'New Zealand', 'city': 'Dunedin'}
 print(len(myDict)) # 3
+myDict.clear()
+print(myDict) # {}
 ```
 
 ---
@@ -231,7 +258,7 @@ Here are some examples of file I/O in **Python**:
 
 ```python
 FILE_PATH = "example.txt"
-    
+
 # Writing to a file
 with open(FILE_PATH, "w") as file:
     file.write("Hello, World!")
@@ -253,7 +280,7 @@ The `with` keyword is used to ensure that the file, i.e., `example.txt`, is prop
 
 ### Regular Expressions
 
-**Regular expressions** are sequences of characters that form a search pattern. They are used for pattern matching within strings. 
+**Regular expressions** are sequences of characters that form a search pattern. They are used for pattern matching within strings.
 
 Here are some examples of regular expressions in **Python**:
 
@@ -311,14 +338,93 @@ print(os.listdir()) # List of files and directories in the current directory
 
 ### DRY (Don't Repeat Yourself)
 
+The **DRY** principle states that you should avoid duplicating code. Instead, you should create reusable functions or classes that can be called whenever needed. This helps to reduce errors and makes it easier to maintain your code.
+
+Here are some examples of the **DRY** principle in **Python**:
+
+```python
+# Not DRY
+def calculateAreaOfCircle(radius):
+    return 3.14159 * radius * radius
+
+def calculateAreaOfSquare(side):
+    return side * side
+
+def calculateAreaOfRectangle(length, width):
+    return length * width
+
+# DRY
+def calculateAreaOfCircle(radius):
+    return 3.14159 * radius * radius
+
+def calculateAreaOfSquare(side):
+    return calculateAreaOfRectangle(side, side)
+
+def calculateAreaOfRectangle(length, width):
+    return length * width
+```
+
+With the **DRY** principle, the `calculateAreaOfSquare` function reuses the `calculateAreaOfRectangle` function instead of duplicating the code.
+
 ---
 
 ### KISS (Keep It Simple, Stupid)
+
+The **KISS** principle states that you should keep your code simple and easy to understand. Avoid unnecessary complexity and use clear and concise names for variables, functions and classes.
+
+Here are some examples of the **KISS** principle in **Python**:
+
+```python
+# Not KISS
+def calculateAreaOfCircle(radius):
+    if radius < 0:
+        return 0
+    else:
+        area = 3.14159 * radius * radius
+        return area
+
+# KISS
+def calculateAreaOfCircle(radius):
+    if radius < 0:
+        return 0
+    return 3.14159 * radius * radius
+```
+
+With the **KISS** principle, the `calculateAreaOfCircle` function is simplified by removing the unnecessary `else` statement.
 
 ---
 
 ### YAGNI (You Aren't Gonna Need It)
 
+The **YAGNI** principle states that you should not add functionality until it is necessary. This helps to keep your codebase clean and reduces the risk of introducing bugs.
+
+Here are some examples of the **YAGNI** principle in **Python**:
+
+```python
+# Not YAGNI
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+        self.color = "red" # Not needed yet
+        self.borderWidth = 1 # Not needed yet
+
+    def calculateArea(self):
+        return 3.14159 * self.radius * self.radius
+
+# YAGNI
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def calculateArea(self):
+        return 3.14159 * self.radius * self.radius
+```
+
+With the **YAGNI** principle, the `Circle` class only includes the `radius` attribute and the `calculateArea` method, which are necessary for its functionality.
+
 ---
 
 ## Next Class
+
+Link to the next class: [Week 02]()
+
