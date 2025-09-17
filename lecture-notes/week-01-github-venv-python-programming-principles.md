@@ -426,6 +426,18 @@ With the **YAGNI** principle, the `Circle` class only includes the `radius` attr
 
 ## Exercises
 
+Copy the directory `week-01-github-venv-python-programming-principles` into your **id608001-s2-26** repository. Open your **id608001-s1-26** repository in **Visual Studio Code**. Open the terminal and run the commands:
+
+- `cd week-01-github-venv-python-programming-principles`
+- `python3 task-01.py`
+
+You should see the following output.
+
+```bash
+$ python3 task-01.py
+Hello, World!
+```
+
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -435,6 +447,20 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 ---
 
 ### Task 1
+
+In the `task-01.py` file, write a function called `calculateGrade(marks)` that takes a list of integers and returns:
+
+- The average mark
+- The letter grade (A: 90-100, B: 80-89, C: 70-79, D: 60-69, F: 0-59)
+- Whether the learner has passed (> 60)
+
+Here is an example of usage:
+
+```python
+marks = [85, 92, 78, 90, 88]
+average, letterGrade, passed = calculateGrade(marks)
+print(f"Average: {average}, Grade: {letterGrade}, Passed: {passed}") # Average: 86.6, Grade: B, Passed: True
+```
 
 ---
 
