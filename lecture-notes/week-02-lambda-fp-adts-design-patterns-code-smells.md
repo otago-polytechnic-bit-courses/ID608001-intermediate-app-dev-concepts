@@ -58,9 +58,9 @@ print(greet("Charlie")) # Hello, Charlie!
 
 ### Higher-Order Functions
 
-A **higher-order function** is a function that either takes one or more functions as arguments or returns a function as its result. Higher-order functions are a key feature of functional programming and allow for greater abstraction and code reuse.
+A **higher-order function** is a function that either takes one or more functions as arguments or returns a function as its result. **Higher-order functions** are a key feature of functional programming and allow for greater abstraction and code reuse.
 
-Here are some examples of higher-order functions in **Python**:
+Here are some examples of **higher-order functions** in **Python**:
 
 ```python
 # Higher-order function that takes a function as an argument
@@ -86,16 +86,16 @@ print(triple(5)) # 15
 
 ### Pure Functions
 
-A **pure function** is a function that, given the same input, will always return the same output and does not have any side effects (i.e., it does not modify any external state or variables). Pure functions are easier to reason about, test, and debug.
+A **pure function** is a function that, given the same input, will always return the same output and does not have any side effects, i.e., it does not modify any external state or variables. **Pure functions** are easier to reason about, test and debug.
 
-Here are some examples of pure functions in **Python**:
+Here are some examples of **pure functions** in **Python**:
 
 ```python
 # Pure function
 def add(a, b):
     return a + b
 print(add(2, 3)) # 5
-print(add(2, 3)) # 5 input)
+print(add(2, 3)) # 5
 
 # Impure function
 counter = 0
@@ -109,9 +109,9 @@ print(increment()) # 2
 
 ### Recursion
 
-**Recursion** is a programming technique where a function calls itself in order to solve a problem. Recursive functions typically have a base case that stops the recursion and a recursive case that breaks the problem down into smaller subproblems.
+**Recursion** is a programming technique where a function calls itself in order to solve a problem. Recursive functions typically have a base case that stops the **recursion** and a recursive case that breaks the problem down into smaller subproblems.
 
-Here are some examples of recursion in **Python**:
+Here are some examples of **recursion** in **Python**:
 
 ```python
 # Recursive function to calculate the factorial of a number
@@ -160,7 +160,41 @@ print(fibonacci(6)) # 8
 
 ## Design Patterns
 
+**Design patterns** are reusable solutions to common problems that occur in software design. They represent best practices and can help make your code more flexible, maintainable and easier to understand.
+
 ---
+
+### Behavioral Patterns
+
+**Behavioral design patterns** focus on communication between objects, what goes on between objects and how they operate together.
+
+---
+
+### Creational Patterns
+
+**Creational design patterns** deal with object creation mechanisms, trying to create objects in a manner suitable to the situation.
+
+---
+
+### Structural Patterns
+
+**Structural design patterns** focus on how objects and classes are composed to form larger structures. They help ensure that if one part of a system changes, the entire system does not need to change.
+
+---
+
+### Architectural Patterns
+
+**Architectural design patterns** provide a blueprint for the overall structure of a software system. They help define the high-level components and their interactions.
+
+---
+
+### Microservices Architecture
+
+**Microservices architecture** is an architectural pattern that structures an application as a collection of small, loosely coupled services. Each service is responsible for a specific business capability and can be developed, deployed, and scaled independently.
+
+### Serverless Architecture
+
+**Serverless architecture** is a cloud computing execution model where the cloud provider dynamically manages the allocation of machine resources. In a serverless model, developers can build and run applications without having to manage servers. The cloud provider takes care of the infrastructure, allowing developers to focus on writing code.
 
 ## Next Class
 

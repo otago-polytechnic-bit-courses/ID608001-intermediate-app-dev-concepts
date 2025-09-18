@@ -375,20 +375,29 @@ The **KISS** principle states that you should keep your code simple and easy to 
 Here are some examples of the **KISS** principle in **Python**:
 
 ```python
-# Not KISS
+# This example does not adhere to the KISS principle
 def calculateAreaOfCircle(radius):
     if radius < 0:
         return 0
     else:
         area = 3.14159 * radius * radius
         return area
+```
 
-# KISS
+How do you make the above example adhere to the **KISS** principle?
+
+<details>
+<summary>Click here to see an example</summary>
+
+```python
+# This example adheres to the KISS principle
 def calculateAreaOfCircle(radius):
     if radius < 0:
         return 0
     return 3.14159 * radius * radius
 ```
+</details>
+<br />
 
 With the **KISS** principle, the `calculateAreaOfCircle` function is simplified by removing the unnecessary `else` statement.
 
