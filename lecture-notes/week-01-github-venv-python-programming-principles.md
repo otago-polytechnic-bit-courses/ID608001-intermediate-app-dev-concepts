@@ -448,7 +448,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task 1
 
-In the `task-01.py` file, write a function called `calculateGrade(marks)` that takes a list of integers and returns:
+In the `task-01.py` file, write a function called `calculateGrade(marks)` that takes a list and returns:
 
 - The average mark
 - The letter grade (A: 90-100, B: 80-89, C: 70-79, D: 60-69, F: 0-59)
@@ -464,7 +464,218 @@ print(f"Average: {average}, Grade: {letterGrade}, Passed: {passed}") # Average: 
 
 ---
 
+### Task 2
+
+In the `task-02.py` file, write a function called `analyseText(text)` that takes a string that:
+
+- Counts the number of words
+- Finds all email addresses using a **regular expression**
+- Replaces all numbers with "NUM"
+- Returns a **dictionary** with the results
+
+Here is an example of usage:
+
+```python
+text = "Contact john@email.com or call 123-456-7890. We have 50 items available."
+result = analyseText(text)
+print(result) # {"wordCount": 10, "emails": ["john@email.com"], "textWithNumbers": "Contact john@email.com or call NUM-NUM-NUM. We have NUM items available."}
+
+```
+
+---
+
+### Task 3
+
+In the `task-03.py` file, write two classes called `Institution` and `InstitutionManager`:
+
+```python
+class Institution:
+    def __init__(self, name, region, country, studentCount):
+        # Initialise attributes
+        pass
+
+    def addStudents(self, count):
+        # Add students to the institution
+        pass
+
+    def __str__(self):
+        # Return formatted string representation
+        pass
+
+class InstitutionManager:
+    def __init__(self):
+        # Initialise with empty list of institutions
+        pass
+
+    def addInstitution(self, institution):
+        # Add institution to the list
+        pass
+
+    def findByCountry(self, country):
+        # Return list of institutions in given country
+        pass
+
+    def getTotalStudents(self):
+        # Return total students across all institutions
+        pass
+```
+
+---
+
+### Task 4
+
+In the `task-04.py` file, write functions that perform the following:
+
+```python
+import re
+
+def validateEmail(email):
+    """Validate email format using regex"""
+    pass
+
+def extractPhoneNumbers(text):
+    """Extract all phone numbers from text (various formats)"""
+    pass
+
+def formatName(name):
+    """Convert name to proper case (first letter of each word capitalized)"""
+    pass
+
+def generateSlug(title):
+    """Convert title to URL-friendly slug (lowercase, spaces to hyphens, remove special chars)"""
+    pass
+
+def countWordFrequency(text):
+    """Return dictionary with word frequency count (case-insensitive)"""
+    pass
+```
+
+---
+
+### Task 6
+
+In the `task-06.py` file, write a function called `processData(data)` that takes a list of dictionaries and performs the following:
+
+- Filters out any entries that do not have a "name" key
+- Sorts the remaining entries by the "age" key (ascending)
+- Returns the processed list
+
+Here is an example of usage:
+
+```python
+data = [
+    {"name": "Alice", "age": 30},
+    {"name": "Bob", "age": 25},
+    {"age": 40}
+]
+result = processData(data)
+print(result) # [{"name": "Bob", "age": 25}, {"name": "Alice", "age": 30}]
+```
+
+---
+
+### Task 7
+
+In the `task-07.py` file, write a function called `processStudentData(students)` that takes a list of tuples containing student information in the format `(name, age, grade, subjects)` where `subjects` is a list of subject names. The function should return a dictionary containing:
+
+Here is an example of usage:
+
+```python
+def processStudentData(students):
+    """
+    Input: List of tuples in format (name, age, grade, subjects)
+    where subjects is a list of subject names
+    
+    Return a dictionary containing:
+    - 'uniqueSubjects': Set of all unique subjects
+    - 'averageAge': Average age of students
+    - 'topStudents': List of students with grade >= 85
+    - 'subjectCount': Dictionary mapping each subject to count of students taking it
+    """
+    pass
+
+# Example input:
+students = [
+    ("Alice", 20, 88, ["Math", "Physics", "Chemistry"]),
+    ("Bob", 19, 92, ["Math", "Biology"]),
+    ("Carol", 21, 76, ["Physics", "Chemistry", "Biology"])
+]
+```
+
+---
+
+### Task 8
+
+In the `task-08.py` file, write functions that perform the following:
+
+```python
+def processStudentFile(filePath):
+    """
+    Read a file containing student records (one per line):
+    Format: "Name,Age,Grade1,Grade2,Grade3"
+    
+    Return:
+    - Dictionary with student names as keys and average grades as values
+    - Handle file not found errors gracefully
+    - Skip any malformed lines
+    """
+    pass
+
+def saveTopStudents(studentAverages, outputPath, threshold=85):
+    """
+    Save students with averages >= threshold to a new file
+    Format: "Name: Average"
+    """
+    pass
+```
+
+---
+
+### Task 9
+
+In the `task-09.py` file, write two classes called `Book` and `Library`:
+
+```python
+class Book:
+    def __init__(self, isbn, title, author, year):
+        pass
+
+class Library:
+    def __init__(self):
+        pass
+    
+    def addBook(self, book):
+        pass
+    
+    def searchByTitle(self, title):
+        pass
+    
+    def searchByAuthor(self, author):
+        pass
+    
+    def saveToFile(self, filename):
+        """Save library data to file"""
+        pass
+    
+    def loadFromFile(self, filename):
+        """Load library data from file"""
+        pass
+    
+    def getBooksByYear(self, year):
+        pass
+    
+    def removeBook(self, isbn):
+        pass
+```
+
+---
+
+### Task 10
+
+In the `task-10.py` file, write classes to simulate the game of **Blackjack**:
+
+---
+
 ## Next Class
 
 Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID608001-intermediate-app-dev-concepts/blob/s2-26/lecture-notes/week-week-02-lambda-fp-adts-design-patterns.md)
-
