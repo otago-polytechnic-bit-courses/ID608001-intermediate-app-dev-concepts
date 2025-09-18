@@ -21,10 +21,10 @@ There are several ways to create a virtual environment in **Python**. One common
 To create a **virtual environment**, open your terminal or command prompt, navigate to the root of your repository, and then run the following command:
 
 ```bash
-python3 -m venv id608001-env
+python -m venv venv
 ```
 
-This will create a new directory called `id608001-env` in root directory of your repository, which contains the **virtual environment**.
+This will create a new directory called `venv` in root directory of your repository, which contains the **virtual environment**.
 
 ---
 
@@ -33,13 +33,13 @@ This will create a new directory called `id608001-env` in root directory of your
 To activate the **virtual environment** on **Windows**, run the following command:
 
 ```bash
-id608001-env\Scripts\activate
+venv\Scripts\activate
 ```
 
 To activate the **virtual environment** on **macOS** or **Linux**, run the following command:
 
 ```bash
-source id608001-env/bin/activate
+source venv/bin/activate
 ```
 
 Once the **virtual environment** is activated, you should see the name of the **virtual environment** in your terminal prompt.
@@ -126,6 +126,16 @@ count = 0
 while count < 5:
     print(count)
     count += 1
+
+# Match-case statement
+day = "Monday"
+match day:
+    case "Monday":
+        print("Today is Monday")
+    case "Tuesday":
+        print("Today is Tuesday")
+    case _: # Default case
+        print("Today is not Monday or Tuesday")
 ```
 
 ---
@@ -161,16 +171,93 @@ class Institution:
     def __str__(self):
         return f"{self.name} is located in {self.region}, {self.country}"
 
-# Object instantiation
+# Object creation
 institution = Institution("Otago Polytechnic", "Otago", "New Zealand")
+
+# Calling the __str__ method
 print(institution) # Otago Polytechnic is located in Otago, New Zealand
-print(institution.name) # Otago Polytechnic
-print(institution.region) # Otago
+
+# Setting attributes
+institution.name = "Southern Institute of Technology"
+institution.region = "Southland"
+
+# Getting attributes
+print(institution.name) # Southern Institute of Technology
+print(institution.region) # Southland
 print(institution.country) # New Zealand
 ```
 
 > **Note:** The naming convention you should follow is **PascalCase** for classes.
 
+---
+
+### Inheritance
+
+Here are some examples of inheritance in **Python**:
+
+```python
+# Base class
+class Person:
+    def __init__(self, firstName, lastName, age):
+        self.firstName = firstName
+        self.lastName = lastName
+        self.age = age
+
+    def __str__(self):
+        return f"{self.firstName} {self.lastName} is {self.age} years old"
+
+# Derived class
+class Student(Person):
+    def __init__(self, firstName, lastName, age, id):
+        super().__init__(firstName, lastName, age)
+        self.id = id
+
+    def __str__(self):
+        return f"{self.firstName} {self.lastName} is {self.age} years old and is a student with ID {self.id}"
+
+# Object creation 
+person = Person("John", "Doe", 25)
+student = Student("Jane", "Doe", 20, "S12345")
+
+# Calling the __str__ method
+print(person) # John Doe is 25 years old
+print(student) # Jane Doe is 20 years old and is a student with ID S12345
+```
+
+---
+
+### Polymorphism
+
+Here are some examples of polymorphism in **Python**:
+
+```python
+# Base class
+class Animal:
+    def speak(self):
+        pass
+
+# Derived class
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+# Derived class
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+# Function that takes an Animal object and calls its speak method
+def animalSound(animal):
+    print(animal.speak())
+
+# Creating objects of the derived classes
+dog = Dog()
+cat = Cat()
+
+# Calling the animalSound function with different objects
+animalSound(dog) # Woof!
+animalSound(cat) # Meow!
+```
 ---
 
 ### Data Structures - Lists, Tuples, Sets and Dictionaries
@@ -330,6 +417,17 @@ print(os.listdir()) # List of files and directories in the current directory
 
 ---
 
+### User Input
+
+Here is an example of user input in **Python**:
+
+```python
+firstName = input("Enter your first name: ")
+lastName = input("Enter your last name: ")
+age = int(input("Enter your age: ")) # Convert input to integer
+print(f"Hello, {firstName} {lastName}! You are {age} years old.") # Hello, John Doe! You are 25 years old.
+```
+
 ## Programming Principles
 
 **Programming principles** are guidelines that help you write clean, maintainable and efficient code. In this section, you will learn about three important programming principles: **DRY (Don't Repeat Yourself)**, **KISS (Keep It Simple, Stupid)**, and **YAGNI (You Aren't Gonna Need It)**.
@@ -343,7 +441,7 @@ The **DRY** principle states that you should avoid duplicating code. Instead, yo
 Here are some examples of the **DRY** principle in **Python**:
 
 ```python
-# Not DRY
+# This example does not adhere to the DRY principle
 def calculateAreaOfCircle(radius):
     return 3.14159 * radius * radius
 
@@ -352,8 +450,15 @@ def calculateAreaOfSquare(side):
 
 def calculateAreaOfRectangle(length, width):
     return length * width
+```
 
-# DRY
+How do you make the above example adhere to the **DRY** principle?
+
+<details>
+<summary>Click here to see an example</summary>
+
+```python
+# This example adheres to the DRY principle
 def calculateAreaOfCircle(radius):
     return 3.14159 * radius * radius
 
@@ -363,6 +468,9 @@ def calculateAreaOfSquare(side):
 def calculateAreaOfRectangle(length, width):
     return length * width
 ```
+
+</details>
+<br />
 
 With the **DRY** principle, the `calculateAreaOfSquare` function reuses the `calculateAreaOfRectangle` function instead of duplicating the code.
 
@@ -396,6 +504,7 @@ def calculateAreaOfCircle(radius):
         return 0
     return 3.14159 * radius * radius
 ```
+
 </details>
 <br />
 
@@ -410,7 +519,7 @@ The **YAGNI** principle states that you should not add functionality until it is
 Here are some examples of the **YAGNI** principle in **Python**:
 
 ```python
-# Not YAGNI
+# This example does not adhere to the YAGNI principle
 class Circle:
     def __init__(self, radius):
         self.radius = radius
@@ -419,8 +528,15 @@ class Circle:
 
     def calculateArea(self):
         return 3.14159 * self.radius * self.radius
+```
 
-# YAGNI
+How do you make the above example adhere to the **YAGNI** principle?
+
+<details>
+<summary>Click here to see an example</summary>
+
+```python
+# This example adheres to the YAGNI principle
 class Circle:
     def __init__(self, radius):
         self.radius = radius
@@ -428,6 +544,9 @@ class Circle:
     def calculateArea(self):
         return 3.14159 * self.radius * self.radius
 ```
+
+</details>
+<br />
 
 With the **YAGNI** principle, the `Circle` class only includes the `radius` attribute and the `calculateArea` method, which are necessary for its functionality.
 
@@ -457,7 +576,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task 1
 
-In the `task-01.py` file, write a function called `calculateGrade(marks)` that takes a list and returns:
+In the `task-01.py` file, write a function called `calculateGrade(marks)` that takes a list of marks (integers) and returns:
 
 - The average mark
 - The letter grade (A: 90-100, B: 80-89, C: 70-79, D: 60-69, F: 0-59)
@@ -471,11 +590,13 @@ average, letterGrade, passed = calculateGrade(marks)
 print(f"Average: {average}, Grade: {letterGrade}, Passed: {passed}") # Average: 86.6, Grade: B, Passed: True
 ```
 
+Make sure you consider edge cases such as an empty list of marks or invalid marks (e.g., negative numbers or numbers greater than 100).
+
 ---
 
 ### Task 2
 
-In the `task-02.py` file, write a function called `analyseText(text)` that takes a string that:
+In the `task-02.py` file, write a function called `analyseText(text)` that takes a string and returns:
 
 - Counts the number of words
 - Finds all email addresses using a **regular expression**
@@ -488,200 +609,19 @@ Here is an example of usage:
 text = "Contact john@email.com or call 123-456-7890. We have 50 items available."
 result = analyseText(text)
 print(result) # {"wordCount": 10, "emails": ["john@email.com"], "textWithNumbers": "Contact john@email.com or call NUM-NUM-NUM. We have NUM items available."}
-
 ```
 
 ---
 
 ### Task 3
 
-In the `task-03.py` file, write two classes called `Institution` and `InstitutionManager`:
-
-```python
-class Institution:
-    def __init__(self, name, region, country, studentCount):
-        # Initialise attributes
-        pass
-
-    def addStudents(self, count):
-        # Add students to the institution
-        pass
-
-    def __str__(self):
-        # Return formatted string representation
-        pass
-
-class InstitutionManager:
-    def __init__(self):
-        # Initialise with empty list of institutions
-        pass
-
-    def addInstitution(self, institution):
-        # Add institution to the list
-        pass
-
-    def findByCountry(self, country):
-        # Return list of institutions in given country
-        pass
-
-    def getTotalStudents(self):
-        # Return total students across all institutions
-        pass
-```
-
 ---
 
 ### Task 4
 
-In the `task-04.py` file, write functions that perform the following:
-
-```python
-import re
-
-def validateEmail(email):
-    """Validate email format using regex"""
-    pass
-
-def extractPhoneNumbers(text):
-    """Extract all phone numbers from text (various formats)"""
-    pass
-
-def formatName(name):
-    """Convert name to proper case (first letter of each word capitalized)"""
-    pass
-
-def generateSlug(title):
-    """Convert title to URL-friendly slug (lowercase, spaces to hyphens, remove special chars)"""
-    pass
-
-def countWordFrequency(text):
-    """Return dictionary with word frequency count (case-insensitive)"""
-    pass
-```
-
 ---
 
-### Task 6
-
-In the `task-06.py` file, write a function called `processData(data)` that takes a list of dictionaries and performs the following:
-
-- Filters out any entries that do not have a "name" key
-- Sorts the remaining entries by the "age" key (ascending)
-- Returns the processed list
-
-Here is an example of usage:
-
-```python
-data = [
-    {"name": "Alice", "age": 30},
-    {"name": "Bob", "age": 25},
-    {"age": 40}
-]
-result = processData(data)
-print(result) # [{"name": "Bob", "age": 25}, {"name": "Alice", "age": 30}]
-```
-
----
-
-### Task 7
-
-In the `task-07.py` file, write a function called `processStudentData(students)` that takes a list of tuples containing student information in the format `(name, age, grade, subjects)` where `subjects` is a list of subject names. The function should return a dictionary containing:
-
-Here is an example of usage:
-
-```python
-def processStudentData(students):
-    """
-    Input: List of tuples in format (name, age, grade, subjects)
-    where subjects is a list of subject names
-    
-    Return a dictionary containing:
-    - 'uniqueSubjects': Set of all unique subjects
-    - 'averageAge': Average age of students
-    - 'topStudents': List of students with grade >= 85
-    - 'subjectCount': Dictionary mapping each subject to count of students taking it
-    """
-    pass
-
-# Example input:
-students = [
-    ("Alice", 20, 88, ["Math", "Physics", "Chemistry"]),
-    ("Bob", 19, 92, ["Math", "Biology"]),
-    ("Carol", 21, 76, ["Physics", "Chemistry", "Biology"])
-]
-```
-
----
-
-### Task 8
-
-In the `task-08.py` file, write functions that perform the following:
-
-```python
-def processStudentFile(filePath):
-    """
-    Read a file containing student records (one per line):
-    Format: "Name,Age,Grade1,Grade2,Grade3"
-    
-    Return:
-    - Dictionary with student names as keys and average grades as values
-    - Handle file not found errors gracefully
-    - Skip any malformed lines
-    """
-    pass
-
-def saveTopStudents(studentAverages, outputPath, threshold=85):
-    """
-    Save students with averages >= threshold to a new file
-    Format: "Name: Average"
-    """
-    pass
-```
-
----
-
-### Task 9
-
-In the `task-09.py` file, write two classes called `Book` and `Library`:
-
-```python
-class Book:
-    def __init__(self, isbn, title, author, year):
-        pass
-
-class Library:
-    def __init__(self):
-        pass
-    
-    def addBook(self, book):
-        pass
-    
-    def searchByTitle(self, title):
-        pass
-    
-    def searchByAuthor(self, author):
-        pass
-    
-    def saveToFile(self, filename):
-        """Save library data to file"""
-        pass
-    
-    def loadFromFile(self, filename):
-        """Load library data from file"""
-        pass
-    
-    def getBooksByYear(self, year):
-        pass
-    
-    def removeBook(self, isbn):
-        pass
-```
-
----
-
-### Task 10
-
-In the `task-10.py` file, write classes to simulate the game of **Blackjack**:
+### Task 5
 
 ---
 
