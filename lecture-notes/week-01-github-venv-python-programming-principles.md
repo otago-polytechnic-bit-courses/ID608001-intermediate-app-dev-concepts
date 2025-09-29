@@ -215,7 +215,7 @@ class Student(Person):
     def __str__(self):
         return f"{self.firstName} {self.lastName} is {self.age} years old and is a student with ID {self.id}"
 
-# Object creation 
+# Object creation
 person = Person("John", "Doe", 25)
 student = Student("Jane", "Doe", 20, "S12345")
 
@@ -258,6 +258,7 @@ cat = Cat()
 animalSound(dog) # Woof!
 animalSound(cat) # Meow!
 ```
+
 ---
 
 ### Data Structures - Lists, Tuples, Sets and Dictionaries
@@ -428,6 +429,26 @@ age = int(input("Enter your age: ")) # Convert input to integer
 print(f"Hello, {firstName} {lastName}! You are {age} years old.") # Hello, John Doe! You are 25 years old.
 ```
 
+---
+
+### HTTP Requests
+
+Here is an example of making an HTTP request in **Python** using the `requests` library:
+
+```python
+import requests
+
+try:
+    response = requests.get("https://opentdb.com/api.php?amount=1&type=multiple")
+    response.raise_for_status() 
+    data = response.json()
+    print(data)
+except requests.exceptions.RequestException as e:
+    print(f"An error occurred: {e}")
+```
+
+---
+
 ## Programming Principles
 
 **Programming principles** are guidelines that help you write clean, maintainable and efficient code. In this section, you will learn about three important programming principles: **DRY (Don't Repeat Yourself)**, **KISS (Keep It Simple, Stupid)**, and **YAGNI (You Aren't Gonna Need It)**.
@@ -557,12 +578,12 @@ With the **YAGNI** principle, the `Circle` class only includes the `radius` attr
 Copy the directory `week-01-github-venv-python-programming-principles` into your **id608001-s2-26** repository. Open your **id608001-s1-26** repository in **Visual Studio Code**. Open the terminal and run the commands:
 
 - `cd week-01-github-venv-python-programming-principles`
-- `python3 task-01.py`
+- `python task-01.py`
 
 You should see the following output.
 
 ```bash
-$ python3 task-01.py
+$ python task-01.py
 Hello, World!
 ```
 
@@ -576,7 +597,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Task 1
 
-In the `task-01.py` file, write a function called `calculateGrade(marks)` that takes a list of marks (integers) and returns:
+In the `task-01.py` file, write a function called `calculateGrade(marks)` that takes a list of integers (`marks`) and returns:
 
 - The average mark
 - The letter grade (A: 90-100, B: 80-89, C: 70-79, D: 60-69, F: 0-59)
@@ -590,13 +611,13 @@ average, letterGrade, passed = calculateGrade(marks)
 print(f"Average: {average}, Grade: {letterGrade}, Passed: {passed}") # Average: 86.6, Grade: B, Passed: True
 ```
 
-Make sure you consider edge cases such as an empty list of marks or invalid marks (e.g., negative numbers or numbers greater than 100).
+Make sure you consider edge cases such as an empty list of marks or invalid marks. For example, negative numbers or numbers greater than 100.
 
 ---
 
 ### Task 2
 
-In the `task-02.py` file, write a function called `analyseText(text)` that takes a string and returns:
+In the `task-02.py` file, write a function called `analyseText(text)` that takes a string (`text`) and returns:
 
 - Counts the number of words
 - Finds all email addresses using a **regular expression**
@@ -615,13 +636,25 @@ print(result) # {"wordCount": 10, "emails": ["john@email.com"], "textWithNumbers
 
 ### Task 3
 
+In the `task-03.py` file, create a simple **quiz** game. The game should:
+
+- Perform an HTTP GET request to the [Open Trivia Database API](https://opentdb.com/api_config.php) to fetch 5 multiple-choice questions
+- Display each question and its possible answers to the user
+- Allow the user to input their answer for each question
+- Keep track of the user's score and display it at the end of the quiz
+
 ---
 
 ### Task 4
 
----
+In the `task-04.py` file, create a simple **Blackjack** game. The game should allow a single player to play against the dealer (computer). The player should be able to:
 
-### Task 5
+- Be dealt two cards
+- Choose to "hit" (get another card) or "stand" (keep current hand)
+- The dealer should follow standard **Blackjack** rules (hit until reaching 17 or higher)
+- Determine the winner based on the final hands
+
+> **Note:** Make sure you complete this task as we will build upon this next week.
 
 ---
 
