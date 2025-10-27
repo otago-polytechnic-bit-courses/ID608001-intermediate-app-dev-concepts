@@ -14,6 +14,11 @@
 \usepackage[margin=1.75cm]{geometry}
 \usepackage[table]{xcolor}
 \usepackage{fancyhdr}
+\usepackage{pdflscape}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue 
+} 
 \hypersetup{colorlinks=true, urlcolor=blue}
 \setlength{\parindent}{0pt}
 \pagestyle{fancy}
@@ -225,4 +230,190 @@ You will complete this assessment mostly during your learner-managed time. Howev
 	  \item Make sure the video is clear and easy to follow.
 	  \item Submit a link to the presentation in your repository's \textbf{README.md} file.
 	\end{itemize}
+
+	\newgeometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+	\begin{landscape}
+
+	\section*{Marking Rubric}
+
+	\subsection*{Functionality - Learning Outcomes 1, 2 (25\%)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{HackerNews API - Data Fetching and UI (2\%)} & 
+Data fetched correctly from HackerNews API. Spinner displays during loading. Fully responsive UI using Tailwind CSS across all screen sizes. & 
+Data fetched correctly. Spinner present. Responsive UI with minor issues on some screen sizes. & 
+Data fetched but may have minor issues. Basic spinner implemented. Partially responsive UI. & 
+Data fetching fails or incomplete. No spinner or non-functional. Poor or no responsive design. \\ \hline
+
+\textbf{HackerNews API - Story Features (3\%)} & 
+All 50 stories displayed correctly for each type (ask, best, job, new, show, top). All required fields shown (title, by, text, time, link). Text truncation to 100 chars with functional expand link working perfectly. & 
+Stories displayed for all types. Most required fields shown. Text truncation mostly functional with minor issues. & 
+Stories displayed for most types. Some required fields shown. Basic text truncation present. & 
+Multiple story types missing. Required fields missing. Text truncation non-functional. \\ \hline
+
+\textbf{HackerNews API - Leader Features (2\%)} & 
+100 leaders displayed correctly. All required fields shown (id, karma, created, about, profile link). Profile links formatted correctly. & 
+100 leaders displayed. Most required fields shown. Profile links mostly functional. & 
+Leaders displayed but count may be incorrect. Some required fields shown. Basic profile links present. & 
+Leaders missing or significantly incomplete. Required fields missing. Profile links non-functional. \\ \hline
+
+\textbf{HackerNews API - Favourites Features (2\%)} & 
+Heart icon toggles correctly for stories and leaders. Favourite list displays all saved items accurately. Clear message shown when no favourites exist. & 
+Heart icon functional with minor issues. Favourite list mostly accurate. Message displayed for no favourites. & 
+Heart icon partially functional. Favourite list displays some items. Basic no-favourites message present. & 
+Favourites feature non-functional or missing. Heart icon doesn't toggle. No message for empty favourites. \\ \hline
+
+\textbf{HackerNews API - Search Features (2\%)} & 
+Search works for stories by title and type. Search works for leaders by id. Case-insensitive and returns partial matches. Clear message when no results found. & 
+Search mostly functional for stories and leaders. Case-insensitive with minor issues. No results message present. & 
+Basic search implemented. May have case-sensitivity issues or limited functionality. Some no-results handling. & 
+Search non-functional or missing. No case-insensitive handling. No message for empty results. \\ \hline
+
+\end{tabular}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{HackerNews API - Sort Features (2\%)} & 
+Stories sort correctly by time, score and type. Leaders sort correctly by karma and created. Default sort order correctly implemented (stories: time, leaders: karma). & 
+Sorting mostly functional for stories and leaders. Default sort orders present with minor issues. & 
+Basic sorting implemented for some criteria. Default sort orders partially implemented. & 
+Sorting non-functional or missing. Default sort orders not implemented. \\ \hline
+
+\textbf{HackerNews API - Time Formatting and Medium Features (3\%)} & 
+Time and created displayed in human-readable format. Five medium features fully implemented and functional. Features well-integrated and polished. & 
+Time formatting mostly correct. 4-5 medium features implemented with minor issues. & 
+Basic time formatting present. 3 medium features implemented with some functionality gaps. & 
+Time formatting missing or incorrect. Fewer than 3 medium features or non-functional. \\ \hline
+
+\textbf{HackerNews API - Hard Features (2\%)} & 
+Two hard features fully implemented and functional. Features work correctly and are well-integrated. & 
+Two hard features implemented with minor issues or limitations. & 
+1-2 hard features partially implemented with functionality gaps. & 
+Fewer than 1 hard feature or non-functional implementations. \\ \hline
+
+\textbf{OpenTDB API - Data Fetching and UI (2\%)} & 
+Data fetched correctly from OpenTDB API. Spinner displays during loading. Fully responsive UI using Shadcn UI across all screen sizes. & 
+Data fetched correctly. Spinner present. Responsive UI with minor issues on some screen sizes. & 
+Data fetched but may have minor issues. Basic spinner implemented. Partially responsive UI. & 
+Data fetching fails or incomplete. No spinner or non-functional. Poor or no responsive design. \\ \hline
+
+\textbf{OpenTDB API - Quiz Creation and Display (2\%)} & 
+Quiz creation form with all fields (start date, end date, number of questions, category, difficulty, type). Past, current and future quizzes displayed correctly. Past and future quizzes correctly non-playable. & 
+Quiz creation mostly functional with all fields. Quiz list displayed with minor issues. Playability restrictions mostly enforced. & 
+Basic quiz creation with some fields. Quiz list partially functional. Some playability restrictions present. & 
+Quiz creation missing fields or non-functional. Quiz list missing or incorrect. No playability restrictions. \\ \hline
+
+\textbf{OpenTDB API - Quiz Playing (2\%)} & 
+Quiz playing fully functional with all required fields displayed. Questions and options shuffled correctly. Submit button works properly. & 
+Quiz playing mostly functional. Shuffling works with minor issues. Submit button present. & 
+Basic quiz playing implemented. Shuffling partially functional. Submit button present but may have issues. & 
+Quiz playing non-functional or missing. No shuffling. Submit button missing or broken. \\ \hline
+
+\end{tabular}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{OpenTDB API - Results and Storage (2\%)} & 
+Results display correctly after submission. Name prompt works. All required result fields shown. Quiz results stored appropriately and persistently. & 
+Results mostly functional. Name prompt present. Most result fields shown. Results stored with minor issues. & 
+Basic results display. Name prompt partially functional. Some result fields shown. Results storage incomplete. & 
+Results non-functional or missing. No name prompt. Required fields missing. No results storage. \\ \hline
+
+\textbf{OpenTDB API - Statistics and Medium Features (1\%)} & 
+Average score per quiz displayed correctly. Total quizzes played shown accurately. Score lists displayed for each quiz. Three medium features fully implemented. & 
+Statistics mostly accurate. Score lists present. 2-3 medium features implemented with minor issues. & 
+Basic statistics present. Score lists partially functional. 1-2 medium features implemented. & 
+Statistics missing or incorrect. Score lists non-functional. Fewer than 1 medium feature. \\ \hline
+
+\textbf{Deployment (2\%)} & 
+Both applications successfully deployed to Vercel. Applications are accessible, functional and perform well in production. & 
+Both applications deployed to Vercel with minor issues or performance concerns. & 
+Both applications deployed but with accessibility or functionality issues in production. & 
+Applications not deployed, deployment non-functional, or only one application deployed. \\ \hline
+
+\end{tabular}
+
+	\subsection*{Code Quality and Best Practices - Learning Outcomes 1, 2 (40\%)}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Code Readability and Maintainability (10\%)} & 
+Code is exceptionally clean and readable with consistent formatting. Meaningful variable and function names. Well-organised file structure. Comprehensive comments where needed. & 
+Code is clean and readable with good naming conventions. Organised structure with some helpful comments. Minor inconsistencies. & 
+Code is mostly readable. Some unclear naming or inconsistent formatting. Basic organisation present. & 
+Code is difficult to read with poor naming conventions. Inconsistent or chaotic structure. \\ \hline
+
+\textbf{Modularity and Reusability (10\%)} & 
+Excellent use of modular, reusable components. Functions and components are well-abstracted. No code duplication. DRY principles followed throughout. & 
+Good modular structure with reusable components. Minimal code duplication. Most code follows DRY principles. & 
+Some modular components present. Some code duplication exists. Partial adherence to DRY principles. & 
+Little modularity. Significant code duplication. Poor component abstraction. \\ \hline
+
+\textbf{Code Simplicity and Clarity (10\%)} & 
+Code is simple, elegant and easy to understand. Complex logic is well-explained. Appropriate use of language features without over-engineering. & 
+Code is generally simple and clear. Most logic is easy to follow with minor complex sections. & 
+Code works but contains unnecessarily complex sections. Some logic is difficult to follow. & 
+Code is overly complex or convoluted. Difficult to understand the implementation. \\ \hline
+
+\textbf{Performance and Resource Management (10\%)} & 
+Excellent resource management. Efficient API calls and data handling. Proper error handling and memory management. No performance bottlenecks. Optimised component rendering and state updates. & 
+Good resource management. Mostly efficient API calls. Adequate error handling with room for improvement. Minor performance considerations. & 
+Basic resource management. Some inefficient API calls or error handling gaps. Performance acceptable but not optimised. & 
+Poor resource management. Inefficient API calls. Missing error handling. Performance issues present. Excessive re-renders or memory leaks. \\ \hline
+
+\end{tabular}
+
+\subsection*{Version Control - Learning Outcome 1 (5\%)}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Commit History and Messages (5\%)} & 
+Regular, meaningful commits throughout development. Clear, descriptive commit messages. Logical progression showing development process. Clean commit history. & 
+Regular commits with mostly clear messages. Commit history shows good development progression with minor gaps. & 
+Commits present but irregular or clustered. Some commit messages unclear. Basic development history visible. & 
+Few commits or poor timing. Unclear messages (e.g., "update", "fix"). No clear development progression. \\ \hline
+
+\end{tabular}
+
+\subsection*{Reflection - Learning Outcomes 1, 2 (5\%)}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Reflection Quality (5\%)} & 
+Thoughtful reflection (300-500 words) covering all required points. Clear articulation of challenges, solutions and learning. Demonstrates deep understanding and self-awareness. & 
+Good reflection covering all required points. Adequate discussion of challenges and learning with some depth. Within word count. & 
+Reflection present covering most points. Brief or superficial discussion. May be slightly outside word count. & 
+Reflection missing, incomplete or significantly outside word count. Lacks depth or doesn't cover required points. \\ \hline
+
+\end{tabular}
+
+\subsection*{Presentation - Learning Outcomes 1, 2 (5\%)}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Video Demonstration (5\%)} & 
+Clear 5-10 minute recording demonstrating all HackerNews API and OpenTDB API features. Well-paced, professional presentation. Easy to follow with good audio/visual quality. Link submitted correctly. & 
+Good recording within time limit. Most features demonstrated. Generally clear with minor audio/visual issues. Link submitted. & 
+Recording present but may be too short/long. Some features demonstrated. Quality acceptable but could be clearer. & 
+Recording missing, significantly outside time limit, unclear, or doesn't demonstrate key features. Poor quality. \\ \hline
+
+\end{tabular}
+\end{landscape}
+\restoregeometry
 \end{document}

@@ -14,6 +14,11 @@
 \usepackage[margin=1.75cm]{geometry}
 \usepackage[table]{xcolor}
 \usepackage{fancyhdr}
+\usepackage{pdflscape}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue 
+} 
 \hypersetup{colorlinks=true, urlcolor=blue}
 \setlength{\parindent}{0pt}
 \pagestyle{fancy}
@@ -168,4 +173,178 @@ You will complete this assessment mostly during your learner-managed time. Howev
 	  \item Make sure the video is clear and easy to follow.
 	  \item Submit a link to the presentation in your repository's \textbf{README.md} file.
 	\end{itemize}
+
+	\newgeometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+	\begin{landscape}
+
+	\section*{Marking Rubric}
+
+	\subsection*{Functionality - Learning Outcomes 1, 2 (25\%)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Godot 2D Platformer - Player Movement and Input (2\%)} & 
+Player movement using keyboard input works flawlessly. Smooth and responsive controls. Movement feels polished and natural. & 
+Player movement functional with keyboard input. Generally responsive with minor control issues. & 
+Basic player movement implemented. Some responsiveness issues or control limitations. & 
+Player movement non-functional or severely limited. Poor or no keyboard input handling. \\ \hline
+
+\textbf{Godot 2D Platformer - Platform System (2\%)} & 
+All three platform types fully functional (solid, moving, one-way). Collision detection works perfectly. Platforms behave as expected. & 
+Platform types mostly functional. Collision detection works with minor issues. Most platforms behave correctly. & 
+Basic platform collision implemented. Some platform types missing or partially functional. & 
+Platform collision system non-functional or missing. Platforms don't work as intended. \\ \hline
+
+\textbf{Godot 2D Platformer - Health, Win/Lose Conditions (2\%)} & 
+Health system fully implemented and displayed clearly. Win and lose conditions work correctly. Clear feedback to player. & 
+Health system functional with minor display issues. Win/lose conditions mostly work. Some feedback present. & 
+Basic health system present. Win/lose conditions partially implemented. Limited feedback. & 
+Health system or win/lose conditions missing or non-functional. No player feedback. \\ \hline
+
+\textbf{Godot 2D Platformer - Levels and Difficulty (2\%)} & 
+Three distinct levels implemented with clear progression. Difficulty increases appropriately. Levels are well-designed and balanced. & 
+Three levels present with some difficulty progression. Most levels functional with minor design issues. & 
+2-3 levels implemented. Limited difficulty progression. Basic level design. & 
+Fewer than 2 levels or non-functional. No difficulty progression. Poor level design. \\ \hline
+
+\textbf{Godot 2D Platformer - Hazards, Obstacles and Enemies (2\%)} & 
+Hazards and obstacles fully functional and well-placed. Three distinct enemies with clearly different behaviours working perfectly. & 
+Hazards and obstacles mostly functional. Three enemies present with some behavioural differences. Minor issues. & 
+Basic hazards and obstacles present. 2-3 enemies with limited behavioural variety. & 
+Hazards/obstacles missing or non-functional. Fewer than 2 enemies or no distinct behaviours. \\ \hline
+
+\textbf{Godot 2D Platformer - Mechanics and Systems (2\%)} & 
+Double jump ability works flawlessly. Collectible items fully functional. Scoring system accurately tracks and displays score. All systems well-integrated. & 
+Double jump functional with minor issues. Collectibles mostly work. Scoring system present with some accuracy issues. & 
+Basic double jump implemented. Some collectibles functional. Basic scoring system present. & 
+Double jump missing or non-functional. Collectibles or scoring system missing or broken. \\ \hline
+
+\end{tabular}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Godot 2D Platformer - Custom Features (2\%)} & 
+Five custom features fully implemented and functional. Features are creative, well-integrated and enhance gameplay. & 
+4-5 custom features implemented with minor issues. Features add value to gameplay. & 
+3-4 custom features present with functionality gaps. Basic integration. & 
+Fewer than 3 custom features or non-functional. Poor integration or no gameplay value. \\ \hline
+
+\textbf{3D Obstacle Dodging - Player Movement and Input (2\%)} & 
+Player movement using keyboard or mouse input works flawlessly. Controls are smooth, responsive and intuitive. & 
+Player movement functional. Controls generally responsive with minor issues. & 
+Basic player movement implemented. Some control responsiveness issues. & 
+Player movement non-functional or severely limited. Poor or no input handling. \\ \hline
+
+\textbf{3D Obstacle Dodging - Obstacle System (2\%)} & 
+Five distinct obstacles with clearly different behaviours fully functional. Collision system works perfectly for solid and moving obstacles. & 
+Five obstacles present with some behavioural differences. Collision system mostly functional with minor issues. & 
+3-4 obstacles implemented with limited variety. Basic collision system present. & 
+Fewer than 3 obstacles or no distinct behaviours. Collision system non-functional or missing. \\ \hline
+
+\textbf{3D Obstacle Dodging - Health and Levels (1\%)} & 
+Health system fully implemented and displayed clearly. Two distinct levels with appropriate difficulty increase. & 
+Health system functional. Two levels present with some difficulty progression. Minor issues. & 
+Basic health system present. 1-2 levels with limited difficulty progression. & 
+Health system missing or non-functional. Fewer than 1 level or no difficulty progression. \\ \hline
+
+\textbf{3D Obstacle Dodging - Systems and Effects (2\%)} & 
+Collectible items fully functional. Scoring system accurate. Camera effects (screen shake) implemented effectively and enhance gameplay. & 
+Collectibles mostly work. Scoring system present with minor issues. Camera effects functional. & 
+Basic collectibles present. Basic scoring system. Camera effects partially implemented. & 
+Collectibles or scoring missing or non-functional. No camera effects or broken implementation. \\ \hline
+
+\textbf{3D Obstacle Dodging - Custom Features (2\%)} & 
+Five custom features fully implemented and functional. Features are creative, well-integrated and enhance gameplay. & 
+4-5 custom features implemented with minor issues. Features add value to gameplay. & 
+3-4 custom features present with functionality gaps. Basic integration. & 
+Fewer than 3 custom features or non-functional. Poor integration or no gameplay value. \\ \hline
+
+\textbf{Deployment (2\%)} & 
+Both games successfully deployed to Itch.io. Games are accessible, playable and perform well. Professional presentation on platform. & 
+Both games deployed to Itch.io with minor issues or performance concerns. Adequate presentation. & 
+Both games deployed but with accessibility or functionality issues. Basic presentation. & 
+Games not deployed, deployment non-functional, or only one game deployed. \\ \hline
+
+\end{tabular}
+
+\subsection*{Code Quality and Best Practices - Learning Outcomes 1, 2 (40\%)}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Code Readability and Maintainability (10\%)} & 
+Code is exceptionally clean and readable with consistent formatting. Meaningful variable and function names. Well-organised file and scene structure. Comprehensive comments where needed. & 
+Code is clean and readable with good naming conventions. Organised structure with some helpful comments. Minor inconsistencies. & 
+Code is mostly readable. Some unclear naming or inconsistent formatting. Basic organisation present. & 
+Code is difficult to read with poor naming conventions. Inconsistent or chaotic structure. \\ \hline
+
+\textbf{Modularity and Reusability (10\%)} & 
+Excellent use of modular, reusable scripts and scenes. Components are well-abstracted. No code duplication. DRY principles followed throughout. & 
+Good modular structure with reusable components. Minimal code duplication. Most code follows DRY principles. & 
+Some modular components present. Some code duplication exists. Partial adherence to DRY principles. & 
+Little modularity. Significant code duplication. Poor component abstraction. \\ \hline
+
+\textbf{Code Simplicity and Clarity (10\%)} & 
+Code is simple, elegant and easy to understand. Complex logic is well-explained. Appropriate use of engine features without over-engineering. & 
+Code is generally simple and clear. Most logic is easy to follow with minor complex sections. & 
+Code works but contains unnecessarily complex sections. Some logic is difficult to follow. & 
+Code is overly complex or convoluted. Difficult to understand the implementation. \\ \hline
+
+\textbf{Performance and Resource Management (10\%)} & 
+Excellent resource management. Efficient use of nodes and scenes. Proper memory management. No performance bottlenecks. Optimised game loop and physics. & 
+Good resource management. Mostly efficient node usage. Adequate optimization with room for improvement. Minor performance considerations. & 
+Basic resource management. Some inefficient implementations or optimization gaps. Performance acceptable but not optimised. & 
+Poor resource management. Inefficient use of engine features. Missing optimization. Performance issues present. Memory leaks or frame drops. \\ \hline
+
+\end{tabular}
+
+\subsection*{Version Control - Learning Outcome 1 (5\%)}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Commit History and Messages (5\%)} & 
+Regular, meaningful commits throughout development. Clear, descriptive commit messages. Logical progression showing development process. Clean commit history. & 
+Regular commits with mostly clear messages. Commit history shows good development progression with minor gaps. & 
+Commits present but irregular or clustered. Some commit messages unclear. Basic development history visible. & 
+Few commits or poor timing. Unclear messages (e.g., "update", "fix"). No clear development progression. \\ \hline
+
+\end{tabular}
+
+\subsection*{Reflection - Learning Outcomes 1, 2 (5\%)}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Reflection Quality (5\%)} & 
+Thoughtful reflection (300-500 words) covering all required points. Clear articulation of challenges, solutions and learning. Demonstrates deep understanding and self-awareness. & 
+Good reflection covering all required points. Adequate discussion of challenges and learning with some depth. Within word count. & 
+Reflection present covering most points. Brief or superficial discussion. May be slightly outside word count. & 
+Reflection missing, incomplete or significantly outside word count. Lacks depth or doesn't cover required points. \\ \hline
+
+\end{tabular}
+
+\subsection*{Presentation - Learning Outcomes 1, 2 (5\%)}
+
+\begin{tabular}{|p{5cm}|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Criteria} & \textbf{Excellent (A)} & \textbf{Good (B)} & \textbf{Satisfactory (C)} & \textbf{Not Yet Achieved (D)} \\ \hline
+
+\textbf{Video Demonstration (5\%)} & 
+Clear 5-10 minute recording demonstrating all Godot 2D Platformer and 3D Obstacle Dodging game features. Well-paced, professional presentation. Easy to follow with good audio/visual quality. Link submitted correctly. & 
+Good recording within time limit. Most features demonstrated. Generally clear with minor audio/visual issues. Link submitted. & 
+Recording present but may be too short/long. Some features demonstrated. Quality acceptable but could be clearer. & 
+Recording missing, significantly outside time limit, unclear, or doesn't demonstrate key features. Poor quality. \\ \hline
+
+\end{tabular}
+\end{landscape}
+\restoregeometry
 \end{document}
