@@ -35,10 +35,10 @@ At the successful completion of this course, learners will be able to:
 
 ## Assessments
 
-| Assessment | Weighting | Due Date   | Learning Outcome |
-| ---------- | --------- | ---------- | ---------------- |
-| Practical  | 20%       | at 4.59 PM | 1                |
-| Project    | 80%       | at 4.59 PM | 1, 2             |
+| Assessment | Weighting | Due Date   | Learning Outcomes |
+| ---------- | --------- | ---------- | ----------------- |
+| Practical  | 20%       | at 4.59 PM | 1                 |
+| Project    | 80%       | at 4.59 PM | 1, 2              |
 
 ## Grade Table - Criterion Referenced
 
