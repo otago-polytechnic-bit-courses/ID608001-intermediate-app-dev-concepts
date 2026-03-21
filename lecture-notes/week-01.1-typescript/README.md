@@ -226,9 +226,9 @@ type CreateInstitutionInput = {
 // Union - a value can be one of several types
 type StringOrNumber = string | number;
 
-function formatId(id: StringOrNumber): string {
+const formatId = (id: StringOrNumber): string => {
   return String(id);
-}
+};
 
 // Intersection - a value must satisfy all types simultaneously
 type AdminUser = User & { permissions: string[] };
@@ -260,21 +260,21 @@ Generics allow you to write reusable code that works with any type while still e
 
 ```typescript
 // A generic function
-function getFirst<T>(arr: T[]): T | undefined {
+const getFirst = <T>(arr: T[]): T | undefined => {
   return arr[0];
-}
+};
 
 const firstNumber = getFirst([1, 2, 3]); // Inferred as number | undefined
 const firstName = getFirst(["a", "b"]); // Inferred as string | undefined
 
 // A generic interface
-interface ApiResponse<T> {
+interface APIResponse<T> {
   data: T;
   message?: string;
 }
 
-type InstitutionResponse = ApiResponse<Institution>;
-type InstitutionListResponse = ApiResponse<Institution[]>;
+type InstitutionResponse = APIResponse<Institution>;
+type InstitutionListResponse = APIResponse<Institution[]>;
 ```
 
 ---
