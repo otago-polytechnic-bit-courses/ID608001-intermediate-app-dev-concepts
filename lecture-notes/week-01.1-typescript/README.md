@@ -332,7 +332,7 @@ interface CreateInstitutionBody {
 const createInstitution = async (
   req: Request<{}, {}, CreateInstitutionBody>,
   res: Response,
-): Promise<void> => {
+): Promise<Response> => {
   const { name, region, country } = req.body; // Fully typed
   // ...
 };
@@ -350,7 +350,7 @@ interface InstitutionParams {
 const getInstitution = async (
   req: Request<InstitutionParams>,
   res: Response,
-): Promise<void> => {
+): Promise<Response> => {
   const { id } = req.params; // Typed as string
   // ...
 };
@@ -441,32 +441,32 @@ This means your database types and your application types stay in sync automatic
 
 ```typescript
 // src/repositories/institution.ts
-import { PrismaClient, Institution, Prisma } from "@prisma/client";
+import { Prisma, Institution } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import prisma from "../../prisma/db.js";
 
 class InstitutionRepository {
   async create(data: Prisma.InstitutionCreateInput): Promise<Institution> {
-    return prisma.institution.create({ data });
+    return await prisma.institution.create({ data });
   }
 
   async findAll(): Promise<Institution[]> {
-    return prisma.institution.findMany();
+    return await prisma.institution.findMany();
   }
 
   async findById(id: string): Promise<Institution | null> {
-    return prisma.institution.findUnique({ where: { id } });
+    return await prisma.institution.findUnique({ where: { id } });
   }
 
   async update(
     id: string,
     data: Prisma.InstitutionUpdateInput,
   ): Promise<Institution> {
-    return prisma.institution.update({ where: { id }, data });
+    return await prisma.institution.update({ where: { id }, data });
   }
 
   async delete(id: string): Promise<Institution> {
-    return prisma.institution.delete({ where: { id } });
+    return await prisma.institution.delete({ where: { id } });
   }
 }
 
@@ -527,10 +527,10 @@ Create `src/types/express.d.ts` to extend Express's `Request` interface with a t
 
 ### Task 4 - Generic API Response Type
 
-Create `src/types/api.ts` and define a generic `ApiResponse<T>` interface. Update your controller return types to use this interface:
+Create `src/types/api.ts` and define a generic `APIResponse<T>` interface. Update your controller return types to use this interface:
 
 ```typescript
-interface ApiResponse<T> {
+interface APIResponse<T> {
   message?: string;
   data?: T;
   errors?: Array<{ message: string; type: string }>;
