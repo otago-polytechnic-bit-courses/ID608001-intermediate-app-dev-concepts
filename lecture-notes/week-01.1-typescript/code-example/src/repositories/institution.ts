@@ -23,51 +23,43 @@ class InstitutionRepository {
     filters: Record<string, unknown> = {},
     sortBy: string = "id",
     sortOrder: string = "asc",
-    page: string | number = 1,
-    pageSize: string | number = 10,
+    page: string = "1",
+    pageSize: string = "10",
   ): Promise<PaginationResult<Institution>> {
-    const newParsedPage = parseInt(String(page), 10) > 0 ? parseInt(String(page), 10) : 1;
-    const newParsedPageSize = parseInt(String(pageSize), 10) > 0 ? parseInt(String(pageSize), 10) : 10;
+    const parsedPage = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
+    const parsedPageSize =
+      parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
-    const totalCount: number = await prisma.institution.count({
-      where: filters,
-    });
-
-    const totalPages: number = Math.ceil(totalCount / newParsedPageSize);
-
-    const query: Prisma.InstitutionFindManyArgs = {
-      orderBy: { [sortBy]: sortOrder },
-      skip: (newParsedPage - 1) * newParsedPageSize,
-      take: newParsedPageSize,
-    };
-
-    if (Object.keys(filters).length > 0) {
-      query.where = {};
-
-      for (const [key, value] of Object.entries(filters)) {
-        if (value !== undefined && value !== null && value !== "") {
-          if (typeof value === "string") {
-            query.where[key] = { contains: value };
-          } else if (typeof value === "boolean") {
-            query.where[key] = { equals: value };
-          } else if (typeof value === "number") {
-            query.where[key] = { equals: value };
-          }
+    const where: Prisma.InstitutionWhereInput = {};
+    for (const [key, value] of Object.entries(filters)) {
+      if (value !== undefined && value !== null && value !== "") {
+        if (typeof value === "string") {
+          where[key] = { contains: value };
+        } else if (typeof value === "boolean" || typeof value === "number") {
+          where[key] = { equals: value };
         }
       }
     }
 
-    const institutions = await prisma.institution.findMany(query);
+    const totalCount = await prisma.institution.count({ where });
+    const totalPages = Math.ceil(totalCount / parsedPageSize);
+
+    const institutions = await prisma.institution.findMany({
+      where,
+      orderBy: { [sortBy]: sortOrder },
+      skip: (parsedPage - 1) * parsedPageSize,
+      take: parsedPageSize,
+    });
 
     return {
       data: institutions,
       pagination: {
-        currentPage: newParsedPage,
-        pageSize: newParsedPageSize,
+        currentPage: parsedPage,
+        pageSize: parsedPageSize,
         totalCount,
         totalPages,
-        nextPage: newParsedPage < totalPages ? newParsedPage + 1 : null,
-        prevPage: newParsedPage > 1 ? newParsedPage - 1 : null,
+        nextPage: parsedPage < totalPages ? parsedPage + 1 : null,
+        prevPage: parsedPage > 1 ? parsedPage - 1 : null,
       },
     };
   }

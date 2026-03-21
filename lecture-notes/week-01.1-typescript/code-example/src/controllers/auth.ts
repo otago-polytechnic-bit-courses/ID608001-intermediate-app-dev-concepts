@@ -1,9 +1,23 @@
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { Request, Response } from "express";
 
 import prisma from "../../prisma/db.js";
 
-const register = async (req, res) => {
+interface RegisterBody {
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
+  password: string;
+  role: string;
+}
+
+interface LoginBody {
+  emailAddress: string;
+  password: string;
+}
+
+const register = async (req: Request<{}, {}, RegisterBody>, res: Response) => {
   try {
     const { firstName, lastName, emailAddress, password, role } = req.body;
 
@@ -51,7 +65,7 @@ const register = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+const login = async (req: Request<{}, {}, LoginBody>, res: Response) => {
   try {
     const { emailAddress, password } = req.body;
 

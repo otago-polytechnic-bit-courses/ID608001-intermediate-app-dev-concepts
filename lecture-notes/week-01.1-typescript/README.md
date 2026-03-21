@@ -166,17 +166,17 @@ interface User {
   firstName: string;
   lastName: string;
   emailAddress: string;
+  password: string;
   role: "ADMIN" | "STAFF" | "STUDENT";
-  createdAt: Date;
 }
 
 const user: User = {
-  id: "abc-123",
+  id: "cbc817df-8949-4813-87c7-db2e144c1070",
   firstName: "Jane",
   lastName: "Doe",
-  emailAddress: "jane@example.com",
-  role: "STUDENT",
-  createdAt: new Date(),
+  emailAddress: "jane.doe@example.com",
+  password: "janedoe123",
+  role: "ADMIN",
 };
 ```
 

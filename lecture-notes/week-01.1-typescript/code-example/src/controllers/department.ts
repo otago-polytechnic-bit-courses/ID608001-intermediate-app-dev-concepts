@@ -1,6 +1,25 @@
+import { Request, Response } from "express";
+
 import departmentRepository from "../repositories/department.js";
 
-const createDepartment = async (req, res) => {
+interface DepartmentParams {
+  id: string;
+}
+
+interface CreateDepartmentBody {
+  name: string;
+  institutionId: string;
+}
+
+interface UpdateDepartmentBody {
+  name?: string;
+  institutionId?: string;
+}
+
+const createDepartment = async (
+  req: Request<{}, {}, CreateDepartmentBody>,
+  res: Response,
+): Promise<Response> => {
   try {
     const { name, institutionId } = req.body;
     await departmentRepository.create({ name, institutionId });
@@ -16,7 +35,10 @@ const createDepartment = async (req, res) => {
   }
 };
 
-const getDepartments = async (req, res) => {
+const getDepartments = async (
+  req: Request,
+  res: Response,
+): Promise<Response> => {
   try {
     const departments = await departmentRepository.findAll();
     if (!departments) {
@@ -32,7 +54,10 @@ const getDepartments = async (req, res) => {
   }
 };
 
-const getDepartment = async (req, res) => {
+const getDepartment = async (
+  req: Request<DepartmentParams>,
+  res: Response,
+): Promise<Response> => {
   try {
     const { id } = req.params;
     const department = await departmentRepository.findById(id);
@@ -51,7 +76,10 @@ const getDepartment = async (req, res) => {
   }
 };
 
-const updateDepartment = async (req, res) => {
+const updateDepartment = async (
+  req: Request<DepartmentParams, {}, UpdateDepartmentBody>,
+  res: Response,
+): Promise<Response> => {
   try {
     const { id } = req.params;
     const { name, institutionId } = req.body;
@@ -73,7 +101,10 @@ const updateDepartment = async (req, res) => {
   }
 };
 
-const deleteDepartment = async (req, res) => {
+const deleteDepartment = async (
+  req: Request<DepartmentParams>,
+  res: Response,
+): Promise<Response> => {
   try {
     const { id } = req.params;
     const department = await departmentRepository.findById(id);
