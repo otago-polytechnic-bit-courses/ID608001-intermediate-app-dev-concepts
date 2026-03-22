@@ -602,58 +602,12 @@ Acknowledge AI usage at the top of any AI-assisted file:
 
 ---
 
-### Task 1 - Setup TypeScript
+### Task 1 - Implement the Code Examples
 
-Configure TypeScript in your existing REST API project: install the required packages, create `tsconfig.json`, and update `package.json` scripts to use `tsx`.
-
+Implement all of the code examples covered above.
 ---
 
-### Task 2 - Type the Institution Resource
 
-Migrate `controllers/institution.ts`, `routes/institution.ts`, and `repositories/institution.ts` to TypeScript. Create `src/types/institution.ts` exporting `InstitutionParams`, `CreateInstitutionBody`, and `UpdateInstitutionBody`. Use Prisma's generated types for all database operations and add explicit return types to all functions.
-
----
-
-### Task 3 - Extend the Request Type
-
-Create `src/types/express.d.ts` to extend Express's `Request` interface with a typed `user` property. Update `jwtAuth.ts` to assign the decoded JWT payload to `req.user`.
-
----
-
-### Task 4 - Generic Pagination Type
-
-Create `src/types/pagination.ts` and define a generic `PaginationResult<T>` interface. Update your repository's `findAll` method to return this type, and update your controller to read both `data` and `pagination` from the result:
-
-```typescript
-interface PaginationResult<T> {
-  data: T[];
-  pagination: {
-    currentPage: number;
-    pageSize: number;
-    totalCount: number;
-    totalPages: number;
-    nextPage: number | null;
-    prevPage: number | null;
-  };
-}
-
-export type { PaginationResult };
-```
-
----
-
-### Task 5 - Utility Types in Practice
-
-Create `src/types/auth.ts` and use TypeScript utility types to derive `RegisterBody` and `LoginBody` from Prisma's generated `User` type:
-
-- `RegisterBody` — omits `id`, `createdAt`, and `updatedAt`
-- `LoginBody` — picks only `emailAddress` and `password`
-
----
-
-### Task 6 - Migrate Remaining Resources
-
-Migrate all remaining `.js` files to `.ts`. Enable `"strict": true` in `tsconfig.json` and resolve all resulting type errors.
 
 ---
 

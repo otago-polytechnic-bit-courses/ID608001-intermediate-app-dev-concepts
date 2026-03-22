@@ -1,10 +1,4 @@
-import { Request, Response, NextFunction } from "express";
-
-const isContentTypeApplicationJSON = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+const isContentTypeApplicationJSON = (req, res, next) => {
   // Check if the request method is POST or PUT
   if (req.method === "POST" || req.method === "PUT") {
     // Check if the Content-Type header is application/json

@@ -1,17 +1,6 @@
-import { Request, Response } from "express";
-
 import institutionRepository from "../repositories/institution.js";
 
-import {
-  InstitutionParams,
-  CreateInstitutionBody,
-  UpdateInstitutionBody,
-} from "../types/institution.js";
-
-const createInstitution = async (
-  req: Request<{}, {}, CreateInstitutionBody>,
-  res: Response,
-): Promise<Response> => {
+const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
     await institutionRepository.create({ name, region, country });
@@ -27,10 +16,7 @@ const createInstitution = async (
   }
 };
 
-const getInstitutions = async (
-  req: Request,
-  res: Response,
-): Promise<Response> => {
+const getInstitutions = async (req, res) => {
   try {
     const {
       name,
@@ -38,11 +24,11 @@ const getInstitutions = async (
       country,
       sortBy = "id",
       sortOrder = "asc",
-      page = "1",
-      pageSize = "10",
-    } = req.query as Record<string, string>;
+      page = 1,
+      pageSize = 10,
+    } = req.query;
 
-    const filters: Record<string, string> = {};
+    const filters = {};
     if (name) filters.name = name;
     if (region) filters.region = region;
     if (country) filters.country = country;
@@ -62,7 +48,7 @@ const getInstitutions = async (
       fields,
       order,
       page,
-      pageSize,
+      pageSize
     );
 
     if (!institutions.data.length) {
@@ -80,10 +66,7 @@ const getInstitutions = async (
   }
 };
 
-const getInstitution = async (
-  req: Request<InstitutionParams>,
-  res: Response,
-): Promise<Response> => {
+const getInstitution = async (req, res) => {
   try {
     const { id } = req.params;
     const institution = await institutionRepository.findById(id);
@@ -102,10 +85,7 @@ const getInstitution = async (
   }
 };
 
-const updateInstitution = async (
-  req: Request<InstitutionParams, {}, UpdateInstitutionBody>,
-  res: Response,
-): Promise<Response> => {
+const updateInstitution = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, region, country } = req.body;
@@ -115,11 +95,7 @@ const updateInstitution = async (
         message: `No institution with the id: ${id} found`,
       });
     }
-    institution = await institutionRepository.update(id, {
-      name,
-      region,
-      country,
-    });
+    institution = await institutionRepository.update(id, { name, region, country });
     return res.status(200).json({
       message: `Institution with the id: ${id} successfully updated`,
       data: institution,
@@ -131,10 +107,7 @@ const updateInstitution = async (
   }
 };
 
-const deleteInstitution = async (
-  req: Request<InstitutionParams>,
-  res: Response,
-): Promise<Response> => {
+const deleteInstitution = async (req, res) => {
   try {
     const { id } = req.params;
     const institution = await institutionRepository.findById(id);

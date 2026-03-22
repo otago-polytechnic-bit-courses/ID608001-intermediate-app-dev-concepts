@@ -1,17 +1,6 @@
-import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 
-import {
-  CreateInstitutionBody,
-  InstitutionParams,
-  UpdateInstitutionBody,
-} from "../../types/institution.js";
-
-const validatePostInstitution = (
-  req: Request<{}, {}, CreateInstitutionBody>,
-  res: Response,
-  next: NextFunction,
-) => {
+const validatePostInstitution = (req, res, next) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).required().messages({
       "string.base": "name should be a string",
@@ -37,13 +26,10 @@ const validatePostInstitution = (
   });
 
   const { name, region, country } = req.body;
-  const { error } = institutionSchema.validate(
-    { name, region, country },
-    {
-      abortEarly: false,
-      convert: false,
-    },
-  );
+  const { error } = institutionSchema.validate({ name, region, country }, {
+    abortEarly: false,
+    convert: false,
+  });
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({
@@ -56,11 +42,7 @@ const validatePostInstitution = (
   next();
 };
 
-const validatePutInstitution = (
-  req: Request<InstitutionParams, {}, UpdateInstitutionBody>,
-  res: Response,
-  next: NextFunction,
-) => {
+const validatePutInstitution = (req, res, next) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).optional().messages({
       "string.base": "name should be a string",
@@ -83,13 +65,10 @@ const validatePutInstitution = (
   }).min(1); // Ensure at least one field is being updated
 
   const { name, region, country } = req.body;
-  const { error } = institutionSchema.validate(
-    { name, region, country },
-    {
-      abortEarly: false,
-      convert: false,
-    },
-  );
+  const { error } = institutionSchema.validate({ name, region, country }, {
+    abortEarly: false,
+    convert: false,
+  });
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({

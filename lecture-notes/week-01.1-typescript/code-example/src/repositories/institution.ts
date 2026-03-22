@@ -1,7 +1,6 @@
 import { Prisma, Institution } from "@prisma/client";
 
 import prisma from "../../prisma/db.js";
-
 import { PaginationResult } from "../types/pagination.js";
 
 class InstitutionRepository {
