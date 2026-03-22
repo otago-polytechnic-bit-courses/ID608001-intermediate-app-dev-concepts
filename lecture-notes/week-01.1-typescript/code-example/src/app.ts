@@ -3,7 +3,6 @@ import cors from "cors";
 import compression from "compression";
 
 import authRoutes from "./routes/auth.js";
-import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
 
@@ -21,7 +20,6 @@ app.use(express.json());
 app.use(isContentTypeApplicationJSON);
 
 app.use("/api/auth", authRoutes);
-app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
 

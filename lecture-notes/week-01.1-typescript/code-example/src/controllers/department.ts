@@ -2,19 +2,11 @@ import { Request, Response } from "express";
 
 import departmentRepository from "../repositories/department.js";
 
-interface DepartmentParams {
-  id: string;
-}
-
-interface CreateDepartmentBody {
-  name: string;
-  institutionId: string;
-}
-
-interface UpdateDepartmentBody {
-  name?: string;
-  institutionId?: string;
-}
+import {
+  DepartmentParams,
+  CreateDepartmentBody,
+  UpdateDepartmentBody,
+} from "../types/department.js";
 
 const createDepartment = async (
   req: Request<{}, {}, CreateDepartmentBody>,

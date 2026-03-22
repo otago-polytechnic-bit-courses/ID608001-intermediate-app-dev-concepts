@@ -2,21 +2,11 @@ import { Request, Response } from "express";
 
 import institutionRepository from "../repositories/institution.js";
 
-interface InstitutionParams {
-  id: string;
-}
-
-interface CreateInstitutionBody {
-  name: string;
-  region: string;
-  country: string;
-}
-
-interface UpdateInstitutionBody {
-  name?: string;
-  region?: string;
-  country?: string;
-}
+import {
+  InstitutionParams,
+  CreateInstitutionBody,
+  UpdateInstitutionBody,
+} from "../types/institution.js";
 
 const createInstitution = async (
   req: Request<{}, {}, CreateInstitutionBody>,

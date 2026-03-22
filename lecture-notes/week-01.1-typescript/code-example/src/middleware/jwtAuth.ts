@@ -1,6 +1,7 @@
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-const jwtAuth = (req, res, next) => {
+const jwtAuth = (req: Request, res: Response, next: NextFunction) => {
   try {
     // Look for the Authorization header which should start with 'Bearer '
     const authHeader = req.headers.authorization;
@@ -13,7 +14,10 @@ const jwtAuth = (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     // Verify the token using the secret key from environment variables
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(
+      token,
+      process.env.JWT_SECRET,
+    ) as jwt.JwtPayload & { id: string; role: string };
 
     // Add the decoded payload to the request so other routes can use it
     req.user = payload;

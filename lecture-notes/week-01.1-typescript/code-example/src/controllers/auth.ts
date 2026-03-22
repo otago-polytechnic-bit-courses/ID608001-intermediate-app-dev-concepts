@@ -1,21 +1,10 @@
+import { Request, Response } from "express";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { Request, Response } from "express";
 
 import prisma from "../../prisma/db.js";
 
-interface RegisterBody {
-  firstName: string;
-  lastName: string;
-  emailAddress: string;
-  password: string;
-  role: string;
-}
-
-interface LoginBody {
-  emailAddress: string;
-  password: string;
-}
+import { RegisterBody, LoginBody } from "../types/auth.js";
 
 const register = async (req: Request<{}, {}, RegisterBody>, res: Response) => {
   try {
@@ -92,7 +81,7 @@ const login = async (req: Request<{}, {}, LoginBody>, res: Response) => {
         role: user.role,
       },
       JWT_SECRET,
-      { expiresIn: JWT_LIFETIME }
+      { expiresIn: JWT_LIFETIME },
     );
 
     return res.status(200).json({

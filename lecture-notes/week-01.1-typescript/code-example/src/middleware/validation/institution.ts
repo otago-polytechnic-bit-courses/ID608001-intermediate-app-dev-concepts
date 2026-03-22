@@ -1,6 +1,17 @@
+import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 
-const validatePostInstitution = (req, res, next) => {
+import {
+  CreateInstitutionBody,
+  InstitutionParams,
+  UpdateInstitutionBody,
+} from "../../types/institution.js";
+
+const validatePostInstitution = (
+  req: Request<{}, {}, CreateInstitutionBody>,
+  res: Response,
+  next: NextFunction,
+) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).required().messages({
       "string.base": "name should be a string",
@@ -26,10 +37,13 @@ const validatePostInstitution = (req, res, next) => {
   });
 
   const { name, region, country } = req.body;
-  const { error } = institutionSchema.validate({ name, region, country }, {
-    abortEarly: false,
-    convert: false,
-  });
+  const { error } = institutionSchema.validate(
+    { name, region, country },
+    {
+      abortEarly: false,
+      convert: false,
+    },
+  );
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({
@@ -42,7 +56,11 @@ const validatePostInstitution = (req, res, next) => {
   next();
 };
 
-const validatePutInstitution = (req, res, next) => {
+const validatePutInstitution = (
+  req: Request<InstitutionParams, {}, UpdateInstitutionBody>,
+  res: Response,
+  next: NextFunction,
+) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).optional().messages({
       "string.base": "name should be a string",
@@ -65,10 +83,13 @@ const validatePutInstitution = (req, res, next) => {
   }).min(1); // Ensure at least one field is being updated
 
   const { name, region, country } = req.body;
-  const { error } = institutionSchema.validate({ name, region, country }, {
-    abortEarly: false,
-    convert: false,
-  });
+  const { error } = institutionSchema.validate(
+    { name, region, country },
+    {
+      abortEarly: false,
+      convert: false,
+    },
+  );
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({

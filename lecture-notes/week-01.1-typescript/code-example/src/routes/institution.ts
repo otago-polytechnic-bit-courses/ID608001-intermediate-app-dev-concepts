@@ -17,8 +17,6 @@ import jwtAuth from "../middleware/jwtAuth.js";
 
 import rbac from "../middleware/rbac.js";
 
-import rateLimiter from "../middleware/rateLimiter.js";
-
 const router = express.Router();
 
 router.post(
@@ -26,10 +24,10 @@ router.post(
   validatePostInstitution,
   jwtAuth,
   rbac("ADMIN"),
-  createInstitution
+  createInstitution,
 );
-router.get("/", rateLimiter, getInstitutions);
-router.get("/:id", rateLimiter, getInstitution);
+router.get("/", getInstitutions);
+router.get("/:id", getInstitution);
 router.put("/:id", validatePutInstitution, updateInstitution);
 router.delete("/:id", deleteInstitution);
 

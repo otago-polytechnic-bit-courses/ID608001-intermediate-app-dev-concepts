@@ -2,17 +2,7 @@ import { Prisma, Institution } from "@prisma/client";
 
 import prisma from "../../prisma/db.js";
 
-interface PaginationResult<T> {
-  data: T[];
-  pagination: {
-    currentPage: number;
-    pageSize: number;
-    totalCount: number;
-    totalPages: number;
-    nextPage: number | null;
-    prevPage: number | null;
-  };
-}
+import { PaginationResult } from "../types/pagination.js";
 
 class InstitutionRepository {
   async create(data: Prisma.InstitutionCreateInput): Promise<Institution> {
