@@ -135,7 +135,7 @@ TypeScript can usually infer the type from the initial value, so explicit annota
 
 ```typescript
 const name = "Jane"; // Inferred as string
-const age = 30;      // Inferred as number
+const age = 30; // Inferred as number
 ```
 
 Prefer type inference for simple variables and explicit annotations for function signatures and public APIs.
@@ -236,6 +236,7 @@ const userRole: Role = Role.ADMIN;
 Generics allow you to write reusable code that works with any type while still enforcing type safety. A practical example from this project is the `PaginationResult` type, which wraps any resource in a consistent paginated response shape:
 
 ```typescript
+// src/types/pagination.ts
 interface PaginationResult<T> {
   data: T[];
   pagination: {
@@ -260,41 +261,40 @@ const getFirst = <T>(arr: T[]): T | undefined => {
 };
 
 const firstNumber = getFirst([1, 2, 3]); // Inferred as number | undefined
-const firstName  = getFirst(["a", "b"]); // Inferred as string | undefined
+const firstName = getFirst(["a", "b"]); // Inferred as string | undefined
 ```
 
 ---
 
 ### 3.8 Utility Types
 
-TypeScript ships with built-in utility types for common transformations:
+TypeScript ships with built-in utility types for common transformations. A practical example from this project is deriving `RegisterBody` and `LoginBody` from Prisma's generated `User` type rather than defining them by hand:
 
 ```typescript
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-}
+// src/types/auth.ts
+import { User } from "@prisma/client";
 
-// Partial - all properties become optional
-type PartialUser = Partial<User>;
+// Omit database-managed fields to get only what the client sends on register
+type RegisterBody = Omit<User, "id" | "createdAt" | "updatedAt">;
 
-// Required - all properties become required
-type RequiredUser = Required<User>;
+// Pick only the credentials needed for login
+type LoginBody = Pick<User, "emailAddress" | "password">;
 
-// Omit - exclude specific properties
-type PublicUser = Omit<User, "password">;
-
-// Pick - include only specific properties
-type UserCredentials = Pick<User, "emailAddress" | "password">;
-
-// Readonly - all properties become read-only
-type ReadonlyUser = Readonly<User>;
-
-// Record - construct an object type with specified keys and value type
-type RolePermissions = Record<Role, string[]>;
+export type { RegisterBody, LoginBody };
 ```
+
+The full set of built-in utility types is:
+
+| Utility type   | Description                                                   |
+| -------------- | ------------------------------------------------------------- |
+| `Partial<T>`   | All properties become optional                                |
+| `Required<T>`  | All properties become required                                |
+| `Omit<T, K>`   | Exclude specific properties — used above for `RegisterBody`   |
+| `Pick<T, K>`   | Include only specific properties — used above for `LoginBody` |
+| `Readonly<T>`  | All properties become read-only                               |
+| `Record<K, V>` | Construct an object type with specified keys and a value type |
+
+> Because `RegisterBody` and `LoginBody` are derived directly from Prisma's generated `User` type, they stay in sync with your schema automatically whenever you run `npx prisma generate`.
 
 ---
 
@@ -395,6 +395,7 @@ declare global {
 This lets `jwtAuth.ts` assign a typed payload to `req.user`, which downstream route handlers can then read without casting:
 
 ```typescript
+// src/middleware/jwtAuth.ts
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
@@ -445,11 +446,12 @@ The recommended migration strategy is incremental:
 Rename your source files:
 
 ```
-app.js                          → app.ts
-controllers/institution.js      → controllers/institution.ts
-routes/institution.js           → routes/institution.ts
-middleware/jwtAuth.js           → middleware/jwtAuth.ts
-repositories/institution.js     → repositories/institution.ts
+app.js                       → app.ts
+controllers/institution.js   → controllers/institution.ts
+controllers/auth.js          → controllers/auth.ts
+routes/institution.js        → routes/institution.ts
+middleware/jwtAuth.js        → middleware/jwtAuth.ts
+repositories/institution.js  → repositories/institution.ts
 ```
 
 ---
@@ -476,7 +478,7 @@ if (typeof data === "object" && data !== null) {
 Prisma generates TypeScript types automatically from your schema. These types are available directly from `@prisma/client`:
 
 ```typescript
-import { Institution } from "@prisma/client";
+import { Institution, User } from "@prisma/client";
 import { Prisma } from "@prisma/client";
 
 type CreateInstitutionInput = Prisma.InstitutionCreateInput;
@@ -642,11 +644,10 @@ export type { PaginationResult };
 
 ### Task 5 - Utility Types in Practice
 
-Create `src/types/user.ts` and use TypeScript utility types to derive the following from a base `User` interface:
+Create `src/types/auth.ts` and use TypeScript utility types to derive `RegisterBody` and `LoginBody` from Prisma's generated `User` type:
 
-- `PublicUser` — omits `password`
-- `CreateUserInput` — omits `id`, `createdAt`, `updatedAt`
-- `UpdateUserInput` — makes all `CreateUserInput` fields optional
+- `RegisterBody` — omits `id`, `createdAt`, and `updatedAt`
+- `LoginBody` — picks only `emailAddress` and `password`
 
 ---
 
