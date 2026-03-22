@@ -135,7 +135,7 @@ TypeScript can usually infer the type from the initial value, so explicit annota
 
 ```typescript
 const name = "Jane"; // Inferred as string
-const age = 30; // Inferred as number
+const age = 30;      // Inferred as number
 ```
 
 Prefer type inference for simple variables and explicit annotations for function signatures and public APIs.
@@ -161,37 +161,20 @@ const entry: [string, number] = ["Alice", 95];
 An **interface** defines the shape of an object:
 
 ```typescript
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  emailAddress: string;
-  password: string;
-  role: "ADMIN" | "STAFF" | "STUDENT";
-}
-
-const user: User = {
-  id: "cbc817df-8949-4813-87c7-db2e144c1070",
-  firstName: "Jane",
-  lastName: "Doe",
-  emailAddress: "jane.doe@example.com",
-  password: "janedoe123",
-  role: "ADMIN",
-};
-```
-
-Optional properties use `?`:
-
-```typescript
-interface Institution {
-  id: string;
+interface CreateInstitutionBody {
   name: string;
   region: string;
   country: string;
-  website?: string; // Optional
-  emailAddress?: string; // Optional
+}
+
+interface UpdateInstitutionBody {
+  name?: string;
+  region?: string;
+  country?: string;
 }
 ```
+
+Optional properties use `?`. Notice that `UpdateInstitutionBody` marks all fields optional — this allows partial updates where only the provided fields are changed.
 
 ---
 
@@ -203,12 +186,6 @@ A **type alias** is an alternative to interfaces, particularly useful for union 
 type Role = "ADMIN" | "STAFF" | "STUDENT";
 
 type ID = string;
-
-type CreateInstitutionInput = {
-  name: string;
-  region: string;
-  country: string;
-};
 ```
 
 |               | Interface         | Type Alias       |
@@ -231,7 +208,7 @@ const formatId = (id: StringOrNumber): string => {
 };
 
 // Intersection - a value must satisfy all types simultaneously
-type AdminUser = User & { permissions: string[] };
+type AuthenticatedUser = JwtPayload & { id: string; role: string };
 ```
 
 ---
@@ -256,7 +233,25 @@ const userRole: Role = Role.ADMIN;
 
 ### 3.7 Generics
 
-Generics allow you to write reusable code that works with any type while still enforcing type safety:
+Generics allow you to write reusable code that works with any type while still enforcing type safety. A practical example from this project is the `PaginationResult` type, which wraps any resource in a consistent paginated response shape:
+
+```typescript
+interface PaginationResult<T> {
+  data: T[];
+  pagination: {
+    currentPage: number;
+    pageSize: number;
+    totalCount: number;
+    totalPages: number;
+    nextPage: number | null;
+    prevPage: number | null;
+  };
+}
+
+export type { PaginationResult };
+```
+
+The type parameter `T` is substituted at the call site, so the same interface works for institutions, users, or any other resource:
 
 ```typescript
 // A generic function
@@ -265,16 +260,7 @@ const getFirst = <T>(arr: T[]): T | undefined => {
 };
 
 const firstNumber = getFirst([1, 2, 3]); // Inferred as number | undefined
-const firstName = getFirst(["a", "b"]); // Inferred as string | undefined
-
-// A generic interface
-interface APIResponse<T> {
-  data: T;
-  message?: string;
-}
-
-type InstitutionResponse = APIResponse<Institution>;
-type InstitutionListResponse = APIResponse<Institution[]>;
+const firstName  = getFirst(["a", "b"]); // Inferred as string | undefined
 ```
 
 ---
@@ -318,16 +304,29 @@ type RolePermissions = Record<Role, string[]>;
 
 ### 4.1 Typed Request Bodies
 
-Express's `Request` type accepts generics for params, query, and body:
+Express's `Request` type accepts generics for params, query, and body. Define dedicated body interfaces in `src/types/` and import them into your controllers:
 
 ```typescript
-import { Request, Response } from "express";
-
+// src/types/institution.ts
 interface CreateInstitutionBody {
   name: string;
   region: string;
   country: string;
 }
+
+interface UpdateInstitutionBody {
+  name?: string;
+  region?: string;
+  country?: string;
+}
+
+export type { CreateInstitutionBody, UpdateInstitutionBody };
+```
+
+```typescript
+// src/controllers/institution.ts
+import { Request, Response } from "express";
+import { CreateInstitutionBody } from "../types/institution.js";
 
 const createInstitution = async (
   req: Request<{}, {}, CreateInstitutionBody>,
@@ -343,15 +342,33 @@ const createInstitution = async (
 ### 4.2 Typed Route Parameters
 
 ```typescript
+// src/types/institution.ts
 interface InstitutionParams {
   id: string;
 }
 
+export type { InstitutionParams };
+```
+
+```typescript
 const getInstitution = async (
   req: Request<InstitutionParams>,
   res: Response,
 ): Promise<Response> => {
   const { id } = req.params; // Typed as string
+  // ...
+};
+```
+
+When a route handler needs both typed params and a typed body, pass both generics:
+
+```typescript
+const updateInstitution = async (
+  req: Request<InstitutionParams, {}, UpdateInstitutionBody>,
+  res: Response,
+): Promise<Response> => {
+  const { id } = req.params;
+  const { name, region, country } = req.body;
   // ...
 };
 ```
@@ -375,6 +392,40 @@ declare global {
 }
 ```
 
+This lets `jwtAuth.ts` assign a typed payload to `req.user`, which downstream route handlers can then read without casting:
+
+```typescript
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+
+const jwtAuth = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    const payload = jwt.verify(
+      token,
+      process.env.JWT_SECRET,
+    ) as jwt.JwtPayload & { id: string; role: string };
+
+    req.user = payload;
+
+    return next();
+  } catch (err) {
+    return res
+      .status(401)
+      .json({ message: "Not authorized to access this route" });
+  }
+};
+
+export default jwtAuth;
+```
+
 ---
 
 ## 5. Migrating an Existing Project to TypeScript
@@ -394,10 +445,11 @@ The recommended migration strategy is incremental:
 Rename your source files:
 
 ```
-app.js                     → app.ts
-controllers/institution.js → controllers/institution.ts
-routes/institution.js      → routes/institution.ts
-middleware/jwtAuth.js      → middleware/jwtAuth.ts
+app.js                          → app.ts
+controllers/institution.js      → controllers/institution.ts
+routes/institution.js           → routes/institution.ts
+middleware/jwtAuth.js           → middleware/jwtAuth.ts
+repositories/institution.js     → repositories/institution.ts
 ```
 
 ---
@@ -424,9 +476,7 @@ if (typeof data === "object" && data !== null) {
 Prisma generates TypeScript types automatically from your schema. These types are available directly from `@prisma/client`:
 
 ```typescript
-import { Institution, Department, User, Role } from "@prisma/client";
-
-// Use Prisma's generated input types for create/update operations
+import { Institution } from "@prisma/client";
 import { Prisma } from "@prisma/client";
 
 type CreateInstitutionInput = Prisma.InstitutionCreateInput;
@@ -439,19 +489,62 @@ This means your database types and your application types stay in sync automatic
 
 ## 6. Type-Safe Repository Pattern
 
+The repository encapsulates all database access behind a typed interface. The `findAll` method accepts filter, sort, and pagination parameters and returns a `PaginationResult<Institution>` — a generic type defined in `src/types/pagination.ts`:
+
 ```typescript
 // src/repositories/institution.ts
 import { Prisma, Institution } from "@prisma/client";
-
 import prisma from "../../prisma/db.js";
+import { PaginationResult } from "../types/pagination.js";
 
 class InstitutionRepository {
   async create(data: Prisma.InstitutionCreateInput): Promise<Institution> {
     return await prisma.institution.create({ data });
   }
 
-  async findAll(): Promise<Institution[]> {
-    return await prisma.institution.findMany();
+  async findAll(
+    filters: Record<string, unknown> = {},
+    sortBy: string = "id",
+    sortOrder: string = "asc",
+    page: string = "1",
+    pageSize: string = "10",
+  ): Promise<PaginationResult<Institution>> {
+    const parsedPage = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
+    const parsedPageSize =
+      parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
+
+    const where: Prisma.InstitutionWhereInput = {};
+    for (const [key, value] of Object.entries(filters)) {
+      if (value !== undefined && value !== null && value !== "") {
+        if (typeof value === "string") {
+          where[key] = { contains: value };
+        } else if (typeof value === "boolean" || typeof value === "number") {
+          where[key] = { equals: value };
+        }
+      }
+    }
+
+    const totalCount = await prisma.institution.count({ where });
+    const totalPages = Math.ceil(totalCount / parsedPageSize);
+
+    const institutions = await prisma.institution.findMany({
+      where,
+      orderBy: { [sortBy]: sortOrder },
+      skip: (parsedPage - 1) * parsedPageSize,
+      take: parsedPageSize,
+    });
+
+    return {
+      data: institutions,
+      pagination: {
+        currentPage: parsedPage,
+        pageSize: parsedPageSize,
+        totalCount,
+        totalPages,
+        nextPage: parsedPage < totalPages ? parsedPage + 1 : null,
+        prevPage: parsedPage > 1 ? parsedPage - 1 : null,
+      },
+    };
   }
 
   async findById(id: string): Promise<Institution | null> {
@@ -515,7 +608,7 @@ Configure TypeScript in your existing REST API project: install the required pac
 
 ### Task 2 - Type the Institution Resource
 
-Migrate `controllers/institution.ts`, `routes/institution.ts`, and `repositories/institution.ts` to TypeScript. Use Prisma's generated types for all database operations. Add explicit return types to all functions.
+Migrate `controllers/institution.ts`, `routes/institution.ts`, and `repositories/institution.ts` to TypeScript. Create `src/types/institution.ts` exporting `InstitutionParams`, `CreateInstitutionBody`, and `UpdateInstitutionBody`. Use Prisma's generated types for all database operations and add explicit return types to all functions.
 
 ---
 
@@ -525,16 +618,24 @@ Create `src/types/express.d.ts` to extend Express's `Request` interface with a t
 
 ---
 
-### Task 4 - Generic API Response Type
+### Task 4 - Generic Pagination Type
 
-Create `src/types/api.ts` and define a generic `APIResponse<T>` interface. Update your controller return types to use this interface:
+Create `src/types/pagination.ts` and define a generic `PaginationResult<T>` interface. Update your repository's `findAll` method to return this type, and update your controller to read both `data` and `pagination` from the result:
 
 ```typescript
-interface APIResponse<T> {
-  message?: string;
-  data?: T;
-  errors?: Array<{ message: string; type: string }>;
+interface PaginationResult<T> {
+  data: T[];
+  pagination: {
+    currentPage: number;
+    pageSize: number;
+    totalCount: number;
+    totalPages: number;
+    nextPage: number | null;
+    prevPage: number | null;
+  };
 }
+
+export type { PaginationResult };
 ```
 
 ---
