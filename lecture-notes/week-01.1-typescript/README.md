@@ -604,7 +604,7 @@ Acknowledge AI usage at the top of any AI-assisted file:
 
 ### Task 1 - Implement the Code Examples
 
-Use the provided [code example](code-example) and convert the code to TypeScript.
+Use the provided [code example](code-example) or your REST API project from ID607001: Introdcutory Application Development Concepts and convert the code to TypeScript.
 
 ---
 
