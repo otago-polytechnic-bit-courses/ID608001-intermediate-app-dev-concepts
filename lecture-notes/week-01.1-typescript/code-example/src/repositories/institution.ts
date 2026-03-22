@@ -9,7 +9,7 @@ class InstitutionRepository {
   }
 
   async findAll(
-    filters: Record<string, unknown> = {},
+    filters: Record<string, string> = {},
     sortBy: string = "id",
     sortOrder: string = "asc",
     page: string = "1",
