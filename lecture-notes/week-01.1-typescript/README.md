@@ -135,7 +135,7 @@ TypeScript can usually infer the type from the initial value, so explicit annota
 
 ```typescript
 const name = "Jane"; // Inferred as string
-const age = 30; // Inferred as number
+const age = 30;      // Inferred as number
 ```
 
 Prefer type inference for simple variables and explicit annotations for function signatures and public APIs.
@@ -203,9 +203,7 @@ type ID = string;
 // Union - a value can be one of several types
 type StringOrNumber = string | number;
 
-const formatId = (id: StringOrNumber): string => {
-  return String(id);
-};
+const formatId = (id: StringOrNumber): string => String(id);
 
 // Intersection - a value must satisfy all types simultaneously
 type AuthenticatedUser = JwtPayload & { id: string; role: string };
@@ -261,7 +259,7 @@ const getFirst = <T>(arr: T[]): T | undefined => {
 };
 
 const firstNumber = getFirst([1, 2, 3]); // Inferred as number | undefined
-const firstName = getFirst(["a", "b"]); // Inferred as string | undefined
+const firstName = getFirst(["a", "b"]);  // Inferred as string | undefined
 ```
 
 ---
@@ -390,6 +388,8 @@ declare global {
     }
   }
 }
+
+export {};
 ```
 
 This lets `jwtAuth.ts` assign a typed payload to `req.user`, which downstream route handlers can then read without casting:
@@ -478,8 +478,7 @@ if (typeof data === "object" && data !== null) {
 Prisma generates TypeScript types automatically from your schema. These types are available directly from `@prisma/client`:
 
 ```typescript
-import { Institution, User } from "@prisma/client";
-import { Prisma } from "@prisma/client";
+import { Prisma, Institution, User } from "@prisma/client";
 
 type CreateInstitutionInput = Prisma.InstitutionCreateInput;
 type UpdateInstitutionInput = Prisma.InstitutionUpdateInput;
@@ -496,6 +495,7 @@ The repository encapsulates all database access behind a typed interface. The `f
 ```typescript
 // src/repositories/institution.ts
 import { Prisma, Institution } from "@prisma/client";
+
 import prisma from "../../prisma/db.js";
 import { PaginationResult } from "../types/pagination.js";
 
@@ -519,9 +519,9 @@ class InstitutionRepository {
     for (const [key, value] of Object.entries(filters)) {
       if (value !== undefined && value !== null && value !== "") {
         if (typeof value === "string") {
-          where[key] = { contains: value };
+          Object.assign(where, { [key]: { contains: value } });
         } else if (typeof value === "boolean" || typeof value === "number") {
-          where[key] = { equals: value };
+          Object.assign(where, { [key]: { equals: value } });
         }
       }
     }
@@ -604,10 +604,17 @@ Acknowledge AI usage at the top of any AI-assisted file:
 
 ### Task 1 - Implement the Code Examples
 
-Implement all of the code examples covered above.
+Use the [Code Example](code-example) and convert the code to TypeScript.
+
 ---
 
+### Task 2 - Run the TypeScript Compiler
 
+In `tsconfig.json`, ensure `"strict": true` is set. Run the TypeScript compiler and fix every error it reports:
+
+```bash
+npx tsc --noEmit
+```
 
 ---
 
