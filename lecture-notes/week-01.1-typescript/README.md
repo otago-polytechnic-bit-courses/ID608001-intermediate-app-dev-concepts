@@ -604,7 +604,7 @@ Acknowledge AI usage at the top of any AI-assisted file:
 
 ### Task 1 - Implement the Code Examples
 
-Use the [Code Example](code-example) and convert the code to TypeScript.
+Use the provided [code example](code-example) and convert the code to TypeScript.
 
 ---
 
