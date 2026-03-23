@@ -1,12 +1,20 @@
 import request from "supertest";
 
-import app from "../../app.js";
+import app from "../../src/app.js";
 import { cleanupDatabase } from "./db.js";
 
-const setupTestAuth = async () => {
+interface RegisterPayload {
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
+  password: string;
+  role: string;
+}
+
+const setupTestAuth = async (): Promise<string> => {
   const BASE_URL = "/api/auth";
 
-  const user = {
+  const user: RegisterPayload = {
     firstName: "Jane",
     lastName: "Doe",
     emailAddress: "jane.doe@example.com",
@@ -23,7 +31,7 @@ const setupTestAuth = async () => {
     password: user.password,
   });
 
-  return res.body.token;
+  return res.body.token as string;
 };
 
 export default setupTestAuth;

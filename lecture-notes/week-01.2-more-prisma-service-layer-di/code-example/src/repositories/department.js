@@ -1,33 +1,28 @@
-import { Prisma, Department } from "@prisma/client";
-
 import prisma from "../../prisma/db.js";
 
 class DepartmentRepository {
-  async create(data: Prisma.DepartmentCreateInput): Promise<Department> {
+  async create(data) {
     return await prisma.department.create({ data });
   }
 
-  async findAll(): Promise<Department[]> {
+  async findAll() {
     return await prisma.department.findMany();
   }
 
-  async findById(id: string): Promise<Department | null> {
+  async findById(id) {
     return await prisma.department.findUnique({
       where: { id },
     });
   }
 
-  async update(
-    id: string,
-    data: Prisma.DepartmentUpdateInput,
-  ): Promise<Department> {
+  async update(id, data) {
     return await prisma.department.update({
       where: { id },
       data,
     });
   }
 
-  async delete(id: string): Promise<Department> {
+  async delete(id) {
     return await prisma.department.delete({
       where: { id },
     });

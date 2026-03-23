@@ -1,7 +1,6 @@
-import {Request, Response, NextFunction} from "express";
 import Joi from "joi";
 
-const validatePostInstitution = (req: Request, res: Response, next: NextFunction) => {
+const validatePostInstitution = (req, res, next) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).required().messages({
       "string.base": "name should be a string",
@@ -43,7 +42,7 @@ const validatePostInstitution = (req: Request, res: Response, next: NextFunction
   next();
 };
 
-const validatePutInstitution = (req: Request, res: Response, next: NextFunction) => {
+const validatePutInstitution = (req, res, next) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).optional().messages({
       "string.base": "name should be a string",

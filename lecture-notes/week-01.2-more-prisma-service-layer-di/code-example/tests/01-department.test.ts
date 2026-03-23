@@ -1,47 +1,38 @@
 import { expect } from "chai";
 import request from "supertest";
 
-import app from "../app.js";
+import app from "../src/app.js";
 import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
+
+interface DepartmentData {
+  name: string;
+}
 
 describe("Department CRUD", () => {
   const BASE_URL = "/api/departments";
 
-  let institutionId;
-  let departmentOneId;
+  let institutionId: string;
+  let departmentOneId: string;
 
-  const departmentData = [
-    {
-      name: "Information Technology",
-    },
-    {
-      name: "Nursing",
-    },
-    {
-      name: "Business",
-    },
+  const departmentData: DepartmentData[] = [
+    { name: "Information Technology" },
+    { name: "Nursing" },
+    { name: "Business" },
   ];
 
-  // Set up the institution ID before running the tests
   before(async () => {
     institutionId = global.testInstitutionId;
   });
 
-  // Clean up the database and disconnect Prisma after running the tests
-  after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
-  });
-
   it("should create department one", async () => {
-    const res = await request(app).post(BASE_URL).send({
-      name: departmentData[0].name,
-      institutionId: institutionId,
-    });
+    const res = await request(app)
+      .post(BASE_URL)
+      .send({ name: departmentData[0].name, institutionId });
 
     expect(res.status).to.equal(201);
+
     const newDepartment = res.body.data.find(
-      (department) => department.name === departmentData[0].name // "Information Technology"
+      (d: DepartmentData & { id: string }) => d.name === departmentData[0].name,
     );
     departmentOneId = newDepartment.id;
   });
@@ -61,14 +52,13 @@ describe("Department CRUD", () => {
   });
 
   it("should update department one", async () => {
-    const res = await request(app).put(`${BASE_URL}/${departmentOneId}`).send({
-      name: departmentData[1].name,
-      institutionId: institutionId,
-    });
+    const res = await request(app)
+      .put(`${BASE_URL}/${departmentOneId}`)
+      .send({ name: departmentData[1].name, institutionId });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully updated`
+      `Department with the id: ${departmentOneId} successfully updated`,
     );
     expect(res.body.data.name).to.equal(departmentData[1].name);
   });
@@ -78,7 +68,12 @@ describe("Department CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully deleted`
+      `Department with the id: ${departmentOneId} successfully deleted`,
     );
+  });
+
+  after(async () => {
+    await cleanupDatabase();
+    await disconnectPrisma();
   });
 });

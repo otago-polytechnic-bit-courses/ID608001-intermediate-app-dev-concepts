@@ -1,27 +1,29 @@
 import { expect } from "chai";
 import request from "supertest";
 
-import app from "../app.js";
+import app from "../src/app.js";
 import setupTestAuth from "./helpers/auth.js";
+
+interface InstitutionData {
+  name: string;
+  region: string;
+  country: string;
+}
 
 describe("Institution CRUD", () => {
   const BASE_URL = "/api/institutions";
 
-  let token;
-  let institutionOneId;
-  let institutionTwoId;
+  let token: string;
+  let institutionOneId: string;
+  let institutionTwoId: string;
 
-  const institutionData = [
+  const institutionData: InstitutionData[] = [
     {
       name: "Ara Institute of Canterbury",
       region: "Canterbury",
       country: "New Zealand",
     },
-    {
-      name: "Otago Polytechnic",
-      region: "Otago",
-      country: "New Zealand",
-    },
+    { name: "Otago Polytechnic", region: "Otago", country: "New Zealand" },
     {
       name: "Southern Institute of Technology",
       region: "Southland",
@@ -29,7 +31,6 @@ describe("Institution CRUD", () => {
     },
   ];
 
-  // Setup the test authentication before running the tests
   before(async () => {
     token = await setupTestAuth();
   });
@@ -37,16 +38,15 @@ describe("Institution CRUD", () => {
   it("should create institution one", async () => {
     const res = await request(app)
       .post(BASE_URL)
-      .set("Authorization", `Bearer ${token}`) // Set the Authorization header with the token
+      .set("Authorization", `Bearer ${token}`)
       .send(institutionData[1]);
 
     expect(res.status).to.equal(201);
 
-    // Find an institution by name in the response body
     const newInstitution = res.body.data.find(
-      (institution) => institution.name === institutionData[1].name // "Otago Polytechnic"
+      (i: InstitutionData & { id: string }) => i.name === institutionData[1].name,
     );
-    institutionOneId = newInstitution.id; // Store the institution ID for later use
+    institutionOneId = newInstitution.id;
   });
 
   it("should create institution two", async () => {
@@ -56,8 +56,9 @@ describe("Institution CRUD", () => {
       .send(institutionData[2]);
 
     expect(res.status).to.equal(201);
+
     const newInstitution = res.body.data.find(
-      (institution) => institution.name === institutionData[2].name // "Southern Institute of Technology"
+      (i: InstitutionData & { id: string }) => i.name === institutionData[2].name,
     );
     institutionTwoId = newInstitution.id;
   });
@@ -66,25 +67,27 @@ describe("Institution CRUD", () => {
     const res = await request(app).get(BASE_URL);
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(2); // Check that there are at least 2 institutions
+    expect(res.body.data.length).to.be.at.least(2);
   });
 
   it("should get institution one by ID", async () => {
     const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal(institutionData[1].name); // "Otago Polytechnic"
+    expect(res.body.data.name).to.equal(institutionData[1].name);
   });
 
   it("should update institution two", async () => {
-    const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
-      name: institutionData[0].name,
-      region: institutionData[0].region,
-    });
+    const res = await request(app)
+      .put(`${BASE_URL}/${institutionTwoId}`)
+      .send({
+        name: institutionData[0].name,
+        region: institutionData[0].region,
+      });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionTwoId} successfully updated`
+      `Institution with the id: ${institutionTwoId} successfully updated`,
     );
     expect(res.body.data.name).to.equal(institutionData[0].name);
   });
@@ -94,11 +97,11 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionOneId} successfully deleted`
+      `Institution with the id: ${institutionOneId} successfully deleted`,
     );
   });
 
   after(() => {
-    global.testInstitutionId = institutionTwoId; // Store the institution ID for later use in 01-department.test.js
+    global.testInstitutionId = institutionTwoId;
   });
 });
