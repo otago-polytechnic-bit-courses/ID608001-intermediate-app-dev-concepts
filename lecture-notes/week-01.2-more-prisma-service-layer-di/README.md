@@ -2,10 +2,10 @@
 
 ## Navigation
 
-|              | Link                                                                                                       |
-| ------------ | ---------------------------------------------------------------------------------------------------------- |
-| Previous     | [Week 01.1 - TypeScript](../week-01.1-typescript/README.md)                                                |
-| Code Example | [Code Example](code-example)                                                                               |
+|              | Link                                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 01.1 - TypeScript](../week-01.1-typescript/README.md)                                                     |
+| Code Example | [Code Example](code-example)                                                                                    |
 | Next         | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02.1-docker-compose-more-github-actions/README.md) |
 
 ---
@@ -33,25 +33,23 @@ Use `prisma.$transaction()` to wrap multiple operations:
 ```typescript
 import prisma from "../prisma/db.js";
 
-const createUserWithProfile = async (userData: CreateUserInput) => {
+const createDepartmentWithCourse = async (
+  departmentData: Prisma.DepartmentCreateInput,
+  courseData: Omit<Prisma.CourseCreateInput, "department">,
+) => {
   return prisma.$transaction(async (tx) => {
-    const user = await tx.user.create({
+    const department = await tx.department.create({
+      data: departmentData,
+    });
+
+    const course = await tx.course.create({
       data: {
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        emailAddress: userData.emailAddress,
-        password: userData.password,
+        ...courseData,
+        departmentId: department.id,
       },
     });
 
-    const profile = await tx.profile.create({
-      data: {
-        bio: userData.bio ?? "",
-        userId: user.id,
-      },
-    });
-
-    return { user, profile };
+    return { department, course };
   });
 };
 ```
@@ -67,23 +65,23 @@ const createUserWithProfile = async (userData: CreateUserInput) => {
 Interactive transactions give you full programmatic control over when to commit or rollback:
 
 ```typescript
-const transferDepartment = async (
-  departmentId: string,
-  fromInstitutionId: string,
-  toInstitutionId: string,
+const transferCourse = async (
+  courseId: string,
+  fromDepartmentId: string,
+  toDepartmentId: string,
 ) => {
   return prisma.$transaction(async (tx) => {
-    const department = await tx.department.findUnique({
-      where: { id: departmentId },
+    const course = await tx.course.findUnique({
+      where: { id: courseId },
     });
 
-    if (!department || department.institutionId !== fromInstitutionId) {
-      throw new Error("Department not found in source institution");
+    if (!course || course.departmentId !== fromDepartmentId) {
+      throw new Error("Course not found in source department");
     }
 
-    return tx.department.update({
-      where: { id: departmentId },
-      data: { institutionId: toInstitutionId },
+    return tx.course.update({
+      where: { id: courseId },
+      data: { departmentId: toDepartmentId },
     });
   });
 };
@@ -122,21 +120,22 @@ export default prisma;
 
 Soft deletes mark records as deleted rather than removing them from the database. This preserves data for auditing and allows recovery.
 
-Add a `deletedAt` field to your model:
+First, add a `deletedAt` field to your model and run a migration:
 
-```typescript
+```prisma
 model Institution {
-  id        String    @id @default(uuid())
-  name      String
-  region    String
-  country   String
-  deletedAt DateTime?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id          String       @id @default(uuid())
+  name        String
+  region      String
+  country     String
+  departments Department[]
+  deletedAt   DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 ```
 
-Use Prisma middleware to intercept delete operations and update `deletedAt` instead:
+Then use Prisma middleware to intercept delete operations and update `deletedAt` instead:
 
 ```typescript
 prisma.$use(async (params, next) => {
@@ -158,6 +157,8 @@ prisma.$use(async (params, next) => {
 });
 ```
 
+> `deletedAt` is not in your schema by default — you must add the field and run `npx prisma migrate dev` before this middleware has any effect.
+
 ---
 
 ### 1.5 Aggregations
@@ -165,31 +166,111 @@ prisma.$use(async (params, next) => {
 Prisma supports aggregation queries for computing statistics:
 
 ```typescript
-// Count all institutions
-const count = await prisma.institution.count();
+// Count all courses
+const count = await prisma.course.count();
 
-// Count with a filter
-const nzCount = await prisma.institution.count({
-  where: { country: "New Zealand" },
+// Count courses in a specific department
+const deptCount = await prisma.course.count({
+  where: { departmentId: "some-department-id" },
 });
 
-// Aggregate numeric fields
-const stats = await prisma.course.aggregate({
+// Count courses grouped by department
+const byDepartment = await prisma.course.groupBy({
+  by: ["departmentId"],
   _count: { id: true },
-  _avg: { creditPoints: true },
-  _min: { creditPoints: true },
-  _max: { creditPoints: true },
+  orderBy: { _count: { id: "desc" } },
 });
 
-// Group by a field
-const byCountry = await prisma.institution.groupBy({
-  by: ["country"],
+// Count departments grouped by institution
+const byInstitution = await prisma.department.groupBy({
+  by: ["institutionId"],
   _count: { id: true },
   orderBy: { _count: { id: "desc" } },
 });
 ```
 
 📖 Reference: [Prisma - Aggregation](https://www.prisma.io/docs/orm/prisma-client/queries/aggregation-grouping-summarizing)
+
+---
+
+### 1.6 Raw Queries
+
+Sometimes the Prisma query API cannot express what you need — complex joins, database-specific functions, or performance-tuned SQL. Prisma exposes two methods for running raw SQL directly.
+
+| Method               | Returns                       | Use when                                     |
+| -------------------- | ----------------------------- | -------------------------------------------- |
+| `prisma.$queryRaw`   | Typed rows as an array        | `SELECT` statements that return data         |
+| `prisma.$executeRaw` | Row count affected (`number`) | `INSERT`, `UPDATE`, `DELETE`, `CREATE INDEX` |
+
+---
+
+#### `$queryRaw`
+
+Use a tagged template literal so that all interpolated values are automatically parameterised — this prevents SQL injection:
+
+```typescript
+import { Prisma, Institution } from "@prisma/client";
+
+const institutions = await prisma.$queryRaw<Institution[]>`
+  SELECT * FROM "Institution"
+  WHERE country = ${country}
+  ORDER BY name ASC
+`;
+```
+
+The type parameter (`Institution[]`) tells TypeScript what shape to expect back. Prisma does not validate this at runtime, so make sure it matches your actual columns.
+
+For dynamic queries where you need to build the SQL string at runtime, use `Prisma.sql` to compose parameterised fragments safely:
+
+```typescript
+const column = "name";
+const direction = "ASC";
+
+const courses = await prisma.$queryRaw<Course[]>(
+  Prisma.sql`
+    SELECT * FROM "Course"
+    ORDER BY ${Prisma.raw(column)} ${Prisma.raw(direction)}
+  `,
+);
+```
+
+> Only use `Prisma.raw` for structural parts of the query (column names, sort direction) that cannot be parameterised. Never pass user input through `Prisma.raw`.
+
+---
+
+#### `$executeRaw`
+
+Use `$executeRaw` for statements that modify data and return a row count rather than rows:
+
+```typescript
+const affected = await prisma.$executeRaw`
+  UPDATE "Institution"
+  SET country = ${newCountry}
+  WHERE country = ${oldCountry}
+`;
+
+console.log(`${affected} rows updated`);
+```
+
+---
+
+#### Raw queries inside transactions
+
+Both methods work inside `$transaction`, which lets you mix raw SQL with Prisma model queries atomically:
+
+```typescript
+await prisma.$transaction(async (tx) => {
+  await tx.$executeRaw`
+    UPDATE "Department" SET institutionId = ${newId} WHERE id = ${departmentId}
+  `;
+
+  await tx.auditLog.create({
+    data: { model: "Department", action: "UPDATE", recordId: departmentId },
+  });
+});
+```
+
+📖 Reference: [Prisma - Raw queries](https://www.prisma.io/docs/orm/prisma-client/queries/raw-database-access/raw-queries)
 
 ---
 
@@ -222,6 +303,7 @@ Create `src/services/institution.ts`:
 ```typescript
 import institutionRepository from "../repositories/institution.js";
 import { Institution, Prisma } from "@prisma/client";
+import { NotFoundError } from "../errors/index.js";
 
 class InstitutionService {
   async create(data: Prisma.InstitutionCreateInput): Promise<Institution[]> {
@@ -461,6 +543,8 @@ import errorHandler from "./middleware/errorHandler.js";
 
 // All routes must be registered before the error handler
 app.use("/api/institutions", institutionRoutes);
+app.use("/api/departments", departmentRoutes);
+app.use("/api/courses", courseRoutes);
 
 // Error handler must be last
 app.use(errorHandler);
@@ -582,35 +666,6 @@ describe("InstitutionService.getAll", () => {
 
 ---
 
-## 4. Updated Directory Structure
-
-```
-backend/
-├── controllers/
-│   └── institution.ts
-├── errors/
-│   └── index.ts
-├── middleware/
-│   ├── errorHandler.ts
-│   ├── jwtAuth.ts
-│   └── validation/
-│       └── institution.ts
-├── prisma/
-│   └── db.ts
-├── repositories/
-│   └── institution.ts
-├── routes/
-│   └── institution.ts
-├── services/
-│   └── institution.ts
-├── types/
-│   ├── api.ts
-│   └── express.d.ts
-└── app.ts
-```
-
----
-
 ## Exercises
 
 ### AI Usage Guidelines
@@ -632,25 +687,25 @@ Acknowledge AI usage at the top of any AI-assisted file:
 
 ### Task 1 - Implement the Code Examples
 
-Implement the service layer, custom error classes, and global error handler for the Institution resource.
+Implement the service layer, custom error classes, and global error handler for the `Institution` resource.
 
 ---
 
 ### Task 2 - Service Layer for All Resources
 
-Create service classes for `Department`, `Course`, and `User`, moving all business logic out of the controllers.
+Create service classes for `Department`, `Course`, and `User`, moving all business logic out of the controllers. Note that `DepartmentService.create` should verify the `Institution` exists before creating the department, and `CourseService.create` should verify the `Department` exists before creating the course.
 
 ---
 
 ### Task 3 - Repository Interfaces
 
-Define TypeScript interfaces for all repositories (`IInstitutionRepository`, `IDepartmentRepository`, etc.) and update your service constructors to depend on the interfaces rather than the concrete implementations.
+Define TypeScript interfaces for all repositories (`IInstitutionRepository`, `IDepartmentRepository`, `ICourseRepository`) and update your service constructors to depend on the interfaces rather than the concrete implementations.
 
 ---
 
-### Task 4 - Transaction - Register with Profile
+### Task 4 - Transaction - Department with Course
 
-Update `AuthService.register` to use a Prisma transaction that creates both the `User` and their `Profile` atomically. If profile creation fails, the user should not be created.
+Implement a `POST /api/departments/with-course` endpoint that uses a Prisma transaction to create a `Department` and an initial `Course` atomically. If course creation fails, the department should not be created.
 
 ---
 
@@ -660,7 +715,13 @@ Add a Prisma middleware that logs every `create`, `update`, and `delete` operati
 
 ---
 
-### Task 6 - Unit Tests for Services
+### Task 6 - Raw Query Endpoint
+
+Add a `GET /api/institutions/search` endpoint that uses `$queryRaw` to query the `Institution` table directly. The endpoint should accept a `q` query parameter and return all institutions where the name matches using a raw `ILIKE` query.
+
+---
+
+### Task 7 - Unit Tests for Services
 
 Write unit tests for `InstitutionService` using mock repositories. Cover the `getAll` (empty), `getById` (found and not found), `create`, `update`, and `delete` methods.
 
