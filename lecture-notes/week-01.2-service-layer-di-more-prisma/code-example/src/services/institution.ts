@@ -1,22 +1,36 @@
 import { Institution, Prisma } from "@prisma/client";
 
 import institutionRepository from "../repositories/institution.js";
+import { PaginationResult } from "../types/pagination.js";
 import { NotFoundError } from "../errors/index.js";
 
 class InstitutionService {
   async create(data: Prisma.InstitutionCreateInput): Promise<Institution[]> {
     await institutionRepository.create(data);
-    return institutionRepository.findAll();
+    const result = await institutionRepository.findAll();
+    return result.data;
   }
 
-  async getAll(): Promise<Institution[]> {
-    const institutions = await institutionRepository.findAll();
+  async getAll(
+    filters: Record<string, string> = {},
+    sortBy: string = "id",
+    sortOrder: string = "asc",
+    page: string = "1",
+    pageSize: string = "10",
+  ): Promise<PaginationResult<Institution>> {
+    const result = await institutionRepository.findAll(
+      filters,
+      sortBy,
+      sortOrder,
+      page,
+      pageSize,
+    );
 
-    if (institutions.length === 0) {
+    if (result.data.length === 0) {
       throw new NotFoundError("No institutions found");
     }
 
-    return institutions;
+    return result;
   }
 
   async getById(id: string): Promise<Institution> {

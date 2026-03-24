@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
-import institutionRepository from "../repositories/institution.js";
+import institutionService from "../services/institution.js";
 
 import {
   InstitutionParams,
@@ -11,26 +11,25 @@ import {
 const createInstitution = async (
   req: Request<{}, {}, CreateInstitutionBody>,
   res: Response,
-): Promise<Response> => {
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { name, region, country } = req.body;
-    await institutionRepository.create({ name, region, country });
-    const institutions = await institutionRepository.findAll();
-    return res.status(201).json({
+    const institutions = await institutionService.create({ name, region, country });
+    res.status(201).json({
       message: "Institution successfully created",
-      data: institutions.data,
+      data: institutions,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
 const getInstitutions = async (
   req: Request,
   res: Response,
-): Promise<Response> => {
+  next: NextFunction,
+): Promise<void> => {
   try {
     const {
       name,
@@ -57,7 +56,7 @@ const getInstitutions = async (
       ? sortBy.toLowerCase()
       : "id";
 
-    const institutions = await institutionRepository.findAll(
+    const result = await institutionService.getAll(
       filters,
       fields,
       order,
@@ -65,92 +64,61 @@ const getInstitutions = async (
       pageSize,
     );
 
-    if (!institutions.data.length) {
-      return res.status(404).json({ message: "No institutions found" });
-    }
-
-    return res.status(200).json({
-      data: institutions.data,
-      pagination: institutions.pagination,
+    res.status(200).json({
+      data: result.data,
+      pagination: result.pagination,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
 const getInstitution = async (
   req: Request<InstitutionParams>,
   res: Response,
-): Promise<Response> => {
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { id } = req.params;
-    const institution = await institutionRepository.findById(id);
-    if (!institution) {
-      return res.status(404).json({
-        message: `No institution with the id: ${id} found`,
-      });
-    }
-    return res.status(200).json({
-      data: institution,
-    });
+    const institution = await institutionService.getById(req.params.id);
+    res.status(200).json({ data: institution });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
 const updateInstitution = async (
   req: Request<InstitutionParams, {}, UpdateInstitutionBody>,
   res: Response,
-): Promise<Response> => {
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { id } = req.params;
     const { name, region, country } = req.body;
-    let institution = await institutionRepository.findById(id);
-    if (!institution) {
-      return res.status(404).json({
-        message: `No institution with the id: ${id} found`,
-      });
-    }
-    const updatedInstitution = await institutionRepository.update(id, {
+    const institution = await institutionService.update(req.params.id, {
       name,
       region,
       country,
     });
-    return res.status(200).json({
-      message: `Institution with the id: ${id} successfully updated`,
-      data: updatedInstitution,
+    res.status(200).json({
+      message: `Institution with the id: ${req.params.id} successfully updated`,
+      data: institution,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
 const deleteInstitution = async (
   req: Request<InstitutionParams>,
   res: Response,
-): Promise<Response> => {
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { id } = req.params;
-    const institution = await institutionRepository.findById(id);
-    if (!institution) {
-      return res.status(404).json({
-        message: `No institution with the id: ${id} found`,
-      });
-    }
-    await institutionRepository.delete(id);
-    return res.status(200).json({
-      message: `Institution with the id: ${id} successfully deleted`,
+    await institutionService.delete(req.params.id);
+    res.status(200).json({
+      message: `Institution with the id: ${req.params.id} successfully deleted`,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 

@@ -74,7 +74,6 @@ Define custom error classes so that services can throw meaningful errors that co
 
 ```typescript
 // src/errors/index.ts
-
 export class NotFoundError extends Error {
   constructor(message: string) {
     super(message);
@@ -116,8 +115,9 @@ Because `findAll` returns `PaginationResult<Institution>`, the service passes th
 
 ```typescript
 // src/services/institution.ts
-import institutionRepository from "../repositories/institution.js";
 import { Institution, Prisma } from "@prisma/client";
+
+import institutionRepository from "../repositories/institution.js";
 import { PaginationResult } from "../types/pagination.js";
 import { NotFoundError } from "../errors/index.js";
 

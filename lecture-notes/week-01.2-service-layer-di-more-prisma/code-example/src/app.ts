@@ -8,6 +8,7 @@ import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
 
 import isContentTypeApplicationJSON from "./middleware/contentType.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 
@@ -24,6 +25,8 @@ app.use("/api/auth", authRoutes);
 app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(
