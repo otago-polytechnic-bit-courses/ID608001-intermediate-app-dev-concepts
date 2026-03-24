@@ -38,16 +38,23 @@ Without a service layer, business logic leaks into controllers. Controllers beco
 
 ```typescript
 // Without a service layer — business logic in the controller
-const getInstitution = async (req: Request, res: Response) => {
-  const institution = await institutionRepository.findUnique({
-    where: { id: req.params.id },
-  });
-
-  if (!institution) {
-    return res.status(404).json({ message: "Not found" });
+const getInstitution = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const institution = await institutionRepository.findById(id);
+    if (!institution) {
+      return res.status(404).json({
+        message: `No institution with the id: ${id} found`,
+      });
+    }
+    return res.status(200).json({
+      data: institution,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
   }
-
-  return res.status(200).json({ data: institution });
 };
 ```
 
@@ -101,112 +108,7 @@ Using named error classes instead of plain `new Error()` lets you distinguish er
 
 ---
 
-### 1.3 Pagination Type
-
-The repository's `findAll` method returns a `PaginationResult<T>` — a generic type that wraps any resource in a consistent paginated response shape. Define it in `src/types/pagination.ts`:
-
-```typescript
-// src/types/pagination.ts
-interface PaginationResult<T> {
-  data: T[];
-  pagination: {
-    currentPage: number;
-    pageSize: number;
-    totalCount: number;
-    totalPages: number;
-    nextPage: number | null;
-    prevPage: number | null;
-  };
-}
-
-export type { PaginationResult };
-```
-
----
-
-### 1.4 Institution Repository
-
-The repository handles all database access. `findAll` accepts optional filters, sort, and pagination parameters and returns a `PaginationResult<Institution>`:
-
-```typescript
-// src/repositories/institution.ts
-import { Prisma, Institution } from "@prisma/client";
-
-import prisma from "../../prisma/db.js";
-import { PaginationResult } from "../types/pagination.js";
-
-class InstitutionRepository {
-  async create(data: Prisma.InstitutionCreateInput): Promise<Institution> {
-    return await prisma.institution.create({ data });
-  }
-
-  async findAll(
-    filters: Record<string, string> = {},
-    sortBy: string = "id",
-    sortOrder: string = "asc",
-    page: string = "1",
-    pageSize: string = "10",
-  ): Promise<PaginationResult<Institution>> {
-    const parsedPage = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
-    const parsedPageSize =
-      parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
-
-    const where: Prisma.InstitutionWhereInput = {};
-    for (const [key, value] of Object.entries(filters)) {
-      if (value !== undefined && value !== null && value !== "") {
-        if (typeof value === "string") {
-          Object.assign(where, { [key]: { contains: value } });
-        } else if (typeof value === "boolean" || typeof value === "number") {
-          Object.assign(where, { [key]: { equals: value } });
-        }
-      }
-    }
-
-    const totalCount = await prisma.institution.count({ where });
-    const totalPages = Math.ceil(totalCount / parsedPageSize);
-
-    const institutions = await prisma.institution.findMany({
-      where,
-      orderBy: { [sortBy]: sortOrder },
-      skip: (parsedPage - 1) * parsedPageSize,
-      take: parsedPageSize,
-    });
-
-    return {
-      data: institutions,
-      pagination: {
-        currentPage: parsedPage,
-        pageSize: parsedPageSize,
-        totalCount,
-        totalPages,
-        nextPage: parsedPage < totalPages ? parsedPage + 1 : null,
-        prevPage: parsedPage > 1 ? parsedPage - 1 : null,
-      },
-    };
-  }
-
-  async findById(id: string): Promise<Institution | null> {
-    return await prisma.institution.findUnique({ where: { id } });
-  }
-
-  async update(
-    id: string,
-    data: Prisma.InstitutionUpdateInput,
-  ): Promise<Institution> {
-    return await prisma.institution.update({ where: { id }, data });
-  }
-
-  async delete(id: string): Promise<Institution> {
-    return await prisma.institution.delete({ where: { id } });
-  }
-}
-
-export default new InstitutionRepository();
-```
-
----
-
-### 1.5 Institution Service
+### 1.3 Institution Service
 
 The service sits between the repository and the controller. It owns business logic — existence checks, error throwing, filter validation — and calls the repository for data access.
 
@@ -277,7 +179,7 @@ export default new InstitutionService();
 
 ---
 
-### 1.6 Institution Controller
+### 1.4 Institution Controller
 
 The controller imports the service, extracts query parameters, and delegates all logic. It no longer calls the repository directly or checks for existence itself — those responsibilities now belong to the service:
 
@@ -418,7 +320,7 @@ export {
 
 ---
 
-### 1.7 Global Error Handler
+### 1.5 Global Error Handler
 
 Register a global error-handling middleware in `app.ts`. Express identifies error-handling middleware by its four parameters — the first being `err`. It maps each custom error class to an HTTP status code:
 
