@@ -1,6 +1,6 @@
 {
   "reporter": ["text", "html", "lcov"],
-  "include": ["controllers/**/*.js", "middleware/**/*.js", "routes/**/*.js"],
+  "include": ["src/controllers/**/*.ts", "src/middleware/**/*.ts", "src/routes/**/*.ts"],
   "exclude": ["tests/**", "prisma/**", "node_modules/**"],
   "branches": 80,
   "lines": 80,

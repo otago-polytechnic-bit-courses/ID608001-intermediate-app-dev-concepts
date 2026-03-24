@@ -6,7 +6,7 @@
 | ------------ | ------------------------------------------------------------------------------- |
 | Previous     | [Week 02.2 - Versioning and Retries](../week-02.2-versioning-retries/README.md) |
 | Code Example | [Code Example](code-example)                                                    |
-| Next         | [Week 03.2 - Multi-Tenancy Patterns](../week-03.2-multi-tenancy-patterns/README.md)                                                                               |
+| Next         | [Week 03.2 - Multi-Tenancy Patterns](../week-03.2-multi-tenancy-patterns/README.md) |
 
 ---
 
@@ -22,7 +22,7 @@ git checkout -b w03.1-permissions-refresh-tokens-abac
 
 ## 1. Limitations of Basic RBAC
 
-In ID607001: Introductory Application Development Concepts, you implemented Role-Based Access Control (RBAC) where every user is assigned one role (e.g. `ADMIN`, `STAFF`, `STUDENT`) and each role grants a fixed set of permissions.
+In ID607001, you implemented Role-Based Access Control (RBAC) where every user is assigned one role (e.g. `ADMIN`, `STAFF`, `STUDENT`) and each role grants a fixed set of permissions.
 
 Basic RBAC breaks down in several real-world scenarios:
 
@@ -39,12 +39,13 @@ Basic RBAC breaks down in several real-world scenarios:
 
 Rather than hard-coding logic into role checks, define discrete **permissions** that can be assigned to roles or directly to users. Each permission represents a specific action on a specific resource.
 
+The key advantage is that permissions can be configured at runtime — you can add, remove, or reassign permissions via database records without changing code.
+
 ---
 
 ### 2.1 Permission Model
 
-```typescript
-// Prisma schema
+```prisma
 model Permission {
   id          String           @id @default(uuid())
   name        String           @unique   // e.g. "institution:create"
@@ -104,6 +105,8 @@ user:update:any
 user:delete:any
 ```
 
+The `:own` suffix indicates the permission is scoped to resources the user owns. The `:any` suffix indicates access to any user's resources.
+
 ---
 
 ### 2.3 Seeding Permissions and Roles
@@ -153,7 +156,6 @@ const roles = [
 ];
 
 export const seedRolesAndPermissions = async () => {
-  // Create all permissions
   for (const permission of permissions) {
     await prisma.permission.upsert({
       where: { name: permission.name },
@@ -162,7 +164,6 @@ export const seedRolesAndPermissions = async () => {
     });
   }
 
-  // Create all roles and assign permissions
   for (const role of roles) {
     const createdRole = await prisma.role.upsert({
       where: { name: role.name },
@@ -194,6 +195,8 @@ export const seedRolesAndPermissions = async () => {
   }
 };
 ```
+
+`upsert` is used throughout so the seed script is safe to re-run — it will update rather than duplicate.
 
 ---
 
@@ -254,8 +257,9 @@ export default hasPermission;
 **Using it on routes:**
 
 ```typescript
-import hasPermission from "../middleware/permission.js";
+// src/routes/institution.ts
 import jwtAuth from "../middleware/jwtAuth.js";
+import hasPermission from "../middleware/permission.js";
 
 router.post(
   "/",
@@ -273,6 +277,8 @@ router.delete(
   deleteInstitution,
 );
 ```
+
+`jwtAuth` must run before `hasPermission` because the permission middleware reads `req.user.id`, which is set by `jwtAuth`.
 
 ---
 
@@ -293,11 +299,15 @@ Access tokens (JWTs) should be short-lived to limit the damage if they are stole
 6. Logout → server invalidates the refresh token
 ```
 
+**Why store the refresh token in an httpOnly cookie?**
+
+An `httpOnly` cookie cannot be read by JavaScript, so it is not accessible to XSS attacks. The access token is stored in memory (not `localStorage`) for the same reason.
+
 ---
 
 ### 3.2 Refresh Token Model
 
-```typescript
+```prisma
 model RefreshToken {
   id        String   @id @default(uuid())
   token     String   @unique
@@ -308,9 +318,11 @@ model RefreshToken {
 }
 ```
 
+Storing refresh tokens in the database allows them to be explicitly invalidated on logout, unlike JWTs which cannot be revoked once issued.
+
 ---
 
-### 3.3 Updated Environment Variables
+### 3.3 Environment Variables
 
 ```bash
 JWT_ACCESS_SECRET=YourAccessSecretChangeInProduction
@@ -319,9 +331,18 @@ JWT_REFRESH_SECRET=YourRefreshSecretChangeInProduction
 JWT_REFRESH_LIFETIME=7d
 ```
 
+> ⚠️ **Important:** Use separate secrets for access and refresh tokens. If the access secret is compromised, refresh tokens remain secure and vice versa.
+
 ---
 
-### 3.4 Updated Auth Controller
+### 3.4 Auth Controller
+
+Install `cookie-parser` first:
+
+```bash
+npm install cookie-parser
+npm install @types/cookie-parser --save-dev
+```
 
 ```typescript
 // src/controllers/auth.ts
@@ -335,20 +356,18 @@ const generateTokens = async (userId: string) => {
   const {
     JWT_ACCESS_SECRET,
     JWT_ACCESS_LIFETIME,
-    JWT_REFRESH_SECRET,
-    JWT_REFRESH_LIFETIME,
   } = process.env;
 
   const accessToken = jwt.sign({ id: userId }, JWT_ACCESS_SECRET!, {
     expiresIn: JWT_ACCESS_LIFETIME as string,
   });
 
-  // Generate a cryptographically random refresh token
+  // Use a cryptographically random refresh token rather than a JWT
+  // so it cannot be decoded to reveal user information
   const refreshToken = crypto.randomBytes(64).toString("hex");
 
-  // Store the refresh token in the database with an expiry
   const expiresAt = new Date();
-  expiresAt.setDate(expiresAt.getDate() + 7); // 7 days
+  expiresAt.setDate(expiresAt.getDate() + 7);
 
   await prisma.refreshToken.create({
     data: { token: refreshToken, userId, expiresAt },
@@ -374,12 +393,11 @@ const login = async (
 
     const { accessToken, refreshToken } = await generateTokens(user.id);
 
-    // Set refresh token as httpOnly cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -404,7 +422,6 @@ const refresh = async (
       return;
     }
 
-    // Look up the token in the database
     const storedToken = await prisma.refreshToken.findUnique({
       where: { token },
       include: { user: true },
@@ -415,10 +432,9 @@ const refresh = async (
       return;
     }
 
-    // Delete the used token (rotation - each refresh token can only be used once)
+    // Delete the used token — each refresh token can only be used once
     await prisma.refreshToken.delete({ where: { token } });
 
-    // Issue a new token pair
     const { accessToken, refreshToken: newRefreshToken } = await generateTokens(
       storedToken.userId,
     );
@@ -445,7 +461,6 @@ const logout = async (
     const token = req.cookies.refreshToken as string | undefined;
 
     if (token) {
-      // Invalidate the refresh token in the database
       await prisma.refreshToken.deleteMany({ where: { token } });
     }
 
@@ -461,16 +476,15 @@ export { login, refresh, logout };
 
 ---
 
-### 3.5 Updated Auth Router
+### 3.5 Auth Router
 
 ```typescript
+// src/routes/auth.ts
 import express from "express";
-import { login, refresh, logout, register } from "../controllers/auth.js";
-import cookieParser from "cookie-parser";
+import { login, refresh, logout } from "../controllers/auth.js";
 
 const router = express.Router();
 
-router.post("/register", register);
 router.post("/login", login);
 router.post("/refresh", refresh);
 router.post("/logout", logout);
@@ -478,14 +492,7 @@ router.post("/logout", logout);
 export default router;
 ```
 
-Install `cookie-parser`:
-
-```bash
-npm install cookie-parser
-npm install @types/cookie-parser --save-dev
-```
-
-Register it in `app.ts`:
+Register `cookie-parser` in `app.ts` before any routes that read cookies:
 
 ```typescript
 import cookieParser from "cookie-parser";
@@ -497,7 +504,7 @@ app.use(cookieParser());
 
 ### 3.6 Token Rotation
 
-The refresh endpoint above deletes the used refresh token and issues a new one on every call. This is **refresh token rotation**. If a stolen refresh token is used, the legitimate user's next refresh attempt will fail (because the token was already consumed), alerting them that their session has been compromised.
+The refresh endpoint deletes the used refresh token and issues a new one on every call. This is **refresh token rotation**. If a stolen refresh token is used, the legitimate user's next refresh attempt will fail (because the token was already consumed), alerting them that their session has been compromised.
 
 ---
 
@@ -516,9 +523,10 @@ ABAC extends RBAC by considering not just roles, but also attributes of the user
 
 ### 4.1 Policy Model
 
-An ABAC policy is a rule that evaluates to `allow` or `deny` given a set of attributes:
+An ABAC policy is a function that evaluates to `true` (allow) or `false` (deny) given a set of attributes:
 
 ```typescript
+// src/types/abac.ts
 interface AccessContext {
   user: {
     id: string;
@@ -526,12 +534,12 @@ interface AccessContext {
     departmentId?: string;
   };
   resource: {
-    type: string; // e.g. "institution", "department"
+    type: string;      // e.g. "institution", "department"
     id?: string;
     ownerId?: string;
     departmentId?: string;
   };
-  action: string; // e.g. "read", "update", "delete"
+  action: string;      // e.g. "read", "update", "delete"
   environment?: {
     ipAddress?: string;
     time?: Date;
@@ -539,6 +547,8 @@ interface AccessContext {
 }
 
 type Policy = (context: AccessContext) => boolean;
+
+export type { AccessContext, Policy };
 ```
 
 ---
@@ -547,11 +557,10 @@ type Policy = (context: AccessContext) => boolean;
 
 ```typescript
 // src/policies/institution.ts
-import { AccessContext } from "../types/abac.js";
+import { AccessContext, Policy } from "../types/abac.js";
 
 export const institutionPolicies: Record<string, Policy> = {
   read: ({ user }) => {
-    // All authenticated users can read
     return ["ADMIN", "STAFF", "STUDENT"].includes(user.role);
   },
 
@@ -561,8 +570,8 @@ export const institutionPolicies: Record<string, Policy> = {
 
   update: ({ user, resource }) => {
     if (user.role === "ADMIN") return true;
-    // STAFF can only update institutions in their own department
     if (user.role === "STAFF") {
+      // STAFF can only update institutions in their own department
       return user.departmentId === resource.departmentId;
     }
     return false;
@@ -576,9 +585,9 @@ export const institutionPolicies: Record<string, Policy> = {
 
 ---
 
-### 4.3 Policy Enforcement Point (PEP)
+### 4.3 Policy Engine
 
-The Policy Enforcement Point evaluates policies against an access context:
+The Policy Engine evaluates policies against an access context. It is registered once at startup and used by the ABAC middleware:
 
 ```typescript
 // src/utils/policyEngine.ts
@@ -620,7 +629,7 @@ class PolicyEngine {
 export const policyEngine = new PolicyEngine();
 ```
 
-Register policies at startup:
+Register policies at startup in `app.ts`:
 
 ```typescript
 // src/app.ts
@@ -673,7 +682,6 @@ const enforce = (resourceType: string, action: string) => {
         resource: {
           type: resourceType,
           id: req.params.id,
-          // Additional resource attributes can be fetched here if needed
         },
         action,
         environment: {
@@ -702,38 +710,31 @@ export default enforce;
 **Using it on routes:**
 
 ```typescript
+// src/routes/institution.ts
 import jwtAuth from "../middleware/jwtAuth.js";
 import enforce from "../middleware/abac.js";
 
 router.post("/", jwtAuth, enforce("institution", "create"), createInstitution);
 router.get("/", jwtAuth, enforce("institution", "read"), getInstitutions);
-router.put(
-  "/:id",
-  jwtAuth,
-  enforce("institution", "update"),
-  updateInstitution,
-);
-router.delete(
-  "/:id",
-  jwtAuth,
-  enforce("institution", "delete"),
-  deleteInstitution,
-);
+router.put("/:id", jwtAuth, enforce("institution", "update"), updateInstitution);
+router.delete("/:id", jwtAuth, enforce("institution", "delete"), deleteInstitution);
 ```
 
 ---
 
 ### 4.5 Ownership Checks
 
-A common ABAC pattern is verifying resource ownership. Rather than duplicating this in every controller, implement it in a reusable policy or middleware:
+A common ABAC pattern is verifying resource ownership. Policies can fetch the resource and compare attributes:
 
 ```typescript
-// Policy checking ownership
-const departmentPolicies = {
+// src/policies/department.ts
+import { AccessContext, Policy } from "../types/abac.js";
+import prisma from "../prisma/db.js";
+
+export const departmentPolicies: Record<string, Policy> = {
   update: async ({ user, resource }: AccessContext): Promise<boolean> => {
     if (user.role === "ADMIN") return true;
 
-    // Fetch the resource to check ownership
     if (resource.id) {
       const department = await prisma.department.findUnique({
         where: { id: resource.id },

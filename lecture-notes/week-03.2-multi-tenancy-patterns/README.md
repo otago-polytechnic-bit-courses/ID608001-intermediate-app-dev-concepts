@@ -64,12 +64,11 @@ Row-level isolation is the most common approach for SaaS applications. Every tab
 
 ### 2.1 Tenant Model
 
-```typescript
-// schema.prisma
+```prisma
 model Tenant {
   id           String        @id @default(uuid())
   name         String        @unique
-  slug         String        @unique   // Used in URLs and headers
+  slug         String        @unique   // Used in headers and URLs
   isActive     Boolean       @default(true)
   institutions Institution[]
   users        User[]
@@ -88,7 +87,7 @@ model Institution {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 
-  @@unique([name, tenantId])   // Name unique per tenant, not globally
+  @@unique([name, tenantId])  // Name unique per tenant, not globally
 }
 
 model User {
@@ -126,14 +125,14 @@ In this course we use the **`X-Tenant-ID` header** for simplicity.
 
 ### 2.3 Tenant Resolution Middleware
 
-```typescript
-// src/middleware/tenant.ts
-import { Request, Response, NextFunction } from "express";
-import prisma from "../prisma/db.js";
+Extend the Express `Request` type to carry the resolved tenant:
 
+```typescript
+// src/types/express.d.ts
 declare global {
   namespace Express {
     interface Request {
+      user?: JwtPayload & { id: string; role: string };
       tenant?: {
         id: string;
         name: string;
@@ -142,6 +141,14 @@ declare global {
     }
   }
 }
+
+export {};
+```
+
+```typescript
+// src/middleware/tenant.ts
+import { Request, Response, NextFunction } from "express";
+import prisma from "../prisma/db.js";
 
 const resolveTenant = async (
   req: Request,
@@ -182,12 +189,11 @@ const resolveTenant = async (
 export default resolveTenant;
 ```
 
-Register it globally or on specific route groups in `app.ts`:
+Register it on resource routes in `app.ts`. Auth routes do not need it:
 
 ```typescript
 import resolveTenant from "./middleware/tenant.js";
 
-// Apply to all /api routes (excluding /api/auth)
 app.use("/api/institutions", resolveTenant, institutionRoutes);
 app.use("/api/departments", resolveTenant, departmentRoutes);
 ```
@@ -196,7 +202,7 @@ app.use("/api/departments", resolveTenant, departmentRoutes);
 
 ### 2.4 Tenant-Scoped Repository
 
-Every repository method must scope queries to the current tenant. The cleanest way is to accept a `tenantId` parameter:
+Every repository method must scope queries to the current tenant. Pass `tenantId` as an explicit parameter:
 
 ```typescript
 // src/repositories/institution.ts
@@ -221,8 +227,9 @@ class InstitutionRepository {
   }
 
   async findById(tenantId: string, id: string): Promise<Institution | null> {
+    // findFirst with both id and tenantId prevents cross-tenant access
     return prisma.institution.findFirst({
-      where: { id, tenantId }, // Both conditions required
+      where: { id, tenantId },
     });
   }
 
@@ -231,6 +238,10 @@ class InstitutionRepository {
     id: string,
     data: Prisma.InstitutionUpdateInput,
   ): Promise<Institution> {
+    // First verify the record belongs to this tenant
+    const existing = await this.findById(tenantId, id);
+    if (!existing) throw new Error("Institution not found");
+
     return prisma.institution.update({
       where: { id },
       data,
@@ -238,6 +249,9 @@ class InstitutionRepository {
   }
 
   async delete(tenantId: string, id: string): Promise<Institution> {
+    const existing = await this.findById(tenantId, id);
+    if (!existing) throw new Error("Institution not found");
+
     return prisma.institution.delete({
       where: { id },
     });
@@ -247,7 +261,7 @@ class InstitutionRepository {
 export default new InstitutionRepository();
 ```
 
-> `findFirst` with both `id` and `tenantId` in the `where` clause is safer than `findUnique` on ID alone — it prevents a tenant from accessing another tenant's records by guessing IDs.
+> `findFirst` with both `id` and `tenantId` in the `where` clause is safer than `findUnique` on ID alone — it prevents a tenant from accessing another tenant's records by guessing UUIDs.
 
 ---
 
@@ -320,10 +334,11 @@ Update the JWT auth middleware to populate `req.tenant` from the token:
 const payload = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
 
 req.user = payload;
+// Populate req.tenant directly from the token payload
 req.tenant = { id: payload.tenantId, name: "", slug: "" };
 ```
 
-> When using the JWT approach, you may still want a lightweight database check to verify the tenant is still active, but this can be cached.
+> When using the JWT approach, the `resolveTenant` database middleware is no longer needed for most routes. You may still want a lightweight check to verify the tenant is still active, but this can be cached.
 
 ---
 
@@ -423,14 +438,12 @@ const getAllInstitutionsAcrossTenants = async (): Promise<Institution[]> => {
 
 ---
 
-## 8. Testing Multi-tenant Applications
+## 8. Testing Multi-Tenant Applications
 
 Integration tests must create a tenant before creating any resources and pass the tenant header with every request:
 
 ```typescript
 // tests/helpers/tenant.ts
-import request from "supertest";
-import app from "../../src/app.js";
 import prisma from "../../src/prisma/db.js";
 
 export const createTestTenant = async () => {
@@ -441,20 +454,34 @@ export const createTestTenant = async () => {
     },
   });
 };
+```
 
-// In tests
-before(async () => {
-  tenant = await createTestTenant();
-});
+```typescript
+// tests/00-institution.test.ts
+import { expect } from "chai";
+import request from "supertest";
+import app from "../src/app.js";
+import { createTestTenant } from "./helpers/tenant.js";
 
-it("should create an institution", async () => {
-  const res = await request(app)
-    .post("/api/institutions")
-    .set("X-Tenant-ID", tenant.slug)
-    .set("Authorization", `Bearer ${token}`)
-    .send({ name: "IT Department", region: "Otago", country: "New Zealand" });
+describe("Institution CRUD", () => {
+  let tenantSlug: string;
+  let token: string;
 
-  expect(res.status).to.equal(201);
+  before(async () => {
+    const tenant = await createTestTenant();
+    tenantSlug = tenant.slug;
+    // ... set up auth token
+  });
+
+  it("should create an institution", async () => {
+    const res = await request(app)
+      .post("/api/institutions")
+      .set("X-Tenant-ID", tenantSlug)
+      .set("Authorization", `Bearer ${token}`)
+      .send({ name: "IT Department", region: "Otago", country: "New Zealand" });
+
+    expect(res.status).to.equal(201);
+  });
 });
 ```
 

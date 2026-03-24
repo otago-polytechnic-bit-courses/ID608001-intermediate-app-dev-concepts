@@ -2,11 +2,11 @@
 
 ## Navigation
 
-|              | Link                                                                                                                                     |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+|              | Link                                                                                                                   |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- |
 | Previous     | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-more-prisma-service-layer-di/README.md) |
-| Code Example | [Code Example](code-example)                                                                                                             |
-| Next         | [Week 02.2 - Versioning and Retries](../week-02.2-versioning-retries/README.md)                                                          |
+| Code Example | [Code Example](code-example)                                                                                           |
+| Next         | [Week 02.2 - Versioning and Retries](../week-02.2-versioning-retries/README.md)                                        |
 
 ---
 
@@ -22,7 +22,7 @@ git checkout -b w02.1-docker-compose-more-github-actions
 
 ## 1. Docker Compose
 
-In ID607001: Introductory Application Development Concepts, you ran individual Docker containers using `docker run`. **Docker Compose** lets you define and manage multi-container applications in a single YAML file, making it much simpler to run services with consistent configuration.
+In ID607001, you ran individual Docker containers using `docker run`. **Docker Compose** lets you define and manage multi-container applications in a single YAML file, making it much simpler to run services with consistent configuration.
 
 📖 Reference: [Docker Compose documentation](https://docs.docker.com/compose/)
 
@@ -106,6 +106,8 @@ volumes:
   db-dev-data: # Docker manages where this is stored on the host
 ```
 
+This is the key difference between Docker Compose and the raw `docker run` commands used in ID607001 — those containers stored data in the container's writable layer, which was wiped on `docker rm`.
+
 ---
 
 ### 1.4 Essential Compose Commands
@@ -122,9 +124,22 @@ docker compose restart db-dev # Restart a specific service
 
 ---
 
-### 1.5 Including the Application Service
+### 1.5 Update `package.json` Scripts
 
-You can also run your Node.js application as a Compose service, alongside the database:
+Replace the individual `docker:run:dev` and `docker:run:test` scripts from ID607001 with Compose equivalents:
+
+```json
+"docker:up": "docker compose up -d",
+"docker:down": "docker compose down",
+"docker:down:volumes": "docker compose down -v",
+"docker:logs": "docker compose logs -f"
+```
+
+---
+
+### 1.6 Including the Application Service
+
+You can also run your Node.js application as a Compose service alongside the database:
 
 ```yaml
 services:
@@ -148,11 +163,11 @@ services:
     # ... (as above)
 ```
 
-> When services communicate inside a Compose network, use the **service name** as the hostname (`db-dev`), not `localhost`.
+> When services communicate inside a Compose network, use the **service name** as the hostname (`db-dev`), not `localhost`. Docker Compose creates a shared network where each service is reachable by its service name.
 
 ---
 
-### 1.6 `Dockerfile`
+### 1.7 `Dockerfile`
 
 To build the `api` service above, create a `Dockerfile` at the project root:
 
@@ -181,12 +196,14 @@ CMD ["node", "dist/app.js"]
 | `RUN npm ci`            | Install exact dependencies                                 |
 | `COPY . .`              | Copy source files                                          |
 | `RUN npm run build`     | Compile TypeScript                                         |
-| `EXPOSE`                | Documents the port (does not actually publish it)          |
+| `EXPOSE`                | Documents the port (does not publish it)                   |
 | `CMD`                   | Default command when the container starts                  |
+
+**Layer caching:** Docker caches each instruction as a layer. Copying `package*.json` before the source files means the `npm ci` layer is only re-run when dependencies change, not on every code change.
 
 ---
 
-### 1.7 `.dockerignore`
+### 1.8 `.dockerignore`
 
 Create `.dockerignore` to prevent large directories from being sent to the Docker build context:
 
@@ -196,17 +213,6 @@ dist
 .env
 coverage
 *.log
-```
-
----
-
-### 1.8 Update `package.json` Scripts
-
-```json
-"docker:up": "docker compose up -d",
-"docker:down": "docker compose down",
-"docker:down:volumes": "docker compose down -v",
-"docker:logs": "docker compose logs -f"
 ```
 
 ---
@@ -232,6 +238,8 @@ services:
       NODE_ENV: production
     restart: always
 ```
+
+The override file is **merged** with the base file — only the fields you specify are changed.
 
 ---
 
@@ -312,6 +320,8 @@ jobs:
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
 ```
 
+The `workflow_call` trigger is what distinguishes a reusable workflow from a regular one. The calling workflow passes `inputs` and `secrets` explicitly — the reusable workflow cannot access the caller's secrets automatically.
+
 ---
 
 ### 3.2 Matrix Builds
@@ -339,11 +349,29 @@ jobs:
       - run: npm test
 ```
 
+This produces 6 parallel jobs (3 Node versions × 2 OS). If any job fails, the others continue by default. To stop all jobs on the first failure, add:
+
+```yaml
+strategy:
+  fail-fast: true
+  matrix:
+    node-version: ["20", "22", "24"]
+```
+
 ---
 
 ### 3.3 Caching Dependencies
 
-The `actions/cache` action caches `node_modules` between runs, significantly reducing workflow time:
+The `actions/setup-node` action with `cache: npm` handles caching automatically:
+
+```yaml
+- uses: actions/setup-node@v4
+  with:
+    node-version: "24"
+    cache: npm
+```
+
+For more complex caching scenarios, use `actions/cache` directly:
 
 ```yaml
 - name: Cache node modules
@@ -355,7 +383,7 @@ The `actions/cache` action caches `node_modules` between runs, significantly red
       ${{ runner.os }}-node-
 ```
 
-> `actions/setup-node` with `cache: npm` handles this automatically. Use `actions/cache` directly only for more complex caching scenarios.
+The `key` includes a hash of `package-lock.json`. When dependencies change, the hash changes and the cache is invalidated automatically.
 
 ---
 
@@ -427,6 +455,8 @@ concurrency:
   cancel-in-progress: true # Cancel older runs when a new one starts
 ```
 
+The `group` key determines which runs compete. Using `github.workflow` and `github.ref` together means concurrent runs are only cancelled for the same workflow on the same branch — pushes to different branches do not cancel each other.
+
 ---
 
 ### 3.7 Deployment to Render via API
@@ -445,7 +475,7 @@ Trigger a Render deployment from a GitHub Actions workflow:
       -H "Content-Type: application/json"
 ```
 
-Store `RENDER_API_KEY` and `RENDER_SERVICE_ID` as GitHub Secrets.
+Store `RENDER_API_KEY` and `RENDER_SERVICE_ID` as GitHub Secrets under **Settings → Secrets and variables → Actions**.
 
 ---
 

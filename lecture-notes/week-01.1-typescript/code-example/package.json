@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres npx prisma migrate reset --force && node --import tsx/esm node_modules/.bin/mocha tests --recursive --timeout 10000 --exit",
-    "test:coverage": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres c8 node --import tsx/esm node_modules/.bin/mocha tests --recursive --timeout 10000 --exit",
+    "test:coverage": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres npx prisma migrate reset --force && c8 node --import tsx/esm node_modules/.bin/mocha tests --recursive --timeout 10000 --exit",
     "test:coverage:report": "c8 report --reporter=html && open coverage/index.html",
     "dev": "tsx watch src/app.ts",
     "build": "tsc",

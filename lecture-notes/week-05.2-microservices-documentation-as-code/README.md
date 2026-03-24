@@ -279,7 +279,7 @@ const options: swaggerJsdoc.Options = {
     },
     security: [{ bearerAuth: [] }],
   },
-  apis: ["./src/routes/**/*.ts"], // Paths to files with JSDoc comments
+  apis: ["./src/routes/**/*.ts", "./src/docs/**/*.ts"],
 };
 
 const openapiSpec = swaggerJsdoc(options);
@@ -305,7 +305,7 @@ app.use(
   }),
 );
 
-// Also serve the raw JSON spec
+// Also serve the raw JSON spec for use by external tools
 app.get("/api/docs/spec.json", (req, res) => {
   res.json(openapiSpec);
 });
@@ -320,11 +320,11 @@ Navigate to `http://localhost:3000/api/docs` to view the interactive UI.
 Add OpenAPI annotations to your route files. `swagger-jsdoc` reads `@openapi` tags:
 
 ```typescript
-// src/routes/v2/institution.ts
+// src/routes/institution.ts
 
 /**
  * @openapi
- * /api/v2/institutions:
+ * /api/institutions:
  *   get:
  *     tags:
  *       - Institutions
@@ -395,10 +395,10 @@ router.get("/", jwtAuth, hasPermission("institution:read"), getInstitutions);
 
 ### 3.7 Reusable Schema Components
 
-Define reusable schemas in a separate file to avoid repetition:
+Define reusable schemas in a separate file to avoid repeating them across every route annotation:
 
 ```typescript
-// src/docs/schemas.ts - imported by openapi.ts via apis glob
+// src/docs/schemas.ts
 
 /**
  * @openapi
@@ -457,6 +457,8 @@ Define reusable schemas in a separate file to avoid repetition:
  */
 ```
 
+Include `./src/docs/**/*.ts` in the `apis` glob in `openapi.ts` so these schema files are picked up automatically.
+
 ---
 
 ### 3.8 Generating a Static OpenAPI File
@@ -481,11 +483,13 @@ fs.writeFileSync("openapi.json", JSON.stringify(openapiSpec, null, 2), "utf-8");
 console.log("OpenAPI spec written to openapi.json");
 ```
 
+Add `openapi.json` to `.gitignore` — generate it in CI instead.
+
 ---
 
 ### 3.9 OpenAPI Linting in CI
 
-Validate the generated spec on every pull request to catch missing documentation:
+Validate the generated spec on every pull request to catch missing or malformed documentation:
 
 ```yaml
 # .github/workflows/docs.yml
@@ -701,19 +705,19 @@ Install `swagger-jsdoc` and `swagger-ui-express`. Create `src/docs/openapi.ts` w
 
 ### Task 2 - Annotate Institution Routes
 
-Add `@openapi` JSDoc comments to all v2 institution routes (`GET /`, `POST /`, `GET /:id`, `PUT /:id`, `DELETE /:id`). Include parameters, request bodies, and all possible response codes.
+Add `@openapi` JSDoc comments to all institution routes (`GET /`, `POST /`, `GET /:id`, `PUT /:id`, `DELETE /:id`). Include parameters, request bodies, and all possible response codes.
 
 ---
 
 ### Task 3 - Annotate Auth Routes
 
-Add `@openapi` JSDoc comments to the `register`, `login`, `refresh`, and `logout` endpoints. Mark auth endpoints with `security: []` to indicate they do not require a bearer token.
+Add `@openapi` JSDoc comments to the `login`, `refresh`, and `logout` endpoints. Mark auth endpoints with `security: []` to indicate they do not require a bearer token.
 
 ---
 
 ### Task 4 - Reusable Schemas
 
-Define reusable schemas for `Institution`, `Department`, `User`, `Pagination`, `Error`, and `ValidationError` in `src/docs/schemas.ts`. Update your route annotations to reference them with `$ref`.
+Define reusable schemas for `Institution`, `Department`, `Pagination`, `Error`, and `ValidationError` in `src/docs/schemas.ts`. Update your route annotations to reference them with `$ref`.
 
 ---
 
@@ -731,7 +735,7 @@ Create `.github/workflows/docs.yml` that generates the spec and validates it wit
 
 ### Task 7 - Redoc
 
-Add Redoc alongside Swagger UI and compare the two UIs. In `week-05-2-documentation-notes.md`, write two paragraphs explaining which you prefer and why, considering developer experience and client-facing use cases.
+Add Redoc alongside Swagger UI. In `week-05-2-documentation-notes.md`, write two paragraphs explaining which you prefer and why, considering developer experience and client-facing use cases.
 
 ---
 

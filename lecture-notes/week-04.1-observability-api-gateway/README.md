@@ -4,7 +4,7 @@
 
 |              | Link                                                                                                                           |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| Previous     | [Week 03.2 - Multi-tenancy Patterns](../week-03.2-multi-tenancy-patterns/README.md)                                                     |
+| Previous     | [Week 03.2 - Multi-tenancy Patterns](../week-03.2-multi-tenancy-patterns/README.md)                                            |
 | Code Example | [Code Example](code-example)                                                                                                   |
 | Next         | [Week 04.2 - Message Queues, Background Jobs and Scheduling](../week-04.2-message-queues-background-jobs-scheduling/README.md) |
 
@@ -77,7 +77,7 @@ const logger = pino({
 export default logger;
 ```
 
-> In production, emit raw JSON. In development, pipe through `pino-pretty` for readable output.
+> In production, emit raw JSON. In development, pipe through `pino-pretty` for readable output. The conditional spread only applies the `transport` config outside of production.
 
 ---
 
@@ -104,7 +104,7 @@ const requestLogger = pinoHttp({
 export default requestLogger;
 ```
 
-Register in `app.ts`:
+Register in `app.ts` before any other middleware so every request is logged:
 
 ```typescript
 import requestLogger from "./middleware/requestLogger.js";
@@ -142,7 +142,7 @@ const createInstitution = async (tenantId: string, data: CreateInput) => {
 
 | Level   | When to use                                                                  |
 | ------- | ---------------------------------------------------------------------------- |
-| `trace` | Very detailed debugging - usually disabled in production                     |
+| `trace` | Very detailed debugging — usually disabled in production                     |
 | `debug` | Debugging information useful during development                              |
 | `info`  | Normal application events (request received, record created)                 |
 | `warn`  | Unexpected but recoverable situations (deprecated API used, retry attempted) |
@@ -165,6 +165,7 @@ const correlationId = (
   res: Response,
   next: NextFunction,
 ): void => {
+  // Use an incoming ID if provided (e.g. from an upstream service or API gateway)
   const id = (req.headers["x-correlation-id"] as string) ?? randomUUID();
 
   req.headers["x-correlation-id"] = id;
@@ -174,6 +175,13 @@ const correlationId = (
 };
 
 export default correlationId;
+```
+
+Register this **before** `requestLogger` so the correlation ID is available when the log entry is written:
+
+```typescript
+app.use(correlationId);
+app.use(requestLogger);
 ```
 
 Pass the ID into log entries:
@@ -193,7 +201,7 @@ Metrics are numerical measurements collected over time. They answer questions li
 
 ---
 
-### 3.1 Setup - Prometheus and prom-client
+### 3.1 Setup - prom-client
 
 **Prometheus** is the most widely used metrics collection system for Node.js APIs. `prom-client` exposes a `/metrics` endpoint that Prometheus scrapes on a schedule.
 
@@ -245,6 +253,12 @@ export const activeConnections = new Gauge({
   registers: [register],
 });
 ```
+
+| Metric type   | When to use                                                  |
+| ------------- | ------------------------------------------------------------ |
+| **Counter**   | Values that only go up (request count, error count)          |
+| **Histogram** | Measuring distributions (response times, payload sizes)      |
+| **Gauge**     | Values that go up and down (active connections, queue depth) |
 
 ---
 
@@ -336,7 +350,6 @@ A health check endpoint lets infrastructure (load balancers, container orchestra
 // src/routes/health.ts
 import express from "express";
 import prisma from "../prisma/db.js";
-import { register } from "../utils/metrics.js";
 
 const router = express.Router();
 
@@ -350,7 +363,6 @@ router.get("/ready", async (req, res) => {
   const checks: Record<string, string> = {};
   let httpStatus = 200;
 
-  // Check database connectivity
   try {
     await prisma.$queryRaw`SELECT 1`;
     checks.database = "ok";
@@ -368,6 +380,14 @@ router.get("/ready", async (req, res) => {
 });
 
 export default router;
+```
+
+Register in `app.ts`:
+
+```typescript
+import healthRoutes from "./routes/health.js";
+
+app.use("/health", healthRoutes);
 ```
 
 ---
@@ -460,7 +480,7 @@ export default app;
 
 ### 5.4 Request Forwarding Headers
 
-When proxying requests, forward the original client's IP and correlation ID:
+When proxying requests, forward the original client's IP and correlation ID so downstream services can log them:
 
 ```typescript
 createProxyMiddleware({
@@ -509,7 +529,7 @@ app.use("/api", apiLimiter);
 
 ---
 
-## 6. GitHub Actions - Observability Checks
+## 6. GitHub Actions - Post-Deploy Health Check
 
 Add a workflow that verifies the health endpoint responds correctly after deployment:
 

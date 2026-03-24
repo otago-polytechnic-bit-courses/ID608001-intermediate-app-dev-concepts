@@ -6,7 +6,7 @@
 | ------------ | ------------------------------------------------------------------------------------------------------------ |
 | Previous     | [Week 04.1 - Observability and API Gateway](../week-04.1-observability-api-gateway/README.md)                |
 | Code Example | [Code Example](code-example)                                                                                 |
-| Next         | [Week 05.1 - File Uploads and Caching Strategies](../week-05.1-file-uploads-caching-strategies/README.md) |
+| Next         | [Week 05.1 - File Uploads and Caching Strategies](../week-05.1-file-uploads-caching-strategies/README.md)    |
 
 ---
 
@@ -61,9 +61,7 @@ BullMQ uses Redis as its storage backend. Redis is an in-memory data store that 
 
 ### 2.2 Setup
 
-Start a Redis container:
-
-Add to `docker-compose.yml`:
+Add a Redis service to `docker-compose.yml`:
 
 ```yaml
 redis:
@@ -115,7 +113,7 @@ export const redisConnection: ConnectionOptions = {
 
 ### 2.4 Defining a Queue
 
-Create `src/queues/email.ts`:
+A queue is the named channel through which jobs are published and consumed. Create `src/queues/email.ts`:
 
 ```typescript
 import { Queue } from "bullmq";
@@ -140,13 +138,13 @@ export type EmailJobName = "welcome" | "password-reset";
 export const emailQueue = new Queue<EmailJobData, void, EmailJobName>("email", {
   connection: redisConnection,
   defaultJobOptions: {
-    attempts: 3, // Retry up to 3 times
+    attempts: 3,        // Retry up to 3 times on failure
     backoff: {
       type: "exponential",
-      delay: 2000, // Start with a 2s delay, then double
+      delay: 2000,      // Start with 2s, then 4s, then 8s
     },
-    removeOnComplete: { count: 100 }, // Keep last 100 completed jobs
-    removeOnFail: { count: 500 }, // Keep last 500 failed jobs
+    removeOnComplete: { count: 100 }, // Keep the last 100 completed jobs
+    removeOnFail: { count: 500 },     // Keep the last 500 failed jobs
   },
 });
 ```
@@ -163,7 +161,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = await authService.register(req.body);
 
-    // Add to queue instead of sending directly - returns immediately
+    // Add to queue — returns immediately without waiting for the email to send
     await emailQueue.add("welcome", {
       userId: user.id,
       emailAddress: user.emailAddress,
@@ -180,11 +178,13 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
 };
 ```
 
+The key benefit here is that `emailQueue.add` resolves almost instantly — the HTTP response is sent to the client without waiting for the email to be delivered.
+
 ---
 
 ### 2.6 Creating a Worker
 
-A **worker** is a separate process (or module) that consumes jobs from the queue. Create `src/workers/email.ts`:
+A **worker** consumes jobs from the queue and processes them. Create `src/workers/email.ts`:
 
 ```typescript
 import { Worker, Job } from "bullmq";
@@ -209,14 +209,12 @@ const processEmailJob = async (
         { to: data.emailAddress },
         `Sending welcome email to ${data.firstName}`,
       );
-      // await emailProvider.send({ to: data.emailAddress, template: "welcome", ... });
       break;
     }
 
     case "password-reset": {
       const data = job.data as { emailAddress: string; resetToken: string };
       logger.info({ to: data.emailAddress }, "Sending password reset email");
-      // await emailProvider.send({ ... });
       break;
     }
 
@@ -247,7 +245,7 @@ emailWorker.on("failed", (job, err) => {
 
 ### 2.7 Starting the Worker
 
-Workers can run in the same Node.js process as the API or as a completely separate process. For production, a separate process is preferred because it can be scaled independently.
+Workers can run in the same process as the API or as a completely separate process. For production, a separate process is preferred because it can be scaled independently.
 
 Create `src/worker.ts` as the entry point for the worker process:
 
@@ -257,7 +255,6 @@ import logger from "./utils/logger.js";
 
 logger.info("Worker process started");
 
-// Graceful shutdown
 process.on("SIGTERM", async () => {
   logger.info("Worker shutting down");
   process.exit(0);
@@ -273,28 +270,21 @@ Add to `package.json`:
 
 ---
 
-### 2.8 Job Types and Priorities
+### 2.8 Job Types and Options
 
 ```typescript
-// High-priority job - jumps ahead in the queue
+// High-priority job - processed before lower-priority jobs
 await emailQueue.add(
   "password-reset",
   { userId, emailAddress, resetToken },
   { priority: 1 }, // Lower number = higher priority
 );
 
-// Delayed job - runs after a delay
+// Delayed job - only becomes available to workers after the delay
 await emailQueue.add(
   "welcome",
   { userId, emailAddress, firstName },
   { delay: 5000 }, // Wait 5 seconds before processing
-);
-
-// Repeating job - runs on a schedule (see Section 4)
-await emailQueue.add(
-  "weekly-digest",
-  { reportType: "weekly" },
-  { repeat: { pattern: "0 9 * * 1" } }, // Every Monday at 9am
 );
 ```
 
@@ -321,7 +311,7 @@ emitter.on(
   "institution.created",
   (payload: { id: string; name: string; tenantId: string }) => {
     logger.info(payload, "Institution created event received");
-    // Trigger any side effects: notifications, cache invalidation, audit log
+    // Trigger side effects: notifications, cache invalidation, audit log
   },
 );
 ```
@@ -331,6 +321,7 @@ emitter.on(
 import emitter from "../events/emitter.js";
 
 const institution = await institutionRepository.create(tenantId, data);
+
 emitter.emit("institution.created", {
   id: institution.id,
   name: institution.name,
@@ -338,13 +329,13 @@ emitter.emit("institution.created", {
 });
 ```
 
-> `EventEmitter` is in-process only — if the process crashes, events are lost. Use BullMQ for work that must not be dropped.
+> `EventEmitter` is in-process only — if the process crashes, unprocessed events are lost. Use BullMQ for work that must not be dropped.
 
 ---
 
 ## 4. Scheduled Jobs with node-cron
 
-**node-cron** runs functions on a schedule, using standard cron syntax.
+**node-cron** runs functions on a fixed schedule using standard cron syntax.
 
 ```bash
 npm install node-cron
@@ -410,7 +401,6 @@ cron.schedule("0 0 * * *", async () => {
     const userCount = await prisma.user.count();
 
     logger.info({ institutionCount, userCount }, "Daily report generated");
-    // In practice: store report or send via email
   } catch (err) {
     logger.error({ err }, "Failed to generate daily report");
   }
@@ -429,7 +419,7 @@ import "./jobs/scheduled.js";
 
 ### 4.3 Preventing Overlapping Runs
 
-If a job takes longer than its interval, it may start again before the previous run finishes. Guard against this:
+If a job takes longer than its interval, it may start again before the previous run finishes. Guard against this with a flag:
 
 ```typescript
 let isRunning = false;
@@ -444,7 +434,7 @@ cron.schedule("* * * * *", async () => {
   try {
     await doWork();
   } finally {
-    isRunning = false;
+    isRunning = false; // Always reset, even if doWork() throws
   }
 });
 ```
@@ -482,8 +472,7 @@ Register in `app.ts`:
 ```typescript
 import queueDashboard from "./routes/queues.js";
 
-// Protect this route in production
-app.use("/admin/queues", jwtAuth, rbac("ADMIN"), queueDashboard);
+app.use("/admin/queues", queueDashboard);
 ```
 
 Navigate to `http://localhost:3000/admin/queues` to view the dashboard.
@@ -498,12 +487,14 @@ When your process receives a shutdown signal, allow in-flight jobs to complete b
 // src/app.ts
 import { emailWorker } from "./workers/email.js";
 import { emailQueue } from "./queues/email.js";
+import prisma from "./prisma/db.js";
+import logger from "./utils/logger.js";
 
 const gracefulShutdown = async (signal: string) => {
   logger.info({ signal }, "Shutting down gracefully");
 
   await emailWorker.close(); // Stop accepting new jobs; finish current ones
-  await emailQueue.close(); // Close the queue connection
+  await emailQueue.close();  // Close the queue connection
   await prisma.$disconnect();
 
   process.exit(0);
@@ -542,13 +533,13 @@ Add a Redis service to `docker-compose.yml` and verify connectivity with `redis-
 
 ### Task 2 - Email Queue
 
-Implement the `emailQueue` and `emailWorker`. Update the registration endpoint to enqueue a welcome email job instead of returning synchronously. Use `console.log` or your Pino logger to simulate email sending.
+Implement the `emailQueue` and `emailWorker`. Update the registration endpoint to enqueue a welcome email job instead of returning synchronously. Use your Pino logger to simulate email sending.
 
 ---
 
 ### Task 3 - Queue Dashboard
 
-Set up Bull Board and protect the `/admin/queues` route with JWT auth and an `ADMIN` role check. Verify you can see queued and completed jobs in the UI.
+Set up Bull Board and register the `/admin/queues` route. Verify you can see queued and completed jobs in the UI.
 
 ---
 
@@ -560,7 +551,7 @@ Implement a cron job that runs every hour and deletes expired refresh tokens. Ad
 
 ### Task 5 - Report Queue
 
-Create a `reportQueue` that generates a summary of institutions per tenant. The job should be triggered manually via `POST /api/admin/reports/generate` (admin only) and its results logged. Add the queue to the Bull Board dashboard.
+Create a `reportQueue` that generates a summary of institutions per tenant. The job should be triggered manually via `POST /api/admin/reports/generate` and its results logged. Add the queue to the Bull Board dashboard.
 
 ---
 

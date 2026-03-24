@@ -26,12 +26,22 @@ git checkout -b w01.2-more-prisma-service-layer-di
 
 ### 1.1 Transactions
 
-A **transaction** is a set of database operations that either all succeed or all fail together. This guarantees data consistency - you never end up in a half-updated state.
+A **transaction** is a set of database operations that either all succeed or all fail together. This guarantees data consistency — you never end up in a half-updated state.
+
+Consider what happens without a transaction when creating a department and its first course:
+
+```
+1. Create department ✅
+2. Create course     ❌ (fails — e.g. validation error)
+```
+
+The department now exists without a course, leaving the database in an inconsistent state. Wrapping both operations in a transaction rolls back the department creation if the course creation fails.
 
 Use `prisma.$transaction()` to wrap multiple operations:
 
 ```typescript
 import prisma from "../prisma/db.js";
+import { Prisma } from "@prisma/client";
 
 const createDepartmentWithCourse = async (
   departmentData: Prisma.DepartmentCreateInput,
@@ -62,7 +72,7 @@ const createDepartmentWithCourse = async (
 
 ### 1.2 Interactive Transactions
 
-Interactive transactions give you full programmatic control over when to commit or rollback:
+Interactive transactions give you full programmatic control — you can run queries, inspect results, and decide whether to commit or roll back based on business logic:
 
 ```typescript
 const transferCourse = async (
@@ -87,11 +97,13 @@ const transferCourse = async (
 };
 ```
 
+The difference from a simple transaction is that you can branch on intermediate results. Throwing inside `$transaction` always triggers a rollback regardless of where the error occurred.
+
 ---
 
-### 1.3 Middleware
+### 1.3 Prisma Middleware
 
-Prisma supports middleware that runs before or after every query. This is useful for logging, soft-deletes, and audit trails.
+Prisma supports middleware that runs before or after every query. This is useful for cross-cutting concerns like logging, soft-deletes, and audit trails — logic that should apply to every query without being repeated in every service.
 
 ```typescript
 // prisma/db.ts
@@ -114,13 +126,21 @@ prisma.$use(async (params, next) => {
 export default prisma;
 ```
 
+`params` exposes:
+
+| Property        | Description                                           |
+| --------------- | ----------------------------------------------------- |
+| `params.model`  | The Prisma model being queried (e.g. `"Institution"`) |
+| `params.action` | The operation (e.g. `"findMany"`, `"create"`)         |
+| `params.args`   | The query arguments — can be mutated before `next()`  |
+
 ---
 
 ### 1.4 Soft Deletes
 
 Soft deletes mark records as deleted rather than removing them from the database. This preserves data for auditing and allows recovery.
 
-First, add a `deletedAt` field to your model and run a migration:
+First, add a `deletedAt` field to your model:
 
 ```prisma
 model Institution {
@@ -135,17 +155,25 @@ model Institution {
 }
 ```
 
+Run a migration after updating the schema:
+
+```bash
+npx prisma migrate dev --name add_deleted_at_to_institution
+```
+
 Then use Prisma middleware to intercept delete operations and update `deletedAt` instead:
 
 ```typescript
 prisma.$use(async (params, next) => {
   if (params.model === "Institution") {
     if (params.action === "delete") {
+      // Redirect hard delete to a soft delete
       params.action = "update";
       params.args.data = { deletedAt: new Date() };
     }
 
     if (params.action === "findMany" || params.action === "findUnique") {
+      // Exclude soft-deleted records from all reads
       params.args.where = {
         ...params.args.where,
         deletedAt: null,
@@ -157,7 +185,7 @@ prisma.$use(async (params, next) => {
 });
 ```
 
-> `deletedAt` is not in your schema by default — you must add the field and run `npx prisma migrate dev` before this middleware has any effect.
+> Because the middleware intercepts at the Prisma layer, all existing `findMany` and `findUnique` calls automatically exclude soft-deleted records — no changes needed in your repositories or services.
 
 ---
 
@@ -211,6 +239,8 @@ Use a tagged template literal so that all interpolated values are automatically 
 ```typescript
 import { Prisma, Institution } from "@prisma/client";
 
+const country = "New Zealand";
+
 const institutions = await prisma.$queryRaw<Institution[]>`
   SELECT * FROM "Institution"
   WHERE country = ${country}
@@ -226,9 +256,9 @@ For dynamic queries where you need to build the SQL string at runtime, use `Pris
 const column = "name";
 const direction = "ASC";
 
-const courses = await prisma.$queryRaw<Course[]>(
+const institutions = await prisma.$queryRaw<Institution[]>(
   Prisma.sql`
-    SELECT * FROM "Course"
+    SELECT * FROM "Institution"
     ORDER BY ${Prisma.raw(column)} ${Prisma.raw(direction)}
   `,
 );
@@ -243,6 +273,9 @@ const courses = await prisma.$queryRaw<Course[]>(
 Use `$executeRaw` for statements that modify data and return a row count rather than rows:
 
 ```typescript
+const newCountry = "Aotearoa New Zealand";
+const oldCountry = "New Zealand";
+
 const affected = await prisma.$executeRaw`
   UPDATE "Institution"
   SET country = ${newCountry}
@@ -261,7 +294,7 @@ Both methods work inside `$transaction`, which lets you mix raw SQL with Prisma 
 ```typescript
 await prisma.$transaction(async (tx) => {
   await tx.$executeRaw`
-    UPDATE "Department" SET institutionId = ${newId} WHERE id = ${departmentId}
+    UPDATE "Department" SET "institutionId" = ${newId} WHERE id = ${departmentId}
   `;
 
   await tx.auditLog.create({
@@ -276,7 +309,7 @@ await prisma.$transaction(async (tx) => {
 
 ## 2. Service Layer
 
-In the N-Layer architecture introduced in ID607001: Introductory Application Development Concepts, we had Controllers and Repositories. The **Service Layer** sits between them and owns all business logic.
+In the N-Layer architecture introduced in ID607001, we had Controllers and Repositories. The **Service Layer** sits between them and owns all business logic.
 
 | Layer            | Components          | Responsibility                                |
 | ---------------- | ------------------- | --------------------------------------------- |
@@ -288,7 +321,26 @@ In the N-Layer architecture introduced in ID607001: Introductory Application Dev
 
 ### 2.1 Why a Service Layer?
 
-Without a service layer, business logic leaks into controllers. Controllers become difficult to test because they are tightly coupled to HTTP. Moving logic into services means:
+Without a service layer, business logic leaks into controllers. Controllers become difficult to test because they are tightly coupled to HTTP. Consider this controller without a service layer:
+
+```typescript
+// Without a service layer — business logic in the controller
+const getInstitution = async (req: Request, res: Response) => {
+  const institution = await prisma.institution.findUnique({
+    where: { id: req.params.id },
+  });
+
+  if (!institution) {
+    return res.status(404).json({ message: "Not found" });
+  }
+
+  return res.status(200).json({ data: institution });
+};
+```
+
+To test the "not found" path, you need to make an HTTP request with a non-existent ID. With a service layer, that logic becomes a plain function you can call directly in a unit test.
+
+Moving logic into services means:
 
 - Business logic can be tested without HTTP
 - Logic can be reused across multiple controllers or entry points
@@ -296,7 +348,47 @@ Without a service layer, business logic leaks into controllers. Controllers beco
 
 ---
 
-### 2.2 Institution Service
+### 2.2 Custom Error Classes
+
+Define custom error classes so that services can throw meaningful errors that controllers can catch and translate into HTTP responses:
+
+```typescript
+// src/errors/index.ts
+
+export class NotFoundError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "NotFoundError";
+  }
+}
+
+export class ConflictError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ConflictError";
+  }
+}
+
+export class UnauthorizedError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "UnauthorizedError";
+  }
+}
+
+export class ForbiddenError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ForbiddenError";
+  }
+}
+```
+
+Using named error classes instead of plain `new Error()` lets you distinguish error types with `instanceof` checks in controllers and error handlers.
+
+---
+
+### 2.3 Institution Service
 
 Create `src/services/institution.ts`:
 
@@ -335,12 +427,12 @@ class InstitutionService {
     id: string,
     data: Prisma.InstitutionUpdateInput,
   ): Promise<Institution> {
-    await this.getById(id); // Throws if not found
+    await this.getById(id); // Throws NotFoundError if not found
     return institutionRepository.update(id, data);
   }
 
   async delete(id: string): Promise<void> {
-    await this.getById(id); // Throws if not found
+    await this.getById(id); // Throws NotFoundError if not found
     await institutionRepository.delete(id);
   }
 }
@@ -348,43 +440,7 @@ class InstitutionService {
 export default new InstitutionService();
 ```
 
----
-
-### 2.3 Custom Error Classes
-
-Define custom error classes so that services can throw meaningful errors that controllers can catch and translate into HTTP responses:
-
-```typescript
-// src/errors/index.ts
-
-export class NotFoundError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "NotFoundError";
-  }
-}
-
-export class ConflictError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "ConflictError";
-  }
-}
-
-export class UnauthorizedError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "UnauthorizedError";
-  }
-}
-
-export class ForbiddenError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "ForbiddenError";
-  }
-}
-```
+Notice that `update` and `delete` reuse `getById` — this avoids duplicating the existence check and ensures the same error message is thrown in all cases.
 
 ---
 
@@ -501,7 +557,7 @@ export {
 
 ### 2.5 Global Error Handler
 
-Rather than duplicating `catch` logic in every controller, register a global error-handling middleware in `app.ts`. Express identifies error-handling middleware by its four parameters:
+Rather than duplicating `catch` logic in every controller, register a global error-handling middleware in `app.ts`. Express identifies error-handling middleware by its four parameters — the first being `err`:
 
 ```typescript
 // src/middleware/errorHandler.ts
@@ -541,18 +597,18 @@ Register it in `app.ts` **after** all routes:
 ```typescript
 import errorHandler from "./middleware/errorHandler.js";
 
-// All routes must be registered before the error handler
 app.use("/api/institutions", institutionRoutes);
-app.use("/api/departments", departmentRoutes);
-app.use("/api/courses", courseRoutes);
 
-// Error handler must be last
+// Error handler must be the last middleware registered
 app.use(errorHandler);
 ```
 
-With a global error handler, controllers can use `next(err)` rather than `try/catch`:
+With a global error handler in place, controllers can use `next(err)` instead of duplicating `if/else` blocks:
 
 ```typescript
+// src/controllers/institution.ts
+import { Request, Response, NextFunction } from "express";
+
 const getInstitution = async (
   req: Request,
   res: Response,
@@ -562,10 +618,12 @@ const getInstitution = async (
     const institution = await institutionService.getById(req.params.id);
     res.status(200).json({ data: institution });
   } catch (err) {
-    next(err); // Passes to the global error handler
+    next(err); // Delegates to the global error handler
   }
 };
 ```
+
+> The global error handler approach is preferred in production because adding a new error type only requires updating one file rather than every controller.
 
 ---
 
@@ -578,9 +636,9 @@ const getInstitution = async (
 ### 3.1 The Problem Without DI
 
 ```typescript
-// Without DI - InstitutionService creates its own dependency
+// Without DI — InstitutionService creates its own dependency
 class InstitutionService {
-  private repository = new InstitutionRepository(); // tightly coupled
+  private repository = new InstitutionRepository(); // Tightly coupled
 
   async getAll() {
     return this.repository.findAll();
@@ -588,16 +646,18 @@ class InstitutionService {
 }
 ```
 
-This is hard to test because you cannot substitute a mock repository.
+This is hard to test because you cannot substitute a mock repository. Any test of `InstitutionService.getAll` will always hit the real database.
 
 ---
 
 ### 3.2 Constructor Injection
 
-Pass the dependency in via the constructor:
+Pass the dependency in via the constructor. Depend on an interface, not the concrete class:
 
 ```typescript
-// Repository interface
+// src/repositories/interfaces.ts
+import { Institution, Prisma } from "@prisma/client";
+
 interface IInstitutionRepository {
   create(data: Prisma.InstitutionCreateInput): Promise<Institution>;
   findAll(): Promise<Institution[]>;
@@ -606,7 +666,15 @@ interface IInstitutionRepository {
   delete(id: string): Promise<Institution>;
 }
 
-// Service accepts the interface, not the concrete class
+export type { IInstitutionRepository };
+```
+
+```typescript
+// src/services/institution.ts
+import { IInstitutionRepository } from "../repositories/interfaces.js";
+import { Institution, Prisma } from "@prisma/client";
+import { NotFoundError } from "../errors/index.js";
+
 class InstitutionService {
   constructor(private readonly repository: IInstitutionRepository) {}
 
@@ -619,10 +687,41 @@ class InstitutionService {
 
     return institutions;
   }
+
+  async getById(id: string): Promise<Institution> {
+    const institution = await this.repository.findById(id);
+
+    if (!institution) {
+      throw new NotFoundError(`No institution with the id: ${id} found`);
+    }
+
+    return institution;
+  }
+
+  async update(
+    id: string,
+    data: Prisma.InstitutionUpdateInput,
+  ): Promise<Institution> {
+    await this.getById(id);
+    return this.repository.update(id, data);
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.getById(id);
+    await this.repository.delete(id);
+  }
 }
 
-// Wire up the concrete implementation at the composition root
+export { InstitutionService };
+```
+
+Wire up the concrete implementation at the composition root — the single place where the application is assembled:
+
+```typescript
+// src/services/index.ts
 import institutionRepository from "../repositories/institution.js";
+import { InstitutionService } from "./institution.js";
+
 export default new InstitutionService(institutionRepository);
 ```
 
@@ -635,15 +734,18 @@ With DI, tests can inject a mock repository that returns controlled data without
 ```typescript
 import { expect } from "chai";
 import { InstitutionService } from "../services/institution.js";
+import { IInstitutionRepository } from "../repositories/interfaces.js";
 import { NotFoundError } from "../errors/index.js";
+import { Institution } from "@prisma/client";
 
 const mockRepository: IInstitutionRepository = {
-  create: async (data) => ({
-    id: "1",
-    ...data,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  }),
+  create: async (data) =>
+    ({
+      id: "1",
+      ...data,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }) as Institution,
   findAll: async () => [],
   findById: async () => null,
   update: async (id, data) => ({ id, ...data }) as Institution,
@@ -663,6 +765,8 @@ describe("InstitutionService.getAll", () => {
   });
 });
 ```
+
+The mock returns an empty array from `findAll`, simulating the "no institutions" case without needing a database connection at all.
 
 ---
 

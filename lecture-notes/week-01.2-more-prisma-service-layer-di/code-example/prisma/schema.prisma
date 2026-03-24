@@ -20,14 +20,14 @@ enum Role {
 }
 
 model User {
-  id               String        @id @default(uuid())
-  firstName        String
-  lastName         String
-  emailAddress     String        @unique
-  password         String
-  role             Role          @default(STUDENT)
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @default(now())
+  id           String   @id @default(uuid())
+  firstName    String
+  lastName     String
+  emailAddress String   @unique
+  password     String
+  role         Role     @default(STUDENT)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
 }
 
 model Institution {
@@ -47,4 +47,16 @@ model Department {
   institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+  courses       Course[]
+}
+
+model Course {
+  id           String     @id @default(uuid())
+  name         String
+  code         String     @unique
+  description  String
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }

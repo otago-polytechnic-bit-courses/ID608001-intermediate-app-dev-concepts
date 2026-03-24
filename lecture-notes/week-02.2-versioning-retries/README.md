@@ -28,7 +28,14 @@ API versioning allows you to make breaking changes to your API without disruptin
 
 ### 1.1 Why Version Your API?
 
-A breaking change is any change that requires existing clients to update their code. Common examples include removing a field from a response, renaming an endpoint, or changing the format of a request body. Without versioning, any breaking change immediately breaks all clients.
+A **breaking change** is any change that requires existing clients to update their code. Common examples include:
+
+- Removing a field from a response
+- Renaming an endpoint
+- Changing the format of a request body
+- Changing the meaning of an existing field
+
+Without versioning, any breaking change immediately breaks all clients. With versioning, you give clients time to migrate on their own schedule.
 
 ---
 
@@ -49,6 +56,11 @@ In this course we use **URI path versioning** as it is the most widely adopted a
 
 ```
 src/
+├── controllers/
+│   ├── v1/
+│   │   └── institution.ts
+│   └── v2/
+│       └── institution.ts
 ├── routes/
 │   ├── v1/
 │   │   ├── institution.ts
@@ -58,86 +70,13 @@ src/
 └── app.ts
 ```
 
----
-
-### 1.4 Registering Versioned Routes
-
-```typescript
-// src/app.ts
-import v1InstitutionRoutes from "./routes/v1/institution.js";
-import v2InstitutionRoutes from "./routes/v2/institution.js";
-
-app.use("/api/v1/institutions", v1InstitutionRoutes);
-app.use("/api/v2/institutions", v2InstitutionRoutes);
-```
+Controllers are also split by version because each version may have different response shapes — v1 might include timestamp fields that v2 removes, or v2 might add pagination that v1 does not support.
 
 ---
 
-### 1.5 Version 1 and Version 2 Example
+### 1.4 Version Router Helper
 
-Suppose v1 returns `createdAt` and `updatedAt` in responses, and v2 removes them but adds pagination.
-
-`src/routes/v1/institution.ts` uses the original controller with no pagination:
-
-```typescript
-import express from "express";
-import {
-  createInstitution,
-  getInstitutions,
-  getInstitution,
-  updateInstitution,
-  deleteInstitution,
-} from "../../controllers/v1/institution.js";
-
-const router = express.Router();
-
-router.post("/", createInstitution);
-router.get("/", getInstitutions);
-router.get("/:id", getInstitution);
-router.put("/:id", updateInstitution);
-router.delete("/:id", deleteInstitution);
-
-export default router;
-```
-
-`src/controllers/v2/institution.ts` uses the updated service with pagination support and excludes timestamp fields.
-
----
-
-### 1.6 Deprecation Strategy
-
-When deprecating a version, signal it to clients via a response header before removing it:
-
-```typescript
-// Middleware to add deprecation warning
-const deprecationWarning = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  res.setHeader("Deprecation", "true");
-  res.setHeader(
-    "Sunset",
-    "Sat, 01 Jan 2026 00:00:00 GMT", // When the version will be removed
-  );
-  res.setHeader(
-    "Link",
-    '<https://api.example.com/api/v2/institutions>; rel="successor-version"',
-  );
-  next();
-};
-
-app.use("/api/v1", deprecationWarning);
-app.use("/api/v1/institutions", v1InstitutionRoutes);
-```
-
-> Give clients at least 3–6 months notice before removing a deprecated version.
-
----
-
-### 1.7 Version Router Helper
-
-For larger applications, extract version routing into a helper:
+Extract version routing into a helper to keep `app.ts` clean:
 
 ```typescript
 // src/routes/index.ts
@@ -167,9 +106,190 @@ app.use("/api/v2", v2Router);
 
 ---
 
+### 1.5 V1 and V2 Route Files
+
+`src/routes/v1/institution.ts` — the original routes, unchanged:
+
+```typescript
+import express from "express";
+import {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+} from "../../controllers/v1/institution.js";
+
+const router = express.Router();
+
+router.post("/", createInstitution);
+router.get("/", getInstitutions);
+router.get("/:id", getInstitution);
+router.put("/:id", updateInstitution);
+router.delete("/:id", deleteInstitution);
+
+export default router;
+```
+
+`src/routes/v2/institution.ts` — points to the v2 controller which adds pagination and removes timestamp fields:
+
+```typescript
+import express from "express";
+import {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+} from "../../controllers/v2/institution.js";
+
+const router = express.Router();
+
+router.post("/", createInstitution);
+router.get("/", getInstitutions);
+router.get("/:id", getInstitution);
+router.put("/:id", updateInstitution);
+router.delete("/:id", deleteInstitution);
+
+export default router;
+```
+
+---
+
+### 1.6 V1 and V2 Controllers
+
+`src/controllers/v1/institution.ts` — returns all fields including timestamps:
+
+```typescript
+import { Request, Response, NextFunction } from "express";
+import institutionRepository from "../../repositories/institution.js";
+import { NotFoundError } from "../../errors/index.js";
+
+const getInstitutions = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const institutions = await institutionRepository.findAll();
+
+    if (institutions.length === 0) {
+      throw new NotFoundError("No institutions found");
+    }
+
+    // V1: return all fields including createdAt and updatedAt
+    res.status(200).json({ data: institutions });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { getInstitutions };
+```
+
+`src/controllers/v2/institution.ts` — strips timestamp fields and adds pagination:
+
+```typescript
+import { Request, Response, NextFunction } from "express";
+import institutionRepository from "../../repositories/institution.js";
+import { NotFoundError } from "../../errors/index.js";
+
+const getInstitutions = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const {
+      sortBy = "id",
+      sortOrder = "asc",
+      page = "1",
+      pageSize = "10",
+    } = req.query as Record<string, string>;
+
+    const result = await institutionRepository.findAll(
+      {},
+      sortBy,
+      sortOrder,
+      page,
+      pageSize,
+    );
+
+    if (result.data.length === 0) {
+      throw new NotFoundError("No institutions found");
+    }
+
+    // V2: exclude createdAt and updatedAt, include pagination
+    const stripped = result.data.map(
+      ({ createdAt, updatedAt, ...rest }) => rest,
+    );
+
+    res.status(200).json({
+      data: stripped,
+      pagination: result.pagination,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { getInstitutions };
+```
+
+> Each version imports from the same shared repository — the repository layer does not change. Only the controller (presentation layer) differs between versions.
+
+---
+
+### 1.7 Deprecation Strategy
+
+When deprecating a version, signal it to clients via response headers before removing it:
+
+```typescript
+// src/middleware/deprecation.ts
+import { Request, Response, NextFunction } from "express";
+
+const deprecationWarning = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
+  res.setHeader("Deprecation", "true");
+  res.setHeader(
+    "Sunset",
+    "Sat, 01 Jan 2026 00:00:00 GMT", // When the version will be removed
+  );
+  res.setHeader(
+    "Link",
+    '<https://api.example.com/api/v2/institutions>; rel="successor-version"',
+  );
+  next();
+};
+
+export default deprecationWarning;
+```
+
+Register it in `app.ts` for the version being deprecated:
+
+```typescript
+import deprecationWarning from "./middleware/deprecation.js";
+
+app.use("/api/v1", deprecationWarning);
+app.use("/api/v1", v1Router);
+```
+
+| Header        | Purpose                                                 |
+| ------------- | ------------------------------------------------------- |
+| `Deprecation` | Signals the version is deprecated                       |
+| `Sunset`      | The date after which the version will no longer respond |
+| `Link`        | Points clients to the successor version                 |
+
+> Give clients at least 3–6 months notice before removing a deprecated version.
+
+---
+
 ## 2. Semantic Versioning
 
-API versions in URLs (v1, v2) represent **major versions** - versions that introduce breaking changes. Within a major version, follow **Semantic Versioning (SemVer)** for your package:
+API versions in URLs (v1, v2) represent **major versions** — versions that introduce breaking changes. Within a major version, follow **Semantic Versioning (SemVer)** for your package:
 
 ```
 MAJOR.MINOR.PATCH
@@ -186,7 +306,7 @@ MAJOR.MINOR.PATCH
 
 ---
 
-### 2.1 Semantic Release (Automated)
+### 2.1 Conventional Commits
 
 `semantic-release` automates versioning by analysing commit messages written in the **Conventional Commits** format:
 
@@ -205,11 +325,13 @@ chore: upgrade Prisma to 7.0
 | `feat!:` or `BREAKING CHANGE:` | MAJOR       |
 | `docs:`, `chore:`, `style:`    | No bump     |
 
+The `!` after the prefix (or a `BREAKING CHANGE:` footer) signals a major bump. This means your commit history becomes your changelog.
+
 📖 Reference: [Conventional Commits](https://www.conventionalcommits.org)
 
 ---
 
-### 2.2 Setup
+### 2.2 Semantic Release Setup
 
 ```bash
 npm install semantic-release @semantic-release/changelog @semantic-release/git --save-dev
@@ -266,6 +388,8 @@ jobs:
         run: npx semantic-release
 ```
 
+> `fetch-depth: 0` is required because `semantic-release` reads the entire commit history to determine which version bump to apply.
+
 ---
 
 ## 3. Retries
@@ -283,7 +407,7 @@ In distributed systems, transient failures are expected. A database connection m
 | 429 Too Many Requests      | Business logic errors                         |
 | Database connection errors | Data integrity errors                         |
 
-> Never retry on `400 Bad Request` or `422 Unprocessable Entity` - the request itself is the problem and retrying will not help.
+> Never retry on `400 Bad Request` or `422 Unprocessable Entity` — the request itself is the problem and retrying will not help.
 
 ---
 
@@ -299,9 +423,10 @@ Attempt 4: fails → wait 8s
 Attempt 5: fails → give up
 ```
 
-The wait time is `baseDelay * 2^attempt`. Adding random **jitter** prevents multiple clients from retrying simultaneously:
+The wait time is `baseDelay * 2^attempt`. Adding random **jitter** prevents multiple clients from retrying simultaneously and compounding the problem:
 
 ```typescript
+// src/utils/retry.ts
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const withRetry = async <T>(
@@ -348,6 +473,8 @@ const withRetry = async <T>(
 
   throw lastError;
 };
+
+export { withRetry };
 ```
 
 ---
@@ -355,17 +482,18 @@ const withRetry = async <T>(
 ### 3.3 Using the Retry Utility
 
 ```typescript
-// Retry a database operation
+import { withRetry } from "../utils/retry.js";
+
+// Retry a database operation on connection errors
 const institution = await withRetry(() => institutionRepository.findById(id), {
   maxAttempts: 3,
   baseDelay: 500,
   shouldRetry: (err) => {
-    // Only retry on connection errors, not application errors
     return err instanceof Error && err.message.includes("Connection");
   },
 });
 
-// Retry an external API call
+// Retry an external API call on server errors and rate limits
 const data = await withRetry(
   () => fetch("https://external-api.example.com/data").then((r) => r.json()),
   {
@@ -386,36 +514,25 @@ const data = await withRetry(
 
 ### 3.4 Retry with Prisma
 
-Prisma supports automatic query retries for specific error codes:
-
-```typescript
-// prisma/db.ts
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL,
-    },
-  },
-});
-
-// Prisma automatically retries on P1001 (connection error) and P1002 (timeout)
-export default prisma;
-```
-
-For application-level retries around Prisma operations, wrap calls with the `withRetry` utility above and check for Prisma error codes:
+For application-level retries around Prisma operations, check for retryable Prisma error codes:
 
 ```typescript
 import { Prisma } from "@prisma/client";
+import { withRetry } from "../utils/retry.js";
 
-const isRetryableError = (err: unknown): boolean => {
+const isRetryablePrismaError = (err: unknown): boolean => {
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
-    // P1001: Authentication failed, P1002: Database server timeout
+    // P1001: Authentication failed
+    // P1002: Database server timeout
     return ["P1001", "P1002"].includes(err.code);
   }
   return false;
 };
+
+// Usage
+const institutions = await withRetry(() => prisma.institution.findMany(), {
+  shouldRetry: isRetryablePrismaError,
+});
 ```
 
 📖 Reference: [Prisma error codes](https://www.prisma.io/docs/orm/reference/error-reference)
@@ -428,10 +545,12 @@ A **circuit breaker** monitors the failure rate of an operation. If failures exc
 
 ```
 CLOSED → (failures exceed threshold) → OPEN → (timeout elapses)
-    → HALF-OPEN → (success) → CLOSED → (failure) → OPEN
+    → HALF-OPEN → (success) → CLOSED
+                → (failure) → OPEN
 ```
 
 ```typescript
+// src/utils/circuitBreaker.ts
 class CircuitBreaker {
   private failures = 0;
   private lastFailureTime: number | null = null;
@@ -477,22 +596,30 @@ class CircuitBreaker {
   }
 }
 
-// Usage
-const breaker = new CircuitBreaker(5, 30000);
+export { CircuitBreaker };
+```
+
+```typescript
+// Usage — one breaker instance per external dependency
+const externalApiBreaker = new CircuitBreaker(5, 30000);
 
 const getExternalData = () =>
-  breaker.execute(() =>
+  externalApiBreaker.execute(() =>
     fetch("https://external-api.example.com/data").then((r) => r.json()),
   );
 ```
+
+> Create one `CircuitBreaker` instance per external dependency, not per request. The state must persist across calls to be useful.
 
 ---
 
 ### 3.6 HTTP 429 - Rate Limit Handling
 
-When a client receives a `429 Too Many Requests`, it should wait for the duration indicated by the `Retry-After` header before retrying:
+When a client receives a `429 Too Many Requests`, it should respect the `Retry-After` header before retrying:
 
 ```typescript
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const fetchWithRateLimitHandling = async (
   url: string,
   options?: RequestInit,
@@ -501,12 +628,13 @@ const fetchWithRateLimitHandling = async (
 
   if (response.status === 429) {
     const retryAfter = response.headers.get("Retry-After");
+    // Retry-After is in seconds; fall back to 5 seconds if not present
     const delay = retryAfter ? parseInt(retryAfter, 10) * 1000 : 5000;
 
     console.warn(`Rate limited. Retrying after ${delay}ms`);
     await sleep(delay);
 
-    return fetch(url, options); // Retry once
+    return fetch(url, options); // One retry after waiting
   }
 
   return response;

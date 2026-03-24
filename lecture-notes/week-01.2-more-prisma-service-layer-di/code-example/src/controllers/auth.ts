@@ -6,12 +6,17 @@ import prisma from "../../prisma/db.js";
 
 import { RegisterBody, LoginBody } from "../types/auth.js";
 
-const register = async (req: Request<{}, {}, RegisterBody>, res: Response) => {
+const register = async (
+  req: Request<{}, {}, RegisterBody>,
+  res: Response,
+): Promise<Response> => {
   try {
     const { firstName, lastName, emailAddress, password, role } = req.body;
 
     // Check if user already exists by email address
-    let user = await prisma.user.findUnique({ where: { emailAddress } });
+    const user = await prisma.user.findUnique({
+      where: { emailAddress },
+    });
 
     if (user) {
       return res.status(409).json({ message: "User already exists" });
@@ -24,7 +29,7 @@ const register = async (req: Request<{}, {}, RegisterBody>, res: Response) => {
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     // Create a new user with the hashed password
-    user = await prisma.user.create({
+    const createdUser = await prisma.user.create({
       data: {
         firstName,
         lastName,
@@ -45,7 +50,7 @@ const register = async (req: Request<{}, {}, RegisterBody>, res: Response) => {
 
     return res.status(201).json({
       message: "User successfully registered",
-      data: user,
+      data: createdUser,
     });
   } catch (err) {
     return res.status(500).json({
@@ -54,7 +59,10 @@ const register = async (req: Request<{}, {}, RegisterBody>, res: Response) => {
   }
 };
 
-const login = async (req: Request<{}, {}, LoginBody>, res: Response) => {
+const login = async (
+  req: Request<{}, {}, LoginBody>,
+  res: Response,
+): Promise<Response> => {
   try {
     const { emailAddress, password } = req.body;
 
@@ -73,6 +81,13 @@ const login = async (req: Request<{}, {}, LoginBody>, res: Response) => {
     }
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
+
+    if (!JWT_SECRET || !JWT_LIFETIME) {
+      return res.status(500).json({
+        message:
+          "JWT_SECRET and JWT_LIFETIME must be defined in environment variables",
+      });
+    }
 
     // Create a JWT token with the user's ID and role
     const token = jwt.sign(

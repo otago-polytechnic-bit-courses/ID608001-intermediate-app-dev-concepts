@@ -135,7 +135,7 @@ TypeScript can usually infer the type from the initial value, so explicit annota
 
 ```typescript
 const name = "Jane"; // Inferred as string
-const age = 30;      // Inferred as number
+const age = 30; // Inferred as number
 ```
 
 Prefer type inference for simple variables and explicit annotations for function signatures and public APIs.
@@ -259,7 +259,7 @@ const getFirst = <T>(arr: T[]): T | undefined => {
 };
 
 const firstNumber = getFirst([1, 2, 3]); // Inferred as number | undefined
-const firstName = getFirst(["a", "b"]);  // Inferred as string | undefined
+const firstName = getFirst(["a", "b"]); // Inferred as string | undefined
 ```
 
 ---
@@ -371,11 +371,22 @@ const updateInstitution = async (
 };
 ```
 
+The four generics on `Request<Params, ResBody, ReqBody, Query>` are:
+
+| Position | Generic   | What it types       |
+| -------- | --------- | ------------------- |
+| 1st      | `Params`  | `req.params`        |
+| 2nd      | `ResBody` | `res.json()` output |
+| 3rd      | `ReqBody` | `req.body`          |
+| 4th      | `Query`   | `req.query`         |
+
+Pass `{}` for any position you do not need to type.
+
 ---
 
 ### 4.3 Extending the Request Type
 
-When attaching custom properties to `req` (such as `req.user` from JWT middleware), extend Express's `Request` interface:
+When attaching custom properties to `req` (such as `req.user` from JWT middleware), extend Express's `Request` interface using a declaration file:
 
 ```typescript
 // src/types/express.d.ts
@@ -411,7 +422,7 @@ const jwtAuth = (req: Request, res: Response, next: NextFunction) => {
 
     const payload = jwt.verify(
       token,
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET as string,
     ) as jwt.JwtPayload & { id: string; role: string };
 
     req.user = payload;
@@ -426,6 +437,8 @@ const jwtAuth = (req: Request, res: Response, next: NextFunction) => {
 
 export default jwtAuth;
 ```
+
+> The `.d.ts` extension tells TypeScript this file contains only type declarations. It is not compiled to JavaScript.
 
 ---
 
@@ -467,7 +480,7 @@ const data: any = await fetchData();
 // Better - forces you to narrow the type before using it
 const data: unknown = await fetchData();
 if (typeof data === "object" && data !== null) {
-  // Use data
+  // Use data here safely
 }
 ```
 
@@ -604,7 +617,7 @@ Acknowledge AI usage at the top of any AI-assisted file:
 
 ### Task 1 - Implement the Code Examples
 
-Use the provided [code example](code-example) or your REST API project from ID607001: Introdcutory Application Development Concepts and convert the code to TypeScript.
+Use the provided [code example](code-example) or your REST API project from ID607001: Introductory Application Development Concepts and convert the code to TypeScript.
 
 ---
 

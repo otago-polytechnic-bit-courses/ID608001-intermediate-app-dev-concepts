@@ -56,12 +56,12 @@ Create `src/middleware/upload.ts`:
 ```typescript
 import multer, { FileFilterCallback } from "multer";
 import { Request } from "express";
-import path from "path";
 
 const MAX_FILE_SIZE_MB = 5;
 const ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 // Use memory storage so we can forward bytes directly to the cloud
+// without writing temporary files to disk
 const storage = multer.memoryStorage();
 
 const fileFilter = (
@@ -171,14 +171,16 @@ export const deleteFile = async (key: string): Promise<void> => {
   );
 };
 
-// Generate a pre-signed URL for temporary private access (expires in 1 hour)
+// Generate a pre-signed URL for temporary private access (expires in 1 hour by default)
 export const getSignedFileUrl = async (
   key: string,
   expiresInSeconds: number = 3600,
 ): Promise<string> => {
-  return getSignedUrl(s3, new GetObjectCommand({ Bucket: BUCKET, Key: key }), {
-    expiresIn: expiresInSeconds,
-  });
+  return getSignedUrl(
+    s3,
+    new GetObjectCommand({ Bucket: BUCKET, Key: key }),
+    { expiresIn: expiresInSeconds },
+  );
 };
 ```
 
@@ -205,7 +207,7 @@ const uploadAvatar = async (
 
     const userId = req.user!.id;
 
-    // Delete existing avatar if present
+    // Delete existing avatar if present to avoid orphaned files in R2
     const profile = await prisma.profile.findUnique({ where: { userId } });
     if (profile?.avatarKey) {
       await deleteFile(profile.avatarKey);
@@ -252,11 +254,12 @@ export default router;
 
 ### 1.7 Handling Multer Errors
 
-Multer throws errors that must be caught explicitly — they are not passed through Express's normal error handling:
+Multer throws errors that must be caught explicitly — they are not passed through Express's normal error handling chain:
 
 ```typescript
 // src/middleware/upload.ts
 import { MulterError } from "multer";
+import { Request, Response, NextFunction } from "express";
 
 export const handleUploadErrors = (
   err: Error,
@@ -276,11 +279,12 @@ export const handleUploadErrors = (
 };
 ```
 
-Register **after** upload routes in `app.ts`:
+Register **after** upload routes but **before** the global error handler in `app.ts`:
 
 ```typescript
 app.use("/api/uploads", uploadRoutes);
-app.use(handleUploadErrors);
+app.use(handleUploadErrors); // Must come after upload routes
+app.use(errorHandler);       // Global error handler last
 ```
 
 ---
@@ -323,7 +327,7 @@ The **cache-aside** pattern (also called lazy loading) is the most common cachin
 
 ```
 1. Check the cache for the key
-2. Cache HIT → return the cached value immediately
+2. Cache HIT  → return the cached value immediately
 3. Cache MISS → fetch from the database → store in cache → return value
 ```
 
@@ -354,6 +358,7 @@ export const getOrSet = async <T>(
     return value;
   } catch (err) {
     // If Redis is unavailable, fall through to the database
+    // This makes Redis a performance optimisation, not a hard dependency
     logger.warn({ key, err }, "Cache error - falling through to database");
     return fetchFn();
   }
@@ -386,13 +391,18 @@ users:id:{id}
 users:email:{emailAddress}
 ```
 
+The hierarchy makes it easy to reason about which keys to invalidate when a record changes.
+
 ---
 
 ### 2.4 Caching in the Service Layer
 
 ```typescript
 // src/services/institution.ts
-import { getOrSet, invalidate, invalidatePattern } from "../utils/cache.js";
+import { getOrSet, invalidate } from "../utils/cache.js";
+import { Institution, Prisma } from "@prisma/client";
+import { NotFoundError } from "../errors/index.js";
+import institutionRepository from "../repositories/institution.js";
 
 class InstitutionService {
   private cacheKey = (tenantId: string) => `institutions:tenant:${tenantId}`;
@@ -401,7 +411,7 @@ class InstitutionService {
     return getOrSet(
       `${this.cacheKey(tenantId)}:all`,
       () => institutionRepository.findAll(tenantId),
-      300, // 5-minute TTL
+      300,
     );
   }
 
@@ -410,8 +420,9 @@ class InstitutionService {
       `${this.cacheKey(tenantId)}:id:${id}`,
       async () => {
         const institution = await institutionRepository.findById(tenantId, id);
-        if (!institution)
+        if (!institution) {
           throw new NotFoundError(`No institution with id: ${id}`);
+        }
         return institution;
       },
       300,
@@ -424,7 +435,7 @@ class InstitutionService {
   ): Promise<Institution> {
     const institution = await institutionRepository.create(tenantId, data);
 
-    // Invalidate the list cache for this tenant
+    // Invalidate the list cache — the new record won't appear otherwise
     await invalidate(`${this.cacheKey(tenantId)}:all`);
 
     return institution;
@@ -437,7 +448,7 @@ class InstitutionService {
   ): Promise<Institution> {
     const institution = await institutionRepository.update(tenantId, id, data);
 
-    // Invalidate both the list and the individual record cache
+    // Invalidate both the list and the individual record
     await invalidate(`${this.cacheKey(tenantId)}:all`);
     await invalidate(`${this.cacheKey(tenantId)}:id:${id}`);
 
@@ -451,6 +462,8 @@ class InstitutionService {
     await invalidate(`${this.cacheKey(tenantId)}:id:${id}`);
   }
 }
+
+export default new InstitutionService();
 ```
 
 ---
@@ -481,7 +494,7 @@ Cache invalidation is one of the hardest problems in computer science. Common pi
 
 ---
 
-### 2.7 Adding Cache Headers to HTTP Responses
+### 2.7 HTTP Cache Headers
 
 Tell clients and CDNs how long to cache responses using standard HTTP cache headers:
 
@@ -497,6 +510,7 @@ export const setCacheHeaders = (maxAgeSeconds: number) => {
         `public, max-age=${maxAgeSeconds}, stale-while-revalidate=60`,
       );
     } else {
+      // Never cache mutation responses
       res.setHeader("Cache-Control", "no-store");
     }
     next();
@@ -538,8 +552,8 @@ router.get("/ready", async (req, res) => {
     checks.redis = "ok";
   } catch {
     checks.redis = "unreachable";
-    // Redis being down is a degraded but not fully failed state
-    // depending on whether the cache is required for correctness
+    // Redis being down is degraded but not fatal — the cache-aside fallback
+    // will continue serving requests directly from the database
   }
 
   res.status(httpStatus).json({
@@ -574,7 +588,7 @@ Acknowledge AI usage at the top of any AI-assisted file:
 
 ### Task 1 - Avatar Upload
 
-Implement the avatar upload endpoint. Use memory storage with Multer and upload to Cloudflare R2 (or a local directory for development). Update the `Profile` model to include `avatarKey` in addition to `avatarUrl`.
+Implement the avatar upload endpoint. Use memory storage with Multer and upload to Cloudflare R2. Update the `Profile` model to include `avatarKey` in addition to `avatarUrl`.
 
 ---
 
