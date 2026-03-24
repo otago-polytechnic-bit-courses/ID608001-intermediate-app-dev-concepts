@@ -1,0 +1,58 @@
+import { Course } from "@prisma/client";
+
+import courseRepository from "../repositories/course.js";
+import { CreateCourseBody, UpdateCourseBody } from "../types/course.js";
+import { PaginationResult } from "../types/pagination.js";
+import { NotFoundError } from "../errors/index.js";
+
+class CourseService {
+  async create(data: CreateCourseBody): Promise<Course[]> {
+    await courseRepository.create(data);
+    const result = await courseRepository.findAll();
+    return result.data;
+  }
+
+  async getAll(
+    filters: Record<string, string> = {},
+    sortBy: string = "id",
+    sortOrder: string = "asc",
+    page: string = "1",
+    pageSize: string = "10",
+  ): Promise<PaginationResult<Course>> {
+    const result = await courseRepository.findAll(
+      filters,
+      sortBy,
+      sortOrder,
+      page,
+      pageSize,
+    );
+
+    if (result.data.length === 0) {
+      throw new NotFoundError("No courses found");
+    }
+
+    return result;
+  }
+
+  async getById(id: string): Promise<Course> {
+    const course = await courseRepository.findById(id);
+
+    if (!course) {
+      throw new NotFoundError(`No course with the id: ${id} found`);
+    }
+
+    return course;
+  }
+
+  async update(id: string, data: UpdateCourseBody): Promise<Course> {
+    await this.getById(id); // Throws NotFoundError if not found
+    return courseRepository.update(id, data);
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.getById(id); // Throws NotFoundError if not found
+    await courseRepository.delete(id);
+  }
+}
+
+export default new CourseService();

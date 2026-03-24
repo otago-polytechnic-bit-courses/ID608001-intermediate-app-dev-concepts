@@ -115,14 +115,18 @@ Because `findAll` returns `PaginationResult<Institution>`, the service passes th
 
 ```typescript
 // src/services/institution.ts
-import { Institution, Prisma } from "@prisma/client";
+import { Institution } from "@prisma/client";
 
 import institutionRepository from "../repositories/institution.js";
+import {
+  CreateInstitutionBody,
+  UpdateInstitutionBody,
+} from "../types/institution.js";
 import { PaginationResult } from "../types/pagination.js";
 import { NotFoundError } from "../errors/index.js";
 
 class InstitutionService {
-  async create(data: Prisma.InstitutionCreateInput): Promise<Institution[]> {
+  async create(data: CreateInstitutionBody): Promise<Institution[]> {
     await institutionRepository.create(data);
     const result = await institutionRepository.findAll();
     return result.data;
@@ -160,10 +164,7 @@ class InstitutionService {
     return institution;
   }
 
-  async update(
-    id: string,
-    data: Prisma.InstitutionUpdateInput,
-  ): Promise<Institution> {
+  async update(id: string, data: UpdateInstitutionBody): Promise<Institution> {
     await this.getById(id); // Throws NotFoundError if not found
     return institutionRepository.update(id, data);
   }
@@ -202,7 +203,11 @@ const createInstitution = async (
 ): Promise<void> => {
   try {
     const { name, region, country } = req.body;
-    const institutions = await institutionService.create({ name, region, country });
+    const institutions = await institutionService.create({
+      name,
+      region,
+      country,
+    });
     res.status(201).json({
       message: "Institution successfully created",
       data: institutions,

@@ -13,7 +13,7 @@ const jwtAuth = (req: Request, res: Response, next: NextFunction) => {
 
     const payload = jwt.verify(
       token,
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET as string,
     ) as jwt.JwtPayload & { id: string; role: string };
 
     req.user = payload;

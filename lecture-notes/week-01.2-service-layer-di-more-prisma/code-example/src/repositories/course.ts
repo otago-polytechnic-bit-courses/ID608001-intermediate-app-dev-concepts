@@ -1,15 +1,12 @@
-import { Prisma, Department } from "@prisma/client";
+import { Prisma, Course } from "@prisma/client";
 
 import prisma from "../../prisma/db.js";
-import {
-  CreateDepartmentBody,
-  UpdateDepartmentBody,
-} from "../types/department.js";
 import { PaginationResult } from "../types/pagination.js";
+import { CreateCourseBody, UpdateCourseBody } from "../types/course.js";
 
-class DepartmentRepository {
-  async create(data: CreateDepartmentBody): Promise<Department> {
-    return await prisma.department.create({ data });
+class CourseRepository {
+  async create(data: CreateCourseBody): Promise<Course> {
+    return await prisma.course.create({ data });
   }
 
   async findAll(
@@ -18,12 +15,12 @@ class DepartmentRepository {
     sortOrder: string = "asc",
     page: string = "1",
     pageSize: string = "10",
-  ): Promise<PaginationResult<Department>> {
+  ): Promise<PaginationResult<Course>> {
     const parsedPage = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
     const parsedPageSize =
       parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
-    const where: Prisma.DepartmentWhereInput = {};
+    const where: Prisma.CourseWhereInput = {};
     for (const [key, value] of Object.entries(filters)) {
       if (value !== undefined && value !== null && value !== "") {
         if (typeof value === "string") {
@@ -34,10 +31,10 @@ class DepartmentRepository {
       }
     }
 
-    const totalCount = await prisma.department.count({ where });
+    const totalCount = await prisma.course.count({ where });
     const totalPages = Math.ceil(totalCount / parsedPageSize);
 
-    const departments = await prisma.department.findMany({
+    const courses = await prisma.course.findMany({
       where,
       orderBy: { [sortBy]: sortOrder },
       skip: (parsedPage - 1) * parsedPageSize,
@@ -45,7 +42,7 @@ class DepartmentRepository {
     });
 
     return {
-      data: departments,
+      data: courses,
       pagination: {
         currentPage: parsedPage,
         pageSize: parsedPageSize,
@@ -57,24 +54,24 @@ class DepartmentRepository {
     };
   }
 
-  async findById(id: string): Promise<Department | null> {
-    return await prisma.department.findUnique({
+  async findById(id: string): Promise<Course | null> {
+    return await prisma.course.findUnique({
       where: { id },
     });
   }
 
-  async update(id: string, data: UpdateDepartmentBody): Promise<Department> {
-    return await prisma.department.update({
+  async update(id: string, data: UpdateCourseBody): Promise<Course> {
+    return await prisma.course.update({
       where: { id },
       data,
     });
   }
 
-  async delete(id: string): Promise<Department> {
-    return await prisma.department.delete({
+  async delete(id: string): Promise<Course> {
+    return await prisma.course.delete({
       where: { id },
     });
   }
 }
 
-export default new DepartmentRepository();
+export default new CourseRepository();

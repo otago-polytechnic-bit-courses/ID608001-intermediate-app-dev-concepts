@@ -1,95 +1,125 @@
-import departmentRepository from "../repositories/department.js";
+import { Request, Response, NextFunction } from "express";
 
-const createDepartment = async (req, res) => {
+import departmentService from "../services/department.js";
+
+import {
+  DepartmentParams,
+  CreateDepartmentBody,
+  UpdateDepartmentBody,
+} from "../types/department.js";
+
+const createDepartment = async (
+  req: Request<{}, {}, CreateDepartmentBody>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { name, institutionId } = req.body;
-    await departmentRepository.create({ name, institutionId });
-    const departments = await departmentRepository.findAll();
-    return res.status(201).json({
+    const departments = await departmentService.create({
+      name,
+      institutionId,
+    });
+    res.status(201).json({
       message: "Department successfully created",
       data: departments,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
-const getDepartments = async (req, res) => {
+const getDepartments = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const departments = await departmentRepository.findAll();
-    if (!departments) {
-      return res.status(404).json({ message: "No departments found" });
-    }
-    return res.status(200).json({
-      data: departments,
+    const {
+      name,
+      institutionId,
+      sortBy = "id",
+      sortOrder = "asc",
+      page = "1",
+      pageSize = "10",
+    } = req.query as Record<string, string>;
+
+    const filters: Record<string, string> = {};
+    if (name) filters.name = name;
+    if (institutionId) filters.institutionId = institutionId;
+
+    const validSortOrders = ["asc", "desc"];
+    const order = validSortOrders.includes(sortOrder.toLowerCase())
+      ? sortOrder.toLowerCase()
+      : "asc";
+
+    const validSortFields = ["id", "name", "institutionId"];
+    const fields = validSortFields.includes(sortBy.toLowerCase())
+      ? sortBy.toLowerCase()
+      : "id";
+
+    const result = await departmentService.getAll(
+      filters,
+      fields,
+      order,
+      page,
+      pageSize,
+    );
+
+    res.status(200).json({
+      data: result.data,
+      pagination: result.pagination,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
-const getDepartment = async (req, res) => {
+const getDepartment = async (
+  req: Request<DepartmentParams>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { id } = req.params;
-    const department = await departmentRepository.findById(id);
-    if (!department) {
-      return res.status(404).json({
-        message: `No department with the id: ${id} found`,
-      });
-    }
-    return res.status(200).json({
-      data: department,
-    });
+    const department = await departmentService.getById(req.params.id);
+    res.status(200).json({ data: department });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
-const updateDepartment = async (req, res) => {
+const updateDepartment = async (
+  req: Request<DepartmentParams, {}, UpdateDepartmentBody>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { id } = req.params;
     const { name, institutionId } = req.body;
-    let department = await departmentRepository.findById(id);
-    if (!department) {
-      return res.status(404).json({
-        message: `No department with the id: ${id} found`,
-      });
-    }
-    department = await departmentRepository.update(id, { name, institutionId });
-    return res.status(200).json({
-      message: `Department with the id: ${id} successfully updated`,
+
+    const department = await departmentService.update(req.params.id, {
+      name,
+      institutionId,
+    });
+    res.status(200).json({
+      message: `Department with the id: ${req.params.id} successfully updated`,
       data: department,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
-const deleteDepartment = async (req, res) => {
+const deleteDepartment = async (
+  req: Request<DepartmentParams>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { id } = req.params;
-    const department = await departmentRepository.findById(id);
-    if (!department) {
-      return res.status(404).json({
-        message: `No department with the id: ${id} found`,
-      });
-    }
-    await departmentRepository.delete(id);
-    return res.status(200).json({
-      message: `Department with the id: ${id} successfully deleted`,
+    await departmentService.delete(req.params.id);
+    res.status(200).json({
+      message: `Department with the id: ${req.params.id} successfully deleted`,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 

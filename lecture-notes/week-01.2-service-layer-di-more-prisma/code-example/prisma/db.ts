@@ -8,7 +8,7 @@ const prisma = new PrismaClient().$extends({
         const result = await query(args);
         const after = Date.now();
 
-        console.log(`Query ${model}.${operation} took ${after - before}ms`);
+        // console.log(`Query ${model}.${operation} took ${after - before}ms`);
 
         return result;
       },

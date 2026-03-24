@@ -15,7 +15,11 @@ const createInstitution = async (
 ): Promise<void> => {
   try {
     const { name, region, country } = req.body;
-    const institutions = await institutionService.create({ name, region, country });
+    const institutions = await institutionService.create({
+      name,
+      region,
+      country,
+    });
     res.status(201).json({
       message: "Institution successfully created",
       data: institutions,
