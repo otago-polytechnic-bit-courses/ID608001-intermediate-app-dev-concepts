@@ -4,7 +4,7 @@
 
 |              | Link                                                                                                                   |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| Previous     | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-more-prisma-service-layer-di/README.md) |
+| Previous     | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-service-layer-di-more-prisma/README.md) |
 | Code Example | [Code Example](code-example)                                                                                           |
 | Next         | [Week 02.2 - Versioning and Retries](../week-02.2-versioning-retries/README.md)                                        |
 
