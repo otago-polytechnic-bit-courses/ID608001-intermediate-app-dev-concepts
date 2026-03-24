@@ -19,7 +19,7 @@ const createCourse = async (
       name,
       code,
       description,
-      departmentId,
+      department: { connect: { id: departmentId } },
     });
     res.status(201).json({
       message: "Course successfully created",
@@ -111,7 +111,7 @@ const updateCourse = async (
       name,
       code,
       description,
-      departmentId,
+      department: { connect: { id: departmentId } },
     });
     res.status(200).json({
       message: `Course with the id: ${req.params.id} successfully updated`,

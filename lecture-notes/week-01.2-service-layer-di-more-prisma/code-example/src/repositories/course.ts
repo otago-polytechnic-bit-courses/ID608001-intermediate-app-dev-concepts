@@ -2,10 +2,9 @@ import { Prisma, Course } from "@prisma/client";
 
 import prisma from "../../prisma/db.js";
 import { PaginationResult } from "../types/pagination.js";
-import { CreateCourseBody, UpdateCourseBody } from "../types/course.js";
 
 class CourseRepository {
-  async create(data: CreateCourseBody): Promise<Course> {
+  async create(data: Prisma.CourseCreateInput): Promise<Course> {
     return await prisma.course.create({ data });
   }
 
@@ -60,7 +59,7 @@ class CourseRepository {
     });
   }
 
-  async update(id: string, data: UpdateCourseBody): Promise<Course> {
+  async update(id: string, data: Prisma.CourseUpdateInput): Promise<Course> {
     return await prisma.course.update({
       where: { id },
       data,

@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth.js";
 import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
+import courseRoutes from "./routes/course.js";
 
 import isContentTypeApplicationJSON from "./middleware/contentType.js";
 import errorHandler from "./middleware/errorHandler.js";
@@ -25,6 +26,7 @@ app.use("/api/auth", authRoutes);
 app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
+app.use("/api/courses", courseRoutes);
 
 app.use(errorHandler);
 

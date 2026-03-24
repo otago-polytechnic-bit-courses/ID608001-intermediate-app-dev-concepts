@@ -43,10 +43,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(201);
 
-    const newInstitution = res.body.data.find(
-      (i: InstitutionData & { id: string }) => i.name === institutionData[1].name,
-    );
-    institutionOneId = newInstitution.id;
+    institutionOneId = res.body.data.id;
   });
 
   it("should create institution two", async () => {
@@ -57,10 +54,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(201);
 
-    const newInstitution = res.body.data.find(
-      (i: InstitutionData & { id: string }) => i.name === institutionData[2].name,
-    );
-    institutionTwoId = newInstitution.id;
+    institutionTwoId = res.body.data.id;
   });
 
   it("should get all institutions", async () => {

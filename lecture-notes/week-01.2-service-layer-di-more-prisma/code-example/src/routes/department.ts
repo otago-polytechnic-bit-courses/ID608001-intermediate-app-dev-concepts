@@ -8,12 +8,18 @@ import {
   deleteDepartment,
 } from "../controllers/department.js";
 
+import jwtAuth from "../middleware/jwtAuth.js";
+
+import rbac from "../middleware/rbac.js";
+
+import rateLimiter from "../middleware/rateLimiter.js";
+
 const router = express.Router();
 
-router.post("/", createDepartment);
-router.get("/", getDepartments);
-router.get("/:id", getDepartment);
-router.put("/:id", updateDepartment);
-router.delete("/:id", deleteDepartment);
+router.post("/", jwtAuth, rbac("ADMIN"), createDepartment);
+router.get("/", rateLimiter, getDepartments);
+router.get("/:id", rateLimiter, getDepartment);
+router.put("/:id", jwtAuth, rbac("ADMIN"), updateDepartment);
+router.delete("/:id", jwtAuth, rbac("ADMIN"), deleteDepartment);
 
 export default router;

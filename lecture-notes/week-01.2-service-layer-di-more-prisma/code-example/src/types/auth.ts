@@ -1,7 +1,14 @@
-import { User } from "@prisma/client";
+interface RegisterBody {
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
+  password: string;
+  role: string;
+}
 
-type RegisterBody = Omit<User, "id" | "createdAt" | "updatedAt">;
-
-type LoginBody = Pick<User, "emailAddress" | "password">;
+interface LoginBody {
+  emailAddress: string;
+  password: string;
+}
 
 export type { RegisterBody, LoginBody };

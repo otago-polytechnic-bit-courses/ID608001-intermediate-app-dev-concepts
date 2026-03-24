@@ -42,11 +42,8 @@ describe("Institution CRUD", () => {
       .send(institutionData[1]);
 
     expect(res.status).to.equal(201);
-
-    const newInstitution = res.body.data.find(
-      (i: InstitutionData & { id: string }) => i.name === institutionData[1].name,
-    );
-    institutionOneId = newInstitution.id;
+    
+    institutionOneId = res.body.data.id;
   });
 
   it("should create institution two", async () => {
@@ -57,10 +54,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(201);
 
-    const newInstitution = res.body.data.find(
-      (i: InstitutionData & { id: string }) => i.name === institutionData[2].name,
-    );
-    institutionTwoId = newInstitution.id;
+    institutionTwoId = res.body.data.id;
   });
 
   it("should get all institutions", async () => {
@@ -72,7 +66,7 @@ describe("Institution CRUD", () => {
 
   it("should get institution one by ID", async () => {
     const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
-
+    console.log(res.body);
     expect(res.status).to.equal(200);
     expect(res.body.data.name).to.equal(institutionData[1].name);
   });
@@ -80,6 +74,7 @@ describe("Institution CRUD", () => {
   it("should update institution two", async () => {
     const res = await request(app)
       .put(`${BASE_URL}/${institutionTwoId}`)
+      .set("Authorization", `Bearer ${token}`)
       .send({
         name: institutionData[0].name,
         region: institutionData[0].region,
@@ -93,7 +88,9 @@ describe("Institution CRUD", () => {
   });
 
   it("should delete institution one", async () => {
-    const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
+    const res = await request(app)
+      .delete(`${BASE_URL}/${institutionOneId}`)
+      .set("Authorization", `Bearer ${token}`);
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
@@ -102,6 +99,7 @@ describe("Institution CRUD", () => {
   });
 
   after(() => {
+    global.testToken = token;
     global.testInstitutionId = institutionTwoId;
   });
 });

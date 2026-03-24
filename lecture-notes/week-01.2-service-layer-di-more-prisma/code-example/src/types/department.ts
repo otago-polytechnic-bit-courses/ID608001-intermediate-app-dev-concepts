@@ -1,4 +1,5 @@
-interface DepartmentParams {
+import { ParamsDictionary } from "express-serve-static-core";
+interface DepartmentParams extends ParamsDictionary {
   id: string;
 }
 

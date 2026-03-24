@@ -14,11 +14,10 @@ const createInstitution = async (
 ): Promise<Response> => {
   try {
     const { name, region, country } = req.body;
-    await institutionRepository.create({ name, region, country });
-    const institutions = await institutionRepository.findAll();
+    const institution = await institutionRepository.create({ name, region, country });
     return res.status(201).json({
       message: "Institution successfully created",
-      data: institutions.data,
+      data: institution,
     });
   } catch (err) {
     return res.status(500).json({
@@ -109,7 +108,7 @@ const updateInstitution = async (
   try {
     const { id } = req.params;
     const { name, region, country } = req.body;
-    let institution = await institutionRepository.findById(id);
+    const institution = await institutionRepository.findById(id);
     if (!institution) {
       return res.status(404).json({
         message: `No institution with the id: ${id} found`,

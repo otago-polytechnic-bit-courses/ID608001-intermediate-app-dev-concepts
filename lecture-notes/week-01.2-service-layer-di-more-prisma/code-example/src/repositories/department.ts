@@ -1,14 +1,10 @@
 import { Prisma, Department } from "@prisma/client";
 
 import prisma from "../../prisma/db.js";
-import {
-  CreateDepartmentBody,
-  UpdateDepartmentBody,
-} from "../types/department.js";
 import { PaginationResult } from "../types/pagination.js";
 
 class DepartmentRepository {
-  async create(data: CreateDepartmentBody): Promise<Department> {
+  async create(data: Prisma.DepartmentCreateInput): Promise<Department> {
     return await prisma.department.create({ data });
   }
 
@@ -63,7 +59,10 @@ class DepartmentRepository {
     });
   }
 
-  async update(id: string, data: UpdateDepartmentBody): Promise<Department> {
+  async update(
+    id: string,
+    data: Prisma.DepartmentUpdateInput,
+  ): Promise<Department> {
     return await prisma.department.update({
       where: { id },
       data,

@@ -9,10 +9,8 @@ import { PaginationResult } from "../types/pagination.js";
 import { NotFoundError } from "../errors/index.js";
 
 class InstitutionService {
-  async create(data: CreateInstitutionBody): Promise<Institution[]> {
-    await institutionRepository.create(data);
-    const result = await institutionRepository.findAll();
-    return result.data;
+  async create(data: CreateInstitutionBody): Promise<Institution> {
+    return await institutionRepository.create(data);
   }
 
   async getAll(

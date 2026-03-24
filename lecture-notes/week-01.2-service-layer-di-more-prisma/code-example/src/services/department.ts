@@ -1,18 +1,12 @@
-import { Department } from "@prisma/client";
+import { Prisma, Department } from "@prisma/client";
 
 import departmentRepository from "../repositories/department.js";
-import {
-  CreateDepartmentBody,
-  UpdateDepartmentBody,
-} from "../types/department.js";
 import { PaginationResult } from "../types/pagination.js";
 import { NotFoundError } from "../errors/index.js";
 
 class DepartmentService {
-  async create(data: CreateDepartmentBody): Promise<Department[]> {
-    await departmentRepository.create(data);
-    const result = await departmentRepository.findAll();
-    return result.data;
+  async create(data: Prisma.DepartmentCreateInput): Promise<Department> {
+    return await departmentRepository.create(data);
   }
 
   async getAll(
@@ -47,7 +41,10 @@ class DepartmentService {
     return department;
   }
 
-  async update(id: string, data: UpdateDepartmentBody): Promise<Department> {
+  async update(
+    id: string,
+    data: Prisma.DepartmentUpdateInput,
+  ): Promise<Department> {
     await this.getById(id); // Throws NotFoundError if not found
     return departmentRepository.update(id, data);
   }

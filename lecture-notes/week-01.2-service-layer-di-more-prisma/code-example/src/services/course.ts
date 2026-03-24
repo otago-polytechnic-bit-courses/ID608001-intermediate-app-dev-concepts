@@ -1,12 +1,11 @@
-import { Course } from "@prisma/client";
+import { Prisma, Course } from "@prisma/client";
 
 import courseRepository from "../repositories/course.js";
-import { CreateCourseBody, UpdateCourseBody } from "../types/course.js";
 import { PaginationResult } from "../types/pagination.js";
 import { NotFoundError } from "../errors/index.js";
 
 class CourseService {
-  async create(data: CreateCourseBody): Promise<Course[]> {
+  async create(data: Prisma.CourseCreateInput): Promise<Course[]> {
     await courseRepository.create(data);
     const result = await courseRepository.findAll();
     return result.data;
@@ -44,7 +43,7 @@ class CourseService {
     return course;
   }
 
-  async update(id: string, data: UpdateCourseBody): Promise<Course> {
+  async update(id: string, data: Prisma.CourseUpdateInput): Promise<Course> {
     await this.getById(id); // Throws NotFoundError if not found
     return courseRepository.update(id, data);
   }

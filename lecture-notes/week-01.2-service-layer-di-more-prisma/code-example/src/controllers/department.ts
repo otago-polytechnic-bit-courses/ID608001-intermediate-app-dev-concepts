@@ -17,7 +17,9 @@ const createDepartment = async (
     const { name, institutionId } = req.body;
     const departments = await departmentService.create({
       name,
-      institutionId,
+      institution: {
+        connect: { id: institutionId },
+      },
     });
     res.status(201).json({
       message: "Department successfully created",
@@ -97,7 +99,9 @@ const updateDepartment = async (
 
     const department = await departmentService.update(req.params.id, {
       name,
-      institutionId,
+      institution: {
+        connect: { id: institutionId },
+      },
     });
     res.status(200).json({
       message: `Department with the id: ${req.params.id} successfully updated`,

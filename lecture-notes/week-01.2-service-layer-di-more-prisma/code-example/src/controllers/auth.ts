@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -9,7 +9,8 @@ import { RegisterBody, LoginBody } from "../types/auth.js";
 const register = async (
   req: Request<{}, {}, RegisterBody>,
   res: Response,
-): Promise<Response> => {
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { firstName, lastName, emailAddress, password, role } = req.body;
 
@@ -19,7 +20,8 @@ const register = async (
     });
 
     if (user) {
-      return res.status(409).json({ message: "User already exists" });
+      res.status(409).json({ message: "User already exists" });
+      return;
     }
 
     // Generate a random salt to make the password hash unique
@@ -48,21 +50,20 @@ const register = async (
       },
     });
 
-    return res.status(201).json({
+    res.status(201).json({
       message: "User successfully registered",
       data: createdUser,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 
 const login = async (
   req: Request<{}, {}, LoginBody>,
   res: Response,
-): Promise<Response> => {
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { emailAddress, password } = req.body;
 
@@ -70,23 +71,26 @@ const login = async (
     const user = await prisma.user.findUnique({ where: { emailAddress } });
 
     if (!user) {
-      return res.status(401).json({ message: "Invalid email address" });
+      res.status(401).json({ message: "Invalid email address" });
+      return;
     }
 
     // Compare the provided password with the hashed password in the database
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      return res.status(401).json({ message: "Invalid password" });
+      res.status(401).json({ message: "Invalid password" });
+      return;
     }
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
 
     if (!JWT_SECRET || !JWT_LIFETIME) {
-      return res.status(500).json({
+      res.status(500).json({
         message:
           "JWT_SECRET and JWT_LIFETIME must be defined in environment variables",
       });
+      return;
     }
 
     // Create a JWT token with the user's ID and role
@@ -95,18 +99,16 @@ const login = async (
         id: user.id,
         role: user.role,
       },
-      JWT_SECRET,
+      JWT_SECRET as string,
       { expiresIn: JWT_LIFETIME },
     );
 
-    return res.status(200).json({
+    res.status(200).json({
       message: "User successfully logged in",
       token: token,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    next(err);
   }
 };
 

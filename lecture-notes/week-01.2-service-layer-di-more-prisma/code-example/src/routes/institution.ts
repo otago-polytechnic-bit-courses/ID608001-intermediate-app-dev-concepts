@@ -26,11 +26,17 @@ router.post(
   validatePostInstitution,
   jwtAuth,
   rbac("ADMIN"),
-  createInstitution
+  createInstitution,
 );
 router.get("/", rateLimiter, getInstitutions);
 router.get("/:id", rateLimiter, getInstitution);
-router.put("/:id", validatePutInstitution, updateInstitution);
-router.delete("/:id", deleteInstitution);
+router.put(
+  "/:id",
+  validatePutInstitution,
+  jwtAuth,
+  rbac("ADMIN"),
+  updateInstitution,
+);
+router.delete("/:id", jwtAuth, rbac("ADMIN"), deleteInstitution);
 
 export default router;

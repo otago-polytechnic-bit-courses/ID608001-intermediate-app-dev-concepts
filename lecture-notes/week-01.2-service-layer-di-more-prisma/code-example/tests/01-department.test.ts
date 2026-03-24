@@ -2,7 +2,6 @@ import { expect } from "chai";
 import request from "supertest";
 
 import app from "../src/app.js";
-import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
 
 interface DepartmentData {
   name: string;
@@ -11,8 +10,10 @@ interface DepartmentData {
 describe("Department CRUD", () => {
   const BASE_URL = "/api/departments";
 
+  let token: string;
   let institutionId: string;
   let departmentOneId: string;
+  let departmentTwoId: string;
 
   const departmentData: DepartmentData[] = [
     { name: "Information Technology" },
@@ -21,20 +22,32 @@ describe("Department CRUD", () => {
   ];
 
   before(async () => {
+    token = global.testToken;
     institutionId = global.testInstitutionId;
   });
 
   it("should create department one", async () => {
     const res = await request(app)
       .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+
       .send({ name: departmentData[0].name, institutionId });
 
     expect(res.status).to.equal(201);
 
-    const newDepartment = res.body.data.find(
-      (d: DepartmentData & { id: string }) => d.name === departmentData[0].name,
-    );
-    departmentOneId = newDepartment.id;
+    departmentOneId = res.body.data.id;
+  });
+
+  it("should create department two", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+
+      .send({ name: departmentData[1].name, institutionId });
+
+    expect(res.status).to.equal(201);
+
+    departmentTwoId = res.body.data.id;
   });
 
   it("should get all departments", async () => {
@@ -54,6 +67,7 @@ describe("Department CRUD", () => {
   it("should update department one", async () => {
     const res = await request(app)
       .put(`${BASE_URL}/${departmentOneId}`)
+      .set("Authorization", `Bearer ${token}`)
       .send({ name: departmentData[1].name, institutionId });
 
     expect(res.status).to.equal(200);
@@ -64,7 +78,9 @@ describe("Department CRUD", () => {
   });
 
   it("should delete department one", async () => {
-    const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
+    const res = await request(app)
+      .delete(`${BASE_URL}/${departmentOneId}`)
+      .set("Authorization", `Bearer ${token}`);
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
@@ -73,7 +89,6 @@ describe("Department CRUD", () => {
   });
 
   after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
+    global.testDepartmentId = departmentTwoId;
   });
 });

@@ -1,5 +1,14 @@
+import { Request, Response } from "express";
+
+interface User {
+  firstName: string;
+  lastName: string;
+  age: number;
+  hobbies: string[];
+}
+
 // Create a GET route
-const getIndex = (req, res) => {
+const getIndex = (req: Request, res: Response<{ message: string } & User>) => {
   return res.status(200).json({
     message: "Hello, World!",
     firstName: "John",

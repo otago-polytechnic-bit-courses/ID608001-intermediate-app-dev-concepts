@@ -1,4 +1,6 @@
-interface CourseParams {
+import { ParamsDictionary } from "express-serve-static-core";
+
+interface CourseParams extends ParamsDictionary {
   id: string;
 }
 

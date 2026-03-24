@@ -341,7 +341,9 @@ const createInstitution = async (
 
 ```typescript
 // src/types/institution.ts
-interface InstitutionParams {
+import { ParamsDictionary } from "express-serve-static-core";
+
+interface InstitutionParams extends ParamsDictionary {
   id: string;
 }
 

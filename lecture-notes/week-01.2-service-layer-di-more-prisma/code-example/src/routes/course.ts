@@ -5,9 +5,14 @@ import {
   getCourses,
   getCourse,
   updateCourse,
-  deleteCourse,,
-  createDepartment
+  deleteCourse,
 } from "../controllers/course.js";
+
+import jwtAuth from "../middleware/jwtAuth.js";
+
+import rbac from "../middleware/rbac.js";
+
+import rateLimiter from "../middleware/rateLimiter.js";
 
 const router = express.Router();
 
