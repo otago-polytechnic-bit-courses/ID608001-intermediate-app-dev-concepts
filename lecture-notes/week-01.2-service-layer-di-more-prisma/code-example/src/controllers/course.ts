@@ -15,7 +15,7 @@ const createCourse = async (
 ): Promise<void> => {
   try {
     const { name, code, description, departmentId } = req.body;
-    const courses = await courseService.create({
+    const course = await courseService.create({
       name,
       code,
       description,
@@ -23,7 +23,7 @@ const createCourse = async (
     });
     res.status(201).json({
       message: "Course successfully created",
-      data: courses,
+      data: course,
     });
   } catch (err) {
     next(err);
@@ -69,7 +69,7 @@ const getCourses = async (
       ? sortBy.toLowerCase()
       : "id";
 
-    const result = await courseService.getAll(
+    const courses = await courseService.getAll(
       filters,
       fields,
       order,
@@ -78,8 +78,8 @@ const getCourses = async (
     );
 
     res.status(200).json({
-      data: result.data,
-      pagination: result.pagination,
+      data: courses.data,
+      pagination: courses.pagination,
     });
   } catch (err) {
     next(err);

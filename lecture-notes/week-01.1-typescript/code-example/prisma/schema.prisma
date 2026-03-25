@@ -27,7 +27,7 @@ model User {
   password         String
   role             Role          @default(STUDENT)
   createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
 }
 
 model Institution {

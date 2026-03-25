@@ -1,6 +1,6 @@
 import prisma from "../db.js";
 
-import { validatePostInstitution } from "../../middleware/validation/institution.js";
+import { validatePostInstitution } from "../../src/middleware/validation/institution.js";
 
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {

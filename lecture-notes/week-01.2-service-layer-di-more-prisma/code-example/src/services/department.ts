@@ -16,7 +16,7 @@ class DepartmentService {
     page: string = "1",
     pageSize: string = "10",
   ): Promise<PaginationResult<Department>> {
-    const result = await departmentRepository.findAll(
+    const departments = await departmentRepository.findAll(
       filters,
       sortBy,
       sortOrder,
@@ -24,11 +24,11 @@ class DepartmentService {
       pageSize,
     );
 
-    if (result.data.length === 0) {
+    if (departments.data.length === 0) {
       throw new NotFoundError("No departments found");
     }
 
-    return result;
+    return departments;
   }
 
   async getById(id: string): Promise<Department> {

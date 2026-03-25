@@ -5,10 +5,8 @@ import { PaginationResult } from "../types/pagination.js";
 import { NotFoundError } from "../errors/index.js";
 
 class CourseService {
-  async create(data: Prisma.CourseCreateInput): Promise<Course[]> {
-    await courseRepository.create(data);
-    const result = await courseRepository.findAll();
-    return result.data;
+  async create(data: Prisma.CourseCreateInput): Promise<Course> {
+    return await courseRepository.create(data);
   }
 
   async getAll(
@@ -18,7 +16,7 @@ class CourseService {
     page: string = "1",
     pageSize: string = "10",
   ): Promise<PaginationResult<Course>> {
-    const result = await courseRepository.findAll(
+    const courses = await courseRepository.findAll(
       filters,
       sortBy,
       sortOrder,
@@ -26,11 +24,11 @@ class CourseService {
       pageSize,
     );
 
-    if (result.data.length === 0) {
+    if (courses.data.length === 0) {
       throw new NotFoundError("No courses found");
     }
 
-    return result;
+    return courses;
   }
 
   async getById(id: string): Promise<Course> {

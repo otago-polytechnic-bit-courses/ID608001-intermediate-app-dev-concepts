@@ -20,7 +20,7 @@ class InstitutionService {
     page: string = "1",
     pageSize: string = "10",
   ): Promise<PaginationResult<Institution>> {
-    const result = await institutionRepository.findAll(
+    const institutions = await institutionRepository.findAll(
       filters,
       sortBy,
       sortOrder,
@@ -28,11 +28,11 @@ class InstitutionService {
       pageSize,
     );
 
-    if (result.data.length === 0) {
+    if (institutions.data.length === 0) {
       throw new NotFoundError("No institutions found");
     }
 
-    return result;
+    return institutions;
   }
 
   async getById(id: string): Promise<Institution> {

@@ -15,14 +15,14 @@ const createInstitution = async (
 ): Promise<void> => {
   try {
     const { name, region, country } = req.body;
-    const institutions = await institutionService.create({
+    const institution = await institutionService.create({
       name,
       region,
       country,
     });
     res.status(201).json({
       message: "Institution successfully created",
-      data: institutions,
+      data: institution,
     });
   } catch (err) {
     next(err);
@@ -60,7 +60,7 @@ const getInstitutions = async (
       ? sortBy.toLowerCase()
       : "id";
 
-    const result = await institutionService.getAll(
+    const institutions = await institutionService.getAll(
       filters,
       fields,
       order,
@@ -69,8 +69,8 @@ const getInstitutions = async (
     );
 
     res.status(200).json({
-      data: result.data,
-      pagination: result.pagination,
+      data: institutions.data,
+      pagination: institutions.pagination,
     });
   } catch (err) {
     next(err);

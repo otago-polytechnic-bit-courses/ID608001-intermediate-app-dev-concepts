@@ -15,7 +15,7 @@ const createDepartment = async (
 ): Promise<void> => {
   try {
     const { name, institutionId } = req.body;
-    const departments = await departmentService.create({
+    const department = await departmentService.create({
       name,
       institution: {
         connect: { id: institutionId },
@@ -23,7 +23,7 @@ const createDepartment = async (
     });
     res.status(201).json({
       message: "Department successfully created",
-      data: departments,
+      data: department,
     });
   } catch (err) {
     next(err);
@@ -59,7 +59,7 @@ const getDepartments = async (
       ? sortBy.toLowerCase()
       : "id";
 
-    const result = await departmentService.getAll(
+    const departments = await departmentService.getAll(
       filters,
       fields,
       order,
@@ -68,8 +68,8 @@ const getDepartments = async (
     );
 
     res.status(200).json({
-      data: result.data,
-      pagination: result.pagination,
+      data: departments.data,
+      pagination: departments.pagination,
     });
   } catch (err) {
     next(err);
