@@ -17,7 +17,7 @@ describe("Institution CRUD", () => {
   let institutionOneId: string;
   let institutionTwoId: string;
 
-  const institutionData: InstitutionData[] = [
+  const institutions: InstitutionData[] = [
     {
       name: "Ara Institute of Canterbury",
       region: "Canterbury",
@@ -39,10 +39,10 @@ describe("Institution CRUD", () => {
     const res = await request(app)
       .post(BASE_URL)
       .set("Authorization", `Bearer ${token}`)
-      .send(institutionData[1]);
+      .send(institutions[0]);
 
     expect(res.status).to.equal(201);
-    
+
     institutionOneId = res.body.data.id;
   });
 
@@ -50,7 +50,7 @@ describe("Institution CRUD", () => {
     const res = await request(app)
       .post(BASE_URL)
       .set("Authorization", `Bearer ${token}`)
-      .send(institutionData[2]);
+      .send(institutions[1]);
 
     expect(res.status).to.equal(201);
 
@@ -66,9 +66,8 @@ describe("Institution CRUD", () => {
 
   it("should get institution one by ID", async () => {
     const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
-    console.log(res.body);
     expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal(institutionData[1].name);
+    expect(res.body.data.name).to.equal(institutions[0].name);
   });
 
   it("should update institution two", async () => {
@@ -76,15 +75,15 @@ describe("Institution CRUD", () => {
       .put(`${BASE_URL}/${institutionTwoId}`)
       .set("Authorization", `Bearer ${token}`)
       .send({
-        name: institutionData[0].name,
-        region: institutionData[0].region,
+        name: institutions[1].name,
+        region: institutions[1].region,
       });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
       `Institution with the id: ${institutionTwoId} successfully updated`,
     );
-    expect(res.body.data.name).to.equal(institutionData[0].name);
+    expect(res.body.data.name).to.equal(institutions[1].name);
   });
 
   it("should delete institution one", async () => {
@@ -101,5 +100,60 @@ describe("Institution CRUD", () => {
   after(() => {
     global.testToken = token;
     global.testInstitutionId = institutionTwoId;
+  });
+});
+
+describe("Institution Validation", () => {
+  const BASE_URL = "/api/institutions";
+
+  let token: string;
+
+  const institution = {
+    name: "Ara Institute of Canterbury",
+    region: "Canterbury",
+    country: "New Zealand",
+  };
+
+  before(async () => {
+    token = await setupTestAuth();
+  });
+
+  it("should return 409 when name is missing", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        region: institution.region,
+        country: institution.country,
+      });
+
+    expect(res.status).to.equal(409);
+    expect(res.body.errors[0].message).to.equal("name is required");
+  });
+
+  it("should return 409 when region is missing", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: institution.name,
+        country: institution.country,
+      });
+
+    expect(res.status).to.equal(409);
+    expect(res.body.errors[0].message).to.equal("region is required");
+  });
+
+  it("should return 409 when country is missing", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: institution.name,
+        region: institution.region,
+      });
+
+    expect(res.status).to.equal(409);
+    expect(res.body.errors[0].message).to.equal("country is required");
   });
 });
