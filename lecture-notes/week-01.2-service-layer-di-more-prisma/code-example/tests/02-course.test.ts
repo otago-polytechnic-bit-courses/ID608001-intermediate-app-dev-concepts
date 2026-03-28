@@ -2,7 +2,6 @@ import { expect } from "chai";
 import request from "supertest";
 
 import app from "../src/app.js";
-import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
 
 interface CourseData {
   name: string;
@@ -49,11 +48,7 @@ describe("Course CRUD", () => {
       });
 
     expect(res.status).to.equal(201);
-
-    const newCourse = res.body.data.find(
-      (d: CourseData & { id: string }) => d.name === courseData[0].name,
-    );
-    courseOneId = newCourse.id;
+    courseOneId = res.body.data.id;
   });
 
   it("should get all courses", async () => {
@@ -89,11 +84,6 @@ describe("Course CRUD", () => {
     expect(res.body.message).to.equal(
       `Course with the id: ${courseOneId} successfully deleted`,
     );
-  });
-
-  after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
   });
 });
   

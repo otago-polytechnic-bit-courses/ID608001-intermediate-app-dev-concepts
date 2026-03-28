@@ -1,7 +1,6 @@
 import request from "supertest";
 
 import app from "../../src/app.js";
-import { cleanupDatabase } from "./db.js";
 
 interface RegisterPayload {
   firstName: string;
@@ -21,8 +20,6 @@ const setupTestAuth = async (): Promise<string> => {
     password: "janedoe123",
     role: "ADMIN",
   };
-
-  await cleanupDatabase();
 
   await request(app).post(`${BASE_URL}/register`).send(user);
 
