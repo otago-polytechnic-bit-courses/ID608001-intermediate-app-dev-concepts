@@ -58,25 +58,25 @@ At the successful completion of this course, learners will be able to:
 
 ## Provisional Schedule
 
-| Week             | Topics                                                                                 |
-| ---------------- | -------------------------------------------------------------------------------------- |
-| 1/Tahi           | TypeScript, More Prisma, Service Layer and Dependency Injection                        |
-| 2/Rua            | Docker Compose, More GitHub Actions, Versioning and Retries                            |
-| 3/Toru           | Permissions, Refresh Tokens, Attribute-Based Access Control and Multi-Tenancy Patterns |
-| 4/Whā            | Observability, API Gateway, Message Queues, Background Jobs and Scheduling             |
-| 5/Rima           | File Uploads, Caching Strategies, Microservices and Documentation as Code              |
-| 6/Ono            | React Native, Expo, Navigation and Routing                                             |
-| 7/Whitu          | State Management, Networking and API Integration                                       |
-| 8/Waru           | Local Storage, Async Storage, SQLite and Authentication Flows                          |
-| 9/Iwa            | Push Notifications, Background Tasks, Camera, Location and Device APIs                 |
-|                  | Mid Semester Break                                                                     |
-| 10/Tekau         | Performance Optimisation, Lazy Loading and Testing for Mobile                          |
-| 11/Tekau mā tahi | CI/CD for Mobile, App Store Deployment and Release Management                          |
-| 12/Tekau mā rua  | Assessment Work                                                                        |
-| 13/Tekau mā toru | Assessment Work                                                                        |
-| 14/Tekau mā whā  | Assessment Work                                                                        |
-| 15/Tekau mā rima | Assessment Work                                                                        |
-| 16/Tekau mā ono  | Assessment Marking                                                                     |
+| Week             | Topics                                                                 | Learning Outcomes |
+| ---------------- | ---------------------------------------------------------------------- | ----------------- |
+| 1/Tahi           | Design Patterns in React, Component Architecture                       | 1                 |
+| 2/Rua            | React Native, Expo, Navigation and Routing                             | 1, 2              |
+| 3/Toru           | Styling and UI Composition                                             | 1, 2              |
+| 4/Whā            | Service Layer Design and Dependency Injection                          | 1, 2              |
+| 5/Rima           | State Management Patterns, Networking and Error-Handling Strategies    | 1, 2              |
+|                  | Mid Semester Break                                                     |                   |
+| 6/Ono            | Local Storage, Async Storage, SQLite and Offline Data Synchronisation  | 1, 2              |
+| 7/Whitu          | Authentication and Authorisation Flows                                 | 1, 2              |
+| 8/Waru           | Advanced React Patterns                                                | 1, 2              |
+| 9/Iwa            | Push Notifications, Background Tasks, Camera, Location and Device APIs | 2                 |
+| 10/Tekau         | Testing                                                                | 1, 2              |
+| 11/Tekau mā tahi | Performance Optimisation, Lazy Loading, CI/CD and Release Management   | 1, 2              |
+| 12/Tekau mā rua  | Assessment Work                                                        |                   |
+| 13/Tekau mā toru | Assessment Work                                                        |                   |
+| 14/Tekau mā whā  | Assessment Work                                                        |                   |
+| 15/Tekau mā rima | Assessment Work                                                        |                   |
+| 16/Tekau mā ono  | Assessment Marking                                                     |                   |
 
 ## Resources
 
@@ -154,4 +154,4 @@ Regulatory documents relating to this course can be found on the [Otago Polytech
 ---
 
 _Author: Grayson Orr_  
-_Course: ID607001: Introductory Application Development Concepts_
+_Course: ID608001: Intermediare Application Development Concepts_
