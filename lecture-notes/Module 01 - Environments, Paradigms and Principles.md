@@ -281,7 +281,7 @@ while (line := input("Enter something: ")) != "quit":
 
 None of the snippets above are explained. That's deliberate. Work out what your chosen one is doing on your own, using the official Python documentation, a search engine, or an AI tool as a starting point, not as a substitute for actually understanding it.
 
-Once you've picked one and worked out how it behaves, write two or three short examples of your own that use it in a way that isn't copied from whatever source you learned it from. Then record a short video, two to four minutes long, where you explain your chosen concept in your own words and walk through your own examples running in the terminal. Screen recording software already on your machine is fine for this, and the video doesn't need editing. Add the video, or a link to it, along with your example code, to your repository's `README.md`.
+Once you've picked one and worked out how it behaves, write two or three short examples of your own that use it in a way that isn't copied from whatever source you learned it from. Then record a short video, two to four minutes long, where you explain your chosen concept in your own words and walk through your own examples running in the terminal. Add the video, or a link to it, along with your example code, to your repository's `README.md`.
 
 ---
 
