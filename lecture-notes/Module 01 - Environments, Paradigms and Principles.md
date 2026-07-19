@@ -324,4 +324,4 @@ pip install django
 
 ### Task 3: Confirm Your Python Toolchain
 
-In a new folder, create a `hello_fittrack.py` file that prints a short message about the course's running project, and run it with `python hello_fittrack.py` inside your activated virtual environment. Take a screenshot of it working and add it to your repository's `README.md`.
+In a new folder, create a `hello_fittrack.py` file that prints a short welcome message related to FitTrack, the fitness app you will be developing throughout this course, and run it with `python hello_fittrack.py` inside your activated virtual environment. Take a screenshot of it working and add it to your repository's `README.md`.
