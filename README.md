@@ -4,9 +4,9 @@
 
 ## Course Information
 
-| Level | Credits | Prerequisite                                            | Timetable |
-| ----- | ------- | ------------------------------------------------------- | --------- |
-| 6     | 15      | ID607001: Introductory Application Development Concepts |           |
+| Level | Credits | Prerequisite                                            | Timetable                                                                 |
+| ----- | ------- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 6     | 15      | ID607001: Introductory Application Development Concepts | Monday 8:00 AM - 09:45 AM in D202 and Thursday 8:00 AM - 09:45 AM in D202 |
 
 ## Teaching Staff
 
