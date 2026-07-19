@@ -287,8 +287,6 @@ Once you've picked one and worked out how it behaves, write two or three short e
 
 ## 5. Setting up your Python environment
 
-React Native and Expo aren't needed yet. This course only turns to the frontend once Django has something worth consuming, which starts in Week 02. For now, the setup below is all you need.
-
 Install **Python 3.12 or later** from [python.org](https://www.python.org/downloads/) if it isn't already on your machine. Then create a **virtual environment** for this course's project, a self-contained folder holding just the Python packages this project needs, kept separate from anything else on your machine.
 
 ```bash
