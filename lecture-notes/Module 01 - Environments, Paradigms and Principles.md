@@ -287,7 +287,7 @@ Once you've picked one and worked out how it behaves, write two or three short e
 
 ## 5. Setting up your Python environment
 
-Install **Python 3.12 or later** from [python.org](https://www.python.org/downloads/) if it isn't already on your machine. Then create a **virtual environment** for this course's project, a self-contained folder holding just the Python packages this project needs, kept separate from anything else on your machine.
+Install **Python 3.14 or later** from [python.org](https://www.python.org/downloads/) if it isn't already on your machine. Then create a **virtual environment** for this course's project, a self-contained folder holding just the Python packages this project needs, kept separate from anything else on your machine.
 
 ```bash
 python -m venv venv
