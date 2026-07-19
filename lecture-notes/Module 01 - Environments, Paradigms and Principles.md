@@ -314,7 +314,7 @@ Your terminal prompt should now show `(venv)` at the start of the line. Install 
 pip install django
 ```
 
-**Why this matters.** Without a virtual environment, every Python project on your machine shares the same set of installed packages, and a version needed by one project can silently break another. This is the same problem `node_modules` solves for JavaScript, just handled differently: Node isolates packages per-project automatically, whereas Python needs you to create that isolation yourself, on purpose, every time.
+Without a virtual environment, every Python project on your machine shares the same set of installed packages, and a version needed by one project can silently break another. This is the same problem `node_modules` solves for JavaScript, just handled differently: Node isolates packages per-project automatically, whereas Python needs you to create that isolation yourself, on purpose, every time.
 
 | Key terms           |                                                              |
 | ------------------- | ------------------------------------------------------------ |
