@@ -91,26 +91,27 @@ Django is heavily object-oriented: models, views, and serializers are almost all
 
 ---
 
-## 4. Python for people who already know JavaScript
+## 4. Python for people who already know C# and JavaScript
 
-You're not starting from zero. You already understand variables, functions, conditionals, loops, and objects, from JavaScript. What follows is a translation guide, not a first introduction.
+You're not starting from zero. You already understand variables, functions, conditionals, loops, and objects, from C# and JavaScript. What follows is a translation guide, not a first introduction.
 
-| Concept              | JavaScript                                              | Python                                                                                                           |
-| -------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Variable             | `let age = 25;`                                         | `age = 25`                                                                                                       |
-| Constant             | `const name = "Maya";`                                  | `name = "Maya"`. Python has no true constant, though `ALL_CAPS` is the convention for treating a variable as one |
-| String interpolation | `` `Hello, ${name}` ``                                  | `f"Hello, {name}"`                                                                                               |
-| Function             | `function add(a, b) { return a + b; }`                  | `def add(a, b):` then an indented `return a + b`                                                                 |
-| Arrow function       | `(a, b) => a + b`                                       | `lambda a, b: a + b`. This style is rare in Python and used sparingly                                            |
-| Array / list         | `const nums = [1, 2, 3];`                               | `nums = [1, 2, 3]`                                                                                               |
-| Object / dict        | `const person = { name: "Liam", age: 20 };`             | `person = {"name": "Liam", "age": 20}`                                                                           |
-| Class                | `class Dog { constructor(name) { this.name = name; } }` | `class Dog:` with `def __init__(self, name): self.name = name`                                                   |
-| `this`               | `this.name`                                             | `self.name`, and `self` is always an explicit parameter, never implicit                                          |
-| Equality             | `===`                                                   | `==`. Python doesn't have a separate strict-equality operator                                                    |
-| Block delimiters     | Curly braces `{ }`                                      | Indentation. There are no braces at all                                                                          |
-| Package manager      | npm                                                     | pip                                                                                                              |
+| Concept                 | C#                                                                                        | JavaScript                                              | Python                                                                                                           |
+| ----------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Variable                | `int age = 25;`                                                                           | `let age = 25;`                                         | `age = 25`                                                                                                       |
+| Constant                | `const string name = "Maya";`                                                             | `const name = "Maya";`                                  | `name = "Maya"`. Python has no true constant, though `ALL_CAPS` is the convention for treating a variable as one |
+| String interpolation    | `$"Hello, {name}"`                                                                        | `` `Hello, ${name}` ``                                  | `f"Hello, {name}"`                                                                                               |
+| Function                | `int Add(int a, int b) { return a + b; }`                                                 | `function add(a, b) { return a + b; }`                  | `def add(a, b):` then an indented `return a + b`                                                                 |
+| Lambda / Arrow function | `(a, b) => a + b`                                                                         | `(a, b) => a + b`                                       | `lambda a, b: a + b`. This style is rare in Python and used sparingly                                            |
+| Array / list            | `int[] nums = {1, 2, 3};` or `List<int> nums = new() {1, 2, 3};`                          | `const nums = [1, 2, 3];`                               | `nums = [1, 2, 3]`                                                                                               |
+| Object / dict           | `var person = new { Name = "Liam", Age = 20 };` or `Dictionary<string, object>`           | `const person = { name: "Liam", age: 20 };`             | `person = {"name": "Liam", "age": 20}`                                                                           |
+| Class                   | `class Dog { public Dog(string name) { Name = name; } public string Name { get; set; } }` | `class Dog { constructor(name) { this.name = name; } }` | `class Dog:` with `def __init__(self, name): self.name = name`                                                   |
+| `this`                  | `this.Name`                                                                               | `this.name`                                             | `self.name`, and `self` is always an explicit parameter, never implicit                                          |
+| Equality                | `==` (value equality for primitives)                                                      | `===`                                                   | `==`. Python doesn't have a separate strict-equality operator                                                    |
+| Block delimiters        | Curly braces `{ }`                                                                        | Curly braces `{ }`                                      | Indentation. There are no braces at all                                                                          |
+| Package manager         | NuGet                                                                                     | npm                                                     | pip                                                                                                              |
 
-Two things trip people up immediately. First, indentation isn't a style choice in Python, it's the syntax. A wrongly indented line is a genuine error, not a warning. Second, `self` in Python does the same job as `this` in JavaScript, but it's never implicit: every instance method takes `self` as its first written parameter, on purpose.
+
+Two things trip people up immediately. First, indentation isn't a style choice in Python, it's the syntax. A wrongly indented line is a genuine error, not a warning. Second, `self` in Python does the same job as `this` in C# and JavaScript, but it's never implicit: every instance method takes `self` as its first written parameter, on purpose.
 
 ```python
 class Dog:
