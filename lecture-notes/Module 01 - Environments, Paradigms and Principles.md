@@ -1,12 +1,4 @@
-# Module 01
-
-## Navigation
-
-|        | Link                                                |
-| ------ | --------------------------------------------------- |
-| → Next | [Module 02: Django and MVT Pattern](./module-02.md) |
-
----
+# Module 01 - Environments, Paradigms and Principles
 
 ## 1. Course overview
 

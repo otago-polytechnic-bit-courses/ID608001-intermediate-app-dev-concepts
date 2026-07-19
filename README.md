@@ -1,8 +1,6 @@
-# Course Directive
-
 <img src="./resources (ignore)/img/logo.jpg" alt="Otago Polytechnic Logo" width="200" height="auto" />
 
-# ID608001: Intermediate Application Development Concepts
+# ID608001: Intermediate Application Development Concepts - Course Directive
 
 ## Course Information
 
@@ -18,9 +16,9 @@
 
 ## Course Dates
 
-| Term 1 ( weeks) | Mid-Semester Break | Term 2 ( weeks) |
-| --------------- | ------------------ | --------------- |
-|                 |                    |                 |
+| Term 1 (10 weeks)      | Mid-Semester Break        | Term 2 (6 weeks)         |
+| ---------------------- | ------------------------- | ------------------------ |
+| 20 July - 25 September | 28 September - 09 October | 12 October - 20 November |
 
 ## Aims
 
@@ -35,10 +33,10 @@ At the successful completion of this course, learners will be able to:
 
 ## Assessments
 
-| Assessment | Weighting | Due Date   | Learning Outcomes |
-| ---------- | --------- | ---------- | ----------------- |
-| Practical  | 20%       | at 4.59 PM | 1                 |
-| Project    | 80%       | at 4.59 PM | 1, 2              |
+| Assessment | Weighting | Due Date                | Learning Outcomes |
+| ---------- | --------- | ----------------------- | ----------------- |
+| Practical  | 20%       | 18 September at 4.59 PM | 1                 |
+| Project    | 80%       | 13 November at 4.59 PM  | 1 and 2           |
 
 ## Grade Table - Criterion Referenced
 
@@ -58,25 +56,19 @@ At the successful completion of this course, learners will be able to:
 
 ## Provisional Schedule
 
-| Week             | Topics                                                                 | Learning Outcomes |
-| ---------------- | ---------------------------------------------------------------------- | ----------------- |
-| 1/Tahi           | Design Patterns in React, Component Architecture                       | 1                 |
-| 2/Rua            | React Native, Expo, Navigation and Routing                             | 1, 2              |
-| 3/Toru           | Styling and UI Composition                                             | 1, 2              |
-| 4/Whā            | Service Layer Design and Dependency Injection                          | 1, 2              |
-| 5/Rima           | State Management Patterns, Networking and Error-Handling Strategies    | 1, 2              |
-|                  | Mid Semester Break                                                     |                   |
-| 6/Ono            | Local Storage, Async Storage, SQLite and Offline Data Synchronisation  | 1, 2              |
-| 7/Whitu          | Authentication and Authorisation Flows                                 | 1, 2              |
-| 8/Waru           | Advanced React Patterns                                                | 1, 2              |
-| 9/Iwa            | Push Notifications, Background Tasks, Camera, Location and Device APIs | 2                 |
-| 10/Tekau         | Testing                                                                | 1, 2              |
-| 11/Tekau mā tahi | Performance Optimisation, Lazy Loading, CI/CD and Release Management   | 1, 2              |
-| 12/Tekau mā rua  | Assessment Work                                                        |                   |
-| 13/Tekau mā toru | Assessment Work                                                        |                   |
-| 14/Tekau mā whā  | Assessment Work                                                        |                   |
-| 15/Tekau mā rima | Assessment Work                                                        |                   |
-| 16/Tekau mā ono  | Assessment Marking                                                     |                   |
+| Module           | Topics                                                          |
+| ---------------- | --------------------------------------------------------------- |
+| 1/Tahi           | Environments, Paradigms and Principles                          |
+| 2/Rua            | Backend: Django and MVT Pattern                                 |
+| 3/Toru           | Frontend: React Native, Expo and Navigation                     |
+| 4/Whā            | Backend: Django REST Framework, Serializers and Adapter Pattern |
+| 5/Rima           | Frontend: State Management                                      |
+| 6/Ono            | Backend: Authentication, Permissions and Strategy Pattern       |
+| 7/Whitu          | Frontend: Networking and API Integration                        |
+| 8/Waru           | Backend: Signals, Middleware and Background Jobs                |
+| 9/Whitu          | Frontend: Offline-First Data and Repository Pattern             |
+| 10/Tekau         | Backend: Testing, SOLID and Refactoring                         |
+| 11/Tekau mā tahi | Frontend: Notifications, Device APIs and Testing                |
 
 ## Resources
 
