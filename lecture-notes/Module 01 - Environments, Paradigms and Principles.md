@@ -326,35 +326,3 @@ pip install django
 ### Task 3: Confirm Your Python Toolchain
 
 In a new folder, create a `hello_fittrack.py` file that prints a short message about the course's running project, and run it with `python hello_fittrack.py` inside your activated virtual environment. Take a screenshot of it working and add it to your repository's `README.md`.
-
-You'll set up Node and Expo when the React Native side of the course actually needs them, starting in Module 02.
-
----
-
-## 6. Git workflow for this course
-
-You'll use the same branch-per-topic workflow from **ID607001: Introductory Application Development Concepts**. One addition worth adopting now: since this course alternates languages by module, prefix your branch names with the track as well as the module, so it's obvious at a glance which part of the application a branch touches.
-
-```bash
-git checkout -b backend-m02-django-fundamentals
-git checkout -b frontend-m03-navigation
-```
-
-| Key terms         |                                           |
-| ----------------- | ----------------------------------------- |
-| Branch            | An independent line of development in Git |
-| `git checkout -b` | Creates and switches to a new branch      |
-
-### AI usage guidelines
-
-Acknowledge AI usage at the top of any AI-assisted file, in whichever comment style the file's language uses.
-
-```python
-"""
-AI-assisted: this file was developed with assistance from an AI tool. State which tool you used here.
-Prompts used:
-- Your first prompt here
-- Your second prompt here
-Usage: describe how you used the AI's response to help you with your work.
-"""
-```
