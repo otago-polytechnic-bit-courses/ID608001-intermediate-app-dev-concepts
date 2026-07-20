@@ -114,7 +114,7 @@ Before writing a model, sketch it the same way you sketched a class in an earlie
 | `on_delete`                  | Decides what happens to related rows when the referenced row is deleted    |
 | `related_name`               | The name used to access related rows from the other side of a relationship |
 
-### Task 1: Studio and Class Models
+### Task 1
 
 Create the `Studio` and `StudioClass` models above in your `studios` app. Add a third field to `StudioClass` of your choosing, such as a duration field or a description field, whatever seems useful, and add a `__str__` method to both models.
 
@@ -141,7 +141,7 @@ By default, Django uses **SQLite**, a single-file database needing no separate s
 | `makemigrations` | Generates migration files from changes to your models                         |
 | `migrate`        | Applies migration files to the actual database                                |
 
-### Task 2: Run your first migration
+### Task 2
 
 Run `makemigrations` and `migrate` for the models from Task 1. Open the generated migration file in `studios/migrations/` and read it. In a short comment at the top of that file, explain in your own words what it's actually doing.
 
@@ -171,7 +171,7 @@ Run the server and visit `http://127.0.0.1:8000/admin`. You now have a working i
 
 This is DRY in its most visible form. You defined the shape of your data exactly once, in `models.py`, and Django derived an entire working admin interface from that single definition. Nothing about the fields, their types, or their relationships was repeated anywhere.
 
-### Task 3: Populate via Django admin
+### Task 3
 
 Register both models in the admin, create a superuser, and use the admin panel to add at least three studios and two classes per studio. Take a screenshot of the admin list view for both models and add it to your repository's README.
 
@@ -213,6 +213,6 @@ class StudioClassAdmin(admin.ModelAdmin):
 
 `StudioClassInline` lets you add classes directly from the Studio admin page, rather than switching between two separate screens. `list_display` controls which columns show in the list view. None of this required touching a template, a route, or a single line of HTML.
 
-### Task 4: Customise Your Django admin
+### Task 4
 
 Apply the `ModelAdmin` customisations above to your own models. Add at least one additional field to `list_display` beyond what's shown here, and add `search_fields` to `StudioClass` as well.
