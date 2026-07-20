@@ -140,13 +140,13 @@ In Python, what happens if you mix tabs and spaces for indentation in the same b
 
 Before Task 1, write your plan as a short list of steps, the same habit from your first programming course. The point isn't the syntax yet, it's making sure the logic is right before you're fighting indentation errors at the same time.
 
-### Task 1: Studio Summary, in Python
+### Task 1
 
 Write a Python function `studio_summary(name, class_count)` that returns a string like `"CityFit has 6 classes"`. Call it with at least two different studios and print the results. Then write the same function in JavaScript, as `studioSummary(name, classCount)`, and run it with Node. Compare the two side by side in a written note: what's identical, and what's just different syntax for the same idea?
 
 Nobody teaches you every Python feature you'll ever need in a lecture. Most of what you'll actually use, you'll pick up by reading a snippet, guessing at what it does, and confirming that guess against the documentation. This course wants you practising that skill deliberately, starting now, rather than only ever meeting new syntax when a lecturer hands it to you.
 
-### Task 2: Teach Yourself a Python Concept
+### Task 2
 
 Below is a list of Python concepts that don't map cleanly onto anything you've used in JavaScript. Pick **one** from the list, not more.
 
@@ -322,6 +322,6 @@ Without a virtual environment, every Python project on your machine shares the s
 | `pip`               | Python's package manager                                     |
 | `venv`              | The standard library tool for creating a virtual environment |
 
-### Task 3: Confirm Your Python Toolchain
+### Task 3
 
 In a new folder, create a `hello_fittrack.py` file that prints a short welcome message related to FitTrack, the fitness app you will be developing throughout this course, and run it with `python hello_fittrack.py` inside your activated virtual environment. Take a screenshot of it working and add it to your repository's `README.md`.
