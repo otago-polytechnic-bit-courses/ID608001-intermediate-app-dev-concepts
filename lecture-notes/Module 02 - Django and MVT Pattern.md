@@ -15,7 +15,7 @@ Express gives you almost nothing by default. Every project decides its own folde
 
 ## 2. Installing Django and starting a project
 
-Inside your activated virtual environment from Module 01, run the following.
+Inside your activated virtual environment from module 01, run the following.
 
 ```bash
 pip install django
@@ -131,7 +131,7 @@ python manage.py migrate
 
 `makemigrations` looks at your models and generates a migration file describing what changed. `migrate` applies that file to the actual database. Run both, in that order, every time you add or change a model.
 
-Because migrations are files, they're committed to Git along with everything else. That means anyone who clones your repository, including you on a different machine, can run `python manage.py migrate` and end up with a database that matches your models exactly, without ever writing a line of SQL by hand. This is the same DRY thinking from Module 01: the shape of your data is written down once, in your models, and every migration is just a recorded, reversible step toward that shape.
+Because migrations are files, they're committed to Git along with everything else. That means anyone who clones your repository, including you on a different machine, can run `python manage.py migrate` and end up with a database that matches your models exactly, without ever writing a line of SQL by hand. This is the same DRY thinking from module 01: the shape of your data is written down once, in your models, and every migration is just a recorded, reversible step toward that shape.
 
 By default, Django uses **SQLite**, a single-file database needing no separate server, which is exactly why it's a sensible default for learning and for smaller projects. You'll swap this out for a production-grade database later in your studies. The model and migration code you write doesn't change either way.
 
