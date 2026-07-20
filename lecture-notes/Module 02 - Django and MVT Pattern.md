@@ -143,7 +143,7 @@ By default, Django uses **SQLite**, a single-file database needing no separate s
 
 ### Task 2
 
-Run `makemigrations` and `migrate` for the models from Task 1. Open the generated migration file in `studios/migrations/` and read it. In a short comment at the top of that file, explain in your own words what it's actually doing.
+Run `makemigrations` and `migrate` for the models from task 1. Open the generated migration file in `studios/migrations/` and read it. In a short comment at the top of that file, explain in your own words what it's actually doing.
 
 ---
 
