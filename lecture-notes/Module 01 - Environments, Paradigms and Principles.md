@@ -29,7 +29,7 @@ A junior developer copies a validation function into three different files becau
 
 None of these are laws. They're defaults you can explain a departure from. "I duplicated this because sharing it would have meant a much messier dependency between two unrelated parts of the app" is a fine reason to break DRY. "I didn't think about it" isn't.
 
-This course names a pattern or principle in almost every module, in whichever language that module is using. By Term 2 of this semester, you'll have seen several of them twice, once in Python, once in JavaScript, which is the whole point: the pattern is the same idea; the syntax around it is just local dialect.
+This course names a pattern or principle in almost every module, in whichever language that module is using. By term 2 of this semester, you'll have seen several of them twice, once in Python, once in JavaScript, which is the whole point: the pattern is the same idea; the syntax around it is just local dialect.
 
 ---
 
