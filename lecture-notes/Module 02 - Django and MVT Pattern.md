@@ -116,7 +116,11 @@ Before writing a model, sketch it the same way you sketched a class in an earlie
 
 ### Task 1
 
-Create the `Studio` and `StudioClass` models above in your `studios` app. Add a third field to `StudioClass` of your choosing, such as a duration field or a description field, whatever seems useful, and add a `__str__` method to both models.
+Create the `Studio` and `StudioClass` models above in your `studios` app, but don't stop at what's shown. A studio needs a way of knowing whether it's currently accepting new members, and a class needs a sensible way of representing how long it runs for and how many people it can hold. Decide the field types yourself, using the Django model field documentation to find options that weren't covered above, and be ready to justify why you picked each one over the alternatives you considered and rejected.
+
+At least one of your added fields should carry a constraint or a default that's enforced by the field definition itself, such as a class not being allowed to hold zero or fewer people. Work out how to express that in the model, rather than checking it somewhere else in your code.
+
+Add a `__str__` method to both models that would actually help you tell two similar rows apart in the admin, not just repeat the name field back.
 
 ---
 
@@ -143,7 +147,9 @@ By default, Django uses **SQLite**, a single-file database needing no separate s
 
 ### Task 2
 
-Run `makemigrations` and `migrate` for the models from task 1. Open the generated migration file in `studios/migrations/` and read it. In a short comment at the top of that file, explain in your own words what it's actually doing.
+Run `makemigrations` and `migrate` for the models from task 1. Open the generated migration file in `studios/migrations/` and read it line by line without help.
+
+Then make a small change to one of your models, for example changing a field's type or its default, and run `makemigrations` again. Compare the new migration file against the first one. What did Django decide needed to change, and what did it leave alone? In a short comment at the top of the new migration file, explain in your own words what specifically it's doing differently from the last one, and why that change couldn't just be edited directly into the first migration file instead.
 
 ---
 
@@ -173,12 +179,9 @@ This is DRY in its most visible form. You defined the shape of your data exactly
 
 ### Task 3
 
-Register both models in the admin, create a superuser, and use the admin panel to add at least three studios and two classes per studio. Take a screenshot of the admin list view for both models and add it to your repository's README.
+Register both models in the admin, create a superuser, and use the admin panel to add at least three studios and two classes per studio, deliberately including at least one class whose capacity constraint from Task 1 would be violated if you tried to break it. Confirm the admin actually stops you.
 
-| Key terms    |                                                                     |
-| ------------ | ------------------------------------------------------------------- |
-| Django admin | An automatically generated interface for managing your models' data |
-| Superuser    | An admin account with full access to the Django admin               |
+Then, without being told how, find and use the admin's search bar, and its filtering options, to answer a specific question your own data can answer, such as which studios have more than one class, or which classes belong to a particular suburb. Write down the question you chose and how you got the admin to answer it, since none of this was demonstrated above. Take a screenshot of the result and add it, along with your written answer, to your repository's README.
 
 ---
 
@@ -215,4 +218,6 @@ class StudioClassAdmin(admin.ModelAdmin):
 
 ### Task 4
 
-Apply the `ModelAdmin` customisations above to your own models. Add at least one additional field to `list_display` beyond what's shown here, and add `search_fields` to `StudioClass` as well.
+Apply the `ModelAdmin` customisations above to your own models, then go further than what's shown. Using the `ModelAdmin` documentation, find and add at least one option that wasn't demonstrated above, something that changes ordering, adds a computed column that isn't a plain model field, or restricts what's editable inline. Explain in your README why you chose that particular option over the other candidates you looked at, and what it actually changes about the admin experience when you use it.
+
+Finally, break your own `StudioClassInline` on purpose by setting `extra` to a value that makes adding data awkward, and describe in one or two sentences why the default of `1` is a more sensible choice for this particular relationship than the value you just tried.
