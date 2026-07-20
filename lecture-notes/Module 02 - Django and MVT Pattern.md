@@ -4,18 +4,18 @@
 
 Express gives you almost nothing by default. Every project decides its own folder structure, its own way of talking to a database, its own admin tooling, if it has any at all. That flexibility is genuinely useful once you know what you're doing, but it also means every Express project looks a little different, and a newcomer has to learn that project's particular choices before they can be productive. Django makes most of those choices for you, up front. An admin panel, a database layer, a way of defining URLs, a testing framework: all included, all built to work together. The trade-off is less flexibility. The payoff is that any Django project is recognisable to any other Django developer within minutes.
 
-| | Express | Django |
-|---|---|---|
-| Included by default | Almost nothing | Admin panel, ORM, auth, forms, testing tools |
-| Database layer | You choose and wire up your own | Built in, via the ORM |
-| Project structure | Up to you | Enforced by convention |
-| Philosophy | Minimal, flexible | Batteries included, opinionated |
+|                     | Express                         | Django                                       |
+| ------------------- | ------------------------------- | -------------------------------------------- |
+| Included by default | Almost nothing                  | Admin panel, ORM, auth, forms, testing tools |
+| Database layer      | You choose and wire up your own | Built in, via the ORM                        |
+| Project structure   | Up to you                       | Enforced by convention                       |
+| Philosophy          | Minimal, flexible               | Batteries included, opinionated              |
 
 ---
 
 ## 2. Installing Django and starting a project
 
-Inside your activated virtual environment from Week 01, run the following.
+Inside your activated virtual environment from Module 01, run the following.
 
 ```bash
 pip install django
@@ -34,16 +34,16 @@ Django separates a **project**, the whole backend, configuration and all, from a
 python manage.py startapp studios
 ```
 
-This creates a `studios/` folder with a predictable set of files already in it: `models.py`, `views.py`, `admin.py`, and a few others you'll fill in over the next few weeks. Add the app to your project by opening `fittrack_backend/settings.py` and adding `"studios"` to the `INSTALLED_APPS` list.
+This creates a `studios/` folder with a predictable set of files already in it: `models.py`, `views.py`, `admin.py`, and a few others you'll fill in over the next few modules. Add the app to your project by opening `fittrack_backend/settings.py` and adding `"studios"` to the `INSTALLED_APPS` list.
 
-If this course's backend eventually needs both a `studios` app and a separate `accounts` app for authentication, why not just put everything in one app? *Answer: separation of concerns. Each app should have one clear area of responsibility. A single giant app becomes exactly the kind of tangled, hard-to-navigate codebase this course is trying to teach you to avoid.*
+If this course's backend eventually needs both a `studios` app and a separate `accounts` app for authentication, why not just put everything in one app? _Answer: separation of concerns. Each app should have one clear area of responsibility. A single giant app becomes exactly the kind of tangled, hard-to-navigate codebase this course is trying to teach you to avoid._
 
-| Key terms | |
-|---|---|
-| Project | The whole Django backend, including configuration |
-| App | A self-contained feature area inside a project |
-| `manage.py` | The command-line tool for running project-wide commands |
-| `INSTALLED_APPS` | The settings list of every app Django should load |
+| Key terms        |                                                         |
+| ---------------- | ------------------------------------------------------- |
+| Project          | The whole Django backend, including configuration       |
+| App              | A self-contained feature area inside a project          |
+| `manage.py`      | The command-line tool for running project-wide commands |
+| `INSTALLED_APPS` | The settings list of every app Django should load       |
 
 ---
 
@@ -51,13 +51,13 @@ If this course's backend eventually needs both a `studios` app and a separate `a
 
 Django organises every app around a pattern called **MVT**: Model, View, Template. If you've heard of MVC before, which stands for Model-View-Controller, MVT is Django's variation on the same idea, with the names shuffled slightly.
 
-| MVC term | Django's MVT term | Responsibility |
-|---|---|---|
-| Model | Model | Defines the data and talks to the database |
-| Controller | View | Receives a request, decides what to do, returns a response |
-| View | Template | Renders what the user actually sees |
+| MVC term   | Django's MVT term | Responsibility                                             |
+| ---------- | ----------------- | ---------------------------------------------------------- |
+| Model      | Model             | Defines the data and talks to the database                 |
+| Controller | View              | Receives a request, decides what to do, returns a response |
+| View       | Template          | Renders what the user actually sees                        |
 
-This is genuinely confusing the first time you meet it, because Django's "View" does the job that MVC calls the "Controller," and what MVC calls the "View," meaning the presentation layer, is Django's "Template." Once you've said it out loud once, it tends to stick: **a Django View is a controller**. Since this course is building an API, not rendering HTML pages, you'll barely touch templates at all. What you'll spend most of your time on is models this week, and views in Week 04, once you're returning JSON instead of HTML.
+This is genuinely confusing the first time you meet it, because Django's "View" does the job that MVC calls the "Controller," and what MVC calls the "View," meaning the presentation layer, is Django's "Template." Once you've said it out loud once, it tends to stick: **a Django View is a controller**. Since this course is building an API, not rendering HTML pages, you'll barely touch templates at all. What you'll spend most of your time on is models this module, and views in module 04, once you're returning JSON instead of HTML.
 
 The specific names matter less than the underlying idea: keep "what the data looks like," "what happens when a request comes in," and "what gets shown" as three separate, clearly bordered responsibilities. That's the same Single Responsibility thinking from an earlier course's class design, just applied at the scale of a whole application instead of a single class.
 
@@ -106,13 +106,13 @@ class StudioClass(models.Model):
 
 Before writing a model, sketch it the same way you sketched a class in an earlier course: a box with the model's name, its fields underneath, and an arrow to any related model it belongs to or contains. Deciding the fields and relationships on paper is much cheaper than migrating your way out of a mistake later.
 
-| Key terms | |
-|---|---|
-| Model | A Python class defining both a data shape and how it's stored |
-| `CharField`, `DateTimeField` | Field types mapping directly onto database column types |
-| `ForeignKey` | Defines a "has a" relationship between two models |
-| `on_delete` | Decides what happens to related rows when the referenced row is deleted |
-| `related_name` | The name used to access related rows from the other side of a relationship |
+| Key terms                    |                                                                            |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| Model                        | A Python class defining both a data shape and how it's stored              |
+| `CharField`, `DateTimeField` | Field types mapping directly onto database column types                    |
+| `ForeignKey`                 | Defines a "has a" relationship between two models                          |
+| `on_delete`                  | Decides what happens to related rows when the referenced row is deleted    |
+| `related_name`               | The name used to access related rows from the other side of a relationship |
 
 ### Task 1: Studio and Class Models
 
@@ -131,15 +131,15 @@ python manage.py migrate
 
 `makemigrations` looks at your models and generates a migration file describing what changed. `migrate` applies that file to the actual database. Run both, in that order, every time you add or change a model.
 
-Because migrations are files, they're committed to Git along with everything else. That means anyone who clones your repository, including you on a different machine, can run `python manage.py migrate` and end up with a database that matches your models exactly, without ever writing a line of SQL by hand. This is the same DRY thinking from Week 01: the shape of your data is written down once, in your models, and every migration is just a recorded, reversible step toward that shape.
+Because migrations are files, they're committed to Git along with everything else. That means anyone who clones your repository, including you on a different machine, can run `python manage.py migrate` and end up with a database that matches your models exactly, without ever writing a line of SQL by hand. This is the same DRY thinking from Module 01: the shape of your data is written down once, in your models, and every migration is just a recorded, reversible step toward that shape.
 
 By default, Django uses **SQLite**, a single-file database needing no separate server, which is exactly why it's a sensible default for learning and for smaller projects. You'll swap this out for a production-grade database later in your studies. The model and migration code you write doesn't change either way.
 
-| Key terms | |
-|---|---|
-| Migration | A file describing a change to the database schema, generated from your models |
-| `makemigrations` | Generates migration files from changes to your models |
-| `migrate` | Applies migration files to the actual database |
+| Key terms        |                                                                               |
+| ---------------- | ----------------------------------------------------------------------------- |
+| Migration        | A file describing a change to the database schema, generated from your models |
+| `makemigrations` | Generates migration files from changes to your models                         |
+| `migrate`        | Applies migration files to the actual database                                |
 
 ### Task 2: Run your first migration
 
@@ -175,10 +175,10 @@ This is DRY in its most visible form. You defined the shape of your data exactly
 
 Register both models in the admin, create a superuser, and use the admin panel to add at least three studios and two classes per studio. Take a screenshot of the admin list view for both models and add it to your repository's README.
 
-| Key terms | |
-|---|---|
+| Key terms    |                                                                     |
+| ------------ | ------------------------------------------------------------------- |
 | Django admin | An automatically generated interface for managing your models' data |
-| Superuser | An admin account with full access to the Django admin |
+| Superuser    | An admin account with full access to the Django admin               |
 
 ---
 
