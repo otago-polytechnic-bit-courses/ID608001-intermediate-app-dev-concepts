@@ -1,8 +1,8 @@
-# Module 02: Django and MVT Pattern
+# Module 02 - Django and MVT Pattern
 
 ## 1. Why Django
 
-**Why this matters.** Express gives you almost nothing by default. Every project decides its own folder structure, its own way of talking to a database, its own admin tooling, if it has any at all. That flexibility is genuinely useful once you know what you're doing, but it also means every Express project looks a little different, and a newcomer has to learn that project's particular choices before they can be productive. Django makes most of those choices for you, up front. An admin panel, a database layer, a way of defining URLs, a testing framework: all included, all built to work together. The trade-off is less flexibility. The payoff is that any Django project is recognisable to any other Django developer within minutes.
+Express gives you almost nothing by default. Every project decides its own folder structure, its own way of talking to a database, its own admin tooling, if it has any at all. That flexibility is genuinely useful once you know what you're doing, but it also means every Express project looks a little different, and a newcomer has to learn that project's particular choices before they can be productive. Django makes most of those choices for you, up front. An admin panel, a database layer, a way of defining URLs, a testing framework: all included, all built to work together. The trade-off is less flexibility. The payoff is that any Django project is recognisable to any other Django developer within minutes.
 
 | | Express | Django |
 |---|---|---|
@@ -47,7 +47,7 @@ If this course's backend eventually needs both a `studios` app and a separate `a
 
 ---
 
-## 3. Pattern spotlight: MVT
+## 3. MVT
 
 Django organises every app around a pattern called **MVT**: Model, View, Template. If you've heard of MVC before, which stands for Model-View-Controller, MVT is Django's variation on the same idea, with the names shuffled slightly.
 
@@ -131,7 +131,7 @@ python manage.py migrate
 
 `makemigrations` looks at your models and generates a migration file describing what changed. `migrate` applies that file to the actual database. Run both, in that order, every time you add or change a model.
 
-**Why this matters.** Because migrations are files, they're committed to Git along with everything else. That means anyone who clones your repository, including you on a different machine, can run `python manage.py migrate` and end up with a database that matches your models exactly, without ever writing a line of SQL by hand. This is the same DRY thinking from Week 01: the shape of your data is written down once, in your models, and every migration is just a recorded, reversible step toward that shape.
+Because migrations are files, they're committed to Git along with everything else. That means anyone who clones your repository, including you on a different machine, can run `python manage.py migrate` and end up with a database that matches your models exactly, without ever writing a line of SQL by hand. This is the same DRY thinking from Week 01: the shape of your data is written down once, in your models, and every migration is just a recorded, reversible step toward that shape.
 
 By default, Django uses **SQLite**, a single-file database needing no separate server, which is exactly why it's a sensible default for learning and for smaller projects. You'll swap this out for a production-grade database later in your studies. The model and migration code you write doesn't change either way.
 
@@ -141,13 +141,13 @@ By default, Django uses **SQLite**, a single-file database needing no separate s
 | `makemigrations` | Generates migration files from changes to your models |
 | `migrate` | Applies migration files to the actual database |
 
-### Task 2: Run Your First Migrations
+### Task 2: Run your first migration
 
 Run `makemigrations` and `migrate` for the models from Task 1. Open the generated migration file in `studios/migrations/` and read it. In a short comment at the top of that file, explain in your own words what it's actually doing.
 
 ---
 
-## 6. The Django admin
+## 6. Django admin
 
 One of Django's most immediately useful included tools is a fully working admin panel, generated automatically from your models.
 
@@ -171,7 +171,7 @@ Run the server and visit `http://127.0.0.1:8000/admin`. You now have a working i
 
 This is DRY in its most visible form. You defined the shape of your data exactly once, in `models.py`, and Django derived an entire working admin interface from that single definition. Nothing about the fields, their types, or their relationships was repeated anywhere.
 
-### Task 3: Populate via the Admin
+### Task 3: Populate via Django admin
 
 Register both models in the admin, create a superuser, and use the admin panel to add at least three studios and two classes per studio. Take a screenshot of the admin list view for both models and add it to your repository's README.
 
@@ -182,7 +182,7 @@ Register both models in the admin, create a superuser, and use the admin panel t
 
 ---
 
-## 7. Customising the admin, and a first look at DRY under pressure
+## 7. Customising the admin
 
 The default admin registration works, but it's worth seeing where "batteries included" needs a small amount of your own configuration, because this is where a lot of real Django code lives.
 
@@ -213,6 +213,6 @@ class StudioClassAdmin(admin.ModelAdmin):
 
 `StudioClassInline` lets you add classes directly from the Studio admin page, rather than switching between two separate screens. `list_display` controls which columns show in the list view. None of this required touching a template, a route, or a single line of HTML.
 
-### Task 4: Customise Your Admin
+### Task 4: Customise Your Django admin
 
 Apply the `ModelAdmin` customisations above to your own models. Add at least one additional field to `list_display` beyond what's shown here, and add `search_fields` to `StudioClass` as well.
