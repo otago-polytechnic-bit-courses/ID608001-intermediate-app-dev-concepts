@@ -34,7 +34,9 @@ Django separates a **project**, the whole backend, configuration and all, from a
 python manage.py startapp studios
 ```
 
-This creates a `studios/` folder with a predictable set of files already in it: `models.py`, `views.py`, `admin.py`, and a few others you'll fill in over the next few modules. Add the app to your project by opening `fittrack_backend/settings.py` and adding `"studios"` to the `INSTALLED_APPS` list.
+This creates a `studios/` folder with a predictable set of files already in it: `models.py`, `views.py`, `admin.py`, and a few others you'll fill in over the next few modules. 
+
+Add the app to your project by opening `fittrack_backend/settings.py` and adding `"studios"` to the `INSTALLED_APPS` list.
 
 If this course's backend eventually needs both a `studios` app and a separate `accounts` app for authentication, why not just put everything in one app? _Answer: separation of concerns. Each app should have one clear area of responsibility. A single giant app becomes exactly the kind of tangled, hard-to-navigate codebase this course is trying to teach you to avoid._
 
