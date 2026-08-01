@@ -183,8 +183,6 @@ This is DRY in its most visible form. You defined the shape of your data exactly
 
 Register both models in the admin, create a superuser, and use the admin panel to add at least three studios and two classes per studio, deliberately including at least one class whose capacity constraint from Task 1 would be violated if you tried to break it. Confirm the admin actually stops you.
 
-Then, without being told how, find and use the admin's search bar, and its filtering options, to answer a specific question your own data can answer, such as which studios have more than one class, or which classes belong to a particular suburb. Write down the question you chose and how you got the admin to answer it, since none of this was demonstrated above. Take a screenshot of the result and add it, along with your written answer, to your repository's README.
-
 ---
 
 ## 7. Customising the admin
@@ -219,6 +217,10 @@ class StudioClassAdmin(admin.ModelAdmin):
 `StudioClassInline` lets you add classes directly from the Studio admin page, rather than switching between two separate screens. `list_display` controls which columns show in the list view. None of this required touching a template, a route, or a single line of HTML.
 
 ### Task 4
+
+Without being told how, find and use the admin's search bar, and its filtering options, to answer a specific question your own data can answer, such as which studios have more than one class, or which classes belong to a particular suburb. Write down the question you chose and how you got the admin to answer it, since none of this was demonstrated above. Take a screenshot of the result and add it, along with your written answer, to your repository's README.
+
+### Task 5
 
 Apply the `ModelAdmin` customisations above to your own models, then go further than what's shown. Using the `ModelAdmin` documentation, find and add at least one option that wasn't demonstrated above, something that changes ordering, adds a computed column that isn't a plain model field, or restricts what's editable inline. Explain in your README why you chose that particular option over the other candidates you looked at, and what it actually changes about the admin experience when you use it.
 

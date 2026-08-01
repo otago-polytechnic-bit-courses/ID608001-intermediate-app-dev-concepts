@@ -2,7 +2,7 @@
 
 ## 1. Why an API layer
 
-**Why this matters.** The Django admin is genuinely useful, but it's a tool for people, rendered as HTML, requiring a login, a browser, and a human clicking around. The mobile app you'll build next module is none of those things. It will need data as plain JSON, delivered over HTTP, so it can decide for itself how to display it. **Django REST Framework**, usually shortened to DRF, is the standard, official-adjacent way to add that JSON layer on top of the models you already built.
+The Django admin is genuinely useful, but it's a tool for people, rendered as HTML, requiring a login, a browser, and a human clicking around. The mobile app you'll build next module is none of those things. It will need data as plain JSON, delivered over HTTP, so it can decide for itself how to display it. **Django REST Framework**, usually shortened to DRF, is the standard, official-adjacent way to add that JSON layer on top of the models you already built.
 
 ```bash
 pip install djangorestframework
