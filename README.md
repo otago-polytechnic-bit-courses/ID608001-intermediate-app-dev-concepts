@@ -56,19 +56,22 @@ At the successful completion of this course, learners will be able to:
 
 ## Provisional Schedule
 
-| Module           | Topics                                                          |
-| ---------------- | --------------------------------------------------------------- |
-| 1/Tahi           | Environments, Paradigms and Principles                          |
-| 2/Rua            | Backend: Django and MVT Pattern                                 |
-| 3/Toru           | Frontend: React Native, Expo and Navigation                     |
-| 4/Whā            | Backend: Django REST Framework, Serializers and Adapter Pattern |
-| 5/Rima           | Frontend: State Management                                      |
-| 6/Ono            | Backend: Authentication, Permissions and Strategy Pattern       |
-| 7/Whitu          | Frontend: Networking and API Integration                        |
-| 8/Waru           | Backend: Signals, Middleware and Background Jobs                |
-| 9/Whitu          | Frontend: Offline-First Data and Repository Pattern             |
-| 10/Tekau         | Backend: Testing, SOLID and Refactoring                         |
-| 11/Tekau mā tahi | Frontend: Notifications, Device APIs and Testing                |
+| Module  | Topics                                                          |
+| ------- | --------------------------------------------------------------- |
+| 1/Tahi  | Environments, Paradigms and Principles                          |
+| 2/Rua   | Backend: Django and MVT Pattern                                 |
+| 3/Toru  | Backend: Django REST Framework, Serializers and Adapter Pattern |
+| 4/Whā   | Frontend: TypeScript                                            |
+| 5/Rima  | Frontend: React Native, Expo and Navigation                     |
+| 6/Ono   | Frontend: State Management                                      |
+| 7/Whitu | Backend: Authentication, Permissions and Strategy Pattern       |
+| 8/Waru  | Backend: Testing, SOLID and Refactoring                         |
+
+| 7/Whitu | Frontend: Networking |
+| | Backend: Signals, Middleware and Background Jobs |
+| 9/Whitu | Frontend: Offline-First Data and Repository Pattern |
+| 11/Tekau mā tahi | Frontend: Notifications, Device APIs and Testing |
+10/Tekau
 
 ## Resources
 
