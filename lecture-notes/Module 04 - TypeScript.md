@@ -1,4 +1,4 @@
-# Module 04 - TypeScript
+# Module 04: TypeScript
 
 ## 1. Why TypeScript
 
