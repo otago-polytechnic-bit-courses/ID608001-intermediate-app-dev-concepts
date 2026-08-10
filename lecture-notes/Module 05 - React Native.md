@@ -73,22 +73,32 @@ A component that only ever renders one hardcoded studio isn't very useful. **Pro
 ```jsx
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
+interface StudioRowProps {
+  name: string;
+  suburb: string;
+  city: string;
+  isFavourite: boolean;
+  onToggleFavourite: () => void;
+};
+
 export function StudioRow({
   name,
   suburb,
   city,
   isFavourite,
   onToggleFavourite,
-}) {
+}: StudioRowProps) {
   return (
     <View style={styles.card}>
       <View style={styles.thumbnail} />
+
       <View style={styles.details}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.meta}>
           {suburb}, {city}
         </Text>
       </View>
+
       <Pressable onPress={onToggleFavourite}>
         <Text>{isFavourite ? "♥" : "♡"}</Text>
       </Pressable>
@@ -128,7 +138,7 @@ import { useState } from "react";
 import { View, Text, Pressable } from "react-native";
 
 export default function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
 
   return (
     <View>
@@ -143,7 +153,7 @@ export default function Counter() {
 
 Every call to `setCount` tells React the value has changed, and React re-renders the component with the new value. This is the exact same mechanism you'll rely on for a studio's favourite status, a search box's current text, or anything else that needs to change while someone's actually using the app.
 
-**Design first.** Before adding a new `useState`, write down, in one sentence, exactly what event changes it and what the new value should be. "Pressing the heart flips `isFavourite` for that one studio" is a complete design. If you can't state it that plainly, the state itself is probably trying to represent two different things at once, and is worth splitting into two separate `useState` calls instead.
+Before adding a new `useState`, write down, in one sentence, exactly what event changes it and what the new value should be. "Pressing the heart flips `isFavourite` for that one studio" is a complete design. If you can't state it that plainly, the state itself is probably trying to represent two different things at once, and is worth splitting into two separate `useState` calls instead.
 
 ---
 
@@ -154,7 +164,14 @@ A real screen shows more than one studio. `FlatList` renders an array efficientl
 ```jsx
 import { FlatList } from "react-native";
 
-const studios = [
+interface Studio {
+  id: string;
+  name: string;
+  suburb: string;
+  city: string;
+};
+
+const studios: Studio[] = [
   { id: "1", name: "CityFit", suburb: "Dunedin Central", city: "Dunedin" },
   { id: "2", name: "Harbourside Yoga", suburb: "St Kilda", city: "Dunedin" },
   {
@@ -193,10 +210,17 @@ A search box needs to keep whatever's currently typed in sync with a piece of st
 import { useState } from "react";
 import { TextInput, FlatList } from "react-native";
 
-export default function StudiosScreen() {
-  const [query, setQuery] = useState("");
+interface Studio {
+  id: string;
+  name: string;
+  suburb: string;
+  city: string;
+};
 
-  const filtered = studios.filter((studio) =>
+export default function StudiosScreen() {
+  const [query, setQuery] = useState<string>("");
+
+  const filtered: Studio[] = studios.filter((studio) =>
     studio.name.toLowerCase().includes(query.toLowerCase()),
   );
 
