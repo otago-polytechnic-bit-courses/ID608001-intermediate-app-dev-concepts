@@ -54,25 +54,6 @@ At the successful completion of this course, learners will be able to:
 | D     | There at end. Did not meet course requirements. Mark in range [40-49] |
 | E     | There at end. Did not meet course requirements. Mark in range [0-39]  |
 
-## Provisional Schedule
-
-| Module  | Topics                                                          |
-| ------- | --------------------------------------------------------------- |
-| 1/Tahi  | Environments, Paradigms and Principles                          |
-| 2/Rua   | Backend: Django and MVT Pattern                                 |
-| 3/Toru  | Backend: Django REST Framework, Serializers and Adapter Pattern |
-| 4/Whā   | Frontend: TypeScript                                            |
-| 5/Rima  | Frontend: React Native, Expo and Navigation                     |
-| 6/Ono   | Frontend: State Management                                      |
-| 7/Whitu | Backend: Authentication, Permissions and Strategy Pattern       |
-| 8/Waru  | Backend: Testing, SOLID and Refactoring                         |
-
-| 7/Whitu | Frontend: Networking |
-| | Backend: Signals, Middleware and Background Jobs |
-| 9/Whitu | Frontend: Offline-First Data and Repository Pattern |
-| 11/Tekau mā tahi | Frontend: Notifications, Device APIs and Testing |
-10/Tekau
-
 ## Resources
 
 ### Software
