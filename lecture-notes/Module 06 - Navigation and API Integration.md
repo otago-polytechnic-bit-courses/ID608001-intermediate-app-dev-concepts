@@ -108,10 +108,10 @@ const styles = StyleSheet.create({
 
 That's the whole navigation setup. Tapping a name on the list screen pushes the detail screen, with the tapped studio's `id` available through `useLocalSearchParams`. The `<{ id: string }>` part tells TypeScript what shape to expect the route's params to have, the same idea as `StudioRowProps` in Section 3, just applied to a hook instead of a component.
 
-| Key terms | |
-|---|---|
-| Dynamic route | A route segment, written as `[id].tsx`, that captures a variable from the URL |
-| `useLocalSearchParams` | Reads the current route's dynamic segment |
+| Key terms              |                                                                               |
+| ---------------------- | ----------------------------------------------------------------------------- |
+| Dynamic route          | A route segment, written as `[id].tsx`, that captures a variable from the URL |
+| `useLocalSearchParams` | Reads the current route's dynamic segment                                     |
 
 ---
 
@@ -130,14 +130,16 @@ export function StudioRow({ name, suburb, city }: StudioRowProps) {
   return (
     <View style={styles.card}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.meta}>{suburb}, {city}</Text>
+      <Text style={styles.meta}>
+        {suburb}, {city}
+      </Text>
     </View>
   );
 }
 ```
 
-| Key terms | |
-|---|---|
+| Key terms   |                                                                        |
+| ----------- | ---------------------------------------------------------------------- |
 | `interface` | Describes the shape of an object: its fields, and the type of each one |
 
 ---
@@ -210,9 +212,9 @@ export default function StudiosScreen() {
 
 Before writing a fetch call, decide what the screen should show in each of its three possible states: while waiting, once data arrives, and if the request fails. `ActivityIndicator` above only handles the first. A screen that never plans for the third state just freezes, or shows stale data, the moment a real network fails.
 
-| Key terms | |
-|---|---|
-| `useEffect` | Runs code in response to a component appearing, or a value changing |
+| Key terms           |                                                                               |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `useEffect`         | Runs code in response to a component appearing, or a value changing           |
 | `Promise<Studio[]>` | A type describing a value that will eventually resolve to an array of studios |
 
 ---
