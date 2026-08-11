@@ -33,7 +33,7 @@ Every screen from here on is a file inside that `app/` folder. If you only ever 
 Confirm the project runs before going further.
 
 ```bash
-npx expo start
+npx expo start -c
 ```
 
 At this stage, with no files inside `app/` yet, Expo Router will show its own "missing default export" or "no routes found" screen. That's expected too, and it means the entry point swap worked. Section 2 adds the first real route.
