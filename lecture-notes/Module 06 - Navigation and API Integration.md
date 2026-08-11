@@ -2,6 +2,14 @@
 
 ## 1. A second screen, with Expo Router
 
+Create a new blank project:
+
+```
+npx create-expo-app --template
+cd fittrack-app-06
+npx expo start
+```
+
 Keep this deliberately small: one list screen, and one detail screen, connected by a single dynamic route. Nothing else yet, no tabs, no modals.
 
 Create `app/index.tsx`.
