@@ -1,4 +1,4 @@
-# Module 01 - Environments, Paradigms and Principles
+# Module 01: Environments, Paradigms and Principles
 
 ## 1. Course overview
 

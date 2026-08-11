@@ -1,4 +1,4 @@
-# Module 02 - Django and MVT Pattern
+# Module 02: Django and MVT Pattern
 
 ## 1. Why Django
 
@@ -34,7 +34,7 @@ Django separates a **project**, the whole backend, configuration and all, from a
 python manage.py startapp studios
 ```
 
-This creates a `studios/` folder with a predictable set of files already in it: `models.py`, `views.py`, `admin.py`, and a few others you'll fill in over the next few modules. 
+This creates a `studios/` folder with a predictable set of files already in it: `models.py`, `views.py`, `admin.py`, and a few others you'll fill in over the next few modules.
 
 Add the app to your project by opening `fittrack_backend/settings.py` and adding `"studios"` to the `INSTALLED_APPS` list.
 
