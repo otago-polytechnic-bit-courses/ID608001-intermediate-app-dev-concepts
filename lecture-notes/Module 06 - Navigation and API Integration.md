@@ -2,7 +2,7 @@
 
 ## 1. A second screen, with Expo Router
 
-Create a new blank project:
+Create a new blank TypeScript project:
 
 ```
 npx create-expo-app --template
