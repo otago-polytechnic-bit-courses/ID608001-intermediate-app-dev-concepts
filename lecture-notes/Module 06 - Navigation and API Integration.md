@@ -48,7 +48,7 @@ Create `app/index.tsx`.
 
 ```tsx
 import { Link } from "expo-router";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 
 const studios = [
   { id: "1", name: "CityFit" },
@@ -58,33 +58,52 @@ const studios = [
 export default function StudiosScreen() {
   return (
     <FlatList
+      contentContainerStyle={styles.list}
       data={studios}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <Link href={`/studios/${item.id}`}>
-          <Text>{item.name}</Text>
+        <Link href={`/studios/${item.id}`} style={styles.row}>
+          <Text style={styles.rowText}>{item.name}</Text>
         </Link>
       )}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  list: { padding: 16 },
+  row: {
+    paddingVertical: 14,
+    paddingHorizontal: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#d1d5db",
+  },
+  rowText: { fontSize: 16, fontWeight: "500" },
+});
 ```
 
 Create `app/studios/[id].tsx`.
 
 ```tsx
 import { useLocalSearchParams } from "expo-router";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export default function StudioDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
   return (
-    <View>
-      <Text>Studio ID: {id}</Text>
+    <View style={styles.container}>
+      <Text style={styles.label}>Studio ID</Text>
+      <Text style={styles.value}>{id}</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 24 },
+  label: { fontSize: 13, color: "#6b7280", textTransform: "uppercase" },
+  value: { fontSize: 22, fontWeight: "700", marginTop: 4 },
+});
 ```
 
 That's the whole navigation setup. Tapping a name on the list screen pushes the detail screen, with the tapped studio's `id` available through `useLocalSearchParams`. The `<{ id: string }>` part tells TypeScript what shape to expect the route's params to have, the same idea as `StudioRowProps` in Section 3, just applied to a hook instead of a component.
