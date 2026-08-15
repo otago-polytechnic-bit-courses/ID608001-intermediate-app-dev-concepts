@@ -1,4 +1,4 @@
-# Module 05: React Native Basics
+# Module 05: React Native
 
 ## 1. What a React Native component actually is
 
