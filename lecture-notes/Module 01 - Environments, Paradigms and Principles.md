@@ -1,4 +1,4 @@
-# Module 01: Environments, Paradigms and Principles
+# Module 01: Environments, Paradigms and Programming Principles
 
 ## 1. Course overview
 
@@ -8,13 +8,13 @@ Learning a second backend language, on purpose, in the middle of your programmin
 
 ---
 
-## 2. Design patterns and principles
+## 2. Design patterns and programming principles
 
 Before either language, it's worth being clear about two words this course uses constantly.
 
 A **design pattern** is a named, reusable solution to a problem that comes up over and over in software, regardless of language. If you've ever solved a problem, then solved what felt like the same problem again in a different project, and thought "there should be a name for this," there usually is. Patterns give you that name, and a name is useful because it lets you talk about a solution without re-explaining it every time.
 
-A **principle** is a rule of thumb for writing code that stays easy to work with as it grows. Principles are broader than patterns. A pattern is a specific shape; a principle is a value that many different shapes can serve.
+A **programming principle** is a rule of thumb for writing code that stays easy to work with as it grows. Principles are broader than patterns. A pattern is a specific shape; a principle is a value that many different shapes can serve.
 
 Four principles worth knowing the names of now, even before you've seen them in code:
 
