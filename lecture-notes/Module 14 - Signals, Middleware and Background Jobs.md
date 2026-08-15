@@ -424,9 +424,9 @@ async function handleResponse<T>(response: Response): Promise<T> {
 }
 ```
 
-Subclassing `Error` rather than throwing a plain object matters: a `catch` block can now ask `if (error instanceof ApiRequestError)` and get the status and field errors with full type safety, while anything else — a genuine network failure, a bug in your own code — still arrives as an ordinary `Error` and isn't mistaken for an API response.
+Subclassing `Error` rather than throwing a plain object matters: a `catch` block can now ask `if (error instanceof ApiRequestError)` and get the status and field errors with full type safety, while anything else - a genuine network failure, a bug in your own code - still arrives as an ordinary `Error` and isn't mistaken for an API response.
 
-A form can now highlight the offending field, and a 401 can send the user to the login screen, because the response finally carries enough information to act on. Module 12's forms consume exactly this shape, and were written against DRF's raw field-keyed errors precisely because this envelope didn't exist yet — swapping them over to `ApiRequestError` is a small change now that it does. This is module 04's argument about typing the network boundary paying off: the shape is stable enough to be worth an interface.
+A form can now highlight the offending field, and a 401 can send the user to the login screen, because the response finally carries enough information to act on. Module 12's forms consume exactly this shape, and were written against DRF's raw field-keyed errors precisely because this envelope didn't exist yet - swapping them over to `ApiRequestError` is a small change now that it does. This is module 04's argument about typing the network boundary paying off: the shape is stable enough to be worth an interface.
 
 Why is this a better place for the reformatting than a middleware, given it applies to every request? _Answer: middleware sits outside DRF and would receive an already-rendered response, so it would have to parse the JSON back out and guess at which shape it was looking at. The exception handler runs inside DRF, with the exception object itself, which is where the information actually is. Cross-cutting doesn't automatically mean middleware; it means one place, and the right one._
 
@@ -438,7 +438,7 @@ Why is this a better place for the reformatting than a middleware, given it appl
 
 ### Task 5
 
-Add a custom exception handler and confirm all three failure types from the top of this section now return the same shape. Then update module 10's tests to assert against it — including one asserting that a validation failure names the field that failed, which is the part your UI depends on.
+Add a custom exception handler and confirm all three failure types from the top of this section now return the same shape. Then update module 10's tests to assert against it - including one asserting that a validation failure names the field that failed, which is the part your UI depends on.
 
 ### Task 6
 
@@ -446,7 +446,7 @@ Your handler doesn't cover unhandled exceptions, which still return either a Dja
 
 Work out how to handle this, and be careful about what you expose: a 500's real message is a stack trace, and returning it to the client leaks your file paths and code structure. Implement something that returns a generic JSON error to the client while logging the real exception server-side.
 
-In your README, explain where you did it — the exception handler, a middleware, or somewhere else — and why that was the right layer, using the reasoning from the question above.
+In your README, explain where you did it - the exception handler, a middleware, or somewhere else - and why that was the right layer, using the reasoning from the question above.
 
 ---
 

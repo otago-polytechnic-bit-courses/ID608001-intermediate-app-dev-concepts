@@ -388,7 +388,7 @@ The translation is mechanical. An acceptance criterion is written for you; a sce
 
 > **Scenario given to the participant:** You've found a gym you might want to join later. Save it so you can find it again, then check that it's still saved.
 
-Notice what the scenario doesn't say. It doesn't mention the heart icon, or the favourites tab, or where either lives. If you have to tell a participant which button to press, you've stopped testing whether they can find it — and whether they can find it is usually the thing you most need to know.
+Notice what the scenario doesn't say. It doesn't mention the heart icon, or the favourites tab, or where either lives. If you have to tell a participant which button to press, you've stopped testing whether they can find it - and whether they can find it is usually the thing you most need to know.
 
 Write a task, not an instruction:
 
@@ -419,7 +419,7 @@ Set up first: a build that actually runs, seeded with sensible data, on a device
 Then, during the session, the discipline is almost entirely about not helping.
 
 - Read the scenario, then stop talking.
-- Ask them to think aloud — what they're looking for, what they expect a thing to do.
+- Ask them to think aloud - what they're looking for, what they expect a thing to do.
 - When they get stuck, **wait**. The silence is uncomfortable and it is the most valuable data in the session.
 - Never say "just tap the thing at the top." If they can't find it, that's the finding.
 - If they ask "am I doing this right?", reflect it back: "what would you expect to happen?"
@@ -431,7 +431,7 @@ Ask permission before recording anything, keep participant names out of your wri
 
 ### 7.4 Structured feedback
 
-Feedback must be captured consistently across participants — the same questionnaire or rating scale — not just informal comments.
+Feedback must be captured consistently across participants - the same questionnaire or rating scale - not just informal comments.
 
 The reason is comparison. Three sets of loose remarks can't be compared with each other; three sets of identical questions can, and "all three rated finding their saved gyms 2 out of 5" is evidence in a way that "a couple of people found it a bit confusing" isn't.
 
@@ -482,7 +482,7 @@ One scheduling point, repeating module 09 because it's the mistake that costs th
 
 ### Task 7
 
-Take two acceptance criteria from your module 09 requirements and convert each into a participant-facing scenario. Then swap with a classmate and have them read only your scenarios. If they can tell you which buttons you expect them to press, the scenarios are still instructions — rewrite them.
+Take two acceptance criteria from your module 09 requirements and convert each into a participant-facing scenario. Then swap with a classmate and have them read only your scenarios. If they can tell you which buttons you expect them to press, the scenarios are still instructions - rewrite them.
 
 ### Task 8
 
@@ -494,6 +494,6 @@ Produce an issue log from it, with severity, and then write two or three sentenc
 
 Nothing above told you how to measure whether a change actually worked.
 
-Pick the highest-severity issue from your rehearsal and fix it. Then work out, and write down, how you would know the fix succeeded — not "it looks better," but something you could observe in a second session with a different participant. Consider what you'd measure, what result would mean the fix failed, and how many participants you'd need before you'd believe either answer.
+Pick the highest-severity issue from your rehearsal and fix it. Then work out, and write down, how you would know the fix succeeded - not "it looks better," but something you could observe in a second session with a different participant. Consider what you'd measure, what result would mean the fix failed, and how many participants you'd need before you'd believe either answer.
 
 In your README, record your measure and one honest sentence on its main weakness. Every measure you could realistically use here has one.

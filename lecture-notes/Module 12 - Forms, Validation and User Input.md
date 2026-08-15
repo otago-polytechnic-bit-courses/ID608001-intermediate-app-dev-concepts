@@ -21,7 +21,7 @@ const [city, setCity] = useState("");
 const [capacity, setCapacity] = useState("");
 ```
 
-Four fields, four pieces of state, and every operation on the form as a whole — resetting it, checking whether anything changed, submitting it — has to name all four. Add a fifth field and you edit five places.
+Four fields, four pieces of state, and every operation on the form as a whole - resetting it, checking whether anything changed, submitting it - has to name all four. Add a fifth field and you edit five places.
 
 One object is usually better:
 
@@ -69,7 +69,7 @@ export default function StudioForm() {
 
 `updateField` is generic over `keyof StudioFormValues`, which means `updateField("subrub", text)` is a compile error rather than a field that silently never updates. That's module 04's typing argument applied to the most typo-prone code in any app.
 
-Note `capacity` is typed as `string`, not `number`, even though the API wants a number. A `TextInput` deals in text, and a half-typed `"1"` on the way to `"15"` is a valid intermediate state that a `number` can't hold — as is `""`, which `Number("")` turns into `0` rather than nothing. Keep form state as strings and convert once, at submission.
+Note `capacity` is typed as `string`, not `number`, even though the API wants a number. A `TextInput` deals in text, and a half-typed `"1"` on the way to `"15"` is a valid intermediate state that a `number` can't hold - as is `""`, which `Number("")` turns into `0` rather than nothing. Keep form state as strings and convert once, at submission.
 
 Why does `setValues` take a function here rather than `setValues({ ...values, [field]: value })`? _Answer: because `values` inside the callback might be stale. React batches updates, so two fields updated in quick succession can both read the same old object and the second overwrite the first. The function form receives whatever the current state actually is at the moment React applies it. For forms this is rarely visible; for anything updating faster than typing, it's a real bug._
 
@@ -120,7 +120,7 @@ function shouldShow(field: keyof StudioFormValues): boolean {
 }
 ```
 
-Validation runs on every render, which sounds wasteful and isn't — it's a handful of string checks, and deriving errors from values rather than storing them in their own state removes an entire category of bug where the two disagree.
+Validation runs on every render, which sounds wasteful and isn't - it's a handful of string checks, and deriving errors from values rather than storing them in their own state removes an entire category of bug where the two disagree.
 
 `Partial<Record<K, string>>` is a precise type for this: a partial map from field names to messages, so `errors.subrub` won't compile and a missing key is meaningfully different from an empty message.
 
@@ -180,7 +180,7 @@ async function handleSubmit() {
 </Pressable>
 ```
 
-The `disabled={isSubmitting}` is not cosmetic. Without it, an impatient user on a slow connection taps twice and creates two studios — which is precisely the duplicate that module 08's `UniqueConstraint` exists to catch, and it's much better to prevent it here than to explain a database error there.
+The `disabled={isSubmitting}` is not cosmetic. Without it, an impatient user on a slow connection taps twice and creates two studios - which is precisely the duplicate that module 08's `UniqueConstraint` exists to catch, and it's much better to prevent it here than to explain a database error there.
 
 `finally` guarantees the button re-enables. Putting `setIsSubmitting(false)` only in the `try` leaves the form permanently frozen after any failure, which is a bug that only appears when something else has already gone wrong.
 
@@ -224,9 +224,9 @@ catch (error) {
 }
 ```
 
-`ApiRequestError` is the class module 14 builds alongside its consistent error envelope. Until then, read the raw response body — the shape is the same; the envelope just makes it dependable.
+`ApiRequestError` is the class module 14 builds alongside its consistent error envelope. Until then, read the raw response body - the shape is the same; the envelope just makes it dependable.
 
-Two details carry real weight. The `field in values` check exists because DRF can return errors for keys your form has no input for — `non_field_errors`, or a field the serializer requires that your form doesn't show. Assigning those to `fieldErrors` attaches a message to an input that doesn't exist, so the user sees nothing at all and concludes the button is broken. The fallback to `formError` is what catches them.
+Two details carry real weight. The `field in values` check exists because DRF can return errors for keys your form has no input for - `non_field_errors`, or a field the serializer requires that your form doesn't show. Assigning those to `fieldErrors` attaches a message to an input that doesn't exist, so the user sees nothing at all and concludes the button is broken. The fallback to `formError` is what catches them.
 
 And errors for the _whole form_ need somewhere to appear, near the submit button where the user is looking. A permission failure or a network error belongs there, not attached to a field that isn't the problem.
 
@@ -252,7 +252,7 @@ function errorFor(field: keyof StudioFormValues): string | undefined {
 
 Build a form for one create operation in your own Project, with at least four fields. Hold the values in a single typed object with a generic `updateField`, and validate on blur and on submit.
 
-Include the submitting state and the disabled button. Test the double-tap by adding an artificial delay to your API call and tapping the button twice — confirm only one record is created.
+Include the submitting state and the disabled button. Test the double-tap by adding an artificial delay to your API call and tapping the button twice - confirm only one record is created.
 
 ### Task 2
 
@@ -404,7 +404,7 @@ const {
 
 Either choice is defensible, and the argument is module 01's, not a matter of taste. YAGNI says don't add a dependency for a single login form. DRY says the fifth hand-rolled form with slightly different validation timing from the other four is a real maintenance cost.
 
-What isn't defensible is drifting: two forms using a library and three not, because whoever wrote each one decided in the moment. Pick one approach for your Project and apply it consistently — the same conclusion module 11 reached about `StyleSheet` versus NativeWind, for the same reason.
+What isn't defensible is drifting: two forms using a library and three not, because whoever wrote each one decided in the moment. Pick one approach for your Project and apply it consistently - the same conclusion module 11 reached about `StyleSheet` versus NativeWind, for the same reason.
 
 Writing it yourself once, as tasks 1 to 4 asked, is worth doing regardless. A library that hides validation timing from you is much harder to debug if you've never implemented the timing yourself.
 
@@ -414,7 +414,7 @@ Look at how many forms your Project's backlog implies, then make the call: hand-
 
 ### Task 6
 
-Whichever you chose, you now have a repeated shape across your forms — probably an input, its label, and its error message together.
+Whichever you chose, you now have a repeated shape across your forms - probably an input, its label, and its error message together.
 
 Extract it into a reusable component. Nothing above showed you how, and there's a real design decision in it: your component needs to accept a value, a change handler, a blur handler, an error, and every `TextInput` prop a caller might want to pass through, without you enumerating all of them.
 

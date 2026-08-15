@@ -300,7 +300,7 @@ Returning `unsubscribe` from `useEffect` is a **cleanup function**, and it's ess
 
 `isConnected` and `isInternetReachable` are genuinely different. A phone on hotel wifi with a login page it hasn't completed is connected and not reachable, which is exactly the case that produces confusing bug reports.
 
-Given that this hook exists, should `useStudios` in section 4 check `isOnline` before attempting its refresh, and skip the request if the answer is no? _Answer: it can, but it shouldn't rely on it. Connectivity can drop between the check and the request, and being reported as online is not a promise that your particular server is reachable — it might be down, or your LAN address might have changed. The `try`/`catch` is what actually handles failure; the online check is an optimisation that avoids a pointless request, not a replacement for handling the error._
+Given that this hook exists, should `useStudios` in section 4 check `isOnline` before attempting its refresh, and skip the request if the answer is no? _Answer: it can, but it shouldn't rely on it. Connectivity can drop between the check and the request, and being reported as online is not a promise that your particular server is reachable - it might be down, or your LAN address might have changed. The `try`/`catch` is what actually handles failure; the online check is an optimisation that avoids a pointless request, not a replacement for handling the error._
 
 ---
 
@@ -457,7 +457,7 @@ export async function getStudios(page = 1): Promise<Paginated<Studio>> {
 
 `next` being `null` is how you know you've reached the end, which is more reliable than comparing counts yourself. `FlatList` has `onEndReached` for loading the following page as the user scrolls, giving you infinite scrolling without any of it being your own bookkeeping.
 
-Be aware of how far this change reaches before you make it. `getStudios()` has returned a bare `Studio[]` since module 06, and three things now depend on that: the screen rendering it, `useStudios` in section 4, and the call to `studioRepository.saveAll(fresh)`, which will happily try to iterate an object that no longer is an array. TypeScript will catch all three the moment you change the return type, which is module 04's whole argument arriving as a practical benefit rather than a claim — in plain JavaScript, the first two would have failed silently at runtime and the third would have written nothing to the cache without complaining.
+Be aware of how far this change reaches before you make it. `getStudios()` has returned a bare `Studio[]` since module 06, and three things now depend on that: the screen rendering it, `useStudios` in section 4, and the call to `studioRepository.saveAll(fresh)`, which will happily try to iterate an object that no longer is an array. TypeScript will catch all three the moment you change the return type, which is module 04's whole argument arriving as a practical benefit rather than a claim - in plain JavaScript, the first two would have failed silently at runtime and the third would have written nothing to the cache without complaining.
 
 Pagination and offline caching interact in a way worth thinking about rather than discovering. If your app caches page 1 and the user has scrolled to page 5, what should be in the cache next launch? Caching every page they've ever seen means the local database grows without limit. Caching only page 1 means their scroll position is meaningless offline. Neither is wrong; the point is that offline-first forces you to decide how much history is worth keeping, and "all of it" is a decision too.
 
@@ -499,13 +499,13 @@ class StudioViewSet(viewsets.ModelViewSet):
 
 That gives you `?city=Dunedin`, `?search=yoga`, and `?ordering=-created_at`, with no `get_queryset` override at all. It's the same DRY move as `ModelViewSet` and `DefaultRouter` in module 03: declare what's allowed, let the framework generate the rest.
 
-The `ordering = ["name"]` default matters more than it looks. Without an explicit ordering, the database is free to return rows in whatever order it likes, and that order can differ between requests — so page 2 might repeat a row from page 1 or skip one entirely. Unordered pagination is a genuine bug that only appears with enough data, which is the worst kind.
+The `ordering = ["name"]` default matters more than it looks. Without an explicit ordering, the database is free to return rows in whatever order it likes, and that order can differ between requests - so page 2 might repeat a row from page 1 or skip one entirely. Unordered pagination is a genuine bug that only appears with enough data, which is the worst kind.
 
 Filtering server-side also does something caching can't: it moves the work to where the data already is. Fetching three thousand studios to display twenty in Dunedin wastes the user's bandwidth, battery, and time, and no amount of clever client code recovers that.
 
 ### 7.3 The query that quietly costs the most
 
-Module 03's `StudioDetailSerializer` nests each studio's classes. On a paginated list, that means Django runs one query for the studios, then one more per studio to fetch its classes — 21 queries for a 20-item page. This is the **N+1 problem** module 08 introduced, and pagination is where it stops being theoretical: the cost is now paid on every page, by every user, on every launch.
+Module 03's `StudioDetailSerializer` nests each studio's classes. On a paginated list, that means Django runs one query for the studios, then one more per studio to fetch its classes - 21 queries for a 20-item page. This is the **N+1 problem** module 08 introduced, and pagination is where it stops being theoretical: the cost is now paid on every page, by every user, on every launch.
 
 ```python
 class StudioViewSet(viewsets.ModelViewSet):

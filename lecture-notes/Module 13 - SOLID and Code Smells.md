@@ -257,7 +257,7 @@ The name is the documentation. This is DRY in its truest form, which is about kn
 
 ```tsx
 function formatStudioLabel(name: string, suburb: string, city: string): string {
-  return `${name} — ${suburb}, ${city}`;
+  return `${name} - ${suburb}, ${city}`;
 }
 ```
 
@@ -265,7 +265,7 @@ Three strings that always travel together, in an order nothing enforces. Swap `s
 
 ```tsx
 function formatStudioLabel(studio: StudioSummary): string {
-  return `${studio.name} — ${studio.suburb}, ${studio.city}`;
+  return `${studio.name} - ${studio.suburb}, ${studio.city}`;
 }
 ```
 
@@ -352,7 +352,7 @@ Then go further than anything shown here. Every fix in this module has been an i
 
 Section 8 made the case for committing after every small refactoring step, which is a version control practice justified by a code quality argument. That's the right way round, and it's worth extending, because the Project assesses your Git history directly.
 
-The expectations are explicit: regular, descriptive conventional commits linked to relevant issues, and semantic versioned releases with notes at the end of each sprint. The descriptor also puts it more bluntly — a single commit on the due date communicates something very specific to a marker. Your history is evidence of your process, and it's the one piece of evidence you cannot reconstruct at the end.
+The expectations are explicit: regular, descriptive conventional commits linked to relevant issues, and semantic versioned releases with notes at the end of each sprint. The descriptor also puts it more bluntly - a single commit on the due date communicates something very specific to a marker. Your history is evidence of your process, and it's the one piece of evidence you cannot reconstruct at the end.
 
 ### 10.1 Conventional commits
 
@@ -373,7 +373,7 @@ Common types:
 | ---------- | --------------------------------------------------------- |
 | `feat`     | A new capability a user could notice                      |
 | `fix`      | A bug fix                                                 |
-| `refactor` | Restructuring with no behaviour change — section 8's work |
+| `refactor` | Restructuring with no behaviour change - section 8's work |
 | `test`     | Adding or changing tests                                  |
 | `docs`     | Documentation only                                        |
 | `chore`    | Dependencies, config, tooling                             |
@@ -382,7 +382,7 @@ The value isn't the tidiness. It's that `refactor` and `feat` being different ty
 
 Write the description as the completion of "this commit will…". Present tense, imperative, no full stop. `add favourite toggle`, not `added favourite toggle` or `adding some stuff to the studio row`.
 
-Three commits named `update`, `fix stuff`, and `changes` are useless six weeks later — but the real cost is immediate. Module 10's debugging section suggested narrowing a bug by halving; `git bisect` does that automatically across your history, and it's worth exactly as much as your messages are.
+Three commits named `update`, `fix stuff`, and `changes` are useless six weeks later - but the real cost is immediate. Module 10's debugging section suggested narrowing a bug by halving; `git bisect` does that automatically across your history, and it's worth exactly as much as your messages are.
 
 ### 10.2 Linking to issues
 
@@ -400,11 +400,11 @@ Closes #14
 
 For an individual project, a straightforward model is enough:
 
-- `main` — always in a working state, and what you tag releases from.
-- `project` — the branch the Project is marked from, per the descriptor.
+- `main` - always in a working state, and what you tag releases from.
+- `project` - the branch the Project is marked from, per the descriptor.
 - One short-lived branch per issue, named for it: `feat/14-favourite-toggle`.
 
-Merge back with a pull request, even working alone. It gives you a place to read your own diff before it lands, and it's where module 10's CI workflow reports whether the tests passed. Reviewing your own PR catches a surprising amount — a stray `console.log`, a committed `.env`, a file you didn't mean to touch.
+Merge back with a pull request, even working alone. It gives you a place to read your own diff before it lands, and it's where module 10's CI workflow reports whether the tests passed. Reviewing your own PR catches a surprising amount - a stray `console.log`, a committed `.env`, a file you didn't mean to touch.
 
 Keep branches short-lived. A branch open for three weeks accumulates conflicts and stops being a unit of work.
 
@@ -429,10 +429,10 @@ git push origin v0.2.0
 
 `-a` creates an annotated tag, which records who tagged it and when. A bare `git tag v0.2.0` creates a lightweight pointer with none of that, and the difference matters when a tag is your evidence that a release existed at a particular point in time.
 
-Release notes need to cover what was delivered, known issues, how to run the release locally — both API and client — and any relevant technical information.
+Release notes need to cover what was delivered, known issues, how to run the release locally - both API and client - and any relevant technical information.
 
 ```markdown
-## v0.2.0 — Sprint 2
+## v0.2.0 - Sprint 2
 
 ### Delivered
 
@@ -473,6 +473,6 @@ Adopt conventional commits for the rest of the course, starting with Task 3's re
 
 Tag your current work as `v0.1.0` with an annotated tag, and write full release notes including a known issues section with at least two real entries.
 
-Then verify it properly, which nothing above walked you through. Clone your own repository into a completely fresh directory, check out the tag, and follow your own release notes exactly — no filling in gaps from memory, no reusing your existing `.env` or virtual environment. Record every step where your instructions turned out to be incomplete, and fix them.
+Then verify it properly, which nothing above walked you through. Clone your own repository into a completely fresh directory, check out the tag, and follow your own release notes exactly - no filling in gaps from memory, no reusing your existing `.env` or virtual environment. Record every step where your instructions turned out to be incomplete, and fix them.
 
 Whatever you find here, a marker would have found too.

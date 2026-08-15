@@ -238,10 +238,10 @@ Document the endpoints your two features need, before building them.
 
 | HTTP Method | URL                  | Description      | Authentication | Roles      | Body Parameters          |
 | ----------- | -------------------- | ---------------- | -------------- | ---------- | ------------------------ |
-| `GET`       | `/api/studios/`      | List all studios | No             | Any        | —                        |
+| `GET`       | `/api/studios/`      | List all studios | No             | Any        | -                        |
 | `POST`      | `/api/studios/`      | Create a studio  | Yes            | Any user   | `name`, `suburb`, `city` |
 | `PUT`       | `/api/studios/{id}/` | Update a studio  | Yes            | Owner only | `name`, `suburb`, `city` |
-| `DELETE`    | `/api/studios/{id}/` | Delete a studio  | Yes            | Owner only | —                        |
+| `DELETE`    | `/api/studios/{id}/` | Delete a studio  | Yes            | Owner only | -                        |
 
 The Project asks you to consider authentication, authorisation, validation, invalid requests, error responses, status codes, and returned data. Module 07's split between the two auth words is why the table above has separate columns for them: "Yes, authentication required" and "owner only" are different constraints, and a table collapsing them into one column hides the interesting one.
 

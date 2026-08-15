@@ -391,15 +391,15 @@ It announces "black heart suit," or nothing at all, and the user has no idea wha
 
 Three props, and the control now announces what it is, what it does, and what state it's in. The label includes the studio name because a screen reader user moving down a list of twenty identical "Add to favourites" buttons has no way of knowing which row they're on.
 
-Anything that conveys meaning through an icon alone needs this. Anything that conveys meaning through colour alone — a red border for an invalid field, a green tick for success — needs a text equivalent too, since roughly one in twelve men has some form of colour vision deficiency.
+Anything that conveys meaning through an icon alone needs this. Anything that conveys meaning through colour alone - a red border for an invalid field, a green tick for success - needs a text equivalent too, since roughly one in twelve men has some form of colour vision deficiency.
 
 ### 5.2 Touch targets
 
 Tailwind makes it easy to write a beautifully compact icon button that nobody with large hands can hit. Both platforms recommend a minimum of around 44 points square.
 
 ```tsx
-<Pressable className="p-1">   {/* roughly 24pt total — too small */}
-<Pressable className="p-3">   {/* roughly 44pt total — fine */}
+<Pressable className="p-1">   {/* roughly 24pt total - too small */}
+<Pressable className="p-3">   {/* roughly 44pt total - fine */}
 ```
 
 `hitSlop` extends the tappable area beyond the visible one, which keeps a design tight without making it unusable.
@@ -412,13 +412,13 @@ Tailwind makes it easy to write a beautifully compact icon button that nobody wi
 
 Users can set a system-wide text size, and some set it very large. Fixed heights are what break under it: a row with `h-12` and text scaled to 200% clips the text rather than growing.
 
-Preferring padding over fixed heights, and letting content determine size, handles most of it. Where a layout genuinely can't accommodate it, `allowFontScaling={false}` exists — and should be a last resort on something decorative, never on the text carrying the meaning.
+Preferring padding over fixed heights, and letting content determine size, handles most of it. Where a layout genuinely can't accommodate it, `allowFontScaling={false}` exists - and should be a last resort on something decorative, never on the text carrying the meaning.
 
 ### 5.4 Checking it
 
 Turn the screen reader on and use your own app for two minutes with the screen off. VoiceOver on iOS is in Settings under Accessibility; TalkBack is the Android equivalent.
 
-It's an awkward, humbling two minutes, and it finds more real problems than any checklist. Module 09's usability non-functional requirements are where these findings belong, and module 10's UAT is where they'll surface anyway if you haven't looked — with the difference that a participant who can't complete a task is a logged issue in your assessed sprint, while a problem you found yourself in week 10 is just a fix.
+It's an awkward, humbling two minutes, and it finds more real problems than any checklist. Module 09's usability non-functional requirements are where these findings belong, and module 10's UAT is where they'll surface anyway if you haven't looked - with the difference that a participant who can't complete a task is a logged issue in your assessed sprint, while a problem you found yourself in week 10 is just a fix.
 
 | Key terms            |                                                                   |
 | -------------------- | ----------------------------------------------------------------- |
@@ -438,6 +438,6 @@ Then turn on VoiceOver or TalkBack, put the screen face down, and complete one t
 
 Nothing above covered what a screen reader does with the loading, error and empty states from module 06.
 
-Work out, using React Native's accessibility documentation, how to announce a state change that happens without the user doing anything — a list finishing loading, or an error appearing. A sighted user sees the spinner replaced by content; a screen reader user gets silence unless you say something.
+Work out, using React Native's accessibility documentation, how to announce a state change that happens without the user doing anything - a list finishing loading, or an error appearing. A sighted user sees the spinner replaced by content; a screen reader user gets silence unless you say something.
 
 Implement it for one screen, and explain in your README which property you used and why simply putting the message in a `Text` component wasn't enough on its own.

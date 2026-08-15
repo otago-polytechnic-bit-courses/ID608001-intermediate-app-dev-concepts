@@ -178,7 +178,7 @@ Everything above uses Django's built-in `User`, which is the right choice for le
 
 Django lets you substitute your own user model, via `AUTH_USER_MODEL` in `settings.py`, but only really expects you to do it **before your first migration**. Swapping it afterwards, once you have tables and foreign keys pointing at `auth_user`, is genuinely painful, and the usual advice is to delete your migrations and database and start again.
 
-So decide now, not in sprint three. If your Project's concept needs anything on a user that Django's `User` doesn't have — a display name, a phone number, a role, a date of birth — you have two options:
+So decide now, not in sprint three. If your Project's concept needs anything on a user that Django's `User` doesn't have - a display name, a phone number, a role, a date of birth - you have two options:
 
 | Option                                                  | When it fits                                                              |
 | ------------------------------------------------------- | ------------------------------------------------------------------------- |
@@ -520,7 +520,7 @@ DJANGO_SECRET_KEY=
 DJANGO_DEBUG=True
 ```
 
-That file is what tells the next person — a marker, a teammate, or you on a different machine — what they need to supply. An app that can't be run because nobody knows which variables it wants is a documentation failure, and the Project asks for environment variables to be listed in `api-documentation.md` for exactly this reason.
+That file is what tells the next person - a marker, a teammate, or you on a different machine - what they need to supply. An app that can't be run because nobody knows which variables it wants is a documentation failure, and the Project asks for environment variables to be listed in `api-documentation.md` for exactly this reason.
 
 A secret that has been committed, even once, and even if you delete it in the next commit, is in your repository's history permanently. What does that mean you have to do if it happens? _Answer: rotate it. Generate a new `SECRET_KEY` and treat the old one as compromised. Removing it from the current files doesn't remove it from the history, and rewriting history on a repository you've already pushed is far more trouble than generating a new key._
 
@@ -606,7 +606,7 @@ Both devices have to be on the same wifi network. Institutional and guest networ
 
 ### 8.2 CORS
 
-Even with the right address, requests from Expo's web target — and from some development builds — get rejected before your view ever runs, with an error mentioning `Access-Control-Allow-Origin`.
+Even with the right address, requests from Expo's web target - and from some development builds - get rejected before your view ever runs, with an error mentioning `Access-Control-Allow-Origin`.
 
 **CORS**, short for Cross-Origin Resource Sharing, is a browser security mechanism. By default a page loaded from one origin isn't allowed to make requests to a different one, so the browser sends a preflight `OPTIONS` request asking the server whether it consents. Django, having never been told about your app, doesn't answer, and the browser blocks the real request.
 
@@ -638,7 +638,7 @@ Position matters, and module 12 explains why in full: middleware is an ordered p
 
 You will find suggestions online to set `CORS_ALLOW_ALL_ORIGINS = True`. It makes the error disappear, which is why it's popular. It also tells every website on the internet that it may make authenticated requests to your API, which given the tokens you built in section 3 is a meaningful thing to switch off. List the origins you actually need.
 
-CORS is enforced by the _browser_, not by the server. `curl` ignores it entirely, which is why your `curl` tests in section 3 worked perfectly while the app failed. What does that tell you about what CORS is actually protecting? _Answer: it protects a user's browser from a malicious page making requests on their behalf, using credentials the browser would attach automatically. It isn't protecting your server from attackers — anyone can send whatever request they like with `curl`. Authentication and permissions do that job; CORS does a different one._
+CORS is enforced by the _browser_, not by the server. `curl` ignores it entirely, which is why your `curl` tests in section 3 worked perfectly while the app failed. What does that tell you about what CORS is actually protecting? _Answer: it protects a user's browser from a malicious page making requests on their behalf, using credentials the browser would attach automatically. It isn't protecting your server from attackers - anyone can send whatever request they like with `curl`. Authentication and permissions do that job; CORS does a different one._
 
 | Key terms         |                                                                         |
 | ----------------- | ----------------------------------------------------------------------- |
@@ -650,7 +650,7 @@ CORS is enforced by the _browser_, not by the server. `curl` ignores it entirely
 
 ### Task 8
 
-Get your app talking to your Django API from a device that isn't your development machine — a physical phone on the same wifi, or a simulator configured to use your LAN address. Confirm login and the studio list both work.
+Get your app talking to your Django API from a device that isn't your development machine - a physical phone on the same wifi, or a simulator configured to use your LAN address. Confirm login and the studio list both work.
 
 Move the API URL into `EXPO_PUBLIC_API_URL` so it isn't hardcoded, and add `django-cors-headers` with an explicit origin list.
 

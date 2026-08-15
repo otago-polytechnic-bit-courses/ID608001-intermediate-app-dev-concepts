@@ -59,7 +59,7 @@ user.classes_booked.all()
 
 Notice there's no `on_delete` on a `ManyToManyField`. There's nothing for it to describe: neither side owns the other, and removing one row from the join table doesn't imply deleting anything else.
 
-`blank=True` matters here in a way it doesn't elsewhere. A many-to-many is never required at creation time, because the object has to exist before it can be related to anything — you can't add members to a class that hasn't been saved yet.
+`blank=True` matters here in a way it doesn't elsewhere. A many-to-many is never required at creation time, because the object has to exist before it can be related to anything - you can't add members to a class that hasn't been saved yet.
 
 ---
 
@@ -87,7 +87,7 @@ class Booking(models.Model):
     attended = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.member.username} — {self.studio_class.name}"
+        return f"{self.member.username} - {self.studio_class.name}"
 
 
 class StudioClass(models.Model):
@@ -116,7 +116,7 @@ The decision rule is short. Does the relationship itself have attributes, now or
 | Through model     | An explicit join model carrying its own fields about the relationship   |
 | `TextChoices`     | Django's enum for a fixed set of string values                          |
 
-Before writing any of this, sketch the models as boxes with lines between them, and write the relationship on each line as a sentence in both directions — "a studio has many classes; a class belongs to one studio." If a sentence in one direction needs a "sometimes" or an "and also," the model is more complicated than one line, and that's usually a through model announcing itself.
+Before writing any of this, sketch the models as boxes with lines between them, and write the relationship on each line as a sentence in both directions - "a studio has many classes; a class belongs to one studio." If a sentence in one direction needs a "sometimes" or an "and also," the model is more complicated than one line, and that's usually a through model announcing itself.
 
 ### Task 1
 
@@ -151,11 +151,11 @@ The `UniqueConstraint` stops the same member booking the same class twice. Witho
 
 `CheckConstraint` expresses a rule about a row's own fields: here, a booking can't be marked attended unless it's confirmed. `Q` objects are how you build those conditions, combined with `|` for or and `&` for and.
 
-It's worth being clear about why this belongs in the database rather than in a serializer, since you could enforce both in `validate()`. A serializer only protects the path through your API. The Django admin, a management command, a data migration, and the shell all bypass it entirely — and so does a race between two simultaneous requests, where both pass validation before either has saved. A database constraint is the only rule that holds regardless of what wrote the row.
+It's worth being clear about why this belongs in the database rather than in a serializer, since you could enforce both in `validate()`. A serializer only protects the path through your API. The Django admin, a management command, a data migration, and the shell all bypass it entirely - and so does a race between two simultaneous requests, where both pass validation before either has saved. A database constraint is the only rule that holds regardless of what wrote the row.
 
 Serializer validation is still worth having on top, because it produces a friendly field-level error message instead of an `IntegrityError`. The two aren't alternatives: validation is for the user, constraints are for the data.
 
-Your app has a rule that a class can't be booked beyond its capacity. Can a `CheckConstraint` express that? _Answer: no. A check constraint sees only the row being written, and capacity depends on counting other rows in the bookings table. This needs either a transaction that locks and counts before inserting, or an application-level check that accepts a small race risk. Knowing which rules a constraint can and can't express is the useful part — assuming it covers everything is how you end up with over-booked classes._
+Your app has a rule that a class can't be booked beyond its capacity. Can a `CheckConstraint` express that? _Answer: no. A check constraint sees only the row being written, and capacity depends on counting other rows in the bookings table. This needs either a transaction that locks and counts before inserting, or an application-level check that accepts a small race risk. Knowing which rules a constraint can and can't express is the useful part - assuming it covers everything is how you end up with over-booked classes._
 
 ---
 
@@ -195,7 +195,7 @@ StudioClass.objects.annotate(
 ).order_by("-confirmed")
 ```
 
-That second one — a `Count` with a `filter` argument — is the tool for "how many of the related rows match a condition," which is otherwise the query people most often give up on and do in Python.
+That second one - a `Count` with a `filter` argument - is the tool for "how many of the related rows match a condition," which is otherwise the query people most often give up on and do in Python.
 
 ### 5.2 Aggregation
 
@@ -253,7 +253,7 @@ Then add serializer validation for the same rules, and compare the two failures:
 
 ### Task 3
 
-Write three queries against your own models using annotation or aggregation, answering questions your app would actually ask — "which of my classes are nearly full", "how many bookings did each member make this month".
+Write three queries against your own models using annotation or aggregation, answering questions your app would actually ask - "which of my classes are nearly full", "how many bookings did each member make this month".
 
 For one of them, write the naive Python-loop version too. Count the queries each version runs using `django.db.connection.queries` in the shell, and record both numbers.
 
@@ -295,7 +295,7 @@ class StudioClassSerializer(serializers.ModelSerializer):
 | `SerializerMethodField`    | Anything you can compute       | The value isn't a field at all            |
 | A separate endpoint        | Nothing; the client asks again | The related set is large or rarely needed |
 
-Two things are worth flagging. `booking_count` is declared as a plain `IntegerField` because it's expected to arrive from the `annotate` in the ViewSet's queryset, not from the model — which is how you connect section 5 to your API without the serializer running its own query per row.
+Two things are worth flagging. `booking_count` is declared as a plain `IntegerField` because it's expected to arrive from the `annotate` in the ViewSet's queryset, not from the model - which is how you connect section 5 to your API without the serializer running its own query per row.
 
 And `SerializerMethodField` is where N+1 problems hide most effectively. The `getattr` fallback above will silently run one query per class if the annotation isn't there. That's a deliberate illustration: it works, it's easy to write, and it's slow in exactly the way you can't see from reading the serializer.
 
@@ -340,7 +340,7 @@ class Migration(migrations.Migration):
     ]
 ```
 
-`apps.get_model` rather than importing `Booking` directly is not a stylistic choice. It gives you the model **as it existed at this point in the migration history**, so the migration keeps working when you add fields later. An imported model is the current one, and a migration written against it breaks the moment the model moves on — usually for whoever clones your repository next, not for you.
+`apps.get_model` rather than importing `Booking` directly is not a stylistic choice. It gives you the model **as it existed at this point in the migration history**, so the migration keeps working when you add fields later. An imported model is the current one, and a migration written against it breaks the moment the model moves on - usually for whoever clones your repository next, not for you.
 
 The safe sequence for a change like adding a required field to a populated table is three migrations: add it as nullable, backfill it with a data migration, then make it non-nullable. Doing it in one step forces you to invent a default for rows that had no meaningful value, and that invented default is now real data nobody will ever question.
 
@@ -360,6 +360,6 @@ Your schema is about to be designed properly in module 09, and this task is the 
 
 Draw the full data model for your own Project: every model, every field with its type, every relationship with its direction and its `related_name`. Include at least one relationship that isn't a plain `ForeignKey`.
 
-Then do the part nothing above walked you through. Take three questions your app will need to answer — real ones, from your backlog — and for each, write the ORM query that answers it against your drawn schema. Not pseudocode: the actual queryset.
+Then do the part nothing above walked you through. Take three questions your app will need to answer - real ones, from your backlog - and for each, write the ORM query that answers it against your drawn schema. Not pseudocode: the actual queryset.
 
 If a question can't be answered, or needs more than one query and a loop in Python to assemble, that's your schema telling you something before you've written a line of it. Record what you changed as a result, because a design you revised on paper is the cheapest revision you will make all semester.
