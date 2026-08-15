@@ -138,11 +138,61 @@ Scaled to 80% of the course.
 
 Note where the marks are. **Writing code is worth 20 of the 100 marks.** Designing, planning, testing, documenting, evaluating and communicating your work is worth the other 80.
 
-This is deliberate, and it reflects what the course is assessing. A working app that you can't justify, evaluate or explain demonstrates very little; a smaller app you can reason about clearly demonstrates a great deal. If you find yourself trading reflection time for one more feature, you are trading marks away.
+This is deliberate, and it reflects what the course is assessing. A working app that you cannot justify, evaluate or explain demonstrates very little; a smaller app you can reason about clearly demonstrates a great deal. If you find yourself trading reflection time for one more feature, you are trading marks away.
 
 Roughly a third of the available marks assess LO1, through the design patterns and principles you apply, your code quality, your reflections, and your code walkthrough. The remainder assess LO2.
 
-**Partial marks are available for partially completed work.** A smaller feature set, well designed, tested and reflected on, will score better than ten half-finished requirements - and the mark allocation above is what makes that true rather than merely encouraging.
+**Partial marks are available for partially completed work.** A smaller feature set, well designed, tested and reflected on, will score better than ten half-finished requirements — and the mark allocation above is what makes that true rather than merely encouraging.
+
+---
+
+# Use of AI Tools
+
+**You are encouraged to use AI tools on this Project.**
+
+Professional developers use them. This Project asks you to work as a professional developer within an agile development environment, so working without them would be less authentic, not more rigorous.
+
+This is a deliberate reversal of the Practical, and the reason is the mark allocation above. The Practical is a controlled technical task where the code _is_ most of what is being examined. Here, writing code is worth 20 of 100 marks. The other 80 are for judgements only you can make and evidence only you can gather, and no tool can supply either.
+
+## Where AI tools genuinely help
+
+| Use                           | Why it works here                                                       |
+| ----------------------------- | ----------------------------------------------------------------------- |
+| Scaffolding and boilerplate   | Serializers, forms and navigation setup are not what is being assessed  |
+| Explaining an error           | Faster than a forum, and you learn something you can restate            |
+| Reviewing your own code       | "What is wrong with this view?" is a useful question to ask of a tool   |
+| First drafts of documentation | You still have to correct it against what you actually built            |
+| Generating seed data          | Twenty plausible records is a chore, not a learning opportunity         |
+| Rubber-ducking a design       | Explaining your problem out loud often solves it before the reply lands |
+
+## Where it will cost you marks
+
+Some of this Project cannot be delegated, and attempting it produces work that marks poorly.
+
+- **Prioritisation.** Why _your_ backlog is ordered the way it is depends on your app, your constraints and your judgement. Generated rationales are recognisably generic.
+- **Design decisions.** A tool will readily suggest a design pattern. It will not tell you whether that pattern fits _your_ problem, and applying one that does not fit is a direct loss under LO1.
+- **Reflections.** Phase 3 is 20 marks and is assessed on specific evidence from your project. A tool has not seen your commits, your UAT sessions or your failures.
+- **UAT findings.** Only your participants can tell you what confused them.
+
+## Non-negotiable
+
+**Never fabricate user acceptance testing data.** Invented participants, sessions or results are research misconduct, not a shortcut, and they are handled under the academic integrity process rather than by deduction.
+
+**You are responsible for everything you submit.** That includes generated code that is insecure, that calls an API which does not exist, or that carries a licence you have not checked. "The tool wrote it" is not a defence, in this course or afterwards.
+
+**You must be able to explain any of it.** Phase 4 requires you to walk through a design pattern in your own implementation, unscripted, in front of a marker. Code you cannot explain will cost you marks there regardless of how it was produced.
+
+## Declaration
+
+Add a short section at the end of `reflection.md` recording:
+
+- which tools you used;
+- what you used them for; and
+- one specific instance where a tool helped, and one where it misled you or produced something you had to reject.
+
+That last point is not administrative. Knowing when a tool is wrong is a professional skill, and demonstrating it is worth marks under your reflections rather than costing you any.
+
+Declaring your use costs you nothing. Not declaring it is an academic integrity matter.
 
 ---
 

@@ -63,7 +63,7 @@ At the successful completion of this course, you will be able to:
 
 # Submission
 
-**Repository:** Provided at the beginning of the course.
+**Repository:** Provided at the beginning of the course. You will submit your work by pushing to this repository.
 
 **Branch:** `practical`
 
