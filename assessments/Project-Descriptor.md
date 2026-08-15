@@ -203,7 +203,7 @@ Your design should demonstrate:
 - the key data exchanged between client and server;
 - the major components involved;
 - relationships between components; and
-- external dependencies (e.g. third-party APIs or libraries), if any.
+- external dependencies, e.g., third-party APIs or libraries, if any.
 
 Accompany each diagram with a **100–150 word explanation** that:
 
@@ -308,7 +308,7 @@ You must:
 - implement the required endpoints;
 - validate create and update operations;
 - return consistent JSON error responses;
-- write automated tests that demonstrate the functionality you add or modify behaves as intended (e.g. successful requests, validation, and error responses); and
+- write automated tests that demonstrate the functionality you add or modify behaves as intended, e.g., successful requests, validation, and error responses; and
 - implement appropriate relationships or queries involving multiple models where relevant.
 
 The API should integrate cleanly with the rest of your app rather than being developed as an isolated system.
@@ -369,9 +369,9 @@ In this sprint, in addition to that sprint's planned development work, you will 
 You must:
 
 1. Design a UAT test plan for your two selected features, including test scenarios/tasks derived directly from your Phase 1 acceptance criteria.
-2. Recruit at least **three participants** who have not been involved in development (e.g. classmates, friends, or family) to complete the test scenarios.
+2. Recruit at least **three participants** who have not been involved in development, e.g., classmates, friends, or family to complete the test scenarios.
 3. Observe and record how participants complete each task, noting any issues, confusion, or failures.
-4. Collect structured feedback from each participant (e.g. a short questionnaire or rating scale) covering usability, clarity and satisfaction.
+4. Collect structured feedback from each participant, e.g., a short questionnaire or rating scale covering usability, clarity and satisfaction.
 5. Analyse the results and identify issues that require changes to your implementation.
 6. Make the identified changes and re-verify the affected acceptance criteria.
 7. Document your test plan, raw results and the resulting changes.
@@ -388,7 +388,7 @@ Your UAT will be assessed against the following:
 | **Participant selection** | At least 3 participants who were not involved in development and reasonably represent your intended users                       |
 | **Test design**           | Test scenarios map directly to the acceptance criteria defined in Phase 1, not just general "click around" exploration          |
 | **Session evidence**      | At least one moderated/observed session, with notes on what participants did, said, or struggled with                           |
-| **Structured feedback**   | Feedback is captured consistently across participants (e.g. the same questionnaire or rating scale), not just informal comments |
+| **Structured feedback**   | Feedback is captured consistently across participants, e.g., the same questionnaire or rating scale), not just informal comments |
 | **Issue tracking**        | Issues found are logged individually, with a note on severity/priority                                                          |
 | **Action taken**          | At least two identified issues result in a tracked, implemented change to the app                                               |
 | **Re-verification**       | Changed features are re-checked against their original acceptance criteria after the fix                                        |
