@@ -1,4 +1,4 @@
-# Module 08: Backlog Selection and Requirement Analysis
+# Module 09: Backlog Selection and Requirement Analysis
 
 ## 1. Why this module has almost no code in it
 
@@ -154,7 +154,7 @@ For each requirement, the Project asks you to identify at least one relevant ris
 | Technical dependency | Another piece of technology this needs in order to work      | Needs `expo-notifications`, which behaves differently on iOS    |
 | Project dependency   | Another requirement that must be finished first              | Cannot start "view my history" before "log an activity" exists  |
 
-The most useful ones to write down are the assumptions, because they're the ones you don't notice you're making. "Users will be online" is an assumption that quietly decides whether you need module 13's offline handling at all. Writing it down turns an invisible decision into a visible one you can revisit when it turns out to be wrong.
+The most useful ones to write down are the assumptions, because they're the ones you don't notice you're making. "Users will be online" is an assumption that quietly decides whether you need module 15's offline handling at all. Writing it down turns an invisible decision into a visible one you can revisit when it turns out to be wrong.
 
 Vague entries earn nothing. "Risk: it might not work" says nothing about what might fail or what you'd do about it. Compare with: "Risk: image uploads on a slow connection may time out, leaving the user unsure whether their post saved; mitigation is an explicit uploading state and a retry."
 

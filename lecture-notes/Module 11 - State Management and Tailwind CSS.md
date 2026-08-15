@@ -1,4 +1,4 @@
-# Module 10: State Management and Tailwind CSS
+# Module 11: State Management and Tailwind CSS
 
 ## 1. The problem with `useState` alone
 
@@ -355,3 +355,89 @@ Using the Tailwind configuration documentation, extend `theme.extend` in `tailwi
 Convert the rest of your app to NativeWind, and while doing it, find at least one place where the same long `className` string is repeated. Extract it into a reusable component rather than leaving the duplication.
 
 Then answer this in your README, in two or three sentences: you've now seen the same value, a card's appearance, expressed as a named `StyleSheet` object and as a repeated utility string. Which of the two made the duplication more obvious to you, and what does that suggest about the trade-off between the two approaches on a project the size of your Project?
+
+---
+
+## 5. Accessibility
+
+Styling decides how something looks. **Accessibility** decides whether it works for someone who can't see it, can't tap precisely, or has their phone's text size turned all the way up.
+
+This belongs in a styling module because most accessibility problems are created by styling decisions, and because the cheapest moment to fix them is while you're making those decisions rather than after a UAT participant struggles in front of you.
+
+### 5.1 Labels
+
+A screen reader reads what's on screen aloud. It has nothing useful to say about the heart icon from module 05:
+
+```tsx
+<Pressable onPress={onToggleFavourite}>
+  <Text>{isFavourite ? "♥" : "♡"}</Text>
+</Pressable>
+```
+
+It announces "black heart suit," or nothing at all, and the user has no idea what pressing it would do.
+
+```tsx
+<Pressable
+  onPress={onToggleFavourite}
+  accessibilityRole="button"
+  accessibilityLabel={
+    isFavourite ? `Remove ${name} from favourites` : `Add ${name} to favourites`
+  }
+  accessibilityState={{ selected: isFavourite }}
+>
+  <Text>{isFavourite ? "♥" : "♡"}</Text>
+</Pressable>
+```
+
+Three props, and the control now announces what it is, what it does, and what state it's in. The label includes the studio name because a screen reader user moving down a list of twenty identical "Add to favourites" buttons has no way of knowing which row they're on.
+
+Anything that conveys meaning through an icon alone needs this. Anything that conveys meaning through colour alone — a red border for an invalid field, a green tick for success — needs a text equivalent too, since roughly one in twelve men has some form of colour vision deficiency.
+
+### 5.2 Touch targets
+
+Tailwind makes it easy to write a beautifully compact icon button that nobody with large hands can hit. Both platforms recommend a minimum of around 44 points square.
+
+```tsx
+<Pressable className="p-1">   {/* roughly 24pt total — too small */}
+<Pressable className="p-3">   {/* roughly 44pt total — fine */}
+```
+
+`hitSlop` extends the tappable area beyond the visible one, which keeps a design tight without making it unusable.
+
+```tsx
+<Pressable hitSlop={12} onPress={onToggleFavourite}>
+```
+
+### 5.3 Text that scales
+
+Users can set a system-wide text size, and some set it very large. Fixed heights are what break under it: a row with `h-12` and text scaled to 200% clips the text rather than growing.
+
+Preferring padding over fixed heights, and letting content determine size, handles most of it. Where a layout genuinely can't accommodate it, `allowFontScaling={false}` exists — and should be a last resort on something decorative, never on the text carrying the meaning.
+
+### 5.4 Checking it
+
+Turn the screen reader on and use your own app for two minutes with the screen off. VoiceOver on iOS is in Settings under Accessibility; TalkBack is the Android equivalent.
+
+It's an awkward, humbling two minutes, and it finds more real problems than any checklist. Module 09's usability non-functional requirements are where these findings belong, and module 10's UAT is where they'll surface anyway if you haven't looked — with the difference that a participant who can't complete a task is a logged issue in your assessed sprint, while a problem you found yourself in week 10 is just a fix.
+
+| Key terms            |                                                                   |
+| -------------------- | ----------------------------------------------------------------- |
+| `accessibilityLabel` | What a screen reader announces for an element                     |
+| `accessibilityRole`  | What kind of control it is, e.g. `button`, `header`, `link`       |
+| `accessibilityState` | Current state, e.g. `selected`, `disabled`, `checked`             |
+| Touch target         | The tappable area of a control, ideally at least 44 points square |
+| `hitSlop`            | Extends the tappable area beyond the visible bounds               |
+
+### Task 7
+
+Add accessibility labels, roles and states to every interactive element in one full screen of your app. Include the dynamic part: a favourite toggle's label must change with its state, not describe only one of them.
+
+Then turn on VoiceOver or TalkBack, put the screen face down, and complete one task in your app using only audio. Record in your README what you couldn't do, and what you changed as a result.
+
+### Task 8
+
+Nothing above covered what a screen reader does with the loading, error and empty states from module 06.
+
+Work out, using React Native's accessibility documentation, how to announce a state change that happens without the user doing anything — a list finishing loading, or an error appearing. A sighted user sees the spinner replaced by content; a screen reader user gets silence unless you say something.
+
+Implement it for one screen, and explain in your README which property you used and why simply putting the message in a `Text` component wasn't enough on its own.

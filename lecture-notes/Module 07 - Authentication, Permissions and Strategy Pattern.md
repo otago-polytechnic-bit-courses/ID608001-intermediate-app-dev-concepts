@@ -172,6 +172,21 @@ path("api/auth/", include("accounts.urls")),
 
 `AllowAny` on the registration view is deliberate and worth pausing on: it's the one endpoint that must work for someone who has no account yet, so requiring authentication on it would make registration impossible.
 
+### 4.1 A warning about the `User` model
+
+Everything above uses Django's built-in `User`, which is the right choice for learning and perfectly adequate for many projects. There is one thing worth knowing before you go further, because it's much cheaper to act on now than later.
+
+Django lets you substitute your own user model, via `AUTH_USER_MODEL` in `settings.py`, but only really expects you to do it **before your first migration**. Swapping it afterwards, once you have tables and foreign keys pointing at `auth_user`, is genuinely painful, and the usual advice is to delete your migrations and database and start again.
+
+So decide now, not in sprint three. If your Project's concept needs anything on a user that Django's `User` doesn't have — a display name, a phone number, a role, a date of birth — you have two options:
+
+| Option                                                  | When it fits                                                              |
+| ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| A separate `Profile` model with a `OneToOneField`       | Extra fields only; you're happy with username/email login                 |
+| A custom user model, set up before your first migration | You want to change how login itself works, e.g. email instead of username |
+
+The `Profile` approach is the lower-risk option, works fine alongside everything in this module, and is what module 12 builds on when it creates a profile automatically. Choose deliberately rather than by default.
+
 | Key terms       |                                                                   |
 | --------------- | ----------------------------------------------------------------- |
 | `write_only`    | A serializer field accepted as input but never included in output |
@@ -411,6 +426,8 @@ Every call now goes through one place that knows about tokens, base URLs, and JS
 
 This is the Adapter idea from module 03 again, thickened slightly. `studiosApi.ts` is still translating between the API's world and your app's world; it has just taken on the authentication detail as well, so no screen ever has to know a token exists.
 
+`BASE_URL` is hardcoded to `127.0.0.1` here, which will work in a simulator on the same machine as your Django server and fail on a physical phone. Section 8 explains why and fixes it; leave it as it is for now.
+
 | Key terms           |                                                                   |
 | ------------------- | ----------------------------------------------------------------- |
 | `expo-secure-store` | Stores small secrets in the device keychain or keystore           |
@@ -434,3 +451,207 @@ Access tokens expire after five minutes, and nothing you've built so far notices
 Nothing in this module showed you how to handle this. Using the SimpleJWT documentation and React Native's own docs, work out and implement a strategy for it. There is more than one defensible answer: you could store the refresh token too and exchange it inside `apiFetch` when a 401 comes back, retrying the original request; you could check the token's expiry before sending anything; or you could simply clear the token and send the user back to the login screen.
 
 Implement one of them. Then, in your README, explain which you chose, what the user actually experiences when their token expires under your approach, and what the main drawback of your choice is compared with one of the alternatives you rejected. There's no single correct option here, but there is a difference between choosing one and defaulting into one.
+
+---
+
+## 7. Secrets and environment variables
+
+Open `fittrack_backend/settings.py` and look at the top of the file.
+
+```python
+SECRET_KEY = "django-insecure-8f3k2j!x9v..."
+
+DEBUG = True
+
+ALLOWED_HOSTS = []
+```
+
+That `SECRET_KEY` is what signs the JWTs you just built. Anyone holding it can forge a valid token for any user in your system, which makes every permission class in section 5 decorative. It is currently sitting in a file you commit to GitHub.
+
+The Project's code quality expectations require secrets stored in environment variables, and this is the reason. A **secret** is anything that would let someone impersonate your app or reach something on your behalf: signing keys, database passwords, API keys for third-party services, the broker URL module 12 will add.
+
+The rule of thumb is simple. If a value differs between your machine and anyone else's, or between development and production, it's configuration and belongs in an environment variable. If it would be damaging in a stranger's hands, it's a secret and it _must_ be.
+
+### 7.1 Moving them out
+
+```bash
+pip install django-environ
+```
+
+Create a `.env` file next to `manage.py`.
+
+```
+DJANGO_SECRET_KEY=replace-this-with-a-long-random-string
+DJANGO_DEBUG=True
+```
+
+Read it in `settings.py`.
+
+```python
+import environ
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env(BASE_DIR / ".env")
+
+SECRET_KEY = env("DJANGO_SECRET_KEY")
+DEBUG = env("DJANGO_DEBUG")
+```
+
+`environ.Env(DEBUG=(bool, False))` sets both a type and a default. The type matters more than it looks: environment variables are always strings, and the string `"False"` is truthy in Python, so reading `DEBUG` without a type conversion gives you a production server running in debug mode. That's not a hypothetical; it's one of the most common Django deployment mistakes there is.
+
+`SECRET_KEY` deliberately has no default. If the variable is missing, the app refuses to start with a clear error, which is far better than silently falling back to a placeholder that then signs real tokens.
+
+Now the critical step. Add `.env` to `.gitignore`.
+
+```
+.env
+*.sqlite3
+__pycache__/
+venv/
+```
+
+And commit a `.env.example` alongside it, with the keys but not the values.
+
+```
+DJANGO_SECRET_KEY=
+DJANGO_DEBUG=True
+```
+
+That file is what tells the next person — a marker, a teammate, or you on a different machine — what they need to supply. An app that can't be run because nobody knows which variables it wants is a documentation failure, and the Project asks for environment variables to be listed in `api-documentation.md` for exactly this reason.
+
+A secret that has been committed, even once, and even if you delete it in the next commit, is in your repository's history permanently. What does that mean you have to do if it happens? _Answer: rotate it. Generate a new `SECRET_KEY` and treat the old one as compromised. Removing it from the current files doesn't remove it from the history, and rewriting history on a repository you've already pushed is far more trouble than generating a new key._
+
+### 7.2 The client side
+
+Expo has its own convention. Variables prefixed with `EXPO_PUBLIC_` are readable in your app code via `process.env`.
+
+Create `.env` in your Expo project.
+
+```
+EXPO_PUBLIC_API_URL=http://127.0.0.1:8000/api
+```
+
+```tsx
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api";
+```
+
+The word `PUBLIC` is doing real work there, and it's worth being blunt about it. Those values are **compiled into your app bundle**. Anyone who downloads your app can extract them. They are for configuration that varies by environment, like the API URL, not for secrets.
+
+This is a genuine difference between the two sides of your project, and it catches people out: a Django `SECRET_KEY` in an environment variable is safe because it never leaves your server, whereas an API key put into `EXPO_PUBLIC_` anything is simply published. If a third-party service needs a secret key, the request has to be made from your Django API, not from the phone.
+
+| Key terms            |                                                                            |
+| -------------------- | -------------------------------------------------------------------------- |
+| Environment variable | A value supplied by the environment rather than written into source code   |
+| `.env`               | A local file holding those values, never committed                         |
+| `.env.example`       | A committed template listing the required keys, with no values             |
+| `EXPO_PUBLIC_`       | Expo's prefix for variables bundled into the app, and therefore not secret |
+
+### Task 7
+
+Move `SECRET_KEY` and `DEBUG` out of `settings.py` and into a `.env` file, add `.env` to `.gitignore`, and commit a `.env.example`. Confirm the server still starts, then rename `.env` temporarily and confirm it fails with a useful error rather than starting with a broken configuration.
+
+Then check your own history: run `git log -p -- fittrack_backend/settings.py` and see whether your original `SECRET_KEY` is in there. Record in your README what you found and what you did about it.
+
+---
+
+## 8. Talking to your API from a real device
+
+Everything so far has used `http://127.0.0.1:8000`. That address means "this machine, talking to itself," and it works fine when your React Native app runs in a simulator on the same computer as your Django server.
+
+Put the app on a physical phone and every request fails immediately. The phone resolves `127.0.0.1` to _itself_, looks for a Django server running on the phone, and finds nothing. The error message says the network request failed, which is technically true and completely unhelpful.
+
+Two things need fixing: the address the app uses, and the fact that Django and the browser security model will both reject the request even once it arrives.
+
+### 8.1 Use your machine's LAN address
+
+Find your computer's address on the local network.
+
+```bash
+# macOS
+ipconfig getifaddr en0
+
+# Linux
+hostname -I
+
+# Windows
+ipconfig
+```
+
+You'll get something like `192.168.1.42`. Update your Expo `.env`, which is exactly the kind of value that differs per machine and is therefore why section 7 existed:
+
+```
+EXPO_PUBLIC_API_URL=http://192.168.1.42:8000/api
+```
+
+Then run Django so it listens on every interface rather than only on loopback.
+
+```bash
+python manage.py runserver 0.0.0.0:8000
+```
+
+And tell Django that address is allowed, in `settings.py`.
+
+```python
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+```
+
+```
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,192.168.1.42
+```
+
+Both devices have to be on the same wifi network. Institutional and guest networks frequently block devices from talking to each other, which is a real constraint worth discovering during a lab rather than during your final demonstration.
+
+### 8.2 CORS
+
+Even with the right address, requests from Expo's web target — and from some development builds — get rejected before your view ever runs, with an error mentioning `Access-Control-Allow-Origin`.
+
+**CORS**, short for Cross-Origin Resource Sharing, is a browser security mechanism. By default a page loaded from one origin isn't allowed to make requests to a different one, so the browser sends a preflight `OPTIONS` request asking the server whether it consents. Django, having never been told about your app, doesn't answer, and the browser blocks the real request.
+
+```bash
+pip install django-cors-headers
+```
+
+In `settings.py`, add the app, and the middleware **near the top** of `MIDDLEWARE`.
+
+```python
+INSTALLED_APPS = [
+    # ...
+    "corsheaders",
+]
+
+MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    # ... the rest ...
+]
+
+CORS_ALLOWED_ORIGINS = env.list(
+    "DJANGO_CORS_ALLOWED_ORIGINS",
+    default=["http://localhost:8081"],
+)
+```
+
+Position matters, and module 12 explains why in full: middleware is an ordered pipeline, and the CORS headers have to be attached before anything else has a chance to return a response.
+
+You will find suggestions online to set `CORS_ALLOW_ALL_ORIGINS = True`. It makes the error disappear, which is why it's popular. It also tells every website on the internet that it may make authenticated requests to your API, which given the tokens you built in section 3 is a meaningful thing to switch off. List the origins you actually need.
+
+CORS is enforced by the _browser_, not by the server. `curl` ignores it entirely, which is why your `curl` tests in section 3 worked perfectly while the app failed. What does that tell you about what CORS is actually protecting? _Answer: it protects a user's browser from a malicious page making requests on their behalf, using credentials the browser would attach automatically. It isn't protecting your server from attackers — anyone can send whatever request they like with `curl`. Authentication and permissions do that job; CORS does a different one._
+
+| Key terms         |                                                                         |
+| ----------------- | ----------------------------------------------------------------------- |
+| `127.0.0.1`       | Loopback: the machine making the request, whichever machine that is     |
+| LAN address       | Your machine's address on the local network, reachable by other devices |
+| `ALLOWED_HOSTS`   | The hostnames Django will accept requests for                           |
+| CORS              | A browser mechanism controlling which origins may call your API         |
+| Preflight request | The `OPTIONS` request a browser sends before a cross-origin call        |
+
+### Task 8
+
+Get your app talking to your Django API from a device that isn't your development machine — a physical phone on the same wifi, or a simulator configured to use your LAN address. Confirm login and the studio list both work.
+
+Move the API URL into `EXPO_PUBLIC_API_URL` so it isn't hardcoded, and add `django-cors-headers` with an explicit origin list.
+
+Then document it, because this is the single most likely reason a marker cannot run your project. In `app-documentation.md`, write the setup steps someone on a different machine would need: how to find their own LAN address, what to set it to, and how to run the Django server so it's reachable. Test your instructions by following them exactly, as though you'd never seen the project before.

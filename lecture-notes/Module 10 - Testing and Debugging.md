@@ -1,4 +1,4 @@
-# Module 09: Testing and Debugging
+# Module 10: Testing and Debugging
 
 ## 1. Why automated tests
 
@@ -6,7 +6,7 @@ You've been testing your API since module 03, by hand, with `curl` and the brows
 
 An **automated test** is code that runs your code and asserts something about the result. Its real value isn't proving that a feature works today, which you already know because you just built it. Its value is telling you, three sprints later, that something you changed for an unrelated reason quietly broke it.
 
-The Project requires automated tests demonstrating that the API functionality you add or modify behaves as intended, including successful requests, validation, and error responses. That last pair matters: a test suite that only ever checks the happy path is the automated equivalent of the acceptance criteria problem from module 08.
+The Project requires automated tests demonstrating that the API functionality you add or modify behaves as intended, including successful requests, validation, and error responses. That last pair matters: a test suite that only ever checks the happy path is the automated equivalent of the acceptance criteria problem from module 09.
 
 | Test type   | What it checks                                | Where you'll write it       |
 | ----------- | --------------------------------------------- | --------------------------- |
@@ -360,3 +360,140 @@ Your test suite currently runs only when you remember to run it, which is a vers
 Using GitHub Actions' documentation, and without a walkthrough here, set up a workflow that runs your Django tests automatically on every push. You'll need to work out how to install Python, install your dependencies, and run the test command in a fresh environment that has none of your local setup, which will likely expose at least one thing your project depends on without declaring it. Fixing that is part of the task.
 
 Then answer this in your README: your workflow needs a `requirements.txt` that reflects exactly what your project needs. How did you generate it, and what's the risk of generating it the quickest way rather than maintaining it deliberately?
+
+---
+
+## 7. Testing with people
+
+Everything so far in this module verifies that your code does what _you_ intended. None of it can tell you whether what you intended is any good.
+
+**User acceptance testing**, almost always shortened to UAT, is testing with real people, doing real tasks, to find out whether the thing you built actually works for the people it's for. It answers a different question from your test suite, and no amount of passing tests substitutes for it.
+
+| Automated testing                    | User acceptance testing                           |
+| ------------------------------------ | ------------------------------------------------- |
+| Does the code do what I intended?    | Does the app work for the person using it?        |
+| Run by a machine, constantly         | Run by people, at planned points                  |
+| Finds regressions and broken logic   | Finds confusion, wrong assumptions, missing steps |
+| You already know the expected result | You genuinely don't know what will happen         |
+
+The Project designates one of your sprints as a UAT sprint, and it's assessed against eight specific criteria. This section works through them, because "I showed it to some people and they liked it" satisfies none of them.
+
+### 7.1 Test design
+
+Your scenarios must map directly to the acceptance criteria you wrote in module 09, not to general clicking around. That constraint is what makes UAT testing rather than demonstrating.
+
+The translation is mechanical. An acceptance criterion is written for you; a scenario is written for a participant, in their language, with the answer removed.
+
+> **Acceptance criterion:** Given I am logged in and viewing the studio list, when I tap the heart icon on a studio, then that studio appears in my favourites list and the icon stays filled after restarting the app.
+
+> **Scenario given to the participant:** You've found a gym you might want to join later. Save it so you can find it again, then check that it's still saved.
+
+Notice what the scenario doesn't say. It doesn't mention the heart icon, or the favourites tab, or where either lives. If you have to tell a participant which button to press, you've stopped testing whether they can find it — and whether they can find it is usually the thing you most need to know.
+
+Write a task, not an instruction:
+
+| Instruction, which tests nothing    | Task, which tests something                    |
+| ----------------------------------- | ---------------------------------------------- |
+| "Tap the heart icon on CityFit"     | "Save this gym so you can find it later"       |
+| "Go to Settings and tap Log Out"    | "Finish up so someone else can use your phone" |
+| "Fill in the form and press Submit" | "Add the run you did this morning"             |
+
+Cover both of your Phase 1 features, and include at least one scenario touching a failure or empty state, since module 09 asked your acceptance criteria to cover those too.
+
+### 7.2 Participants
+
+At least three people who were not involved in development, and who reasonably represent your intended users.
+
+"Not involved in development" is the load-bearing part. You cannot be a participant, and neither can the classmate you've been debugging with. They know where everything is, which is precisely the knowledge you're trying to test the absence of.
+
+"Reasonably represent your intended users" is a lower bar than it sounds, and the Project explicitly allows classmates, friends, and family. But your module 09 concept named an intended user, and if it said "people new to the gym," a participant who's been lifting for a decade will breeze past exactly the confusion you needed to find. Recruit against your concept where you reasonably can, and where you can't, say so in your write-up rather than quietly ignoring the mismatch.
+
+Three is a minimum, not a target. Usability research consistently finds that a handful of participants surfaces the large majority of problems, and that the fourth and fifth people mostly re-find what the first three already showed you.
+
+### 7.3 Running a session
+
+At least one session must be moderated and observed, with notes on what participants did, said, or struggled with.
+
+Set up first: a build that actually runs, seeded with sensible data, on a device the participant holds themselves. Watching someone use your app while you drive it tells you nothing.
+
+Then, during the session, the discipline is almost entirely about not helping.
+
+- Read the scenario, then stop talking.
+- Ask them to think aloud — what they're looking for, what they expect a thing to do.
+- When they get stuck, **wait**. The silence is uncomfortable and it is the most valuable data in the session.
+- Never say "just tap the thing at the top." If they can't find it, that's the finding.
+- If they ask "am I doing this right?", reflect it back: "what would you expect to happen?"
+- Note times, wrong turns, and exact words. "Confused" is a conclusion; "spent 40 seconds on the profile screen looking for saved gyms" is an observation.
+
+The single hardest part is accepting that watching someone fail to use your app is a _successful_ session. Every stumble found here is one a marker or a real user won't find later, and the instinct to rescue them is the instinct to throw away your own results.
+
+Ask permission before recording anything, keep participant names out of your written evidence, and use "Participant 1" and so on. That's basic research ethics and it costs nothing.
+
+### 7.4 Structured feedback
+
+Feedback must be captured consistently across participants — the same questionnaire or rating scale — not just informal comments.
+
+The reason is comparison. Three sets of loose remarks can't be compared with each other; three sets of identical questions can, and "all three rated finding their saved gyms 2 out of 5" is evidence in a way that "a couple of people found it a bit confusing" isn't.
+
+A short form after each task, and a few questions at the end, is plenty:
+
+| Per task                                          | Scale     |
+| ------------------------------------------------- | --------- |
+| How easy was it to complete this task?            | 1–5       |
+| Was it clear what the app was doing at each step? | 1–5       |
+| What, if anything, would you change about this?   | Open text |
+
+Ask the same questions of everyone, in the same order, and keep the raw responses. The Project requires your raw results as evidence, not just your summary of them.
+
+### 7.5 Logging issues
+
+Issues must be logged individually, with a note on severity or priority.
+
+Individually is the operative word. "Navigation was confusing" is not an issue; it's three issues wearing a coat, and you can't fix, prioritise, or re-verify it.
+
+| ID    | Issue                                                     | Participants | Severity | Action    |
+| ----- | --------------------------------------------------------- | ------------ | -------- | --------- |
+| UAT-1 | No feedback after saving a gym, so P1 and P3 tapped twice | P1, P3       | High     | Fix       |
+| UAT-2 | Favourites tab icon not recognised as favourites          | P2           | Medium   | Fix       |
+| UAT-3 | Wanted to sort the list by distance                       | P1           | Low      | Won't fix |
+
+Severity is about impact on the user, not effort to fix. Something that blocks a task, or makes someone believe the app did something it didn't, is high regardless of how annoying the fix is.
+
+Note that these become cards on the Kanban board from module 09, in the UAT sprint, like any other work.
+
+### 7.6 Acting on it, and re-verifying
+
+At least two identified issues must result in a tracked, implemented change, and changed features must be re-checked against their original acceptance criteria after the fix.
+
+That re-verification step is the one most often skipped, and it's what closes the loop: you changed something in response to a person, so you now have to confirm the requirement it belongs to still holds. Your automated tests from earlier in this module do part of that job for free, which is a good argument for having written them first.
+
+You also remain responsible for justifying feedback you _don't_ act on, and choosing not to act is a legitimate, assessed decision. UAT-3 above is a reasonable declination: one participant, low severity, and sorting by distance is a new feature rather than a fix to an existing requirement. Write that reasoning down. "One participant requested it; it's a scope addition rather than a defect in an existing acceptance criterion, and the sprint had no capacity for a new requirement" is a defensible answer. Silently ignoring it is not.
+
+One scheduling point, repeating module 09 because it's the mistake that costs the most marks: the UAT sprint requires you to _make and re-verify_ changes. If UAT is your final sprint, there is no room to do that. Schedule it second-to-last.
+
+| Key terms         |                                                                           |
+| ----------------- | ------------------------------------------------------------------------- |
+| UAT               | Testing with real users, doing real tasks, against acceptance criteria    |
+| Scenario          | A task given to a participant in their own terms, without instructions    |
+| Moderated session | One you observe directly, taking notes as the participant works           |
+| Think aloud       | Asking participants to narrate what they're looking for and expecting     |
+| Severity          | How badly an issue affects the user, independent of how hard it is to fix |
+| Re-verification   | Re-checking a changed feature against its original acceptance criteria    |
+
+### Task 7
+
+Take two acceptance criteria from your module 09 requirements and convert each into a participant-facing scenario. Then swap with a classmate and have them read only your scenarios. If they can tell you which buttons you expect them to press, the scenarios are still instructions — rewrite them.
+
+### Task 8
+
+Run one full moderated session with a single participant who hasn't seen your app, using those scenarios and a short feedback form. This is a rehearsal, not your assessed UAT sprint.
+
+Produce an issue log from it, with severity, and then write two or three sentences on something the session taught you about _your own moderating_: where you were tempted to help, whether you filled silences, and what you'd do differently. The Project assesses your UAT process, and the process includes you.
+
+### Task 9
+
+Nothing above told you how to measure whether a change actually worked.
+
+Pick the highest-severity issue from your rehearsal and fix it. Then work out, and write down, how you would know the fix succeeded — not "it looks better," but something you could observe in a second session with a different participant. Consider what you'd measure, what result would mean the fix failed, and how many participants you'd need before you'd believe either answer.
+
+In your README, record your measure and one honest sentence on its main weakness. Every measure you could realistically use here has one.

@@ -1,4 +1,4 @@
-# Module 11: SOLID and Code Smells
+# Module 13: SOLID and Code Smells
 
 ## 1. Where this fits
 
@@ -52,7 +52,7 @@ class StudioViewSet(viewsets.ModelViewSet):
 
 Three reasons to change, in one method. A new validation rule changes it. A new field changes it. A change to who gets emailed changes it.
 
-Django already gives you the right homes for two of those. Validation belongs on the serializer; the email is a side effect that module 12 will show belongs somewhere else entirely.
+Django already gives you the right homes for two of those. Validation belongs on the serializer; the email is a side effect that module 14 will show belongs somewhere else entirely.
 
 ```python
 class StudioSerializer(serializers.ModelSerializer):
@@ -101,6 +101,8 @@ Every new status means editing this function. That's a small thing here, but the
 Module 07's permission classes are the counter-example worth studying, because you've already used them. Adding `IsOwnerOrReadOnly` required writing a new class and adding it to a list. Nothing inside DRF was edited. That's Open/Closed achieved through the Strategy pattern, and it's why the two ideas so often show up together.
 
 Closed for modification doesn't mean code is frozen. Fixing a bug is modification, and you should. It means adding a _new case_ shouldn't require reopening code that already handles the old ones correctly.
+
+A colleague argues that the `if`/`elif` version above is fine, because adding a status is a two-line change and any alternative would be more code overall. Are they wrong? _Answer: not necessarily, and this is worth taking seriously. For one chain, in one place, they're right, and module 01's YAGNI supports them. Open/Closed earns its keep when the same chain appears in several places, because then adding a status means finding all of them and the compiler won't tell you if you miss one. The principle is describing a cost that scales, not a rule that applies at every size._
 
 ---
 
@@ -196,9 +198,9 @@ export default function StudiosScreen() {
 
 The screen depends on a specific URL, on `fetch`, and on the response arriving as JSON in a particular shape. Change the host, and every screen doing this needs editing. Test it, and you're testing the network.
 
-`studiosApi.ts` from module 06, and `apiFetch` from module 07, are the inversion. The screen now depends on `getStudios(): Promise<Studio[]>`, an abstraction describing _what_ it needs rather than _how_ it arrives. Swapping `fetch` for something else, adding a token header, or mocking the whole thing in a test, as module 09 did, all become possible without a single screen changing.
+`studiosApi.ts` from module 06, and `apiFetch` from module 07, are the inversion. The screen now depends on `getStudios(): Promise<Studio[]>`, an abstraction describing _what_ it needs rather than _how_ it arrives. Swapping `fetch` for something else, adding a token header, or mocking the whole thing in a test, as module 10 did, all become possible without a single screen changing.
 
-That's the concrete payoff, and it's worth stating plainly: module 09's mocked tests only worked because module 07 had already inverted this dependency. Screens calling `fetch` directly would have been untestable without mocking global `fetch` itself.
+That's the concrete payoff, and it's worth stating plainly: module 10's mocked tests only worked because module 07 had already inverted this dependency. Screens calling `fetch` directly would have been untestable without mocking global `fetch` itself.
 
 | Principle             | One-line version                                     | Warning sign                                  |
 | --------------------- | ---------------------------------------------------- | --------------------------------------------- |
@@ -279,7 +281,7 @@ A useful test: if you'd need to write a comment saying `# now validate the input
 
 ## 8. Refactoring safely
 
-**Refactoring** means changing a program's internal structure without changing what it does. The second half of that sentence is the hard part, and it's why this module comes after module 09 rather than before it.
+**Refactoring** means changing a program's internal structure without changing what it does. The second half of that sentence is the hard part, and it's why this module comes after module 10 rather than before it.
 
 Refactoring without tests isn't refactoring, it's rewriting and hoping. The tests are what let you make a change confidently, because "did I break anything?" becomes a command rather than a feeling.
 
@@ -319,7 +321,7 @@ npx prettier --write .
 
 It's worth being clear about the division of labour. A **formatter** handles what code looks like: indentation, quote style, line length. None of it affects behaviour, and none of it is worth a team discussion, which is precisely why automating it away is valuable. A **linter** finds likely mistakes: unused variables, unreachable code, missing dependencies in a `useEffect`.
 
-The Project's code quality expectations include consistent formatting and linting, so running these once at the end is worth far less than having them running throughout. Module 09's Task 6 built a workflow that runs your tests on every push; the same workflow can run `ruff check` and `expo lint`.
+The Project's code quality expectations include consistent formatting and linting, so running these once at the end is worth far less than having them running throughout. Module 10's Task 6 built a workflow that runs your tests on every push; the same workflow can run `ruff check` and `expo lint`.
 
 | Key terms   |                                                                     |
 | ----------- | ------------------------------------------------------------------- |
@@ -343,3 +345,134 @@ Record the before and after line counts, and the sequence of commits you made. T
 Pick two more smells from the table in section 7, ones not demonstrated in sections 7.1 to 7.3, and find real examples of both in your own code. Fix them.
 
 Then go further than anything shown here. Every fix in this module has been an improvement, but refactoring genuinely has costs, and pretending otherwise is how codebases end up with fifteen tiny files nobody can navigate. Choose one place in your code where you can identify a smell and have decided **not** to fix it. In your README, name the smell, explain what fixing it would cost in this specific case, and justify why leaving it is the better call here. Module 01 made the point that a principle is a default you can explain a departure from; this task is asking you to explain one.
+
+---
+
+## 10. Professional version control
+
+Section 8 made the case for committing after every small refactoring step, which is a version control practice justified by a code quality argument. That's the right way round, and it's worth extending, because the Project assesses your Git history directly.
+
+The expectations are explicit: regular, descriptive conventional commits linked to relevant issues, and semantic versioned releases with notes at the end of each sprint. The descriptor also puts it more bluntly — a single commit on the due date communicates something very specific to a marker. Your history is evidence of your process, and it's the one piece of evidence you cannot reconstruct at the end.
+
+### 10.1 Conventional commits
+
+**Conventional Commits** is a convention giving every message a type, an optional scope, and a description.
+
+```
+feat(studios): add favourite toggle to studio row
+fix(auth): stop token refresh loop on expired refresh token
+refactor(views): extract validation from StudioViewSet into serializer
+test(studios): cover ownership permission for non-owners
+docs(api): document error response shape
+chore(deps): upgrade expo-sqlite
+```
+
+Common types:
+
+| Type       | Use for                                                   |
+| ---------- | --------------------------------------------------------- |
+| `feat`     | A new capability a user could notice                      |
+| `fix`      | A bug fix                                                 |
+| `refactor` | Restructuring with no behaviour change — section 8's work |
+| `test`     | Adding or changing tests                                  |
+| `docs`     | Documentation only                                        |
+| `chore`    | Dependencies, config, tooling                             |
+
+The value isn't the tidiness. It's that `refactor` and `feat` being different types forces you to notice when a commit is doing both, which is exactly the mixed commit section 8 warned against. If you can't pick one type, the commit is two commits.
+
+Write the description as the completion of "this commit will…". Present tense, imperative, no full stop. `add favourite toggle`, not `added favourite toggle` or `adding some stuff to the studio row`.
+
+Three commits named `update`, `fix stuff`, and `changes` are useless six weeks later — but the real cost is immediate. Module 10's debugging section suggested narrowing a bug by halving; `git bisect` does that automatically across your history, and it's worth exactly as much as your messages are.
+
+### 10.2 Linking to issues
+
+Cards on your module 09 Kanban board should be GitHub issues, and commits should reference them.
+
+```
+feat(studios): add favourite toggle to studio row
+
+Closes #14
+```
+
+`Closes #14` in a commit or pull request body moves that issue to closed automatically when it lands on your default branch, which keeps the board honest without you maintaining it by hand. The board demonstrating genuine use throughout is assessed; a board updated in one sitting looks exactly like what it is.
+
+### 10.3 Branching
+
+For an individual project, a straightforward model is enough:
+
+- `main` — always in a working state, and what you tag releases from.
+- `project` — the branch the Project is marked from, per the descriptor.
+- One short-lived branch per issue, named for it: `feat/14-favourite-toggle`.
+
+Merge back with a pull request, even working alone. It gives you a place to read your own diff before it lands, and it's where module 10's CI workflow reports whether the tests passed. Reviewing your own PR catches a surprising amount — a stray `console.log`, a committed `.env`, a file you didn't mean to touch.
+
+Keep branches short-lived. A branch open for three weeks accumulates conflicts and stops being a unit of work.
+
+### 10.4 Releases
+
+At the end of each sprint, including the UAT sprint, tag a release and write notes.
+
+**Semantic versioning** is `MAJOR.MINOR.PATCH`:
+
+| Part  | Increment when                                           |
+| ----- | -------------------------------------------------------- |
+| MAJOR | You make a breaking change to something others depend on |
+| MINOR | You add functionality without breaking what exists       |
+| PATCH | You fix a bug without changing anything else             |
+
+For a project of this shape, sprint releases are usually `v0.1.0`, `v0.2.0`, `v0.3.0`, with a `v0.2.1` if you have to fix something after tagging. The leading `0` says the project isn't stable yet, which is honest.
+
+```bash
+git tag -a v0.2.0 -m "Sprint 2: favourites and offline studio list"
+git push origin v0.2.0
+```
+
+`-a` creates an annotated tag, which records who tagged it and when. A bare `git tag v0.2.0` creates a lightweight pointer with none of that, and the difference matters when a tag is your evidence that a release existed at a particular point in time.
+
+Release notes need to cover what was delivered, known issues, how to run the release locally — both API and client — and any relevant technical information.
+
+```markdown
+## v0.2.0 — Sprint 2
+
+### Delivered
+
+- Users can favourite a studio; favourites persist across restarts (#14, #15)
+- Studio list reads from a local cache when offline (#18)
+
+### Known issues
+
+- Favourites are device-local and don't sync between devices (#22)
+- Pull-to-refresh spinner occasionally persists after a failed refresh (#23)
+
+### Running this release
+
+API: see `api-documentation.md`. Requires `DJANGO_SECRET_KEY` in `.env`.
+Client: `npm install`, set `EXPO_PUBLIC_API_URL` to your machine's LAN address, `npx expo start`.
+
+### Technical notes
+
+- Adds `expo-sqlite`; schema created on first launch, no migration needed.
+```
+
+The known issues section is the one students omit, and it's the one that reads best. Listing what doesn't work yet, with issue numbers, demonstrates that you know your own project's state. Silence about it reads either as not knowing or as hoping nobody checks.
+
+Each release must be runnable locally from the tagged commit. That's worth testing rather than assuming: check the tag out into a fresh directory and follow your own instructions.
+
+| Key terms            |                                                                      |
+| -------------------- | -------------------------------------------------------------------- |
+| Conventional Commits | A commit message convention of type, optional scope, and description |
+| Semantic versioning  | `MAJOR.MINOR.PATCH`, where each part signals a kind of change        |
+| Annotated tag        | A tag recording author, date and message, unlike a lightweight tag   |
+| Release notes        | What shipped, what's known broken, and how to run it                 |
+
+### Task 5
+
+Adopt conventional commits for the rest of the course, starting with Task 3's refactoring commits. Then look back at your last twenty commit messages and pick the three least useful. Rewrite each as it should have been written, and record in your README what information the original was missing.
+
+### Task 6
+
+Tag your current work as `v0.1.0` with an annotated tag, and write full release notes including a known issues section with at least two real entries.
+
+Then verify it properly, which nothing above walked you through. Clone your own repository into a completely fresh directory, check out the tag, and follow your own release notes exactly — no filling in gaps from memory, no reusing your existing `.env` or virtual environment. Record every step where your instructions turned out to be incomplete, and fix them.
+
+Whatever you find here, a marker would have found too.
