@@ -107,7 +107,48 @@ You are not required to deploy the API or publish the app to any store or distri
 
 ---
 
+# Marking
+
+| Phase                                         |   Marks |
+| --------------------------------------------- | ------: |
+| **Phase 1: Design**                           |  **28** |
+| 1. App Concept                                |       2 |
+| 2. Backlog Selection and Requirement Analysis |      12 |
+| 3. System Design                              |       6 |
+| 4. API Design                                 |       3 |
+| 5. Wireframes                                 |       2 |
+| 6. Design Reflection                          |       3 |
+| **Phase 2: Build**                            |  **38** |
+| Project Management                            |       5 |
+| Django API Implementation                     |       6 |
+| React Native Client Implementation            |       6 |
+| Design Patterns and Programming Principles    |       6 |
+| User Acceptance Testing Sprint                |       9 |
+| Releases                                      |       2 |
+| Code Quality and Version Control              |       2 |
+| Documentation                                 |       2 |
+| **Phase 3: Reflect**                          |  **20** |
+| Design and Implementation Reflection          |       8 |
+| User Acceptance Testing Reflection            |       7 |
+| Final Reflection                              |       5 |
+| **Phase 4: Present**                          |  **14** |
+| **Total**                                     | **100** |
+
+Scaled to 80% of the course.
+
+Note where the marks are. **Writing code is worth 20 of the 100 marks.** Designing, planning, testing, documenting, evaluating and communicating your work is worth the other 80.
+
+This is deliberate, and it reflects what the course is assessing. A working app that you can't justify, evaluate or explain demonstrates very little; a smaller app you can reason about clearly demonstrates a great deal. If you find yourself trading reflection time for one more feature, you are trading marks away.
+
+Roughly a third of the available marks assess LO1, through the design patterns and principles you apply, your code quality, your reflections, and your code walkthrough. The remainder assess LO2.
+
+**Partial marks are available for partially completed work.** A smaller feature set, well designed, tested and reflected on, will score better than ten half-finished requirements - and the mark allocation above is what makes that true rather than merely encouraging.
+
+---
+
 # Phase 1: Design
+
+**28 marks**
 
 > Complete this phase before beginning Sprint 1. Your lecturer must approve your app concept and design before development begins.
 
@@ -116,6 +157,8 @@ The purpose of this phase is to demonstrate that you can define and analyse deve
 ---
 
 # 1. App Concept
+
+**2 marks**
 
 Before selecting requirements, briefly describe your app idea (**100–150 words**), covering:
 
@@ -130,6 +173,8 @@ Your lecturer must approve your concept before you continue to backlog selection
 ---
 
 # 2. Backlog Selection and Requirement Analysis
+
+**12 marks**
 
 Define your own product backlog of **10 requirements** for your app concept.
 
@@ -186,6 +231,8 @@ Your 10 requirements should provide enough work for meaningful sprint planning w
 
 # 3. System Design
 
+**6 marks**
+
 From your 10 selected requirements, choose **two features** involving meaningful UI and/or system-level complexity.
 
 For each feature, create an appropriate system design diagram.
@@ -215,6 +262,8 @@ Accompany each diagram with a **100–150 word explanation** that:
 
 # 4. API Design
 
+**3 marks**
+
 Document the Django API endpoints required by your two selected features.
 
 | HTTP Method | URL | Description | Authentication | Roles | Body Parameters |
@@ -236,6 +285,8 @@ Your API design should fit sensibly into your overall app architecture.
 
 # 5. Wireframes
 
+**2 marks**
+
 Create wireframes for your two selected features.
 
 Your wireframes should show:
@@ -254,6 +305,8 @@ The purpose is to communicate the intended user experience before implementation
 
 # 6. Design Reflection
 
+**3 marks**
+
 Before beginning implementation, write a short reflection addressing:
 
 1. What are your two selected features?
@@ -267,6 +320,8 @@ This reflection is assessed on the quality of your reasoning rather than whether
 
 # Phase 2: Build
 
+**38 marks**
+
 Implement your selected requirements across the Django API and React Native client.
 
 Use your design documents as the starting point for implementation.
@@ -276,6 +331,8 @@ Your designs are not fixed contracts. If implementation reveals that a design ne
 ---
 
 # Project Management
+
+**5 marks**
 
 Use a Kanban board throughout the project.
 
@@ -301,6 +358,8 @@ Your board should demonstrate genuine use throughout the project.
 
 # Django API Implementation
 
+**6 marks**
+
 Implement the API functionality required by your selected requirements.
 
 You must:
@@ -317,6 +376,8 @@ The API should integrate cleanly with the rest of your app rather than being dev
 
 # React Native Client Implementation
 
+**6 marks**
+
 Implement your selected requirements within the React Native client.
 
 You must:
@@ -330,6 +391,8 @@ You must:
 ---
 
 # Design Patterns and Programming Principles
+
+**6 marks**
 
 The Practical provides a focused demonstration of your ability to apply patterns and principles.
 
@@ -362,6 +425,8 @@ Your final reflection must evaluate how effectively you applied these patterns a
 
 # User Acceptance Testing Sprint
 
+**9 marks**
+
 One of your sprints will be designated as your **User Acceptance Testing (UAT) sprint**.
 
 In this sprint, in addition to that sprint's planned development work, you will validate your two Phase 1 features with real users.
@@ -383,20 +448,22 @@ You remain responsible for prioritising which feedback to act on and justifying 
 
 Your UAT will be assessed against the following:
 
-| Criterion                 | What this looks like                                                                                                            |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **Participant selection** | At least 3 participants who were not involved in development and reasonably represent your intended users                       |
-| **Test design**           | Test scenarios map directly to the acceptance criteria defined in Phase 1, not just general "click around" exploration          |
-| **Session evidence**      | At least one moderated/observed session, with notes on what participants did, said, or struggled with                           |
+| Criterion                 | What this looks like                                                                                                             |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Participant selection** | At least 3 participants who were not involved in development and reasonably represent your intended users                        |
+| **Test design**           | Test scenarios map directly to the acceptance criteria defined in Phase 1, not just general "click around" exploration           |
+| **Session evidence**      | At least one moderated/observed session, with notes on what participants did, said, or struggled with                            |
 | **Structured feedback**   | Feedback is captured consistently across participants, e.g., the same questionnaire or rating scale), not just informal comments |
-| **Issue tracking**        | Issues found are logged individually, with a note on severity/priority                                                          |
-| **Action taken**          | At least two identified issues result in a tracked, implemented change to the app                                               |
-| **Re-verification**       | Changed features are re-checked against their original acceptance criteria after the fix                                        |
-| **Documentation**         | Your test plan, raw results, and a short written summary of findings are all included in your evidence                          |
+| **Issue tracking**        | Issues found are logged individually, with a note on severity/priority                                                           |
+| **Action taken**          | At least two identified issues result in a tracked, implemented change to the app                                                |
+| **Re-verification**       | Changed features are re-checked against their original acceptance criteria after the fix                                         |
+| **Documentation**         | Your test plan, raw results, and a short written summary of findings are all included in your evidence                           |
 
 ---
 
 # Releases
+
+**2 marks**
 
 At the end of **each sprint**, including the UAT sprint:
 
@@ -414,6 +481,8 @@ The release history should demonstrate genuine incremental development throughou
 ---
 
 # Code Quality and Version Control
+
+**2 marks**
 
 The Project assesses professional development practices over an extended period.
 
@@ -433,6 +502,8 @@ Your Git history is evidence of your development process. A regular history shou
 ---
 
 # Documentation
+
+**2 marks**
 
 Maintain the following documentation throughout the project.
 
@@ -461,6 +532,8 @@ Documentation should be maintained throughout development rather than written en
 
 # Phase 3: Reflect
 
+**20 marks**
+
 After completing development, create `reflection.md`.
 
 Your reflections should be based on **specific evidence from your project**.
@@ -470,6 +543,8 @@ Generic statements such as "I learned a lot" will not demonstrate sufficient ref
 ---
 
 # Design and Implementation Reflection
+
+**8 marks**
 
 **Approximately 400 words**
 
@@ -519,6 +594,8 @@ Identify the part of the project that best demonstrates your understanding and e
 
 # User Acceptance Testing Reflection
 
+**7 marks**
+
 **Approximately 400 words**
 
 Address:
@@ -533,6 +610,8 @@ Address:
 
 # Final Reflection
 
+**5 marks**
+
 **Approximately 300 words**
 
 Address:
@@ -546,6 +625,8 @@ Your reflection should use concrete examples from your project.
 ---
 
 # Phase 4: Present
+
+**14 marks**
 
 Complete an individual presentation of **10–15 minutes**, either live or recorded.
 
