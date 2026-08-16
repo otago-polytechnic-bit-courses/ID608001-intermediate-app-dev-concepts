@@ -95,12 +95,58 @@ curl http://127.0.0.1:8000/api/studios/ \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 ```
 
-| Key terms                       |                                                                           |
-| ------------------------------- | ------------------------------------------------------------------------- |
-| JWT, short for JSON Web Token   | A signed, self-contained token carrying claims about who the requester is |
-| Access token                    | Short-lived token attached to every API request                           |
-| Refresh token                   | Long-lived token whose only job is obtaining a new access token           |
-| `Authorization: Bearer <token>` | The header format used to send a token with a request                     |
+### 3.1 Testing properly with curl
+
+Every section from here on changes what your API allows, and the only way to know a change actually worked is to make a request and look at the result. That means curl, not the browsable API, because the browsable API logs you in with a session cookie and will happily let you do things your token-based mobile client cannot.
+
+Three habits make this far less tedious than it sounds.
+
+First, **look at the status code, not just the body**. Add `-i` to see the response headers, or ask for the status alone.
+
+```bash
+curl -i http://127.0.0.1:8000/api/studios/
+
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/api/studios/
+```
+
+`-s` silences the progress meter, `-o /dev/null` throws away the body, and `-w "%{http_code}\n"` prints just the number. A permission that works and a permission that silently does nothing look identical in the body and completely different in the status line.
+
+Second, **put the token in a shell variable** rather than pasting a 300-character string into every command.
+
+```bash
+TOKEN=$(curl -s -X POST http://127.0.0.1:8000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your_superuser", "password": "your_password"}' \
+  | python -m json.tool | grep '"access"' | cut -d '"' -f 4)
+
+curl -s http://127.0.0.1:8000/api/studios/ \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+If you have `jq` installed, `| jq -r .access` does the same job far more readably. Remember the access token expires after five minutes, so when requests suddenly start returning 401 during a lab, re-running the first command is usually the entire fix.
+
+Third, **test the failure, not only the success**. A wrong password should be rejected, and confirming that is one command.
+
+```bash
+curl -i -X POST http://127.0.0.1:8000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your_superuser", "password": "definitely-wrong"}'
+```
+
+```
+HTTP/1.1 401 Unauthorized
+{"detail":"No active account found with the given credentials"}
+```
+
+> **Windows note:** in PowerShell, `curl` is an alias for `Invoke-WebRequest` and will not accept these flags. Use `curl.exe` explicitly, and swap the single quotes around the JSON body for escaped double quotes, or run the commands from Git Bash or WSL instead.
+
+| Key terms                       |                                                                            |
+| ------------------------------- | -------------------------------------------------------------------------- |
+| JWT, short for JSON Web Token   | A signed, self-contained token carrying claims about who the requester is  |
+| Access token                    | Short-lived token attached to every API request                            |
+| Refresh token                   | Long-lived token whose only job is obtaining a new access token            |
+| `Authorization: Bearer <token>` | The header format used to send a token with a request                      |
+| `curl -i`                       | Include the response headers, and therefore the status line, in the output |
 
 ### Task 1
 
@@ -172,7 +218,47 @@ path("api/auth/", include("accounts.urls")),
 
 `AllowAny` on the registration view is deliberate and worth pausing on: it's the one endpoint that must work for someone who has no account yet, so requiring authentication on it would make registration impossible.
 
-### 4.1 A warning about the `User` model
+### 4.1 Testing registration
+
+Register a second user, deliberately not your superuser, because section 5 needs two accounts to demonstrate ownership.
+
+```bash
+curl -i -X POST http://127.0.0.1:8000/api/auth/register/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "hemi", "email": "hemi@example.com", "password": "kererupine24"}'
+```
+
+```
+HTTP/1.1 201 Created
+{"id":2,"username":"hemi","email":"hemi@example.com"}
+```
+
+Two things in that response are worth noticing rather than skimming. The status is `201 Created`, not `200 OK`, because a new resource now exists. And there is no `password` field anywhere in the body, which is `write_only=True` doing its job.
+
+Now confirm the validation actually fires, by sending a password that's too short.
+
+```bash
+curl -i -X POST http://127.0.0.1:8000/api/auth/register/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "kiri", "password": "short"}'
+```
+
+```
+HTTP/1.1 400 Bad Request
+{"password":["Ensure this field has at least 8 characters."]}
+```
+
+Finally, prove the account genuinely works end to end by obtaining a token for it, which also confirms the password was hashed rather than stored raw.
+
+```bash
+curl -s -X POST http://127.0.0.1:8000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "hemi", "password": "kererupine24"}'
+```
+
+If that returns a token pair, `create_user` hashed the password correctly. If you had used `User.objects.create` by mistake, registration would have returned `201` exactly as above and this login would fail, which is precisely why the second command matters.
+
+### 4.2 A warning about the `User` model
 
 Everything above uses Django's built-in `User`, which is the right choice for learning and perfectly adequate for many projects. There is one thing worth knowing before you go further, because it's much cheaper to act on now than later.
 
@@ -219,6 +305,26 @@ class StudioViewSet(viewsets.ModelViewSet):
 ```
 
 Swapping `IsAuthenticatedOrReadOnly` for `IsAuthenticated` changes the entire access policy of that endpoint, and not a single other line of the ViewSet needs to change. That interchangeability, achieved without touching the code that uses it, is the pattern's whole point.
+
+Confirm the policy is live with two requests that differ only in whether a token is attached.
+
+```bash
+# Reading without a token: still allowed
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/api/studios/
+
+# Writing without a token: now rejected
+curl -i -X POST http://127.0.0.1:8000/api/studios/ \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Testing Gym", "suburb": "St Clair", "city": "Dunedin"}'
+```
+
+```
+200
+HTTP/1.1 401 Unauthorized
+{"detail":"Authentication credentials were not provided."}
+```
+
+Before this section, that second command returned `201 Created`. If it still does, the `permission_classes` line hasn't taken effect, and the usual cause is editing the wrong ViewSet or a server that needs restarting.
 
 | Built-in permission class   | What it allows                                      |
 | --------------------------- | --------------------------------------------------- |
@@ -287,6 +393,67 @@ class StudioViewSet(viewsets.ModelViewSet):
 
 `perform_create` is DRF's hook for adding data the client didn't send. Setting the owner here, rather than trusting an `owner` field in the request body, is essential: if the client sent its own owner ID, anyone could create a studio owned by somebody else simply by editing the JSON.
 
+### 5.2 Testing ownership
+
+This is the point in the module where testing stops being optional. An ownership rule that doesn't work looks exactly like an ownership rule that does, right up until a marker or a user deletes something they shouldn't have been able to.
+
+Get a token for each of your two accounts and keep both in variables.
+
+```bash
+SUPER=$(curl -s -X POST http://127.0.0.1:8000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your_superuser", "password": "your_password"}' | jq -r .access)
+
+HEMI=$(curl -s -X POST http://127.0.0.1:8000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "hemi", "password": "kererupine24"}' | jq -r .access)
+```
+
+Create a studio as the superuser, sending no `owner` field at all.
+
+```bash
+curl -i -X POST http://127.0.0.1:8000/api/studios/ \
+  -H "Authorization: Bearer $SUPER" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Harbourside Yoga", "suburb": "St Kilda", "city": "Dunedin"}'
+```
+
+The response should be `201 Created`, with the owner set to your superuser despite never appearing in the request. That is `perform_create` working. Note the `id` that comes back; the commands below assume it is `1`.
+
+Now the test that matters. Try to edit that studio as the other user.
+
+```bash
+curl -i -X PATCH http://127.0.0.1:8000/api/studios/1/ \
+  -H "Authorization: Bearer $HEMI" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Hemi Was Here"}'
+```
+
+```
+HTTP/1.1 403 Forbidden
+{"detail":"You do not have permission to perform this action."}
+```
+
+Then confirm the same request succeeds for the owner, because a permission that rejects everybody is not a working permission, it's a broken one.
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" -X PATCH http://127.0.0.1:8000/api/studios/1/ \
+  -H "Authorization: Bearer $SUPER" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Harbourside Yoga & Pilates"}'
+```
+
+Finally, check that reading is still open to the non-owner, since `SAFE_METHODS` is supposed to let that through.
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/api/studios/1/ \
+  -H "Authorization: Bearer $HEMI"
+```
+
+Four commands, four expected results: `201`, `403`, `200`, `200`. Any one of them coming back differently tells you something specific about which half of the rule is wrong.
+
+An anonymous write returned `401` in section 5, but a logged-in non-owner returns `403` here. Why two different codes for what looks like the same refusal? _Answer: `401` means the server doesn't know who you are, so authenticating might change the answer. `403` means it does know who you are, and the answer still won't change. On the client that distinction is directly actionable: a `401` should send someone to the login screen, whereas sending them there on a `403` would be a confusing loop, since logging in again fixes nothing._
+
 Permission classes in a list are combined with AND, so every one of them must pass. Given that, what would `[IsAuthenticated, IsOwnerOrReadOnly]` do differently from the pair used above? _Answer: it would block anonymous users from reading at all, since `IsAuthenticated` fails before ownership is ever considered. `IsAuthenticatedOrReadOnly` deliberately lets anyone browse the studio list while still requiring a login to change anything._
 
 | Key terms               |                                                                                   |
@@ -296,6 +463,7 @@ Permission classes in a list are combined with AND, so every one of them must pa
 | `has_object_permission` | Decides access to one specific object                                             |
 | `SAFE_METHODS`          | The HTTP methods that only read: `GET`, `HEAD`, `OPTIONS`                         |
 | `perform_create`        | A ViewSet hook for setting fields the client shouldn't be trusted to send         |
+| `401` vs `403`          | Not authenticated, versus authenticated but not permitted                         |
 
 Before writing a custom permission, write the rule out as one plain English sentence first, in the form "a _who_ may _do what_ to _which objects_." If that sentence needs an "and also" in the middle, you probably have two permissions rather than one, and splitting them keeps each one independently swappable, which is the whole reason for the pattern.
 
@@ -308,6 +476,8 @@ Add the `owner` field, the `IsOwnerOrReadOnly` permission, and `perform_create` 
 Write a second custom permission class of your own that isn't a variation on ownership, and apply it to `StudioClassViewSet`. It should express a rule your app genuinely needs, for example only allowing classes to be added to a studio that the requester owns, or blocking deletion of a class that already has bookings once you have them.
 
 Use DRF's permissions documentation to find whichever hook fits your rule best, since your rule may need to inspect the request body rather than an existing object, which neither example above did. In your README, name the rule in one sentence, explain which hook you used and why the other one couldn't express it, and describe what you had to test to be confident it actually holds.
+
+Include the curl commands you used, and make sure they cover the rejection _and_ the success, in the style of section 5.2. A permission demonstrated only by things it blocks hasn't been demonstrated.
 
 ---
 
@@ -359,6 +529,8 @@ export async function login(username: string, password: string): Promise<void> {
 ```
 
 Notice `login` checks `response.ok` before touching the body. `fetch` does not throw on a 401; it resolves normally with a failed status, and module 06's fetch code would have happily tried to read a studio list out of an error response. Checking the status explicitly is the network-boundary version of the same defensive habit from module 03.
+
+Every `fetch` you write from here on has a curl equivalent, and reaching for curl first is a genuinely faster way to work. When a screen misbehaves, the same request sent with curl tells you within seconds which side of the network the fault is on: if curl gets the response you expected, the API is fine and the bug is in your React Native code.
 
 ### 6.2 Attaching the token to every request
 
@@ -444,6 +616,8 @@ Build a login screen at `app/login.tsx` with two `TextInput` fields and a button
 
 Convert `studiosApi.ts` to route every request through `apiFetch`, and add `updateStudio` and `deleteStudio` functions using it. Confirm with your running Django server that an unauthenticated delete is rejected, and the same delete succeeds once you've logged in as that studio's owner.
 
+Verify each of those two outcomes with curl first, then reproduce them through the app. Note in `API_TESTING.md` whether the app's behaviour matched what curl told you to expect, and if it didn't, what the difference turned out to be.
+
 ### Task 6
 
 Access tokens expire after five minutes, and nothing you've built so far notices. Once the token expires, every request starts failing with a 401 and your app has no idea why.
@@ -503,6 +677,23 @@ DEBUG = env("DJANGO_DEBUG")
 `environ.Env(DEBUG=(bool, False))` sets both a type and a default. The type matters more than it looks: environment variables are always strings, and the string `"False"` is truthy in Python, so reading `DEBUG` without a type conversion gives you a production server running in debug mode. That's not a hypothetical; it's one of the most common Django deployment mistakes there is.
 
 `SECRET_KEY` deliberately has no default. If the variable is missing, the app refuses to start with a clear error, which is far better than silently falling back to a placeholder that then signs real tokens.
+
+Restart the server and confirm nothing has changed from the outside, which is the whole point of a refactor.
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/api/studios/
+```
+
+A `200` means the settings still load. Now check the more interesting case: rename `.env` temporarily, restart, and try again.
+
+```bash
+mv .env .env.disabled
+python manage.py runserver
+```
+
+The server should refuse to start, naming the missing variable. Curl against it now fails to connect at all rather than returning a status code, which is exactly the behaviour you want: an app that won't start is far safer than one that starts with an unknown key and silently invalidates every token it has ever issued. Rename the file back afterwards.
+
+Note that changing `SECRET_KEY` invalidates every access and refresh token already issued, since the signature no longer verifies. If your existing tokens suddenly return `401` after this section, that's the cause, and re-running the token request from section 3.1 fixes it.
 
 Now the critical step. Add `.env` to `.gitignore`.
 
@@ -602,6 +793,24 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["localhost", "127.0.0.
 DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,192.168.1.42
 ```
 
+Test the LAN address directly, using your own address in place of the example.
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" http://192.168.1.42:8000/api/studios/
+```
+
+A `200` means Django is listening on that interface and accepting that hostname. If it hangs or refuses the connection, `runserver` is still bound to loopback only. If it returns `400`, the address is missing from `ALLOWED_HOSTS`, and you can reproduce that failure deliberately without changing any settings by overriding the `Host` header on a loopback request.
+
+```bash
+curl -i -H "Host: nonsense.example.com" http://127.0.0.1:8000/api/studios/
+```
+
+```
+HTTP/1.1 400 Bad Request
+```
+
+That is `ALLOWED_HOSTS` rejecting a hostname it was never told about, and it's worth seeing once on purpose so you recognise it later. Better still, run the LAN command from a second machine on the same network, since that tests the thing you actually care about.
+
 Both devices have to be on the same wifi network. Institutional and guest networks frequently block devices from talking to each other, which is a real constraint worth discovering during a lab rather than during your final demonstration.
 
 ### 8.2 CORS
@@ -638,6 +847,32 @@ Position matters, and module 12 explains why in full: middleware is an ordered p
 
 You will find suggestions online to set `CORS_ALLOW_ALL_ORIGINS = True`. It makes the error disappear, which is why it's popular. It also tells every website on the internet that it may make authenticated requests to your API, which given the tokens you built in section 3 is a meaningful thing to switch off. List the origins you actually need.
 
+Curl can send a preflight request by hand, which is the only practical way to see what the browser sees without guessing from a console error.
+
+```bash
+curl -i -X OPTIONS http://127.0.0.1:8000/api/studios/ \
+  -H "Origin: http://localhost:8081" \
+  -H "Access-Control-Request-Method: POST" \
+  -H "Access-Control-Request-Headers: authorization,content-type"
+```
+
+Look for one header in the response.
+
+```
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:8081
+```
+
+Then send the same request with an origin you haven't listed.
+
+```bash
+curl -i -X OPTIONS http://127.0.0.1:8000/api/studios/ \
+  -H "Origin: http://evil.example.com" \
+  -H "Access-Control-Request-Method: POST"
+```
+
+The `Access-Control-Allow-Origin` header is simply absent. Notice what did _not_ happen: the request wasn't refused, and no error was returned. The server just declined to grant permission, and it's the browser that turns that silence into a blocked request. Curl, having no such rules, would go right ahead and send the real request anyway.
+
 CORS is enforced by the _browser_, not by the server. `curl` ignores it entirely, which is why your `curl` tests in section 3 worked perfectly while the app failed. What does that tell you about what CORS is actually protecting? _Answer: it protects a user's browser from a malicious page making requests on their behalf, using credentials the browser would attach automatically. It isn't protecting your server from attackers - anyone can send whatever request they like with `curl`. Authentication and permissions do that job; CORS does a different one._
 
 | Key terms         |                                                                         |
@@ -655,3 +890,5 @@ Get your app talking to your Django API from a device that isn't your developmen
 Move the API URL into `EXPO_PUBLIC_API_URL` so it isn't hardcoded, and add `django-cors-headers` with an explicit origin list.
 
 Then document it, because this is the single most likely reason a marker cannot run your project. In `app-documentation.md`, write the setup steps someone on a different machine would need: how to find their own LAN address, what to set it to, and how to run the Django server so it's reachable. Test your instructions by following them exactly, as though you'd never seen the project before.
+
+Include a curl command in those instructions that someone can run to confirm the API is reachable from their device before they touch the app at all, so a failure at that point tells them the problem is the network, not your code.

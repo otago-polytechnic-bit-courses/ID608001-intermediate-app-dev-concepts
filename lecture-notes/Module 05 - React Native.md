@@ -1,6 +1,46 @@
 # Module 05: React Native
 
-## 1. What a React Native component actually is
+## 1. Setting up a new project
+
+Create a new project, and install Expo Router explicitly rather than assuming a template already includes it correctly configured.
+
+```bash
+npx create-expo-app fittrack-app --template blank-typescript
+cd fittrack-app
+npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar
+```
+
+At this point your project only has `App.tsx` at the root, along with the usual config files. That's expected: the `blank-typescript` template gives you a single-file app, not a project with Expo Router already wired up.
+
+Expo Router expects to be the app's entry point, taking over from `App.tsx` entirely. Set that in `package.json`.
+
+```json
+{
+  "main": "expo-router/entry"
+}
+```
+
+Once that's set, `App.tsx` is no longer used for anything, Expo Router won't look at it. Delete it, so there isn't a dead file sitting in your project pretending to matter.
+
+Expo Router doesn't read `App.tsx`, it reads a folder called `app/`, which the `blank-typescript` template doesn't create for you. Create it yourself, at the project root, alongside `package.json`.
+
+```bash
+mkdir app
+```
+
+Every screen from here on is a file inside that `app/` folder. If you only ever see `App.tsx` in your file explorer and nothing changes when you edit it, this is almost always why: either `app/` doesn't exist yet, or `main` in `package.json` still points at the old entry point instead of `expo-router/entry`.
+
+Confirm the project runs before going further.
+
+```bash
+npx expo start -c
+```
+
+At this stage, with no files inside `app/` yet, Expo Router will show its own "missing default export" or "no routes found" screen. That's expected too, and it means the entry point swap worked. Section 2 adds the first real route.
+
+---
+
+## 2. What a React Native component actually is
 
 React Native looks like React, because it is React, but it isn't rendering to a browser, so the building blocks are different. There's no `<div>`, no `<span>`, no CSS file.
 
@@ -33,7 +73,7 @@ Why does React Native insist that all text sit inside a `Text` component, when H
 
 ---
 
-## 2. Layout with Flexbox
+## 3. Layout with Flexbox
 
 Every `View` in React Native lays out its children using Flexbox, and it's on by default, there's no separate `display: flex` to turn on the way there is on the web. One default is also flipped from what you might expect: `flexDirection` defaults to `column`, not `row`.
 
@@ -66,7 +106,7 @@ const styles = StyleSheet.create({
 
 ---
 
-## 3. Props: making a component reusable
+## 4. Props: making a component reusable
 
 A component that only ever renders one hardcoded studio isn't very useful. **Props** are how a component receives different data each time it's used, the same way a function receives different arguments each time it's called.
 
@@ -129,7 +169,7 @@ const styles = StyleSheet.create({
 
 ---
 
-## 4. State with `useState`
+## 5. State with `useState`
 
 Props flow in from outside. **State** is data a component manages itself, that can change over time in response to something the user does.
 
@@ -157,7 +197,7 @@ Before adding a new `useState`, write down, in one sentence, exactly what event 
 
 ---
 
-## 5. Rendering a list of data
+## 6. Rendering a list of data
 
 A real screen shows more than one studio. `FlatList` renders an array efficiently, only building the rows that are actually visible on screen at any given moment, rather than all of them at once.
 
@@ -202,7 +242,7 @@ For a short, fixed list of exactly three items that never grows, would `studios.
 
 ---
 
-## 6. Controlled text input
+## 7. Controlled text input
 
 A search box needs to keep whatever's currently typed in sync with a piece of state, so the rest of the screen can react to it as it changes.
 

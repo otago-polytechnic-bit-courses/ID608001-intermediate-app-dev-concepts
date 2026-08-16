@@ -1,46 +1,6 @@
 # Module 06: Navigation and API Integration
 
-## 1. Setting up a new project
-
-Create a new project, and install Expo Router explicitly rather than assuming a template already includes it correctly configured.
-
-```bash
-npx create-expo-app fittrack-app-06 --template blank-typescript
-cd fittrack-app-06
-npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar
-```
-
-At this point your project only has `App.tsx` at the root, along with the usual config files. That's expected: the `blank-typescript` template gives you a single-file app, not a project with Expo Router already wired up.
-
-Expo Router expects to be the app's entry point, taking over from `App.tsx` entirely. Set that in `package.json`.
-
-```json
-{
-  "main": "expo-router/entry"
-}
-```
-
-Once that's set, `App.tsx` is no longer used for anything, Expo Router won't look at it. Delete it, so there isn't a dead file sitting in your project pretending to matter.
-
-Expo Router doesn't read `App.tsx`, it reads a folder called `app/`, which the `blank-typescript` template doesn't create for you. Create it yourself, at the project root, alongside `package.json`.
-
-```bash
-mkdir app
-```
-
-Every screen from here on is a file inside that `app/` folder. If you only ever see `App.tsx` in your file explorer and nothing changes when you edit it, this is almost always why: either `app/` doesn't exist yet, or `main` in `package.json` still points at the old entry point instead of `expo-router/entry`.
-
-Confirm the project runs before going further.
-
-```bash
-npx expo start -c
-```
-
-At this stage, with no files inside `app/` yet, Expo Router will show its own "missing default export" or "no routes found" screen. That's expected too, and it means the entry point swap worked. Section 2 adds the first real route.
-
----
-
-## 2. A second screen, with Expo Router
+## 1. A second screen, with Expo Router
 
 Keep this deliberately small: one list screen, and one detail screen, connected by a single dynamic route. Nothing else yet, no tabs, no modals.
 
@@ -115,7 +75,7 @@ That's the whole navigation setup. Tapping a name on the list screen pushes the 
 
 ---
 
-## 3. A typed presenter component
+## 2. A typed presenter component
 
 Bring `StudioRow` over from module 04 and give it a proper interface, so a mistyped or missing prop is caught before the app ever runs, rather than silently rendering `undefined` the way it could in plain JavaScript.
 
@@ -144,7 +104,7 @@ export function StudioRow({ name, suburb, city }: StudioRowProps) {
 
 ---
 
-## 4. Fetching real data
+## 3. Fetching real data
 
 The list above is still hardcoded. Replace it with a real request to the API you built in module 03.
 
