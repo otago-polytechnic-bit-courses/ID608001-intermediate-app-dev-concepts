@@ -16,8 +16,8 @@ export default function LoginScreen() {
     try {
       await login(username, password);
       router.replace("/");
-    } catch {
-      setError("Invalid username or password");
+    } catch(err) {
+      setError(err+"Invalid username or password");
     } finally {
       setLoading(false);
     }
