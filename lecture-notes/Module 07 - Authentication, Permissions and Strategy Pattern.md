@@ -750,13 +750,37 @@ Then check your own history: run `git log -p -- fittrack_backend/settings.py` an
 
 ## 8. Talking to your API from a real device
 
-Everything so far has used `http://127.0.0.1:8000`. That address means "this machine, talking to itself," and it works fine when your React Native app runs in a simulator on the same computer as your Django server.
+Everything so far has used `http://127.0.0.1:8000`. That address means "this machine, talking to itself," and it works fine when your React Native app runs in an iOS simulator, in Expo Go, or in Expo's web target on the same computer as your Django server. The Android emulator is the one exception. Section 8.1 explains why.
 
 Put the app on a physical phone and every request fails immediately. The phone resolves `127.0.0.1` to _itself_, looks for a Django server running on the phone, and finds nothing. The error message says the network request failed, which is technically true and completely unhelpful.
 
 Two things need fixing: the address the app uses, and the fact that Django and the browser security model will both reject the request even once it arrives.
 
-### 8.1 Use your machine's LAN address
+### 8.1 Android emulators aren't "the same machine"
+
+An Android emulator is the AVD you launch from Android Studio, and it runs inside its own virtual machine with its own isolated network. Inside that VM, `127.0.0.1` refers to the emulator itself, not your development machine. That's why a request to `http://127.0.0.1:8000` never reaches your Django server. It also fails differently than the physical-device case above. Nothing sends back a rejection, so the packet just has nowhere to go, and the request hangs instead of failing right away. That makes it a confusing thing to debug, because a stuck login screen looks the same whether the server is slow, unreachable, or just not running.
+
+The emulator sets aside a special address for exactly this situation. `10.0.2.2` is an alias for your host machine's loopback interface. Point your Expo `.env` at it instead:
+
+```
+EXPO_PUBLIC_API_URL=http://10.0.2.2:8000/api
+```
+
+That traffic is routed straight to loopback rather than arriving on a real network interface, so Django doesn't need `runserver 0.0.0.0:8000` for this case. The default `python manage.py runserver 8000` is enough on its own. You do still need to add the address to `ALLOWED_HOSTS`, because Django checks the incoming request's `Host` header, and the emulator's requests will say `10.0.2.2`, not `127.0.0.1`.
+
+```
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,10.0.2.2
+```
+
+Keep in mind that `10.0.2.2` only means something inside the emulator's own virtual network. A physical phone, or a second machine on the network, still needs the LAN address described in 8.2.
+
+| Where the app is running              | Address to use                   |
+| -------------------------------------- | --------------------------------- |
+| iOS simulator, same machine            | `127.0.0.1`                       |
+| Android emulator, same machine         | `10.0.2.2`                        |
+| Physical device, or a different machine | Your machine's LAN address (8.2) |
+
+### 8.2 Use your machine's LAN address
 
 Find your computer's address on the local network.
 
@@ -813,7 +837,7 @@ That is `ALLOWED_HOSTS` rejecting a hostname it was never told about, and it's w
 
 Both devices have to be on the same wifi network. Institutional and guest networks frequently block devices from talking to each other, which is a real constraint worth discovering during a lab rather than during your final demonstration.
 
-### 8.2 CORS
+### 8.3 CORS
 
 Even with the right address, requests from Expo's web target - and from some development builds - get rejected before your view ever runs, with an error mentioning `Access-Control-Allow-Origin`.
 

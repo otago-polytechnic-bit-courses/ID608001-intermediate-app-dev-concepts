@@ -20,17 +20,20 @@ python3 -m venv venv && source venv/bin/activate   # first time only
 pip install -r requirements.txt                     # first time only
 python manage.py migrate                            # first time only
 python manage.py createsuperuser                    # first time only
-python manage.py runserver 8001
+python manage.py runserver 8000
 
 cd ../fittrack-app
 npm install
 npx expo start
 ```
 
-Run this backend on a different port from the Module 07 one (`8001` here)
-if you want both projects' servers up at the same time - they otherwise
-both default to `8000`. `.env` already points this app at
-`http://127.0.0.1:8001/api` to match.
+`.env` points this app at `http://10.0.2.2:8000/api`. That's the address an
+Android emulator needs to reach a Django server running on the same
+machine. Module 07 section 8.1 explains why `127.0.0.1` doesn't work there.
+
+If you want this backend and the Module 07 one running at the same time,
+they'll collide on `8000`. Give this one a different port instead, for
+example `runserver 8001`, and update `.env` to match.
 
 ## What's here
 

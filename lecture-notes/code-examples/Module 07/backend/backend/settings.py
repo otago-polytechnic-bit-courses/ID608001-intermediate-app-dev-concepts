@@ -30,7 +30,10 @@ DEBUG = env("DJANGO_DEBUG")
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = env.list(
+    "DJANGO_CORS_ALLOWED_ORIGINS",
+    default=["http://localhost:8081"],
+)
 
 # Application definition
 
@@ -57,11 +60,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-# CORS_ALLOWED_ORIGINS = env.list(
-#     "DJANGO_CORS_ALLOWED_ORIGINS",
-#     default=["http://localhost:8081"],
-# )
 
 ROOT_URLCONF = 'backend.urls'
 
