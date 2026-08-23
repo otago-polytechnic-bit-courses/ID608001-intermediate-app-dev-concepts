@@ -293,7 +293,7 @@ Install **Python 3.14 or later** from [python.org](https://www.python.org/downlo
 python -m venv venv
 ```
 
-Activate it. You'll do this every time you open a terminal to work on the project.
+Activate it. You'll do this every time you open a terminal to work on the project.r
 
 On macOS or Linux, run the following.
 

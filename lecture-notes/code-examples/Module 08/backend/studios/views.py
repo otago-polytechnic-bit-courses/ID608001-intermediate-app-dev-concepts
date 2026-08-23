@@ -1,3 +1,4 @@
+from django.db.models import Count
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from .permissions import IsOwnerOrReadOnly
@@ -24,7 +25,7 @@ class StudioViewSet(viewsets.ModelViewSet):
 
 
 class StudioClassViewSet(viewsets.ModelViewSet):
-    queryset = StudioClass.objects.all()
+    queryset = StudioClass.objects.annotate(booking_count=Count("bookings"))
     serializer_class = StudioClassSerializer
 
 
