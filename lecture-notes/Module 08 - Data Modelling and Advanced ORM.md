@@ -59,7 +59,7 @@ user.classes_booked.all()
 
 Notice there's no `on_delete` on a `ManyToManyField`. There's nothing for it to describe: neither side owns the other, and removing one row from the join table doesn't imply deleting anything else.
 
-`blank=True` matters here in a way it doesn't elsewhere. A many-to-many is never required at creation time, because the object has to exist before it can be related to anything - you can't add members to a class that hasn't been saved yet.
+`blank=True` matters here in a way it doesn't elsewhere. A many-to-many is never required at creation time, because the object has to exist before it can be related to anything. You can't add members to a class that hasn't been saved yet.
 
 ---
 
@@ -78,7 +78,7 @@ class Booking(models.Model):
 
     member = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bookings")
     studio_class = models.ForeignKey(
-        StudioClass, on_delete=models.CASCADE, related_name="bookings"
+        "StudioClass", on_delete=models.CASCADE, related_name="bookings"
     )
     status = models.CharField(
         max_length=20, choices=Status.choices, default=Status.CONFIRMED
@@ -94,7 +94,7 @@ class StudioClass(models.Model):
     studio = models.ForeignKey(Studio, on_delete=models.CASCADE, related_name="classes")
     name = models.CharField(max_length=200)
     capacity = models.PositiveIntegerField()
-    members = models.ManyToManyField(User, through=Booking, related_name="classes_booked")
+    members = models.ManyToManyField(User, through="Booking", related_name="classes_booked")
 ```
 
 A through model is just an ordinary model with two `ForeignKey`s, which is worth internalising: the many-to-many is two one-to-manys pointing at a table in the middle. Naming that table, and giving it fields, is what turns a bare association into something your app can reason about.
@@ -109,6 +109,33 @@ Booking.objects.create(member=user, studio_class=studio_class)
 
 The decision rule is short. Does the relationship itself have attributes, now or plausibly soon? If yes, use a through model from the start. Retrofitting one onto an existing plain `ManyToManyField` means a migration that has to preserve every existing pair, which is far more work than choosing correctly up front.
 
+Test it with curl once you've wired up a `/api/bookings/` endpoint for the through model. Grab a token the same way module 07 showed, then post to the through model's own endpoint. Don't post to the many-to-many field on either side.
+
+```bash
+TOKEN=$(curl -s -X POST http://127.0.0.1:8000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "admin", "password": "P@ssw0rd123"}' \
+  | python -m json.tool | grep '"access"' | cut -d '"' -f 4)
+
+curl -i -X POST http://127.0.0.1:8000/api/bookings/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"studio_class": 1, "status": "confirmed"}'
+```
+
+```
+HTTP/1.1 201 Created
+{"id":1,"member_name":"admin","studio_class":1,"status":"confirmed","booked_at":"2026-08-23T09:12:00Z","attended":false}
+```
+
+```bash
+curl -s http://127.0.0.1:8000/api/bookings/ \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+```json
+[{"id":1,"member_name":"admin","studio_class":1,"status":"confirmed","booked_at":"2026-08-23T09:12:00Z","attended":false}]
+
 | Key terms         |                                                                         |
 | ----------------- | ----------------------------------------------------------------------- |
 | `ManyToManyField` | A relationship where many rows on each side relate to many on the other |
@@ -116,11 +143,11 @@ The decision rule is short. Does the relationship itself have attributes, now or
 | Through model     | An explicit join model carrying its own fields about the relationship   |
 | `TextChoices`     | Django's enum for a fixed set of string values                          |
 
-Before writing any of this, sketch the models as boxes with lines between them, and write the relationship on each line as a sentence in both directions - "a studio has many classes; a class belongs to one studio." If a sentence in one direction needs a "sometimes" or an "and also," the model is more complicated than one line, and that's usually a through model announcing itself.
+Before writing any of this, sketch the models as boxes with lines between them, and write the relationship on each line as a sentence in both directions. For example, "a studio has many classes; a class belongs to one studio." If a sentence in one direction needs a "sometimes" or an "and also," the model is more complicated than one line, and that's usually a through model announcing itself.
 
 ### Task 1
 
-Model one many-to-many relationship your own Project genuinely needs, using a through model with at least two fields of its own beyond the two foreign keys.
+Add the `Booking` through model to your `studios` app, connecting `User` and `StudioClass`. Don't just copy the version shown above. Give it at least one field of your own beyond `status`, `booked_at`, and `attended`, something like a `notes` field, a `checked_in_at` timestamp, or a `guest_count`.
 
 Write the two directional sentences for the relationship in a comment above the model first. Then run `makemigrations` and read the generated migration, noting how many tables Django created and which one holds the relationship.
 
@@ -151,11 +178,40 @@ The `UniqueConstraint` stops the same member booking the same class twice. Witho
 
 `CheckConstraint` expresses a rule about a row's own fields: here, a booking can't be marked attended unless it's confirmed. `Q` objects are how you build those conditions, combined with `|` for or and `&` for and.
 
-It's worth being clear about why this belongs in the database rather than in a serializer, since you could enforce both in `validate()`. A serializer only protects the path through your API. The Django admin, a management command, a data migration, and the shell all bypass it entirely - and so does a race between two simultaneous requests, where both pass validation before either has saved. A database constraint is the only rule that holds regardless of what wrote the row.
+It's worth being clear about why this belongs in the database rather than in a serializer, since you could enforce both in `validate()`. A serializer only protects the path through your API. The Django admin, a management command, a data migration, and the shell all bypass it entirely. So does a race between two simultaneous requests, where both pass validation before either has saved. A database constraint is the only rule that holds regardless of what wrote the row.
 
 Serializer validation is still worth having on top, because it produces a friendly field-level error message instead of an `IntegrityError`. The two aren't alternatives: validation is for the user, constraints are for the data.
 
-Your app has a rule that a class can't be booked beyond its capacity. Can a `CheckConstraint` express that? _Answer: no. A check constraint sees only the row being written, and capacity depends on counting other rows in the bookings table. This needs either a transaction that locks and counts before inserting, or an application-level check that accepts a small race risk. Knowing which rules a constraint can and can't express is the useful part - assuming it covers everything is how you end up with over-booked classes._
+Your app has a rule that a class can't be booked beyond its capacity. Can a `CheckConstraint` express that? _Answer: no. A check constraint sees only the row being written, and capacity depends on counting other rows in the bookings table. This needs either a transaction that locks and counts before inserting, or an application-level check that accepts a small race risk. Knowing which rules a constraint can and can't express is the useful part. Assuming it covers everything is how you end up with over-booked classes._
+
+Test the `UniqueConstraint` through the API by repeating the exact booking from section 3, using the same `$TOKEN`.
+
+```bash
+curl -i -X POST http://127.0.0.1:8000/api/bookings/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"studio_class": 1, "status": "confirmed"}'
+```
+
+```
+HTTP/1.1 400 Bad Request
+{"non_field_errors":["The fields member, studio_class must make a unique set."]}
+```
+
+DRF turns your `UniqueConstraint` into that validation error automatically, without a line of serializer code. Now compare it with what the same violation looks like from underneath the API, where nothing is there to catch it.
+
+```bash
+python manage.py shell -c "
+from studios.models import Booking
+Booking.objects.create(member_id=1, studio_class_id=1, status='confirmed')
+"
+```
+
+```
+django.db.utils.IntegrityError: UNIQUE constraint failed: studios_booking.member_id, studios_booking.studio_class_id
+```
+
+That's the comparison Task 2 asks you to make: a friendly `400` through the API, and a raw `IntegrityError` from anything that bypasses it.
 
 ---
 
@@ -195,7 +251,7 @@ StudioClass.objects.annotate(
 ).order_by("-confirmed")
 ```
 
-That second one - a `Count` with a `filter` argument - is the tool for "how many of the related rows match a condition," which is otherwise the query people most often give up on and do in Python.
+That second one, a `Count` with a `filter` argument, is the tool for "how many of the related rows match a condition," which is otherwise the query people most often give up on and do in Python.
 
 ### 5.2 Aggregation
 
@@ -247,13 +303,13 @@ The rule of thumb: forward and single, use `select_related`; backward or many, u
 
 ### Task 2
 
-Add at least one `UniqueConstraint` and one `CheckConstraint` to your models, expressing rules your Project genuinely needs. Prove each one works by trying to violate it from the Django shell and recording the exception you get.
+Add at least one `UniqueConstraint` and one `CheckConstraint` to your `studios` app models, expressing rules the booking system genuinely needs, beyond the two shown above. Prove each one works by trying to violate it from the Django shell and recording the exception you get.
 
 Then add serializer validation for the same rules, and compare the two failures: the raw `IntegrityError` from the shell, and the response your API returns. Note in your README which one a user should ever see, and why you kept both.
 
 ### Task 3
 
-Write three queries against your own models using annotation or aggregation, answering questions your app would actually ask - "which of my classes are nearly full", "how many bookings did each member make this month".
+Write three queries against your `studios` app models using annotation or aggregation, answering questions the booking system would actually ask, such as "which of my classes are nearly full" or "how many bookings did each member make this month."
 
 For one of them, write the naive Python-loop version too. Count the queries each version runs using `django.db.connection.queries` in the shell, and record both numbers.
 
@@ -267,11 +323,20 @@ DRF gives you several answers, and choosing badly is the most common cause of an
 
 ```python
 class BookingSerializer(serializers.ModelSerializer):
+    member = serializers.HiddenField(default=serializers.CurrentUserDefault())
     member_name = serializers.CharField(source="member.username", read_only=True)
 
     class Meta:
         model = Booking
-        fields = ["id", "member", "member_name", "status", "booked_at", "attended"]
+        fields = [
+            "id",
+            "member",
+            "member_name",
+            "studio_class",
+            "status",
+            "booked_at",
+            "attended",
+        ]
         read_only_fields = ["booked_at"]
 
 
@@ -295,7 +360,9 @@ class StudioClassSerializer(serializers.ModelSerializer):
 | `SerializerMethodField`    | Anything you can compute       | The value isn't a field at all            |
 | A separate endpoint        | Nothing; the client asks again | The related set is large or rarely needed |
 
-Two things are worth flagging. `booking_count` is declared as a plain `IntegerField` because it's expected to arrive from the `annotate` in the ViewSet's queryset, not from the model - which is how you connect section 5 to your API without the serializer running its own query per row.
+Three things are worth flagging. `member` is a `HiddenField` with a `CurrentUserDefault`, not a plain `read_only` field. A client can't send it either way, but the difference matters for the `UniqueConstraint` from section 4: DRF builds its automatic uniqueness check from the fields it can see a value for, and a `read_only` field with no default doesn't give it one. Mark `member` merely `read_only` and the duplicate-booking check silently stops working, surfacing as a raw `500 IntegrityError` from the database instead of the clean `400` shown in section 4. `HiddenField` with `CurrentUserDefault` fills the value in from `request.user` without needing a `perform_create` override at all, and it's exactly the value the uniqueness validator needs to see.
+
+`booking_count` is declared as a plain `IntegerField` because it's expected to arrive from the `annotate` in the ViewSet's queryset, not from the model. That's how you connect section 5 to your API without the serializer running its own query per row.
 
 And `SerializerMethodField` is where N+1 problems hide most effectively. The `getattr` fallback above will silently run one query per class if the annotation isn't there. That's a deliberate illustration: it works, it's easy to write, and it's slow in exactly the way you can't see from reading the serializer.
 
@@ -306,6 +373,34 @@ Nesting is the other trap. A class serializer that nests every booking, requeste
 Serialize your through model from Task 1, exposing at least one field via `source` from a related object and one computed value via `SerializerMethodField`.
 
 Then annotate the ViewSet's queryset so the computed value doesn't need a per-row query, and confirm with `django.db.connection.queries` that your list endpoint's query count no longer grows with the number of rows returned.
+
+Test the annotated fields with curl once the ViewSet's queryset carries the `annotate` from section 5.
+
+```bash
+curl -s http://127.0.0.1:8000/api/classes/ \
+  -H "Authorization: Bearer $TOKEN" \
+  | python -m json.tool
+```
+
+```json
+[
+  {
+    "id": 1,
+    "studio": 1,
+    "name": "Sunrise Yoga",
+    "capacity": 20,
+    "booking_count": 1,
+    "spaces_left": 19
+  }
+]
+```
+
+`booking_count` and `spaces_left` only look this cheap because the ViewSet annotated the queryset before the serializer ever ran. Check the status code as a quick sanity check that the endpoint itself is healthy, then confirm the query count properly in the shell as Task 4 asks. A curl response can't tell you how many queries produced it.
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8000/api/classes/ \
+  -H "Authorization: Bearer $TOKEN"
+```
 
 ---
 
@@ -340,7 +435,7 @@ class Migration(migrations.Migration):
     ]
 ```
 
-`apps.get_model` rather than importing `Booking` directly is not a stylistic choice. It gives you the model **as it existed at this point in the migration history**, so the migration keeps working when you add fields later. An imported model is the current one, and a migration written against it breaks the moment the model moves on - usually for whoever clones your repository next, not for you.
+`apps.get_model` rather than importing `Booking` directly is not a stylistic choice. It gives you the model **as it existed at this point in the migration history**, so the migration keeps working when you add fields later. An imported model is the current one, and a migration written against it breaks the moment the model moves on, usually for whoever clones your repository next, not for you.
 
 The safe sequence for a change like adding a required field to a populated table is three migrations: add it as nullable, backfill it with a data migration, then make it non-nullable. Doing it in one step forces you to invent a default for rows that had no meaningful value, and that invented default is now real data nobody will ever question.
 
@@ -352,7 +447,7 @@ The safe sequence for a change like adding a required field to a populated table
 
 ### Task 5
 
-Add a new required field to a model that already has rows in it, using the three-step nullable-backfill-required sequence. Confirm your existing rows have sensible values afterwards.
+Add a new required field to one of your `studios` app models that already has rows in it, using the three-step nullable-backfill-required sequence. Confirm your existing rows have sensible values afterwards.
 
 ### Task 6
 
@@ -360,6 +455,51 @@ Your schema is about to be designed properly in module 09, and this task is the 
 
 Draw the full data model for your own Project: every model, every field with its type, every relationship with its direction and its `related_name`. Include at least one relationship that isn't a plain `ForeignKey`.
 
-Then do the part nothing above walked you through. Take three questions your app will need to answer - real ones, from your backlog - and for each, write the ORM query that answers it against your drawn schema. Not pseudocode: the actual queryset.
+Then do the part nothing above walked you through. Take three real questions your app will need to answer, from your backlog, and for each, write the ORM query that answers it against your drawn schema. Not pseudocode: the actual queryset.
 
 If a question can't be answered, or needs more than one query and a loop in Python to assemble, that's your schema telling you something before you've written a line of it. Record what you changed as a result, because a design you revised on paper is the cheapest revision you will make all semester.
+
+---
+
+## 8. Keeping your environment reproducible
+
+Every `pip install` since module 01 changed what's inside your virtual environment, and none of it is recorded anywhere in your repository. Clone your own project onto a second machine right now and `python manage.py runserver` fails immediately. That's not because your code is wrong, but because nothing installed `django`, `djangorestframework-simplejwt`, `django-environ`, or `django-cors-headers` there.
+
+A `requirements.txt` file fixes that: a plain text list of every package your project depends on, committed alongside your code, so anyone who clones it can reproduce your exact environment in one command.
+
+```bash
+pip freeze > requirements.txt
+```
+
+```
+asgiref==3.12.1
+Django==6.1
+django-cors-headers==4.9.0
+django-environ==0.14.0
+djangorestframework==3.18.0
+djangorestframework_simplejwt==5.5.1
+PyJWT==2.13.0
+sqlparse==0.6.0
+```
+
+Anyone else, a teammate, a marker, you on a different machine, installs the identical set with one command, inside their own activated virtual environment.
+
+```bash
+pip install -r requirements.txt
+```
+
+`pip freeze` writes down every package currently installed, at the exact version installed, including packages you never asked for directly. Those are dependencies of dependencies pulled in behind the scenes. That's both the value and the risk: it guarantees an identical environment, but a file generated carelessly can pin things you don't actually need, or miss something if it's run outside the virtual environment it's meant to capture.
+
+The version pins (`==3.15.1`) matter too. Without them, `pip install -r requirements.txt` installs whatever happens to be the latest version on the day it's run, which might behave differently from what you tested against. Pinning trades a small amount of staleness for a guarantee: the environment a marker builds from your repository is the one you actually tested.
+
+| Key terms          |                                                                  |
+| ------------------ | ---------------------------------------------------------------- |
+| `requirements.txt` | A plain text list of a project's dependencies and their versions |
+| `pip freeze`       | Writes every installed package and its exact version             |
+| `pip install -r`   | Installs every package listed in a requirements file             |
+
+### Task 7
+
+Generate a `requirements.txt` for your `studios` project with `pip freeze`, and commit it. Confirm it actually works: create a fresh virtual environment somewhere else (or delete and recreate your current one), run `pip install -r requirements.txt`, and confirm `python manage.py runserver` starts cleanly with nothing installed by hand.
+
+Then open the file and look at what's in it. Some of those packages you installed directly; others were pulled in as a dependency of something else. Pick one you don't recognise, work out which package needs it and why, and note it in your README.

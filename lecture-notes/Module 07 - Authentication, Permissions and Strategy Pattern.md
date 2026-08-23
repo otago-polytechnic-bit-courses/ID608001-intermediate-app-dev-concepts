@@ -74,7 +74,7 @@ Test it with the superuser account you created in module 02.
 ```bash
 curl -X POST http://127.0.0.1:8000/api/token/ \
   -H "Content-Type: application/json" \
-  -d '{"username": "your_superuser", "password": "your_password"}'
+  -d '{"username": "admin", "password": "P@ssw0rd123"}'
 ```
 
 You should get back two tokens.
@@ -116,7 +116,7 @@ Second, **put the token in a shell variable** rather than pasting a 300-characte
 ```bash
 TOKEN=$(curl -s -X POST http://127.0.0.1:8000/api/token/ \
   -H "Content-Type: application/json" \
-  -d '{"username": "your_superuser", "password": "your_password"}' \
+  -d '{"username": "admin", "password": "P@ssw0rd123"}' \
   | python -m json.tool | grep '"access"' | cut -d '"' -f 4)
 
 curl -s http://127.0.0.1:8000/api/studios/ \
@@ -130,7 +130,7 @@ Third, **test the failure, not only the success**. A wrong password should be re
 ```bash
 curl -i -X POST http://127.0.0.1:8000/api/token/ \
   -H "Content-Type: application/json" \
-  -d '{"username": "your_superuser", "password": "definitely-wrong"}'
+  -d '{"username": "admin", "password": "definitely-wrong"}'
 ```
 
 ```
@@ -402,7 +402,7 @@ Get a token for each of your two accounts and keep both in variables.
 ```bash
 SUPER=$(curl -s -X POST http://127.0.0.1:8000/api/token/ \
   -H "Content-Type: application/json" \
-  -d '{"username": "your_superuser", "password": "your_password"}' | jq -r .access)
+  -d '{"username": "admin", "password": "P@ssw0rd123"}' | jq -r .access)
 
 HEMI=$(curl -s -X POST http://127.0.0.1:8000/api/token/ \
   -H "Content-Type: application/json" \
