@@ -1,5 +1,7 @@
 # Module 05: React Native
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. Setting up a new project
 
 Create a new project, and install Expo Router explicitly rather than assuming a template already includes it correctly configured.

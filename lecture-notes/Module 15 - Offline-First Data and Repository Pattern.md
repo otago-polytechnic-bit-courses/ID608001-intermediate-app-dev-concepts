@@ -1,5 +1,7 @@
 # Module 15: Offline-First Data and Repository Pattern
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. The assumption every app makes and shouldn't
 
 Every screen you've built since module 06 assumes a working network. `getStudios()` fetches, the spinner spins, the list appears. Module 06's Task 5 added an error state, which was an improvement, but the improvement was only ever "tell the user it failed."

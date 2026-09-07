@@ -1,4 +1,6 @@
-# Module 13: SOLID and Code Smells
+# Module 10: SOLID and Code Smells
+
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
 
 ## 1. Where this fits
 

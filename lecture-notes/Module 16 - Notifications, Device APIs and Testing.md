@@ -1,5 +1,7 @@
 # Module 16: Notifications, Device APIs and Testing
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. What a phone can do that a browser can't
 
 Everything built so far could, with some translation, have been a web app. This module covers the parts that couldn't: the camera, the device's location, and the ability to reach a user when your app isn't running.

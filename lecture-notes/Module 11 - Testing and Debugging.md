@@ -1,4 +1,4 @@
-# Module 10: Testing and Debugging
+# Module 11: Testing and Debugging
 
 ## 1. Why automated tests
 

@@ -1,5 +1,7 @@
 # Module 04: TypeScript
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. Why TypeScript
 
 **Why this matters.** You already know JavaScript. TypeScript doesn't replace it; it sits on top of it, adding a type system that gets checked before your code ever runs, and compiles down to plain JavaScript at the end. Every valid JavaScript file is already valid-ish TypeScript, but TypeScript lets you say, up front, exactly what shape a value is supposed to be, and it will refuse to compile if you break that promise.

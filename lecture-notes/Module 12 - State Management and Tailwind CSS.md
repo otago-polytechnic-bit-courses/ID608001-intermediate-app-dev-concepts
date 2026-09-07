@@ -1,4 +1,6 @@
-# Module 11: State Management and Tailwind CSS
+# Module 12: State Management and Tailwind CSS
+
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
 
 ## 1. The problem with `useState` alone
 

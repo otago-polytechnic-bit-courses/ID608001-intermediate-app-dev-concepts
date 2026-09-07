@@ -1,5 +1,7 @@
 # Module 09: Backlog Selection and Requirement Analysis
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. Why this module has almost no code in it
 
 Every module so far has handed you a problem someone else had already decided was worth solving. This one doesn't, and that's the point. The Project asks you to build a full-stack app **of your own choosing**, and it assesses how you work as a developer at least as much as what you produce. The path it asks you to walk is:

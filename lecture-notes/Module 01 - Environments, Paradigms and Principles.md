@@ -1,5 +1,7 @@
 # Module 01: Environments, Paradigms and Principles
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. Course overview
 
 **ID607001: Introductory Application Development Concepts** gave you a backend in Express and a frontend in SvelteKit, both in JavaScript. This course keeps the frontend in JavaScript, but moves it to React Native, for building mobile apps instead of web pages. The backend changes language entirely: you'll build it in Python, using Django.

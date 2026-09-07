@@ -1,4 +1,6 @@
-# Module 12: Forms, Validation and User Input
+# Module 13: Forms, Validation and User Input
+
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
 
 ## 1. Why forms deserve a module
 

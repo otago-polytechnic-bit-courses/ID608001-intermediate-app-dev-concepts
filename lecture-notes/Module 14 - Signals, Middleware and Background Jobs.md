@@ -1,5 +1,7 @@
 # Module 14: Signals, Middleware and Background Jobs
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. Three ways of doing work elsewhere
 
 Module 13 left a problem unfinished. A view that saved a studio and then sent an email had three reasons to change, and two of them clearly didn't belong there. Validation moved to the serializer. The email had nowhere obvious to go.

@@ -1,5 +1,7 @@
 # Module 07: Authentication, Permissions and Strategy Pattern
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. Authentication vs authorisation
 
 Two words that get used interchangeably in conversation mean genuinely different things in code, and keeping them separate makes the rest of this module much easier to follow.

@@ -144,6 +144,28 @@ Roughly a third of the available marks assess LO1, through the design patterns a
 
 **Partial marks are available for partially completed work.** A smaller feature set, well designed, tested and reflected on, will score better than ten half-finished requirements — and the mark allocation above is what makes that true rather than merely encouraging.
 
+## Grade Bands
+
+Every rubric in this document uses the same four bands, which map to the course grade scale:
+
+| Band    | Grades    | Percentage |
+| ------- | --------- | ---------: |
+| **A**   | A-, A, A+ |     80-100 |
+| **B**   | B-, B, B+ |      65-79 |
+| **C**   | C-, C, C+ |      50-64 |
+| **D/E** | E, D      |       0-49 |
+
+A criterion is marked by deciding which band the work sits in, then placing it within that band. For the criterion sizes used in this document, that works out as follows, rounded to the nearest quarter mark:
+
+| Criterion marks |      A |        B |        C |    D/E |
+| --------------: | -----: | -------: | -------: | -----: |
+|               1 |      1 |     0.75 |      0.5 | 0-0.25 |
+|               2 | 1.75-2 | 1.25-1.5 |        1 | 0-0.75 |
+|               3 |  2.5-3 |   2-2.25 | 1.5-1.75 | 0-1.25 |
+|               4 | 3.25-4 |   2.75-3 |    2-2.5 | 0-1.75 |
+
+A criterion that is absent scores 0 regardless of the quality of the rest of the section.
+
 ---
 
 # Use of AI Tools
@@ -220,6 +242,15 @@ Your app should be original, scoped to your own idea (not a clone of an existing
 
 Your lecturer must approve your concept before you continue to backlog selection.
 
+## Marking Rubric
+
+| Band    |    Marks | Descriptor                                                                                                                                                             |
+| ------- | -------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A**   |   1.75-2 | Problem or need, intended users and core functionality are all clearly stated within 100-150 words. The concept is original and plausibly deliverable in one semester. |
+| **B**   | 1.25-1.5 | All three elements are present, but one is vague or underdeveloped. Scope is broadly realistic.                                                                        |
+| **C**   |        1 | An element is missing, the concept closely mirrors a well-known app, or the scope is clearly unrealistic for the time available.                                       |
+| **D/E** |   0-0.75 | No concept submitted, or too vague to assess or approve.                                                                                                               |
+
 ---
 
 # 2. Backlog Selection and Requirement Analysis
@@ -277,6 +308,18 @@ Identify relevant considerations such as:
 
 Your 10 requirements should provide enough work for meaningful sprint planning without creating an unrealistic workload.
 
+## Marking Rubric
+
+Requirements written well outside 150-250 words are still assessed on content, but persistent under-length usually shows up as thin justification above.
+
+| Criterion                                           | A                                                                                                                                                                                   | B                                                                                                                | C                                                                                                             | D/E                                                                                          |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **Backlog scope and coverage** (2)                  | Ten distinct requirements, each representing meaningful work, sensibly spread across the client and the API and achievable across the planned sprints.                              | Ten requirements with good coverage; one or two are thin or overlap another.                                     | Ten requirements present, but several are trivial or the set is weighted heavily to one side of the stack.    | Fewer than ten requirements, or the set does not describe a workable full-stack feature set. |
+| **Priority and selection** (4)                      | Every requirement explains its selection, its value and its priority relative to others. A named prioritisation technique is applied consistently and the ordering follows from it. | A named technique is used and most requirements are justified; ordering is mostly consistent with the technique. | A technique is named but applied loosely. Justifications restate the requirement more than they argue for it. | No technique named, or rationales are generic and interchangeable between requirements.      |
+| **Risks, assumptions and dependencies** (2)         | Each requirement identifies at least one specific, credible risk, assumption or dependency, with a clear account of how it may affect implementation.                               | Present for most requirements; impact is explained, sometimes only briefly.                                      | Present but generic, with little connection to this app or this implementation.                               | Missing for many requirements, or listed with no explanation of impact.                      |
+| **Acceptance criteria** (3)                         | Criteria are specific, measurable and testable, and the method of verification is explained for each.                                                                               | Criteria are mostly testable and verification is explained for most.                                             | Criteria largely restate the requirement; verification is implied rather than explained.                      | Criteria are vague, unverifiable or absent.                                                  |
+| **Non-functional requirements and constraints** (1) | Relevant non-functional considerations and constraints are identified per requirement and tied to the specifics of the app.                                                         | Identified for most requirements and mostly relevant.                                                            | A generic list applied uniformly regardless of the requirement.                                               | Absent.                                                                                      |
+
 ---
 
 # 3. System Design
@@ -308,6 +351,14 @@ Accompany each diagram with a **100–150 word explanation** that:
 - explains your technical decisions; and
 - identifies an alternative approach that you considered and rejected.
 
+## Marking Rubric
+
+| Criterion                             | A                                                                                                                                                                                   | B                                                                             | C                                                                                                                                | D/E                                                                |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Feature selection and diagram** (2) | Both selected features involve meaningful UI or system-level complexity, and each is represented by an appropriate diagram type, used correctly and in enough detail to build from. | Appropriate features and diagrams, with minor notation or consistency issues. | Diagrams present but the type is a poor fit, the detail is too coarse to guide implementation, or a selected feature is trivial. | Only one feature diagrammed, or diagrams are absent or unreadable. |
+| **Coverage of required elements** (2) | Client and API responsibilities, key data exchanged, major components, their relationships and any external dependencies are all shown for both features.                           | Most elements shown; one is missing or unclear.                               | Several elements missing, or the client and API split is not evident.                                                            | Coverage too limited to assess the design.                         |
+| **Justification and alternative** (2) | Each 100-150 word explanation justifies the design, explains the technical decisions and names a rejected alternative with a real reason for rejecting it.                          | Justification is sound; the alternative is named but the comparison is brief. | Explanation describes the diagram rather than justifying it, or the alternative is a token mention.                              | No justification, or no alternative considered.                    |
+
 ---
 
 # 4. API Design
@@ -331,6 +382,14 @@ Consider:
 
 Your API design should fit sensibly into your overall app architecture.
 
+## Marking Rubric
+
+| Criterion                           | A                                                                                                                                                         | B                                                                        | C                                                                                          | D/E                                                               |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| **Endpoint coverage** (1)           | Every endpoint needed by the two features is documented, with method, URL, description, authentication, roles and body parameters complete.               | All endpoints present with minor gaps in the detail columns.             | Core endpoints present but supporting ones are missing, or several columns are left blank. | Endpoints missing or too incomplete to implement from.            |
+| **Request and response detail** (1) | Authentication, authorisation, validation, invalid requests, error responses, status codes and returned data are all addressed and internally consistent. | Most of these are addressed; one or two are handled loosely.             | Happy path only, with error handling and status codes largely unaddressed.                 | Little or no consideration of validation, errors or status codes. |
+| **Fit with architecture** (1)       | The API design follows naturally from the system design and uses consistent conventions throughout.                                                       | Fits the architecture with minor inconsistencies in naming or structure. | Fits loosely; conventions vary between endpoints.                                          | Conflicts with the system design, or no coherent structure.       |
+
 ---
 
 # 5. Wireframes
@@ -351,6 +410,15 @@ Your wireframes should show:
 
 The purpose is to communicate the intended user experience before implementation.
 
+## Marking Rubric
+
+| Band    |    Marks | Descriptor                                                                                                                                                                                                  |
+| ------- | -------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A**   |   1.75-2 | Wireframes for both features show navigation, key information, interactive elements and the default, loading, error/empty and success states. The intended experience is clear without further explanation. |
+| **B**   | 1.25-1.5 | Both features are covered, with one or two states missing or implied rather than drawn.                                                                                                                     |
+| **C**   |        1 | Only one feature is wireframed, or only default states are shown.                                                                                                                                           |
+| **D/E** |   0-0.75 | Absent, or too rough to communicate the intended user experience.                                                                                                                                           |
+
 ---
 
 # 6. Design Reflection
@@ -365,6 +433,16 @@ Before beginning implementation, write a short reflection addressing:
 4. What do you expect to be the most challenging part of implementing them?
 
 This reflection is assessed on the quality of your reasoning rather than whether your predictions turn out to be correct.
+
+## Marking Rubric
+
+This section is assessed on the quality of the reasoning, not on whether the predictions turn out to be correct.
+
+| Criterion                     | A                                                                                                                                              | B                                                                                   | C                                                                                        | D/E                                          |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------- |
+| **Feature selection** (1)     | Both features are identified and the choice over the other eight requirements is argued on concrete grounds such as complexity, value or risk. | Selection is justified, though the comparison with the other requirements is brief. | Features are identified but the reason for choosing them is asserted rather than argued. | Features unclear, or no justification given. |
+| **Architectural fit** (1)     | Explains specifically how both features sit within the overall architecture and interact with the rest of the app.                             | Explains the fit for both features in general terms.                                | Describes the features again rather than their place in the architecture.                | Not addressed.                               |
+| **Anticipated challenge** (1) | Identifies a specific expected difficulty and reasons clearly about why it will be difficult.                                                  | Identifies a plausible difficulty with some reasoning.                              | Names a difficulty with no supporting reasoning.                                         | Not addressed.                               |
 
 ---
 
@@ -404,6 +482,15 @@ For each sprint, document:
 
 Your board should demonstrate genuine use throughout the project.
 
+## Marking Rubric
+
+| Criterion                        | A                                                                                                                                          | B                                                               | C                                                                             | D/E                                                         |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Board use** (2)                | The board shows genuine, continuous use across the whole project, with items moving through states as the work happened.                   | Regular use throughout, with some periods of catch-up updating. | Board exists and is populated, but updates cluster around deadlines.          | No board, or one populated retrospectively near submission. |
+| **Sprint structure** (1)         | At least three development sprints plus a UAT sprint, each with a clear goal and an explicit set of requirements.                          | Required sprints present; one goal or requirement set is vague. | Sprints exist but goals are generic or requirements are not clearly assigned. | Fewer than the required sprints, or no sprint structure.    |
+| **Estimates and sequencing** (1) | Every sprint records estimates and a deliberate sequence, and the sequencing reflects real dependencies.                                   | Estimates and sequencing present for most sprints.              | Estimates present but nominal, or sequencing appears arbitrary.               | Estimates or sequencing missing.                            |
+| **Sprint rationales** (1)        | Each 100-150 word rationale explains convincingly why the work was grouped and ordered that way, referring to dependencies, risk or value. | Rationales are present and reasonable, if brief in places.      | Rationales restate the sprint contents rather than explaining the grouping.   | Rationales missing for one or more sprints.                 |
+
 ---
 
 # Django API Implementation
@@ -422,6 +509,15 @@ You must:
 
 The API should integrate cleanly with the rest of your app rather than being developed as an isolated system.
 
+## Marking Rubric
+
+| Criterion                                  | A                                                                                                                                                          | B                                                                                           | C                                                                               | D/E                                                                                     |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **Endpoints** (2)                          | All endpoints required by the selected requirements are implemented, behave as documented and match the Phase 1 API design or a documented revision of it. | Endpoints implemented with minor deviations from the design that are not documented.        | Core endpoints work; some are incomplete or diverge noticeably from the design. | Endpoints missing, non-functional, or unrelated to the documented design.               |
+| **Validation and error responses** (1)     | Create and update operations are validated, and error responses are consistent JSON with appropriate status codes.                                         | Validation and error handling present, with minor inconsistencies in shape or status codes. | Some validation, but error responses vary in format or leak framework defaults. | No meaningful validation, or errors returned inconsistently or not at all.              |
+| **Automated tests** (2)                    | Tests cover successful requests, validation failures and error responses for the functionality added or modified, and they pass.                           | Good coverage of the added functionality with one of those categories thinly tested.        | A small number of tests, mostly happy path.                                     | No tests, or tests that do not run or do not exercise the submitted work.               |
+| **Data relationships and integration** (1) | Relationships or multi-model queries are used appropriately where the requirements call for them, and the API integrates cleanly with the client.          | Relationships used appropriately with minor inefficiencies.                                 | Models are largely isolated where relationships were warranted.                 | No relationships where clearly required, or the API does not integrate with the client. |
+
 ---
 
 # React Native Client Implementation
@@ -437,6 +533,15 @@ You must:
 - document and justify significant deviations;
 - handle loading, error, empty and success states appropriately; and
 - provide clear feedback to the user.
+
+## Marking Rubric
+
+| Criterion                          | A                                                                                                                                | B                                                                                          | C                                                                                 | D/E                                                                 |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **Requirement implementation** (2) | All ten selected requirements are implemented in the client and work end to end against the API.                                 | Most requirements implemented and working; one or two are partial.                         | Around half the requirements are implemented, or several work only partially.     | Few requirements implemented, or the client does not run.           |
+| **Fidelity to design** (2)         | The two selected features follow the system designs and wireframes, and every significant deviation is documented and justified. | Features follow the designs closely; a deviation is documented but only lightly justified. | Noticeable deviations from the designs with little or no documentation.           | Implementation bears little relationship to the submitted designs.  |
+| **UI states** (1)                  | Loading, error, empty and success states are handled throughout, including on slow or failed requests.                           | States handled in most screens, with gaps in less-used paths.                              | Only some states handled; failures or empty data are visibly unhandled in places. | States not handled; the app breaks or hangs on error or empty data. |
+| **User feedback** (1)              | The user is given clear, timely feedback for every action, including failures.                                                   | Feedback is clear in most cases.                                                           | Feedback is inconsistent or unclear, leaving the user uncertain what happened.    | No user feedback.                                                   |
 
 ---
 
@@ -470,6 +575,15 @@ Examples include:
 - another appropriate principle.
 
 Your final reflection must evaluate how effectively you applied these patterns and principles across the larger project.
+
+## Marking Rubric
+
+| Criterion                              | A                                                                                                                       | B                                                                        | C                                                       | D/E                                                                                   |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Design patterns applied** (2)        | At least two named patterns are implemented correctly and are clearly identifiable in the codebase.                     | Two patterns implemented, one with minor deviations from its usual form. | Patterns named but only partially realised in the code. | Fewer than two patterns, or patterns claimed but not present in the implementation.   |
+| **Fit of patterns to problem** (1)     | Each pattern solves a genuine problem in this project and the code is better for it.                                    | Patterns are reasonable choices, though one adds limited value.          | At least one pattern is applied where it is not needed. | Patterns are forced onto problems they do not fit, adding complexity without benefit. |
+| **Programming principles applied** (2) | At least two principles or best practices are applied deliberately and visibly across the codebase.                     | Two principles applied, one less consistently.                           | Principles are named but evidence in the code is thin.  | Fewer than two principles, or no observable application.                              |
+| **Applied across the project** (1)     | Patterns and principles are used across the project, in both the API and the client, rather than in one isolated place. | Used in several places across the project.                               | Used in one or two files only.                          | Applied inconsistently or contradicted elsewhere in the code.                         |
 
 ---
 
@@ -509,6 +623,21 @@ Your UAT will be assessed against the following:
 | **Re-verification**       | Changed features are re-checked against their original acceptance criteria after the fix                                         |
 | **Documentation**         | Your test plan, raw results, and a short written summary of findings are all included in your evidence                           |
 
+## Marking Rubric
+
+Fabricated participants, sessions or results are handled under the academic integrity process rather than by deduction under this rubric.
+
+| Criterion                         | A                                                                                                                             | B                                                                                       | C                                                                                   | D/E                                                                     |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **Participant selection** (1)     | Three or more participants, none involved in development, who reasonably represent the intended users.                        | Three or more independent participants, with representativeness only briefly addressed. | Three participants, but their fit to the intended users is doubtful or unexplained. | Fewer than three participants, or participants involved in development. |
+| **Test design** (2)               | Scenarios derive directly from the Phase 1 acceptance criteria, with the mapping visible, and cover both features.            | Scenarios map to the acceptance criteria for both features, with one or two gaps.       | Scenarios relate loosely to the criteria, or one feature is under-tested.           | No test plan, or open exploration with no link to acceptance criteria.  |
+| **Session evidence** (1)          | At least one moderated session, with observation notes recording what participants did, said and struggled with.              | Observed sessions with notes that are accurate but sparse.                              | Notes record outcomes only, with no record of participant behaviour.                | No session evidence.                                                    |
+| **Structured feedback** (1)       | The same instrument is used for every participant, covering usability, clarity and satisfaction, with raw responses retained. | Consistent instrument used, with one area lightly covered.                              | Feedback collected inconsistently across participants.                              | Informal comments only, or no feedback collected.                       |
+| **Issue tracking** (1)            | Every issue is logged individually with a severity or priority and enough detail to act on.                                   | Issues logged individually; severity applied inconsistently.                            | Issues grouped or summarised rather than logged, or unprioritised.                  | Issues not recorded.                                                    |
+| **Action taken** (1)              | At least two identified issues result in tracked, implemented changes, with the link from finding to change visible.          | Two issues actioned and implemented, with the tracking link partly evident.             | One issue actioned, or changes made without being tracked.                          | No changes made in response to findings.                                |
+| **Re-verification** (1)           | Every changed feature is re-checked against its original acceptance criteria after the fix, and the outcome is recorded.      | Re-verification carried out with results recorded briefly.                              | Informal re-checking with no record against the criteria.                           | No re-verification.                                                     |
+| **Documentation and release** (1) | Test plan, raw results and a written summary of findings are complete and included in the sprint release.                     | All three present, with one thin or partly outside the release.                         | Partial documentation, or evidence not included in the release.                     | Documentation missing.                                                  |
+
 ---
 
 # Releases
@@ -527,6 +656,15 @@ At the end of **each sprint**, including the UAT sprint:
 You are **not required to deploy the API or publish your app** to an app store, TestFlight, EAS, or any other distribution platform. Each release should be runnable locally from the tagged commit.
 
 The release history should demonstrate genuine incremental development throughout the project.
+
+## Marking Rubric
+
+| Band    |    Marks | Descriptor                                                                                                                                                                                                                                                                        |
+| ------- | -------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A**   |   1.75-2 | A semantic versioned release or tag exists for every sprint including the UAT sprint. Release notes describe what was delivered, known issues, how to run both the API and client locally, and relevant technical information. The history shows genuine incremental development. |
+| **B**   | 1.25-1.5 | All required releases present; notes are complete for most, with one section thin or missing.                                                                                                                                                                                     |
+| **C**   |        1 | Some sprints released, or notes omit local run instructions or known issues.                                                                                                                                                                                                      |
+| **D/E** |   0-0.75 | No releases or tags, or releases created in a single batch at the end.                                                                                                                                                                                                            |
 
 ---
 
@@ -548,6 +686,15 @@ Your implementation should demonstrate:
 | **Version control** | Regular, descriptive conventional commits linked to relevant issues |
 
 Your Git history is evidence of your development process. A regular history should demonstrate how the project evolved over multiple sprints - a single commit on the due date communicates something very specific to a marker.
+
+## Marking Rubric
+
+| Band    |    Marks | Descriptor                                                                                                                                                                                                                                              |
+| ------- | -------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A**   |   1.75-2 | Clear separation of concerns, consistent formatting and linting, descriptive naming, consistent and visible error handling, and secrets kept in environment variables. Regular conventional commits, linked to issues, spread across the whole project. |
+| **B**   | 1.25-1.5 | Sound structure and style with isolated lapses. Commit history is regular and descriptive with occasional gaps or vague messages.                                                                                                                       |
+| **C**   |        1 | Structure or naming is inconsistent, error handling is patchy, or the commit history clusters around deadlines.                                                                                                                                         |
+| **D/E** |   0-0.75 | Disorganised code, secrets committed to the repository, or a history of very few large commits.                                                                                                                                                         |
 
 ---
 
@@ -577,6 +724,15 @@ Include:
 - a note of each versioned release/tag with at least one per sprint, and instructions for running that release locally.
 
 Documentation should be maintained throughout development rather than written entirely at the end.
+
+## Marking Rubric
+
+| Band    |    Marks | Descriptor                                                                                                                                                                                                                                             |
+| ------- | -------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **A**   |   1.75-2 | Both `api-documentation.md` and `app-documentation.md` contain every required item, are accurate against the submitted code, and show evidence of being maintained during development. Each release is noted with instructions for running it locally. |
+| **B**   | 1.25-1.5 | Both documents present and largely complete, with one required item thin or slightly out of date.                                                                                                                                                      |
+| **C**   |        1 | One document missing or several required items absent, or documentation clearly written entirely at the end.                                                                                                                                           |
+| **D/E** |   0-0.75 | Documentation missing, or so inaccurate that the project cannot be set up from it.                                                                                                                                                                     |
 
 ---
 
@@ -640,6 +796,17 @@ Use specific examples from your code.
 
 Identify the part of the project that best demonstrates your understanding and explain why.
 
+## Marking Rubric
+
+Reflections must draw on specific evidence from the project. Generic statements such as "I learned a lot" score in the lowest band regardless of length.
+
+| Criterion                                 | A                                                                                                                                                                                                         | B                                                                                                                                | C                                                                                 | D/E                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **What changed** (2)                      | Identifies a specific change to the system design, API design or wireframes and explains convincingly why it occurred, with reference to what was learned during implementation.                          | Identifies a specific change and gives a sound reason for it.                                                                    | Describes a change in general terms, or asserts a cause without support.          | No specific change identified.                          |
+| **What was harder than expected** (2)     | One technical problem described in detail: what happened, what was tried, what worked, what did not, and what was learned from it.                                                                        | Problem described with most of those elements covered.                                                                           | Problem named but the account is thin, or the failed attempts are omitted.        | Not addressed, or described only in generalities.       |
+| **Patterns and principles** (3)           | For each pattern and principle: where it is used, why it was selected, a comparison with a real alternative, the trade-offs, and an evaluation of its effectiveness, supported by specific code examples. | All patterns and principles covered with specific examples; one element such as the alternative or trade-off is treated briefly. | Patterns and principles described rather than evaluated, or examples are generic. | Not addressed, or covers only one pattern or principle. |
+| **What you are most confident about** (1) | Identifies a specific part of the project and explains clearly why it best demonstrates understanding.                                                                                                    | Identifies a specific part with a reasonable explanation.                                                                        | Names a part of the project with little explanation.                              | Not addressed.                                          |
+
 ---
 
 # User Acceptance Testing Reflection
@@ -656,6 +823,16 @@ Address:
 4. How did the changes you made improve the feature(s)?
 5. What would you do differently if you ran another round of UAT?
 
+## Marking Rubric
+
+| Criterion                              | A                                                                                                                                              | B                                                                | C                                                                                 | D/E                                                         |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Scenario design and mapping** (1)    | Explains how the scenarios were designed and evaluates honestly how well they mapped to the acceptance criteria, including where they did not. | Explains the design and the mapping soundly.                     | Describes the scenarios without evaluating the mapping.                           | Not addressed.                                              |
+| **Participant difficulties** (2)       | Identifies specific struggles and misunderstandings and offers a credible analysis of why they happened.                                       | Identifies specific difficulties with some analysis of cause.    | Reports difficulties without analysing them.                                      | Not addressed, or claims no participant had any difficulty. |
+| **Feedback acted on and declined** (2) | Explains clearly which feedback was actioned and which was not, with defensible reasoning for both decisions.                                  | Covers both, with reasoning stronger on one side than the other. | Covers actioned feedback only, or gives reasoning that amounts to available time. | Not addressed.                                              |
+| **Impact of changes** (1)              | Explains concretely how the changes improved the features, referring to re-verification evidence.                                              | Explains the improvement in general but plausible terms.         | Asserts improvement without evidence.                                             | Not addressed.                                              |
+| **Next round** (1)                     | Identifies specific, realistic changes to the UAT process and explains why they would help.                                                    | Identifies realistic changes with brief reasoning.               | Offers generic suggestions such as more participants, unexplained.                | Not addressed.                                              |
+
 ---
 
 # Final Reflection
@@ -671,6 +848,14 @@ Address:
 3. What is the single most significant improvement you would make to your development process?
 
 Your reflection should use concrete examples from your project.
+
+## Marking Rubric
+
+| Criterion                                      | A                                                                                                                                                                | B                                                            | C                                                                        | D/E            |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------ | -------------- |
+| **Design versus implementation** (2)           | Identifies the most significant divergence between the original designs and the final build and explains why it happened, using concrete examples.               | Identifies a significant divergence and explains it soundly. | Notes that things changed without identifying what mattered most or why. | Not addressed. |
+| **What the client revealed about the API** (2) | Draws a specific, well-evidenced insight about the API design from building the client, such as a shape, payload or error case that the client exposed as wrong. | Draws a plausible insight with a supporting example.         | Comments on the API in general terms without a specific insight.         | Not addressed. |
+| **Process improvement** (1)                    | Identifies a single significant process improvement and justifies it against what happened in this project.                                                      | Identifies a realistic improvement with brief justification. | Offers a generic improvement such as starting earlier, unjustified.      | Not addressed. |
 
 ---
 
@@ -717,3 +902,14 @@ Provide a concise and honest account of your UAT process and what it revealed.
 ### Final takeaway
 
 Explain the single most important thing you learned about professional software development through this project.
+
+## Marking Rubric
+
+| Criterion                       | A                                                                                                                                                              | B                                                                                                     | C                                                                                                             | D/E                                                                      |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **Project overview** (2)        | Concept, backlog and prioritisation, and sprint plan are conveyed clearly and concisely within roughly 1-2 minutes.                                            | All three covered clearly, slightly over or under time.                                               | One element is skipped or the overview runs long at the expense of later sections.                            | Overview missing or too unclear to follow.                               |
+| **Feature demonstration** (3)   | Both Phase 1 features are demonstrated live from the latest local release and work as described.                                                               | Both features demonstrated, with a minor fault handled well.                                          | One feature demonstrated, or the demonstration relies on screenshots rather than a running release.           | No working demonstration.                                                |
+| **Code walkthrough** (4)        | One design pattern is shown in the actual implementation, with a clear unscripted account of where it is used, why it was selected and what problem it solves. | Pattern shown in the code and explained soundly, with one of those three points covered only briefly. | Pattern shown but the explanation is largely descriptive, or the reasoning is recited rather than understood. | No walkthrough, or the presenter cannot explain their own code.          |
+| **User acceptance testing** (2) | A concise, honest account of the UAT process and what it revealed, including findings that were unflattering.                                                  | Clear account of process and findings.                                                                | Describes the process but says little about what it revealed.                                                 | Not covered, or presents an implausibly positive account.                |
+| **Final takeaway** (1)          | Identifies one significant, specific insight about professional software development and grounds it in the project.                                            | Identifies a specific insight with brief grounding.                                                   | Offers a generic takeaway.                                                                                    | Not covered.                                                             |
+| **Delivery** (2)                | Pitched appropriately for a technical lead or client, well paced, within 10-15 minutes, and clearly not a reading of the written reflections.                  | Well delivered and within time, with minor pacing issues.                                             | Noticeably over or under time, or leans heavily on reading prepared text.                                     | Reads the reflections aloud, or is substantially outside the time limit. |

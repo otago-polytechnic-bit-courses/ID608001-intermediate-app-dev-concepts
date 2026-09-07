@@ -1,5 +1,7 @@
 # Module 02: Django and MVT Pattern
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. Why Django
 
 Express gives you almost nothing by default. Every project decides its own folder structure, its own way of talking to a database, its own admin tooling, if it has any at all. That flexibility is genuinely useful once you know what you're doing, but it also means every Express project looks a little different, and a newcomer has to learn that project's particular choices before they can be productive. Django makes most of those choices for you, up front. An admin panel, a database layer, a way of defining URLs, a testing framework: all included, all built to work together. The trade-off is less flexibility. The payoff is that any Django project is recognisable to any other Django developer within minutes.

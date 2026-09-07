@@ -1,5 +1,7 @@
 # Module 03: Django REST Framework, Serializers and Adapter Pattern
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. Why an API layer
 
 The Django admin is genuinely useful, but it's a tool for people, rendered as HTML, requiring a login, a browser, and a human clicking around. The mobile app you'll build next module is none of those things. It will need data as plain JSON, delivered over HTTP, so it can decide for itself how to display it. **Django REST Framework**, usually shortened to DRF, is the standard, official-adjacent way to add that JSON layer on top of the models you already built.

@@ -1,5 +1,7 @@
 # Module 08: Data Modelling and Advanced ORM
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. One `ForeignKey` only gets you so far
 
 Every model in this course so far has used exactly one relationship: a `StudioClass` belongs to a `Studio`, and a `Studio` belongs to a `User`. That's the "has a" relationship from module 02, and it covers a genuine share of real data modelling.

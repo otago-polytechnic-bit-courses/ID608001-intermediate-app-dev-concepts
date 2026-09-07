@@ -1,5 +1,7 @@
 # Module 06: Navigation and API Integration
 
+**Note:** The following notes were co-written with AI help structure topics and explain complex terms clearly.
+
 ## 1. A second screen, with Expo Router
 
 Keep this deliberately small: one list screen, and one detail screen, connected by a single dynamic route. Nothing else yet, no tabs, no modals.
